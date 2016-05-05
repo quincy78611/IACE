@@ -1,4 +1,4 @@
-package core.entity;
+package iace.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -23,6 +23,17 @@ public abstract class BaseEntity implements Serializable {
 	private Date updateTime;
 	private String updateUser;
 	private Timestamp ver;
+	
+	public BaseEntity() {}
+	
+	public BaseEntity(BaseEntity entity) {
+		this.isValid = entity.isValid;
+		this.createTime = entity.createTime;
+		this.createUser = entity.createUser;
+		this.updateTime = entity.updateTime;
+		this.updateUser = entity.updateUser;
+		this.ver = entity.ver;
+	}
 
 	@Column(name = "IS_VALID", length=1)
 	public String getIsValid() {

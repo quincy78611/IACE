@@ -12,8 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import core.entity.BaseEntity;
-
 @Entity
 @Table(name = "R_D_RESULT", schema = "IACE_ADMIN")
 public class RnDResult extends BaseEntity {

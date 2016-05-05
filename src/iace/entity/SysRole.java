@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import core.entity.BaseEntity;
-
 @Entity
 @Table(name = "SYS_ROLE", schema = "IACE_ADMIN")
 public class SysRole extends BaseEntity {

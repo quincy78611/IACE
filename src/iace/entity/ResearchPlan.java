@@ -13,8 +13,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import core.entity.BaseEntity;
-
 @Entity
 @Table(name = "RESEARCH_PLAN", schema = "IACE_ADMIN")
 public class ResearchPlan extends BaseEntity {

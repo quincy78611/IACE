@@ -12,7 +12,7 @@ import org.hibernate.criterion.Restrictions;
 
 import core.dao.BaseDao;
 import core.dao.HibernateSessionFactory;
-import core.entity.BaseEntity;
+import iace.entity.BaseEntity;
 import iace.entity.OptionIndustry;
 
 public class OptionIndustryDao extends BaseDao<OptionIndustry> implements IOptionIndustryDao {

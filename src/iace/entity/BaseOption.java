@@ -7,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
 
-import core.entity.BaseEntity;
-
 @MappedSuperclass
 public abstract class BaseOption  extends BaseEntity {
 

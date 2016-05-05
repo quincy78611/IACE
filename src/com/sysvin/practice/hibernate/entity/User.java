@@ -13,8 +13,6 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import core.entity.BaseEntity;
-
 @Entity
 @Table(name = "USERS")
 public class User extends BaseEntity {
