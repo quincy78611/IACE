@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="OptionIndustry" namespace="/iace/option/industry" extends="struts-default">
+		<action name="index" class="iace.action.OptionIndustryAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/optionIndustry/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionIndustryAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/optionIndustry/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.OptionIndustryAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/optionIndustry/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/optionIndustry/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionIndustryAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/optionIndustry/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionIndustryAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/optionIndustry/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/optionIndustry/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionIndustryAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/optionIndustry/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionIndustryAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/optionIndustry/delete.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/optionIndustry/delete.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

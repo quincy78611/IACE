@@ -1,0 +1,81 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/bootstrap.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.file.browse.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/PagedList.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/Site.css"/>" />
+	<script type="text/javascript" src="<s:url value="/scripts/jquery-1.10.2.min.js"/>"></script>
+	<script type="text/javascript" src="<s:url value="/scripts/jquery.validate.js"/>"></script>
+	<script type="text/javascript" src="<s:url value="/scripts/bootstrap.js"/>"></script>
+	<script type="text/javascript" src="<s:url value="/scripts/respond.js"/>"></script>
+	<script type="text/javascript" src="<s:url value="/scripts/calendarBox.js"/>"></script>
+	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
+	
+    <title><decorator:title default="Welcome!" /></title>
+    
+    <script type="text/javascript">		
+		$(window).load(function(){
+			//目前這作法只是權宜之計，比較好的做法應該是用更改template & theme
+			//http://www.mkyong.com/struts2/working-with-struts-2-theme-template/
+			//http://struts.apache.org/docs/xhtml-theme.html
+			$("span.help-block").removeClass("help-block");
+			$("span.glyphicon").remove();
+		});
+	</script>
+    
+    <decorator:head />
+</head>
+<body>
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+				<a class="navbar-brand" >Brand - HelloWorld</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="<s:url value="/practice/hibernate/findUserByPhoneInput"/>">用電話查詢</a></li>
+					<li><a href="<s:url value="/practice/hibernate/registerInput"/>">註冊</a></li>					
+					<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                           	 代碼管理 <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別代碼</a></li>		
+                        </ul>
+                    </li>		
+				</ul>
+			</div>
+		</div>
+	</div>
+    <div class="container body-content">
+		<s:if test="hasActionMessages()">
+			<div class="welcome">
+				<s:actionmessage />
+			</div>
+		</s:if>
+		<s:if test="hasActionErrors()">
+			<div class="errors">
+				<s:actionerror />
+			</div>
+		</s:if>
+		<decorator:body /> 
+    </div>
+	<br>
+	<div class="container">
+		<p>&copy; Hello World</p>
+	</div>	
+</body>
+</html>
