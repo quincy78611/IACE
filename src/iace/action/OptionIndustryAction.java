@@ -11,12 +11,16 @@ public class OptionIndustryAction extends BaseAction {
 
 	private static final long serialVersionUID = 4664782363730088425L;
 
-	private OptionIndustryService optionIndustryService = ServiceFactory.getOptionIndustryService();
-
+	private OptionIndustryService optionIndustryService = ServiceFactory.getOptionIndustryService();	
+	
 	private List<OptionIndustry> optionIndustryList;
 
 	private long id;
 	private OptionIndustry optionIndustry;
+	
+	public OptionIndustryAction() {
+		super.setTitle("產業/領域別 代碼");
+	}
 
 	public String index() {
 		try {
@@ -126,5 +130,8 @@ public class OptionIndustryAction extends BaseAction {
 	public void setOptionIndustry(OptionIndustry optionIndustry) {
 		this.optionIndustry = optionIndustry;
 	}
+
+	
+	
 
 }

@@ -14,6 +14,8 @@ public abstract class BaseAction extends ActionSupport {
 	private static final long serialVersionUID = -6715574015720566257L;
 
 	protected static Logger log = LogManager.getLogger(BaseAction.class);
+	
+	private String title;
 
 	protected boolean validateNotBlank(CharSequence testValue, String fieldName, String errMsg) {
 		if (StringUtils.isBlank(testValue)) {
@@ -85,4 +87,16 @@ public abstract class BaseAction extends ActionSupport {
 	protected boolean validateEmail(CharSequence testValue, String fieldName) {
 		return validateEmail(testValue, fieldName, "必須是email格式");
 	}
+	
+	// =========================================================================
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	
 }

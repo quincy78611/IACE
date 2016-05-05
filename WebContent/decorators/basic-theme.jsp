@@ -19,7 +19,12 @@
 	<script type="text/javascript" src="<s:url value="/scripts/calendarBox.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
 	
-    <title><decorator:title default="Welcome!" /></title>
+    <s:if test="%{title != null && title != ''}">
+   		<title><s:property value="title" /></title>
+   	</s:if>
+   	<s:else>
+   		<title><decorator:title default="Welcome!" /></title>
+   	</s:else>    
     
     <script type="text/javascript">		
 		$(window).load(function(){
@@ -61,6 +66,9 @@
 		</div>
 	</div>
     <div class="container body-content">
+    	<s:if test="%{title != null && title != ''}">
+    		<h2><s:property value="title" /></h2>
+    	</s:if>    	
 		<s:if test="hasActionMessages()">
 			<div class="welcome">
 				<s:actionmessage />
