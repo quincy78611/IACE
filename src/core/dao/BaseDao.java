@@ -12,7 +12,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 
 public abstract class BaseDao<T> {
 	protected static Logger log = LogManager.getLogger(BaseDao.class);

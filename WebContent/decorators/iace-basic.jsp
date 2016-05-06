@@ -64,7 +64,10 @@
 					       	 代碼管理 <span class="caret"></span>
 					    </a>
 					    <ul class="dropdown-menu" role="menu">
-					        <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別代碼</a></li>		
+					        <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別代碼</a></li>
+					        <li><a href="<s:url value="/iace/option/grbDomain/index"/>">GRB領域別代碼</a></li>
+					        <li><a href="<s:url value="/iace/option/companyLocation/index"/>">公司地域別代碼</a></li>
+					        <li><a href="<s:url value="/iace/option/consult/index"/>">諮詢類型代碼</a></li>		
 						</ul>
 					</li>		
 				</ul>

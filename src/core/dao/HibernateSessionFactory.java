@@ -8,21 +8,21 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import iace.entity.OptionCompanyLocation;
-import iace.entity.OptionConsult;
-import iace.entity.OptionCooperateMode;
-import iace.entity.OptionGrbDomain;
-import iace.entity.OptionHadTecSrc;
-import iace.entity.OptionIndustry;
-import iace.entity.OptionIndustryClass;
-import iace.entity.OptionOrganizationClass;
-import iace.entity.OptionOrganizationType;
-import iace.entity.OptionTrl;
 import iace.entity.Patent;
 import iace.entity.ResearchPlan;
 import iace.entity.RnDResult;
 import iace.entity.SysRole;
 import iace.entity.SysUser;
+import iace.entity.option.OptionCompanyLocation;
+import iace.entity.option.OptionConsult;
+import iace.entity.option.OptionCooperateMode;
+import iace.entity.option.OptionGrbDomain;
+import iace.entity.option.OptionHadTecSrc;
+import iace.entity.option.OptionIndustry;
+import iace.entity.option.OptionIndustryClass;
+import iace.entity.option.OptionOrganizationClass;
+import iace.entity.option.OptionOrganizationType;
+import iace.entity.option.OptionTrl;
 
 
 public class HibernateSessionFactory {

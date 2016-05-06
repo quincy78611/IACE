@@ -10,8 +10,52 @@ public class ServiceFactory {
 	
 	protected static Logger log = LogManager.getLogger(ServiceFactory.class);
 	
+	private static OptionCompanyLocationService optionCompanyLocationService;
+	private static OptionConsultService optionConsultService;
+	private static OptionCooperateModeService optionCooperateModeService;
+	private static OptionGrbDomainService optionGrbDomainService;
+	private static OptionHadTecSrcService optionHadTecSrcService;
 	private static OptionIndustryService optionIndustryService;
+	private static OptionIndustryClassService optionIndustryClassService;
+	private static OptionOrganizationClassService optionOrganizationClassService;
+	private static OptionOrganizationTypeService optionOrganizationTypeService;
+	private static OptionTrlService optionTrlService;
+	
+	public static OptionCompanyLocationService getOptionCompanyLocationService() {
+		if (optionCompanyLocationService == null) {
+			optionCompanyLocationService = new OptionCompanyLocationService(DaoFactory.getOptionCompanyLocationDao());
+		}
+		return optionCompanyLocationService;
+	}
+	
+	public static OptionConsultService getOptionConsultService() {
+		if (optionConsultService == null) {
+			optionConsultService = new OptionConsultService(DaoFactory.getOptionConsultDao());
+		}
+		return optionConsultService;
+	}
+	
+	public static OptionCooperateModeService getOptionCooperateModeService() {
+		if (optionCooperateModeService == null) {
+			optionCooperateModeService = new OptionCooperateModeService(DaoFactory.getOptionCooperateModeDao());
+		}
+		return optionCooperateModeService;
+	}
+	
+	public static OptionGrbDomainService getOptionGrbDomainService() {
+		if (optionGrbDomainService == null) {
+			optionGrbDomainService = new OptionGrbDomainService(DaoFactory.getOptionGrbDomainDao());
+		}
+		return optionGrbDomainService;
+	}
 
+	public static OptionHadTecSrcService getOptionHadTecSrcService() {
+		if (optionHadTecSrcService == null) {
+			optionHadTecSrcService = new OptionHadTecSrcService(DaoFactory.getOptionHadTecSrcDao());
+		}
+		return optionHadTecSrcService;
+	}
+	
 	public static OptionIndustryService getOptionIndustryService() {
 		if (optionIndustryService == null) {
 			optionIndustryService = new OptionIndustryService(DaoFactory.getOptionIndustryDao());
@@ -19,6 +63,33 @@ public class ServiceFactory {
 		return optionIndustryService;
 	}
 	
+	public static OptionIndustryClassService getOptionIndustryClassService() {
+		if (optionIndustryClassService == null) {
+			optionIndustryClassService = new OptionIndustryClassService(DaoFactory.getOptionIndustryClassDao());
+		}
+		return optionIndustryClassService;
+	}
+	
+	public static OptionOrganizationClassService getOptionOrganizationClassService() {
+		if (optionOrganizationClassService == null) {
+			optionOrganizationClassService = new OptionOrganizationClassService(DaoFactory.getOptionOrganizationClassDao());
+		}
+		return optionOrganizationClassService;
+	}
+		
+	public static OptionOrganizationTypeService getOptionOrganizationTypeService() {
+		if (optionOrganizationTypeService == null) {
+			optionOrganizationTypeService = new OptionOrganizationTypeService(DaoFactory.getOptionOrganizationTypeDao());
+		}
+		return optionOrganizationTypeService;
+	}
+	
+	public static OptionTrlService getOptionTrlService() {
+		if (optionTrlService == null) {
+			optionTrlService = new OptionTrlService(DaoFactory.getOptionTrlDao());
+		}
+		return optionTrlService;
+	}	
 	
 
 }

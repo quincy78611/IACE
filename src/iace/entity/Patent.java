@@ -12,6 +12,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import iace.entity.option.OptionTrl;
+
 @Entity
 @Table(name = "PATENT", schema = "IACE_ADMIN")
 public class Patent extends BaseEntity {

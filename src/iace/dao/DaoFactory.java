@@ -3,15 +3,111 @@ package iace.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import iace.dao.option.IOptionDao;
+import iace.dao.option.OptionCompanyLocationDao;
+import iace.dao.option.OptionConsultDao;
+import iace.dao.option.OptionCooperateModeDao;
+import iace.dao.option.OptionGrbDomainDao;
+import iace.dao.option.OptionHadTecSrcDao;
+import iace.dao.option.OptionIndustryClassDao;
+import iace.dao.option.OptionIndustryDao;
+import iace.dao.option.OptionOrganizationClassDao;
+import iace.dao.option.OptionOrganizationTypeDao;
+import iace.dao.option.OptionTrlDao;
+import iace.entity.option.OptionCompanyLocation;
+import iace.entity.option.OptionConsult;
+import iace.entity.option.OptionCooperateMode;
+import iace.entity.option.OptionGrbDomain;
+import iace.entity.option.OptionHadTecSrc;
+import iace.entity.option.OptionIndustry;
+import iace.entity.option.OptionIndustryClass;
+import iace.entity.option.OptionOrganizationClass;
+import iace.entity.option.OptionOrganizationType;
+import iace.entity.option.OptionTrl;
+
 public class DaoFactory {
 	protected static Logger log = LogManager.getLogger(DaoFactory.class);
-
-	private static IOptionIndustryDao optionIndustryDao;
 	
-	public static IOptionIndustryDao getOptionIndustryDao() {
+	private static IOptionDao<OptionCompanyLocation> optionCompanyLocationDao;
+	private static IOptionDao<OptionConsult> optionConsultDao;
+	private static IOptionDao<OptionCooperateMode> optionCooperateModeDao;
+	private static IOptionDao<OptionGrbDomain> optionGrbDomainDao;
+	private static IOptionDao<OptionHadTecSrc> optionHadTecSrcDao;
+	private static IOptionDao<OptionIndustry> optionIndustryDao;
+	private static IOptionDao<OptionIndustryClass> optionIndustryClassDao;
+	private static IOptionDao<OptionOrganizationClass> optionOrganizationClassDao;
+	private static IOptionDao<OptionOrganizationType> optionOrganizationTypeDao;
+	private static IOptionDao<OptionTrl> optionTrlDao;
+	
+	
+	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {
+		if (optionCompanyLocationDao == null) {
+			optionCompanyLocationDao = new OptionCompanyLocationDao();
+		}
+		return optionCompanyLocationDao;
+	}
+	
+	public static IOptionDao<OptionConsult> getOptionConsultDao() {
+		if (optionConsultDao == null) {
+			optionConsultDao = new OptionConsultDao();
+		}
+		return optionConsultDao;
+	}
+	
+	public static IOptionDao<OptionCooperateMode> getOptionCooperateModeDao() {
+		if (optionCooperateModeDao == null) {
+			optionCooperateModeDao = new OptionCooperateModeDao();
+		}
+		return optionCooperateModeDao;
+	}
+	
+	public static IOptionDao<OptionGrbDomain> getOptionGrbDomainDao() {
+		if (optionGrbDomainDao == null) {
+			optionGrbDomainDao = new OptionGrbDomainDao();
+		}
+		return optionGrbDomainDao;
+	}
+	
+	public static IOptionDao<OptionHadTecSrc> getOptionHadTecSrcDao() {
+		if (optionHadTecSrcDao == null) {
+			optionHadTecSrcDao = new OptionHadTecSrcDao();
+		}
+		return optionHadTecSrcDao;
+	}
+	
+	public static IOptionDao<OptionIndustry> getOptionIndustryDao() {
 		if (optionIndustryDao == null) {
 			optionIndustryDao = new OptionIndustryDao();
 		}
 		return optionIndustryDao;
 	}
+	
+	public static IOptionDao<OptionIndustryClass> getOptionIndustryClassDao() {
+		if (optionIndustryClassDao == null) {
+			optionIndustryClassDao = new OptionIndustryClassDao();
+		}
+		return optionIndustryClassDao;
+	}
+
+	public static IOptionDao<OptionOrganizationClass> getOptionOrganizationClassDao() {
+		if (optionOrganizationClassDao == null) {
+			optionOrganizationClassDao = new OptionOrganizationClassDao();
+		}
+		return optionOrganizationClassDao;
+	}
+
+	public static IOptionDao<OptionOrganizationType> getOptionOrganizationTypeDao() {
+		if (optionOrganizationTypeDao == null) {
+			optionOrganizationTypeDao = new OptionOrganizationTypeDao();
+		}
+		return optionOrganizationTypeDao;
+	}
+
+	public static IOptionDao<OptionTrl> getOptionTrlDao() {
+		if (optionTrlDao == null) {
+			optionTrlDao = new OptionTrlDao();
+		}
+		return optionTrlDao;
+	}
+
 }
