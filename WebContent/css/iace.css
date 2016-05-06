@@ -1,0 +1,14 @@
+
+div.left-menu {
+	width: 10%;
+    height: 100%;
+    position: fixed;
+	overflow-y:auto;
+}
+
+div.right-content {
+	width: 90%;
+    height: auto;
+    position: absolute;
+    right: 0;
+}
