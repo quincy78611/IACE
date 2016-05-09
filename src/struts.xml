@@ -30,7 +30,7 @@
     </package>
 
     <include file="com/sysvin/practice/struts.xml" />
-    <include file="iace/struts.xml" />
+    <include file="iace/iace-struts.xml" />
 
     <!-- Add packages here -->
 
