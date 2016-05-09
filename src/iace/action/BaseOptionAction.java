@@ -102,13 +102,16 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseActio
 	}
 	
 	public String deleteSubmit() {
-		try {			
+		try {
+			if (this.optionService.hasBeenUsed(this.id)) {
+				throw new IllegalArgumentException("不可刪除已被使用的代碼");
+			}
 			this.optionService.delete(this.option);
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
 			this.addActionError(e.getMessage());
-			return INPUT;
+			return ERROR;
 		}
 	}
 	
