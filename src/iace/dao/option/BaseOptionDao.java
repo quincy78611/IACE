@@ -76,7 +76,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 				query.setString("code", code);
 				query.setString("isValid", BaseEntity.valid);
 				Object obj = query.uniqueResult();
-				return (long)obj == 1;			
+				return (long)obj >= 1;			
 			} else {
 				throw new IllegalArgumentException("[code] can't be null or blank");
 			}	

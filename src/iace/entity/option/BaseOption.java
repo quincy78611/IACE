@@ -30,7 +30,7 @@ public abstract class BaseOption  extends BaseEntity {
 		this.id = optionCompanyLocationId;
 	}
 	
-	@Column(name = "NAME", length = 100)
+	@Column(name = "NAME", length = 500)
 	public String getName() {
 		return name;
 	}
