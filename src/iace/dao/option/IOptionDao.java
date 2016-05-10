@@ -20,6 +20,8 @@ public interface IOptionDao<OptionEntity extends BaseOption> {
 
 	public boolean isCodeExist(String code);
 	
+	public boolean isNameExist(String name);
+	
 	public boolean hasBeenUsed(OptionEntity entity);
 	
 	public boolean hasBeenUsed(Long id);

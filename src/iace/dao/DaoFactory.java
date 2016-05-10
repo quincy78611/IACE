@@ -7,6 +7,7 @@ import iace.dao.option.IOptionDao;
 import iace.dao.option.OptionCompanyLocationDao;
 import iace.dao.option.OptionConsultDao;
 import iace.dao.option.OptionCooperateModeDao;
+import iace.dao.option.OptionCountryDao;
 import iace.dao.option.OptionGrbDomainDao;
 import iace.dao.option.OptionHadTecSrcDao;
 import iace.dao.option.OptionIndustryClassDao;
@@ -14,9 +15,14 @@ import iace.dao.option.OptionIndustryDao;
 import iace.dao.option.OptionOrganizationClassDao;
 import iace.dao.option.OptionOrganizationTypeDao;
 import iace.dao.option.OptionTrlDao;
+import iace.dao.patent.IPatentDao;
+import iace.dao.patent.PatentDao;
+import iace.dao.techField.ITechFieldDao;
+import iace.dao.techField.TechFieldDao;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
+import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionHadTecSrc;
 import iace.entity.option.OptionIndustry;
@@ -31,6 +37,7 @@ public class DaoFactory {
 	private static IOptionDao<OptionCompanyLocation> optionCompanyLocationDao;
 	private static IOptionDao<OptionConsult> optionConsultDao;
 	private static IOptionDao<OptionCooperateMode> optionCooperateModeDao;
+	private static IOptionDao<OptionCountry> optionCountryDao;
 	private static IOptionDao<OptionGrbDomain> optionGrbDomainDao;
 	private static IOptionDao<OptionHadTecSrc> optionHadTecSrcDao;
 	private static IOptionDao<OptionIndustry> optionIndustryDao;
@@ -39,6 +46,8 @@ public class DaoFactory {
 	private static IOptionDao<OptionOrganizationType> optionOrganizationTypeDao;
 	private static IOptionDao<OptionTrl> optionTrlDao;
 	
+	private static ITechFieldDao techFieldDao;
+	private static IPatentDao patentDao;	
 	
 	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {
 		if (optionCompanyLocationDao == null) {
@@ -59,6 +68,13 @@ public class DaoFactory {
 			optionCooperateModeDao = new OptionCooperateModeDao();
 		}
 		return optionCooperateModeDao;
+	}
+	
+	public static IOptionDao<OptionCountry> getOptionCountryDao() {
+		if (optionCountryDao == null) {
+			optionCountryDao = new OptionCountryDao();
+		}
+		return optionCountryDao;
 	}
 	
 	public static IOptionDao<OptionGrbDomain> getOptionGrbDomainDao() {
@@ -108,6 +124,20 @@ public class DaoFactory {
 			optionTrlDao = new OptionTrlDao();
 		}
 		return optionTrlDao;
+	}
+	
+	public static ITechFieldDao getTechFieldDao() {
+		if (techFieldDao == null) {
+			techFieldDao = new TechFieldDao();
+		}		
+		return techFieldDao;
+	}
+	
+	public static IPatentDao getPatentDao() {
+		if (patentDao == null) {
+			patentDao = new PatentDao();
+		}
+		return patentDao;
 	}
 
 }

@@ -86,4 +86,26 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 			HibernateSessionFactory.closeSession();
 		}
 	}
+	
+	public boolean isNameExist(String name) {
+		try {
+			if (StringUtils.isNotBlank(name)) {
+				Session session = HibernateSessionFactory.getSession();
+				String hql = "SELECT count(*) "
+						+ "FROM " + this.optionEntityClass.getSimpleName() + " o "
+						+ "WHERE o.name = :name AND o.isValid = :isValid";
+				Query query = session.createQuery(hql);
+				query.setString("name", name);
+				query.setString("isValid", BaseEntity.valid);
+				Object obj = query.uniqueResult();
+				return (long)obj >= 1;			
+			} else {
+				throw new IllegalArgumentException("[name] can't be null or blank");
+			}	
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 }

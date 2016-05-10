@@ -13,9 +13,11 @@ import iace.entity.ResearchPlan;
 import iace.entity.RnDResult;
 import iace.entity.SysRole;
 import iace.entity.SysUser;
+import iace.entity.TechField;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
+import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionHadTecSrc;
 import iace.entity.option.OptionIndustry;
@@ -89,6 +91,7 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(OptionCompanyLocation.class);
     	configuration.addAnnotatedClass(OptionConsult.class);
     	configuration.addAnnotatedClass(OptionCooperateMode.class);
+    	configuration.addAnnotatedClass(OptionCountry.class);
     	configuration.addAnnotatedClass(OptionGrbDomain.class);
     	configuration.addAnnotatedClass(OptionHadTecSrc.class);
     	configuration.addAnnotatedClass(OptionIndustry.class);
@@ -101,5 +104,6 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(RnDResult.class);
     	configuration.addAnnotatedClass(SysRole.class);
     	configuration.addAnnotatedClass(SysUser.class);
+    	configuration.addAnnotatedClass(TechField.class);
     }
 }

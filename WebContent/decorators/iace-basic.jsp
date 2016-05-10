@@ -58,7 +58,8 @@
 				<ul class="nav nav-pills nav-stacked">
 					<li class="active"><a href="#">Home</a></li>
 					<li><a href="<s:url value="/practice/hibernate/findUserByPhoneInput"/>">用電話查詢</a></li>
-					<li><a href="<s:url value="/practice/hibernate/registerInput"/>">註冊</a></li>					
+					<li><a href="<s:url value="/practice/hibernate/registerInput"/>">註冊</a></li>
+					<li><a href="<s:url value="/iace/patent/init"/>">專利資料</a></li>					
 					<li class="dropdown">
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 					       	 代碼管理 <span class="caret"></span>

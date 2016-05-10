@@ -7,10 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import iace.entity.option.OptionTrl;
 
@@ -37,12 +38,14 @@ public class Patent extends BaseEntity {
 	private String ipc;
 	private String techAbstract;
 	private String importantPicturePath;
-	private String techField;
+	private String importantPictureCode;
+	private TechField techField;
 	private String usage;
-	private String trlCode;
+	//private String trlCode;
+	private OptionTrl trl;
 	private String trlDesc;
 	
-	private OptionTrl trl;
+	
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -56,7 +59,7 @@ public class Patent extends BaseEntity {
 		this.id = id;
 	}
 
-	@Column(name = "NAME", length = 300)
+	@Column(name = "NAME", length = 300, nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -65,7 +68,7 @@ public class Patent extends BaseEntity {
 		this.name = name;
 	}
 
-	@Column(name = "ASSIGNEE", length = 500)
+	@Column(name = "ASSIGNEE", length = 500, nullable = false)
 	public String getAssignee() {
 		return assignee;
 	}
@@ -74,7 +77,7 @@ public class Patent extends BaseEntity {
 		this.assignee = assignee;
 	}
 
-	@Column(name = "INVENTOR", length = 500)
+	@Column(name = "INVENTOR", length = 500, nullable = false)
 	public String getInvertor() {
 		return invertor;
 	}
@@ -83,7 +86,7 @@ public class Patent extends BaseEntity {
 		this.invertor = invertor;
 	}
 
-	@Column(name = "COUNTRY", length = 100)
+	@Column(name = "COUNTRY", length = 10, nullable = false)
 	public String getCountry() {
 		return country;
 	}
@@ -92,7 +95,7 @@ public class Patent extends BaseEntity {
 		this.country = country;
 	}
 
-	@Column(name = "APPLICATION_NO", length = 100)
+	@Column(name = "APPLICATION_NO", length = 100, nullable = false)
 	public String getAppliactionNo() {
 		return appliactionNo;
 	}
@@ -101,7 +104,7 @@ public class Patent extends BaseEntity {
 		this.appliactionNo = appliactionNo;
 	}
 
-	@Column(name = "APPLICATION_DATE")
+	@Column(name = "APPLICATION_DATE", nullable = false)
 	public Date getApplicationDate() {
 		return applicationDate;
 	}
@@ -146,7 +149,7 @@ public class Patent extends BaseEntity {
 		this.publicationDate = publicationDate;
 	}
 
-	@Column(name = "CATEGORY", length = 100)
+	@Column(name = "CATEGORY", length = 100, nullable = false)
 	public String getCategory() {
 		return category;
 	}
@@ -155,7 +158,7 @@ public class Patent extends BaseEntity {
 		this.category = category;
 	}
 
-	@Column(name = "PATENT_STATUS", length = 500)
+	@Column(name = "PATENT_STATUS", length = 500, nullable = false)
 	public String getPatentStatus() {
 		return patentStatus;
 	}
@@ -164,7 +167,7 @@ public class Patent extends BaseEntity {
 		this.patentStatus = patentStatus;
 	}
 
-	@Column(name = "FAMILY_NO", length = 2000)
+	@Column(name = "FAMILY_NO", length = 2000, nullable = false)
 	public String getFamilyNo() {
 		return familyNo;
 	}
@@ -173,7 +176,7 @@ public class Patent extends BaseEntity {
 		this.familyNo = familyNo;
 	}
 
-	@Column(name = "IPC", length = 100)
+	@Column(name = "IPC", length = 100, nullable = false)
 	public String getIpc() {
 		return ipc;
 	}
@@ -183,7 +186,7 @@ public class Patent extends BaseEntity {
 	}
 
 	// @Column(name = "TECH_ABSTRACT", columnDefinition = "CLOB")
-	@Column(name = "TECH_ABSTRACT")
+	@Column(name = "TECH_ABSTRACT", nullable = false)
 	@Lob
 	public String getTechAbstract() {
 		return techAbstract;
@@ -200,14 +203,24 @@ public class Patent extends BaseEntity {
 
 	public void setImportantPicturePath(String importantPicturePath) {
 		this.importantPicturePath = importantPicturePath;
+	}	
+	
+	@Column(name = "IMPORTANT_PICTURE_CODE", length = 100)
+	public String getImportantPictureCode() {
+		return importantPictureCode;
 	}
 
-	@Column(name = "TECH_FIELD", length = 500)
-	public String getTechField() {
+	public void setImportantPictureCode(String importantPictureCode) {
+		this.importantPictureCode = importantPictureCode;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="TECH_FIELD", nullable=false)
+	public TechField getTechField() {
 		return techField;
 	}
 
-	public void setTechField(String techField) {
+	public void setTechField(TechField techField) {
 		this.techField = techField;
 	}
 
@@ -220,24 +233,15 @@ public class Patent extends BaseEntity {
 		this.usage = usage;
 	}
 
-	@Column(name = "TRL_CODE", length = 10)
-	public String getTrlCode() {
-		return trlCode;
-	}
-
-	public void setTrlCode(String trlCode) {
-		this.trlCode = trlCode;
-		this.trl = null;
-	}
-
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="TRL_CODE", referencedColumnName= "CODE")
 	public OptionTrl getTrl() {
 		return trl;
 	}
 
 	public void setTrl(OptionTrl optionTrl) {
 		this.trl = optionTrl;
-		this.trlCode = optionTrl.getCode();
+		//this.trlCode = optionTrl.getCode();
 	}
 
 	@Column(name = "TRL_DESC", length = 2000)
@@ -251,15 +255,18 @@ public class Patent extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "\"Patent\" : {\"id\"=\"" + id + "\", \"name\"=\"" + name + "\", \"assignee\"=\"" + assignee
-				+ "\", \"invertor\"=\"" + invertor + "\", \"country\"=\"" + country + "\", \"appliactionNo\"=\""
-				+ appliactionNo + "\", \"applicationDate\"=\"" + applicationDate + "\", \"openNo\"=\"" + openNo
-				+ "\", \"openDate\"=\"" + openDate + "\", \"publicationNo\"=\"" + publicationNo
-				+ "\", \"publicationDate\"=\"" + publicationDate + "\", \"category\"=\"" + category
-				+ "\", \"patentStatus\"=\"" + patentStatus + "\", \"familyNo\"=\"" + familyNo + "\", \"ipc\"=\"" + ipc
-				+ "\", \"techAbstract\"=\"" + techAbstract + "\", \"importantPicturePath\"=\"" + importantPicturePath
-				+ "\", \"techField\"=\"" + techField + "\", \"usage\"=\"" + usage + "\", \"trlCode\"=\"" + trlCode
-				+ "\", \"trlDesc\"=\"" + trlDesc + "\",  " + super.toString() + "}";
+		return "Patent [id=" + id + ", name=" + name + ", assignee=" + assignee
+				+ ", invertor=" + invertor + ", country=" + country
+				+ ", appliactionNo=" + appliactionNo + ", applicationDate="
+				+ applicationDate + ", openNo=" + openNo + ", openDate="
+				+ openDate + ", publicationNo=" + publicationNo
+				+ ", publicationDate=" + publicationDate + ", category="
+				+ category + ", patentStatus=" + patentStatus + ", familyNo="
+				+ familyNo + ", ipc=" + ipc + ", techAbstract=" + techAbstract
+				+ ", importantPicturePath=" + importantPicturePath
+				+ ", importantPictureCode=" + importantPictureCode
+				+ ", techField=" + techField + ", usage=" + usage + ", trl="
+				+ trl + ", trlDesc=" + trlDesc + "]";
 	}
 
 }

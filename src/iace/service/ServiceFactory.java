@@ -13,6 +13,7 @@ public class ServiceFactory {
 	private static OptionCompanyLocationService optionCompanyLocationService;
 	private static OptionConsultService optionConsultService;
 	private static OptionCooperateModeService optionCooperateModeService;
+	private static OptionCountryService optionCountryService;
 	private static OptionGrbDomainService optionGrbDomainService;
 	private static OptionHadTecSrcService optionHadTecSrcService;
 	private static OptionIndustryService optionIndustryService;
@@ -20,6 +21,9 @@ public class ServiceFactory {
 	private static OptionOrganizationClassService optionOrganizationClassService;
 	private static OptionOrganizationTypeService optionOrganizationTypeService;
 	private static OptionTrlService optionTrlService;
+	
+	private static PatentService patentService;
+	private static TechFieldService techFieldService;
 	
 	public static OptionCompanyLocationService getOptionCompanyLocationService() {
 		if (optionCompanyLocationService == null) {
@@ -40,6 +44,13 @@ public class ServiceFactory {
 			optionCooperateModeService = new OptionCooperateModeService(DaoFactory.getOptionCooperateModeDao());
 		}
 		return optionCooperateModeService;
+	}
+	
+	public static OptionCountryService getOptionCountryService() {
+		if (optionCountryService == null) {
+			optionCountryService = new OptionCountryService(DaoFactory.getOptionCountryDao());
+		}
+		return optionCountryService;
 	}
 	
 	public static OptionGrbDomainService getOptionGrbDomainService() {
@@ -91,5 +102,21 @@ public class ServiceFactory {
 		return optionTrlService;
 	}	
 	
-
+	public static PatentService getPatentService() {
+		if (patentService == null) {
+			patentService = new PatentService(
+					DaoFactory.getPatentDao(),
+					DaoFactory.getTechFieldDao(),
+					DaoFactory.getOptionCountryDao(), 
+					DaoFactory.getOptionTrlDao());
+		}
+		return patentService;
+	}
+	
+	public static TechFieldService getTechFieldService() {
+		if(techFieldService == null) {
+			techFieldService = new TechFieldService(DaoFactory.getTechFieldDao());
+		}		
+		return techFieldService;
+	}
 }

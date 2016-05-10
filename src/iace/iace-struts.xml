@@ -477,4 +477,31 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="Patent" namespace="/iace/patent" extends="struts-default">
+		<action name="init" class="iace.action.PatentAction" method="init">
+			<result>/WEB-INF/jsp/iace/patent/index.jsp</result>
+		</action>	
+		<action name="index" class="iace.action.PatentAction" method="index">
+			<result>/WEB-INF/jsp/iace/patent/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.PatentAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/iace/patent/detail.jsp</result>			
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>		
+		<action name="update" class="iace.action.PatentAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/patent/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/patent/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.PatentAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/patent/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
+		</action>		
+	</package>
 </struts>

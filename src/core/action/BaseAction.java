@@ -17,6 +17,18 @@ public abstract class BaseAction extends ActionSupport {
 	
 	private String title;
 
+	protected boolean validateNotNull(Object testValue, String fieldName, String errMsg) {
+		if (testValue == null) {
+			this.addFieldError(fieldName, errMsg);
+			return false;
+		}
+		return true;
+	}
+	
+	protected boolean validateNotNull(Object testValue, String fieldName) {
+		return validateNotNull(testValue, fieldName, "不可為空");
+	}
+	
 	protected boolean validateNotBlank(CharSequence testValue, String fieldName, String errMsg) {
 		if (StringUtils.isBlank(testValue)) {
 			this.addFieldError(fieldName, errMsg);
@@ -41,7 +53,7 @@ public abstract class BaseAction extends ActionSupport {
 		return validateTextMinLength(testValue, len, fieldName, "長度最少要" + len);
 	}
 	
-	protected boolean validateTextLength(CharSequence testValue, int maxLen, String fieldName, String errMsg) {
+	protected boolean validateTextMaxLength(CharSequence testValue, int maxLen, String fieldName, String errMsg) {
 		if (StringUtils.length(testValue) > maxLen) {
 			this.addFieldError(fieldName, errMsg);
 			return false;
@@ -49,8 +61,8 @@ public abstract class BaseAction extends ActionSupport {
 		return true;
 	}
 	
-	protected boolean validateTextLength(CharSequence testValue, int maxLen, String fieldName) {
-		return validateTextLength(testValue, maxLen, fieldName, "長度不可超過" + maxLen);
+	protected boolean validateTextMaxLength(CharSequence testValue, int maxLen, String fieldName) {
+		return validateTextMaxLength(testValue, maxLen, fieldName, "長度不可超過" + maxLen);
 	}
 	
 	protected boolean validateTextLength(CharSequence testValue, int minLen, int maxLen, String fieldName, String errMsg) {
@@ -68,7 +80,7 @@ public abstract class BaseAction extends ActionSupport {
 
 	protected boolean validateNotBlankNLength(CharSequence testValue, int maxLen, String fieldName) {
 		if (validateNotBlank(testValue, fieldName)) {
-			return validateTextLength(testValue, maxLen, fieldName);
+			return validateTextMaxLength(testValue, maxLen, fieldName);
 		}
 		return false;
 	}
