@@ -11,7 +11,7 @@ import core.dao.BaseDao;
 import iace.entity.BaseEntity;
 
 public class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> implements IBaseIaceDao<T> {
-	protected static boolean realDelete = true;
+	protected static boolean realDelete = false;
 	
 	protected Class<T> entityClass;
 	

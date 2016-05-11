@@ -52,7 +52,8 @@
 					<tr>
 						<td>
 							<s:property value="#stat.count" />
-							<s:hidden name="id" class="id"/>
+							<s:property value="id" />
+							<s:hidden name="id"/>
 						</td>						
 						<td><s:property value="name" /></td>
 						<td><s:property value="assignee" /></td>

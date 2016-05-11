@@ -59,8 +59,10 @@ public class PatentService extends BaseService<Patent, Long> {
 
 	@Override
 	public void delete(Patent entity) {
-		// TODO Auto-generated method stub
-		
+		String imagePath = entity.getImportantPicturePath();
+		this.patentDao.delete(entity.getId());
+		//TODO delete important image
+		log.warn("need to implement delete important image code!");
 	}
 	
 	private void getOrInsertOptionCountry(Patent entity) {

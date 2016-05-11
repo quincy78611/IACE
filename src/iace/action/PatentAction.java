@@ -10,6 +10,7 @@ import core.action.BaseAction;
 import iace.entity.Patent;
 import iace.entity.TechField;
 import iace.entity.option.OptionCountry;
+import iace.entity.option.OptionTrl;
 import iace.service.OptionCountryService;
 import iace.service.OptionTrlService;
 import iace.service.PatentService;
@@ -32,6 +33,7 @@ public class PatentAction extends BaseAction {
 	
 	private List<TechField> techFieldList;
 	private List<OptionCountry> optionCountryList;
+	private List<OptionTrl> optionTrlList;
 	
 	private List<Patent> patentList;
 	
@@ -67,7 +69,6 @@ public class PatentAction extends BaseAction {
 	}
 	
 	public String create(){
-		//TODO
 		return SUCCESS;
 	}
 	
@@ -76,8 +77,15 @@ public class PatentAction extends BaseAction {
 	}
 	
 	public String createSubmit() {
-		//TODO
-		return SUCCESS;
+		try {			
+			this.patentService.create(this.patent);
+			this.addActionMessage("CREATE SUCCESS!");
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return INPUT;
+		}
 	}
 	
 	public String update() {
@@ -107,11 +115,34 @@ public class PatentAction extends BaseAction {
 		}
 	}
 	
+	public String delete() {
+		try {
+			this.patent = this.patentService.get(this.id);			
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return ERROR;
+		}
+	}
+	
+	public String deleteSubmit() {
+		try {
+			this.patentService.delete(this.patent);
+			this.addActionMessage("DELETE SUCCESS!");
+
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return ERROR;
+		}
+	}
+	
 	@Override
 	public void validate(){
 		String actionName = ActionContext.getContext().getName();
-		if ("showDetail".equals(actionName) || "create".equals(actionName) 
-				|| "update".equals(actionName) || "delete".equals(actionName)) {
+		if ("showDetail".equals(actionName) || "update".equals(actionName) || "delete".equals(actionName)) {
 			validateIdExist();
 		}
 	}
@@ -195,6 +226,11 @@ public class PatentAction extends BaseAction {
 		return optionCountryList;
 	}
 
+	public List<OptionTrl> getOptionTrlList() {
+		this.optionTrlList = this.optionTrlService.listAll();
+		return optionTrlList;
+	}
+
 	public List<TechField> getTechFieldList() {
 		this.techFieldList = this.techFieldService.listAll();
 		return techFieldList;
@@ -231,6 +267,7 @@ public class PatentAction extends BaseAction {
 	public void setSearchTechField(long searchTechField) {
 		this.searchTechField = searchTechField;
 	}
+
 
 
 	
