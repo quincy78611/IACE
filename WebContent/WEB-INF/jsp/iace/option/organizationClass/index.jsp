@@ -30,7 +30,7 @@
 						</td>						
 						<td><s:property value="code" /></td>
 						<td><s:property value="name" /></td>
-						<td>
+						<td class="col-md-2">
 							<s:url value="update.action" var="updateUrlTag">
 								<s:param name="id" value="id" />
 							</s:url>

@@ -3,6 +3,7 @@ package iace.service;
 import java.util.List;
 
 import core.service.BaseService;
+import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.techField.ITechFieldDao;
@@ -34,6 +35,11 @@ public class PatentService extends BaseService<Patent, Long> {
 	public List<Patent> searchBy(String name, String appNo, String country, long techFieldId) {
 		TechField techField = this.techFieldDao.get(techFieldId);
 		return this.patentDao.searchBy(name, appNo, country, techField);
+	}
+	
+	public PagedList<Patent> searchBy(int pageIndex, int pageSize, String name, String appNo, String country, long techFieldId){
+		TechField techField = this.techFieldDao.get(techFieldId);
+		return this.patentDao.searchBy(pageIndex, pageSize, name, appNo, country, techField);
 	}
 	
 	@Override

@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.opensymphony.xwork2.ActionContext;
 
 import core.action.BaseAction;
+import core.util.PagedList;
 import iace.entity.Patent;
 import iace.entity.TechField;
 import iace.entity.option.OptionCountry;
@@ -33,9 +34,13 @@ public class PatentAction extends BaseAction {
 	
 	private List<TechField> techFieldList;
 	private List<OptionCountry> optionCountryList;
-	private List<OptionTrl> optionTrlList;
+	private List<OptionTrl> optionTrlList;	
 	
-	private List<Patent> patentList;
+//	private List<Patent> patentList;
+	private PagedList<Patent> patentPagedList;
+	
+	private int pageIndex;
+	private int pageSize = 10;
 	
 	private long id;
 	private Patent patent;
@@ -44,15 +49,21 @@ public class PatentAction extends BaseAction {
 		super.setTitle("專利資料");
 	}
 	
-	public String init() {		
+	public String init() {
 		return SUCCESS;
 	}
 	
 	public String index() {
 		try {
-			patentList = patentService.searchBy(searchPatentName, searchAppliactionNo, searchCountry, searchTechField);			
+//			this.patentList = this.patentService.searchBy(searchPatentName, 
+//					searchAppliactionNo, searchCountry, searchTechField);	
+			this.patentPagedList = this.patentService.searchBy(pageIndex, 
+					pageSize, searchPatentName, searchAppliactionNo, 
+					searchCountry, searchTechField);
 			return SUCCESS;
 		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
 			return SUCCESS;
 		}		
 	}
@@ -200,10 +211,6 @@ public class PatentAction extends BaseAction {
 	}
 	
 	//==========================================================================
-
-	public List<Patent> getPatentList() {
-		return patentList;
-	}	
 	
 	public long getId() {
 		return id;
@@ -268,7 +275,27 @@ public class PatentAction extends BaseAction {
 		this.searchTechField = searchTechField;
 	}
 
+	public PagedList<Patent> getPatentPagedList() {
+		return patentPagedList;
+	}
 
+	public int getPageIndex() {
+		return pageIndex;
+	}
+
+	public void setPageIndex(int pageIndex) {
+		this.pageIndex = pageIndex;
+	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	
 
 	
 	

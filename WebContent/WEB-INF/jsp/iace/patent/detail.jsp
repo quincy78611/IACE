@@ -59,8 +59,9 @@
 	<s:url value="update.action" var="updateUrlTag">
 		<s:param name="id" value="patent.id" />
 	</s:url>
-	<input type="button" class="btn btn-info" value="編輯" 
-		onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
-	
+	<s:if test="#request.context['struts.actionMapping'].name == 'showDetail'">
+		<input type="button" class="btn btn-info" value="編輯" 
+			onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+	</s:if>
 </body>
 </html>

@@ -7,18 +7,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/bootstrap.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.file.browse.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/PagedList.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/Site.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/iace.css"/>" />
 	<script type="text/javascript" src="<s:url value="/scripts/jquery-1.10.2.min.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.validate.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/bootstrap.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/respond.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/calendarBox.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/bootstrap.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.file.browse.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/PagedList.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/Site.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/iace.css"/>" />
 	
     <s:if test="%{title != null && title != ''}">
    		<title><s:property value="title" /></title>

@@ -8,9 +8,11 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import core.dao.HibernateSessionFactory;
+import core.util.PagedList;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
 import iace.entity.Patent;
@@ -75,6 +77,74 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		}
 	}
 	
+
+	@Override
+	public PagedList<Patent> searchBy(int pageIndex, int pageSize, String name, String appNo, String country, TechField techField) {
+		long totalItemCount = QueryTotalRecordsCount(name, appNo, country, techField);			
+		PagedList<Patent> results = new PagedList<Patent>(totalItemCount, pageSize, pageIndex);
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Patent.class);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+			if (StringUtils.isNotBlank(name)) {
+				criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
+			}
+			if (StringUtils.isNotBlank(appNo)) {
+				criteria.add(Restrictions.like("appliactionNo", appNo, MatchMode.START).ignoreCase());
+			}
+			if (StringUtils.isNotBlank(country)) {
+				criteria.add(Restrictions.eq("country", country));
+			}
+			if (techField != null) {
+				criteria.add(Restrictions.eq("techField", techField));
+			}
+			criteria.addOrder(Order.asc("id"));
+			
+			criteria.setFirstResult(results.getItemStart()-1);
+			criteria.setMaxResults(pageSize);
+			
+			@SuppressWarnings("unchecked")
+			List<Patent> list = criteria.list();
+			results.setList(list);
+			return results;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	private long QueryTotalRecordsCount(String name, String appNo, String country, TechField techField) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Patent.class);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+			if (StringUtils.isNotBlank(name)) {
+				criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
+			}
+			if (StringUtils.isNotBlank(appNo)) {
+				criteria.add(Restrictions.like("appliactionNo", appNo, MatchMode.START).ignoreCase());
+			}
+			if (StringUtils.isNotBlank(country)) {
+				criteria.add(Restrictions.eq("country", country));
+			}
+			if (techField != null) {
+				criteria.add(Restrictions.eq("techField", techField));
+			}
+			criteria.addOrder(Order.asc("id"));
+
+			criteria.setProjection(Projections.rowCount());
+			Object count = criteria.uniqueResult();
+			return (long) count;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+		
+		
+
+	}
 	
 
 }
