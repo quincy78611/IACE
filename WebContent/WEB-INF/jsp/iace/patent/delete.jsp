@@ -53,13 +53,13 @@
 			<s:textfield label="技術發展階段說明" name="patent.trlDesc" readonly="true" cssClass="form-control" />
 			<s:textfield label="建立時間" name="patent.createTime"  readonly="true" cssClass="form-control">
 				<s:param name="value">
-					<s:date name="patent.createTime" format="yyyy/MM/dd hh:mm:ss" /> 
+					<s:date name="patent.createTime" format="yyyy/MM/dd HH:mm:ss" /> 
 				</s:param>			
 			</s:textfield>		
 			<s:textfield label="建立人員" name="patent.createUser" readonly="true" cssClass="form-control" />
 			<s:textfield label="異動時間" name="patent.updateTime" readonly="true" cssClass="form-control">
 				<s:param name="value">
-					<s:date name="patent.updateTime" format="yyyy/MM/dd hh:mm:ss" /> 
+					<s:date name="patent.updateTime" format="yyyy/MM/dd HH:mm:ss" /> 
 				</s:param>		
 			</s:textfield>
 			<s:textfield label="異動人員" name="patent.updateUser" readonly="true" cssClass="form-control" />

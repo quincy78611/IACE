@@ -10,6 +10,8 @@ public interface IBaseIaceDao <Entity extends BaseEntity>{
 	public Entity get(long id);
 
 	public void create(Entity entity);
+	
+	public void createAll(List<Entity> entities);
 
 	public void update(Entity entity);
 

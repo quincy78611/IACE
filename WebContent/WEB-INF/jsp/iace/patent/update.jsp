@@ -48,9 +48,9 @@
 			<s:textfield label="專利技術摘要" name="patent.techAbstract" cssClass="form-control" />
 			<s:textfield label="重要圖式-檔案路徑" name="patent.importantPicturePath" cssClass="form-control" />
 			<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" cssClass="form-control" />
-			<s:select label="專利技術領域" name="patent.techField.name" list="techFieldList" listKey="name" listValue="name" headerKey="" headerValue="請選擇專利技術領域" />
+			<s:select label="專利技術領域" name="patent.techField.name" list="techFieldList" listKey="name" listValue="name" />
 			<s:textfield label="應用範圍/產業" name="patent.usage" cssClass="form-control" />
-			<s:textfield label="技術發展階段" name="patent.trl.code" cssClass="form-control" />
+			<s:select label="技術發展階段" name="patent.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
 			<s:textfield label="技術發展階段說明" name="patent.trlDesc" cssClass="form-control" />
 		</div>
 		<s:submit cssClass="btn btn-info" value="儲存" />

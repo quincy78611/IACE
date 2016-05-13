@@ -1,6 +1,8 @@
 package iace.dao.patent;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -23,7 +25,7 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 	public PatentDao() {
 		super(Patent.class);
 	}
-
+	
 	@Override
 	public boolean checkUK(Patent entity) {
 		try {
@@ -77,7 +79,6 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		}
 	}
 	
-
 	@Override
 	public PagedList<Patent> searchBy(int pageIndex, int pageSize, String name, String appNo, String country, TechField techField) {
 		long totalItemCount = QueryTotalRecordsCount(name, appNo, country, techField);			
@@ -141,10 +142,31 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		} finally {
 			HibernateSessionFactory.closeSession();
 		}
-		
-		
-
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public Set<String> getUKs() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			String hql = "SELECT appliactionNo, techField.id "
+					+ "FROM " + Patent.class.getSimpleName() + " p "
+					+ "WHERE p.isValid = :isValid ";
+			Query query = session.createQuery(hql);
+			query.setString("isValid", BaseEntity.valid);
+			List<Object[]> objs = query.list();
+			Set<String> ukSet = new LinkedHashSet<String>();
+			for (Object[] obj : objs) {				 
+				String uk = String.format("%s-%d", obj[0], obj[1]);
+				ukSet.add(uk);
+			}
+			
+			return ukSet;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}	
 
 }

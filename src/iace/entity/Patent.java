@@ -1,6 +1,8 @@
 package iace.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.apache.commons.lang3.StringUtils;
+
+import core.util.ValidateUtil;
 import iace.entity.option.OptionTrl;
 
 @Entity
@@ -39,14 +45,13 @@ public class Patent extends BaseEntity {
 	private String techAbstract;
 	private String importantPicturePath;
 	private String importantPictureCode;
+	private PatentPicture importantPatentPicture;
 	private TechField techField;
 	private String usage;
-	//private String trlCode;
 	private OptionTrl trl;
 	private String trlDesc;
-	
-	
 
+	
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_PATENT_ID")
@@ -213,6 +218,15 @@ public class Patent extends BaseEntity {
 	public void setImportantPictureCode(String importantPictureCode) {
 		this.importantPictureCode = importantPictureCode;
 	}
+	
+	@Transient
+	public PatentPicture getImportantPatentPicture() {
+		return importantPatentPicture;
+	}
+
+	public void setImportantPatentPicture(PatentPicture importantPatentPicture) {
+		this.importantPatentPicture = importantPatentPicture;
+	}
 
 	@ManyToOne
 	@JoinColumn(name="TECH_FIELD", nullable=false)
@@ -251,6 +265,31 @@ public class Patent extends BaseEntity {
 
 	public void setTrlDesc(String trlDesc) {
 		this.trlDesc = trlDesc;
+	}
+	
+	public List<String> validate() {
+		List<String> errMsgs = new ArrayList<String>();
+		ValidateUtil.notBlankNLength(this.name, 300, "專利資料", errMsgs);
+		ValidateUtil.notBlankNLength(this.assignee, 500, "專利權人", errMsgs);
+		ValidateUtil.notBlankNLength(this.invertor, 500, "發明人", errMsgs);
+		ValidateUtil.notBlankNLength(this.country, 10, "申請國別", errMsgs);
+		ValidateUtil.notBlankNLength(this.appliactionNo, 100, "申請號", errMsgs);	
+		ValidateUtil.notNull(this.applicationDate,"申請日", errMsgs);
+		ValidateUtil.maxLength(this.openNo, 100, "公開號", errMsgs);
+		ValidateUtil.maxLength(this.publicationNo, 100, "公告號", errMsgs);
+		ValidateUtil.notBlankNLength(this.category, 100, "專利類別", errMsgs);
+		ValidateUtil.notBlankNLength(this.patentStatus, 500, "專利狀態", errMsgs);
+		ValidateUtil.notBlankNLength(this.familyNo, 2000, "專利家族", errMsgs);
+		ValidateUtil.notBlankNLength(this.ipc, 100, "國際分類號", errMsgs);
+		ValidateUtil.notBlank(this.techAbstract, "專利技術摘要", errMsgs);
+		ValidateUtil.notNull(importantPatentPicture, "重要圖式", errMsgs);
+		ValidateUtil.maxLength(this.importantPicturePath, 200, "重要圖式路徑", errMsgs);
+		ValidateUtil.notBlankNLength(this.importantPictureCode, 100, "重要圖式代碼", errMsgs);
+		ValidateUtil.notBlankNLength(this.techField.getName(), 500, "專利技術領域", errMsgs);
+		ValidateUtil.maxLength(this.usage, 500, "應用範圍/產業", errMsgs);
+		ValidateUtil.maxLength(this.trl.getCode(), 10, "技術發展階段", errMsgs);
+		ValidateUtil.maxLength(this.trlDesc, 2000, "技術發展階段說明", errMsgs);		
+		return errMsgs;
 	}
 
 	@Override

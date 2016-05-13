@@ -25,6 +25,8 @@ public class ServiceFactory {
 	private static PatentService patentService;
 	private static TechFieldService techFieldService;
 	
+	private static PatentExcelAccessService excelAccessService; 
+	
 	public static OptionCompanyLocationService getOptionCompanyLocationService() {
 		if (optionCompanyLocationService == null) {
 			optionCompanyLocationService = new OptionCompanyLocationService(DaoFactory.getOptionCompanyLocationDao());
@@ -118,5 +120,12 @@ public class ServiceFactory {
 			techFieldService = new TechFieldService(DaoFactory.getTechFieldDao());
 		}		
 		return techFieldService;
+	}
+	
+	public static PatentExcelAccessService getExcelAccessService() {
+		if (excelAccessService == null) {
+			excelAccessService = new PatentExcelAccessService();
+		}
+		return excelAccessService;
 	}
 }

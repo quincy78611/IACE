@@ -3,11 +3,14 @@ package iace.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import core.dao.BaseDao;
+import core.dao.HibernateSessionFactory;
 import iace.entity.BaseEntity;
 
 public class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> implements IBaseIaceDao<T> {
@@ -35,6 +38,30 @@ public class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> implements IBa
 	public void create(T entity) {
 		entity.create();
 		super.create(entity);
+	}
+	
+	@Override
+	public void createAll(List<T> entities) {
+		Transaction tran = null;
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			tran = session.beginTransaction();
+			for (int i = 0; i < entities.size(); i++) {
+				entities.get(i).create();
+				session.save(entities.get(i));
+				if (i % 100 == 0) {
+					session.flush();
+				}
+			}
+			tran.commit();			
+		} catch (Exception e) {
+			if (tran != null) {
+				tran.rollback();
+			}
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
 	}
 
 	@Override
