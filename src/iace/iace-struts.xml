@@ -501,10 +501,7 @@
 		</action>
 		<action name="update" class="iace.action.PatentAction" method="update">
 			<result name="input">/WEB-INF/jsp/iace/patent/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/patent/update.jsp</result>
-			<result name="error" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>			
+			<result name="success">/WEB-INF/jsp/iace/patent/update.jsp</result>		
 		</action>
 		<action name="updateSubmit" class="iace.action.PatentAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/iace/patent/update.jsp</result>
@@ -512,14 +509,11 @@
 		</action>	
 		<action name="delete" class="iace.action.PatentAction" method="delete">
 			<result name="input">/WEB-INF/jsp/iace/patent/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
-			<result name="error" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>			
+			<result name="success">/WEB-INF/jsp/iace/patent/delete.jsp</result>		
 		</action>
 		<action name="deleteSubmit" class="iace.action.PatentAction" method="deleteSubmit">
 			<result name="input">/WEB-INF/jsp/iace/patent/delete.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/patent/index.jsp</result>
 		</action>			
 	</package>
 	
@@ -528,8 +522,7 @@
 			<result>/WEB-INF/jsp/iace/batchImport/index.jsp</result>
 		</action>	
 		<action name="batchImportPatent" class="iace.action.BatchImportAction" method="batchImportPatent">
-		    <interceptor-ref name="fileUpload">
-                
+		    <interceptor-ref name="fileUpload">                
                 <param name="allowedTypes">application/ms-excel,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</param>
             </interceptor-ref> 
             <interceptor-ref name="defaultStack"></interceptor-ref>
