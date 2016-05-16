@@ -496,6 +496,13 @@
 			<result name="success">/WEB-INF/jsp/iace/patent/create.jsp</result>	
 		</action>
 		<action name="createSubmit" class="iace.action.PatentAction" method="createSubmit">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+
 			<result name="input">/WEB-INF/jsp/iace/patent/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
 		</action>
@@ -504,6 +511,13 @@
 			<result name="success">/WEB-INF/jsp/iace/patent/update.jsp</result>		
 		</action>
 		<action name="updateSubmit" class="iace.action.PatentAction" method="updateSubmit">
+			<interceptor-ref name="fileUpload">
+				<param name="allowedTypes">
+					image/png,image/gif,image/jpeg
+				</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+			
 			<result name="input">/WEB-INF/jsp/iace/patent/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
 		</action>	

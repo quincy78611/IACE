@@ -8,7 +8,7 @@
 
 <div>
 	<s:hidden id="pageIndex" name="pageIndex" />
-	<s:hidden id="pageSize" name="pageSize" value="10" />
+	<s:hidden id="pageSize" name="pageSize" value="5" />
 	
 	<s:if test="patentPagedList != null && patentPagedList.pageCount > 0">
 		<ul class="pagination">

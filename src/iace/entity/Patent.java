@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.apache.commons.lang3.StringUtils;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import core.util.ValidateUtil;
 import iace.entity.option.OptionTrl;
@@ -45,12 +45,12 @@ public class Patent extends BaseEntity {
 	private String techAbstract;
 	private String importantPicturePath;
 	private String importantPictureCode;
-	private PatentPicture importantPatentPicture;
+	private byte[] importantPatentPicture;
+	private String importantPatentPictureExtension;
 	private TechField techField;
 	private String usage;
 	private OptionTrl trl;
 	private String trlDesc;
-
 	
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -218,14 +218,28 @@ public class Patent extends BaseEntity {
 	public void setImportantPictureCode(String importantPictureCode) {
 		this.importantPictureCode = importantPictureCode;
 	}
-	
+
 	@Transient
-	public PatentPicture getImportantPatentPicture() {
+	public byte[] getImportantPatentPicture() {
 		return importantPatentPicture;
 	}
 
-	public void setImportantPatentPicture(PatentPicture importantPatentPicture) {
+	public void setImportantPatentPicture(byte[] importantPatentPicture) {
 		this.importantPatentPicture = importantPatentPicture;
+	}
+		
+	@Transient
+	public String getBase64PatentPicture() {
+		return Base64.encode(this.importantPatentPicture);
+	}
+
+	@Transient
+	public String getImportantPatentPictureExtension() {
+		return importantPatentPictureExtension;
+	}
+
+	public void setImportantPatentPictureExtension(String importantPatentPictureExtension) {
+		this.importantPatentPictureExtension = importantPatentPictureExtension;
 	}
 
 	@ManyToOne
@@ -233,6 +247,7 @@ public class Patent extends BaseEntity {
 	public TechField getTechField() {
 		return techField;
 	}
+
 
 	public void setTechField(TechField techField) {
 		this.techField = techField;
@@ -282,7 +297,7 @@ public class Patent extends BaseEntity {
 		ValidateUtil.notBlankNLength(this.familyNo, 2000, "專利家族", errMsgs);
 		ValidateUtil.notBlankNLength(this.ipc, 100, "國際分類號", errMsgs);
 		ValidateUtil.notBlank(this.techAbstract, "專利技術摘要", errMsgs);
-		ValidateUtil.notNull(importantPatentPicture, "重要圖式", errMsgs);
+		ValidateUtil.notNull(this.importantPatentPicture, "重要圖式", errMsgs);
 		ValidateUtil.maxLength(this.importantPicturePath, 200, "重要圖式路徑", errMsgs);
 		ValidateUtil.notBlankNLength(this.importantPictureCode, 100, "重要圖式代碼", errMsgs);
 		ValidateUtil.notBlankNLength(this.techField.getName(), 500, "專利技術領域", errMsgs);

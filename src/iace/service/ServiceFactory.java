@@ -109,8 +109,7 @@ public class ServiceFactory {
 			patentService = new PatentService(
 					DaoFactory.getPatentDao(),
 					DaoFactory.getTechFieldDao(),
-					DaoFactory.getOptionCountryDao(), 
-					DaoFactory.getOptionTrlDao());
+					DaoFactory.getOptionCountryDao());
 		}
 		return patentService;
 	}

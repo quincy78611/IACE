@@ -1,5 +1,10 @@
 package iace.action;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -36,7 +41,6 @@ public class PatentAction extends BaseAction {
 	private List<OptionCountry> optionCountryList;
 	private List<OptionTrl> optionTrlList;
 
-	// private List<Patent> patentList;
 	private PagedList<Patent> patentPagedList;
 
 	private int pageIndex;
@@ -44,6 +48,10 @@ public class PatentAction extends BaseAction {
 
 	private long id;
 	private Patent patent;
+
+	private File uploadPatentImg;
+	private String uploadPatentImgContentType;
+	private String uploadPatentImgFileName;
 
 	public PatentAction() {
 		super.setTitle("專利資料");
@@ -55,9 +63,8 @@ public class PatentAction extends BaseAction {
 
 	public String index() {
 		try {
-			// this.patentList = this.patentService.searchBy(searchPatentName,
-			// searchAppliactionNo, searchCountry, searchTechField);
-			this.patentPagedList = this.patentService.searchBy(pageIndex, pageSize, searchPatentName, searchAppliactionNo, searchCountry, searchTechField);
+			this.patentPagedList = this.patentService.searchBy(pageIndex, pageSize, 
+					searchPatentName, searchAppliactionNo, searchCountry, searchTechField);
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -87,6 +94,8 @@ public class PatentAction extends BaseAction {
 
 	public String createSubmit() {
 		try {
+			setUploadFileToEntity();
+
 			this.patentService.create(this.patent);
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
@@ -118,6 +127,8 @@ public class PatentAction extends BaseAction {
 
 	public String updateSubmit() {
 		try {
+			setUploadFileToEntity();
+
 			this.patentService.update(this.patent);
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
@@ -171,16 +182,12 @@ public class PatentAction extends BaseAction {
 		super.validateNotBlankNLength(this.patent.getAppliactionNo(), 100, "patent.appliactionNo");
 		super.validateNotNull(this.patent.getApplicationDate(), "patent.applicationDate");
 		super.validateTextMaxLength(this.patent.getOpenNo(), 100, "patent.openNo");
-		// super.validateNotNull(this.patent.getOpenDate(), "patent.openDate");
 		super.validateTextMaxLength(this.patent.getPublicationNo(), 100, "patent.publicationNo");
-		// super.validateNotNull(this.patent.getPublicationDate(),
-		// "patent.publicationDate");
 		super.validateNotBlankNLength(this.patent.getCategory(), 100, "patent.category");
 		super.validateNotBlankNLength(this.patent.getPatentStatus(), 500, "patent.patentStatus");
 		super.validateNotBlankNLength(this.patent.getFamilyNo(), 2000, "patent.familyNo");
 		super.validateNotBlankNLength(this.patent.getIpc(), 100, "patent.ipc");
 		super.validateNotBlank(this.patent.getTechAbstract(), "patent.techAbstract");
-		super.validateTextMaxLength(this.patent.getImportantPicturePath(), 200, "patent.importantPicturePath");
 		super.validateNotBlankNLength(this.patent.getImportantPictureCode(), 100, "patent.importantPictureCode");
 		super.validateNotBlankNLength(this.patent.getTechField().getName(), 500, "patent.techField.name");
 		super.validateTextMaxLength(this.patent.getUsage(), 500, "patent.usage");
@@ -214,6 +221,16 @@ public class PatentAction extends BaseAction {
 		} catch (Exception e) {
 			this.addActionError(e.getMessage());
 		}
+	}
+
+	private void setUploadFileToEntity() throws IOException {
+		int index = this.uploadPatentImgFileName.lastIndexOf(".");
+		String extension = this.uploadPatentImgFileName.substring(index + 1);
+		this.patent.setImportantPatentPictureExtension(extension);
+
+		Path path = Paths.get(this.uploadPatentImg.getAbsolutePath());
+		byte[] data = Files.readAllBytes(path);
+		this.patent.setImportantPatentPicture(data);
 	}
 
 	// ==========================================================================
@@ -299,6 +316,30 @@ public class PatentAction extends BaseAction {
 
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
+	}
+
+	public File getUploadPatentImg() {
+		return uploadPatentImg;
+	}
+
+	public void setUploadPatentImg(File uploadPatentImg) {
+		this.uploadPatentImg = uploadPatentImg;
+	}
+
+	public String getUploadPatentImgContentType() {
+		return uploadPatentImgContentType;
+	}
+
+	public void setUploadPatentImgContentType(String uploadPatentImgContentType) {
+		this.uploadPatentImgContentType = uploadPatentImgContentType;
+	}
+
+	public String getUploadPatentImgFileName() {
+		return uploadPatentImgFileName;
+	}
+
+	public void setUploadPatentImgFileName(String uploadPatentImgFileName) {
+		this.uploadPatentImgFileName = uploadPatentImgFileName;
 	}
 
 }

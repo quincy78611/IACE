@@ -60,7 +60,10 @@
 								<td><s:date name="applicationDate" format="yyyy/M/d"/></td>
 								<td><s:property value="patentStatus" /></td>
 								<td><s:property value="techField.name" /></td>
-								<td><s:property value="importantPicturePath" /></td>
+								<td>
+									<img src="data:image;base64,<s:property value="base64PatentPicture"/>" style="max-width:200px; max-height:200px;">
+									<s:property value="importantPicturePath" />
+								</td>
 								
 								<td>
 									<s:url value="showDetail.action" var="detailUrlTag">

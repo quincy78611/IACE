@@ -12,9 +12,11 @@ import core.util.CloseableTool;
 
 public class PatentPicture {
 	private XSSFPicture pic;
+	private byte[] data;
 
 	public PatentPicture(XSSFPicture pic) {
 		this.pic = pic;
+		this.data = this.getPicData().getData();
 	}
 	
 	public void save(String path, String fileName) throws IOException {
@@ -47,9 +49,13 @@ public class PatentPicture {
 	}
 
 	public byte[] getData() {
-		return this.getPicData().getData();
+		return data;
 	}
-	
+
+	public void setData(byte[] data) {
+		this.data = data;
+	}
+
 	public short getCol1() {
 		return this.getAnchor().getCol1();
 	}

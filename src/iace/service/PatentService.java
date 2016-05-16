@@ -1,10 +1,15 @@
 package iace.service;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
+
+import org.apache.commons.io.FileUtils;
 
 import core.service.BaseService;
 import core.util.PagedList;
@@ -14,24 +19,20 @@ import iace.dao.techField.ITechFieldDao;
 import iace.entity.Patent;
 import iace.entity.TechField;
 import iace.entity.option.OptionCountry;
-import iace.entity.option.OptionTrl;
 
 public class PatentService extends BaseService<Patent, Long> {
 
 	private IPatentDao patentDao;
 	private ITechFieldDao techFieldDao;
 	private IOptionDao<OptionCountry> optionCountryDao;
-	private IOptionDao<OptionTrl> optionTrlDao;
 	
 	private String patentPictureFolder;
 	
 	PatentService(IPatentDao patentDao, ITechFieldDao techFieldDao, 
-			IOptionDao<OptionCountry> optionCountryDao,
-			IOptionDao<OptionTrl> optionTrlDao) {
+			IOptionDao<OptionCountry> optionCountryDao) {
 		this.patentDao = patentDao;
 		this.techFieldDao = techFieldDao;
 		this.optionCountryDao = optionCountryDao;
-		this.optionTrlDao = optionTrlDao;
 		
 		Properties prop = new Properties();
 		try {
@@ -41,28 +42,40 @@ public class PatentService extends BaseService<Patent, Long> {
 			log.fatal("", e);			
 		}
 	}
-	
+
+	@Deprecated
 	public List<Patent> listAll() {
-		// TODO 處理圖片的問題
-		return this.patentDao.listAll();
+		List<Patent> res = this.patentDao.listAll();
+		for (Patent p : res) {
+			loadImportantPicToEntity(p);
+		}
+		return res;
 	}
 	
+	@Deprecated
 	public List<Patent> searchBy(String name, String appNo, String country, long techFieldId) {
 		TechField techField = this.techFieldDao.get(techFieldId);
-		// TODO 處理圖片的問題
-		return this.patentDao.searchBy(name, appNo, country, techField);
+		List<Patent> res = this.patentDao.searchBy(name, appNo, country, techField);
+		for (Patent p : res) {
+			loadImportantPicToEntity(p);
+		}
+		return res;
 	}
 	
 	public PagedList<Patent> searchBy(int pageIndex, int pageSize, String name, String appNo, String country, long techFieldId){
 		TechField techField = this.techFieldDao.get(techFieldId);
-		// TODO 處理圖片的問題
-		return this.patentDao.searchBy(pageIndex, pageSize, name, appNo, country, techField);
+		PagedList<Patent> res = this.patentDao.searchBy(pageIndex, pageSize, name, appNo, country, techField);
+		for (Patent p : res.getList()) {
+			loadImportantPicToEntity(p);
+		}
+		return res;
 	}
 	
 	@Override
 	public Patent get(Long id) {
-		// TODO 處理圖片的問題
-		return this.patentDao.get(id);
+		Patent p = this.patentDao.get(id);
+		loadImportantPicToEntity(p);
+		return p;
 	}
 
 	@Override
@@ -70,8 +83,11 @@ public class PatentService extends BaseService<Patent, Long> {
 		getOrInsertOptionCountry(entity);
 		getOrInsertTechField(entity);
 		setPatentImportantPicturePath(entity);
-		
-		// TODO 處理圖片的問題
+		try {
+			savePatentPicture(entity);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("儲存圖片失敗!");
+		}
 		this.patentDao.create(entity);
 	}
 	
@@ -108,8 +124,7 @@ public class PatentService extends BaseService<Patent, Long> {
 		// 儲存圖片 ---------------------------------------------------------------
 		for (int i=0;i<entities.size();i++) {
 			try {
-				Patent p = entities.get(i);
-				p.getImportantPatentPicture().save(this.patentPictureFolder, p.getImportantPicturePath());
+				savePatentPicture(entities.get(i));
 			} catch (IOException e) {
 				String errMsg = String.format("第%d列圖片儲存失敗", i+1);
 				log.warn(errMsg, e);
@@ -129,7 +144,12 @@ public class PatentService extends BaseService<Patent, Long> {
 	public void update(Patent entity) {		
 		getOrInsertOptionCountry(entity);
 		getOrInsertTechField(entity);
-		// TODO 處理圖片的問題
+		setPatentImportantPicturePath(entity);
+		try {
+			savePatentPicture(entity);
+		} catch (IOException e) {
+			throw new IllegalArgumentException("儲存圖片失敗!");
+		}
 		this.patentDao.update(entity);		
 	}
 
@@ -137,8 +157,12 @@ public class PatentService extends BaseService<Patent, Long> {
 	public void delete(Patent entity) {
 		String imagePath = entity.getImportantPicturePath();
 		this.patentDao.delete(entity.getId());
-		// TODO 處理圖片的問題
-		log.warn("need to implement delete important image code!");
+		File f = new File(this.patentPictureFolder, imagePath);
+		if (f.exists()) f.delete();		
+	}
+		
+	public boolean checkUK(Patent entity) {
+		return this.patentDao.checkUK(entity);
 	}
 	
 	private void getOrInsertOptionCountry(Patent entity) {
@@ -166,16 +190,27 @@ public class PatentService extends BaseService<Patent, Long> {
 	private void setPatentImportantPicturePath(Patent entity) {
 		if (entity.getImportantPatentPicture() != null) {
 			String fileName = String.format("%s-%d.%s", 
-					entity.getAppliactionNo(),
-					entity.getTechField().getId(),
-					entity.getImportantPatentPicture().getFileExtension());
+			entity.getAppliactionNo(),
+			entity.getTechField().getId(),
+			entity.getImportantPatentPictureExtension());
 			entity.setImportantPicturePath(fileName);
 		}
 	}
-	
-	public boolean checkUK(Patent entity) {
-		return this.patentDao.checkUK(entity);
+
+	//將圖片從檔案load進來並且存入Entity中
+	private void loadImportantPicToEntity(Patent p) {
+		try {
+			File f = new File(this.patentPictureFolder, p.getImportantPicturePath());
+			byte[] data = Files.readAllBytes(Paths.get(f.getAbsolutePath()));
+			p.setImportantPatentPicture(data);
+		} catch (IOException e) {
+			log.warn("load image fail", e);
+		}
 	}
 	
-
+	private void savePatentPicture(Patent p) throws IOException {
+		File f = new File(this.patentPictureFolder, p.getImportantPicturePath());
+		byte[] img = p.getImportantPatentPicture();
+		FileUtils.writeByteArrayToFile(f, img);
+	}
 }

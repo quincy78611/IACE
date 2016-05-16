@@ -9,7 +9,7 @@
 <body>
 	<h4>新增</h4>
 
-	<s:form action="createSubmit" method="post" validate="true" >
+	<s:form action="createSubmit" method="post" validate="true" enctype="multipart/form-data">
 		<div class="form-horizontal" >
 			<s:textfield label="專利名稱" name="patent.name" cssClass="form-control" />				
 			<s:textfield label="專利權人" name="patent.assignee" cssClass="form-control"  />
@@ -38,7 +38,12 @@
 			<s:textfield label="專利家族" name="patent.familyNo" cssClass="form-control" />
 			<s:textfield label="國際分類號" name="patent.ipc" cssClass="form-control" />
 			<s:textfield label="專利技術摘要" name="patent.techAbstract" cssClass="form-control" />
-			<s:textfield label="重要圖式-檔案路徑" name="patent.importantPicturePath" cssClass="form-control" />
+			<s:label label="重要圖式" class="control-label" />
+			<img id="patent_img" src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:800px; max-height:800px;">
+			<span class="btn btn-default btn-file">
+				瀏覽
+                <input class="upload" name="uploadPatentImg" type="file" onchange = "readURL(this);">
+			</span>
 			<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" cssClass="form-control" />
 			<s:select label="專利技術領域" name="patent.techField.name" list="techFieldList" listKey="name" listValue="name" />
 			<s:textfield label="應用範圍/產業" name="patent.usage" cssClass="form-control" />
@@ -50,5 +55,19 @@
 		<a class="btn btn-default" href="<s:url value="/iace/patent/init"/>">回上一頁</a>
 		<!-- <input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/> -->	
 	</s:form>
+	
+	<script type="text/javascript">
+	    function readURL(input) {
+	        if (input.files && input.files[0]) {
+	            var reader = new FileReader();
+	
+	            reader.onload = function (e) {
+	                $('#patent_img').attr('src', e.target.result);
+	            };
+	
+	            reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+	</script>	
 </body>
 </html>
