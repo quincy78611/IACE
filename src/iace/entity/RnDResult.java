@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import iace.entity.option.OptionTrl;
+
 @Entity
 @Table(name = "R_D_RESULT", schema = "IACE_ADMIN")
 public class RnDResult extends BaseEntity {
@@ -19,13 +21,11 @@ public class RnDResult extends BaseEntity {
 	private static final long serialVersionUID = 1695680251829946337L;
 
 	private long id;
-	//private long researchPlanId;
+	private ResearchPlan researchPlan;
 	private String name;
 	private String descriptoin;
-	private String trlCode;
+	private OptionTrl trl;
 	private String trlDesc;
-	
-	private ResearchPlan researchPlan;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -39,16 +39,17 @@ public class RnDResult extends BaseEntity {
 		this.id = id;
 	}
 
-//	@Column(name = "RESEARCH_PLAN_ID", length = 19, nullable = false)
-//	public long getResearchPlanId() {
-//		return researchPlanId;
-//	}
-//
-//	public void setResearchPlanId(long researchPlanId) {
-//		this.researchPlanId = researchPlanId;
-//	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "RESEARCH_PLAN_ID", nullable = false, updatable = false)
+	public ResearchPlan getResearchPlan() {
+		return researchPlan;
+	}
 
-	@Column(name = "NAME", length = 2000 )
+	public void setResearchPlan(ResearchPlan researchPlan) {
+		this.researchPlan = researchPlan;
+	}
+
+	@Column(name = "NAME", length = 2000)
 	public String getName() {
 		return name;
 	}
@@ -67,13 +68,14 @@ public class RnDResult extends BaseEntity {
 		this.descriptoin = descriptoin;
 	}
 
-	@Column(name = "TRL_CODE", length = 10)
-	public String getTrlCode() {
-		return trlCode;
+	@ManyToOne
+	@JoinColumn(name="TRL_CODE", referencedColumnName= "CODE")
+	public OptionTrl getTrl() {
+		return trl;
 	}
 
-	public void setTrlCode(String trlCode) {
-		this.trlCode = trlCode;
+	public void setTrl(OptionTrl trl) {
+		this.trl = trl;
 	}
 
 	@Column(name = "TRL_DESC")
@@ -85,17 +87,5 @@ public class RnDResult extends BaseEntity {
 	public void setTrlDesc(String trlDesc) {
 		this.trlDesc = trlDesc;
 	}
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="RESEARCH_PLAN_ID", nullable=false, updatable=false)
-	public ResearchPlan getResearchPlan() {
-		return researchPlan;
-	}
 
-	public void setResearchPlan(ResearchPlan researchPlan) {
-		this.researchPlan = researchPlan;
-	}
-
-	
-	
 }

@@ -5,9 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -34,12 +37,12 @@ public class ResearchPlan extends BaseEntity {
 	private String grbDomainCode5;
 	private String grbDomainCode6;
 	private String keyword;
-	private String trlCode;
+	private OptionTrl trl;
 	private String projkey;
 	private String grb05Id;
 	
 	private List<OptionGrbDomain> grbDomains;
-	private OptionTrl trl;
+	
 	private List<RnDResult> rndResults;
 
 	@Id
@@ -198,13 +201,14 @@ public class ResearchPlan extends BaseEntity {
 		this.keyword = keyword;
 	}
 
-	@Column(name = "TRL_CODE", length = 10)
-	public String getTrlCode() {
-		return trlCode;
+	@ManyToOne
+	@JoinColumn(name="TRL_CODE", referencedColumnName= "CODE")
+	public OptionTrl getTrl() {
+		return trl;
 	}
 
-	public void setTrlCode(String trlCode) {
-		this.trlCode = trlCode;
+	public void setTrl(OptionTrl trl) {
+		this.trl = trl;
 	}
 
 	@Column(name = "PROJKEY", length = 100)
@@ -234,16 +238,7 @@ public class ResearchPlan extends BaseEntity {
 		this.grbDomains = grbDomains;
 	}
 
-	@Transient
-	public OptionTrl getTrl() {
-		return trl;
-	}
-
-	public void setTrl(OptionTrl trl) {
-		this.trl = trl;
-	}
-
-	@OneToMany(mappedBy="researchPlan", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="researchPlan", cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
 	//@JoinColumn(name="ID")
 	public List<RnDResult> getRndResults() {
 		return rndResults;
@@ -253,16 +248,7 @@ public class ResearchPlan extends BaseEntity {
 		this.rndResults = rndResults;
 	}
 
-	@Override
-	public String toString() {
-		return "\"ResearchPlan\" : {\"id\"=\"" + id + "\", \"year\"=\"" + year + "\", \"planNo\"=\"" + planNo
-				+ "\", \"name\"=\"" + name + "\", \"manager\"=\"" + manager + "\", \"grbDomainCode1\"=\""
-				+ grbDomainCode1 + "\", \"grbDomainCode2\"=\"" + grbDomainCode2 + "\", \"grbDomainCode3\"=\""
-				+ grbDomainCode3 + "\", \"grbDomainCode4\"=\"" + grbDomainCode4 + "\", \"grbDomainCode5\"=\""
-				+ grbDomainCode5 + "\", \"grbDomainCode6\"=\"" + grbDomainCode6 + "\", \"keyword\"=\"" + keyword
-				+ "\", \"trlCode\"=\"" + trlCode + "\", \"projkey\"=\"" + projkey + "\", \"grb05Id\"=\"" + grb05Id
-				+ "\",  " + super.toString() + "}";
-	}
+
 
 	
 }

@@ -478,6 +478,15 @@
 		</action>
 	</package>
 	
+	<package name="ResearchPlan" namespace="/iace/researchPlan" extends="struts-default">
+		<action name="init" class="iace.action.ResearchPlanAction" method="init">
+			<result>/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+		</action>	
+		<action name="index" class="iace.action.ResearchPlanAction" method="index">
+			<result>/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+		</action>
+	</package>
+	
 	<package name="Patent" namespace="/iace/patent" extends="struts-default">
 		<action name="init" class="iace.action.PatentAction" method="init">
 			<result>/WEB-INF/jsp/iace/patent/index.jsp</result>
