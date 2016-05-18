@@ -122,8 +122,8 @@
 			
 			<s:if test="researchPlanPagedList != null && researchPlanPagedList.pageCount > 0">
 				<ul class="pagination">
-					<li><input type="submit" value="First" class="btn btn-default btn-sm btn-first-page" /></li>
-					<li><input type="submit" value=&laquo; class="btn btn-default btn-sm btn-previous-page" /></li>
+					<li><input type="submit" value="First" class="btn-first-page" /></li>
+					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
 					<s:if test="searchCondition.pageIndex >= 5">
 						......
 					</s:if>
@@ -135,8 +135,8 @@
 					<s:if test="searchCondition.pageIndex <= researchPlanPagedList.pageCount - 6">
 						......
 					</s:if>
-					<li><input type="submit" value=&raquo;	class="btn btn-default btn-sm btn-next-page" /></li>
-					<li><input type="submit" value="Last" class="btn btn-default btn-sm btn-last-page" /></li>
+					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
+					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
 				</ul>
 			
 				<p>Displaying <s:property value="researchPlanPagedList.itemStart"/> - <s:property value="researchPlanPagedList.itemEnd"/> of <s:property value="researchPlanPagedList.totatlItemCount"/> item(s)</p> 
