@@ -76,7 +76,8 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		if (StringUtils.isNotBlank(arg.getGrbDomainCode())) {				
 			Criterion[] rests = new Criterion[6];
 			for (int i=0; i<6; i++) {
-				String propertyName = "grbDomainCode"+(i+1);
+//				String propertyName = "grbDomainCode"+(i+1);
+				String propertyName = "grbDomain"+(i+1)+".code";
 				rests[i] = Restrictions.eq(propertyName, arg.getGrbDomainCode());
 			}				
 			criteria.add(Restrictions.or(rests));

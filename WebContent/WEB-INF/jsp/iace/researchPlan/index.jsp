@@ -53,7 +53,7 @@
 						<th>年度</th>
 						<th>計畫編號</th>
 						<th>計畫名稱</th>
-						<th>計畫主持人</th>
+						<th>主持人</th>
 						<th>研究領域</th>
 						<th>計畫發展階段</th>
 						<th>GRB計畫編號</th>
@@ -68,26 +68,25 @@
 							<tr>
 								<td>
 									<s:property value="%{researchPlanPagedList.itemStart + #stat.count -1}" />
-									<s:property value="id" />
+<%-- 									<s:property value="id" /> --%>
 								</td>						
 								<td><s:property value="year" /></td>
 								<td><s:property value="planNo" /></td>
 								<td><s:property value="name" /></td>
 								<td><s:property value="manager" /></td>
 								<td>
-									<s:property value="grbDomainCode1" />&nbsp
-									<s:property value="grbDomainCode2" />&nbsp
-									<s:property value="grbDomainCode3" />&nbsp
-									<s:property value="grbDomainCode4" />&nbsp
-									<s:property value="grbDomainCode5" />&nbsp
-									<s:property value="grbDomainCode6" />
+									<s:iterator value="grbDomains" status="stat">
+										<s:property value="name" /><p>
+									</s:iterator>
 								</td>
 								<td><s:property value="trl.code" /></td>
 								<td><s:property value="projkey" /></td>
-								<td><s:property value="grb05Id" /></td>
+								<td>
+									<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/GRB_Search/grb/show_doc.jsp?id='+grb05Id}"/>" target="_blank">連結</a>
+								</td>
 <!-- 								<td> -->
 <%-- 									<s:iterator value="rndResults" status="stat"> --%>
-<%-- 										<s:property value="name" />,&nbsp --%>
+<%-- 										<s:property value="name" /><p> --%>
 <%-- 									</s:iterator> --%>
 <!-- 								</td> -->
 																
@@ -163,7 +162,6 @@
 				$("#pageIndex").val($(this).attr("value") - 1);
 				return true;
 			});
-// 			$("ul.pagination > li > input.btn-page").eq(pageIndex).addClass("active");
 			$("ul.pagination > li > input.btn-page[value='"+pageNumber+"']").addClass("active");
 
 			//第一頁按鈕
