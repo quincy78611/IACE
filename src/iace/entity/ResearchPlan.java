@@ -238,25 +238,31 @@ public class ResearchPlan extends BaseEntity {
 	@Override
 	public void create() {
 		super.create();
-		for (RnDResult rnd : this.rndResults) {
-			rnd.create();
-		}				
+		if (this.rndResults != null) {
+			for (RnDResult rnd : this.rndResults) {
+				rnd.create();
+			}				
+		}			
 	}
 
 	@Override
 	public void update() {
 		super.update();
-		for (RnDResult rnd : this.rndResults) {
-			rnd.update();;
-		}	
+		if (this.rndResults != null) {
+			for (RnDResult rnd : this.rndResults) {
+				rnd.update();
+			}			
+		}		
 	}
 
 	@Override
 	public void delete() {
 		super.delete();
-		for (RnDResult rnd : this.rndResults) {
-			rnd.delete();
-		}	
+		if (this.rndResults != null) {
+			for (RnDResult rnd : this.rndResults) {
+				rnd.delete();
+			}			
+		}
 	}
 
 

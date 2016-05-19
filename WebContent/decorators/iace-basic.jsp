@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-				<a class="navbar-brand" >Brand - HelloWorld</a>
+				<a class="navbar-brand" >鏈結產學媒合平台 IACE</a>
 			</div>
 		</div>
 	</div>
@@ -101,7 +101,7 @@
 	    	</div>	
 			<br>
 			<div class="container">
-				<p>&copy; Hello World</p>
+				<p>&copy; IACE</p>
 			</div>
 		</div>
 	</div>

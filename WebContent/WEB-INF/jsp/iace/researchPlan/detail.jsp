@@ -59,7 +59,7 @@
 				<s:property value="researchPlan.keyword"/>				
 			</div>
 			<div class="col-md-3">
-				<label class="control-label">技術發展階段</label><p>
+				<label class="control-label">計畫發展階段</label><p>
 				<s:property value="%{researchPlan.trl.code + ' ' + researchPlan.trl.name"/>				
 			</div>
 			<div class="col-md-3">
@@ -101,7 +101,7 @@
 	</div>
 	<hr>
 	<div>
-		<a class="btn btn-default" href="<s:url value="/iace/researchPlan/init"/>">回上一頁</a>		
+		<a class="btn btn-default" href="<s:url value="/iace/researchPlan/init"/>">確定</a>		
 	</div>
 	
 	

@@ -84,13 +84,8 @@
 								<td>
 									<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/GRB_Search/grb/show_doc.jsp?id='+grb05Id}"/>" target="_blank">連結</a>
 								</td>
-<!-- 								<td> -->
-<%-- 									<s:iterator value="rndResults" status="stat"> --%>
-<%-- 										<s:property value="name" /><p> --%>
-<%-- 									</s:iterator> --%>
-<!-- 								</td> -->
 																
-								<td class="col-md-1">
+								<td class="col-md-2">
 									<s:url value="showDetail.action" var="detailUrlTag">
 										<s:param name="id" value="id" />
 									</s:url>

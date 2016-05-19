@@ -488,14 +488,22 @@
 		<action name="showDetail" class="iace.action.ResearchPlanAction" method="showDetail">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/detail.jsp</result>		
-		</action>		
+		</action>
+		<action name="create" class="iace.action.ResearchPlanAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/create.jsp</result>		
+		</action>
+		<action name="createSubmit" class="iace.action.ResearchPlanAction" method="createSubmit">		
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+		</action>				
 		<action name="update" class="iace.action.ResearchPlanAction" method="update">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>		
 		</action>
 		<action name="updateSubmit" class="iace.action.ResearchPlanAction" method="updateSubmit">		
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/detail.jsp</result>
 		</action>
 		<action name="delete" class="iace.action.ResearchPlanAction" method="delete">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
@@ -504,8 +512,7 @@
 		<action name="deleteSubmit" class="iace.action.ResearchPlanAction" method="deleteSubmit">		
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
-		</action>		
-				
+		</action>				
 		<action name="showRndResultDetail" class="iace.action.ResearchPlanAction" method="showRndResultDetail">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/detailRndResult.jsp</result>		

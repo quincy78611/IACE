@@ -1,13 +1,13 @@
 
 div.left-menu {
-	width: 15%;
+	width: 13%;
     height: 100%;
     position: fixed;
 	overflow-y:auto;
 }
 
 div.right-content {
-	width: 85%;
+	width: 87%;
     height: auto;
     position: absolute;
     right: 0;

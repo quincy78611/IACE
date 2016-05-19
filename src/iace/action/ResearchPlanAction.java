@@ -71,6 +71,27 @@ public class ResearchPlanAction extends BaseAction {
 		}		
 	}
 	
+	public String create() {
+		return SUCCESS;
+	}
+	
+	public void validateCreateSubmit() {
+		//TODO
+	}
+	
+	public String createSubmit() {
+		try {
+			this.researchPlanService.create(this.researchPlan);
+			this.id = this.researchPlan.getId();
+			this.addActionMessage("CREATE SUCCESS!");
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return INPUT;
+		}
+	}
+	
 	public String update() {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
