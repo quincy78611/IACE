@@ -485,6 +485,37 @@
 		<action name="index" class="iace.action.ResearchPlanAction" method="index">
 			<result>/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
 		</action>
+		<action name="update" class="iace.action.ResearchPlanAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>		
+		</action>
+		<action name="updateSubmit" class="iace.action.ResearchPlanAction" method="updateSubmit">		
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+		</action>
+		
+		<action name="showRndResultDetail" class="iace.action.ResearchPlanAction" method="showRndResultDetail">
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/detailRndResult.jsp</result>		
+		</action>
+		<action name="createRndResult" class="iace.action.ResearchPlanAction" method="createRndResult">
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/createRndResult.jsp</result>		
+		</action>
+		<action name="createRndResultSubmit" class="iace.action.ResearchPlanAction" method="createRndResultSubmit">		
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/createRndResult.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+		</action>		
+		<action name="deleteRndResult" class="iace.action.ResearchPlanAction" method="deleteRndResult">
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/deleteRndResult.jsp</result>		
+		</action>
+		<action name="deleteRndResultSubmit" class="iace.action.ResearchPlanAction" method="deleteRndResultSubmit">
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/deleteRndResult.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+		</action>	
+		
+		
 	</package>
 	
 	<package name="Patent" namespace="/iace/patent" extends="struts-default">

@@ -18,7 +18,9 @@ import iace.dao.option.OptionTrlDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
 import iace.dao.researchPlan.IResearchPlanDao;
+import iace.dao.researchPlan.IRnDResultDao;
 import iace.dao.researchPlan.ResearchPlanDao;
+import iace.dao.researchPlan.RnDResultDao;
 import iace.dao.techField.ITechFieldDao;
 import iace.dao.techField.TechFieldDao;
 import iace.entity.option.OptionCompanyLocation;
@@ -51,6 +53,7 @@ public class DaoFactory {
 	private static ITechFieldDao techFieldDao;
 	private static IPatentDao patentDao;
 	private static IResearchPlanDao researchPlanDao;
+	private static IRnDResultDao rndResultDao;
 	
 	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {
 		if (optionCompanyLocationDao == null) {
@@ -150,6 +153,11 @@ public class DaoFactory {
 		return researchPlanDao;
 	}
 	
-	
+	public static IRnDResultDao getRnDResultDao() {
+		if (rndResultDao == null) {
+			rndResultDao = new RnDResultDao();
+		}
+		return rndResultDao;
+	}
 
 }

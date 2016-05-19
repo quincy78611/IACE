@@ -25,6 +25,7 @@ public class ServiceFactory {
 	private static PatentService patentService;
 	private static TechFieldService techFieldService;
 	private static ResearchPlanService researchPlanService;
+	private static RnDResultService rndResultService;
 	
 	private static PatentExcelAccessService excelAccessService; 
 	
@@ -140,5 +141,10 @@ public class ServiceFactory {
 		return researchPlanService;
 	}
 	
-	
+	public static RnDResultService getRnDResultService() {
+		if (rndResultService == null) {
+			rndResultService = new RnDResultService(DaoFactory.getRnDResultDao());
+		}
+		return rndResultService;
+	}
 }

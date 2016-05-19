@@ -39,7 +39,8 @@ public class RnDResult extends BaseEntity {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+//	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "RESEARCH_PLAN_ID", nullable = false, updatable = false)
 	public ResearchPlan getResearchPlan() {
 		return researchPlan;

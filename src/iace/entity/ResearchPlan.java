@@ -36,8 +36,7 @@ public class ResearchPlan extends BaseEntity {
 	private OptionGrbDomain grbDomain3;
 	private OptionGrbDomain grbDomain4;
 	private OptionGrbDomain grbDomain5;
-	private OptionGrbDomain grbDomain6;
-	
+	private OptionGrbDomain grbDomain6;	
 	private String keyword;
 	private OptionTrl trl;
 	private String projkey;
@@ -234,6 +233,30 @@ public class ResearchPlan extends BaseEntity {
 
 	public void setRndResults(List<RnDResult> rndResults) {
 		this.rndResults = rndResults;
+	}
+
+	@Override
+	public void create() {
+		super.create();
+		for (RnDResult rnd : this.rndResults) {
+			rnd.create();
+		}				
+	}
+
+	@Override
+	public void update() {
+		super.update();
+		for (RnDResult rnd : this.rndResults) {
+			rnd.update();;
+		}	
+	}
+
+	@Override
+	public void delete() {
+		super.delete();
+		for (RnDResult rnd : this.rndResults) {
+			rnd.delete();
+		}	
 	}
 
 

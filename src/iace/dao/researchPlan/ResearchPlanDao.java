@@ -24,6 +24,26 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		super(ResearchPlan.class);
 	}
 	
+//	@Override
+//	public ResearchPlan get(long id) {
+//		try {
+//			Session session = HibernateSessionFactory.getSession();
+//			Criteria criteria = session.createCriteria(ResearchPlan.class);			
+//			criteria.add(Restrictions.eq("id", id));
+//			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+//			Criteria rCrit = criteria.createCriteria("rndResults");
+//			rCrit.add(Restrictions.eq("isValid", BaseEntity.valid));
+//			ResearchPlan entity = (ResearchPlan) criteria.uniqueResult();
+//			return entity;
+//		} catch (Exception e) {
+//			throw e;
+//		} finally {
+//			HibernateSessionFactory.closeSession();
+//		}
+//	}
+
+
+
 	@Override
 	public PagedList<ResearchPlan> searchBy(ResearchPlanSearchModel arg) {
 		long totalItemCount = queryTotalRecordsCount(arg);			
