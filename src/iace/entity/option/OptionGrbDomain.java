@@ -9,10 +9,7 @@ public class OptionGrbDomain extends BaseOption {
 
 	private static final long serialVersionUID = 8701955362454487326L;
 
-	@Override
-	public String toString() {
-		return "\"OptionGrbDomain\" : {" + super.toString() + "}";
-	}
+
 
 
 

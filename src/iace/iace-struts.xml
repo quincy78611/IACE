@@ -591,7 +591,16 @@
 	<package name="batchImport" namespace="/iace/batchImport" extends="struts-default">
 		<action name="init">
 			<result>/WEB-INF/jsp/iace/batchImport/index.jsp</result>
-		</action>	
+		</action>
+		<action name="batchImportResearchPlan" class="iace.action.BatchImportAction" method="batchImportResearchPlan">
+		    <interceptor-ref name="fileUpload">                
+                <param name="allowedTypes">application/ms-excel,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</param>
+            </interceptor-ref> 
+            <interceptor-ref name="defaultStack"></interceptor-ref>
+		    
+		    <result name="success">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
+		    <result name="input">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
+		</action>			
 		<action name="batchImportPatent" class="iace.action.BatchImportAction" method="batchImportPatent">
 		    <interceptor-ref name="fileUpload">                
                 <param name="allowedTypes">application/ms-excel,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</param>

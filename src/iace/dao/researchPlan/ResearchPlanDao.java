@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.NonUniqueResultException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
@@ -43,6 +45,44 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 //	}
 
 
+	@Override
+	public boolean planNoExist(String planNo) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			String hql = "SELECT count(*) " 
+					+ "FROM " + ResearchPlan.class.getSimpleName() + " rp "
+					+ "WHERE rp.planNo = :planNo "
+					+ "AND rp.isValid = :isValid ";
+			Query query = session.createQuery(hql);
+			query.setString("planNo", planNo);
+			query.setString("isValid", BaseEntity.valid);
+			Object obj = query.uniqueResult();
+			return (long)obj > 0;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	@Override
+	public ResearchPlan getByPlanNo(String planNo) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(ResearchPlan.class);
+			criteria.add(Restrictions.eq("planNo", planNo).ignoreCase());
+			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+			ResearchPlan rp = (ResearchPlan) criteria.uniqueResult();
+			return rp;
+		} catch (NonUniqueResultException e) {
+			log.error("No unique planNo="+planNo);
+			throw e;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 
 	@Override
 	public PagedList<ResearchPlan> searchBy(ResearchPlanSearchModel arg) {
@@ -120,6 +160,7 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 	}
+
 
 
 }

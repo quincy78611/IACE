@@ -94,9 +94,7 @@ public abstract class BaseEntity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\"isValid\"=\"" + isValid + "\", \"createTime\"=\"" + createTime + "\", \"createUser\"=\"" + createUser
-				+ "\", \"updateTime\"=\"" + updateTime + "\", \"updateUser\"=\"" + updateUser + "\", \"ver\"=\"" + ver
-				+ "\"";
+		return "BaseEntity [isValid=" + isValid + ", createTime=" + createTime + ", createUser=" + createUser + ", updateTime=" + updateTime + ", updateUser=" + updateUser + ", ver=" + ver + "]";
 	}
 
 	public void create() {

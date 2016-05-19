@@ -60,7 +60,7 @@
 			</div>
 			<div class="col-md-3">
 				<label class="control-label">計畫發展階段</label><p>
-				<s:property value="%{researchPlan.trl.code + ' ' + researchPlan.trl.name"/>				
+				<s:property value="%{researchPlan.trl.code + ' ' + researchPlan.trl.name}"/>				
 			</div>
 			<div class="col-md-3">
 				<label class="control-label">GRB計畫編號</label><p>

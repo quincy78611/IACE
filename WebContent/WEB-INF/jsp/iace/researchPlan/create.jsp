@@ -50,7 +50,7 @@
 				<s:textfield label="GRB計畫編號" name="researchPlan.projkey" cssClass="form-control" />
 			</div>
 			<div class="col-md-3">
-				<s:textfield label="成果報告全文連結代碼" name="researchPlan.grb05Id" cssClass="form-control" />
+				<s:textfield label="成果報告ID" name="researchPlan.grb05Id" cssClass="form-control" />
 			</div>
 		</div>			
 		<hr>

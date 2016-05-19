@@ -50,7 +50,7 @@ public abstract class BaseOption  extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "\"id\"=\"" + id + "\", \"name\"=\"" + name + "\", \"code\"=\"" + code + "\",  " + super.toString();
+		return "[name=" + name + ", code=" + code + "]";
 	}
 
 

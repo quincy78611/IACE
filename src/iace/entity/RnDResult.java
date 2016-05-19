@@ -2,7 +2,6 @@ package iace.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -78,6 +77,12 @@ public class RnDResult extends BaseEntity {
 	public void setTrl(OptionTrl trl) {
 		this.trl = trl;
 	}
+	
+	public void setTrl(String code) {
+		OptionTrl trl = new OptionTrl();
+		trl.setCode(code);
+		this.setTrl(trl);
+	}
 
 	@Column(name = "TRL_DESC")
 	@Lob
@@ -88,5 +93,12 @@ public class RnDResult extends BaseEntity {
 	public void setTrlDesc(String trlDesc) {
 		this.trlDesc = trlDesc;
 	}
+
+	@Override
+	public String toString() {
+		return "RnDResult [id=" + id + ", name=" + name + ", descriptoin=" + descriptoin + ", trl=" + trl + ", trlDesc=" + trlDesc + "]";
+	}
+	
+	
 
 }

@@ -1,7 +1,9 @@
 package iace.dao.option;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
@@ -26,10 +28,19 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<OptionEntity> listAll() {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
 		criterionList.add(Restrictions.eq("isValid", BaseEntity.valid));		
 		return (List<OptionEntity>) super.listAll(optionEntityClass, Order.asc("code"), criterionList);
+	}
+	
+	@Override
+	public Map<String, OptionEntity> mapAll() {
+		List<OptionEntity> list = listAll();
+		Map<String, OptionEntity> map = new LinkedHashMap<String, OptionEntity>();
+		list.forEach(v -> map.put(v.getCode(), v));
+		return map;
 	}
 	
 	@SuppressWarnings("unchecked")

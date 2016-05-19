@@ -27,7 +27,8 @@ public class ServiceFactory {
 	private static ResearchPlanService researchPlanService;
 	private static RnDResultService rndResultService;
 	
-	private static PatentExcelAccessService excelAccessService; 
+	private static PatentExcelService patentExcelService;
+	private static ResearchPlanExcelService researchPlanExcelService;
 	
 	public static OptionCompanyLocationService getOptionCompanyLocationService() {
 		if (optionCompanyLocationService == null) {
@@ -123,11 +124,11 @@ public class ServiceFactory {
 		return techFieldService;
 	}
 	
-	public static PatentExcelAccessService getExcelAccessService() {
-		if (excelAccessService == null) {
-			excelAccessService = new PatentExcelAccessService();
+	public static PatentExcelService getPatentExcelService() {
+		if (patentExcelService == null) {
+			patentExcelService = new PatentExcelService();
 		}
-		return excelAccessService;
+		return patentExcelService;
 	}
 
 	public static ResearchPlanService getResearchPlanService() {
@@ -146,5 +147,12 @@ public class ServiceFactory {
 			rndResultService = new RnDResultService(DaoFactory.getRnDResultDao());
 		}
 		return rndResultService;
+	}
+	
+	public static ResearchPlanExcelService getResearchPlanExcelService() {
+		if (researchPlanExcelService == null) {
+			researchPlanExcelService = new ResearchPlanExcelService();
+		}
+		return researchPlanExcelService;
 	}
 }

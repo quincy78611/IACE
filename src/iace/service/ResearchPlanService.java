@@ -1,6 +1,8 @@
 package iace.service;
 
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import core.service.BaseService;
 import core.util.PagedList;
@@ -36,12 +38,38 @@ public class ResearchPlanService extends BaseService<ResearchPlan, Long> {
 	}
 
 	@Override
-	public void create(ResearchPlan entity) throws IOException {
+	public void create(ResearchPlan entity) {
 		this.researchPlanDao.create(entity);
+	}
+	
+	public List<String> createAll(List<ResearchPlan> entities) {
+		List<String> errMsgs = new ArrayList<String>();
+		Map<String, OptionGrbDomain> grbDomains = this.optionGrbDomainDao.mapAll();
+		Map<String, OptionTrl> trls = this.optionTrlDao.mapAll();
+		for (ResearchPlan rp : entities) {
+			try {
+				boolean planExist = this.researchPlanDao.planNoExist(rp.getPlanNo());
+				if (planExist) {
+					//TODO validate
+					ResearchPlan rpOrigin = this.researchPlanDao.getByPlanNo(rp.getPlanNo());
+					rpOrigin.addRndResults(rp.getRndResults());
+					rp.getRndResults().forEach(v -> v.setResearchPlan(rpOrigin));
+					this.researchPlanDao.update(rpOrigin);
+				} else {
+					//TODO validate
+					rp.getRndResults().forEach(v -> v.setResearchPlan(rp));
+					this.researchPlanDao.create(rp);
+				}				
+			} catch (Exception e) {
+				log.warn("", e);
+				errMsgs.add(e.getMessage());
+			}
+		}
+		return errMsgs;
 	}
 
 	@Override
-	public void update(ResearchPlan entity) throws IOException {		
+	public void update(ResearchPlan entity) {		
 		this.researchPlanDao.update(entity);
 	}
 

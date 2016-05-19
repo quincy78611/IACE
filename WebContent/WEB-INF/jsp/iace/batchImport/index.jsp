@@ -6,13 +6,11 @@
 <head>
 	
 </head>
-<body>	
-	
-	<s:form action="batchImportPatent" method="post" validate="true" enctype="multipart/form-data">
-		<h4>專利資料</h4>
+<body>
+	<s:form action="batchImportResearchPlan" method="post" validate="true" enctype="multipart/form-data">
+		<h4>研究計畫</h4>
 		<div class="container-fluid">
-			<div class="col-md-3">
-				
+			<div class="col-md-3">				
 				<span class="btn btn-default btn-file">
 					瀏覽
                     <input class="upload" name="uploadFile" type="file" >
@@ -21,10 +19,23 @@
 			<div class="col-md-2">
 				<input type="submit" value="開始匯入" class="btn btn-info"/>
 			</div>
-		</div>
-		
+		</div>		
+	</s:form>	
+	<s:form action="batchImportPatent" method="post" validate="true" enctype="multipart/form-data">
+		<h4>專利資料</h4>
+		<div class="container-fluid">
+			<div class="col-md-3">				
+				<span class="btn btn-default btn-file">
+					瀏覽
+                    <input class="upload" name="uploadFile" type="file" >
+                </span>
+			</div>
+			<div class="col-md-2">
+				<input type="submit" value="開始匯入" class="btn btn-info"/>
+			</div>
+		</div>		
 	</s:form>
-	
+
 	
 	
 	

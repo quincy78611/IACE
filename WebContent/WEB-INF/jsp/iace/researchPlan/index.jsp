@@ -103,6 +103,8 @@
 									</s:url>
 									<input type="button" class="btn-danger" value="刪除" 
 										onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
+								
+<%-- 									<s:property value="ver" /> --%>
 								</td>
 							</tr>
 						</s:iterator>

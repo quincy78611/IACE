@@ -25,7 +25,7 @@ import iace.entity.PatentPicture;
 import iace.entity.TechField;
 import iace.entity.option.OptionTrl;
 
-public class PatentExcelAccessService {
+public class PatentExcelService {
 	protected static Logger log = LogManager.getLogger(BaseService.class);	
 	
 	private XSSFWorkbook getXlsxFile(File file) throws IOException {
@@ -35,7 +35,6 @@ public class PatentExcelAccessService {
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
 			return wb;
 		} catch (IOException e) {
-			log.error("", e);
 			throw e;
 		} finally {
 			CloseableTool.close(fis);

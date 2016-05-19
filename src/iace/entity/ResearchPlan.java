@@ -31,16 +31,16 @@ public class ResearchPlan extends BaseEntity {
 	private String planNo;
 	private String name;
 	private String manager;
-	private OptionGrbDomain grbDomain1;
+	private OptionGrbDomain grbDomain1; //研究領域
 	private OptionGrbDomain grbDomain2;
 	private OptionGrbDomain grbDomain3;
 	private OptionGrbDomain grbDomain4;
 	private OptionGrbDomain grbDomain5;
 	private OptionGrbDomain grbDomain6;	
 	private String keyword;
-	private OptionTrl trl;
-	private String projkey;
-	private String grb05Id;
+	private OptionTrl trl; //計畫發展階段
+	private String projkey; //GRB計畫編號
+	private String grb05Id; //成果報告ID
 	
 	private List<RnDResult> rndResults;
 
@@ -189,6 +189,16 @@ public class ResearchPlan extends BaseEntity {
 		}
 	}
 	
+	public void setGrbDomains(String[] codes) {
+		List<OptionGrbDomain> grbDomainList = new ArrayList<OptionGrbDomain>();
+		for (String grbCode : codes) {
+			OptionGrbDomain grbDomain = new OptionGrbDomain();
+			grbDomain.setCode(grbCode);
+			grbDomainList.add(grbDomain);
+		}
+		this.setGrbDomains(grbDomainList);
+	}
+	
 	@Column(name = "KEYWORD", length = 2000)
 	public String getKeyword() {
 		return keyword;
@@ -206,6 +216,12 @@ public class ResearchPlan extends BaseEntity {
 
 	public void setTrl(OptionTrl trl) {
 		this.trl = trl;
+	}
+	
+	public void setTrl(String code) {
+		OptionTrl trl = new OptionTrl();
+		trl.setCode(code);
+		this.setTrl(trl);
 	}
 
 	@Column(name = "PROJKEY", length = 100)
@@ -234,6 +250,20 @@ public class ResearchPlan extends BaseEntity {
 	public void setRndResults(List<RnDResult> rndResults) {
 		this.rndResults = rndResults;
 	}
+	
+	public void addRndResults(RnDResult rndResult) {
+		if (this.rndResults == null) {
+			this.rndResults = new ArrayList<RnDResult>();
+		}
+		this.rndResults.add(rndResult);
+	}
+	
+	public void addRndResults(List<RnDResult> rndResults) {
+		if (this.rndResults == null) {
+			this.rndResults = new ArrayList<RnDResult>();
+		}		
+		this.rndResults.addAll(rndResults);
+	} 
 
 	@Override
 	public void create() {
@@ -265,7 +295,12 @@ public class ResearchPlan extends BaseEntity {
 		}
 	}
 
+	@Override
+	public String toString() {
+		return "ResearchPlan [id=" + id + ", year=" + year + ", planNo=" + planNo + ", name=" + name + ", manager=" + manager + ", grbDomain1=" + grbDomain1 + ", grbDomain2=" + grbDomain2 + ", grbDomain3=" + grbDomain3 + ", grbDomain4=" + grbDomain4 + ", grbDomain5=" + grbDomain5 + ", grbDomain6=" + grbDomain6 + ", keyword=" + keyword + ", trl=" + trl + ", projkey=" + projkey + ", grb05Id=" + grb05Id + ", rndResults=" + rndResults + "]";
+	}
 
+	
 
 	
 }
