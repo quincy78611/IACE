@@ -2,6 +2,8 @@ package iace.action;
 
 import java.util.List;
 
+import com.opensymphony.xwork2.ActionContext;
+
 import core.action.BaseAction;
 import core.util.PagedList;
 import iace.entity.ResearchPlan;
@@ -54,6 +56,21 @@ public class ResearchPlanAction extends BaseAction {
 		}
 	}
 	
+	public String showDetail() {
+		try {
+			this.researchPlan = this.researchPlanService.get(this.id);
+			if (this.researchPlan == null) {
+				super.addActionError("找不到選擇的資料紀錄!");
+				return INPUT;
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return ERROR;
+		}		
+	}
+	
 	public String update() {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
@@ -82,6 +99,33 @@ public class ResearchPlanAction extends BaseAction {
 			log.error("", e);
 			this.addActionError(e.getMessage());
 			return INPUT;
+		}
+	}
+	
+	public String delete() {
+		try {
+			this.researchPlan = this.researchPlanService.get(this.id);
+			if (this.researchPlan == null) {
+				super.addActionError("找不到選擇的資料紀錄!");
+				return INPUT;
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return ERROR;
+		}
+	}
+	
+	public String deleteSubmit() {
+		try {
+			this.researchPlanService.delete(this.id);
+			this.addActionMessage("DELETE SUCCESS!");
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return ERROR;
 		}
 	}
 	

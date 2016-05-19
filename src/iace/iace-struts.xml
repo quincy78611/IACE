@@ -485,6 +485,10 @@
 		<action name="index" class="iace.action.ResearchPlanAction" method="index">
 			<result>/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
 		</action>
+		<action name="showDetail" class="iace.action.ResearchPlanAction" method="showDetail">
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/detail.jsp</result>		
+		</action>		
 		<action name="update" class="iace.action.ResearchPlanAction" method="update">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>		
@@ -493,7 +497,15 @@
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
 		</action>
-		
+		<action name="delete" class="iace.action.ResearchPlanAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/delete.jsp</result>		
+		</action>	
+		<action name="deleteSubmit" class="iace.action.ResearchPlanAction" method="deleteSubmit">		
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+		</action>		
+				
 		<action name="showRndResultDetail" class="iace.action.ResearchPlanAction" method="showRndResultDetail">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/detailRndResult.jsp</result>		
@@ -513,9 +525,7 @@
 		<action name="deleteRndResultSubmit" class="iace.action.ResearchPlanAction" method="deleteRndResultSubmit">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/deleteRndResult.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-		</action>	
-		
-		
+		</action>
 	</package>
 	
 	<package name="Patent" namespace="/iace/patent" extends="struts-default">

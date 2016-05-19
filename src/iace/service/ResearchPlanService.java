@@ -37,19 +37,21 @@ public class ResearchPlanService extends BaseService<ResearchPlan, Long> {
 
 	@Override
 	public void create(ResearchPlan entity) throws IOException {
-		// TODO Auto-generated method stub	
+		this.researchPlanDao.create(entity);
 	}
 
 	@Override
-	public void update(ResearchPlan entity) throws IOException {
-		// TODO Auto-generated method stub		
+	public void update(ResearchPlan entity) throws IOException {		
 		this.researchPlanDao.update(entity);
 	}
 
 	@Override
-	public void delete(ResearchPlan entity) throws IOException {
-		// TODO Auto-generated method stub
-		
+	public void delete(ResearchPlan entity) {
+		this.researchPlanDao.delete(entity);
+	}
+	
+	public void delete(Long id) {
+		this.researchPlanDao.delete(id);
 	}
 
 }
