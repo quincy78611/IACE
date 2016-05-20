@@ -54,14 +54,14 @@ public class ResearchPlanExcelService {
 				rp.setManager(row.getCell(++c).getStringCellValue());				
 				rp.setGrbDomains(row.getCell(++c).getRawValue().split(";"));
 				rp.setKeyword(row.getCell(++c).getStringCellValue());
-				rp.setTrl(row.getCell(++c).getStringCellValue());
+				rp.setTrlCode(row.getCell(++c).getStringCellValue());
 				rp.setProjkey(row.getCell(++c).getStringCellValue());
 				rp.setGrb05Id(row.getCell(++c).getRawValue());
 				
 				RnDResult rnd = new RnDResult();
 				rnd.setName(row.getCell(++c).getStringCellValue());
 				rnd.setDescriptoin(row.getCell(++c).getStringCellValue());
-				rnd.setTrl(row.getCell(++c).getStringCellValue());
+				rnd.setTrlCode(row.getCell(++c).getStringCellValue());
 				rnd.setTrlDesc(row.getCell(++c).getStringCellValue());
 				
 				String key = rp.getPlanNo();

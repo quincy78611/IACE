@@ -111,7 +111,9 @@ public class ResearchPlanAction extends BaseAction {
 	
 	public String updateSubmit() {
 		try {
+			this.id = this.researchPlan.getId();
 			this.researchPlanService.update(this.researchPlan);
+			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {

@@ -218,7 +218,7 @@ public class ResearchPlan extends BaseEntity {
 		this.trl = trl;
 	}
 	
-	public void setTrl(String code) {
+	public void setTrlCode(String code) {
 		OptionTrl trl = new OptionTrl();
 		trl.setCode(code);
 		this.setTrl(trl);
