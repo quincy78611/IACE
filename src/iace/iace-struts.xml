@@ -513,24 +513,24 @@
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
 		</action>				
-		<action name="showRndResultDetail" class="iace.action.ResearchPlanAction" method="showRndResultDetail">
+		<action name="showTechnologyDetail" class="iace.action.ResearchPlanAction" method="showTechnologyDetail">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/detailRndResult.jsp</result>		
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/detailTechnology.jsp</result>		
 		</action>
-		<action name="createRndResult" class="iace.action.ResearchPlanAction" method="createRndResult">
+		<action name="createTechnology" class="iace.action.ResearchPlanAction" method="createTechnology">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/createRndResult.jsp</result>		
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/createTechnology.jsp</result>		
 		</action>
-		<action name="createRndResultSubmit" class="iace.action.ResearchPlanAction" method="createRndResultSubmit">		
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/createRndResult.jsp</result>
+		<action name="createTechnologySubmit" class="iace.action.ResearchPlanAction" method="createTechnologySubmit">		
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/createTechnology.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
 		</action>		
-		<action name="deleteRndResult" class="iace.action.ResearchPlanAction" method="deleteRndResult">
+		<action name="deleteTechnology" class="iace.action.ResearchPlanAction" method="deleteTechnology">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/deleteRndResult.jsp</result>		
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/deleteTechnology.jsp</result>		
 		</action>
-		<action name="deleteRndResultSubmit" class="iace.action.ResearchPlanAction" method="deleteRndResultSubmit">
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/deleteRndResult.jsp</result>
+		<action name="deleteTechnologySubmit" class="iace.action.ResearchPlanAction" method="deleteTechnologySubmit">
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/deleteTechnology.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
 		</action>
 	</package>

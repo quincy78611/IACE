@@ -10,7 +10,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import iace.entity.Patent;
 import iace.entity.ResearchPlan;
-import iace.entity.RnDResult;
+import iace.entity.Technology;
 import iace.entity.SysRole;
 import iace.entity.SysUser;
 import iace.entity.TechField;
@@ -99,7 +99,7 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(OptionTrl.class);
     	configuration.addAnnotatedClass(Patent.class);
     	configuration.addAnnotatedClass(ResearchPlan.class);
-    	configuration.addAnnotatedClass(RnDResult.class);
+    	configuration.addAnnotatedClass(Technology.class);
     	configuration.addAnnotatedClass(SysRole.class);
     	configuration.addAnnotatedClass(SysUser.class);
     	configuration.addAnnotatedClass(TechField.class);

@@ -42,7 +42,7 @@ public class ResearchPlan extends BaseEntity {
 	private String projkey; //GRB計畫編號
 	private String grb05Id; //成果報告ID
 	
-	private List<RnDResult> rndResults;
+	private List<Technology> technologies;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -243,33 +243,33 @@ public class ResearchPlan extends BaseEntity {
 	}
 
 	@OneToMany(mappedBy="researchPlan", cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
-	public List<RnDResult> getRndResults() {
-		return rndResults;
+	public List<Technology> getTechnologies() {
+		return technologies;
 	}
 
-	public void setRndResults(List<RnDResult> rndResults) {
-		this.rndResults = rndResults;
+	public void setTechnologies(List<Technology> technologies) {
+		this.technologies = technologies;
 	}
 	
-	public void addRndResults(RnDResult rndResult) {
-		if (this.rndResults == null) {
-			this.rndResults = new ArrayList<RnDResult>();
+	public void addTechnology(Technology technologies) {
+		if (this.technologies == null) {
+			this.technologies = new ArrayList<Technology>();
 		}
-		this.rndResults.add(rndResult);
+		this.technologies.add(technologies);
 	}
 	
-	public void addRndResults(List<RnDResult> rndResults) {
-		if (this.rndResults == null) {
-			this.rndResults = new ArrayList<RnDResult>();
+	public void addTechnology(List<Technology> technologies) {
+		if (this.technologies == null) {
+			this.technologies = new ArrayList<Technology>();
 		}		
-		this.rndResults.addAll(rndResults);
+		this.technologies.addAll(technologies);
 	} 
 
 	@Override
 	public void create() {
 		super.create();
-		if (this.rndResults != null) {
-			for (RnDResult rnd : this.rndResults) {
+		if (this.technologies != null) {
+			for (Technology rnd : this.technologies) {
 				rnd.create();
 			}				
 		}			
@@ -278,8 +278,8 @@ public class ResearchPlan extends BaseEntity {
 	@Override
 	public void update() {
 		super.update();
-		if (this.rndResults != null) {
-			for (RnDResult rnd : this.rndResults) {
+		if (this.technologies != null) {
+			for (Technology rnd : this.technologies) {
 				rnd.update();
 			}			
 		}		
@@ -288,8 +288,8 @@ public class ResearchPlan extends BaseEntity {
 	@Override
 	public void delete() {
 		super.delete();
-		if (this.rndResults != null) {
-			for (RnDResult rnd : this.rndResults) {
+		if (this.technologies != null) {
+			for (Technology rnd : this.technologies) {
 				rnd.delete();
 			}			
 		}
@@ -297,7 +297,7 @@ public class ResearchPlan extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "ResearchPlan [id=" + id + ", year=" + year + ", planNo=" + planNo + ", name=" + name + ", manager=" + manager + ", grbDomain1=" + grbDomain1 + ", grbDomain2=" + grbDomain2 + ", grbDomain3=" + grbDomain3 + ", grbDomain4=" + grbDomain4 + ", grbDomain5=" + grbDomain5 + ", grbDomain6=" + grbDomain6 + ", keyword=" + keyword + ", trl=" + trl + ", projkey=" + projkey + ", grb05Id=" + grb05Id + ", rndResults=" + rndResults + "]";
+		return "ResearchPlan [id=" + id + ", year=" + year + ", planNo=" + planNo + ", name=" + name + ", manager=" + manager + ", grbDomain1=" + grbDomain1 + ", grbDomain2=" + grbDomain2 + ", grbDomain3=" + grbDomain3 + ", grbDomain4=" + grbDomain4 + ", grbDomain5=" + grbDomain5 + ", grbDomain6=" + grbDomain6 + ", keyword=" + keyword + ", trl=" + trl + ", projkey=" + projkey + ", grb05Id=" + grb05Id + ", technologies=" + technologies + "]";
 	}
 
 	

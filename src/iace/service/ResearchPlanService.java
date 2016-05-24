@@ -52,12 +52,12 @@ public class ResearchPlanService extends BaseService<ResearchPlan, Long> {
 				if (planExist) {
 					//TODO validate
 					ResearchPlan rpOrigin = this.researchPlanDao.getByPlanNo(rp.getPlanNo());
-					rpOrigin.addRndResults(rp.getRndResults());
-					rp.getRndResults().forEach(v -> v.setResearchPlan(rpOrigin));
+					rpOrigin.addTechnology(rp.getTechnologies());
+					rp.getTechnologies().forEach(v -> v.setResearchPlan(rpOrigin));
 					this.researchPlanDao.update(rpOrigin);
 				} else {
 					//TODO validate
-					rp.getRndResults().forEach(v -> v.setResearchPlan(rp));
+					rp.getTechnologies().forEach(v -> v.setResearchPlan(rp));
 					this.researchPlanDao.create(rp);
 				}				
 			} catch (Exception e) {

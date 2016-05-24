@@ -14,8 +14,8 @@ import javax.persistence.Table;
 import iace.entity.option.OptionTrl;
 
 @Entity
-@Table(name = "R_D_RESULT")
-public class RnDResult extends BaseEntity {
+@Table(name = "TECHNOLOGY")
+public class Technology extends BaseEntity {
 
 	private static final long serialVersionUID = 1695680251829946337L;
 
@@ -28,8 +28,8 @@ public class RnDResult extends BaseEntity {
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_R_D_RESULT_ID")
-	@SequenceGenerator(name = "SEQUENCE_R_D_RESULT_ID", sequenceName = "SEQUENCE_R_D_RESULT_ID", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_TECHNOLOGY_ID")
+	@SequenceGenerator(name = "SEQUENCE_TECHNOLOGY_ID", sequenceName = "SEQUENCE_TECHNOLOGY_ID", allocationSize = 1, initialValue = 1)
 	public long getId() {
 		return id;
 	}

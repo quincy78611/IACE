@@ -11,12 +11,12 @@
 
 	<div class="container-fluid" >
 		<s:hidden name="id"/>
-		<s:hidden name="rndResultId"/>
+		<s:hidden name="technologyId"/>
 		
-		<s:textfield label="技術名稱" name="rndResult.name" readonly="true" cssClass="form-control" />				
-		<s:textarea label="技術簡述" name="rndResult.descriptoin" readonly="true" cssClass="form-control"  />
-		<s:textfield label="技術發展階段" name="rndResult.trl.name" readonly="true" cssClass="form-control" />			
-		<s:textarea label="技術發展階段說明" name="rndResult.trlDesc" readonly="true" cssClass="form-control"/>	
+		<s:textfield label="技術名稱" name="technology.name" readonly="true" cssClass="form-control" />				
+		<s:textarea label="技術簡述" name="technology.descriptoin" readonly="true" cssClass="form-control"  />
+		<s:textfield label="技術發展階段" name="technology.trl.name" readonly="true" cssClass="form-control" />			
+		<s:textarea label="技術發展階段說明" name="technology.trlDesc" readonly="true" cssClass="form-control"/>	
 	</div>
 	
 	<s:url value="update.action" var="updateUrlTag">

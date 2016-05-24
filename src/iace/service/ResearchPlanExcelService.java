@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import core.service.BaseService;
 import core.util.CloseableTool;
 import iace.entity.ResearchPlan;
-import iace.entity.RnDResult;
+import iace.entity.Technology;
 
 public class ResearchPlanExcelService {
 	protected static Logger log = Logger.getLogger(BaseService.class);
@@ -56,7 +56,7 @@ public class ResearchPlanExcelService {
 				rp.setProjkey(row.getCell(++c).getStringCellValue());
 				rp.setGrb05Id(row.getCell(++c).getRawValue());
 				
-				RnDResult rnd = new RnDResult();
+				Technology rnd = new Technology();
 				rnd.setName(row.getCell(++c).getStringCellValue());
 				rnd.setDescriptoin(row.getCell(++c).getStringCellValue());
 				rnd.setTrlCode(row.getCell(++c).getStringCellValue());
@@ -66,10 +66,10 @@ public class ResearchPlanExcelService {
 				if (researchPlanMap.containsKey(key)) {
 					rp = researchPlanMap.get(key);
 //					rnd.setResearchPlan(rp);
-					rp.addRndResults(rnd);
+					rp.addTechnology(rnd);
 				} else {
 					//rnd.setResearchPlan(rp);
-					rp.addRndResults(rnd);
+					rp.addTechnology(rnd);
 					researchPlanMap.put(key, rp);
 				} 			
 			} catch (Exception e) {

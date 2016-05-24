@@ -68,7 +68,7 @@
 			<h3>研發成果列表</h3>
 		</div>			
 		<div class="col-md-3">
-			<s:url value="createRndResult.action" var="createUrlTag" escapeAmp="false">
+			<s:url value="createTechnology.action" var="createUrlTag" escapeAmp="false">
 				<s:param name="id" value="researchPlan.id" />				
 			</s:url>		
 			<input type="button" class="btn btn-info" value="新增研發成果" 
@@ -86,38 +86,38 @@
 					</tr>
 				</thead>
 				<tbody>
-					<s:if test="researchPlan.rndResults != null">
-						<s:iterator value="researchPlan.rndResults" status="stat">
-							<s:hidden name="%{'researchPlan.rndResults['+#stat.index+'].id'}" />
-							<s:hidden name="%{'researchPlan.rndResults['+#stat.index+'].isValid'}" />
-							<s:hidden name="%{'researchPlan.rndResults['+#stat.index+'].createTime'}" />
-							<s:hidden name="%{'researchPlan.rndResults['+#stat.index+'].createUser'}" />
-							<s:hidden name="%{'researchPlan.rndResults['+#stat.index+'].updateTime'}" />
-							<s:hidden name="%{'researchPlan.rndResults['+#stat.index+'].updateUser'}" />
-							<s:hidden name="%{'researchPlan.rndResults['+#stat.index+'].ver'}" />
+					<s:if test="researchPlan.technologies != null">
+						<s:iterator value="researchPlan.technologies" status="stat">
+							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].id'}" />
+							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].isValid'}" />
+							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].createTime'}" />
+							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].createUser'}" />
+							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].updateTime'}" />
+							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].updateUser'}" />
+							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].ver'}" />
 							<tr>
 								<td>
 <%-- 									<s:property value="id"/> --%>
-									<s:textfield name="%{'researchPlan.rndResults['+#stat.index+'].name'}" cssClass="form-control" />
+									<s:textfield name="%{'researchPlan.technologies['+#stat.index+'].name'}" cssClass="form-control" />
 								</td>
-								<td><s:textfield name="%{'researchPlan.rndResults['+#stat.index+'].descriptoin'}" cssClass="form-control" /></td>
+								<td><s:textfield name="%{'researchPlan.technologies['+#stat.index+'].descriptoin'}" cssClass="form-control" /></td>
 								<td class="col-md-2">
-									<s:select name="%{'researchPlan.rndResults['+#stat.index+'].trl.code'}" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
+									<s:select name="%{'researchPlan.technologies['+#stat.index+'].trl.code'}" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
 								</td>
-								<td><s:textfield name="%{'researchPlan.rndResults['+#stat.index+'].trlDesc'}" cssClass="form-control" /></td>
+								<td><s:textfield name="%{'researchPlan.technologies['+#stat.index+'].trlDesc'}" cssClass="form-control" /></td>
 								<td class="col-md-1">
 									<!-- 檢視 -->
-									<s:url value="showRndResultDetail.action" var="detailUrlTag" escapeAmp="false">
+									<s:url value="showTechnologyDetail.action" var="detailUrlTag" escapeAmp="false">
 										<s:param name="id" value="researchPlan.id" />
-										<s:param name="rndResultId" value="id" />
+										<s:param name="TechnologyId" value="id" />
 									</s:url>		
 									<input type="button" class="btn-default" value="檢視" 
 										onclick="window.location.href='<s:property value="detailUrlTag" />'" />														
 								
 									<!-- 刪除 -->
-									<s:url value="deleteRndResult.action" var="deleteUrlTag" escapeAmp="false">
+									<s:url value="deleteTechnology.action" var="deleteUrlTag" escapeAmp="false">
 										<s:param name="id" value="researchPlan.id" />
-										<s:param name="rndResultId" value="id" />
+										<s:param name="TechnologyId" value="id" />
 									</s:url>		
 									<input type="button" class="btn-danger" value="刪除" 
 										onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />														

@@ -86,8 +86,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<s:if test="researchPlan.rndResults != null">
-					<s:iterator value="researchPlan.rndResults" status="stat">
+				<s:if test="researchPlan.technologies != null">
+					<s:iterator value="researchPlan.technologies" status="stat">
 						<tr>
 							<td><s:property value="name"/></td>
 							<td><s:property value="descriptoin"/></td>

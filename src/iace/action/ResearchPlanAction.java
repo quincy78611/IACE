@@ -6,13 +6,13 @@ import core.action.BaseAction;
 import core.util.PagedList;
 import iace.entity.ResearchPlan;
 import iace.entity.ResearchPlanSearchModel;
-import iace.entity.RnDResult;
+import iace.entity.Technology;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
 import iace.service.OptionGrbDomainService;
 import iace.service.OptionTrlService;
 import iace.service.ResearchPlanService;
-import iace.service.RnDResultService;
+import iace.service.TechnologyService;
 import iace.service.ServiceFactory;
 
 public class ResearchPlanAction extends BaseAction {
@@ -20,7 +20,7 @@ public class ResearchPlanAction extends BaseAction {
 	private static final long serialVersionUID = 1798627207055671857L;
 	
 	private ResearchPlanService researchPlanService = ServiceFactory.getResearchPlanService();
-	private RnDResultService rndResultService = ServiceFactory.getRnDResultService();
+	private TechnologyService technologyService = ServiceFactory.getTechnologyService();
 	private OptionGrbDomainService optionGrbDomainService = ServiceFactory.getOptionGrbDomainService();
 	private OptionTrlService optionTrlService = ServiceFactory.getOptionTrlService();
 	
@@ -32,8 +32,8 @@ public class ResearchPlanAction extends BaseAction {
 	private long id;
 	private ResearchPlan researchPlan;
 	
-	private long rndResultId;
-	private RnDResult rndResult;
+	private long technologyId;
+	private Technology technology;
 	
 	public ResearchPlanAction() {
 		super.setTitle("研究計畫資料");
@@ -150,10 +150,10 @@ public class ResearchPlanAction extends BaseAction {
 		}
 	}
 	
-	public String showRndResultDetail() {
+	public String showTechnologyDetail() {
 		try {
-			this.rndResult = this.rndResultService.get(this.rndResultId);
-			if (this.rndResult == null) {
+			this.technology = this.technologyService.get(this.technologyId);
+			if (this.technology == null) {
 				super.addActionError("找不到選擇的資料紀錄!");
 				return INPUT;
 			}
@@ -165,19 +165,19 @@ public class ResearchPlanAction extends BaseAction {
 		}
 	}
 	
-	public String createRndResult() {
+	public String createTechnology() {
 		return SUCCESS;
 	}
 	
-	public void validateCreateRndResult() {
+	public void validateCreateTechnology() {
 		//TODO
 	}
 	
-	public String createRndResultSubmit() {
+	public String createTechnologySubmit() {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
-			this.rndResult.setResearchPlan(this.researchPlan);
-			this.rndResultService.create(this.rndResult);
+			this.technology.setResearchPlan(this.researchPlan);
+			this.technologyService.create(this.technology);
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("CREATE SUCCESS!");
@@ -189,10 +189,10 @@ public class ResearchPlanAction extends BaseAction {
 		}
 	}
 	
-	public String deleteRndResult() {
+	public String deleteTechnology() {
 		try {
-			this.rndResult = this.rndResultService.get(this.rndResultId);
-			if (this.rndResult == null) {
+			this.technology = this.technologyService.get(this.technologyId);
+			if (this.technology == null) {
 				super.addActionError("找不到選擇的資料紀錄!");
 				return INPUT;
 			}
@@ -204,9 +204,9 @@ public class ResearchPlanAction extends BaseAction {
 		}
 	}
 	
-	public String deleteRndResultSubmit() {
+	public String deleteTechnologySubmit() {
 		try {
-			this.rndResultService.delete(this.rndResultId);
+			this.technologyService.delete(this.technologyId);
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("DELETE SUCCESS!");
@@ -258,21 +258,23 @@ public class ResearchPlanAction extends BaseAction {
 		this.researchPlan = researchPlan;
 	}
 
-	public long getRndResultId() {
-		return rndResultId;
+	public long getTechnologyId() {
+		return technologyId;
 	}
 
-	public void setRndResultId(long rndResultId) {
-		this.rndResultId = rndResultId;
+	public void setTechnologyId(long technologyId) {
+		this.technologyId = technologyId;
 	}
 
-	public RnDResult getRndResult() {
-		return rndResult;
+	public Technology getTechnology() {
+		return technology;
 	}
 
-	public void setRndResult(RnDResult rndResult) {
-		this.rndResult = rndResult;
+	public void setTechnology(Technology technology) {
+		this.technology = technology;
 	}
+
+
 	
 	
 }
