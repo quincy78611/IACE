@@ -36,7 +36,9 @@
 		<s:textfield label="國際分類號" name="patent.ipc" readonly="true" cssClass="form-control" />
 		<s:textfield label="專利技術摘要" name="patent.techAbstract" readonly="true" cssClass="form-control" />
 		<s:label label="重要圖式" class="control-label" />
-		<img src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:800px; max-height:800px;">
+		<a href="<s:url value="%{patent.patentPictureLink}"/>">
+			<img src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:800px; max-height:800px;">
+		</a>	
 		<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" readonly="true" cssClass="form-control" />
 		<s:textfield label="專利技術領域" name="patent.techField.name" readonly="true" cssClass="form-control" />
 		<s:textfield label="應用範圍/產業" name="patent.usage" readonly="true" cssClass="form-control" />

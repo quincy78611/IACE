@@ -16,6 +16,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import core.util.ValidateUtil;
@@ -217,6 +219,21 @@ public class Patent extends BaseEntity {
 
 	public void setImportantPictureCode(String importantPictureCode) {
 		this.importantPictureCode = importantPictureCode;
+	}
+	
+	@Transient
+	public String getPatentPictureLink() {
+		String link = "";
+		if (StringUtils.isNoneBlank(this.publicationNo)) {
+			link = String.format(
+					"http://www.thomsoninnovation.com/tip-innovation/zoomImage.do?documentNumber=%s&pageIndex=0", 
+					this.publicationNo);
+		} else if (StringUtils.isNoneBlank(this.openNo)){
+			link = String.format(
+					"http://www.thomsoninnovation.com/tip-innovation/zoomImage.do?documentNumber=%s&pageIndex=0", 
+					this.openNo);
+		}
+		return link;
 	}
 
 	@Transient

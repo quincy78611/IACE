@@ -57,8 +57,9 @@
 								<td><s:property value="patentStatus" /></td>
 								<td><s:property value="techField.name" /></td>
 								<td>
-									<img src="data:image;base64,<s:property value="base64PatentPicture"/>" style="max-width:200px; max-height:200px;">
-									<s:property value="importantPicturePath" />
+									<a href="<s:url value="%{patentPictureLink}"/>">
+										<img src="data:image;base64,<s:property value="base64PatentPicture"/>" style="max-width:200px; max-height:200px;">
+									</a>
 								</td>
 								
 								<td>
