@@ -224,13 +224,21 @@ public class PatentAction extends BaseAction {
 	}
 
 	private void setUploadFileToEntity() throws IOException {
-		int index = this.uploadPatentImgFileName.lastIndexOf(".");
-		String extension = this.uploadPatentImgFileName.substring(index + 1);
-		this.patent.setImportantPatentPictureExtension(extension);
+		try {
+			int index = this.uploadPatentImgFileName.lastIndexOf(".");
+			String extension = this.uploadPatentImgFileName.substring(index + 1);
+			this.patent.setImportantPatentPictureExtension(extension);
 
-		Path path = Paths.get(this.uploadPatentImg.getAbsolutePath());
-		byte[] data = Files.readAllBytes(path);
-		this.patent.setImportantPatentPicture(data);
+			Path path = Paths.get(this.uploadPatentImg.getAbsolutePath());
+			byte[] data = Files.readAllBytes(path);
+			this.patent.setImportantPatentPicture(data);
+		} catch (NullPointerException e) {
+			Patent oldP = this.patentService.get(this.patent.getId());
+			int index = oldP.getImportantPicturePath().lastIndexOf(".");
+			this.patent.setImportantPatentPictureExtension(oldP.getImportantPicturePath().substring(index + 1));
+			
+			this.patent.setImportantPatentPicture(oldP.getImportantPatentPicture());			
+		}
 	}
 
 	// ==========================================================================

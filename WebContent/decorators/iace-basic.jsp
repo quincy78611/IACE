@@ -55,10 +55,8 @@
 	<div class="">
 		<div class="left-menu" >
 			<div class="navbar-collapse collapse">
-				<ul class="nav nav-pills nav-stacked">
+				<ul class="nav nav-pills nav-stacked">					
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="<s:url value="/practice/hibernate/findUserByPhoneInput"/>">用電話查詢</a></li>
-					<li><a href="<s:url value="/practice/hibernate/registerInput"/>">註冊</a></li>
 					<li><a href="<s:url value="/iace/researchPlan/init"/>">研究計畫資料</a></li>
 					<li><a href="<s:url value="/iace/patent/init"/>">專利資料</a></li>
 					<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>

@@ -22,7 +22,7 @@ import core.util.ValidateUtil;
 import iace.entity.option.OptionTrl;
 
 @Entity
-@Table(name = "PATENT", schema = "IACE_ADMIN")
+@Table(name = "PATENT")
 public class Patent extends BaseEntity {
 
 	private static final long serialVersionUID = -148218196320736494L;

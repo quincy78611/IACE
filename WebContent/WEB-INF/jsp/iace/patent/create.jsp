@@ -51,7 +51,7 @@
 			<s:textfield label="技術發展階段說明" name="patent.trlDesc" cssClass="form-control" />
 		</div>
 		<s:submit cssClass="btn btn-info" value="儲存" />
-		<input type="button" value="重設" class="btn btn-warning" onclick="this.form.reset();" />
+<!-- 		<input type="button" value="重設" class="btn btn-warning" onclick="this.form.reset();" /> -->
 		<a class="btn btn-default" href="<s:url value="/iace/patent/init"/>">回上一頁</a>
 		<!-- <input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/> -->	
 	</s:form>

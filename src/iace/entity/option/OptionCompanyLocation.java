@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "OPT_COM_LOCATION", schema = "IACE_ADMIN")
+@Table(name = "OPT_COM_LOCATION")
 public class OptionCompanyLocation extends BaseOption {
 
 	private static final long serialVersionUID = 1930251288828278499L;

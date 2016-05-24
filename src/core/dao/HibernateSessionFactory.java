@@ -86,8 +86,6 @@ public class HibernateSessionFactory {
     } 
     
     private static void addEntityMapping() {
-    	configuration.addAnnotatedClass(com.sysvin.practice.hibernate.entity.User.class);
-    	
     	configuration.addAnnotatedClass(OptionCompanyLocation.class);
     	configuration.addAnnotatedClass(OptionConsult.class);
     	configuration.addAnnotatedClass(OptionCooperateMode.class);

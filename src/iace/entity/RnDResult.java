@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import iace.entity.option.OptionTrl;
 
 @Entity
-@Table(name = "R_D_RESULT", schema = "IACE_ADMIN")
+@Table(name = "R_D_RESULT")
 public class RnDResult extends BaseEntity {
 
 	private static final long serialVersionUID = 1695680251829946337L;

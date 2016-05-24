@@ -12,7 +12,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TECH_FIELD", schema = "IACE_ADMIN")
+@Table(name = "TECH_FIELD")
 public class TechField extends BaseEntity {
 
 	private static final long serialVersionUID = -4341693809181367264L;

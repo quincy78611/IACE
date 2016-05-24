@@ -21,7 +21,7 @@ import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
 
 @Entity
-@Table(name = "RESEARCH_PLAN", schema = "IACE_ADMIN")
+@Table(name = "RESEARCH_PLAN")
 public class ResearchPlan extends BaseEntity {
 
 	private static final long serialVersionUID = 6137186068641120935L;

@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SYS_ROLE", schema = "IACE_ADMIN")
+@Table(name = "SYS_ROLE")
 public class SysRole extends BaseEntity {
 
 	private static final long serialVersionUID = -868106738545265052L;

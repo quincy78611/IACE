@@ -8,8 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -20,8 +19,7 @@ import iace.entity.ResearchPlan;
 import iace.entity.RnDResult;
 
 public class ResearchPlanExcelService {
-
-	protected static Logger log = LogManager.getLogger(BaseService.class);	
+	protected static Logger log = Logger.getLogger(BaseService.class);
 	
 	private XSSFWorkbook getXlsxFile(File file) throws IOException {
 		FileInputStream fis = null;

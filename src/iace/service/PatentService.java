@@ -197,20 +197,23 @@ public class PatentService extends BaseService<Patent, Long> {
 		}
 	}
 
+	
+	private void savePatentPicture(Patent p) throws IOException {
+		if (p.getImportantPatentPicture() != null && p.getImportantPicturePath() != null) {
+			File f = new File(this.patentPictureFolder, p.getImportantPicturePath());
+			byte[] img = p.getImportantPatentPicture();
+			FileUtils.writeByteArrayToFile(f, img);
+		}
+	}	
+
 	//將圖片從檔案load進來並且存入Entity中
 	private void loadImportantPicToEntity(Patent p) {
 		try {
 			File f = new File(this.patentPictureFolder, p.getImportantPicturePath());
 			byte[] data = Files.readAllBytes(Paths.get(f.getAbsolutePath()));
 			p.setImportantPatentPicture(data);
-		} catch (IOException e) {
+		} catch (IOException | NullPointerException e) {
 			log.warn("load image fail", e);
 		}
-	}
-	
-	private void savePatentPicture(Patent p) throws IOException {
-		File f = new File(this.patentPictureFolder, p.getImportantPicturePath());
-		byte[] img = p.getImportantPatentPicture();
-		FileUtils.writeByteArrayToFile(f, img);
 	}
 }

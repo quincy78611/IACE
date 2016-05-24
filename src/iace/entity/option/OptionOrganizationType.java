@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "OPT_ORG_TYPE", schema = "IACE_ADMIN")
+@Table(name = "OPT_ORG_TYPE")
 public class OptionOrganizationType extends BaseOption {
 
 	/**

@@ -131,7 +131,7 @@
 		<hr>
 		<div>
 			<s:submit cssClass="btn btn-primary" value="儲存" />
-			<input type="button" value="重設" class="btn btn-default" onclick="this.form.reset();" />
+<!-- 			<input type="button" value="重設" class="btn btn-default" onclick="this.form.reset();" /> -->
 			<a class="btn btn-default" href="<s:url value="/iace/researchPlan/init"/>">回上一頁</a>		
 		</div>
 	</s:form>
