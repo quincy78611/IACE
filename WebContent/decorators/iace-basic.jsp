@@ -57,8 +57,24 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav nav-pills nav-stacked">					
 					<li class="active"><a href="#">Home</a></li>
-					<li><a href="<s:url value="/iace/researchPlan/init"/>">研究計畫資料</a></li>
-					<li><a href="<s:url value="/iace/patent/init"/>">專利資料</a></li>
+					<li class="dropdown">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					       	 研究計畫資料 <span class="caret"></span>
+					    </a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="<s:url value="/iace/researchPlan/init"/>">維護</a></li>
+							<li><a href="<s:url value="/iace/researchPlan/create"/>">新增</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					       	 專利資料 <span class="caret"></span>
+					    </a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="<s:url value="/iace/patent/init"/>">維護</a></li>
+							<li><a href="<s:url value="/iace/patent/create"/>">新增</a></li>
+						</ul>
+					</li>
 					<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>
 					<li class="dropdown">
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

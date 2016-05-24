@@ -28,10 +28,6 @@
 		</div>
 		<p>
 		<div class="">
-			<a class="btn btn-primary" href="<s:url value="/iace/patent/create"/>">新增專利資料</a>
-		</div>	
-		<p>
-		<div class="">
 			<table class="table table-striped table-hover table-bordered">
 				<thead>
 					<tr>

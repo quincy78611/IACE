@@ -41,10 +41,10 @@
 			</div>
 		</div>
 		<p>
-		<div class="">
-			<a class="btn btn-primary" href="<s:url value="/iace/researchPlan/create"/>">新增資料</a>
-		</div>	
-		<p>
+<!-- 		<div class=""> -->
+<%-- 			<a class="btn btn-primary" href="<s:url value="/iace/researchPlan/create"/>">新增資料</a> --%>
+<!-- 		</div>	 -->
+<!-- 		<p> -->
 		<div class="">
 			<table class="table table-striped table-hover table-bordered">
 				<thead>
