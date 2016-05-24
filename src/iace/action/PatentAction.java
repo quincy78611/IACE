@@ -188,7 +188,7 @@ public class PatentAction extends BaseAction {
 		super.validateNotBlankNLength(this.patent.getFamilyNo(), 2000, "patent.familyNo");
 		super.validateNotBlankNLength(this.patent.getIpc(), 100, "patent.ipc");
 		super.validateNotBlank(this.patent.getTechAbstract(), "patent.techAbstract");
-		super.validateNotBlankNLength(this.patent.getImportantPictureCode(), 100, "patent.importantPictureCode");
+//		super.validateNotBlankNLength(this.patent.getImportantPictureCode(), 100, "patent.importantPictureCode");
 		super.validateNotBlankNLength(this.patent.getTechField().getName(), 500, "patent.techField.name");
 		super.validateTextMaxLength(this.patent.getUsage(), 500, "patent.usage");
 		if (this.patent.getTrl() != null && StringUtils.isNotBlank(this.patent.getTrl().getCode())) {

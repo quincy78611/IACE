@@ -39,7 +39,7 @@
 		<a href="<s:url value="%{patent.patentPictureLink}"/>">
 			<img src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:800px; max-height:800px;">
 		</a>	
-		<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" readonly="true" cssClass="form-control" />
+<%-- 		<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" readonly="true" cssClass="form-control" /> --%>
 		<s:textfield label="專利技術領域" name="patent.techField.name" readonly="true" cssClass="form-control" />
 		<s:textfield label="應用範圍/產業" name="patent.usage" readonly="true" cssClass="form-control" />
 		<s:textfield label="技術發展階段" name="patent.trl.code" readonly="true" cssClass="form-control" />

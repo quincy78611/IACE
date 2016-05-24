@@ -81,7 +81,7 @@ public class PatentExcelService {
 				p.setTechField(tf);
 				p.setUsage(row.getCell(++c, Row.CREATE_NULL_AS_BLANK).getStringCellValue());
 				p.setTechAbstract(row.getCell(++c).getStringCellValue());
-				p.setImportantPictureCode(row.getCell(++c).getStringCellValue());
+//				p.setImportantPictureCode(row.getCell(++c).getStringCellValue());
 				p.setImportantPatentPicture(pics.get(r).getData());
 				p.setImportantPatentPictureExtension(pics.get(r).getFileExtension());
 				p.setTrl(new OptionTrl());

@@ -44,7 +44,7 @@
 				瀏覽
                 <input class="upload" name="uploadPatentImg" type="file" onchange = "readURL(this);">
 			</span>
-			<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" cssClass="form-control" />
+<%-- 			<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" cssClass="form-control" /> --%>
 			<s:select label="專利技術領域" name="patent.techField.name" list="techFieldList" listKey="name" listValue="name" />
 			<s:textfield label="應用範圍/產業" name="patent.usage" cssClass="form-control" />
 			<s:select label="技術發展階段" name="patent.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />

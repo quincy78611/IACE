@@ -46,7 +46,7 @@ public class Patent extends BaseEntity {
 	private String ipc;
 	private String techAbstract;
 	private String importantPicturePath;
-	private String importantPictureCode;
+//	private String importantPictureCode;
 	private byte[] importantPatentPicture;
 	private String importantPatentPictureExtension;
 	private TechField techField;
@@ -212,26 +212,24 @@ public class Patent extends BaseEntity {
 		this.importantPicturePath = importantPicturePath;
 	}	
 	
-	@Column(name = "IMPORTANT_PICTURE_CODE", length = 100)
-	public String getImportantPictureCode() {
-		return importantPictureCode;
-	}
-
-	public void setImportantPictureCode(String importantPictureCode) {
-		this.importantPictureCode = importantPictureCode;
-	}
+//	@Column(name = "IMPORTANT_PICTURE_CODE", length = 100)
+//	public String getImportantPictureCode() {
+//		return importantPictureCode;
+//	}
+//
+//	public void setImportantPictureCode(String importantPictureCode) {
+//		this.importantPictureCode = importantPictureCode;
+//	}
 	
 	@Transient
 	public String getPatentPictureLink() {
-		String link = "";
+		String link = "http://www.thomsoninnovation.com/tip-innovation/zoomImage.do?documentNumber=%s&pageIndex=0&daysValid=0&clipWidth=1080&clipHeight=0&locale=en_US";
 		if (StringUtils.isNoneBlank(this.publicationNo)) {
-			link = String.format(
-					"http://www.thomsoninnovation.com/tip-innovation/zoomImage.do?documentNumber=%s&pageIndex=0", 
-					this.publicationNo);
+			link = String.format(link, this.publicationNo);
 		} else if (StringUtils.isNoneBlank(this.openNo)){
-			link = String.format(
-					"http://www.thomsoninnovation.com/tip-innovation/zoomImage.do?documentNumber=%s&pageIndex=0", 
-					this.openNo);
+			link = String.format(link, this.openNo);
+		} else {
+			link ="";
 		}
 		return link;
 	}
@@ -316,7 +314,7 @@ public class Patent extends BaseEntity {
 		ValidateUtil.notBlank(this.techAbstract, "專利技術摘要", errMsgs);
 		ValidateUtil.notNull(this.importantPatentPicture, "重要圖式", errMsgs);
 		ValidateUtil.maxLength(this.importantPicturePath, 200, "重要圖式路徑", errMsgs);
-		ValidateUtil.notBlankNLength(this.importantPictureCode, 100, "重要圖式代碼", errMsgs);
+//		ValidateUtil.notBlankNLength(this.importantPictureCode, 100, "重要圖式代碼", errMsgs);
 		ValidateUtil.notBlankNLength(this.techField.getName(), 500, "專利技術領域", errMsgs);
 		ValidateUtil.maxLength(this.usage, 500, "應用範圍/產業", errMsgs);
 		ValidateUtil.maxLength(this.trl.getCode(), 10, "技術發展階段", errMsgs);
@@ -335,7 +333,6 @@ public class Patent extends BaseEntity {
 				+ category + ", patentStatus=" + patentStatus + ", familyNo="
 				+ familyNo + ", ipc=" + ipc + ", techAbstract=" + techAbstract
 				+ ", importantPicturePath=" + importantPicturePath
-				+ ", importantPictureCode=" + importantPictureCode
 				+ ", techField=" + techField + ", usage=" + usage + ", trl="
 				+ trl + ", trlDesc=" + trlDesc + "]";
 	}
