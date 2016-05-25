@@ -20,8 +20,8 @@ public abstract class BaseOption  extends BaseEntity {
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_OPPTION_ID")
-	@SequenceGenerator(name = "SEQUENCE_OPPTION_ID", sequenceName = "SEQUENCE_OPPTION_ID", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_OPTION_ID")
+	@SequenceGenerator(name = "SEQUENCE_OPTION_ID", sequenceName = "SEQUENCE_OPTION_ID", allocationSize = 1, initialValue = 1)
 	public long getId() {
 		return id;
 	}
