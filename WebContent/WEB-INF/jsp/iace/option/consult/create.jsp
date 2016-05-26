@@ -9,12 +9,14 @@
 <body>
 	<h4>新增</h4>
 	<s:form action="createSubmit" method="post" validate="true" >
-		<div class="form-horizontal" >
-			<s:textfield label="代碼" name="option.code" cssClass="form-control" cssErrorClass="form-control" />
-			<s:textfield label="名稱" name="option.name" cssClass="form-control" cssErrorClass="form-control" />				
-			<s:submit cssClass="btn btn-default" value="儲存" />	
-			<input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/>		
-		</div>
+		<div class="container-fluid" >
+			<div class="col-md-3">
+				<s:textfield label="代碼" name="option.code" cssClass="form-control"/>
+				<s:textfield label="名稱" name="option.name" cssClass="form-control"/>					
+			</div>
+		</div>			
+		<s:submit cssClass="btn btn-default" value="儲存" />	
+		<input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/>		
 	</s:form>
 </body>
 </html>

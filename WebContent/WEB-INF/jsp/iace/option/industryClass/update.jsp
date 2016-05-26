@@ -10,7 +10,7 @@
 	<h4>編輯</h4>
 
 	<s:form action="updateSubmit" method="post" validate="true" >
-		<div class="form-horizontal" >
+		<div class="container-fluid" >
 			<s:hidden name="option.id" />
 			<s:hidden name="option.isValid" />
 			<s:hidden name="option.createTime" />
@@ -19,12 +19,15 @@
 			<s:hidden name="option.updateUser" />
 			<s:hidden name="option.ver" />
 			
-			<s:textfield label="代碼" name="option.code" cssClass="form-control" cssErrorClass="form-control" readonly="true"/>
-			<s:textfield label="名稱" name="option.name" cssClass="form-control" cssErrorClass="form-control" />				
+			<div class="col-md-3">
+				<s:textfield label="代碼" name="option.code" cssClass="form-control" readonly="true"/>
+				<s:textfield label="名稱" name="option.name" cssClass="form-control" />					
+			</div>
 
-			<s:submit cssClass="btn btn-default" value="儲存" />	
-			<input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/>		
 		</div>
+		<s:submit cssClass="btn btn-default" value="儲存" />	
+		<input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/>		
+		
 	</s:form>
 </body>
 </html>
