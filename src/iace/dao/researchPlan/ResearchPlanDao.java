@@ -2,8 +2,11 @@ package iace.dao.researchPlan;
 
 import java.util.List;
 
+import javax.persistence.FetchType;
+
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.NonUniqueResultException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -19,6 +22,7 @@ import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
 import iace.entity.ResearchPlan;
 import iace.entity.ResearchPlanSearchModel;
+import iace.entity.Technology;
 
 public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResearchPlanDao {
 
@@ -26,23 +30,37 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		super(ResearchPlan.class);
 	}
 	
-//	@Override
-//	public ResearchPlan get(long id) {
-//		try {
-//			Session session = HibernateSessionFactory.getSession();
-//			Criteria criteria = session.createCriteria(ResearchPlan.class);			
-//			criteria.add(Restrictions.eq("id", id));
-//			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
-//			Criteria rCrit = criteria.createCriteria("rndResults");
+
+
+
+	@Override
+	public ResearchPlan get(long id) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(ResearchPlan.class);
+			criteria.add(Restrictions.eq("id", id));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+//			Criteria rCrit = criteria.createCriteria("technologies");
 //			rCrit.add(Restrictions.eq("isValid", BaseEntity.valid));
-//			ResearchPlan entity = (ResearchPlan) criteria.uniqueResult();
-//			return entity;
-//		} catch (Exception e) {
-//			throw e;
-//		} finally {
-//			HibernateSessionFactory.closeSession();
-//		}
-//	}
+			ResearchPlan rp = (ResearchPlan) criteria.uniqueResult();
+			
+			//這裡這麼做是因為Technology.optionTrlList 設定為FetchType.LAZY
+			//靠存取該欄位才會實際從資料庫載入
+			if (rp.getTechnologies() != null && rp.getTechnologies().size() > 0) {
+				for (Technology t: rp.getTechnologies()) {
+					t.getOptionTrlCodesString();
+				}
+			}
+			
+			return rp;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+
 
 
 	@Override

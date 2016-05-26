@@ -1,15 +1,27 @@
 package iace.entity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import iace.entity.option.OptionTrl;
 
@@ -23,7 +35,7 @@ public class Technology extends BaseEntity {
 	private ResearchPlan researchPlan;
 	private String name;
 	private String descriptoin;
-	private OptionTrl trl;
+	private List<OptionTrl> optionTrlList = new ArrayList<OptionTrl>();
 	private String trlDesc;
 
 	@Id
@@ -38,8 +50,7 @@ public class Technology extends BaseEntity {
 		this.id = id;
 	}
 
-//	@ManyToOne(fetch = FetchType.LAZY)
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "RESEARCH_PLAN_ID", nullable = false, updatable = false)
 	public ResearchPlan getResearchPlan() {
 		return researchPlan;
@@ -68,22 +79,52 @@ public class Technology extends BaseEntity {
 		this.descriptoin = descriptoin;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="TRL_CODE", referencedColumnName= "CODE")
-	public OptionTrl getTrl() {
-		return trl;
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name="TECHNOLOGY_TRL_RELATION", 
+    	joinColumns={@JoinColumn(name="TECHNOLOGY_ID")}, 
+    	inverseJoinColumns={@JoinColumn(name="TRL_CODE", referencedColumnName= "CODE")})
+	@Fetch(FetchMode.SUBSELECT)
+	public List<OptionTrl> getOptionTrlList() {
+		return optionTrlList;
 	}
 
-	public void setTrl(OptionTrl trl) {
-		this.trl = trl;
+	public void setOptionTrlList(List<OptionTrl> optionTrlList) {
+		this.optionTrlList = optionTrlList;
 	}
 	
-	public void setTrlCode(String code) {
-		OptionTrl trl = new OptionTrl();
-		trl.setCode(code);
-		this.setTrl(trl);
+	@Transient
+	public List<String> getOptionTrlCodes() {
+		List<String> codes = new ArrayList<String>();
+		this.optionTrlList.forEach(v -> codes.add(v.getCode()));
+		return codes;
+	}
+	
+	public void setOptionTrlCodes(List<String> codes) {
+		this.optionTrlList = new ArrayList<OptionTrl>();
+		for (String code : codes) {
+			OptionTrl trl = new OptionTrl();
+			trl.setCode(code.trim());
+			this.optionTrlList.add(trl);
+		}
 	}
 
+	@Transient
+	public String getOptionTrlCodesString() {
+		StringBuilder sb = new StringBuilder();
+		this.optionTrlList.forEach(v -> sb.append(v.getCode()+";"));
+		return sb.toString();
+	}
+	
+	/**
+	 * 
+	 * @param codeString must be like 'TRL1,TRL2'
+	 */
+	@Deprecated
+	public void setOptionTrlCodesString(String codeString) {
+		String[] codes = StringUtils.split(codeString, ",");	
+		setOptionTrlCodes(Arrays.asList(codes));
+	}
+	
 	@Column(name = "TRL_DESC")
 	@Lob
 	public String getTrlDesc() {
@@ -94,10 +135,6 @@ public class Technology extends BaseEntity {
 		this.trlDesc = trlDesc;
 	}
 
-	@Override
-	public String toString() {
-		return "RnDResult [id=" + id + ", name=" + name + ", descriptoin=" + descriptoin + ", trl=" + trl + ", trlDesc=" + trlDesc + "]";
-	}
 	
 	
 

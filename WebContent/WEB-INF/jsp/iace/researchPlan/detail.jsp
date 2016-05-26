@@ -11,66 +11,55 @@
 	<div class="container-fluid" >
 		<div class="row">
 			<div class="col-md-3">
-				<label class="control-label">計畫編號</label><p>
-				<s:property value="researchPlan.planNo"/>
+				<s:textfield label="計畫編號" value="%{researchPlan.planNo}" readonly="true"/>
 			</div>
-			<div class="col-md-4">
-				<label class="control-label">計畫名稱</label><p>
-				<s:property value="researchPlan.name"/>		
+			<div class="col-md-5">	
+				<s:textfield label="計畫名稱" value="%{researchPlan.name}" readonly="true"/>
 			</div>
-			<div class="col-md-3">
-				<label class="control-label">計畫主持人</label><p>
-				<s:property value="researchPlan.manager"/>			
+			<div class="col-md-3">			
+				<s:textfield label="計畫主持人" value="%{researchPlan.manager}" readonly="true"/>
 			</div>
-			<div class="col-md-2">
-				<label class="control-label">計畫年度</label><p>
-				<s:property value="researchPlan.year"/>			
+			<div class="col-md-1">		
+				<s:textfield label="計畫年度" value="%{researchPlan.year}" readonly="true"/>
 			</div>			
-		</div>	
-		<div class="row">
-			<div class="col-md-2">
-				<label class="control-label">研究領域1</label><p>
-				<s:property value="%{researchPlan.grbDomain1.code + ' ' + researchPlan.grbDomain1.name}"/>			
-			</div>
-			<div class="col-md-2">
-				<label class="control-label">研究領域2</label><p>
-				<s:property value="%{researchPlan.grbDomain2.code + ' ' + researchPlan.grbDomain2.name}"/>			
-			</div>
-			<div class="col-md-2">
-				<label class="control-label">研究領域3</label><p>
-				<s:property value="%{researchPlan.grbDomain3.code + ' ' + researchPlan.grbDomain3.name}"/>			
-			</div>
-			<div class="col-md-2">
-				<label class="control-label">研究領域4</label><p>
-				<s:property value="%{researchPlan.grbDomain4.code + ' ' + researchPlan.grbDomain4.name}"/>			
-			</div>
-			<div class="col-md-2">
-				<label class="control-label">研究領域5</label><p>
-				<s:property value="%{researchPlan.grbDomain5.code + ' ' + researchPlan.grbDomain5.name}"/>			
-			</div>
-			<div class="col-md-2">
-				<label class="control-label">研究領域6</label><p>
-				<s:property value="%{researchPlan.grbDomain6.code + ' ' + researchPlan.grbDomain6.name}"/>			
-			</div>
-		</div>	
-		<div class="row">
-			<div class="col-md-3">
-				<label class="control-label">計畫關鍵字</label><p>
-				<s:property value="researchPlan.keyword"/>				
-			</div>
-			<div class="col-md-3">
-				<label class="control-label">計畫發展階段</label><p>
-				<s:property value="%{researchPlan.trl.code + ' ' + researchPlan.trl.name}"/>				
-			</div>
-			<div class="col-md-3">
-				<label class="control-label">GRB計畫編號</label><p>
-				<s:property value="researchPlan.projkey"/>				
-			</div>
-			<div class="col-md-3">
-				<label class="control-label">成果報告全文連結</label><p>
-				<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/GRB_Search/grb/show_doc.jsp?id='+researchPlan.grb05Id}"/>" target="_blank">連結</a>	
-			</div>		
 		</div>
+		<div class="row">
+			<div class="col-md-3">			
+				<s:textfield label="計畫關鍵字" value="%{researchPlan.keyword}" readonly="true"/>
+			</div>
+			<div class="col-md-5">			
+				<s:textfield label="計畫發展階段" value="%{researchPlan.trl.code + ' ' + researchPlan.trl.name}" readonly="true"/>
+			</div>
+			<div class="col-md-2">			
+				<s:textfield label="GRB計畫編號" value="%{researchPlan.projkey}" readonly="true"/>
+			</div>
+			<div class="col-md-2">
+				<label class="control-label">成果報告ID</label><p>				
+				<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/GRB_Search/grb/show_doc.jsp?id='+researchPlan.grb05Id}"/>" target="_blank">
+					<s:property value="%{researchPlan.grb05Id}" />
+				</a>	
+			</div>		
+		</div>		
+		<div class="row">
+			<div class="col-md-2">
+				<s:textfield label="研究領域1" value="%{researchPlan.grbDomain1.code + ' ' + researchPlan.grbDomain1.name}" readonly="true"/>
+			</div>
+			<div class="col-md-2">
+				<s:textfield label="研究領域2" value="%{researchPlan.grbDomain2.code + ' ' + researchPlan.grbDomain2.name}" readonly="true"/>
+			</div>
+			<div class="col-md-2">
+				<s:textfield label="研究領域3" value="%{researchPlan.grbDomain3.code + ' ' + researchPlan.grbDomain3.name}" readonly="true"/>
+			</div>
+			<div class="col-md-2">
+				<s:textfield label="研究領域4" value="%{researchPlan.grbDomain4.code + ' ' + researchPlan.grbDomain4.name}" readonly="true"/>
+			</div>
+			<div class="col-md-2">
+				<s:textfield label="研究領域5" value="%{researchPlan.grbDomain5.code + ' ' + researchPlan.grbDomain5.name}" readonly="true"/>
+			</div>
+			<div class="col-md-2">
+				<s:textfield label="研究領域6" value="%{researchPlan.grbDomain6.code + ' ' + researchPlan.grbDomain6.name}" readonly="true"/>
+			</div>
+		</div>	
 	</div>			
 	<hr>
 	
@@ -91,7 +80,7 @@
 						<tr>
 							<td><s:property value="name"/></td>
 							<td><s:property value="descriptoin"/></td>
-							<td><s:property value="trl.code"/></td>
+							<td><s:property value="%{getOptionTrlCodesString()}"/></td>
 							<td><s:property value="trlDesc"/></td>
 						</tr>
 					</s:iterator>

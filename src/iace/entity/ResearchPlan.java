@@ -17,6 +17,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
 
@@ -42,7 +45,7 @@ public class ResearchPlan extends BaseEntity {
 	private String projkey; //GRB計畫編號
 	private String grb05Id; //成果報告ID
 	
-	private List<Technology> technologies;
+	private List<Technology> technologies = new ArrayList<Technology>();
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -242,7 +245,9 @@ public class ResearchPlan extends BaseEntity {
 		this.grb05Id = grb05Id;
 	}
 
-	@OneToMany(mappedBy="researchPlan", cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy="researchPlan", cascade={CascadeType.ALL}, fetch = FetchType.LAZY)
+//	@OneToMany(cascade={CascadeType.ALL})
+//	@JoinColumn(name= "ID", referencedColumnName= "RESEARCH_PLAN_ID", nullable=true)
 	public List<Technology> getTechnologies() {
 		return technologies;
 	}

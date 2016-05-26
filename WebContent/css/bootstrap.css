@@ -2555,9 +2555,9 @@ output {
 .form-control {
   display: block;
   width: 100%;
-  height: 36px;
-  padding: 8px 12px;
-  font-size: 13px;
+  height: 30px;
+  padding: 4px 4px;
+  font-size: 11px;
   line-height: 1.42857143;
   color: #777777;
   background-color: #ffffff;
@@ -4103,7 +4103,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {
-  color: #ffffff;
+  color: #000000;
   background-color: #d9230f;
 }
 .nav-stacked > li {

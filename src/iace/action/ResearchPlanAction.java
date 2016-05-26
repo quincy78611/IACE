@@ -1,5 +1,6 @@
 package iace.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import core.action.BaseAction;
@@ -65,7 +66,7 @@ public class ResearchPlanAction extends BaseAction {
 		} catch (Exception e) {
 			log.error("", e);
 			this.addActionError(e.getMessage());
-			return ERROR;
+			return INPUT;
 		}		
 	}
 	
@@ -101,7 +102,7 @@ public class ResearchPlanAction extends BaseAction {
 		} catch (Exception e) {
 			log.error("", e);
 			this.addActionError(e.getMessage());
-			return ERROR;
+			return INPUT;
 		}
 	}
 	
@@ -112,8 +113,15 @@ public class ResearchPlanAction extends BaseAction {
 	public String updateSubmit() {
 		try {
 			this.id = this.researchPlan.getId();
+			ResearchPlan origin = this.researchPlanService.get(this.id);
+			this.researchPlan.setTechnologies(origin.getTechnologies());
 			this.researchPlanService.update(this.researchPlan);
+			
 			this.researchPlan = this.researchPlanService.get(this.id);
+			List<ResearchPlan> plans = new ArrayList<ResearchPlan>();
+			plans.add(this.researchPlan);
+			this.researchPlanPagedList = new PagedList<ResearchPlan>(plans, 1, 5, 0);
+			
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -181,6 +189,41 @@ public class ResearchPlanAction extends BaseAction {
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("CREATE SUCCESS!");
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return INPUT;
+		}
+	}
+	
+	public String updateTechnology() {
+		try {
+			this.technology = this.technologyService.get(this.technologyId);
+			if (this.technology == null) {
+				super.addActionError("找不到選擇的資料紀錄!");
+				return INPUT;
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return ERROR;
+		}		
+	}
+
+	public void validateUpdateTechnology() {
+		//TODO
+	}
+	
+	public String updateTechnologySubmit() {
+		try {
+			this.researchPlan = this.researchPlanService.get(this.id);
+			this.technology.setResearchPlan(this.researchPlan);
+			this.technologyService.update(this.technology);
+			// 成功後重新抓取研究計畫資料
+			this.researchPlan = this.researchPlanService.get(this.id);
+			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);

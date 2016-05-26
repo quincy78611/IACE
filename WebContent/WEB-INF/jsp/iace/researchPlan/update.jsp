@@ -31,6 +31,18 @@
 			</div>
 			<div class="col-md-1">	
 				<s:textfield label="計畫年度" name="researchPlan.year" cssClass="form-control" />
+			</div>
+			<div class="col-md-3">
+				<s:textfield label="計畫關鍵字" name="researchPlan.keyword" cssClass="form-control" />
+			</div>
+			<div class="col-md-5">
+				<s:select label="技術發展階段" name="researchPlan.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
+			</div>
+			<div class="col-md-2">
+				<s:textfield label="GRB計畫編號" name="researchPlan.projkey" cssClass="form-control" />
+			</div>
+			<div class="col-md-2">
+				<s:textfield label="成果報告ID" name="researchPlan.grb05Id" cssClass="form-control" />
 			</div>			
 			<div class="col-md-2">
 				<s:select label="研究領域1" name="researchPlan.grbDomain1.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />		
@@ -50,19 +62,11 @@
 			<div class="col-md-2">
 				<s:select label="研究領域6" name="researchPlan.grbDomain6.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
 			</div>
-			<div class="col-md-3">
-				<s:textfield label="計畫關鍵字" name="researchPlan.keyword" cssClass="form-control" />
-			</div>
-			<div class="col-md-3">
-				<s:select label="技術發展階段" name="researchPlan.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
-			</div>
-			<div class="col-md-3">
-				<s:textfield label="GRB計畫編號" name="researchPlan.projkey" cssClass="form-control" />
-			</div>
-			<div class="col-md-3">
-				<s:textfield label="成果報告ID" name="researchPlan.grb05Id" cssClass="form-control" />
-			</div>
-		</div>			
+		</div>
+		<div>
+			<s:submit cssClass="btn btn-primary" value="儲存" />
+			<a class="btn btn-default" href="<s:url value="/iace/researchPlan/init"/>">回上一頁</a>		
+		</div>
 		<hr>
 		<div class="col-md-3">
 			<h3>研發成果列表</h3>
@@ -88,31 +92,35 @@
 				<tbody>
 					<s:if test="researchPlan.technologies != null">
 						<s:iterator value="researchPlan.technologies" status="stat">
-							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].id'}" />
-							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].isValid'}" />
-							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].createTime'}" />
-							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].createUser'}" />
-							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].updateTime'}" />
-							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].updateUser'}" />
-							<s:hidden name="%{'researchPlan.technologies['+#stat.index+'].ver'}" />
 							<tr>
 								<td>
-<%-- 									<s:property value="id"/> --%>
-									<s:textfield name="%{'researchPlan.technologies['+#stat.index+'].name'}" cssClass="form-control" />
+									<s:property value="name"/>
 								</td>
-								<td><s:textfield name="%{'researchPlan.technologies['+#stat.index+'].descriptoin'}" cssClass="form-control" /></td>
+								<td>
+									<s:property value="descriptoin"/>
+								</td>
 								<td class="col-md-2">
-									<s:select name="%{'researchPlan.technologies['+#stat.index+'].trl.code'}" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
+									<s:property value="optionTrlCodesString"/>
 								</td>
-								<td><s:textfield name="%{'researchPlan.technologies['+#stat.index+'].trlDesc'}" cssClass="form-control" /></td>
-								<td class="col-md-1">
+								<td>
+									<s:property value="trlDesc"/>
+								</td>
+								<td class="col-md-2">
 									<!-- 檢視 -->
 									<s:url value="showTechnologyDetail.action" var="detailUrlTag" escapeAmp="false">
 										<s:param name="id" value="researchPlan.id" />
 										<s:param name="TechnologyId" value="id" />
 									</s:url>		
-									<input type="button" class="btn-default" value="檢視" 
+									<input type="button" class="btn-info" value="檢視" 
 										onclick="window.location.href='<s:property value="detailUrlTag" />'" />														
+								
+									<!-- 編輯 -->
+									<s:url value="updateTechnology.action" var="updateUrlTag" escapeAmp="false">
+										<s:param name="id" value="researchPlan.id" />
+										<s:param name="TechnologyId" value="id" />
+									</s:url>		
+									<input type="button" class="btn-info" value="編輯" 
+										onclick="window.location.href='<s:property value="updateUrlTag" />'" />									
 								
 									<!-- 刪除 -->
 									<s:url value="deleteTechnology.action" var="deleteUrlTag" escapeAmp="false">
@@ -128,15 +136,12 @@
 				</tbody>					
 			</table>
 		</div>
-		<hr>
-		<div>
-			<s:submit cssClass="btn btn-primary" value="儲存" />
-<!-- 			<input type="button" value="重設" class="btn btn-default" onclick="this.form.reset();" /> -->
-			<a class="btn btn-default" href="<s:url value="/iace/researchPlan/init"/>">回上一頁</a>		
-		</div>
 	</s:form>
 	
 	<script type="text/javascript">
+		$(doucment).ready(function(){
+			
+		});	
 	</script>	
 	
 </body>

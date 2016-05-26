@@ -21,7 +21,19 @@
 			</div>
 			<div class="col-md-1">	
 				<s:textfield label="計畫年度" name="researchPlan.year" cssClass="form-control" />
-			</div>			
+			</div>
+			<div class="col-md-3">
+				<s:textfield label="計畫關鍵字" name="researchPlan.keyword" cssClass="form-control" />
+			</div>
+			<div class="col-md-5">
+				<s:select label="計畫發展階段" name="researchPlan.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
+			</div>
+			<div class="col-md-2">
+				<s:textfield label="GRB計畫編號" name="researchPlan.projkey" cssClass="form-control" />
+			</div>
+			<div class="col-md-2">
+				<s:textfield label="成果報告ID" name="researchPlan.grb05Id" cssClass="form-control" />
+			</div>					
 			<div class="col-md-2">
 				<s:select label="研究領域1" name="researchPlan.grbDomain1.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />		
 			</div>
@@ -39,18 +51,6 @@
 			</div>
 			<div class="col-md-2">
 				<s:select label="研究領域6" name="researchPlan.grbDomain6.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
-			</div>
-			<div class="col-md-3">
-				<s:textfield label="計畫關鍵字" name="researchPlan.keyword" cssClass="form-control" />
-			</div>
-			<div class="col-md-3">
-				<s:select label="計畫發展階段" name="researchPlan.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
-			</div>
-			<div class="col-md-3">
-				<s:textfield label="GRB計畫編號" name="researchPlan.projkey" cssClass="form-control" />
-			</div>
-			<div class="col-md-3">
-				<s:textfield label="成果報告ID" name="researchPlan.grb05Id" cssClass="form-control" />
 			</div>
 		</div>			
 		<hr>

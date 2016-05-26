@@ -14,10 +14,10 @@
 			<s:hidden name="id"/>
 			<s:hidden name="technologyId"/>
 			
-			<s:textfield label="技術名稱" name="technology.name" readonly="true" cssClass="form-control" />				
-			<s:textarea label="技術簡述" name="technology.descriptoin" readonly="true" cssClass="form-control"  />
-			<s:textfield label="技術發展階段" name="technology.trl.name" readonly="true" cssClass="form-control" />			
-			<s:textarea label="技術發展階段說明" name="technology.trlDesc" readonly="true" cssClass="form-control"/>	
+			<s:textfield label="技術名稱" name="technology.name" disabled="true" cssClass="form-control" />				
+			<s:textarea label="技術簡述" name="technology.descriptoin" disabled="true" cssClass="form-control"  />
+			<s:textfield label="技術發展階段" name="technology.optionTrlCodesString" disabled="true" cssClass="form-control" />			
+			<s:textarea label="技術發展階段說明" name="technology.trlDesc" disabled="true" cssClass="form-control"/>	
 		</div>
 		
 		<s:submit cssClass="btn btn-info" value="確定" />

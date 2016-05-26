@@ -86,19 +86,19 @@
 								</td>
 																
 								<td class="col-md-2">
-									<s:url value="showDetail.action" var="detailUrlTag">
+									<s:url value="showDetail.action" var="detailUrlTag" escapeAmp="false">
 										<s:param name="id" value="id" />
 									</s:url>
 									<input type="button" class="btn-info" value="檢視" 
 										onclick="window.location.href='<s:property value="detailUrlTag" />'" />
 								
-									<s:url value="update.action" var="updateUrlTag">
+									<s:url value="update.action" var="updateUrlTag" escapeAmp="false">
 										<s:param name="id" value="id" />
 									</s:url>
 									<input type="button" class="btn-info" value="編輯" 
 										onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
 										
-									<s:url value="delete.action" var="deleteUrlTag">
+									<s:url value="delete.action" var="deleteUrlTag" escapeAmp="false">
 										<s:param name="id" value="id" />
 									</s:url>
 									<input type="button" class="btn-danger" value="刪除" 

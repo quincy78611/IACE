@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,7 +60,8 @@ public class ResearchPlanExcelService {
 				Technology rnd = new Technology();
 				rnd.setName(row.getCell(++c).getStringCellValue());
 				rnd.setDescriptoin(row.getCell(++c).getStringCellValue());
-				rnd.setTrlCode(row.getCell(++c).getStringCellValue());
+				String[] trlCods = row.getCell(++c).getRawValue().split(";");
+				rnd.setOptionTrlCodes(Arrays.asList(trlCods));
 				rnd.setTrlDesc(row.getCell(++c).getStringCellValue());
 				
 				String key = rp.getPlanNo();
