@@ -2,6 +2,7 @@ package iace.dao.option;
 
 import iace.entity.option.OptionIndustryClass;
 
+@Deprecated
 public class OptionIndustryClassDao extends BaseOptionDao<OptionIndustryClass> {
 
 	public OptionIndustryClassDao() {

@@ -80,14 +80,15 @@
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 					       	 代碼管理 <span class="caret"></span>
 					    </a>
-					    <ul class="dropdown-menu" role="menu">				        
+					    <ul class="dropdown-menu" role="menu">
+					    	<li><a href="<s:url value="/iace/option/country/index"/>">專利國別</a></li>
 					        <li><a href="<s:url value="/iace/option/companyLocation/index"/>">公司地域別</a></li>
 					        <li><a href="<s:url value="/iace/option/consult/index"/>">諮詢類型代</a></li>
 					        <li><a href="<s:url value="/iace/option/cooperateMode/index"/>">合作模式</a></li>
 					        <li><a href="<s:url value="/iace/option/grbDomain/index"/>">GRB領域別</a></li>
 					        <li><a href="<s:url value="/iace/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
 					        <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別</a></li>
-					        <li><a href="<s:url value="/iace/option/industryClass/index"/>">產業類別</a></li>					        
+<%-- 					        <li><a href="<s:url value="/iace/option/industryClass/index"/>">產業類別</a></li>					         --%>
 					        <li><a href="<s:url value="/iace/option/organizationClass/index"/>">單位類別</a></li>
 					        <li><a href="<s:url value="/iace/option/organizationType/index"/>">單位類型</a></li>
 					        <li><a href="<s:url value="/iace/option/trl/index"/>">發展階段</a></li>

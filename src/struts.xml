@@ -31,8 +31,8 @@
         </action>
     </package>
 
-    <include file="iace/iace-struts.xml" />
-
+    <include file="iace/iace-option-struts.xml" />
+	<include file="iace/iace-struts.xml" />
     <!-- Add packages here -->
 
 </struts>

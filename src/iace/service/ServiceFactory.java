@@ -79,6 +79,7 @@ public class ServiceFactory {
 		return optionIndustryService;
 	}
 	
+	@Deprecated
 	public static OptionIndustryClassService getOptionIndustryClassService() {
 		if (optionIndustryClassService == null) {
 			optionIndustryClassService = new OptionIndustryClassService(DaoFactory.getOptionIndustryClassDao());

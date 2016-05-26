@@ -5,6 +5,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "OPT_INDUSTRY_CLASS")
+@Deprecated
 public class OptionIndustryClass extends BaseOption {
 
 	private static final long serialVersionUID = -1672186825816312803L;

@@ -45,6 +45,7 @@ public class DaoFactory {
 	private static IOptionDao<OptionGrbDomain> optionGrbDomainDao;
 	private static IOptionDao<OptionHadTecSrc> optionHadTecSrcDao;
 	private static IOptionDao<OptionIndustry> optionIndustryDao;
+	@Deprecated
 	private static IOptionDao<OptionIndustryClass> optionIndustryClassDao;
 	private static IOptionDao<OptionOrganizationClass> optionOrganizationClassDao;
 	private static IOptionDao<OptionOrganizationType> optionOrganizationTypeDao;
@@ -104,6 +105,7 @@ public class DaoFactory {
 		return optionIndustryDao;
 	}
 	
+	@Deprecated
 	public static IOptionDao<OptionIndustryClass> getOptionIndustryClassDao() {
 		if (optionIndustryClassDao == null) {
 			optionIndustryClassDao = new OptionIndustryClassDao();

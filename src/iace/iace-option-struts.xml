@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	
+	<package name="OptionConsult" namespace="/iace/option/consult" extends="struts-default">
+		<action name="index" class="iace.action.OptionConsultAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/consult/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionConsultAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/consult/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionConsultAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/consult/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/consult/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionConsultAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/consult/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionConsultAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/consult/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/consult/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionConsultAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/consult/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionConsultAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/consult/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>	
+
+	<package name="OptionIndustry" namespace="/iace/option/industry" extends="struts-default">
+		<action name="index" class="iace.action.OptionIndustryAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/industry/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionIndustryAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/industry/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionIndustryAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/industry/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/industry/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionIndustryAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/industry/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionIndustryAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/industry/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/industry/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionIndustryAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/industry/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionIndustryAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/industry/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>
+
+	<package name="OptionGrbDomain" namespace="/iace/option/grbDomain" extends="struts-default">
+		<action name="index" class="iace.action.OptionGrbDomainAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/grbDomain/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionGrbDomainAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/grbDomain/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionGrbDomainAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/grbDomain/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/grbDomain/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionGrbDomainAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/grbDomain/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionGrbDomainAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/grbDomain/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/grbDomain/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionGrbDomainAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/grbDomain/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionGrbDomainAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/grbDomain/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="OptionCompanyLocation" namespace="/iace/option/companyLocation" extends="struts-default">
+		<action name="index" class="iace.action.OptionCompanyLocationAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/companyLocation/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionCompanyLocationAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/companyLocation/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionCompanyLocationAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/companyLocation/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/companyLocation/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionCompanyLocationAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/companyLocation/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionCompanyLocationAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/companyLocation/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/companyLocation/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionCompanyLocationAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/companyLocation/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionCompanyLocationAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/companyLocation/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>	
+
+	<package name="OptionCooperateMode" namespace="/iace/option/cooperateMode" extends="struts-default">
+		<action name="index" class="iace.action.OptionCooperateModeAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/cooperateMode/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionCooperateModeAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/cooperateMode/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionCooperateModeAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/cooperateMode/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/cooperateMode/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionCooperateModeAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/cooperateMode/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionCooperateModeAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/cooperateMode/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/cooperateMode/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionCooperateModeAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/cooperateMode/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionCooperateModeAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/cooperateMode/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="OptionHadTecSrc" namespace="/iace/option/hadTecSrc" extends="struts-default">
+		<action name="index" class="iace.action.OptionHadTecSrcAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/hadTecSrc/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionHadTecSrcAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/hadTecSrc/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionHadTecSrcAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/hadTecSrc/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/hadTecSrc/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionHadTecSrcAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/hadTecSrc/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionHadTecSrcAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/hadTecSrc/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/hadTecSrc/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionHadTecSrcAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/hadTecSrc/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionHadTecSrcAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/hadTecSrc/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="OptionIndustryClass" namespace="/iace/option/industryClass" extends="struts-default">
+		<action name="index" class="iace.action.OptionIndustryClassAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/industryClass/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionIndustryClassAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/industryClass/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionIndustryClassAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/industryClass/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/industryClass/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionIndustryClassAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/industryClass/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionIndustryClassAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/industryClass/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/industryClass/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionIndustryClassAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/industryClass/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionIndustryClassAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/industryClass/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="OptionOrganizationClass" namespace="/iace/option/organizationClass" extends="struts-default">
+		<action name="index" class="iace.action.OptionOrganizationClassAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/organizationClass/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionOrganizationClassAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationClass/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionOrganizationClassAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationClass/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/organizationClass/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionOrganizationClassAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationClass/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionOrganizationClassAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationClass/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/organizationClass/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionOrganizationClassAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationClass/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionOrganizationClassAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationClass/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="OptionOrganizationType" namespace="/iace/option/organizationType" extends="struts-default">
+		<action name="index" class="iace.action.OptionOrganizationTypeAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/organizationType/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionOrganizationTypeAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationType/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionOrganizationTypeAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationType/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/organizationType/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionOrganizationTypeAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationType/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionOrganizationTypeAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationType/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/organizationType/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionOrganizationTypeAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationType/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionOrganizationTypeAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/organizationType/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>	
+	
+	<package name="OptionTrl" namespace="/iace/option/trl" extends="struts-default">
+		<action name="index" class="iace.action.OptionTrlAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/trl/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionTrlAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/trl/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionTrlAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/trl/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/trl/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionTrlAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/trl/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionTrlAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/trl/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/trl/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionTrlAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/trl/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionTrlAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/trl/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="OptionCountry" namespace="/iace/option/country" extends="struts-default">
+		<action name="index" class="iace.action.OptionCountryAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/country/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionCountryAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/country/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionCountryAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/country/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/country/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionCountryAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/country/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionCountryAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/country/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/country/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionCountryAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/country/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionCountryAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/country/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>
+</struts>
