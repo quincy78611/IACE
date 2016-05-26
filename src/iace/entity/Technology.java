@@ -95,7 +95,9 @@ public class Technology extends BaseEntity {
 	@Transient
 	public List<String> getOptionTrlCodes() {
 		List<String> codes = new ArrayList<String>();
-		this.optionTrlList.forEach(v -> codes.add(v.getCode()));
+		if (this.optionTrlList != null) {
+			this.optionTrlList.forEach(v -> codes.add(v.getCode()));
+		}		
 		return codes;
 	}
 	
@@ -111,7 +113,9 @@ public class Technology extends BaseEntity {
 	@Transient
 	public String getOptionTrlCodesString() {
 		StringBuilder sb = new StringBuilder();
-		this.optionTrlList.forEach(v -> sb.append(v.getCode()+";"));
+		if (this.optionTrlList != null) {
+			this.optionTrlList.forEach(v -> sb.append(v.getCode()+";"));
+		}		
 		return sb.toString();
 	}
 	

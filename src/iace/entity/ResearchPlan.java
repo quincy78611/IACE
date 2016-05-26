@@ -17,9 +17,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
 
@@ -192,6 +189,15 @@ public class ResearchPlan extends BaseEntity {
 		}
 	}
 	
+	@Transient
+	public List<String> getGrbDomainCodes() {
+		List<String> codes = new ArrayList<String>();
+		if (getGrbDomains() != null) {
+			getGrbDomains().forEach(v -> codes.add(v.getCode()));
+		}
+		return codes;
+	}
+	
 	public void setGrbDomains(String[] codes) {
 		List<OptionGrbDomain> grbDomainList = new ArrayList<OptionGrbDomain>();
 		for (String grbCode : codes) {
@@ -246,8 +252,6 @@ public class ResearchPlan extends BaseEntity {
 	}
 
 	@OneToMany(mappedBy="researchPlan", cascade={CascadeType.ALL}, fetch = FetchType.LAZY)
-//	@OneToMany(cascade={CascadeType.ALL})
-//	@JoinColumn(name= "ID", referencedColumnName= "RESEARCH_PLAN_ID", nullable=true)
 	public List<Technology> getTechnologies() {
 		return technologies;
 	}

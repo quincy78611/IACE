@@ -9,6 +9,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -51,7 +52,7 @@ public class ResearchPlanExcelService {
 				rp.setPlanNo(row.getCell(++c).getStringCellValue());
 				rp.setName(row.getCell(++c).getStringCellValue());
 				rp.setManager(row.getCell(++c).getStringCellValue());				
-				rp.setGrbDomains(row.getCell(++c).getRawValue().split(";"));
+				rp.setGrbDomains(StringUtils.split(row.getCell(++c).getStringCellValue(), ";"));
 				rp.setKeyword(row.getCell(++c).getStringCellValue());
 				rp.setTrlCode(row.getCell(++c).getStringCellValue());
 				rp.setProjkey(row.getCell(++c).getStringCellValue());
@@ -60,17 +61,16 @@ public class ResearchPlanExcelService {
 				Technology rnd = new Technology();
 				rnd.setName(row.getCell(++c).getStringCellValue());
 				rnd.setDescriptoin(row.getCell(++c).getStringCellValue());
-				String[] trlCods = row.getCell(++c).getRawValue().split(";");
+				String trlCell = row.getCell(++c).getStringCellValue();
+				String[] trlCods = StringUtils.split(trlCell, ";");
 				rnd.setOptionTrlCodes(Arrays.asList(trlCods));
 				rnd.setTrlDesc(row.getCell(++c).getStringCellValue());
 				
 				String key = rp.getPlanNo();
 				if (researchPlanMap.containsKey(key)) {
 					rp = researchPlanMap.get(key);
-//					rnd.setResearchPlan(rp);
 					rp.addTechnology(rnd);
 				} else {
-					//rnd.setResearchPlan(rp);
 					rp.addTechnology(rnd);
 					researchPlanMap.put(key, rp);
 				} 			
