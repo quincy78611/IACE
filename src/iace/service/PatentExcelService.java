@@ -1,45 +1,24 @@
 package iace.service;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFDrawing;
 import org.apache.poi.xssf.usermodel.XSSFPicture;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFShape;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import core.service.BaseService;
-import core.util.CloseableTool;
 import iace.entity.Patent;
 import iace.entity.PatentPicture;
 import iace.entity.TechField;
 import iace.entity.option.OptionTrl;
 
-public class PatentExcelService {
-	protected static Logger log = LogManager.getLogger(BaseService.class);	
-	
-	private XSSFWorkbook getXlsxFile(File file) throws IOException {
-		FileInputStream fis = null;
-		try {
-			fis = new FileInputStream(file);
-			XSSFWorkbook wb = new XSSFWorkbook(fis);
-			return wb;
-		} catch (IOException e) {
-			throw e;
-		} finally {
-			CloseableTool.close(fis);
-		}
-	}
+public class PatentExcelService extends BaseExcelService {
 	
 	private Map<Integer, PatentPicture> getPatnetPictures(XSSFSheet sheet) {
 		XSSFDrawing draw = sheet.createDrawingPatriarch();
@@ -54,34 +33,34 @@ public class PatentExcelService {
 	
 	public List<Patent> excelToPatents(File file) throws IOException {
 		XSSFWorkbook wb = getXlsxFile(file);
-		XSSFSheet sheet = wb.getSheetAt(0);	
-		Map<Integer, PatentPicture> pics =  getPatnetPictures(sheet);		
+		super.currentSheet = wb.getSheetAt(0);	
+		Map<Integer, PatentPicture> pics =  getPatnetPictures(super.currentSheet);		
 		List<Patent> patentList = new ArrayList<Patent>();
-		for (int r = 1; r <= sheet.getLastRowNum(); r++) {
+		for (int r = 1; r <= super.currentSheet.getLastRowNum(); r++) {
 			int c = -1;
 			try {
-				XSSFRow row = sheet.getRow(r);
+				//TODO validate
 				Patent p = new Patent();
-				p.setName(row.getCell(++c).getStringCellValue());
-				p.setAssignee(row.getCell(++c).getStringCellValue());
-				p.setInvertor(row.getCell(++c).getStringCellValue());
-				p.setCountry(row.getCell(++c).getStringCellValue());
-				p.setAppliactionNo(row.getCell(++c).getStringCellValue());
-				p.setApplicationDate(row.getCell(++c).getDateCellValue());
-				p.setOpenNo(row.getCell(++c).getStringCellValue());
-				p.setOpenDate(row.getCell(++c).getDateCellValue());
-				p.setPublicationNo(row.getCell(++c, Row.CREATE_NULL_AS_BLANK).getStringCellValue());
-				p.setPublicationDate(row.getCell(++c, Row.CREATE_NULL_AS_BLANK).getDateCellValue());
-				p.setCategory(row.getCell(++c).getStringCellValue());
-				p.setPatentStatus(row.getCell(++c).getStringCellValue());
-				p.setFamilyNo(row.getCell(++c).getStringCellValue());
-				p.setIpc(row.getCell(++c).getStringCellValue());
+				p.setName(getCell(r, ++c).getStringCellValue());
+				p.setAssignee(getCell(r, ++c).getStringCellValue());
+				p.setInvertor(getCell(r, ++c).getStringCellValue());
+				p.setCountry(getCell(r, ++c).getStringCellValue());
+				p.setAppliactionNo(getCell(r, ++c).getStringCellValue());
+				p.setApplicationDate(getCell(r, ++c).getDateCellValue());
+				p.setOpenNo(getCell(r, ++c).getStringCellValue());
+				p.setOpenDate(getCell(r, ++c).getDateCellValue());
+				p.setPublicationNo(getCell(r, ++c).getStringCellValue());
+				p.setPublicationDate(getCell(r, ++c).getDateCellValue());
+				p.setCategory(getCell(r, ++c).getStringCellValue());
+				p.setPatentStatus(getCell(r, ++c).getStringCellValue());
+				p.setFamilyNo(getCell(r, ++c).getStringCellValue());
+				p.setIpc(getCell(r, ++c).getStringCellValue());
 				TechField tf = new TechField();
-				tf.setName(row.getCell(++c).getStringCellValue());
+				tf.setName(getCell(r, ++c).getStringCellValue());
 				p.setTechField(tf);
-				p.setUsage(row.getCell(++c, Row.CREATE_NULL_AS_BLANK).getStringCellValue());
-				p.setTechAbstract(row.getCell(++c).getStringCellValue());
-//				p.setImportantPictureCode(row.getCell(++c).getStringCellValue());
+				p.setUsage(getCell(r, ++c).getStringCellValue());
+				p.setTechAbstract(getCell(r, ++c).getStringCellValue());
+//				p.setImportantPictureCode(getCell(r, ++c).getStringCellValue());
 				p.setImportantPatentPicture(pics.get(r).getData());
 				p.setImportantPatentPictureExtension(pics.get(r).getFileExtension());
 				p.setTrl(new OptionTrl());

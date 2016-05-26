@@ -62,7 +62,7 @@
 									</a>
 								</td>
 								
-								<td>
+								<td class="col-md-1">
 									<!-- 檢視 -->
 									<s:url value="showDetail.action" var="detailUrlTag">
 										<s:param name="id" value="id" />

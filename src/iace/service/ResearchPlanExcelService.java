@@ -1,7 +1,6 @@
 package iace.service;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,68 +9,59 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import core.service.BaseService;
-import core.util.CloseableTool;
 import iace.entity.ResearchPlan;
 import iace.entity.Technology;
 
-public class ResearchPlanExcelService {
-	protected static Logger log = Logger.getLogger(BaseService.class);
-	
-	private XSSFWorkbook getXlsxFile(File file) throws IOException {
-		FileInputStream fis = null;
-		try {
-			fis = new FileInputStream(file);
-			XSSFWorkbook wb = new XSSFWorkbook(fis);
-			return wb;
-		} catch (IOException e) {
-			throw e;
-		} finally {
-			CloseableTool.close(fis);
-		}
-	}
+public class ResearchPlanExcelService extends BaseExcelService {
 	
 	public List<ResearchPlan> excelToResearchPlans(File file) throws IOException {
 		XSSFWorkbook wb = getXlsxFile(file);
-		XSSFSheet sheet = wb.getSheetAt(0);
+		super.currentSheet = wb.getSheetAt(0);
 		Map<String, ResearchPlan> researchPlanMap = new LinkedHashMap<String, ResearchPlan>();
-		for (int r = 1; r <= sheet.getLastRowNum(); r++) {
+		for (int r = 1; r <= super.currentSheet.getLastRowNum(); r++) {
 			int c = -1;
 			try {
-				XSSFRow row = sheet.getRow(r);
-				
 				//TODO validate
-				
 				ResearchPlan rp = new ResearchPlan();
-				rp.setYear((int) row.getCell(++c).getNumericCellValue());
-				rp.setPlanNo(row.getCell(++c).getStringCellValue());
-				rp.setName(row.getCell(++c).getStringCellValue());
-				rp.setManager(row.getCell(++c).getStringCellValue());				
-				rp.setGrbDomains(StringUtils.split(row.getCell(++c).getStringCellValue(), ";"));
-				rp.setKeyword(row.getCell(++c).getStringCellValue());
-				rp.setTrlCode(row.getCell(++c).getStringCellValue());
-				rp.setProjkey(row.getCell(++c).getStringCellValue());
-				rp.setGrb05Id(row.getCell(++c).getRawValue());
-				
-				Technology rnd = new Technology();
-				rnd.setName(row.getCell(++c).getStringCellValue());
-				rnd.setDescriptoin(row.getCell(++c).getStringCellValue());
-				String trlCell = row.getCell(++c).getStringCellValue();
-				String[] trlCods = StringUtils.split(trlCell, ";");
-				rnd.setOptionTrlCodes(Arrays.asList(trlCods));
-				rnd.setTrlDesc(row.getCell(++c).getStringCellValue());
+				{					
+					rp.setYear((int) getCell(r, ++c).getNumericCellValue());
+					rp.setPlanNo(getCell(r, ++c).getStringCellValue());
+					rp.setName(getCell(r, ++c).getStringCellValue());
+					rp.setManager(getCell(r, ++c).getStringCellValue());
+					String grbDomains = readStringFromNumericOrStringCell(getCell(r, ++c));
+					rp.setGrbDomains(StringUtils.split(grbDomains, ";"));
+					rp.setKeyword(getCell(r, ++c).getStringCellValue());
+					String rawTrl = readStringFromNumericOrStringCell(getCell(r, ++c));
+					String trlCode = rawTrl.startsWith("TRL") ? rawTrl : "TRL"+rawTrl;
+					rp.setTrlCode(trlCode);
+					rp.setProjkey(getCell(r, ++c).getStringCellValue());
+					rp.setGrb05Id(getCell(r, ++c).getRawValue());
+				}
+
+				Technology tec = new Technology();
+				{					
+					tec.setName(getCell(r, ++c).getStringCellValue());
+					tec.setDescriptoin(getCell(r, ++c).getStringCellValue());
+					String trlCell = readStringFromNumericOrStringCell(getCell(r, ++c));				
+					List<String> trlCodes = Arrays.asList(StringUtils.split(trlCell, ";"));
+					for (int i=0;i<trlCodes.size();i++) {
+						if (trlCodes.get(i).startsWith("TRL") == false) {
+							trlCodes.set(i, "TRL"+trlCodes.get(i));
+						}
+					}
+					tec.setOptionTrlCodes(trlCodes);
+					tec.setTrlDesc(getCell(r, ++c).getStringCellValue());
+				}
 				
 				String key = rp.getPlanNo();
 				if (researchPlanMap.containsKey(key)) {
 					rp = researchPlanMap.get(key);
-					rp.addTechnology(rnd);
+					rp.addTechnology(tec);
 				} else {
-					rp.addTechnology(rnd);
+					rp.addTechnology(tec);
 					researchPlanMap.put(key, rp);
 				} 			
 			} catch (Exception e) {
@@ -85,6 +75,17 @@ public class ResearchPlanExcelService {
 		researchPlanMap.forEach((k,v) -> researchPlanList.add(v));
 		researchPlanList.forEach(v -> log.debug(v));
 		return researchPlanList;
+	}
+	
+	private String readStringFromNumericOrStringCell(XSSFCell cell) {
+		switch (cell.getCellType()) {
+		case XSSFCell.CELL_TYPE_NUMERIC:
+			return String.valueOf((int)cell.getNumericCellValue());
+		case XSSFCell.CELL_TYPE_STRING:
+			return String.valueOf(cell.getStringCellValue());			
+		default:
+			throw new IllegalArgumentException("Not Accept this type: "+cell.getCellType());
+		}
 	}
 
 }
