@@ -24,6 +24,7 @@ import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionIndustryClass;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
+import iace.entity.option.OptionSubject;
 import iace.entity.option.OptionTrl;
 
 
@@ -97,6 +98,7 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(OptionOrganizationClass.class);
     	configuration.addAnnotatedClass(OptionOrganizationType.class);
     	configuration.addAnnotatedClass(OptionTrl.class);
+    	configuration.addAnnotatedClass(OptionSubject.class);
     	configuration.addAnnotatedClass(Patent.class);
     	configuration.addAnnotatedClass(ResearchPlan.class);
     	configuration.addAnnotatedClass(Technology.class);

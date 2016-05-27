@@ -14,6 +14,7 @@ import iace.dao.option.OptionIndustryClassDao;
 import iace.dao.option.OptionIndustryDao;
 import iace.dao.option.OptionOrganizationClassDao;
 import iace.dao.option.OptionOrganizationTypeDao;
+import iace.dao.option.OptionSubjectDao;
 import iace.dao.option.OptionTrlDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
@@ -33,6 +34,7 @@ import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionIndustryClass;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
+import iace.entity.option.OptionSubject;
 import iace.entity.option.OptionTrl;
 
 public class DaoFactory {
@@ -50,6 +52,7 @@ public class DaoFactory {
 	private static IOptionDao<OptionOrganizationClass> optionOrganizationClassDao;
 	private static IOptionDao<OptionOrganizationType> optionOrganizationTypeDao;
 	private static IOptionDao<OptionTrl> optionTrlDao;
+	private static IOptionDao<OptionSubject> optionSubjectDao; 
 	
 	private static ITechFieldDao techFieldDao;
 	private static IPatentDao patentDao;
@@ -132,6 +135,13 @@ public class DaoFactory {
 			optionTrlDao = new OptionTrlDao();
 		}
 		return optionTrlDao;
+	}
+	
+	public static IOptionDao<OptionSubject> getOptionSubjectDao() {
+		if (optionSubjectDao == null) {
+			optionSubjectDao = new OptionSubjectDao();
+		}
+		return optionSubjectDao;
 	}
 	
 	public static ITechFieldDao getTechFieldDao() {

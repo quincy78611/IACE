@@ -16,7 +16,8 @@
 			
 			<s:textfield label="技術名稱" name="technology.name" disabled="true" cssClass="form-control" />				
 			<s:textarea label="技術簡述" name="technology.descriptoin" disabled="true" cssClass="form-control"  />
-			<s:textfield label="技術發展階段" name="technology.optionTrlCodesString" disabled="true" cssClass="form-control" />			
+<%-- 			<s:textfield label="技術發展階段" name="technology.optionTrlCodesString" disabled="true" cssClass="form-control" />			 --%>
+			<s:checkboxlist label="技術發展階段" name="technology.optionTrlCodes" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" disabled="true"/>
 			<s:textarea label="技術發展階段說明" name="technology.trlDesc" disabled="true" cssClass="form-control"/>	
 		</div>
 		

@@ -524,4 +524,51 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="OptionSubject" namespace="/iace/option/subject" extends="struts-default">
+		<action name="index" class="iace.action.OptionSubjectAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/subject/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionSubjectAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/subject/create.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="createSubmit" class="iace.action.OptionSubjectAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/subject/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/subject/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="update" class="iace.action.OptionSubjectAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/subject/update.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionSubjectAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/subject/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/subject/update.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+		<action name="delete" class="iace.action.OptionSubjectAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/option/subject/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>			
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionSubjectAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/subject/delete.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">index</param>
+			</result>
+		</action>
+	</package>	
 </struts>
