@@ -18,7 +18,6 @@
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/PagedList.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/Site.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/iace.css"/>" />
 	
     <s:if test="%{title != null && title != ''}">
    		<title><s:property value="title" /></title>
@@ -54,8 +53,8 @@
 	</div>
 	<div class="">
 		<div class="left-menu" >
-			<div class="navbar-collapse collapse">
-				<ul class="nav nav-pills nav-stacked">					
+			<div class="navbar-collapse collapse ">
+				<ul class="nav nav-pills nav-stacked ">					
 					<li class="active"><a href="#">Home</a></li>
 					<li class="dropdown">
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -64,6 +63,7 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="<s:url value="/iace/researchPlan/init"/>">維護</a></li>
 							<li><a href="<s:url value="/iace/researchPlan/create"/>">新增</a></li>
+							<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>
 						</ul>
 					</li>
 					<li class="dropdown">
@@ -73,9 +73,9 @@
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="<s:url value="/iace/patent/init"/>">維護</a></li>
 							<li><a href="<s:url value="/iace/patent/create"/>">新增</a></li>
+							<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>
 						</ul>
 					</li>
-					<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>
 					<li class="dropdown">
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 					       	 代碼管理 <span class="caret"></span>

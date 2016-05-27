@@ -22,8 +22,8 @@
 				<s:select name="searchTechField" list="techFieldList" listKey="id" listValue="name" headerKey="-1" headerValue="請選擇專利技術領域" />
 			</div>		
 			<div class="col-md-2">			
-				<input type="submit" value="查詢" class="btn btn-info" id="btn-search"/>
-				<input type="button" value="重設" class="btn btn-warning" id="btn-reset"/>
+				<input type="submit" value="查詢" class="btn btn-primary" id="btn-search"/>
+				<input type="button" value="清除" class="btn btn-warning" id="btn-reset"/>
 			</div>
 		</div>
 		<p>

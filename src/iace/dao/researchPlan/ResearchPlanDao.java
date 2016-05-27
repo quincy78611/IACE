@@ -1,10 +1,10 @@
 package iace.dao.researchPlan;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
-import org.hibernate.NonUniqueResultException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
@@ -27,13 +27,11 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		super(ResearchPlan.class);
 	}
 	
-	@Override
-	public ResearchPlan get(long id) {
+	private ResearchPlan get(List<Criterion> criterions) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(ResearchPlan.class);
-			criteria.add(Restrictions.eq("id", id));
-			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+			criterions.forEach(v -> criteria.add(v));
 			ResearchPlan rp = (ResearchPlan) criteria.uniqueResult();
 			
 			//這裡這麼做是因為Technology.optionTrlList 設定為FetchType.LAZY
@@ -49,12 +47,20 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 			throw e;
 		} finally {
 			HibernateSessionFactory.closeSession();
-		}
+		}		
+	}
+	
+	@Override
+	public ResearchPlan get(long id) {
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		criterions.add(Restrictions.eq("id", id));
+		criterions.add(Restrictions.eq("isValid", BaseEntity.valid));
+		return get(criterions);
 	}
 
-
-
-
+	/**
+	 * 查詢計畫編號是否存在
+	 */
 	@Override
 	public boolean planNoExist(String planNo) {
 		try {
@@ -77,21 +83,10 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 	
 	@Override
 	public ResearchPlan getByPlanNo(String planNo) {
-		try {
-			Session session = HibernateSessionFactory.getSession();
-			Criteria criteria = session.createCriteria(ResearchPlan.class);
-			criteria.add(Restrictions.eq("planNo", planNo).ignoreCase());
-			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
-			ResearchPlan rp = (ResearchPlan) criteria.uniqueResult();
-			return rp;
-		} catch (NonUniqueResultException e) {
-			log.error("No unique planNo="+planNo);
-			throw e;
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			HibernateSessionFactory.closeSession();
-		}
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		criterions.add(Restrictions.eq("planNo", planNo).ignoreCase());
+		criterions.add(Restrictions.eq("isValid", BaseEntity.valid));
+		return get(criterions);		
 	}
 
 	@Override
@@ -146,7 +141,6 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		if (StringUtils.isNotBlank(arg.getGrbDomainCode())) {				
 			Criterion[] rests = new Criterion[6];
 			for (int i=0; i<6; i++) {
-//				String propertyName = "grbDomainCode"+(i+1);
 				String propertyName = "grbDomain"+(i+1)+".code";
 				rests[i] = Restrictions.eq(propertyName, arg.getGrbDomainCode());
 			}				

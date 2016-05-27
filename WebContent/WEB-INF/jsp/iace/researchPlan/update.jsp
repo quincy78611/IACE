@@ -105,7 +105,7 @@
 								<td>
 									<s:property value="trlDesc"/>
 								</td>
-								<td class="col-md-2">
+								<td class="col-md-1">
 									<!-- 檢視 -->
 									<s:url value="showTechnologyDetail.action" var="detailUrlTag" escapeAmp="false">
 										<s:param name="id" value="researchPlan.id" />

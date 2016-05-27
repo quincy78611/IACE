@@ -36,8 +36,8 @@
 			</div>
 			
 			<div class="col-md-2">			
-				<input type="submit" value="查詢" class="btn btn-info" id="btn-search"/>
-				<input type="button" value="重設" class="btn btn-warning" id="btn-reset"/>
+				<input type="submit" value="查詢" class="btn btn-primary" id="btn-search"/>
+				<input type="button" value="清除" class="btn btn-warning" id="btn-reset"/>
 			</div>
 		</div>
 		<p>
@@ -85,7 +85,7 @@
 									<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/GRB_Search/grb/show_doc.jsp?id='+grb05Id}"/>" target="_blank">連結</a>
 								</td>
 																
-								<td class="col-md-2">
+								<td class="col-md-1">
 									<s:url value="showDetail.action" var="detailUrlTag" escapeAmp="false">
 										<s:param name="id" value="id" />
 									</s:url>
