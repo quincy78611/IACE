@@ -35,6 +35,17 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 		return (List<OptionEntity>) super.listAll(optionEntityClass, Order.asc("code"), criterionList);
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OptionEntity> listNotIn(List<String> codes) {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		if (codes != null && codes.size() > 0) {
+			criterionList.add(Restrictions.not(Restrictions.in("code", codes)));
+		}
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.valid));		
+		return (List<OptionEntity>) super.listAll(optionEntityClass, Order.asc("code"), criterionList);
+	}
+
 	@Override
 	public Map<String, OptionEntity> mapAll() {
 		List<OptionEntity> list = listAll();

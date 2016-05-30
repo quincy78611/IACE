@@ -31,12 +31,14 @@ public class ResearchPlan extends BaseEntity {
 	private String planNo;
 	private String name;
 	private String manager;
+	
 	private OptionGrbDomain grbDomain1; //研究領域
 	private OptionGrbDomain grbDomain2;
 	private OptionGrbDomain grbDomain3;
 	private OptionGrbDomain grbDomain4;
 	private OptionGrbDomain grbDomain5;
 	private OptionGrbDomain grbDomain6;	
+	
 	private String keyword;
 	private OptionTrl trl; //計畫發展階段
 	private String projkey; //GRB計畫編號
@@ -198,7 +200,7 @@ public class ResearchPlan extends BaseEntity {
 		return codes;
 	}
 	
-	public void setGrbDomains(String[] codes) {
+	public void setGrbDomainCodes(List<String> codes) {
 		List<OptionGrbDomain> grbDomainList = new ArrayList<OptionGrbDomain>();
 		for (String grbCode : codes) {
 			OptionGrbDomain grbDomain = new OptionGrbDomain();
@@ -207,7 +209,7 @@ public class ResearchPlan extends BaseEntity {
 		}
 		this.setGrbDomains(grbDomainList);
 	}
-	
+
 	@Column(name = "KEYWORD", length = 2000)
 	public String getKeyword() {
 		return keyword;

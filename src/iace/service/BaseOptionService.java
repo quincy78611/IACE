@@ -17,6 +17,10 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 		return dao.listAll();
 	}
 	
+	public List<OptionEntity> listNotIn(List<String> codes) {
+		return dao.listNotIn(codes);
+	}
+	
 	@Override
 	public OptionEntity get(Long id) {
 		return dao.get(id);

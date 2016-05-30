@@ -1,7 +1,9 @@
 package iace.action;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import core.action.BaseAction;
 import core.util.PagedList;
@@ -31,7 +33,7 @@ public class ResearchPlanAction extends BaseAction {
 	private PagedList<ResearchPlan> researchPlanPagedList;
 	
 	private long id;
-	private ResearchPlan researchPlan;
+	private ResearchPlan researchPlan;	
 	
 	private long technologyId;
 	private Technology technology;
@@ -98,6 +100,9 @@ public class ResearchPlanAction extends BaseAction {
 				super.addActionError("找不到選擇的資料紀錄!");
 				return INPUT;
 			}
+
+			this.optionGrbDomainList = this.optionGrbDomainService.listNotIn(this.researchPlan.getGrbDomainCodes());
+			
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -115,6 +120,7 @@ public class ResearchPlanAction extends BaseAction {
 			this.id = this.researchPlan.getId();
 			ResearchPlan origin = this.researchPlanService.get(this.id);
 			this.researchPlan.setTechnologies(origin.getTechnologies());
+
 			this.researchPlanService.update(this.researchPlan);
 			
 			this.researchPlan = this.researchPlanService.get(this.id);
@@ -276,8 +282,10 @@ public class ResearchPlanAction extends BaseAction {
 	}
 
 	public List<OptionGrbDomain> getOptionGrbDomainList() {
-		this.optionGrbDomainList = this.optionGrbDomainService.listAll();
-		return optionGrbDomainList;
+		if (this.optionGrbDomainList == null) {
+			this.optionGrbDomainList = this.optionGrbDomainService.listAll();
+		}
+		return this.optionGrbDomainList;
 	}
 
 	public List<OptionTrl> getOptionTrlList() {
@@ -316,8 +324,5 @@ public class ResearchPlanAction extends BaseAction {
 	public void setTechnology(Technology technology) {
 		this.technology = technology;
 	}
-
-
-	
 	
 }

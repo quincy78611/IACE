@@ -9,6 +9,8 @@ public interface IOptionDao<OptionEntity extends BaseOption> {
 	
 	public List<OptionEntity> listAll();
 	
+	public List<OptionEntity> listNotIn(List<String> codes);
+	
 	public Map<String, OptionEntity> mapAll();
 
 	public OptionEntity get(long id);

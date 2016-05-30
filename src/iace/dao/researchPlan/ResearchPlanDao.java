@@ -156,7 +156,7 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 			criteria.add(Restrictions.eq("trl.code", arg.getTrlCode()));
 		}
 		if (StringUtils.isNotBlank(arg.getRndResultName())) {
-			Criteria rCrit = criteria.createCriteria("rndResults");
+			Criteria rCrit = criteria.createCriteria("technologies");
 			rCrit.add(Restrictions.like("name", arg.getRndResultName(), MatchMode.ANYWHERE).ignoreCase());
 		}		
 		

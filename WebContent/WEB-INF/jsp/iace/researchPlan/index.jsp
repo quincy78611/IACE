@@ -76,7 +76,7 @@
 								<td><s:property value="manager" /></td>
 								<td>
 									<s:iterator value="grbDomains" status="stat">
-										<s:property value="name" /><p>
+										<p><s:property value="name" /></p>
 									</s:iterator>
 								</td>
 								<td><s:property value="trl.code" /></td>

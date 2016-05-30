@@ -20,51 +20,51 @@
 			<s:hidden name="researchPlan.updateUser" />
 			<s:hidden name="researchPlan.ver" />
 			
-			<div class="col-md-3">
-				<s:textfield label="計畫編號" name="researchPlan.planNo" cssClass="form-control" />
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-5">
+						<s:textfield label="計畫編號" name="researchPlan.planNo" cssClass="form-control" />
+					</div>
+					<div class="col-md-7">	
+						<s:textfield label="計畫名稱" name="researchPlan.name" cssClass="form-control" />
+					</div>
+					<div class="col-md-4">
+						<s:textfield label="計畫主持人" name="researchPlan.manager" cssClass="form-control" />
+					</div>
+					<div class="col-md-2">	
+						<s:textfield label="計畫年度" name="researchPlan.year" cssClass="form-control" />
+					</div>
+					<div class="col-md-6">
+						<s:textfield label="計畫關鍵字" name="researchPlan.keyword" cssClass="form-control" />
+					</div>
+					<div class="col-md-8">
+						<s:select label="技術發展階段" name="researchPlan.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
+					</div>
+					<div class="col-md-2">
+						<s:textfield label="GRB計畫編號" name="researchPlan.projkey" cssClass="form-control" />
+					</div>
+					<div class="col-md-2">
+						<s:textfield label="成果報告ID" name="researchPlan.grb05Id" cssClass="form-control" />
+					</div>
+				</div>
 			</div>
-			<div class="col-md-5">	
-				<s:textfield label="計畫名稱" name="researchPlan.name" cssClass="form-control" />
-			</div>
-			<div class="col-md-3">
-				<s:textfield label="計畫主持人" name="researchPlan.manager" cssClass="form-control" />
-			</div>
-			<div class="col-md-1">	
-				<s:textfield label="計畫年度" name="researchPlan.year" cssClass="form-control" />
-			</div>
-			<div class="col-md-3">
-				<s:textfield label="計畫關鍵字" name="researchPlan.keyword" cssClass="form-control" />
-			</div>
-			<div class="col-md-5">
-				<s:select label="技術發展階段" name="researchPlan.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
-			</div>
-			<div class="col-md-2">
-				<s:textfield label="GRB計畫編號" name="researchPlan.projkey" cssClass="form-control" />
-			</div>
-			<div class="col-md-2">
-				<s:textfield label="成果報告ID" name="researchPlan.grb05Id" cssClass="form-control" />
-			</div>			
-			<div class="col-md-2">
-				<s:select label="研究領域1" name="researchPlan.grbDomain1.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />		
-			</div>
-			<div class="col-md-2">
-				<s:select label="研究領域2" name="researchPlan.grbDomain2.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
-			</div>
-			<div class="col-md-2">
-				<s:select label="研究領域3" name="researchPlan.grbDomain3.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
-			</div>
-			<div class="col-md-2">
-				<s:select label="研究領域4" name="researchPlan.grbDomain4.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />		
-			</div>
-			<div class="col-md-2">
-				<s:select label="研究領域5" name="researchPlan.grbDomain5.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
-			</div>
-			<div class="col-md-2">
-				<s:select label="研究領域6" name="researchPlan.grbDomain6.code" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
+			<div class="col-md-4">
+				<div class="row">
+					<div class="col-md-5">
+						<s:select label="研究領域清單" id="grbCodesList" name="" list="optionGrbDomainList" listKey="code" listValue="%{code +' ' +name}" multiple="true" size="9"/>
+					</div>
+					<div class="col-md-2">
+						<input type="button" id="btn-selectGrb" class="btn btn-sm btn-default" value="->"/>
+						<input type="button" id="btn-diselectGrb" class="btn btn-sm btn-default" value="<-"/>
+					</div>					
+					<div class="col-md-5">
+						<s:select label="已選研究領域" id="selectedGrbCodes" name="researchPlan.grbDomainCodes" list="researchPlan.grbDomains" listKey="code" listValue="%{code +' ' +name}" multiple="true" size="9"/>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div>
-			<s:submit cssClass="btn btn-primary" value="儲存" />
+			<s:submit id="btn_save" cssClass="btn btn-primary" value="儲存" />
 			<a class="btn btn-default" href="<s:url value="/iace/researchPlan/init"/>">回上一頁</a>		
 		</div>
 		<hr>
@@ -135,14 +135,78 @@
 					</s:if>
 				</tbody>					
 			</table>
-		</div>
+		</div>	
 	</s:form>
-	
 	<script type="text/javascript">
-		$(doucment).ready(function(){
+		$(document).ready(function(){
+			$("#grbCodesList option").dblclick(dblclick_grbOption);
+			$("#selectedGrbCodes option").dblclick(dblclick_selectrbOption);
+		});
+		
+		function dblclick_grbOption() {
+			if ($("#selectedGrbCodes option").size() == 6) {
+				alert("最多只可選取6個");
+				return;
+			}
 			
-		});	
-	</script>	
+			$("#selectedGrbCodes").append($(this));
+			
+			var selectList = $("#selectedGrbCodes option");
+			selectList.sort(function(a,b){
+				var valA = a.value.toLowerCase();
+				var valB = b.value.toLowerCase();
+			    if (valA < valB) {
+			    	return -1;
+			    } else if (valA > valB) {
+			    	return 1;
+			    } else {
+			    	if (a.value < b.value) return -1;
+			    	else if (a.value < b.value) return 1;
+			    	else return 0;
+			    }
+			});
+			$("#selectedGrbCodes").html(selectList);
+			$("#selectedGrbCodes option").dblclick(dblclick_selectrbOption);
+		}
+		function dblclick_selectrbOption() {
+			$("#grbCodesList").append($(this));
+			
+			var selectList = $("#grbCodesList option");			
+			selectList.sort(function(a,b){
+				var valA = a.value.toLowerCase();
+				var valB = b.value.toLowerCase();
+			    if (valA < valB) {
+			    	return -1;
+			    } else if (valA > valB) {
+			    	return 1;
+			    } else {
+			    	if (a.value < b.value) return -1;
+			    	else if (a.value < b.value) return 1;
+			    	else return 0;
+			    }
+			});
+			$("#grbCodesList").html(selectList);
+			$("#grbCodesList option").dblclick(dblclick_grbOption);			
+		}		
+		
+		$("#btn-selectGrb").click(function(){			
+			var selectOption = $("#grbCodesList").find('option:selected');
+			selectOption.each(function(){
+				$(this).dblclick();
+			});
+		});
+		$("#btn-diselectGrb").click(function(){			
+			var selectOption = $("#selectedGrbCodes").find('option:selected');
+			selectOption.each(function(){
+				$(this).dblclick();
+			});
+		});
+
+		$("#btn_save").click(function(){
+			$("#selectedGrbCodes option").prop('selected', true);
+		});
+	</script>
+
 	
 </body>
 </html>

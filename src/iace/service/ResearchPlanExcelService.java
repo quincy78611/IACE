@@ -32,7 +32,7 @@ public class ResearchPlanExcelService extends BaseExcelService {
 					rp.setName(getCell(r, ++c).getStringCellValue());
 					rp.setManager(getCell(r, ++c).getStringCellValue());
 					String grbDomains = readStringFromNumericOrStringCell(getCell(r, ++c));
-					rp.setGrbDomains(StringUtils.split(grbDomains, ";"));
+					rp.setGrbDomainCodes(Arrays.asList(StringUtils.split(grbDomains, ";")));
 					rp.setKeyword(getCell(r, ++c).getStringCellValue());
 					String rawTrl = readStringFromNumericOrStringCell(getCell(r, ++c));
 					String trlCode = rawTrl.startsWith("TRL") ? rawTrl : "TRL"+rawTrl;
