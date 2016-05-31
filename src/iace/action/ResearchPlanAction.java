@@ -1,9 +1,7 @@
 package iace.action;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import core.action.BaseAction;
 import core.util.PagedList;
@@ -15,8 +13,8 @@ import iace.entity.option.OptionTrl;
 import iace.service.OptionGrbDomainService;
 import iace.service.OptionTrlService;
 import iace.service.ResearchPlanService;
-import iace.service.TechnologyService;
 import iace.service.ServiceFactory;
+import iace.service.TechnologyService;
 
 public class ResearchPlanAction extends BaseAction {
 

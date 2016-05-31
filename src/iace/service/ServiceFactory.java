@@ -25,11 +25,13 @@ public class ServiceFactory {
 	
 	private static PatentService patentService;
 	private static TechFieldService techFieldService;
-	private static ResearchPlanService researchPlanService;
-	private static TechnologyService technologyService;
-	
 	private static PatentExcelService patentExcelService;
+	
+	private static ResearchPlanService researchPlanService;
+	private static TechnologyService technologyService;	
 	private static ResearchPlanExcelService researchPlanExcelService;
+	
+	private static ConsultingService consultingService;
 	
 	public static OptionCompanyLocationService getOptionCompanyLocationService() {
 		if (optionCompanyLocationService == null) {
@@ -164,4 +166,13 @@ public class ServiceFactory {
 		}
 		return researchPlanExcelService;
 	}
+
+	public static ConsultingService getConsultingService() {
+		if (consultingService == null) {
+			consultingService = new ConsultingService(DaoFactory.getConsultingDao());
+		}
+		return consultingService;
+	}
+	
+	
 }

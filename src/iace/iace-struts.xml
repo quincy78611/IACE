@@ -78,7 +78,8 @@
 			<result>/WEB-INF/jsp/iace/patent/index.jsp</result>
 		</action>	
 		<action name="index" class="iace.action.PatentAction" method="index">
-			<result>/WEB-INF/jsp/iace/patent/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/patent/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/iace/patent/index.jsp</result>
 		</action>
 		<action name="showDetail" class="iace.action.PatentAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
@@ -124,6 +125,46 @@
 			<result name="input">/WEB-INF/jsp/iace/patent/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/patent/index.jsp</result>
 		</action>			
+	</package>
+	
+	<package name="consulting" namespace="/iace/consulting" extends="struts-default">
+		<action name="init" class="iace.action.ConsultingAction" method="init">
+			<result>/WEB-INF/jsp/iace/consulting/index.jsp</result>
+		</action>	
+		<action name="index" class="iace.action.ConsultingAction" method="index">
+			<result name="input">/WEB-INF/jsp/iace/consulting/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/consulting/index.jsp</result>			
+		</action>
+		<action name="showDetail" class="iace.action.ConsultingAction" method="showDetail">
+			<result name="input">/WEB-INF/jsp/iace/consulting/detail.jsp</result>			
+			<result name="success">/WEB-INF/jsp/iace/consulting/detail.jsp</result>
+			<result name="error" type="redirectAction">
+				<param name="actionName">init</param>
+			</result>			
+		</action>
+		<action name="create" class="iace.action.ConsultingAction" method="create">
+			<result name="success">/WEB-INF/jsp/iace/consulting/create.jsp</result>	
+		</action>
+		<action name="createSubmit" class="iace.action.ConsultingAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/consulting/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/consulting/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.ConsultingAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/consulting/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/consulting/update.jsp</result>		
+		</action>
+		<action name="updateSubmit" class="iace.action.ConsultingAction" method="updateSubmit">		
+			<result name="input">/WEB-INF/jsp/iace/consulting/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/consulting/detail.jsp</result>
+		</action>	
+		<action name="delete" class="iace.action.ConsultingAction" method="delete">
+			<result name="input">/WEB-INF/jsp/iace/consulting/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/consulting/delete.jsp</result>		
+		</action>
+		<action name="deleteSubmit" class="iace.action.ConsultingAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/consulting/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/consulting/index.jsp</result>
+		</action>		
 	</package>
 	
 	<package name="batchImport" namespace="/iace/batchImport" extends="struts-default">

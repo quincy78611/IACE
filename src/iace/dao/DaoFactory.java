@@ -3,6 +3,8 @@ package iace.dao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import iace.dao.consulting.ConsultingDao;
+import iace.dao.consulting.IConsultingDao;
 import iace.dao.option.IOptionDao;
 import iace.dao.option.OptionCompanyLocationDao;
 import iace.dao.option.OptionConsultDao;
@@ -58,6 +60,7 @@ public class DaoFactory {
 	private static IPatentDao patentDao;
 	private static IResearchPlanDao researchPlanDao;
 	private static ITechnologyDao technologyDao;
+	private static IConsultingDao consultingDao;
 	
 	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {
 		if (optionCompanyLocationDao == null) {
@@ -171,5 +174,14 @@ public class DaoFactory {
 		}
 		return technologyDao;
 	}
+
+	public static IConsultingDao getConsultingDao() {
+		if (consultingDao == null) {
+			consultingDao = new ConsultingDao();
+		}
+		return consultingDao;
+	}
+	
+	
 
 }

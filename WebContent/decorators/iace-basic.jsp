@@ -78,6 +78,15 @@
 					</li>
 					<li class="dropdown">
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					       	 諮詢服務表 <span class="caret"></span>
+					    </a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="<s:url value="/iace/consulting/init"/>">維護</a></li>
+							<li><a href="<s:url value="/iace/consulting/create"/>">新增</a></li>
+						</ul>					
+					</li>
+					<li class="dropdown">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 					       	 代碼管理 <span class="caret"></span>
 					    </a>
 					    <ul class="dropdown-menu" role="menu">

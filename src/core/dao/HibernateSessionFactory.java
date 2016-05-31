@@ -8,6 +8,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import iace.entity.Consulting;
 import iace.entity.Patent;
 import iace.entity.ResearchPlan;
 import iace.entity.Technology;
@@ -99,11 +100,13 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(OptionOrganizationType.class);
     	configuration.addAnnotatedClass(OptionTrl.class);
     	configuration.addAnnotatedClass(OptionSubject.class);
+    	
     	configuration.addAnnotatedClass(Patent.class);
     	configuration.addAnnotatedClass(ResearchPlan.class);
     	configuration.addAnnotatedClass(Technology.class);
     	configuration.addAnnotatedClass(SysRole.class);
     	configuration.addAnnotatedClass(SysUser.class);
     	configuration.addAnnotatedClass(TechField.class);
+    	configuration.addAnnotatedClass(Consulting.class);
     }
 }
