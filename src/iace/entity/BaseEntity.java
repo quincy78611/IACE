@@ -14,8 +14,8 @@ import javax.persistence.Version;
 public abstract class BaseEntity implements Serializable {
 
 	private static final long serialVersionUID = 5908489787919929004L;
-	public static final String valid = "T";
-	public static final String inValid = "F";
+	public static final String TRUE = "T";
+	public static final String FALSE = "F";
 
 	private String isValid;
 	private Date createTime;
@@ -102,7 +102,7 @@ public abstract class BaseEntity implements Serializable {
 		this.createTime = now;
 		this.updateTime = now;
 		//this.ver = new Timestamp(now.getTime());
-		this.isValid = valid;
+		this.isValid = TRUE;
 	}
 	
 	public void update() {
@@ -114,7 +114,7 @@ public abstract class BaseEntity implements Serializable {
 	
 	public void delete() {
 		update();
-		this.isValid = inValid;
+		this.isValid = FALSE;
 	}
 	
 	

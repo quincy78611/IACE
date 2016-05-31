@@ -9,4 +9,5 @@ public interface IBaseCRUDService<T, ID extends Serializable> {
 	public void create(T entity) throws IOException;
 	public void update(T entity) throws IOException;
 	public void delete(T entity) throws IOException;
+	public void delete(ID id) throws IOException;
 }

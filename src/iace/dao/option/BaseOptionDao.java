@@ -31,7 +31,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 	@Override
 	public List<OptionEntity> listAll() {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
-		criterionList.add(Restrictions.eq("isValid", BaseEntity.valid));		
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));		
 		return (List<OptionEntity>) super.listAll(optionEntityClass, Order.asc("code"), criterionList);
 	}
 	
@@ -42,7 +42,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 		if (codes != null && codes.size() > 0) {
 			criterionList.add(Restrictions.not(Restrictions.in("code", codes)));
 		}
-		criterionList.add(Restrictions.eq("isValid", BaseEntity.valid));		
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));		
 		return (List<OptionEntity>) super.listAll(optionEntityClass, Order.asc("code"), criterionList);
 	}
 
@@ -65,6 +65,13 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 		super.create(entity);
 	}
 	
+	@Deprecated
+	@Override
+	public void createAll(List<OptionEntity> entities) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public void update(OptionEntity entity) {
 		entity.update();
@@ -96,7 +103,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 						+ "WHERE o.code = :code AND o.isValid = :isValid";
 				Query query = session.createQuery(hql);
 				query.setString("code", code);
-				query.setString("isValid", BaseEntity.valid);
+				query.setString("isValid", BaseEntity.TRUE);
 				Object obj = query.uniqueResult();
 				return (long)obj >= 1;			
 			} else {
@@ -118,7 +125,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 						+ "WHERE o.name = :name AND o.isValid = :isValid";
 				Query query = session.createQuery(hql);
 				query.setString("name", name);
-				query.setString("isValid", BaseEntity.valid);
+				query.setString("isValid", BaseEntity.TRUE);
 				Object obj = query.uniqueResult();
 				return (long)obj >= 1;			
 			} else {

@@ -25,7 +25,7 @@ public class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> implements IBa
 	@SuppressWarnings("unchecked")
 	public List<T> listAll() {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
-		criterionList.add(Restrictions.eq("isValid", BaseEntity.valid));		
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));		
 		return (List<T>) super.listAll(entityClass, Order.asc("id"), criterionList);
 	}
 

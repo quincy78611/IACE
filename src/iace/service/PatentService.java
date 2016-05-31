@@ -159,6 +159,12 @@ public class PatentService extends BaseService<Patent, Long> {
 		this.patentDao.delete(entity.getId());
 		File f = new File(this.patentPictureFolder, imagePath);
 		if (f.exists()) f.delete();		
+	}	
+
+	@Override
+	public void delete(Long id) throws IOException {
+		Patent entity = this.patentDao.get(id);
+		delete(entity);
 	}
 		
 	public boolean checkUK(Patent entity) {
@@ -216,4 +222,5 @@ public class PatentService extends BaseService<Patent, Long> {
 			log.warn("load image fail", e);
 		}
 	}
+
 }

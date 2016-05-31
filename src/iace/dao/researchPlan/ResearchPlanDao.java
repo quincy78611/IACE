@@ -54,7 +54,7 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 	public ResearchPlan get(long id) {
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		criterions.add(Restrictions.eq("id", id));
-		criterions.add(Restrictions.eq("isValid", BaseEntity.valid));
+		criterions.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 		return get(criterions);
 	}
 
@@ -71,7 +71,7 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 					+ "AND rp.isValid = :isValid ";
 			Query query = session.createQuery(hql);
 			query.setString("planNo", planNo);
-			query.setString("isValid", BaseEntity.valid);
+			query.setString("isValid", BaseEntity.TRUE);
 			Object obj = query.uniqueResult();
 			return (long)obj > 0;
 		} catch (Exception e) {
@@ -85,7 +85,7 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 	public ResearchPlan getByPlanNo(String planNo) {
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		criterions.add(Restrictions.eq("planNo", planNo).ignoreCase());
-		criterions.add(Restrictions.eq("isValid", BaseEntity.valid));
+		criterions.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 		return get(criterions);		
 	}
 
@@ -160,7 +160,7 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 			rCrit.add(Restrictions.like("name", arg.getRndResultName(), MatchMode.ANYWHERE).ignoreCase());
 		}		
 		
-		criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 		
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 	}

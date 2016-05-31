@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import core.service.BaseService;
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.dao.researchPlan.IResearchPlanDao;
@@ -14,7 +13,7 @@ import iace.entity.Technology;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
 
-public class ResearchPlanService extends BaseService<ResearchPlan, Long> {
+public class ResearchPlanService extends BaseIaceService<ResearchPlan> {
 
 	private IResearchPlanDao researchPlanDao;
 	private IOptionDao<OptionGrbDomain> optionGrbDomainDao;
@@ -23,6 +22,7 @@ public class ResearchPlanService extends BaseService<ResearchPlan, Long> {
 	ResearchPlanService(IResearchPlanDao researchPlanDao, 
 			IOptionDao<OptionGrbDomain> optionGrbDomainDao, 
 			IOptionDao<OptionTrl> optionTrlDao) {
+		super(researchPlanDao);
 		this.researchPlanDao = researchPlanDao;
 		this.optionGrbDomainDao = optionGrbDomainDao;
 		this.optionTrlDao = optionTrlDao;
@@ -31,16 +31,6 @@ public class ResearchPlanService extends BaseService<ResearchPlan, Long> {
 	public PagedList<ResearchPlan> searchBy(ResearchPlanSearchModel arg) {
 		PagedList<ResearchPlan> res = this.researchPlanDao.searchBy(arg);
 		return res;
-	}
-	
-	@Override
-	public ResearchPlan get(Long id) {
-		return this.researchPlanDao.get(id);
-	}
-
-	@Override
-	public void create(ResearchPlan entity) {
-		this.researchPlanDao.create(entity);
 	}
 	
 	public List<String> createAll(List<ResearchPlan> entities) {
@@ -104,20 +94,6 @@ public class ResearchPlanService extends BaseService<ResearchPlan, Long> {
 
 			}			
 		}
-	}
-
-	@Override
-	public void update(ResearchPlan entity) {		
-		this.researchPlanDao.update(entity);
-	}
-
-	@Override
-	public void delete(ResearchPlan entity) {
-		this.researchPlanDao.delete(entity);
-	}
-	
-	public void delete(Long id) {
-		this.researchPlanDao.delete(id);
 	}
 
 }

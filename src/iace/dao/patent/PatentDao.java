@@ -39,7 +39,7 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 			Query query = session.createQuery(hql);
 			query.setString("appliactionNo", entity.getAppliactionNo());
 			query.setString("techField", entity.getTechField().getName());
-			query.setString("isValid", BaseEntity.valid);
+			query.setString("isValid", BaseEntity.TRUE);
 			query.setLong("id", entity.getId());
 			Object obj = query.uniqueResult();
 			return (long)obj == 0;
@@ -55,7 +55,7 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Patent.class);
-			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			if (StringUtils.isNotBlank(name)) {
 				criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
 			}
@@ -86,7 +86,7 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		try {	
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Patent.class);
-			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			if (StringUtils.isNotBlank(name)) {
 				criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
 			}
@@ -119,7 +119,7 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Patent.class);
-			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			if (StringUtils.isNotBlank(name)) {
 				criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
 			}
@@ -153,7 +153,7 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 					+ "FROM " + Patent.class.getSimpleName() + " p "
 					+ "WHERE p.isValid = :isValid ";
 			Query query = session.createQuery(hql);
-			query.setString("isValid", BaseEntity.valid);
+			query.setString("isValid", BaseEntity.TRUE);
 			List<Object[]> objs = query.list();
 			Set<String> ukSet = new LinkedHashSet<String>();
 			for (Object[] obj : objs) {				 

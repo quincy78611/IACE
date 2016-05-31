@@ -45,7 +45,7 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 		dao.delete(entity);		
 	}
 	
-	public void delete(long id) {
+	public void delete(Long id) {
 		if (hasBeenUsed(id)) {
 			String msg = "Can't be delete because it had been used!";
 			throw new IllegalArgumentException(msg);

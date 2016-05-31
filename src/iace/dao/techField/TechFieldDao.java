@@ -22,7 +22,7 @@ public class TechFieldDao extends BaseIaceDao<TechField> implements ITechFieldDa
 					+ "WHERE o.name = :name AND o.isValid = :isValid";
 			Query query = session.createQuery(hql);
 			query.setString("name", name);
-			query.setString("isValid", BaseEntity.valid);
+			query.setString("isValid", BaseEntity.TRUE);
 			Object obj = query.uniqueResult();
 			return (long)obj >= 1;
 		} catch (Exception e) {
@@ -40,7 +40,7 @@ public class TechFieldDao extends BaseIaceDao<TechField> implements ITechFieldDa
 					+ "WHERE o.name = :name AND o.isValid = :isValid";
 			Query query = session.createQuery(hql);
 			query.setString("name", name);
-			query.setString("isValid", BaseEntity.valid);
+			query.setString("isValid", BaseEntity.TRUE);
 			Object obj = query.uniqueResult();
 			return (TechField)obj;
 		} catch (Exception e) {

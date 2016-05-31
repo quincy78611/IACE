@@ -83,7 +83,7 @@
 							<tr>
 								<td><s:property value="name"/></td>
 								<td><s:property value="descriptoin"/></td>
-								<td><s:property value="trl.code"/></td>
+								<td><s:property value="%{getOptionTrlCodesString()}"/></td>
 								<td><s:property value="trlDesc"/></td>
 							</tr>
 						</s:iterator>

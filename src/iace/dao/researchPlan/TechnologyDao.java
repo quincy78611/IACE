@@ -21,7 +21,7 @@ public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnolog
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Technology.class);
 			criteria.add(Restrictions.eq("id", id));
-			criteria.add(Restrictions.eq("isValid", BaseEntity.valid));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			Technology t = (Technology) criteria.uniqueResult();
 			
 			//這裡這麼做是因為Technology.optionTrlList 設定為FetchType.LAZY
