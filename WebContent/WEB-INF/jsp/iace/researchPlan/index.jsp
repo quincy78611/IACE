@@ -151,9 +151,9 @@
 		$(document).ready(function () {			
  			$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
 			
-			var pageIndex = '<s:property value="researchPlanPagedList.pageIndex"/>';
-			var pageNumber = '<s:property value="researchPlanPagedList.pageNumber"/>';
-			var pageCount = '<s:property value="researchPlanPagedList.pageCount"/>';
+			var pageIndex = parseInt('<s:property value="researchPlanPagedList.pageIndex"/>');
+			var pageNumber = parseInt('<s:property value="researchPlanPagedList.pageNumber"/>');
+			var pageCount = parseInt('<s:property value="researchPlanPagedList.pageCount"/>');
 			
 			$("ul > li > input.btn-page").click(function() {
 				$("#pageIndex").val($(this).attr("value") - 1);

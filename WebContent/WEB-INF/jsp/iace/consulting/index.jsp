@@ -116,9 +116,9 @@
 	$(document).ready(function () {			
 		$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
 		
-		var pageIndex = '<s:property value="consultingPagedList.pageIndex"/>';
-		var pageNumber = '<s:property value="consultingPagedList.pageNumber"/>';
-		var pageCount = '<s:property value="consultingPagedList.pageCount"/>';
+		var pageIndex = parseInt('<s:property value="consultingPagedList.pageIndex"/>');
+		var pageNumber = parseInt('<s:property value="consultingPagedList.pageNumber"/>');
+		var pageCount = parseInt('<s:property value="consultingPagedList.pageCount"/>');
 		
 		$("ul > li > input.btn-page").click(function() {
 			$("#pageIndex").val($(this).attr("value") - 1);
