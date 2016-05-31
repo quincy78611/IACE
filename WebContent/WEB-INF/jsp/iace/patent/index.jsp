@@ -92,18 +92,26 @@
 		</div>
 
 		<div>
-			<s:hidden id="pageIndex" name="pageIndex" />
+			<s:hidden id="pageIndex" name="pageIndex" value="0"/>
 			<s:hidden id="pageSize" name="pageSize" value="5" />
 			
 			<s:if test="patentPagedList != null && patentPagedList.pageCount > 0">
 				<ul class="pagination">
-					<li><input type="submit" value=&laquo; class="btn btn-default btn-sm btn-previous-page" /></li>
-					
-					<s:iterator value="patentPagedList.pageNumberList" status="stat">
+					<li><input type="submit" value="First" class="btn-first-page" /></li>
+					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
+					<s:if test="pageIndex >= 5">
+						......
+					</s:if>
+					<s:iterator value="patentPagedList.pageNumberList" status="stat" 
+						begin="%{pageIndex < 5 ? 0 : pageIndex - 5 }"
+						end="%{pageIndex > patentPagedList.pageCount - 6 ? patentPagedList.pageCount -1 : pageIndex +5 }">
 						<li><input type="submit" value=<s:property/> class="btn-page" /></li>
 					</s:iterator>
-					
-					<li><input type="submit" value=&raquo;	class="btn btn-default btn-sm btn-next-page" /></li>
+					<s:if test="pageIndex <= patentPagedList.pageCount - 6">
+						......
+					</s:if>
+					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
+					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
 				</ul>
 			
 				<p>Displaying <s:property value="patentPagedList.itemStart"/> - <s:property value="patentPagedList.itemEnd"/> of <s:property value="patentPagedList.totatlItemCount"/> item(s)</p> 
@@ -111,23 +119,31 @@
 		</div>
 	</s:form>
 	
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$("#btn-reset").click(function(){
-				$("input.form-control:text").val("");
-				$("select").prop('selectedIndex', 0);
-			});
-			
-			$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
+	<script type="text/javascript">		
+		$(document).ready(function () {			
+				$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
 			
 			var pageIndex = '<s:property value="patentPagedList.pageIndex"/>';
+			var pageNumber = '<s:property value="patentPagedList.pageNumber"/>';
 			var pageCount = '<s:property value="patentPagedList.pageCount"/>';
 			
 			$("ul > li > input.btn-page").click(function() {
 				$("#pageIndex").val($(this).attr("value") - 1);
 				return true;
 			});
-			$("ul.pagination > li > input.btn-page").eq(pageIndex).addClass("active");
+			$("ul.pagination > li > input.btn-page[value='"+pageNumber+"']").addClass("active");
+	
+			//第一頁按鈕
+			$("ul > li > input.btn-first-page").click(function() {
+				$("#pageIndex").val(0);
+			});
+			
+			//最後一頁按鈕
+			$("ul > li > input.btn-last-page").click(function() {
+				$("#pageIndex").val(pageCount-1);
+			});
+			
+			//上一頁按鈕
 			if (pageIndex == 0) {
 				$("ul > li > input.btn-previous-page").addClass("disabled");
 			}
@@ -139,6 +155,8 @@
 					return false;
 				}
 			});
+			
+			//下一頁按鈕
 			if (pageIndex == pageCount - 1) {
 				$("ul > li > input.btn-next-page").addClass("disabled");
 			}
@@ -150,11 +168,18 @@
 					return false;
 				}
 			});
+						
 			// 注意: 在include此頁面的頁面的搜尋按鈕記得要加上id
 		    $("#btn-search").click(function(){
 		        $("#pageIndex").val(0);
 		        return true;
 		    });
+			
+			$("#btn-reset").click(function(){
+				$("input.form-control:text").val("");
+				$("select").prop('selectedIndex', 0);
+			});
+
 		});
 	</script>
 </body>

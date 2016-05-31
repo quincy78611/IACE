@@ -91,15 +91,15 @@
 				<ul class="pagination">
 					<li><input type="submit" value="First" class="btn-first-page" /></li>
 					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
-					<s:if test="searchCondition.pageIndex >= 5">
+					<s:if test="pageIndex >= 5">
 						......
 					</s:if>
 					<s:iterator value="consultingPagedList.pageNumberList" status="stat" 
-						begin="%{searchCondition.pageIndex < 5 ? 0 : searchCondition.pageIndex - 5 }"
-						end="%{searchCondition.pageIndex > consultingPagedList.pageCount - 6 ? consultingPagedList.pageCount -1 : searchCondition.pageIndex +5 }">
+						begin="%{pageIndex < 5 ? 0 : pageIndex - 5 }"
+						end="%{pageIndex > consultingPagedList.pageCount - 6 ? consultingPagedList.pageCount -1 : pageIndex +5 }">
 						<li><input type="submit" value=<s:property/> class="btn-page" /></li>
 					</s:iterator>
-					<s:if test="searchCondition.pageIndex <= consultingPagedList.pageCount - 6">
+					<s:if test="pageIndex <= consultingPagedList.pageCount - 6">
 						......
 					</s:if>
 					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
