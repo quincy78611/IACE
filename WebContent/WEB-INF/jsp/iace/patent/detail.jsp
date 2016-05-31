@@ -7,7 +7,7 @@
 
 </head>
 <body>
-	<div class="form-horizontal" >
+	<div class="container-fluid" >
 		<s:textfield label="專利名稱" name="patent.name" readonly="true" cssClass="form-control" />				
 		<s:textfield label="專利權人" name="patent.assignee" readonly="true" cssClass="form-control"  />
 		<s:textfield label="發明人" name="patent.invertor" readonly="true" cssClass="form-control" />

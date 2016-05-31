@@ -10,7 +10,7 @@
 	<h4>刪除</h4>
 
 	<s:form action="deleteSubmit" method="post" validate="true" >
-		<div class="form-horizontal" >
+		<div class="container-fluid" >
 			<s:hidden name="patent.id" />
 			<s:hidden name="patent.isValid" />
 			<s:hidden name="patent.createTime" />

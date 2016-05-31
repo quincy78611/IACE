@@ -10,7 +10,7 @@
 	<h4>編輯</h4>
 
 	<s:form action="updateSubmit" method="post" validate="true" enctype="multipart/form-data">
-		<div class="form-horizontal" >
+		<div class="container-fluid" >
 			<s:hidden name="patent.id" />
 			<s:hidden name="patent.isValid" />
 			<s:hidden name="patent.createTime" />

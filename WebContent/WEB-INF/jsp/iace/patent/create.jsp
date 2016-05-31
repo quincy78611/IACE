@@ -10,7 +10,7 @@
 	<h4>新增</h4>
 
 	<s:form action="createSubmit" method="post" validate="true" enctype="multipart/form-data">
-		<div class="form-horizontal" >
+		<div class="container-fluid" >
 			<s:textfield label="專利名稱" name="patent.name" cssClass="form-control" />				
 			<s:textfield label="專利權人" name="patent.assignee" cssClass="form-control"  />
 			<s:textfield label="發明人" name="patent.invertor" cssClass="form-control" />
