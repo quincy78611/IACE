@@ -43,10 +43,10 @@
 				<s:textfield label="產業/領域別(其他)" name="consulting.industryOther" disabled="true" class="form-control industry" />
 			</div>
 			<div class="col-md-3">
-				<s:textfield label="聯絡電話" name="consulting.phone" class="form-control industry" />		
+				<s:textfield label="聯絡電話" name="consulting.phone" class="form-control" />		
 			</div>
 			<div class="col-md-6">
-				<s:textfield label="E-MAIL" name="consulting.email" class="form-control industry" />		
+				<s:textfield label="E-MAIL" name="consulting.email" class="form-control" />		
 			</div>
 			<div class="col-md-3">
 				<s:textfield label="諮詢日期" name="consulting.consultDate" cssClass="form-control calendarBox" >			

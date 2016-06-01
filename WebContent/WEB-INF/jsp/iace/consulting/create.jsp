@@ -9,13 +9,14 @@
 <body>
 	<h3>新增</h3>
 	<s:form action="createSubmit" method="post" validate="true">
-		<div class="container-fluid" >			
+		<div class="container-fluid ">
 			<div class="col-md-3">
 				<s:textfield label="姓名" name="consulting.name" class="form-control" />
 			</div>
 			<div class="col-md-9">
 				<s:textfield label="單位名稱" name="consulting.organization" class="form-control" />
-			</div>			
+			</div>						
+
 			<div class="col-md-3">
 				<s:select label="單位類型" name="consulting.optionOrganizationType.code" list="optionOrganizationTypeList" listKey="code" listValue="%{code +' ' +name}" class="orgType"/>		
 			</div>
@@ -35,10 +36,10 @@
 				<s:textfield label="產業/領域別(其他)" name="consulting.industryOther" disabled="true" class="form-control industry" />
 			</div>
 			<div class="col-md-3">
-				<s:textfield label="聯絡電話" name="consulting.phone" class="form-control industry" />		
+				<s:textfield label="聯絡電話" name="consulting.phone" class="form-control" />		
 			</div>
 			<div class="col-md-6">
-				<s:textfield label="E-MAIL" name="consulting.email" class="form-control industry" />		
+				<s:textfield label="E-MAIL" name="consulting.email" class="form-control" />		
 			</div>
 			<div class="col-md-3">
 				<s:textfield label="諮詢日期" name="consulting.consultDate" cssClass="form-control calendarBox" >			
