@@ -2,12 +2,9 @@ package iace.entity;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 @MappedSuperclass
@@ -18,9 +15,9 @@ public abstract class BaseEntity implements Serializable {
 	public static final String FALSE = "F";
 
 	private String isValid;
-	private Date createTime;
+	private Timestamp createTime;
 	private String createUser;
-	private Date updateTime;
+	private Timestamp updateTime;
 	private String updateUser;
 	private Timestamp ver;
 	
@@ -45,12 +42,12 @@ public abstract class BaseEntity implements Serializable {
 	}
 
 	@Column(name = "CREATE_TIME")
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getCreateTime() {
+//	@Temporal(TemporalType.TIMESTAMP)
+	public Timestamp getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(Timestamp createTime) {
 		this.createTime = createTime;
 	}
 
@@ -64,12 +61,12 @@ public abstract class BaseEntity implements Serializable {
 	}
 
 	@Column(name = "UPDATE_TIME")
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getUpdateTime() {
+//	@Temporal(TemporalType.TIMESTAMP)
+	public Timestamp getUpdateTime() {
 		return updateTime;
 	}
 
-	public void setUpdateTime(Date updateTime) {
+	public void setUpdateTime(Timestamp updateTime) {
 		this.updateTime = updateTime;
 	}
 
@@ -98,18 +95,15 @@ public abstract class BaseEntity implements Serializable {
 	}
 
 	public void create() {
-		Date now = new Date();
+		Timestamp now = new Timestamp(System.currentTimeMillis());
 		this.createTime = now;
 		this.updateTime = now;
-		//this.ver = new Timestamp(now.getTime());
 		this.isValid = TRUE;
 	}
 	
 	public void update() {
-		Date now = new Date();
+		Timestamp now = new Timestamp(System.currentTimeMillis());
 		this.updateTime = now;
-		// shouldn't change ver's value due to "Optimistic locking" issue
-		// this.ver = new Timestamp(now.getTime());
 	}
 	
 	public void delete() {

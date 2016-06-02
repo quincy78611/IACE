@@ -23,19 +23,19 @@
 			<s:textfield label="發明人" name="patent.invertor" readonly="true" cssClass="form-control" />
 			<s:textfield label="申請國別" name="patent.country" readonly="true" cssClass="form-control" />
 			<s:textfield label="申請號" name="patent.appliactionNo" readonly="true" cssClass="form-control" />			
-			<s:textfield label="申請日" name="patent.applicationDate" readonly="true" cssClass="form-control calendarBox" >			
+			<s:textfield label="申請日" name="patent.applicationDate" readonly="true" cssClass="form-control" >			
 				<s:param name="value">
 					<s:date name="patent.applicationDate" format="yyyy/MM/dd" /> 
 				</s:param>
 			</s:textfield>
 			<s:textfield label="公開號" name="patent.openNo" readonly="true" cssClass="form-control" />			
-			<s:textfield label="公開日" name="patent.openDate" readonly="true" cssClass="form-control calendarBox" >
+			<s:textfield label="公開日" name="patent.openDate" readonly="true" cssClass="form-control" >
 				<s:param name="value">
 					<s:date name="patent.openDate" format="yyyy/MM/dd" /> 
 				</s:param>				
 			</s:textfield>	
 			<s:textfield label="公告號" name="patent.publicationNo" readonly="true" cssClass="form-control" />			
-			<s:textfield label="公告日" name="patent.publicationDate" readonly="true" cssClass="form-control calendarBox" >
+			<s:textfield label="公告日" name="patent.publicationDate" readonly="true" cssClass="form-control" >
 				<s:param name="value">
 					<s:date name="patent.publicationDate" format="yyyy/MM/dd" /> 
 				</s:param>			
