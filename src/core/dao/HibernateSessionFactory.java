@@ -27,6 +27,8 @@ import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionSubject;
 import iace.entity.option.OptionTrl;
+import iace.entity.questionnaire.QnrTableColumn;
+import iace.entity.questionnaire.QnrTable;
 
 
 public class HibernateSessionFactory {
@@ -108,5 +110,8 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(SysUser.class);
     	configuration.addAnnotatedClass(TechField.class);
     	configuration.addAnnotatedClass(Consulting.class);
+    	
+    	configuration.addAnnotatedClass(QnrTable.class);
+    	configuration.addAnnotatedClass(QnrTableColumn.class);
     }
 }

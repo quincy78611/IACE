@@ -20,6 +20,8 @@ import iace.dao.option.OptionSubjectDao;
 import iace.dao.option.OptionTrlDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
+import iace.dao.questionnaire.IQnrTemplateDao;
+import iace.dao.questionnaire.QnrTemplateDao;
 import iace.dao.researchPlan.IResearchPlanDao;
 import iace.dao.researchPlan.ITechnologyDao;
 import iace.dao.researchPlan.ResearchPlanDao;
@@ -61,6 +63,8 @@ public class DaoFactory {
 	private static IResearchPlanDao researchPlanDao;
 	private static ITechnologyDao technologyDao;
 	private static IConsultingDao consultingDao;
+	
+	private static IQnrTemplateDao qnrTemplateDao;
 	
 	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {
 		if (optionCompanyLocationDao == null) {
@@ -181,6 +185,14 @@ public class DaoFactory {
 		}
 		return consultingDao;
 	}
+
+	public static IQnrTemplateDao getQnrTemplateDao() {
+		if (qnrTemplateDao == null) {
+			qnrTemplateDao = new QnrTemplateDao();
+		}
+		return qnrTemplateDao;
+	}
+
 	
 	
 

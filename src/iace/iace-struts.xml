@@ -190,4 +190,14 @@
 		    <result name="input">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
 		</action>
 	</package>
+	
+	<package name="qnrTemplate" namespace="/iace/qnrTemplate" extends="struts-default">
+		<action name="create" class="iace.action.QnrTemplateAction" method="create">
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/create.jsp</result>	
+		</action>
+		<action name="createSubmit" class="iace.action.QnrTemplateAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+		</action>	
+	</package>
 </struts>
