@@ -1,6 +1,10 @@
 package core.dao;
 
 
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -46,7 +50,8 @@ public class HibernateSessionFactory {
     public static void rebuildSessionFactory() {  
         try {            
             configuration.configure(CONFIG_FILE_LOCATION);
-//            configuration.configure();  
+//            configuration.configure();
+//            showHibernateConfig();
             addEntityMapping();
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
             		.applySettings(configuration.getProperties()).build();
@@ -89,6 +94,44 @@ public class HibernateSessionFactory {
         return configuration;  
     } 
     
+    public static void showHibernateConfig() {
+    	Properties prop = configuration.getProperties();
+    	System.out.println("");
+    	System.out.println("==================================================");
+    	for (Entry<Object, Object> e : prop.entrySet()) {
+			String key = (String) e.getKey();
+			String value = (String) e.getValue();
+			System.out.println(key+":"+value);
+		}
+    	System.out.println("==================================================");
+    	System.out.println("");
+    }
+    
+    public static String getConnectionDriverClass() {
+    	Properties prop = configuration.getProperties();
+    	return prop.getProperty("hibernate.connection.driver_class");   	
+    }
+    
+    public static String getConnectionUrl() {
+    	Properties prop = configuration.getProperties();
+    	return prop.getProperty("hibernate.connection.url");
+    }
+    
+    public static String getConnectionUserName() {
+    	Properties prop = configuration.getProperties();
+    	return prop.getProperty("hibernate.connection.username");
+    }
+    
+    public static String getConnectionPassword() {
+    	Properties prop = configuration.getProperties();
+    	return prop.getProperty("hibernate.connection.password");
+    }
+
+    public static String getDefaultSchema() {
+    	Properties prop = configuration.getProperties();
+    	return prop.getProperty("hibernate.default_schema");
+    }
+       
     private static void addEntityMapping() {
     	configuration.addAnnotatedClass(OptionCompanyLocation.class);
     	configuration.addAnnotatedClass(OptionConsult.class);

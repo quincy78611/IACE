@@ -94,7 +94,7 @@ public class QnrTemplateDao extends BaseIaceDao<QnrTable> implements IQnrTemplat
 				criteria.add(Restrictions.like("name", qnrName, MatchMode.ANYWHERE).ignoreCase());
 			}
 			
-			criteria.addOrder(Order.asc("id"));
+			criteria.addOrder(Order.asc("name"));
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(pageSize);
 			

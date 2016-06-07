@@ -1,6 +1,7 @@
 package iace.service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import core.service.BaseService;
@@ -21,22 +22,22 @@ public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> 
 	}
 
 	@Override
-	public void create(T entity) throws IOException {
+	public void create(T entity) throws IOException, SQLException {
 		this.dao.create(entity);		
 	}
 
 	@Override
-	public void update(T entity) throws IOException {
+	public void update(T entity) throws IOException, SQLException {
 		this.dao.update(entity);
 	}
 
 	@Override
-	public void delete(T entity) throws IOException {
+	public void delete(T entity) throws IOException, SQLException {
 		this.dao.delete(entity);
 	}
 
 	@Override
-	public void delete(Long id) throws IOException {
+	public void delete(Long id) throws IOException, SQLException {
 		this.dao.delete(id);
 	}
 	

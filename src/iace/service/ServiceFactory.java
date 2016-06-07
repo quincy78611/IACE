@@ -178,7 +178,9 @@ public class ServiceFactory {
 
 	public static QnrTemplateService getQnrTemplateService() {
 		if (qnrTemplateService == null) {
-			qnrTemplateService = new QnrTemplateService(DaoFactory.getQnrTemplateDao());
+			qnrTemplateService = new QnrTemplateService(
+					DaoFactory.getQnrTemplateDao(), 
+					DaoFactory.getQuestionnaireDao());
 		}
 		return qnrTemplateService;
 	}

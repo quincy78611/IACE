@@ -31,12 +31,12 @@
 					<s:if test="qnrTableList != null">
 						<s:iterator value="qnrTableList.list" status="stat">
 							<tr>
-								<td>
+								<td class="col-md-1">
 									<s:property value="%{qnrTableList.itemStart + #stat.count -1}" />
 									<s:property value="id" />
 								</td>						
 								<td><s:property value="name" /></td>																
-								<td class="col-md-1">
+								<td class="col-md-3">
 									<s:url value="showDetail.action" var="detailUrlTag" escapeAmp="false">
 										<s:param name="id" value="id" />
 									</s:url>

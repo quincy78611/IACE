@@ -161,12 +161,16 @@ public class QnrTableColumn extends BaseEntity {
 			setDataType(DATA_TYPE_DATE);
 		} else if (this.inputType.equals(INPUT_TYPE_SELECT)) {
 			setDataType(DATA_TYPE_STRING);
+			setLength(2000);
 		} else if (this.inputType.equals(INPUT_TYPE_SELECT_OPTION)) {
 			setDataType(DATA_TYPE_STRING);
+			setLength(10);
 		} else if (this.inputType.equals(INPUT_TYPE_CHECKBOX)) {
 			setDataType(DATA_TYPE_STRING);
+			setLength(2000);
 		} else if (this.inputType.equals(INPUT_TYPE_CHECKBOX_OPTION)) {
 			setDataType(DATA_TYPE_STRING);
+			setLength(2000);
 		} else if (this.inputType.equals(INPUT_TYPE_HIDDEN)) {
 			//do nothing
 		} else {

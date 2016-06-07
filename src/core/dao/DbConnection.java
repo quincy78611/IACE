@@ -8,26 +8,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-//import oracle.jdbc.driver.OracleDriver;
-
 public class DbConnection {
-	
-	private static String dbSID     = "orcl";
-    private static String hostName  = "192.168.1.13";
-    private static String userName  = "test1";
-    private static String userPwd   = "ericeric";
 	
 	static {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName(HibernateSessionFactory.getConnectionDriverClass());
 		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}		
 	}
 
 	public static Connection getConnection() {
 		Connection con = null;
-		String url = "jdbc:oracle:thin:@"+ hostName + ":1521:" + dbSID;
+		String url = HibernateSessionFactory.getConnectionUrl();
+		String userName = HibernateSessionFactory.getConnectionUserName();
+		String userPwd = HibernateSessionFactory.getConnectionPassword();
 		try {
 			con = DriverManager.getConnection(url, userName, userPwd);
 		} catch (SQLException e) {

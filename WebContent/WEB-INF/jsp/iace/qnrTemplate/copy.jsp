@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h3>複製</h3>
-	<s:form action="createSubmit" method="post" validate="true">
+	<s:form action="copySubmit" method="post" validate="true">
 		<div class="container-fluid ">
 			<div class="col-md-12">
 				<s:textfield label="問卷名稱" name="qnrTable.name" />
@@ -171,6 +171,10 @@
 			$("select.inputType").change(inputTypeChange);
 			$("select.inputType").trigger("change");
 			$("input[type='button'].btn-delete-question").click(deleteQuestionClick);
+			
+			$("table#questionListTable > tbody > tr").each(function( index ){
+				resetNameForRow(index);
+			});
 		});
 		
 
