@@ -20,7 +20,6 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Type;
 
 import iace.entity.BaseEntity;
-import iace.entity.option.OptionQnrDataType;
 import iace.entity.option.OptionQnrInputType;
 
 @Entity
@@ -78,17 +77,6 @@ public class QnrTableColumn extends BaseEntity {
 	private boolean hidden;
 	
 	private QnrTable qnrTemplate;
-
-	@Transient
-	public static List<OptionQnrDataType> getQnrDataTypes() {
-		List<OptionQnrDataType> list = new ArrayList<OptionQnrDataType>();
-		list.add(new OptionQnrDataType(DATA_TYPE_BOOLEAN, "是/否"));
-		list.add(new OptionQnrDataType(DATA_TYPE_DATE, "日期"));
-		list.add(new OptionQnrDataType(DATA_TYPE_TIMESTAMP, "日期時間"));
-		list.add(new OptionQnrDataType(DATA_TYPE_STRING, "文字"));
-		list.add(new OptionQnrDataType(DATA_TYPE_NUMBER, "數字"));		
-		return list;
-	}
 	
 	@Transient
 	public static List<OptionQnrInputType> getQnrInputTypes(){
@@ -179,8 +167,10 @@ public class QnrTableColumn extends BaseEntity {
 			setDataType(DATA_TYPE_STRING);
 		} else if (this.inputType.equals(INPUT_TYPE_CHECKBOX_OPTION)) {
 			setDataType(DATA_TYPE_STRING);
+		} else if (this.inputType.equals(INPUT_TYPE_HIDDEN)) {
+			//do nothing
 		} else {
-			//TODO hidden的欄位不用報錯，其他的可能要
+			throw new IllegalArgumentException("Unsupported type");
 		}		
 	}
 

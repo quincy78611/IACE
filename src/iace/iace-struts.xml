@@ -192,12 +192,46 @@
 	</package>
 	
 	<package name="qnrTemplate" namespace="/iace/qnrTemplate" extends="struts-default">
+		<action name="init" class="iace.action.QnrTemplateAction" method="init">
+			<result>/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.QnrTemplateAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.QnrTemplateAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>
+		</action>
 		<action name="create" class="iace.action.QnrTemplateAction" method="create">
 			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/create.jsp</result>	
 		</action>
 		<action name="createSubmit" class="iace.action.QnrTemplateAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
-		</action>	
+		</action>
+		<action name="copy" class="iace.action.QnrTemplateAction" method="copy">
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/copy.jsp</result>
+			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>	
+		</action>
+		<action name="copySubmit" class="iace.action.QnrTemplateAction" method="copySubmit">
+			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/copy.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+		</action>		
+		<action name="update" class="iace.action.QnrTemplateAction" method="update">
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/update.jsp</result>
+			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>	
+		</action>
+		<action name="updateSubmit" class="iace.action.QnrTemplateAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+		</action>		
+		<action name="delete" class="iace.action.QnrTemplateAction" method="delete">
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/delete.jsp</result>
+			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>	
+		</action>
+		<action name="deleteSubmit" class="iace.action.QnrTemplateAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+		</action>
 	</package>
 </struts>
