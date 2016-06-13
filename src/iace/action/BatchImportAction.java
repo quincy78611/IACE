@@ -3,7 +3,6 @@ package iace.action;
 import java.io.File;
 import java.util.List;
 
-import core.action.BaseAction;
 import iace.entity.Patent;
 import iace.entity.ResearchPlan;
 import iace.service.PatentExcelService;
@@ -12,7 +11,7 @@ import iace.service.ResearchPlanExcelService;
 import iace.service.ResearchPlanService;
 import iace.service.ServiceFactory;
 
-public class BatchImportAction extends BaseAction {
+public class BatchImportAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = 4680110280391417742L;
 	

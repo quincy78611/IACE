@@ -2,11 +2,10 @@ package iace.action;
 
 import java.util.List;
 
-import core.action.BaseAction;
 import iace.entity.option.BaseOption;
 import iace.service.BaseOptionService;
 
-public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseAction {
+public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceAction {
 
 	private static final long serialVersionUID = -3645672145100849569L;
 	

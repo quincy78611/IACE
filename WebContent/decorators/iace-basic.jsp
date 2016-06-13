@@ -96,6 +96,32 @@
 					</li>
 					<li class="dropdown">
 					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					       	 問卷 <span class="caret"></span>
+					    </a>
+						<ul class="dropdown-menu" role="menu">
+							<s:iterator value="qnrTemplateList" status="stat">
+								<li>
+									<s:url value="/iace/questionnaire/init" var="initUrlTag" escapeAmp="false">
+										<s:param name="qnrTableId" value="id" />
+										<s:param name="qnrTableName" value="tableName" />
+									</s:url>
+									<a href='<s:property value="initUrlTag" />'>
+										<s:property value="%{'維護 '+name}"/>
+									</a>
+									<s:url value="/iace/questionnaire/create" var="createUrlTag" escapeAmp="false">
+										<s:param name="qnrTableId" value="id" />
+										<s:param name="qnrTableName" value="tableName" />
+									</s:url>
+									<a href='<s:property value="createUrlTag" />'>
+										<s:property value="%{'填寫 '+name}"/>
+									</a>									
+								</li>	
+							</s:iterator>
+							
+						</ul>					
+					</li>					
+					<li class="dropdown">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 					       	 代碼管理 <span class="caret"></span>
 					    </a>
 					    <ul class="dropdown-menu" role="menu">

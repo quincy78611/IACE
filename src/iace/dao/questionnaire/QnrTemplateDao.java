@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
@@ -63,6 +64,26 @@ public class QnrTemplateDao extends BaseIaceDao<QnrTable> implements IQnrTemplat
 		} finally {
 			HibernateSessionFactory.closeSession();
 		}		
+	}
+
+	@Override
+	public List<QnrTable> listAll() {		
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(QnrTable.class);
+			criteria.setFetchMode("questionList", FetchMode.SELECT);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			criteria.addOrder(Order.asc("name"));
+			@SuppressWarnings("unchecked")
+			List<QnrTable> entityList = criteria.list();
+			return entityList;
+		} catch (HibernateException e) {
+			throw e;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
 	}
 
 	@Override

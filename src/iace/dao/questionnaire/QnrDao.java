@@ -20,12 +20,13 @@ import core.dao.DbConnection;
 import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
 import iace.entity.BaseEntity;
+import iace.entity.option.OptionQnrSearchType;
+import iace.entity.questionnaire.QnrSearchCondition;
+import iace.entity.questionnaire.QnrSearchConditionSet;
 import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
-import iace.entity.questionnaire.SearchCondition;
-import iace.entity.questionnaire.SearchConditionSet;
 
-public class QuestionnaireDao implements IQuestionnaireDao {
+public class QnrDao implements IQnrDao {
 
 	protected static Logger log = LogManager.getLogger(BaseDao.class);
 	
@@ -176,6 +177,8 @@ public class QuestionnaireDao implements IQuestionnaireDao {
 			DbConnection.closeConnection(null, st, conn);
 		}
 	}
+	
+	// =========================================================================
 	
 	@Override
 	public long getNextIdFromSequence(QnrTable template) throws SQLException {
@@ -340,8 +343,41 @@ public class QuestionnaireDao implements IQuestionnaireDao {
 		}
 	}
 	
+	private void setDataToPreparedStatement(PreparedStatement st, QnrTableColumn q, QnrSearchCondition cond, int index, Object data) throws SQLException {
+		Class<?> dataType = q.getJavaType();
+		if (data == null) {
+			st.setNull(index, q.getSqlType());
+		} else {
+			if (dataType == String.class) {
+				if (cond.getSearchType().equals(OptionQnrSearchType.SEARCH_TYPE_CONTAIN)) {
+					st.setString(index, "%"+(String)data+"%");
+				} else if (cond.getSearchType().equals(OptionQnrSearchType.SEARCH_TYPE_START)) {
+					st.setString(index, (String)data+"%");
+				} else if (cond.getSearchType().equals(OptionQnrSearchType.SEARCH_TYPE_END)) {
+					st.setString(index, "%"+(String)data);
+				} else {
+					st.setString(index, (String)data);
+				}				
+			} else if (dataType == Date.class) {
+				st.setDate(index, (Date)data);
+			} else if (dataType == Timestamp.class) {
+				st.setTimestamp(index, (Timestamp)data);
+			} else if (dataType == int.class) {
+				st.setInt(index, (int)data);
+			} else if (dataType == long.class) {
+				st.setLong(index, (long) data);
+			} else if (dataType == float.class) {
+				st.setFloat(index, (float) data);
+			} else if (dataType == double.class) {
+				st.setDouble(index, (double) data);
+			} else {
+				throw new IllegalArgumentException("Unsupported data type!");
+			}
+		}
+	}
+	
 	@Override
-	public PagedList<Map<String, Object>> search(SearchConditionSet conditions) throws SQLException {
+	public PagedList<Map<String, Object>> search(QnrSearchConditionSet conditions) throws SQLException {
 		long totalItemCount = queryTotalRecordsCount(conditions);
 		int pSize = conditions.getPageSize();
 		int pIndex = conditions.getPageIndex();
@@ -358,9 +394,12 @@ public class QuestionnaireDao implements IQuestionnaireDao {
 		try {
 			conn = DbConnection.getConnection();
 			st = conn.prepareStatement(paginationSql);
+			int index = 1;
 			for (int i=0; i< conditions.getConditions().size(); i++) {
-				SearchCondition cond = conditions.getCondition(i);
-				setDataToPreparedStatement(st, cond.getTableColumn(), i+1, cond.getSearchValue());
+				QnrSearchCondition cond = conditions.getCondition(i);
+				if (cond.getSearchValue() != null) {
+					setDataToPreparedStatement(st, cond.getTableColumn(), cond, index++, cond.getSearchValue());
+				}
 			}
 			rs = st.executeQuery();
 			PagedList<Map<String, Object>> pagedList = new PagedList<Map<String, Object>>(totalItemCount, pSize, pIndex);
@@ -384,7 +423,7 @@ public class QuestionnaireDao implements IQuestionnaireDao {
 		}		
 	}
 	
-	private long queryTotalRecordsCount(SearchConditionSet conditions) throws SQLException {
+	private long queryTotalRecordsCount(QnrSearchConditionSet conditions) throws SQLException {
 		String tableN = conditions.getTemplate().getTableName();
 		String sql = String.format("SELECT COUNT(*) FROM \"%s\".\"%s\" %s", 
 				defaultSchema, tableN, conditions.getSqlString());
@@ -396,9 +435,12 @@ public class QuestionnaireDao implements IQuestionnaireDao {
 		try {
 			conn = DbConnection.getConnection();
 			st = conn.prepareStatement(sql);
+			int index = 1;
 			for (int i=0; i< conditions.getConditions().size(); i++) {
-				SearchCondition cond = conditions.getCondition(i);
-				setDataToPreparedStatement(st, cond.getTableColumn(), i+1, cond.getSearchValue());
+				QnrSearchCondition cond = conditions.getCondition(i);
+				if (cond.getSearchValue() != null) {
+					setDataToPreparedStatement(st, cond.getTableColumn(), cond, index++, cond.getSearchValue());
+				}
 			}
 			rs = st.executeQuery();
 			if (rs.next()) {

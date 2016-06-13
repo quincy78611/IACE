@@ -234,4 +234,20 @@
 			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
 		</action>
 	</package>
+	
+	<package name="questionnaire" namespace="/iace/questionnaire" extends="struts-default">
+		<action name="init" class="iace.action.QnrAction" method="init">
+			<result name="success">/WEB-INF/jsp/iace/qnr/index.jsp</result>	
+		</action>		
+		<action name="index" class="iace.action.QnrAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/qnr/index.jsp</result>	
+		</action>		
+		<action name="create" class="iace.action.QnrAction" method="create">
+			<result name="success">/WEB-INF/jsp/iace/qnr/create.jsp</result>	
+		</action>
+		<action name="createSubmit" class="iace.action.QnrAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/qnr/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/qnr/detail.jsp</result>
+		</action>
+	</package>
 </struts>

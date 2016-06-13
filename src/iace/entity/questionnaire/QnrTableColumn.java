@@ -20,7 +20,9 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Type;
 
 import iace.entity.BaseEntity;
+import iace.entity.option.OptionForQnr;
 import iace.entity.option.OptionQnrInputType;
+import iace.entity.option.OptionQnrSearchType;
 
 @Entity
 @Table(name = "QNR_TABLE_COL")
@@ -52,6 +54,7 @@ public class QnrTableColumn extends BaseEntity {
 	
 	private String fromOption;
 	private String optionListString;
+	private List<OptionForQnr> optionList;
 	
 	/**
 	 * for java data type [String].
@@ -75,6 +78,7 @@ public class QnrTableColumn extends BaseEntity {
 	private boolean nullable;
 	private boolean isPk;
 	private boolean hidden;
+	private boolean isSearchCondition;
 	
 	private QnrTable qnrTemplate;
 	
@@ -194,6 +198,15 @@ public class QnrTableColumn extends BaseEntity {
 
 	public void setOptionListString(String optionListString) {
 		this.optionListString = optionListString;
+	}
+	
+	@Transient
+	public List<OptionForQnr> getOptionList() {
+		return optionList;
+	}
+
+	public void setOptionList(List<OptionForQnr> optionList) {
+		this.optionList = optionList;
 	}
 
 	@Column(name = "LENGTH")
@@ -315,6 +328,16 @@ public class QnrTableColumn extends BaseEntity {
 		this.setInputType(INPUT_TYPE_HIDDEN);
 	}
 	
+	@Column(name = "IS_SEARCH_CONDITION")
+	@Type(type="true_false")
+	public boolean isSearchCondition() {
+		return isSearchCondition;
+	}
+
+	public void setSearchCondition(boolean isSearchCondition) {
+		this.isSearchCondition = isSearchCondition;
+	}
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "QNR_TABLE_ID", nullable = false, updatable = false)
 	public QnrTable getQnrTemplate() {
@@ -325,5 +348,29 @@ public class QnrTableColumn extends BaseEntity {
 		this.qnrTemplate = qnrTemplate;
 	}
 
-	
+	@Transient
+	public List<OptionQnrSearchType> getQnrSearchTypeList() {
+		List<OptionQnrSearchType> list = new ArrayList<OptionQnrSearchType>();
+
+		if (this.inputType.equals(INPUT_TYPE_TEXTFIELD_TEXT)) {
+			list.add(OptionQnrSearchType.EQ);
+			list.add(OptionQnrSearchType.NEQ);			
+			list.add(OptionQnrSearchType.CONTAIN);
+			list.add(OptionQnrSearchType.START);
+			list.add(OptionQnrSearchType.END);
+		} else if ( this.inputType.equals(INPUT_TYPE_TEXTFIELD_NUM) ||
+					this.inputType.equals(INPUT_TYPE_TEXTFIELD_DATE)) {
+			list.add(OptionQnrSearchType.EQ);
+			list.add(OptionQnrSearchType.NEQ);
+			list.add(OptionQnrSearchType.SM);
+			list.add(OptionQnrSearchType.LG);
+		} else if ( this.inputType.equals(INPUT_TYPE_CHECKBOX) || 
+					this.inputType.equals(INPUT_TYPE_CHECKBOX_OPTION) ) {
+			list.add(OptionQnrSearchType.CONTAIN);
+		} else {
+			list.add(OptionQnrSearchType.EQ);
+			list.add(OptionQnrSearchType.NEQ);
+		}
+		return list;
+	}
 }

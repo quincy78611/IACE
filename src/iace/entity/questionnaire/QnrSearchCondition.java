@@ -1,45 +1,42 @@
 package iace.entity.questionnaire;
 
-public class SearchCondition {
+import iace.entity.option.OptionQnrSearchType;
+
+public class QnrSearchCondition {
 
 	public static final String OR = "OR";
 	public static final String AND = "AND";	
 
-	public static final String SEARCH_TYPE_EQ = "EQUAL";
-	public static final String SEARCH_TYPE_NEQ = "NOT_EQUAL";
-	public static final String SEARCH_TYPE_SM = "SMALLER_THAN";
-	public static final String SEARCH_TYPE_LG = "LARGER_THAN";
-	public static final String SEARCH_TYPE_CONTAIN = "STRING_CONTAIN";
-	public static final String SEARCH_TYPE_START = "STRING_START_WITH";
-	public static final String SEARCH_TYPE_END = "STRING_END_WITH";
-	
-	
 	private String operator = AND;
+	private String tableColumnName;
 	private QnrTableColumn tableColumn;
 	private Object searchValue;
 	private String searchType;
 
-	public String getSqlString() {		
+	public String getSqlString() {
+		if (this.searchValue == null) {
+			return "1=1";
+		}			
 		switch (this.searchType) {
-		case SEARCH_TYPE_EQ: {
+		case OptionQnrSearchType.SEARCH_TYPE_EQ: {
 			return "\"" + this.tableColumn.getColName() + "\" = ?";
 		}
-		case SEARCH_TYPE_NEQ: {
+		case OptionQnrSearchType.SEARCH_TYPE_NEQ: {
 			return "\"" + this.tableColumn.getColName() + "\" != ?";
 		}
-		case SEARCH_TYPE_SM: {
+		case OptionQnrSearchType.SEARCH_TYPE_SM: {
 			return "\"" + this.tableColumn.getColName() + "\" < ?";
 		}
-		case SEARCH_TYPE_LG: {
+		case OptionQnrSearchType.SEARCH_TYPE_LG: {
 			return "\"" + this.tableColumn.getColName() + "\" > ?";
 		}
-		case SEARCH_TYPE_CONTAIN: {
+		case OptionQnrSearchType.SEARCH_TYPE_CONTAIN: {
 			return "\"" + this.tableColumn.getColName() + "\" like ?";
 		}
-		case SEARCH_TYPE_START: {
+		case OptionQnrSearchType.SEARCH_TYPE_START: {
 			return "\"" + this.tableColumn.getColName() + "\" like ?";
 		}
-		case SEARCH_TYPE_END: {
+		case OptionQnrSearchType.SEARCH_TYPE_END: {
 			return "\"" + this.tableColumn.getColName() + "\" like ?";
 		}
 		default:
@@ -53,6 +50,14 @@ public class SearchCondition {
 
 	public void setOperator(String operator) {
 		this.operator = operator;
+	}
+	
+	public String getTableColumnName() {
+		return tableColumnName;
+	}
+
+	public void setTableColumnName(String tableColumnName) {
+		this.tableColumnName = tableColumnName;
 	}
 
 	public QnrTableColumn getTableColumn() {
@@ -81,31 +86,31 @@ public class SearchCondition {
 	}
 	
 	public void setSearchTypeToEQ() {
-		this.searchType = SEARCH_TYPE_EQ;
+		this.searchType = OptionQnrSearchType.SEARCH_TYPE_EQ;
 	}
 	
 	public void setSearchTypeToNEQ() {
-		this.searchType = SEARCH_TYPE_NEQ;
+		this.searchType = OptionQnrSearchType.SEARCH_TYPE_NEQ;
 	}
 	
 	public void setSearchTypeToSM() {
-		this.searchType = SEARCH_TYPE_SM;
+		this.searchType = OptionQnrSearchType.SEARCH_TYPE_SM;
 	}
 
 	public void setSearchTypeToLG() {
-		this.searchType = SEARCH_TYPE_LG;
+		this.searchType = OptionQnrSearchType.SEARCH_TYPE_LG;
 	}
 	
 	public void setSearchTypeToContain() {
-		this.searchType = SEARCH_TYPE_CONTAIN;
+		this.searchType = OptionQnrSearchType.SEARCH_TYPE_CONTAIN;
 	}
 	
 	public void setSearchTypeToStartWith() {
-		this.searchType = SEARCH_TYPE_START;
+		this.searchType = OptionQnrSearchType.SEARCH_TYPE_START;
 	}
 	
 	public void setSearchTypeToEndWith() {
-		this.searchType = SEARCH_TYPE_END;
+		this.searchType = OptionQnrSearchType.SEARCH_TYPE_END;
 	}
 
 }

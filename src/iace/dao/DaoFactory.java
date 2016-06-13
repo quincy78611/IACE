@@ -21,9 +21,9 @@ import iace.dao.option.OptionTrlDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
 import iace.dao.questionnaire.IQnrTemplateDao;
-import iace.dao.questionnaire.IQuestionnaireDao;
+import iace.dao.questionnaire.IQnrDao;
 import iace.dao.questionnaire.QnrTemplateDao;
-import iace.dao.questionnaire.QuestionnaireDao;
+import iace.dao.questionnaire.QnrDao;
 import iace.dao.researchPlan.IResearchPlanDao;
 import iace.dao.researchPlan.ITechnologyDao;
 import iace.dao.researchPlan.ResearchPlanDao;
@@ -67,7 +67,7 @@ public class DaoFactory {
 	private static IConsultingDao consultingDao;
 	
 	private static IQnrTemplateDao qnrTemplateDao;
-	private static IQuestionnaireDao questionnaireDao;
+	private static IQnrDao qnrDao;
 	
 	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {
 		if (optionCompanyLocationDao == null) {
@@ -196,11 +196,11 @@ public class DaoFactory {
 		return qnrTemplateDao;
 	}
 
-	public static IQuestionnaireDao getQuestionnaireDao() {
-		if (questionnaireDao == null) {
-			questionnaireDao = new QuestionnaireDao();
+	public static IQnrDao getQnrDao() {
+		if (qnrDao == null) {
+			qnrDao = new QnrDao();
 		}
-		return questionnaireDao;
+		return qnrDao;
 	}
 
 	

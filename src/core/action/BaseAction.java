@@ -15,7 +15,7 @@ public abstract class BaseAction extends ActionSupport {
 
 	protected static Logger log = LogManager.getLogger(BaseAction.class);
 	
-	private String title;
+
 
 	protected boolean validateNotNull(Object testValue, String fieldName, String errMsg) {
 		if (testValue == null) {
@@ -100,15 +100,7 @@ public abstract class BaseAction extends ActionSupport {
 		return validateEmail(testValue, fieldName, "必須是email格式");
 	}
 	
-	// =========================================================================
 
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
 	
 	
 }

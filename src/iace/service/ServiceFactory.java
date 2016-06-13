@@ -34,6 +34,7 @@ public class ServiceFactory {
 	private static ConsultingService consultingService;
 	
 	private static QnrTemplateService qnrTemplateService;
+	private static QnrService qnrService;
 	
 	public static OptionCompanyLocationService getOptionCompanyLocationService() {
 		if (optionCompanyLocationService == null) {
@@ -180,9 +181,16 @@ public class ServiceFactory {
 		if (qnrTemplateService == null) {
 			qnrTemplateService = new QnrTemplateService(
 					DaoFactory.getQnrTemplateDao(), 
-					DaoFactory.getQuestionnaireDao());
+					DaoFactory.getQnrDao());
 		}
 		return qnrTemplateService;
+	}
+
+	public static QnrService getQnrService() {
+		if (qnrService == null) {
+			qnrService = new QnrService(DaoFactory.getQnrDao());
+		}
+		return qnrService;
 	}
 	
 	

@@ -3,7 +3,6 @@ package iace.action;
 import java.util.ArrayList;
 import java.util.List;
 
-import core.action.BaseAction;
 import core.util.PagedList;
 import iace.entity.ResearchPlan;
 import iace.entity.ResearchPlanSearchModel;
@@ -16,7 +15,7 @@ import iace.service.ResearchPlanService;
 import iace.service.ServiceFactory;
 import iace.service.TechnologyService;
 
-public class ResearchPlanAction extends BaseAction {
+public class ResearchPlanAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = 1798627207055671857L;
 	

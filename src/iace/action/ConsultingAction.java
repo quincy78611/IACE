@@ -2,7 +2,6 @@ package iace.action;
 
 import java.util.List;
 
-import core.action.BaseAction;
 import core.util.PagedList;
 import iace.entity.Consulting;
 import iace.entity.option.OptionConsult;
@@ -14,7 +13,7 @@ import iace.service.OptionIndustryService;
 import iace.service.OptionOrganizationTypeService;
 import iace.service.ServiceFactory;
 
-public class ConsultingAction extends BaseAction {
+public class ConsultingAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = 7983348708278484405L;
 	

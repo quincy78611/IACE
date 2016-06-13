@@ -11,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import com.opensymphony.xwork2.ActionContext;
 
-import core.action.BaseAction;
 import core.util.PagedList;
 import iace.entity.Patent;
 import iace.entity.TechField;
@@ -23,7 +22,7 @@ import iace.service.PatentService;
 import iace.service.ServiceFactory;
 import iace.service.TechFieldService;
 
-public class PatentAction extends BaseAction {
+public class PatentAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = 6073541012565178740L;
 

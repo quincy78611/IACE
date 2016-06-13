@@ -50,7 +50,7 @@
 											<s:textfield class="length" name="length" placeholder="字元數上限(中文算2個字元)" readonly="true"/>
 										</div>
 										<div class="col-md-3 mayNeedHide hidden">
-											<s:textfield class="precision" name="precision" placeholder="最大整數位數" readonly="true"/>
+											<s:textfield class="precision" name="precision" placeholder="總位數" readonly="true"/>
 										</div>
 										<div class="col-md-3 mayNeedHide hidden">
 											<s:textfield class="scale" name="scale" placeholder="最大小數位數" readonly="true"/>							

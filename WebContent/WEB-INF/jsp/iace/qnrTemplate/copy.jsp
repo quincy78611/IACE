@@ -52,7 +52,7 @@
 											<s:textfield class="length" name="%{'qnrTable.questionList['+#stat.index+'].length'}" placeholder="字元數上限(中文算2個字元)" disabled="true"/>
 										</div>
 										<div class="col-md-3 mayNeedHide hidden">
-											<s:textfield class="precision" name="%{'qnrTable.questionList['+#stat.index+'].precision'}" placeholder="最大整數位數" disabled="true"/>
+											<s:textfield class="precision" name="%{'qnrTable.questionList['+#stat.index+'].precision'}" placeholder="總位數" disabled="true"/>
 										</div>
 										<div class="col-md-3 mayNeedHide hidden">
 											<s:textfield class="scale" name="%{'qnrTable.questionList['+#stat.index+'].scale'}" placeholder="最大小數位數" disabled="true"/>							

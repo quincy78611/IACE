@@ -2,7 +2,6 @@ package iace.action;
 
 import java.util.List;
 
-import core.action.BaseAction;
 import core.util.PagedList;
 import iace.entity.option.OptionQnrInputType;
 import iace.entity.option.OptionTable;
@@ -11,7 +10,7 @@ import iace.entity.questionnaire.QnrTableColumn;
 import iace.service.QnrTemplateService;
 import iace.service.ServiceFactory;
 
-public class QnrTemplateAction extends BaseAction {
+public class QnrTemplateAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = -8361273818363065589L;
 
