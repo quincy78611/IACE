@@ -72,7 +72,7 @@
 								<td>
 									<s:property value="%{searchResult.itemStart + #stat.count -1}" />
 <%-- 									<s:property value="%{#stat.index}" /> --%>
-<%-- 									<s:property value="ID" /> --%>
+									<s:property value="ID" />
 <%-- 									<s:property value="%{searchResult.list[#stat.index].ID}"/> --%>
 								</td>
 								

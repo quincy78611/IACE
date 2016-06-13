@@ -16,6 +16,7 @@ public class QnrAction extends BaseIaceAction {
 	private QnrTemplateService qnrTemplateService = ServiceFactory.getQnrTemplateService();
 	private QnrService qnrService = ServiceFactory.getQnrService();
 	
+	private long id;
 	private long qnrTableId;
 	private String qnrTableName;
 	private QnrTable qnrTemplate;
@@ -41,6 +42,21 @@ public class QnrAction extends BaseIaceAction {
 			this.addActionError(e.getMessage());
 			return ERROR;
 		}		
+	}
+	
+	public String showDetail() {
+		try{
+			findQnrTemplate();
+			this.datas = this.qnrService.get(this.qnrTemplate, this.id);
+			if (this.datas == null || this.datas.size() == 0) {
+				throw new IllegalArgumentException("找不到資料!");
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			super.addActionError(e.getMessage());
+			return ERROR;
+		}
 	}
 	
 	public String create() {
@@ -84,6 +100,14 @@ public class QnrAction extends BaseIaceAction {
 	
 	public long getQnrTableId() {
 		return qnrTableId;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public void setQnrTableId(long qnrTableId) {

@@ -241,7 +241,10 @@
 		</action>		
 		<action name="index" class="iace.action.QnrAction" method="index">
 			<result name="success">/WEB-INF/jsp/iace/qnr/index.jsp</result>	
-		</action>		
+		</action>
+		<action name="showDetail" class="iace.action.QnrAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/iace/qnr/detail.jsp</result>	
+		</action>	
 		<action name="create" class="iace.action.QnrAction" method="create">
 			<result name="success">/WEB-INF/jsp/iace/qnr/create.jsp</result>	
 		</action>
