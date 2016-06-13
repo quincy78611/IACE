@@ -122,7 +122,9 @@ public class QnrTemplateService extends BaseIaceService<QnrTable> {
 		super.delete(id);
 	}
 	
-	
+	public boolean isQnrNameExist(String name) {
+		return this.qnrTemplateDao.isQnrNameExist(name);
+	}
 
 
 	

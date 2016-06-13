@@ -29,48 +29,65 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<s:hidden class="nullable" name="qnrTable.questionList[0].nullable" value="true"/>
-						<s:hidden class="dataType" name="qnrTable.questionList[0].dataType" />
-						<td class="col-md-5">
-							<s:textfield  class="question" name="qnrTable.questionList[0].question"/>
-						</td>
-						<td >
-							<div class="col-md-6">
-								<s:select class="inputType" name="qnrTable.questionList[0].inputType" list="qnrInputTypes" listKey="code" listValue="%{name}" />							
-							</div>
-							<div class="col-md-6 mayNeedHide hidden">
-								<s:select class="fromOption" name="qnrTable.questionList[0].fromOption" list="optionTables" listKey="code" listValue="%{name}" disabled="true"/>							
-							</div>
-							<div class="col-md-6 mayNeedHide hidden">
-								<s:textfield class="optionListString" name="qnrTable.questionList[0].optionListString" placeholder="輸入選項，選項間請用分號(;)隔開" disabled="true"/>
-							</div>
-							<div class="col-md-6 mayNeedHide hidden">
-								<s:textfield class="length" name="qnrTable.questionList[0].length" placeholder="字元數上限(中文算2個字元)" disabled="true"/>
-							</div>
-							<div class="col-md-3 mayNeedHide hidden">
-								<s:textfield class="precision" name="qnrTable.questionList[0].precision" placeholder="總位數" disabled="true"/>
-							</div>
-							<div class="col-md-3 mayNeedHide hidden">
-								<s:textfield class="scale" name="qnrTable.questionList[0].scale" placeholder="最大小數位數" disabled="true"/>							
-							</div>							
-						</td>
-						<td class="col-md-1">
-							<input type="button" class="btn-delete-question btn btn-danger" value="刪除" />
-						</td>
-					</tr>			
+					<s:iterator value="qnrTable.questionList" status="stat">
+						<s:if test="%{inputType != 'INPUT_TYPE_HIDDEN'}">
+							<tr>
+								<s:hidden class="nullable" name="%{'qnrTable.questionList['+#stat.index+'].nullable'}" value="true"/>
+								<s:hidden class="dataType" name="%{'qnrTable.questionList['+#stat.index+'].dataType'}" />
+								<td class="col-md-5">
+									<s:textfield  class="question" name="%{'qnrTable.questionList['+#stat.index+'].question'}"/>
+								</td>
+								<td>
+									<div class="col-md-6">
+										<s:select class="inputType" name="%{'qnrTable.questionList['+#stat.index+'].inputType'}" list="qnrInputTypes" listKey="code" listValue="%{name}" />							
+									</div>
+									<div class="col-md-6 mayNeedHide hidden">
+										<s:select class="fromOption" name="%{'qnrTable.questionList['+#stat.index+'].fromOption'}" list="optionTables" listKey="code" listValue="%{name}" disabled="true"/>							
+									</div>
+									<div class="col-md-6 mayNeedHide hidden">
+										<s:textfield class="optionListString" name="%{'qnrTable.questionList['+#stat.index+'].optionListString'}" placeholder="輸入選項，選項間請用分號(;)隔開" disabled="true"/>
+									</div>
+									<div class="col-md-6 mayNeedHide hidden">
+										<s:textfield class="length" name="%{'qnrTable.questionList['+#stat.index+'].length'}" placeholder="字元數上限(中文算2個字元)" disabled="true"/>
+									</div>
+									<div class="col-md-3 mayNeedHide hidden">
+										<s:textfield class="precision" name="%{'qnrTable.questionList['+#stat.index+'].precision'}" placeholder="總位數" disabled="true"/>
+									</div>
+									<div class="col-md-3 mayNeedHide hidden">
+										<s:textfield class="scale" name="%{'qnrTable.questionList['+#stat.index+'].scale'}" placeholder="最大小數位數" disabled="true"/>							
+									</div>							
+								</td>
+								<td class="col-md-1">
+									<input type="button" class="btn-delete-question btn btn-danger" value="刪除" />
+								</td>
+							</tr>									
+						</s:if>
+					</s:iterator>		
 				</tbody>
 			</table>		
 		</div>
 
 		<div class="container-fluid">
 			<input type="button" id="btn-add-question" class="btn btn-default" value="增加問題"/>	
-			<s:submit class="btn btn-primary" value="儲存" />
+			<s:submit class="btn btn-primary" value="儲存" onclick="submitClick()"/>
 			<a class="btn btn-success" href="<s:url value="/iace/qnrTemplate/init"/>">回索引頁</a>	
 		</div>
 	</s:form>
 	
 	<script type="text/javascript">
+		function submitClick() {
+			$(".length").each(function( index ) {
+				if ($(".length").eq(index).val() == "") {
+					$(".length").eq(index).val(0);
+				}
+			});
+			$(".scale").each(function( index ) {
+				if ($(".scale").eq(index).val() == "") {
+					$(".scale").eq(index).val(0);
+				}
+			});
+		}
+	
 		function inputTypeChange() {
 			var rowIndex = parseInt($(this).closest('tr').index());
 			var inputType = $(this).val();
@@ -133,7 +150,12 @@
 		}
 		
 		function deleteQuestionClick() {
-			$(this).closest('tr').remove();
+			var rowCount = $("table#questionListTable > tbody > tr").length;
+			if (rowCount == 1) {
+				alert("無法刪除, 一份問卷至少要有一個問題!");
+			} else {
+				$(this).closest('tr').remove();				
+			}			
 			$("table#questionListTable > tbody > tr").each(function( index ){
 				resetNameForRow(index);
 			});

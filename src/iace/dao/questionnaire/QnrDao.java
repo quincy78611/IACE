@@ -476,4 +476,31 @@ public class QnrDao implements IQnrDao {
 		return newSql;
 	}
 
+	@Override
+	public boolean isTableHasData(QnrTable template) throws SQLException {
+		String sql = String.format("SELECT COUNT(*) FROM \"%s\".\"%s\"", 
+				defaultSchema, template.getTableName());
+		log.debug(sql);
+		
+		Connection conn = null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			conn = DbConnection.getConnection();
+			st = conn.prepareStatement(sql);
+			rs = st.executeQuery();
+			if (rs.next()) {
+				return rs.getLong(1) > 0;				
+			} else {
+				return false;
+			}
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			DbConnection.closeConnection(rs, st, conn);
+		}
+	}
+	
+	
+
 }

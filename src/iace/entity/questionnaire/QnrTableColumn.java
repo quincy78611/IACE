@@ -129,7 +129,7 @@ public class QnrTableColumn extends BaseEntity {
 		this.colName = colName;
 	}
 
-	@Column(name = "QUESTION")
+	@Column(name = "QUESTION", length = 500)
 	public String getQuestion() {
 		return question;
 	}
@@ -352,9 +352,7 @@ public class QnrTableColumn extends BaseEntity {
 	public List<OptionQnrSearchType> getQnrSearchTypeList() {
 		List<OptionQnrSearchType> list = new ArrayList<OptionQnrSearchType>();
 
-		if (this.inputType.equals(INPUT_TYPE_TEXTFIELD_TEXT)) {
-			list.add(OptionQnrSearchType.EQ);
-			list.add(OptionQnrSearchType.NEQ);			
+		if (this.inputType.equals(INPUT_TYPE_TEXTFIELD_TEXT)) {		
 			list.add(OptionQnrSearchType.CONTAIN);
 			list.add(OptionQnrSearchType.START);
 			list.add(OptionQnrSearchType.END);

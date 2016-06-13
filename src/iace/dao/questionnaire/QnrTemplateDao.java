@@ -149,6 +149,24 @@ public class QnrTemplateDao extends BaseIaceDao<QnrTable> implements IQnrTemplat
 			HibernateSessionFactory.closeSession();
 		}
 	}
+
+	@Override
+	public boolean isQnrNameExist(String name) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(QnrTable.class);
+			criteria.setFetchMode("questionList", FetchMode.SELECT);
+			criteria.add(Restrictions.eq("name", name).ignoreCase());
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			criteria.setProjection(Projections.rowCount());
+			Object count = criteria.uniqueResult();
+			return (long) count >= 1;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 	
 	
 }

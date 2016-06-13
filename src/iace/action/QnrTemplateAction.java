@@ -1,5 +1,6 @@
 package iace.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import core.util.PagedList;
@@ -7,6 +8,7 @@ import iace.entity.option.OptionQnrInputType;
 import iace.entity.option.OptionTable;
 import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
+import iace.service.QnrService;
 import iace.service.QnrTemplateService;
 import iace.service.ServiceFactory;
 
@@ -14,6 +16,7 @@ public class QnrTemplateAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = -8361273818363065589L;
 
+	private QnrService qnrService = ServiceFactory.getQnrService();
 	private QnrTemplateService qnrTemplateService = ServiceFactory.getQnrTemplateService();
 	
 	private List<OptionQnrInputType> qnrInputTypes;
@@ -63,6 +66,10 @@ public class QnrTemplateAction extends BaseIaceAction {
 	}
 	
 	public String create() {
+		this.qnrTable = new QnrTable();
+		List<QnrTableColumn> questionList = new ArrayList<QnrTableColumn>();
+		questionList.add(new QnrTableColumn());
+		this.qnrTable.setQuestionList(questionList);
 		return SUCCESS;
 	}
 	
@@ -120,6 +127,10 @@ public class QnrTemplateAction extends BaseIaceAction {
 				super.addActionError("找不到選擇的資料紀錄!");
 				return INPUT;
 			}
+			if (this.qnrService.isTableHasData(this.qnrTable)) {
+				this.addActionError("此問卷已有資料，不可變更");
+				return INPUT;
+			}
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -129,11 +140,15 @@ public class QnrTemplateAction extends BaseIaceAction {
 	}
 	
 	public void validateUpdateSubmit() {
-		//TODO
+		validateBeforeInsertSubmit();
 	}
 	
 	public String updateSubmit() {
 		try {
+			if (this.qnrService.isTableHasData(this.qnrTable)) {
+				this.addActionError("此問卷已有資料，不可變更");
+				return INPUT;
+			}
 			this.qnrTemplateService.update(this.qnrTable);			
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;			
@@ -151,6 +166,10 @@ public class QnrTemplateAction extends BaseIaceAction {
 				super.addActionError("找不到選擇的資料紀錄!");
 				return INPUT;
 			}
+			if (this.qnrService.isTableHasData(this.qnrTable)) {
+				this.addActionError("此問卷已有資料，不可刪除");
+				return INPUT;
+			}
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -162,6 +181,14 @@ public class QnrTemplateAction extends BaseIaceAction {
 	public String deleteSubmit() {
 		try {
 			this.qnrTable = this.qnrTemplateService.get(this.id);
+			if (this.qnrTable == null) {
+				super.addActionError("找不到選擇的資料紀錄!");
+				return INPUT;
+			}
+			if (this.qnrService.isTableHasData(this.qnrTable)) {
+				this.addActionError("此問卷已有資料，不可刪除");
+				return INPUT;
+			}
 			this.qnrTemplateService.delete(this.id);
 			this.addActionMessage("DELETE SUCCESS!");
 			return SUCCESS;
@@ -173,7 +200,29 @@ public class QnrTemplateAction extends BaseIaceAction {
 	}
 	
 	private void validateBeforeInsertSubmit() {
-		//TODO
+		super.validateNotBlankNLength(this.qnrTable.getName(), 500, "qnrTable.name");
+		if (this.qnrTemplateService.isQnrNameExist(this.qnrTable.getName())) {
+			super.addFieldError("qnrTable.name", "問卷名稱已存在");
+		}		
+		for (int i=0; i<this.qnrTable.getQuestionNum(); i++) {
+			QnrTableColumn qtc = this.qnrTable.getQuestionList().get(i);
+			super.validateNotBlankNLength(qtc.getQuestion(), 500, "qnrTable.questionList["+i+"].question");
+			if (qtc.getInputType().equals(QnrTableColumn.INPUT_TYPE_TEXTFIELD_TEXT)) {
+				if (qtc.getLength() < 0) {
+					super.addFieldError("qnrTable.questionList["+i+"].length", "不可為負, 0表示不限長");
+				}
+			} else if (qtc.getInputType().equals(QnrTableColumn.INPUT_TYPE_TEXTFIELD_NUM)) {
+				if (qtc.getPrecision() > 38) {
+					super.addFieldError("qnrTable.questionList["+i+"].precision", "數字最多38位數");
+				}
+				if (qtc.getPrecision() <= 0) {
+					super.addFieldError("qnrTable.questionList["+i+"].precision", "總位數必須大於0");
+				}
+				if (qtc.getPrecision() <= 0) {
+					super.addFieldError("qnrTable.questionList["+i+"].scale", "小數位數不可為負");
+				}
+			}
+		}
 	}
 	
 	//==========================================================================

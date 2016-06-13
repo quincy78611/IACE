@@ -126,4 +126,8 @@ public class QnrService {
 		return optionList;
 	}
 	
+	public boolean isTableHasData(QnrTable template) throws SQLException {
+		return this.qnrDao.isTableHasData(template);
+	}
+	
 }
