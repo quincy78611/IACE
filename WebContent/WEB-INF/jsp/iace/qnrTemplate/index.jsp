@@ -52,16 +52,14 @@
 									<s:url value="update.action" var="updateUrlTag" escapeAmp="false">
 										<s:param name="id" value="id" />
 									</s:url>
-									<input type="button" class="btn-info" value="編輯" 
-										onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+									<input type="button" class="btn-info btn-update" value="編輯" 
+										url="<s:property value="updateUrlTag" />" />
 										
 									<s:url value="delete.action" var="deleteUrlTag" escapeAmp="false">
 										<s:param name="id" value="id" />
 									</s:url>
-									<input type="button" class="btn-danger" value="刪除" 
-										onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
-								
-<%-- 									<s:property value="ver" /> --%>
+									<input type="button" class="btn-danger btn-delete" value="刪除" 
+										url="<s:property value="#deleteUrlTag" />" />								
 								</td>
 							</tr>
 						</s:iterator>
@@ -98,14 +96,50 @@
 		</div>
 	</s:form>
 	
-	<script type="text/javascript">
-		$("#btn-reset").click(function(){
-			$("input.form-control:text").val("");
-			$("select").prop('selectedIndex', 0);
-		});
-		
+	<script type="text/javascript">	
 		
 		$(document).ready(function () {			
+			paginSetting();
+			$("#btn-reset").click(btnResetClick);
+			$("input[type='button'].btn-update").click(isQnrHasDataAjax);
+			$("input[type='button'].btn-delete").click(isQnrHasDataAjax);
+		});
+		
+		function btnResetClick(){
+			$("input.form-control:text").val("");
+			$("select").prop('selectedIndex', 0);
+		}
+
+		function isQnrHasDataAjax() {
+			var url = $(this).attr("url");
+			var id = url.substring(url.indexOf("id=")+3);
+			//TODO ajax
+			$.ajax({
+				type:"post",
+				url: '<s:url value="/iace/qnrTemplate/isQnrHasDataAjax"/>',
+				data:{
+                    id:id
+                },
+                dataType:"json",
+                success:function(data){
+                	if (typeof data.error != 'undefined') {
+                		alert(data.error);
+                	} else {
+                		if (data.isQnrHasData) {
+                			alert("此問卷已有資料，不可變更或刪除");
+                		} else {
+//                 			window.open(url);
+            				window.location.href=url;
+                		}
+                	}
+                },
+                error:function(){
+                    alert("系統異常，請聯繫管理員！");
+                }
+			});			
+		}
+		
+		function paginSetting() {
  			$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
 			
 			var pageIndex = parseInt('<s:property value="qnrTableList.pageIndex"/>');
@@ -159,7 +193,7 @@
 		        $("#pageIndex").val(0);
 		        return true;
 		    });
-		});
+		}
 	</script>
 </body>
 </html>

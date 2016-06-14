@@ -1,7 +1,9 @@
 package iace.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import core.util.PagedList;
 import iace.entity.option.OptionQnrInputType;
@@ -29,6 +31,8 @@ public class QnrTemplateAction extends BaseIaceAction {
  	
 	private long id;
 	private QnrTable qnrTable;
+	
+	private Map<String, Object> ajaxResult;
 	
 	public QnrTemplateAction() {
 		super.setTitle("問卷模板管理");
@@ -243,6 +247,25 @@ public class QnrTemplateAction extends BaseIaceAction {
 		this.qnrTable.setQuestionList(questionList);
 	}
 	
+	public String isQnrHasDataAjax() {
+		this.ajaxResult = new HashMap<String, Object>();
+		try {
+			this.qnrTable = this.qnrTemplateService.get(this.id);
+			if (this.qnrTable == null) {
+				this.ajaxResult.put("error", "找不到資料紀錄!");
+			} else {
+				boolean isQnrHasData = this.qnrService.isTableHasData(this.qnrTable);
+				this.ajaxResult.put("isQnrHasData", isQnrHasData);
+			}			
+			
+			return SUCCESS;
+		}  catch (Exception e) {
+			log.error("", e);
+			this.ajaxResult.put("error", e.getMessage());
+			return ERROR;
+		}
+	}
+	
 	//==========================================================================
 
 	public long getId() {
@@ -303,7 +326,15 @@ public class QnrTemplateAction extends BaseIaceAction {
 		this.pageSize = pageSize;
 	}
 
+	public Map<String, Object> getAjaxResult() {
+		return ajaxResult;
+	}
+
+	public void setAjaxResult(Map<String, Object> ajaxResult) {
+		this.ajaxResult = ajaxResult;
+	}
+
+
 	
-	
-	
+
 }

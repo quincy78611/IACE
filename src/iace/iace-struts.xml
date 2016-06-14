@@ -191,7 +191,7 @@
 		</action>
 	</package>
 	
-	<package name="qnrTemplate" namespace="/iace/qnrTemplate" extends="struts-default">
+	<package name="qnrTemplate" namespace="/iace/qnrTemplate" extends="struts-default,json-default">
 		<action name="init" class="iace.action.QnrTemplateAction" method="init">
 			<result>/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>
 		</action>
@@ -232,6 +232,11 @@
 		<action name="deleteSubmit" class="iace.action.QnrTemplateAction" method="deleteSubmit">
 			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+		</action>
+		<action name="isQnrHasDataAjax" class="iace.action.QnrTemplateAction" method="isQnrHasDataAjax">
+			<result type="json">
+                <param name="root">ajaxResult</param>
+            </result>
 		</action>
 	</package>
 	
