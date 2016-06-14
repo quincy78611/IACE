@@ -371,4 +371,15 @@ public class QnrTableColumn extends BaseEntity {
 		}
 		return list;
 	}
+
+	@Transient
+	public boolean isEmptyEntity() {
+		if (this.colName != null) return false;
+		if (this.dataType != null) return false;
+		if (this.inputType != null) return false;
+		if (this.question != null) return false;
+		return true;
+	}
+	
+	
 }

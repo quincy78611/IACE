@@ -26,6 +26,7 @@
 					<tr>
 						<th>問題</th>
 						<th>資料型態</th>
+						<th>為查尋條件</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,6 +57,9 @@
 											<s:textfield class="scale" name="scale" placeholder="最大小數位數" readonly="true"/>							
 										</div>							
 									</td>
+									<td class="col-md-1">
+										<s:checkbox label="" class="searchCondition" name="%{'searchCondition'}" fieldValue="true" disabled="true"/>	
+									</td>										
 								</tr>
 							</s:if>
 						</s:iterator>

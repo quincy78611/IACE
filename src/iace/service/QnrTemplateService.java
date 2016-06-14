@@ -126,6 +126,8 @@ public class QnrTemplateService extends BaseIaceService<QnrTable> {
 		return this.qnrTemplateDao.isQnrNameExist(name);
 	}
 
-
+	public boolean isQnrNameExistExcept(String name, long id) {
+		return this.qnrTemplateDao.isQnrNameExistExcept(name, id);
+	}
 	
 }

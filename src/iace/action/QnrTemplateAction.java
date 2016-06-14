@@ -74,7 +74,10 @@ public class QnrTemplateAction extends BaseIaceAction {
 	}
 	
 	public void validateCreateSubmit() {
-		validateBeforeInsertSubmit();
+		validateBeforeSubmit();
+		if (this.qnrTemplateService.isQnrNameExist(this.qnrTable.getName())) {
+			super.addFieldError("qnrTable.name", "問卷名稱已存在");
+		}
 	}
 
 	public String createSubmit() {
@@ -105,7 +108,10 @@ public class QnrTemplateAction extends BaseIaceAction {
 	}
 	
 	public void validateCopySubmit() {
-		validateBeforeInsertSubmit();
+		validateBeforeSubmit();
+		if (this.qnrTemplateService.isQnrNameExist(this.qnrTable.getName())) {
+			super.addFieldError("qnrTable.name", "問卷名稱已存在");
+		}
 	}
 	
 	public String copySubmit() {
@@ -140,7 +146,10 @@ public class QnrTemplateAction extends BaseIaceAction {
 	}
 	
 	public void validateUpdateSubmit() {
-		validateBeforeInsertSubmit();
+		validateBeforeSubmit();
+		if (this.qnrTemplateService.isQnrNameExistExcept(this.qnrTable.getName(), this.qnrTable.getId())) {
+			super.addFieldError("qnrTable.name", "問卷名稱已存在");
+		}
 	}
 	
 	public String updateSubmit() {
@@ -199,11 +208,9 @@ public class QnrTemplateAction extends BaseIaceAction {
 		}
 	}
 	
-	private void validateBeforeInsertSubmit() {
-		super.validateNotBlankNLength(this.qnrTable.getName(), 500, "qnrTable.name");
-		if (this.qnrTemplateService.isQnrNameExist(this.qnrTable.getName())) {
-			super.addFieldError("qnrTable.name", "問卷名稱已存在");
-		}		
+	private void validateBeforeSubmit() {
+		removeEmptyQuestion();
+		super.validateNotBlankNLength(this.qnrTable.getName(), 500, "qnrTable.name");		
 		for (int i=0; i<this.qnrTable.getQuestionNum(); i++) {
 			QnrTableColumn qtc = this.qnrTable.getQuestionList().get(i);
 			super.validateNotBlankNLength(qtc.getQuestion(), 500, "qnrTable.questionList["+i+"].question");
@@ -223,6 +230,17 @@ public class QnrTemplateAction extends BaseIaceAction {
 				}
 			}
 		}
+	}
+	
+	private void removeEmptyQuestion() {
+		List<QnrTableColumn> questionList = new ArrayList<QnrTableColumn>();
+		for (QnrTableColumn qtc : this.qnrTable.getQuestionList()) {
+			if (qtc.isEmptyEntity() == false) {
+				//TODO 目前還不清楚為何qnrTabl.questionList數量會和前端網頁不一致，後面會莫名出現一些全空的QnrTableColumn				
+				questionList.add(qtc);
+			}
+		}
+		this.qnrTable.setQuestionList(questionList);
 	}
 	
 	//==========================================================================

@@ -25,6 +25,7 @@
 					<tr>
 						<th>問題</th>
 						<th>資料型態</th>
+						<th>為查尋條件</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -57,6 +58,9 @@
 										<s:textfield class="scale" name="%{'qnrTable.questionList['+#stat.index+'].scale'}" placeholder="最大小數位數" disabled="true"/>							
 									</div>							
 								</td>
+								<td class="col-md-1">
+									<s:checkbox label="" class="searchCondition" name="%{'qnrTable.questionList['+#stat.index+'].searchCondition'}" fieldValue="true"/>	
+								</td>								
 								<td class="col-md-1">
 									<input type="button" class="btn-delete-question btn btn-danger" value="刪除" />
 								</td>
@@ -172,6 +176,7 @@
 			tableRow.eq(index).find(".length").attr("name", "qnrTable.questionList["+index+"].length");
 			tableRow.eq(index).find(".precision").attr("name", "qnrTable.questionList["+index+"].precision");
 			tableRow.eq(index).find(".scale").attr("name", "qnrTable.questionList["+index+"].scale");
+			tableRow.eq(index).find(".searchCondition").attr("name", "qnrTable.questionList["+index+"].searchCondition");
 		}
 
 		$(document).ready(function(){

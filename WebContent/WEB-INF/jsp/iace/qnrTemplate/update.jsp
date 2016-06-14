@@ -10,10 +10,11 @@
 	<h3>編輯</h3>
 	<s:form action="updateSubmit" method="post" validate="true">
 		<s:hidden name="qnrTable.id"/>
+		<s:hidden name="qnrTable.tableName"/>
 		<div class="container-fluid ">
 			<div class="col-md-12">
 				<s:textfield label="問卷名稱" name="qnrTable.name" />
-			</div>			
+			</div>		
 		</div>
 		<div class="container-fluid">
 			<div class="col-md-2">
@@ -26,6 +27,7 @@
 					<tr>
 						<th>問題</th>
 						<th>資料型態</th>
+						<th>為查尋條件</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -58,6 +60,9 @@
 										<div class="col-md-3 mayNeedHide hidden">
 											<s:textfield class="scale" name="%{'qnrTable.questionList['+#stat.index+'].scale'}" placeholder="最大小數位數" disabled="true"/>							
 										</div>							
+									</td>
+									<td class="col-md-1">
+										<s:checkbox label="" class="searchCondition" name="%{'qnrTable.questionList['+#stat.index+'].searchCondition'}" fieldValue="true"/>	
 									</td>
 									<td class="col-md-1">
 										<input type="button" class="btn-delete-question btn btn-danger" value="刪除" />
@@ -159,6 +164,7 @@
 			tableRow.eq(index).find(".length").attr("name", "qnrTable.questionList["+index+"].length");
 			tableRow.eq(index).find(".precision").attr("name", "qnrTable.questionList["+index+"].precision");
 			tableRow.eq(index).find(".scale").attr("name", "qnrTable.questionList["+index+"].scale");
+			tableRow.eq(index).find(".searchCondition").attr("name", "qnrTable.questionList["+index+"].searchCondition");
 		}
 
 		$(document).ready(function(){
