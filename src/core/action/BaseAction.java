@@ -100,7 +100,49 @@ public abstract class BaseAction extends ActionSupport {
 		return validateEmail(testValue, fieldName, "必須是email格式");
 	}
 	
-
 	
+	/**
+	 * @param num
+	 * @return 回傳小數點位數
+	 */
+	private static int getDecimalPlace(Object num) {
+		int result = 0;
+		String sTarget = String.valueOf(num);
+		if (sTarget.indexOf('.') == -1 || sTarget.endsWith(".0")) {
+			result = 0;
+	    } else {
+	    	result = sTarget.length() - sTarget.indexOf('.') - 1; 
+	    }
+		return result;
+	}
 	
+	protected boolean validateNumberRange(Object testValue, int precision, int scale, String fieldName, String errMsg) {
+		double max = Math.pow(10, precision-scale);
+		boolean isValid = false;
+		if (byte.class.isInstance(testValue) || Byte.class.isInstance(testValue)) {
+			isValid = (getDecimalPlace(testValue) <= scale && (byte)testValue < max);	
+		} else if (short.class.isInstance(testValue) || Short.class.isInstance(testValue)) {
+			isValid = (getDecimalPlace(testValue) <= scale && (short)testValue < max);
+		} else if (int.class.isInstance(testValue) || Integer.class.isInstance(testValue)) {
+			isValid = (getDecimalPlace(testValue) <= scale && (int)testValue < max);		
+		} else if (long.class.isInstance(testValue) || Long.class.isInstance(testValue)) {
+			isValid = (getDecimalPlace(testValue) <= scale && (long)testValue < max);
+		} else if (float.class.isInstance(testValue) || Float.class.isInstance(testValue)) {
+			isValid = (getDecimalPlace(testValue) <= scale && (float)testValue < max);
+		} else if (double.class.isInstance(testValue) || Double.class.isInstance(testValue)) {
+			isValid = (getDecimalPlace(testValue) <= scale && (double)testValue < max);
+		} else {
+			throw new IllegalArgumentException("Unsupported class!");
+		}
+		
+		if (isValid == false) {
+			this.addFieldError(fieldName, errMsg);
+		}
+		return isValid;
+	}
+	
+	protected boolean validateNumberRange(Object testValue, int precision, int scale, String fieldName) {
+		String msg = String.format("有效範圍(整數%d位, 小數%d位)", precision-scale, scale);
+		return validateNumberRange(testValue, precision, scale, fieldName, msg);
+	}
 }

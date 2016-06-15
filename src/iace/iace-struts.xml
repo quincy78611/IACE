@@ -245,7 +245,8 @@
 			<result name="success">/WEB-INF/jsp/iace/qnr/index.jsp</result>	
 		</action>		
 		<action name="index" class="iace.action.QnrAction" method="index">
-			<result name="success">/WEB-INF/jsp/iace/qnr/index.jsp</result>	
+			<result name="success">/WEB-INF/jsp/iace/qnr/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/iace/qnr/index.jsp</result>	
 		</action>
 		<action name="showDetail" class="iace.action.QnrAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/iace/qnr/detail.jsp</result>	

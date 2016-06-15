@@ -16,7 +16,6 @@ import org.apache.logging.log4j.Logger;
 import core.service.BaseService;
 import core.util.PagedList;
 import iace.dao.questionnaire.IQnrDao;
-import iace.entity.questionnaire.QnrSearchCondition;
 import iace.entity.questionnaire.QnrSearchConditionSet;
 import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
@@ -42,22 +41,14 @@ public class QnrService {
 		return datas;
 	}
 	
-	public void create(QnrTable template, Map<String, Object> datas) throws SQLException, ParseException {
-		// cast data to appropriate type
-		for (QnrTableColumn q : template.getQuestionList()) {		
-			if (datas.get(q.getColName()) != null) {
-				String data = mergeStringArrayToString((String[]) datas.get(q.getColName()));
-				Class<?> dataType = q.getJavaType();			
-				log.debug("colName="+q.getColName()+", dataType="+dataType+", data="+data);
-				Object newData = castDataToAppropriateType(data, dataType);
-				datas.put(q.getColName(), newData);			
-			}
-		}		
+	public void create(QnrTable template, Map<String, Object> datas) throws SQLException, ParseException {		
 		this.qnrDao.insert(template, datas);
 	}
 	
-	private Object castDataToAppropriateType(String data, Class<?> dataType) throws ParseException {
-		if (dataType == String.class) {
+	public Object castDataToAppropriateType(String data, Class<?> dataType) throws ParseException {
+		if (data == null || StringUtils.isBlank(data)) {
+			return null;
+		} else if (dataType == String.class) {
 			return data;
 		} else if (dataType == Date.class) {
 			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
@@ -80,7 +71,8 @@ public class QnrService {
 		}
 	}
 	
-	private String mergeStringArrayToString(String[] strs) {
+	public String mergeStringArrayToString(String[] strs) {
+		if (strs == null) return null;
 		StringBuilder sb = new StringBuilder();
 		for (int i=0; i<strs.length; i++) {
 			sb.append(strs[i]);
@@ -89,19 +81,7 @@ public class QnrService {
 		return sb.toString();
 	}
 
-	public PagedList<Map<String, Object>> search(QnrSearchConditionSet conditions) throws SQLException, ParseException {
-		for (QnrSearchCondition c : conditions.getConditions()) {
-			QnrTableColumn qtc = conditions.getTemplate().getQuestionByColName(c.getTableColumnName());
-			c.setTableColumn(qtc);
-			String data = mergeStringArrayToString((String[]) c.getSearchValue());
-			if (StringUtils.isBlank(data)) {
-				c.setSearchValue(null);
-			} else {
-				Class<?> dataType = c.getTableColumn().getJavaType();
-				c.setSearchValue(castDataToAppropriateType(data, dataType));				
-			}
-		}
-		
+	public PagedList<Map<String, Object>> search(QnrSearchConditionSet conditions) throws SQLException {		
 		PagedList<Map<String, Object>> res = this.qnrDao.search(conditions);
 		
 		for (Map<String, Object> datas : res.getList()) {
