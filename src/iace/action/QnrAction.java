@@ -2,8 +2,6 @@ package iace.action;
 
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-
 import core.util.PagedList;
 import iace.entity.questionnaire.QnrSearchCondition;
 import iace.entity.questionnaire.QnrSearchConditionSet;
@@ -44,33 +42,9 @@ public class QnrAction extends BaseIaceAction {
 				QnrTableColumn qtc = this.serachConditionSet.getTemplate().getQuestionByColName(c.getTableColumnName());
 				c.setTableColumn(qtc);
 				String fieldName = "serachConditionSet.conditions["+i+"].searchValue";
-				
-				// cast data
-				try {
-					String data = this.qnrService.mergeStringArrayToString((String[]) c.getSearchValue());
-					if (StringUtils.isBlank(data)) {
-						c.setSearchValue(null);
-					} else {
-						Class<?> dataType = c.getTableColumn().getJavaType();
-						c.setSearchValue(this.qnrService.castDataToAppropriateType(data, dataType));				
-					}
-				} catch (Exception e) {
-					log.warn(qtc.getColName() + " 格式錯誤! ", e);
-					super.addFieldError(fieldName, "格式錯誤");
-					continue;
-				}
-				//validate
-				Object data = c.getSearchValue();
-				if (data != null) {
-					if (qtc.getInputType().equals(QnrTableColumn.INPUT_TYPE_TEXTFIELD_TEXT)) {
-						if (qtc.getLength() > 0) {
-							super.validateTextMaxLength((String) data, qtc.getLength(), fieldName);
-						}
-					} else if (qtc.getInputType().equals(QnrTableColumn.INPUT_TYPE_TEXTFIELD_NUM)) {
-						super.validateNumberRange(data, qtc.getPrecision(), qtc.getScale(), fieldName);
-					}
-				}
-				
+				String[] strs = (String[]) c.getSearchValue();
+				Object data = castDataAndValidate(qtc, fieldName, strs);
+				c.setSearchValue(data);
 			}
 		} catch (Exception e) {
 			log.error("", e);
@@ -122,34 +96,17 @@ public class QnrAction extends BaseIaceAction {
 				QnrTableColumn qtc = this.qnrTemplate.getQuestionList().get(i);
 				if (qtc.getInputType().equals(QnrTableColumn.INPUT_TYPE_HIDDEN)) {
 					continue;
-				}
-				
+				}				
 				String fieldName = "datas['"+qtc.getColName()+"']";
-				// cast data
-				try {
-					String[] strs = (String[]) this.datas.get(qtc.getColName());
-					Class<?> dataType = qtc.getJavaType();
-					String str = this.qnrService.mergeStringArrayToString(strs);
-					Object data = this.qnrService.castDataToAppropriateType(str, dataType);
-					this.datas.put(qtc.getColName(), data);
-				} catch (Exception e) {
-					log.warn(qtc.getColName()+" 格式錯誤! " + e.getMessage());
-					super.addFieldError(fieldName, "格式錯誤");
-					continue;
-				}
-				//validate
-				Object data = this.datas.get(qtc.getColName());
-				if (data == null) {
-					if (qtc.getNullable() == false) {
-						super.addFieldError(fieldName, "不可為空");
-					}
-				} else {
-					if (qtc.getInputType().equals(QnrTableColumn.INPUT_TYPE_TEXTFIELD_TEXT)) {
-						if (qtc.getLength() > 0) {
-							super.validateTextMaxLength((String) data, qtc.getLength(), fieldName);
-						}
-					} else if (qtc.getInputType().equals(QnrTableColumn.INPUT_TYPE_TEXTFIELD_NUM)) {
-						super.validateNumberRange(data, qtc.getPrecision(), qtc.getScale(), fieldName);
+				String[] strs = (String[]) this.datas.get(qtc.getColName());
+				Object data = castDataAndValidate(qtc, fieldName, strs);
+				this.datas.put(qtc.getColName(), data);
+				
+				if (qtc.getNullable() == false) {
+					if (data instanceof String) {
+						super.validateNotBlank((String)data, fieldName);
+					} else {
+						super.validateNotNull(data, fieldName);
 					}
 				}
 			}			
@@ -181,6 +138,36 @@ public class QnrAction extends BaseIaceAction {
 		}
 	}
 
+	private Object castDataAndValidate(QnrTableColumn qtc, String fieldName, String[] strs) {
+		Object data = null;
+		// cast data
+		try {					
+			Class<?> dataType = qtc.getJavaType();					
+			String str = this.qnrService.mergeStringArrayToString(strs);					
+			data = this.qnrService.castDataToAppropriateType(str, dataType);
+		} catch (NumberFormatException e) {
+			log.debug(qtc.getColName() + " 格式錯誤或長度超過限制! ", e);
+			super.addFieldError(fieldName, "格式錯誤或長度超過限制");
+			return data;
+		} catch (Exception e) {
+			log.debug(qtc.getColName()+" 格式錯誤! ", e);
+			super.addFieldError(fieldName, "格式錯誤");
+			return data;
+		}
+		
+		// validate
+		if (data != null) {
+			if (qtc.getInputType().equals(QnrTableColumn.INPUT_TYPE_TEXTFIELD_TEXT)) {
+				if (qtc.getLength() > 0) {
+					super.validateTextMaxLength((String) data, qtc.getLength(), fieldName);
+				}
+			} else if (qtc.getInputType().equals(QnrTableColumn.INPUT_TYPE_TEXTFIELD_NUM)) {
+				super.validateNumberRange(data, qtc.getPrecision(), qtc.getScale(), fieldName);
+			}
+		}
+		return data;
+	}
+	
 	// =========================================================================
 	
 	public long getQnrTableId() {
