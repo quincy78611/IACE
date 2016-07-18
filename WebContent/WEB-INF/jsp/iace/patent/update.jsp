@@ -7,61 +7,125 @@
 
 </head>
 <body>
-	<h4>編輯</h4>
+	<h2 class="itemTitle">編輯</h2>
 
 	<s:form action="updateSubmit" method="post" validate="true" enctype="multipart/form-data">
-		<div class="container-fluid" >
-			<s:hidden name="patent.id" />
-			<s:hidden name="patent.isValid" />
-			<s:hidden name="patent.createTime" />
-			<s:hidden name="patent.createUser" />
-			<s:hidden name="patent.updateTime" />
-			<s:hidden name="patent.updateUser" />
-			<s:hidden name="patent.ver" />
-			
-			<s:textfield label="專利名稱" name="patent.name" cssClass="form-control" />				
-			<s:textfield label="專利權人" name="patent.assignee" cssClass="form-control"  />
-			<s:textfield label="發明人" name="patent.invertor" cssClass="form-control" />
-			<s:textfield label="申請國別" name="patent.country" cssClass="form-control" />
-			<s:textfield label="申請號" name="patent.appliactionNo" cssClass="form-control" />			
-			<s:textfield label="申請日" name="patent.applicationDate" cssClass="form-control calendarBox" >			
-				<s:param name="value">
-					<s:date name="patent.applicationDate" format="yyyy/MM/dd" /> 
-				</s:param>
-			</s:textfield>
-			<s:textfield label="公開號" name="patent.openNo" cssClass="form-control" />			
-			<s:textfield label="公開日" name="patent.openDate" cssClass="form-control calendarBox" >
-				<s:param name="value">
-					<s:date name="patent.openDate" format="yyyy/MM/dd" /> 
-				</s:param>				
-			</s:textfield>	
-			<s:textfield label="公告號" name="patent.publicationNo" cssClass="form-control" />			
-			<s:textfield label="公告日" name="patent.publicationDate" cssClass="form-control calendarBox" >
-				<s:param name="value">
-					<s:date name="patent.publicationDate" format="yyyy/MM/dd" /> 
-				</s:param>			
-			</s:textfield>
-			<s:textfield label="專利類別" name="patent.category" cssClass="form-control" />
-			<s:textfield label="專利狀態" name="patent.patentStatus" cssClass="form-control" />
-			<s:textfield label="專利家族" name="patent.familyNo" cssClass="form-control" />
-			<s:textfield label="國際分類號" name="patent.ipc" cssClass="form-control" />
-			<s:textfield label="專利技術摘要" name="patent.techAbstract" cssClass="form-control" />
-			<s:label label="重要圖式" class="control-label" />
-			<img id="patent_img" src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:800px; max-height:800px;">
-			<span class="btn btn-default btn-file">
-				瀏覽
-                <input class="upload" name="uploadPatentImg" type="file" onchange = "readURL(this);">
-			</span>
-<%-- 			<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" cssClass="form-control" /> --%>
-			<s:select label="專利技術領域" name="patent.techField.name" list="techFieldList" listKey="name" listValue="name" />
-			<s:textfield label="應用範圍/產業" name="patent.usage" cssClass="form-control" />
-			<s:select label="技術發展階段" name="patent.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
-			<s:textfield label="技術發展階段說明" name="patent.trlDesc" cssClass="form-control" />
+		<s:hidden name="patent.id" />
+		<s:hidden name="patent.isValid" />
+		<s:hidden name="patent.createTime" />
+		<s:hidden name="patent.createUser" />
+		<s:hidden name="patent.updateTime" />
+		<s:hidden name="patent.updateUser" />
+		<s:hidden name="patent.ver" />
+		
+		<ul>
+			<li class="all">
+				<b>專利名稱</b>
+				<s:textfield name="patent.name" cssClass="form-control" />
+			</li>
+			<li class="all">
+				<b>專利權人</b>
+				<s:textfield name="patent.assignee" cssClass="form-control"  />
+			</li>	
+			<li class="all">
+				<b>發明人</b>
+				<s:textfield name="patent.invertor" cssClass="form-control" />
+			</li>
+			<li class="quarter">
+				<b>國際分類號</b>
+				<s:textfield name="patent.ipc" cssClass="form-control" />
+			</li>			
+			<li class="quarter">
+				<b>申請國別</b>
+				<s:textfield name="patent.country" cssClass="form-control" />
+			</li>
+			<li class="quarter">
+				<b>申請號</b>
+				<s:textfield name="patent.appliactionNo" cssClass="form-control" />
+			</li>
+			<li class="quarter">
+				<b>申請日</b>
+				<s:textfield name="patent.applicationDate" cssClass="form-control calendarBox" >			
+					<s:param name="value">
+						<s:date name="patent.applicationDate" format="yyyy/MM/dd" /> 
+					</s:param>
+				</s:textfield>
+			</li>
+			<li class="quarter">
+				<b>公開號</b>
+				<s:textfield name="patent.openNo" cssClass="form-control" />
+			</li>						
+			<li class="quarter">
+				<b>公開日</b>
+				<s:textfield name="patent.openDate" cssClass="form-control calendarBox" >
+					<s:param name="value">
+						<s:date name="patent.openDate" format="yyyy/MM/dd" /> 
+					</s:param>				
+				</s:textfield>
+			</li>						
+			<li class="quarter">
+				<b>公告號</b>
+				<s:textfield name="patent.publicationNo" cssClass="form-control" />
+			</li>						
+			<li class="quarter">
+				<b>公告日</b>
+				<s:textfield name="patent.publicationDate" cssClass="form-control calendarBox" >
+					<s:param name="value">
+						<s:date name="patent.publicationDate" format="yyyy/MM/dd" /> 
+					</s:param>			
+				</s:textfield>
+			</li>
+			<li class="quarter">
+				<b>專利類別</b>
+				<s:textfield name="patent.category" cssClass="form-control" />
+			</li>
+			<li class="quarter">
+				<b>專利狀態</b>
+				<s:textfield name="patent.patentStatus" cssClass="form-control" />
+			</li>			
+			<li class="half">
+				<b>專利家族</b>
+				<s:textfield name="patent.familyNo" cssClass="form-control" />
+			</li>
+			<li class="all">
+				<b>專利技術摘要</b>
+				<s:textfield name="patent.techAbstract" cssClass="form-control" />
+			</li>
+			<li class="all">
+				<b>重要圖式</b>
+
+				<div>
+					<img id="patent_img" src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:800px; max-height:800px;">
+					<span class="btn btn-default btn-file">
+						瀏覽
+		                <input class="upload" name="uploadPatentImg" type="file" onchange = "readURL(this);">
+					</span>
+<%-- 					<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" cssClass="form-control" /> --%>
+				</div>
+			</li>
+			<li class="all"></li>
+			<li class="half">
+				<b>專利技術領域</b>
+				<s:select name="patent.techField.name" list="techFieldList" listKey="name" listValue="name" />
+			</li>
+			<li class="half">
+				<b>應用範圍/產業</b>
+				<s:textfield name="patent.usage" cssClass="form-control" />
+			</li>									
+			<li class="all">
+				<b>技術發展階段</b>
+				<s:select name="patent.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" />
+			</li>									
+			<li class="all">
+				<b>技術發展階段說明</b>
+				<s:textfield name="patent.trlDesc" cssClass="form-control" />
+			</li>									
+		</ul>
+		<div class="clear"></div>
+		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
+			<s:submit cssClass="redBtn" value="儲存" />
+			<a class="grayBtn" href="<s:url value="/iace/patent/init"/>">回上一頁</a>	
 		</div>
-		<s:submit cssClass="btn btn-primary" value="儲存" />
-<!-- 		<input type="button" value="重設" class="btn btn-default" onclick="this.form.reset();" /> -->
-		<a class="btn btn-default" href="<s:url value="/iace/patent/init"/>">回上一頁</a>
-		<!-- <input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/> -->	
 	</s:form>
 	
 	<script type="text/javascript">

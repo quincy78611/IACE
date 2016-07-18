@@ -7,23 +7,31 @@
 
 </head>
 <body>
-	<h4>研發成果明細</h4>
+	<h2 class="itemTitle">研發成果明細</h2>
 
-	<div class="container-fluid" >
-		<s:hidden name="id"/>
-		<s:hidden name="technologyId"/>
-		
-		<s:textfield label="技術名稱" name="technology.name" readonly="true" cssClass="form-control" labelposition="left"/>				
-		<s:textarea label="技術簡述" name="technology.descriptoin" readonly="true" cssClass="form-control"  />
-<%-- 		<s:select label="技術發展階段" name="technology.optionTrlCodes" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}"  disabled="true" multiple="true"/> --%>
-		<s:checkboxlist label="技術發展階段" name="technology.optionTrlCodes" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" disabled="true"/>
-		<s:textarea label="技術發展階段說明" name="technology.trlDesc" readonly="true" cssClass="form-control"/>	
-	</div>
+		<ul>
+			<li class="all">
+				<b>技術名稱</b>
+				<s:textfield name="technology.name" disabled="true"/>
+			</li>
+			<li class="all">
+				<b>技術簡述</b>
+				<s:textarea name="technology.descriptoin" disabled="true"/>
+			</li>
+			<li class="all">
+				<b>技術發展階段</b>
+				<s:checkboxlist name="technology.optionTrlCodes" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" disabled="true"/>
+			</li>
+			<li class="all">
+				<b>技術發展階段說明</b>
+				<s:textarea name="technology.trlDesc" disabled="true"/>
+			</li>			
+		</ul>
 	
 	<s:url value="update.action" var="updateUrlTag">
 		<s:param name="id" value="id" />
 	</s:url>
-	<input type="button" class="btn btn-default" value="回上一頁"
+	<input type="button" class="grayBtn" value="回上一頁"
 		onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
 
 </body>

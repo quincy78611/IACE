@@ -7,24 +7,35 @@
 
 </head>
 <body>
-	<h4>新增研發成果</h4>
+	<h2 class="itemTitle">新增研發成果</h2>
 
 	<s:form action="createTechnologySubmit" method="post" validate="true" >
-		<div class="form-horizontal" >
-			<s:hidden name="id"/>
-						
-			<s:textfield label="技術名稱" name="technology.name" cssClass="form-control" />				
-			<s:textarea label="技術簡述" name="technology.descriptoin" cssClass="form-control"  />
-<%-- 			<s:select label="技術發展階段" name="technology.optionTrlCodes" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" multiple="true"/> --%>
-			<s:checkboxlist label="技術發展階段" name="technology.optionTrlCodes" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" />
-			<s:textarea label="技術發展階段說明" name="technology.trlDesc" cssClass="form-control" />
-		</div>
+		<s:hidden name="id"/>
 		
-		<s:submit cssClass="btn btn-info" value="確定" />
+		<ul>
+			<li class="all">
+				<b>技術名稱</b>
+				<s:textfield name="technology.name"/>
+			</li>
+			<li class="all">
+				<b>技術簡述</b>
+				<s:textarea name="technology.descriptoin" />
+			</li>
+			<li class="all">
+				<b>技術發展階段</b>
+				<s:checkboxlist name="technology.optionTrlCodes" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" />
+			</li>
+			<li class="all">
+				<b>技術發展階段說明</b>
+				<s:textarea name="technology.trlDesc" />
+			</li>			
+		</ul>
+		
+		<s:submit cssClass="redBtn" value="確定" />
 		<s:url value="update.action" var="updateUrlTag">
 			<s:param name="id" value="id" />
 		</s:url>
-		<input type="button" class="btn btn-default" value="回上一頁"
+		<input type="button" class="grayBtn" value="回上一頁"
 			onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
 	</s:form>
 	

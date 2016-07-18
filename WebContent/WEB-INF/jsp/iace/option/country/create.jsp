@@ -7,14 +7,19 @@
 
 </head>
 <body>
-	<h4>新增</h4>
-	<s:form action="createSubmit" method="post" validate="true" >
-		<div class="container-fluid" >
-			<div class="col-md-3">
-				<s:textfield label="代碼" name="option.code" cssClass="form-control"/>
-				<s:textfield label="名稱" name="option.name" cssClass="form-control"/>					
-			</div>
-		</div>			
+	<h2 class="itemTitle">新增</h2>
+	<s:form action="createSubmit" method="post" validate="true" >		
+		<ul>
+			<li class="half">
+				<b>代碼</b>
+				<s:textfield name="option.code"/>
+			</li>			
+			<li class="half">
+				<b>名稱</b>
+				<s:textfield name="option.name"/>
+			</li>			
+		</ul>
+		
 		<s:submit cssClass="btn btn-default" value="儲存" />	
 		<input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/>		
 	</s:form>

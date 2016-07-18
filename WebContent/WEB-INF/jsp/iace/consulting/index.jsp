@@ -8,33 +8,32 @@
 </head>
 <body>	
 	<s:form action="index" method="post" validate="true" >
-		<div class="container-fluid">
-			<div class="col-md-3">
-				<s:textfield placeholder="姓名" name="searchName" maxlength="100" cssClass="form-control" />
-			</div>
-			<div class="col-md-7">
-				<s:textfield placeholder="單位名稱" name="searchOrganization" maxlength="500" cssClass="form-control" />
-			</div>		
-			<div class="col-md-2">			
+		<div id="searchZone">
+			<ul>
+				<li><s:textfield placeholder="姓名" name="searchName" maxlength="100" cssClass="form-control" /></li>
+				<li><s:textfield placeholder="單位名稱" name="searchOrganization" maxlength="500" cssClass="form-control" /></li>
+				<li></li>
+			</ul>		
+			<div class="send">			
 				<input type="submit" value="查詢" class="btn btn-primary" id="btn-search"/>
 				<input type="button" value="清除" class="btn btn-warning" id="btn-reset"/>
 			</div>
 		</div>
-		<p>
+		<div class="clear"></div>
 		<div class="">
-			<table class="table table-striped table-hover table-bordered">
+			<table width="100%" class="table table-striped table-hover table-bordered">
 				<thead>
 					<tr>
-						<th>No.</th>
-						<th>姓名</th>
-						<th>單位名稱</th>
-						<th>單位類型</th>
-						<th>諮詢類型</th>
-						<th>產業/領域別</th>
-						<th>聯絡電話</th>
-						<th>E-MAIL</th>
-						<th>諮詢日期</th>
-						<th></th>
+						<th nowrap width="2%">No.</th>
+						<th nowrap width="">姓名</th>
+						<th nowrap width="">單位名稱</th>
+						<th nowrap width="">單位類型</th>
+						<th nowrap width="">諮詢類型</th>
+						<th nowrap width="">產業/領域別</th>
+						<th nowrap width="">聯絡電話</th>
+						<th nowrap width="">E-MAIL</th>
+						<th nowrap width="">諮詢日期</th>
+						<th nowrap width="">功能</th>
 					</tr>
 				</thead>
 				<tbody>

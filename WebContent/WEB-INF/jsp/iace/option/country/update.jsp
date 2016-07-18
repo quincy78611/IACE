@@ -7,24 +7,27 @@
 
 </head>
 <body>
-	<h4>編輯</h4>
+	<h2 class="itemTitle">編輯</h2>
 
 	<s:form action="updateSubmit" method="post" validate="true" >
-		<div class="container-fluid" >
-			<s:hidden name="option.id" />
-			<s:hidden name="option.isValid" />
-			<s:hidden name="option.createTime" />
-			<s:hidden name="option.createUser" />
-			<s:hidden name="option.updateTime" />
-			<s:hidden name="option.updateUser" />
-			<s:hidden name="option.ver" />
-			
-			<div class="col-md-3">
-				<s:textfield label="代碼" name="option.code" cssClass="form-control" readonly="true"/>
-				<s:textfield label="名稱" name="option.name" cssClass="form-control" />					
-			</div>
-
-		</div>
+		<s:hidden name="option.id" />
+		<s:hidden name="option.isValid" />
+		<s:hidden name="option.createTime" />
+		<s:hidden name="option.createUser" />
+		<s:hidden name="option.updateTime" />
+		<s:hidden name="option.updateUser" />
+		<s:hidden name="option.ver" />	
+		
+		<ul>
+			<li class="half">
+				<b>代碼</b>
+				<s:textfield name="option.code"/>
+			</li>			
+			<li class="half">
+				<b>名稱</b>
+				<s:textfield name="option.name"/>
+			</li>			
+		</ul>
 		<s:submit cssClass="btn btn-default" value="儲存" />	
 		<input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/>		
 		

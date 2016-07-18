@@ -7,9 +7,27 @@
 
 </head>
 <body>
+
 	<div class="">
 		<div class="row">
-			<s:form action="batchImportResearchPlan" method="post" validate="true" enctype="multipart/form-data">	
+			<s:form action="batchImportResearchPlan" method="post" validate="true" enctype="multipart/form-data">
+				<h2 class="itemTitle">研究計畫</h2>
+				<ul>
+					<li class="quarter">
+						<input type="button" class="btn btn-default" value="下載範例格式"/>
+					</li>
+					<li class="half">
+						<input type="text" id="research_plan_file_display" class="form-control" readonly="readonly"/>
+						<span class="btn btn-default btn-file"> 瀏覽 
+							<input type="file" id="btn_research_plan_file" name="uploadFile" class="btn-file">
+						</span>						
+					</li>
+					<li class="quarter">
+						<input type="submit" value="開始匯入" class="btn btn-info" />
+					</li>
+				</ul>
+				
+<%-- 				
 				<div class="col-md-2">
 					<h4>研究計畫</h4>
 				</div>
@@ -26,7 +44,7 @@
 				</div>
 				<div class="col-md-1">
 					<input type="submit" value="開始匯入" class="btn btn-info" />
-				</div>
+				</div> --%>
 			</s:form>		
 		</div>
 		<hr>

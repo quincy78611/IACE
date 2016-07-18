@@ -7,66 +7,79 @@
 
 </head>
 <body>
-	<h3>編輯</h3>
-	<s:form action="updateSubmit" method="post" validate="true">
-		<div class="container-fluid" >
-			<s:hidden name="consulting.id" />
-			<s:hidden name="consulting.isValid" />
-			<s:hidden name="consulting.createTime" />
-			<s:hidden name="consulting.createUser" />
-			<s:hidden name="consulting.updateTime" />
-			<s:hidden name="consulting.updateUser" />
-			<s:hidden name="consulting.ver" />
-					
-			<div class="col-md-3">
-				<s:textfield label="姓名" name="consulting.name" class="form-control" />
-			</div>
-			<div class="col-md-9">
-				<s:textfield label="單位名稱" name="consulting.organization" class="form-control" />
-			</div>			
-			<div class="col-md-3">
-				<s:select label="單位類型" name="consulting.optionOrganizationType.code" list="optionOrganizationTypeList" listKey="code" listValue="%{code +' ' +name}" class="orgType"/>		
-			</div>
-			<div class="col-md-9">
-				<s:textfield label="單位類型(其他)" name="consulting.orgTypeOther" disabled="true" class="form-control orgType" />
-			</div>
-			<div class="col-md-3">
-				<s:select label="諮詢類型" name="consulting.optionConsult.code" list="optionConsultList" listKey="code" listValue="%{code +' ' +name}" class="consult"/>		
-			</div>
-			<div class="col-md-9">
-				<s:textfield label="諮詢類型(其他)" name="consulting.consultTypeOther" disabled="true" class="form-control consult" />
-			</div>
-			<div class="col-md-3">
-				<s:select label="產業/領域別" name="consulting.optionIndustry.code" list="optionIndustryList" listKey="code" listValue="%{code +' ' +name}" class="industry" />		
-			</div>
-			<div class="col-md-9">
-				<s:textfield label="產業/領域別(其他)" name="consulting.industryOther" disabled="true" class="form-control industry" />
-			</div>
-			<div class="col-md-3">
-				<s:textfield label="聯絡電話" name="consulting.phone" class="form-control" />		
-			</div>
-			<div class="col-md-6">
-				<s:textfield label="E-MAIL" name="consulting.email" class="form-control" />		
-			</div>
-			<div class="col-md-3">
-				<s:textfield label="諮詢日期" name="consulting.consultDate" cssClass="form-control calendarBox" >			
+	<h2 class="itemTitle">編輯</h2>
+	<s:form action="updateSubmit" method="post" validate="true">	
+		<s:hidden name="consulting.id" />
+		<s:hidden name="consulting.isValid" />
+		<s:hidden name="consulting.createTime" />
+		<s:hidden name="consulting.createUser" />
+		<s:hidden name="consulting.updateTime" />
+		<s:hidden name="consulting.updateUser" />
+		<s:hidden name="consulting.ver" />	
+		
+		<ul>
+			<li class="half">
+				<b>姓名</b>
+				<s:textfield name="consulting.name" class="form-control" />
+			</li>
+			<li class="half">
+				<b>單位名稱</b>
+				<s:textfield name="consulting.organization" class="form-control" />
+			</li>
+			<li class="half">
+				<b>單位類型</b>
+				<s:select name="consulting.optionOrganizationType.code" list="optionOrganizationTypeList" listKey="code" listValue="%{code +' ' +name}" class="orgType"/>
+			</li>
+			<li class="half">
+				<b>單位類型(其他)</b>
+				<s:textfield name="consulting.orgTypeOther" disabled="true" class="form-control orgType" />
+			</li>
+			<li class="half">
+				<b>諮詢類型</b>
+				<s:select name="consulting.optionConsult.code" list="optionConsultList" listKey="code" listValue="%{code +' ' +name}" class="consult"/>
+			</li>
+			<li class="half">
+				<b>諮詢類型(其他)</b>
+				<s:textfield name="consulting.consultTypeOther" disabled="true" class="form-control consult" />
+			</li>
+			<li class="half">
+				<b>產業/領域別</b>
+				<s:select name="consulting.optionIndustry.code" list="optionIndustryList" listKey="code" listValue="%{code +' ' +name}" class="industry" />
+			</li>
+			<li class="half">
+				<b>產業/領域別(其他)</b>
+				<s:textfield name="consulting.industryOther" disabled="true" class="form-control industry" />
+			</li>
+			<li class="quarter">
+				<b>聯絡電話</b>
+				<s:textfield name="consulting.phone" class="form-control" />	
+			</li>
+			<li class="half">
+				<b>E-MAIL</b>
+				<s:textfield name="consulting.email" class="form-control" />		
+			</li>
+			<li class="quarter">
+				<b>諮詢日期</b>
+				<s:textfield name="consulting.consultDate" cssClass="form-control calendarBox" >			
 					<s:param name="value">
 						<s:date name="consulting.consultDate" format="yyyy/MM/dd" /> 
 					</s:param>
-				</s:textfield>
-			</div>			
-			<div class="col-md-12">
-				<s:textarea label="內容說明" name="consulting.content" cssClass="form-control"/>
-			</div>
-		</div>
- 		<hr>
-		<div class="container-fluid">
-			<div class="col-md-4">
+				</s:textfield>				
+			</li>
+			<li class="all">
+				<b>內容說明</b>
+				<s:textarea name="consulting.content" cssClass="form-control"/>
+			</li>		
+			<li class="all">
 				<s:checkbox label="同意【個人資料蒐集、處理及利用之告知暨同意條款】" name="consulting.approvalCheckBox"/>
-			</div>		
-			<s:submit class="btn btn-primary" value="儲存" />
-			<a class="btn btn-default" href="<s:url value="/iace/consulting/init"/>">回上一頁</a>
+			</li>
+		</ul>
+		<div class="clear"></div>
+		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
+			<s:submit cssClass="redBtn" value="儲存" />
+			<a class="grayBtn" href="<s:url value="/iace/consulting/init"/>">回上一頁</a>	
 		</div>
+
 	</s:form>
 	
 	<script type="text/javascript">
@@ -80,6 +93,8 @@
 					$("input[type='text'].orgType").attr("disabled", "disabled");
 				}
 			});
+			$("select.orgType").trigger('change');
+			
 			$("select.consult").change(function(){
 				var name = $(this).find("option:selected").html();
 				if (name.includes("其他")) {
@@ -89,6 +104,8 @@
 					$("input[type='text'].consult").attr("disabled", "disabled");
 				}
 			});
+			$("select.consult").trigger('change');
+			
 			$("select.industry").change(function(){
 				var name = $(this).find("option:selected").html();
 				if (name.includes("其他")) {
@@ -98,6 +115,7 @@
 					$("input[type='text'].industry").attr("disabled", "disabled");
 				}
 			});
+			$("select.industry").trigger('change');
 		});
 	</script>
 

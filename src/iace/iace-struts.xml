@@ -168,7 +168,7 @@
 	</package>
 	
 	<package name="batchImport" namespace="/iace/batchImport" extends="struts-default">
-		<action name="init">
+		<action name="init" class="iace.action.BatchImportAction">
 			<result>/WEB-INF/jsp/iace/batchImport/index.jsp</result>
 		</action>
 		<action name="batchImportResearchPlan" class="iace.action.BatchImportAction" method="batchImportResearchPlan">

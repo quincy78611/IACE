@@ -7,98 +7,91 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
 	<script type="text/javascript" src="<s:url value="/scripts/jquery-1.10.2.min.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.validate.js"/>"></script>
-	<script type="text/javascript" src="<s:url value="/scripts/bootstrap.js"/>"></script>
-	<script type="text/javascript" src="<s:url value="/scripts/respond.js"/>"></script>
+	<%-- <script type="text/javascript" src="<s:url value="/scripts/bootstrap.js"/>"></script> --%>
+	<%-- <script type="text/javascript" src="<s:url value="/scripts/respond.js"/>"></script> --%>
 	<script type="text/javascript" src="<s:url value="/scripts/calendarBox.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/bootstrap.css"/>" />
+	<script type="text/javascript" src="<s:url value="/scripts/menu.js"/>"></script>
+	<script type="text/javascript" src="<s:url value="/scripts/vmenuModule.js"/>"></script>
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout.css"/>" />
+	<%-- <link rel="stylesheet" type="text/css" href="<s:url value="/css/bootstrap.css"/>" /> --%>
+	<%-- <link rel="stylesheet" type="text/css" href="<s:url value="/css/Site.css"/>" /> --%>
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.file.browse.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/PagedList.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/Site.css"/>" />
+
 	
     <s:if test="%{title != null && title != ''}">
    		<title><s:property value="title" /></title>
    	</s:if>
    	<s:else>
    		<title><decorator:title default="Welcome!" /></title>
-   	</s:else>    
-    
-    <script type="text/javascript">		
-		$(window).load(function(){
+   	</s:else>
+
+<%-- 	<script type="text/javascript">
+		$(window).load(function() {
 			//目前這作法只是權宜之計，比較好的做法應該是用更改template & theme
 			//http://www.mkyong.com/struts2/working-with-struts-2-theme-template/
 			//http://struts.apache.org/docs/xhtml-theme.html
 			$("span.help-block").removeClass("help-block");
 			$("span.glyphicon").remove();
 		});
-	</script>
-    
-    <decorator:head />
+	</script> --%>
+
+	<decorator:head />
 </head>
 <body>
-	<div class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-				<a class="navbar-brand" >鏈結產學媒合平台 IACE</a>
-			</div>
+	<header>
+		<div id="LOGO">
+			<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
 		</div>
-	</div>
-	<div class="">
-		<div class="left-menu" >
-			<div class="navbar-collapse collapse ">
-				<ul class="nav nav-pills nav-stacked ">					
-					<li class="active"><a href="#">Home</a></li>
-					<li class="dropdown">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					       	 研究計畫資料 <span class="caret"></span>
-					    </a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="<s:url value="/iace/researchPlan/init"/>">維護</a></li>
+<!-- 	    <div id="Link">
+	    	帳號<input name="" type="text">
+	    	密碼<input name="" type="text">
+	    	<a href="#" class="login">登入</a>
+	    </div> -->
+	</header>
+	<article>
+		<s:if test="%{title != null && title != ''}">
+    		<h1 class="pageTitle"><s:property value="title" /></h1>
+    	</s:if>  
+    	<div id="leftMenu">
+    		<div class="u-vmenu">
+    			<ul>
+					<li><a href="#">研發成果</a>
+						<ul>
+							<li><a href="<s:url value="/iace/researchPlan/init"/>">編輯管理</a></li>
 							<li><a href="<s:url value="/iace/researchPlan/create"/>">新增</a></li>
 							<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>
 						</ul>
-					</li>
-					<li class="dropdown">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					       	 專利資料 <span class="caret"></span>
-					    </a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="<s:url value="/iace/patent/init"/>">維護</a></li>
+					</li>    			
+					<li><a href="#">專利資料</a>
+						<ul>
+							<li><a href="<s:url value="/iace/patent/init"/>">編輯管理</a></li>
 							<li><a href="<s:url value="/iace/patent/create"/>">新增</a></li>
 							<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>
 						</ul>
 					</li>
-					<li class="dropdown">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					       	 諮詢服務表 <span class="caret"></span>
-					    </a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="<s:url value="/iace/consulting/init"/>">維護</a></li>
+					<li><a href="#">諮詢服務表</a>
+						<ul>
+							<li><a href="<s:url value="/iace/consulting/init"/>">編輯管理</a></li>
 							<li><a href="<s:url value="/iace/consulting/create"/>">新增</a></li>
-						</ul>					
+						</ul>
 					</li>
-					<li class="dropdown">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					       	 問卷調查模板 <span class="caret"></span>
-					    </a>
-						<ul class="dropdown-menu" role="menu">
+					<li><a href="#">問卷調查模板</a>
+						<ul>
 							<li><a href="<s:url value="/iace/qnrTemplate/init"/>">維護</a></li>
 							<li><a href="<s:url value="/iace/qnrTemplate/create"/>">新增</a></li>
-						</ul>					
-					</li>
-					<li class="dropdown">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					       	 問卷 <span class="caret"></span>
-					    </a>
-						<ul class="dropdown-menu" role="menu">
+						</ul>
+					</li>	
+					<li><a href="#">問卷</a>
+						<ul>
 							<s:iterator value="qnrTemplateList" status="stat">
 								<li>
 									<s:url value="/iace/questionnaire/init" var="initUrlTag" escapeAmp="false">
@@ -108,6 +101,8 @@
 									<a href='<s:property value="initUrlTag" />'>
 										<s:property value="%{'維護 '+name}"/>
 									</a>
+								</li>
+								<li>	
 									<s:url value="/iace/questionnaire/create" var="createUrlTag" escapeAmp="false">
 										<s:param name="qnrTableId" value="id" />
 										<s:param name="qnrTableName" value="tableName" />
@@ -117,14 +112,10 @@
 									</a>									
 								</li>	
 							</s:iterator>
-							
-						</ul>					
-					</li>					
-					<li class="dropdown">
-					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					       	 代碼管理 <span class="caret"></span>
-					    </a>
-					    <ul class="dropdown-menu" role="menu">
+						</ul>
+					</li>
+					<li><a href="#">代碼管理</a>
+						<ul>
 					    	<li><a href="<s:url value="/iace/option/country/index"/>">專利國別</a></li>
 					        <li><a href="<s:url value="/iace/option/companyLocation/index"/>">公司地域別</a></li>
 					        <li><a href="<s:url value="/iace/option/consult/index"/>">諮詢類型代</a></li>
@@ -132,39 +123,51 @@
 					        <li><a href="<s:url value="/iace/option/grbDomain/index"/>">GRB領域別</a></li>
 					        <li><a href="<s:url value="/iace/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
 					        <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別</a></li>
-<%-- 					        <li><a href="<s:url value="/iace/option/industryClass/index"/>">產業類別</a></li>					         --%>
+					        <%-- <li><a href="<s:url value="/iace/option/industryClass/index"/>">產業類別</a></li> --%>					        
 					        <li><a href="<s:url value="/iace/option/organizationClass/index"/>">單位類別</a></li>
 					        <li><a href="<s:url value="/iace/option/organizationType/index"/>">單位類型</a></li>
 					        <li><a href="<s:url value="/iace/option/trl/index"/>">發展階段</a></li>
 					        <li><a href="<s:url value="/iace/option/subject/index"/>">科技部學門</a></li>
 						</ul>
-					</li>		
+					</li>
 				</ul>
+    		</div>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$(".u-vmenu").vmenuModule({
+						Speed : 200,
+						autostart : false,
+						autohide : true
+					});
+				});
+			</script>
+    	</div>
+    	<div id="rightContent"> 
+			<s:if test="hasActionMessages()">
+				<div class="welcome">
+					<s:actionmessage />
+				</div>
+			</s:if>
+			<s:if test="hasActionErrors()">
+				<div class="errors">
+					<s:actionerror />
+				</div>
+			</s:if>
+			<decorator:body />
+    	</div>
+    	<div class="clear"></div>
+	</article>
+	<footer>
+		<div id="con">
+			<div id="subLink">
+				<img src="<s:url value="/images/footerLOGO.gif"/>" >
+			</div>
+			<div id="contact">
+				科技部鏈結產學合作計畫辦公室/服務專線：02-27377373/聯絡地址：台北市和平東路二段106號<br>
+				網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 請用Google Chrome 或 IE 9.0 以上版本瀏覽
+				最佳觀看解析度1200x800
 			</div>
 		</div>
-	    <div class="right-content">
-		    <div class="container body-content">
-		    	<s:if test="%{title != null && title != ''}">
-		    		<h2><s:property value="title" /></h2>
-		    	</s:if>  
-				<s:if test="hasActionMessages()">
-					<div class="welcome">
-						<s:actionmessage />
-					</div>
-				</s:if>
-				<s:if test="hasActionErrors()">
-					<div class="errors">
-						<s:actionerror />
-					</div>
-				</s:if>
-				<decorator:body /> 
-	    	</div>	
-			<br>
-			<div class="container">
-				<p>&copy; IACE</p>
-			</div>
-		</div>
-	</div>
-
+	</footer>
 </body>
 </html>

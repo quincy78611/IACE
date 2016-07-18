@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iACE鏈結產學媒合平台</title>
+<link href="CSS/layout.css" rel="stylesheet" type="text/css">
+<link href="CSS/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="JS/menu.js"></script>
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+	<header>
+		<div id="LOGO">
+			<img src="images/LOGO.gif" class="hlogo">
+		</div>
+		<div id="Link">
+			帳號<input name="" type="text">密碼<input name="" type="text"><a
+				href="#" class="login">登入</a>
+		</div>
+	</header>
+	<article>
+		<h1 class="pageTitle">研究計畫資料</h1>
+		<div id="leftMenu">
+			<div class="u-vmenu">
+				<ul>
+					<li><a href="#">研究計畫研究計畫研究計畫研究計畫研究計畫研究計畫</a>
+						<ul>
+							<li><a href="#">新增計畫新增計畫新增計畫新增計畫</a></li>
+							<li><a href="#">編輯計畫</a></li>
+							<li><a href="#">批次匯入</a></li>
+						</ul></li>
+					<li><a href="#">專利資料</a>
+						<ul>
+							<li><a href="#">新增計畫</a></li>
+							<li><a href="#">編輯計畫</a></li>
+							<li><a href="#">批次匯入</a></li>
+						</ul></li>
+					<li><a href="#">諮詢服務表</a>
+						<ul>
+							<li><a href="#">新增計畫</a></li>
+							<li><a href="#">編輯計畫</a></li>
+							<li><a href="#">批次匯入</a></li>
+						</ul></li>
+					<li><a href="#">企業需求單</a>
+						<ul>
+							<li><a href="#">新增計畫</a></li>
+							<li><a href="#">編輯計畫</a></li>
+							<li><a href="#">批次匯入</a></li>
+						</ul></li>
+					<li><a href="#">產業技術需求調查</a>
+						<ul>
+							<li><a href="#">新增計畫</a></li>
+							<li><a href="#">編輯計畫</a></li>
+							<li><a href="#">批次匯入</a></li>
+						</ul></li>
+					<li><a href="#">產學人才資料庫</a>
+						<ul>
+							<li><a href="#">新增計畫</a></li>
+							<li><a href="#">編輯計畫</a></li>
+							<li><a href="#">批次匯入</a></li>
+						</ul></li>
+					<li><a href="#">代碼管理</a>
+						<ul>
+							<li><a href="#">新增計畫</a></li>
+							<li><a href="#">編輯計畫</a></li>
+							<li><a href="#">批次匯入</a></li>
+						</ul></li>
+				</ul>
+			</div>
+			<script type="text/javascript" src="JS/vmenuModule.js"></script>
+			<script type="text/javascript">
+			$(document).ready(function() {
+				$(".u-vmenu").vmenuModule({
+					Speed: 200,
+					autostart: false,
+					autohide: true
+				});
+			});
+		</script>
+		</div>
+		<div id="rightContent">
+			<h2 class="itemTitle">編輯計畫</h2>
+			<ul>
+				<li class="all"><b>計畫名稱：</b><input name="textfield" type="text"
+					id="textfield" value="使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池及其成長機制探討">
+				</li>
+				<li class="half"><b>計畫編號：</b><input name="textfield"
+					type="text" id="textfield" value="NSC100-2221-E150-032"></li>
+				<li class="quarter"><b>計畫主持人：</b><input name="textfield"
+					type="text" id="textfield" value="鄭明哲"></li>
+				<li class="quarter"><b>計畫年度：</b><input name="textfield"
+					type="text" id="textfield" value="101年"></li>
+				<li class="half"><b>ORB計畫編號：</b><input name="textfield"
+					type="text" id="textfield" value="NSC100-2221-E150-032"></li>
+				<li class="half"><b>成果報告ID:</b><input name="textfield"
+					type="text" id="textfield" value="NSC100-2221-E150-032"></li>
+				<li class="all"><b>計畫關鍵字：</b><input name="textfield"
+					type="text" id="textfield" value="引發共電鍍法；銅銦硒/銅銦鎵硒吸收層；太陽能電池；微波光傳導反應"></li>
+				<li class="all"><b>技術發展階段：</b><input name="textfield"
+					type="text" id="textfield" value="TRL1 瞭解此項技術研發的基本科學原理"></li>
+				<li class="third"><b>研究領域清單：</b>
+				<textarea rows="6"></textarea></li>
+				<li class="third"><a href="###" class="right"></a><a href="###"
+					class="left"></a></li>
+				<li class="third"><b>已選領域清單：</b>
+				<textarea rows="6"></textarea></li>
+				<div class="clear"></div>
+				<div
+					style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
+					<a href="#" class="redBtn">儲存計畫</a> <a href="#" class="grayBtn">回上一頁</a>
+				</div>
+			</ul>
+			<h2 class="itemTitle Down">
+				研發成果列表
+				<div style="position: absolute; right: 0; top: 0;">
+					<a href="#" class="redBtn">＋ 新增研發成果</a>
+				</div>
+			</h2>
+			<table width="100%">
+				<tr>
+					<th width="3%" nowrap>No</th>
+					<th width="30%" nowrap>技術名稱</th>
+					<th width="22%" nowrap>技術簡述</th>
+					<th width="10%" nowrap>技術發展階段</th>
+					<th width="7%" nowrap>異動人員</th>
+					<th width="7%" nowrap>異動日期</th>
+					<th width="21%">功能</th>
+				</tr>
+				<tr>
+					<td>001</td>
+					<td class="plan"><a href="#">使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池機制探討</a></td>
+					<td>與俄羅斯合作使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池製作</td>
+					<td>TRL1</td>
+					<td>鄭明哲</td>
+					<td>2016/06/30</td>
+					<td><a href="#" class="view">檢視</a><a href="#" class="edit">編輯</a><a
+						href="#" class="del">刪除</a><a href="#" class="print">列印</a><a
+						href="#" class="export">編輯</a><a href="#" class="copy">複製</a></td>
+				</tr>
+				<tr>
+					<td>002</td>
+					<td class="plan"><a href="#">使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池機制探討</a></td>
+					<td>與俄羅斯合作使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池製作</td>
+					<td>TRL1</td>
+					<td>鄭明哲</td>
+					<td>2016/06/30</td>
+					<td><a href="#" class="view">檢視</a><a href="#" class="edit">編輯</a><a
+						href="#" class="del">刪除</a><a href="#" class="print">列印</a><a
+						href="#" class="export">編輯</a><a href="#" class="copy">複製</a></td>
+				</tr>
+			</table>
+		</div>
+		<div class="clear"></div>
+	</article>
+	<footer>
+		<div id="con">
+			<div id="subLink">
+				<img src="images/footerLOGO.gif">
+			</div>
+			<div id="contact">
+				科技部鏈結產學合作計畫辦公室/服務專線：02-27377373/聯絡地址：台北市和平東路二段106號<br>
+				網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 請用Google Chrome 或 IE 9.0 以上版本瀏覽
+				最佳觀看解析度1200x800
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
