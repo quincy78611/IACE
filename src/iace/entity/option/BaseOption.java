@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Transient;
 
 import iace.entity.BaseEntity;
 
@@ -51,6 +52,11 @@ public abstract class BaseOption  extends BaseEntity {
 	@Override
 	public String toString() {
 		return "[name=" + name + ", code=" + code + "]";
+	}
+	
+	@Transient
+	public String getShowString() {
+		return this.code+":"+this.name;
 	}
 
 

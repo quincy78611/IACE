@@ -107,27 +107,26 @@ article { width:1100px; margin:0 auto; clear:both; line-height:1.6em; background
 
 #wrapper { width:1100px; margin:40px auto; clear:both; line-height:1.6em; position:relative;}
 #leftMenu { width:185px; float:left;}
+
 #rightContent { width:914px; float:right; padding:25px 0 40px 33px;}
 #rightContent ul { margin-bottom:40px;}
 #rightContent li { float:left; margin-bottom:15px; font-size:1.12em;}
 #rightContent ul > li > ul { margin-bottom:10px;}
 #rightContent ul > li > ul > li { font-size: 16px; float:none; margin-bottom:10px;}
 #rightContent li b,
-#rightContent li.all b,
-#rightContent li.half b,
-#rightContent li.third b,
-#rightContent li.quarter b,
-#rightContent li.test b { color:#5b92b9; font-weight:normal; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;}
+#rightContent li label { color:#5b92b9; font-weight:normal; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;}
+
+
 #rightContent li.all { width:100%;}
 #rightContent li.half { width:49%; margin-right:1%;}
 #rightContent li.third { width:32%; margin-right:1%;}
 #rightContent li.quarter { width:24%; margin-right:1%;}
-#rightContent li.test { width:12%; margin-right:1%;}
+#rightContent li.eighth { width:11.5%; margin-right:1%;}
 #rightContent li.all input[type=text],
 #rightContent li.half input,
 #rightContent li.third input,
 #rightContent li.quarter input,
-#rightContent li.test input,
+#rightContent li.eighth input,
 #rightContent li.third textarea { width:100%; border:#e6eff5 1px solid; font-size:1em; padding: 7px 5px; font-size:0.91em; font-family:"·L³n¥¿¶ÂÅé";}
 #rightContent ul > li > ul > li input[type=checkbox] { margin-right:8px;}
 
@@ -179,4 +178,8 @@ footer { background: #f0f0f0; height:107px; width:100%;}
 footer #con { width:1100px; margin:0 auto;}
 footer #subLink { float:left;}
 footer #contact { float:right; font-size:0.81em; color:#b4b4b4; text-align:right; line-height:1.9em; padding:15px 0 0 0;}
+
+
+
+div.subForm {background: #c1e0ff; padding: 15px;}
 

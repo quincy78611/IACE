@@ -7,6 +7,7 @@
 	
 </head>
 <body>	
+	<h2 class="itemTitle">編輯管理</h2>
 	<s:form action="index" method="post" validate="true" >
 		<div id="searchZone">
 			<ul>
@@ -95,9 +96,7 @@
 									<s:param name="id" value="id" />
 								</s:url>
 								<input type="button" class="btn-danger del" value="刪除" 
-									onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
-							
-<%-- 									<s:property value="ver" /> --%>
+									onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />
 							</td>
 						</tr>
 					</s:iterator>

@@ -67,7 +67,6 @@
 					<li><a href="#">研發成果</a>
 						<ul>
 							<li><a href="<s:url value="/iace/researchPlan/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/iace/researchPlan/create"/>">新增</a></li>
 							<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>
 						</ul>
 					</li>    			
@@ -86,7 +85,7 @@
 					</li>
 					<li><a href="#">問卷調查模板</a>
 						<ul>
-							<li><a href="<s:url value="/iace/qnrTemplate/init"/>">維護</a></li>
+							<li><a href="<s:url value="/iace/qnrTemplate/init"/>">編輯管理</a></li>
 							<li><a href="<s:url value="/iace/qnrTemplate/create"/>">新增</a></li>
 						</ul>
 					</li>	
@@ -122,8 +121,7 @@
 					        <li><a href="<s:url value="/iace/option/cooperateMode/index"/>">合作模式</a></li>
 					        <li><a href="<s:url value="/iace/option/grbDomain/index"/>">GRB領域別</a></li>
 					        <li><a href="<s:url value="/iace/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
-					        <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別</a></li>
-					        <%-- <li><a href="<s:url value="/iace/option/industryClass/index"/>">產業類別</a></li> --%>					        
+					        <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別</a></li>					        
 					        <li><a href="<s:url value="/iace/option/organizationClass/index"/>">單位類別</a></li>
 					        <li><a href="<s:url value="/iace/option/organizationType/index"/>">單位類型</a></li>
 					        <li><a href="<s:url value="/iace/option/trl/index"/>">發展階段</a></li>
