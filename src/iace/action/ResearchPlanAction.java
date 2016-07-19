@@ -1,7 +1,9 @@
 package iace.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import core.util.PagedList;
 import iace.entity.ResearchPlan;
@@ -35,8 +37,10 @@ public class ResearchPlanAction extends BaseIaceAction {
 	private long technologyId;
 	private Technology technology;
 	
+	private Map<String, Object> ajaxResult;
+	
 	public ResearchPlanAction() {
-		super.setTitle("研究計畫資料");
+		super.setTitle("研發成果");
 	}
 
 	public String init() {
@@ -54,6 +58,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 		}
 	}
 	
+	@Deprecated
 	public String showDetail() {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
@@ -69,14 +74,12 @@ public class ResearchPlanAction extends BaseIaceAction {
 		}		
 	}
 	
+	@Deprecated
 	public String create() {
 		return SUCCESS;
 	}
 	
-	public void validateCreateSubmit() {
-		//TODO
-	}
-	
+	@Deprecated
 	public String createSubmit() {
 		try {
 			this.researchPlanService.create(this.researchPlan);
@@ -108,10 +111,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 		}
 	}
 	
-	public void validateUpdateSubmit() {
-		//TODO
-	}
-	
+	@Deprecated
 	public String updateSubmit() {
 		try {
 			this.id = this.researchPlan.getId();
@@ -134,6 +134,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 		}
 	}
 	
+	@Deprecated
 	public String delete() {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
@@ -149,6 +150,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 		}
 	}
 	
+	@Deprecated
 	public String deleteSubmit() {
 		try {
 			this.researchPlanService.delete(this.id);
@@ -161,6 +163,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 		}
 	}
 	
+	@Deprecated
 	public String showTechnologyDetail() {
 		try {
 			this.technology = this.technologyService.get(this.technologyId);
@@ -177,6 +180,11 @@ public class ResearchPlanAction extends BaseIaceAction {
 	}
 	
 	public String createTechnology() {
+		this.researchPlan = this.researchPlanService.get(this.id);
+		if (this.researchPlan == null) {
+			super.addActionError("找不到選擇的資料紀錄!");
+			return INPUT;
+		}
 		return SUCCESS;
 	}
 	
@@ -185,7 +193,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 	}
 	
 	public String createTechnologySubmit() {
-		try {
+		try {			
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.technology.setResearchPlan(this.researchPlan);
 			this.technologyService.create(this.technology);
@@ -202,6 +210,11 @@ public class ResearchPlanAction extends BaseIaceAction {
 	
 	public String updateTechnology() {
 		try {
+			this.researchPlan = this.researchPlanService.get(this.id);
+			if (this.researchPlan == null) {
+				super.addActionError("找不到選擇的資料紀錄!");
+				return INPUT;
+			}
 			this.technology = this.technologyService.get(this.technologyId);
 			if (this.technology == null) {
 				super.addActionError("找不到選擇的資料紀錄!");
@@ -232,21 +245,6 @@ public class ResearchPlanAction extends BaseIaceAction {
 			log.error("", e);
 			this.addActionError(e.getMessage());
 			return INPUT;
-		}
-	}
-	
-	public String deleteTechnology() {
-		try {
-			this.technology = this.technologyService.get(this.technologyId);
-			if (this.technology == null) {
-				super.addActionError("找不到選擇的資料紀錄!");
-				return INPUT;
-			}
-			return SUCCESS;
-		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
-			return ERROR;
 		}
 	}
 	
@@ -321,5 +319,14 @@ public class ResearchPlanAction extends BaseIaceAction {
 	public void setTechnology(Technology technology) {
 		this.technology = technology;
 	}
+
+	public Map<String, Object> getAjaxResult() {
+		return ajaxResult;
+	}
+
+	public void setAjaxResult(Map<String, Object> ajaxResult) {
+		this.ajaxResult = ajaxResult;
+	}
+	
 	
 }

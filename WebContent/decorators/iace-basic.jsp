@@ -43,15 +43,31 @@
 			$("span.glyphicon").remove();
 		});
 	</script> --%>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".u-vmenu").vmenuModule({
+				Speed : 200,
+				autostart : false,
+				autohide : true
+			});
+			
+			setInterval(function () {
+                /* $("#div-top-message").attr("hidden", "hidden"); */
+                $("#div-top-message").hide();
+            }, 3000);
+		});
+	</script>
+	
 
 	<decorator:head />
 </head>
 <body>
 	<header>
-		<div id="LOGO">
+		<div class="LOGO">
 			<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
 		</div>
-<!-- 	    <div id="Link">
+<!-- 	    <div class="Link">
 	    	帳號<input name="" type="text">
 	    	密碼<input name="" type="text">
 	    	<a href="#" class="login">登入</a>
@@ -61,7 +77,7 @@
 		<s:if test="%{title != null && title != ''}">
     		<h1 class="pageTitle"><s:property value="title" /></h1>
     	</s:if>  
-    	<div id="leftMenu">
+    	<div class="leftMenu">
     		<div class="u-vmenu">
     			<ul>
 					<li><a href="#">研發成果</a>
@@ -130,37 +146,28 @@
 					</li>
 				</ul>
     		</div>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$(".u-vmenu").vmenuModule({
-						Speed : 200,
-						autostart : false,
-						autohide : true
-					});
-				});
-			</script>
+
     	</div>
-    	<div id="rightContent"> 
-			<s:if test="hasActionMessages()">
-				<div class="welcome">
+    	<div class="rightContent">
+    		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
+			<div id="div-top-message">
+				<s:if test="hasActionMessages()">
 					<s:actionmessage />
-				</div>
-			</s:if>
-			<s:if test="hasActionErrors()">
-				<div class="errors">
+				</s:if>
+				<s:if test="hasActionErrors()">
 					<s:actionerror />
-				</div>
-			</s:if>
+				</s:if>			
+			</div>
 			<decorator:body />
     	</div>
     	<div class="clear"></div>
 	</article>
 	<footer>
-		<div id="con">
-			<div id="subLink">
+		<div class="con">
+			<div class="subLink">
 				<img src="<s:url value="/images/footerLOGO.gif"/>" >
 			</div>
-			<div id="contact">
+			<div class="contact">
 				科技部鏈結產學合作計畫辦公室/服務專線：02-27377373/聯絡地址：台北市和平東路二段106號<br>
 				網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 請用Google Chrome 或 IE 9.0 以上版本瀏覽
 				最佳觀看解析度1200x800

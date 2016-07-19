@@ -112,7 +112,6 @@ $(function(){
 
 });
 
-
 <!--
 $(function(){
 	// 預設標題區塊 .abgne_tip_gallery_block .caption 的 top
@@ -166,24 +165,19 @@ $(function(){
 });
 //-->
 
+$(function(){
+　$(window).load(function(){
+　　$(window).bind('scroll resize', function(){
+　　var $this = $(this);
+　　var $this_Top=$this.scrollTop();
 
-$(function() {
-	$(window).load(function() {
-		$(window).bind('scroll resize', function() {
-			var $this = $(this);
-			var $this_Top = $this.scrollTop();
-
-			// 當高度小於88時，關閉或開啟區塊
-			if ($this_Top < 46) {
-				$('#top-bar').stop().css({
-					top : "-90px"
-				});// 負的值要大於欲顯示出來的區塊高度
-			}
-			if ($this_Top > 46) {
-				$('#top-bar').stop().css({
-					top : "0px"
-				});
-			}
-		}).scroll();
-	});
+　　//當高度小於88時，關閉或開啟區塊
+　　if($this_Top < 46){
+　　　$('#top-bar').stop().css({top:"-90px"});//負的值要大於欲顯示出來的區塊高度
+　　　}
+　　　　if($this_Top > 46){
+　　　　$('#top-bar').stop().css({top:"0px"});
+　　　 }
+　　}).scroll();
+　});
 });

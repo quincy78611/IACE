@@ -19,58 +19,30 @@
 		<action name="showDetail" class="iace.action.ResearchPlanAction" method="showDetail">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/detail.jsp</result>		
-		</action>
-		<action name="create" class="iace.action.ResearchPlanAction" method="create">
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/create.jsp</result>		
-		</action>
-		<action name="createSubmit" class="iace.action.ResearchPlanAction" method="createSubmit">		
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-		</action>				
+		</action>			
 		<action name="update" class="iace.action.ResearchPlanAction" method="update">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>		
 		</action>
-		<action name="updateSubmit" class="iace.action.ResearchPlanAction" method="updateSubmit">		
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
-		</action>
-		<action name="delete" class="iace.action.ResearchPlanAction" method="delete">
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/delete.jsp</result>		
-		</action>	
-		<action name="deleteSubmit" class="iace.action.ResearchPlanAction" method="deleteSubmit">		
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/delete.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
-		</action>				
-		<action name="showTechnologyDetail" class="iace.action.ResearchPlanAction" method="showTechnologyDetail">
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/detailTechnology.jsp</result>		
-		</action>
 		<action name="createTechnology" class="iace.action.ResearchPlanAction" method="createTechnology">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/createTechnology.jsp</result>		
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>		
 		</action>
 		<action name="createTechnologySubmit" class="iace.action.ResearchPlanAction" method="createTechnologySubmit">		
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/createTechnology.jsp</result>
+			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
 		</action>
 		<action name="updateTechnology" class="iace.action.ResearchPlanAction" method="updateTechnology">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/updateTechnology.jsp</result>		
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>		
 		</action>
 		<action name="updateTechnologySubmit" class="iace.action.ResearchPlanAction" method="updateTechnologySubmit">		
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/updateTechnology.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-		</action>				
-		<action name="deleteTechnology" class="iace.action.ResearchPlanAction" method="deleteTechnology">
 			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/deleteTechnology.jsp</result>		
+			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
 		</action>
 		<action name="deleteTechnologySubmit" class="iace.action.ResearchPlanAction" method="deleteTechnologySubmit">
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/deleteTechnology.jsp</result>
 			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-		</action>
+		</action>	
 	</package>
 	
 	<package name="Patent" namespace="/iace/patent" extends="struts-default">

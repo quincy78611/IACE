@@ -4,14 +4,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+	<script type="text/javascript">
+		$(document).ready(function(){
+			/* alert($("#currentActionName").val()); */
+			subFormSettingDisplaySetting();
+			
+			$(".btn-del").click(function() {
+				if(confirm("確定要刪除？")) {
+					var url = $(this).attr("href");
+					window.location.href=url;
+				}
+			});			
+		});
+	</script>
+	<script type="text/javascript">
+		function subFormSettingDisplaySetting() {
+			$("#div-create-technology").hide();
+			$("#div-update-technology").hide();
+			
+			if ($("#currentActionName").val() == "createTechnology") {
+				$("#div-create-technology").show();
+				$('html,body').animate({scrollTop:$('#div-create-technology').offset().top},300);
+			}
+			if ($("#currentActionName").val() == "updateTechnology") {
+				$("#div-update-technology").show();
+				$('html,body').animate({scrollTop:$('#div-update-technology').offset().top},300);
+			}
+		}
+	</script>	
 </head>
 <body>
 	<h2 class="itemTitle">編輯管理 > 編輯</h2>
 	<div id="div-researchPlan">
 		<ul>
+
 			<li class="all">
-				<label>計畫名稱</label>
+				<b>計畫名稱</b>
 				<div>
 					<s:property value="researchPlan.name" />
 				</div>
@@ -95,33 +123,23 @@
 								<s:property value="optionTrlCodesString"/>
 							</td>
 							<td><s:property value="trlDesc"/></td>
-							<td>
-								<!-- 檢視 -->
-								<s:url value="showTechnologyDetail.action" var="detailUrlTag" escapeAmp="false">
-									<s:param name="id" value="researchPlan.id" />
-									<s:param name="TechnologyId" value="id" />
-								</s:url>		
-								<%-- <input type="button" class="btn-info" value="檢視" 
-									onclick="window.location.href='<s:property value="detailUrlTag" />'" /> --%>
-								<%-- <a href='<s:property value="detailUrlTag" />' class="view" >檢視</a> --%>
-							
+							<td>							
 								<!-- 編輯 -->
 								<s:url value="updateTechnology.action" var="updateUrlTag" escapeAmp="false">
 									<s:param name="id" value="researchPlan.id" />
 									<s:param name="TechnologyId" value="id" />
 								</s:url>		
-								<%-- <input type="button" class="btn-info" value="編輯" 
-									onclick="window.location.href='<s:property value="updateUrlTag" />'" /> --%>
-								<a href='<s:property value="updateUrlTag" />' class="edit" >編輯</a>									
+								<input type="button" class="btn-func btn-edit" value="編輯" 
+									onclick="window.location.href='<s:property value="updateUrlTag" />'" />														
 							
 								<!-- 刪除 -->
-								<s:url value="deleteTechnology.action" var="deleteUrlTag" escapeAmp="false">
+								<s:url value="deleteTechnologySubmit.action" var="deleteUrlTag" escapeAmp="false">
 									<s:param name="id" value="researchPlan.id" />
 									<s:param name="TechnologyId" value="id" />
 								</s:url>		
-								<%-- <input type="button" class="btn-danger" value="刪除" 
-									onclick="window.location.href='<s:property value="#deleteUrlTag" />'" /> --%>
-								<a href='<s:property value="deleteUrlTag" />' class="del" >刪除</a>														
+								<input type="button" class="btn-func btn-del" value="刪除" href='<s:property value="#deleteUrlTag" />'
+									 />
+																				
 							</td>
 						</tr>
 					</s:iterator>
@@ -131,8 +149,11 @@
 	</div>
 	<div class="clear"></div>
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-		<input type="button" class="redBtn" value="新增研發成果" onclick="btnCreateTechnologyClick()"/>	
-		<a class="grayBtn" href="<s:url value="/iace/researchPlan/init"/>">回上一頁</a>		
+		<s:url value="createTechnology.action" var="createUrlTag" escapeAmp="false">
+			<s:param name="id" value="researchPlan.id" />
+		</s:url>
+		<input type="button" class="redBtn" value="+ 新增研發成果" onclick="window.location.href='<s:property value="#createUrlTag" />'" />
+		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/researchPlan/init"/>'" />	
 	</div>	
 	
 	<div class="clear"></div>
@@ -148,7 +169,7 @@
 				</li>
 				<li class="all">
 					<b>技術簡述</b>
-					<s:textarea name="technology.descriptoin" />
+					<s:textarea name="technology.descriptoin" rows="5"/>
 				</li>
 				<li class="all">
 					<b>技術發展階段</b>
@@ -156,7 +177,7 @@
 				</li>
 				<li class="all">
 					<b>技術發展階段說明</b>
-					<s:textarea name="technology.trlDesc" />
+					<s:textarea name="technology.trlDesc" rows="5"/>
 				</li>			
 			</ul>
 			
@@ -168,24 +189,44 @@
 				onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
 		</s:form>
 	</div>
-	
-	
-	
-	
-	
-
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#div-create-technology").hide();
-		});
-	</script>
-	<script type="text/javascript">
-		function btnCreateTechnologyClick() {
-			$("#div-create-technology").show();			
-		}		
-	</script>	
-
-
-	
+	<div id="div-update-technology" class="subForm">
+		<h2 class="itemTitle">編輯研發成果</h2>
+		<s:form action="updateTechnologySubmit" method="post" validate="true" >
+			<s:hidden name="id"/>
+			<s:hidden name="technology.id" />
+			<s:hidden name="technology.isValid" />
+			<s:hidden name="technology.createTime" />
+			<s:hidden name="technology.createUser" />
+			<s:hidden name="technology.updateTime" />
+			<s:hidden name="technology.updateUser" />
+			<s:hidden name="technology.ver" />
+			
+			<ul>
+				<li class="all">
+					<b>技術名稱</b>
+					<s:textfield name="technology.name" cssClass="form-control" />
+				</li>
+				<li class="all">
+					<b>技術簡述</b>
+					<s:textarea name="technology.descriptoin" cssClass="form-control" />
+				</li>
+				<li class="all">
+					<b>技術發展階段</b>
+					<s:checkboxlist name="technology.optionTrlCodes" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" />
+				</li>
+				<li class="all">
+					<b>技術發展階段說明</b>
+					<s:textarea name="technology.trlDesc" cssClass="form-control" />
+				</li>
+			</ul>
+			
+			<s:submit cssClass="btn btn-info redBtn" value="儲存" />
+			<s:url value="update.action" var="updateUrlTag">
+				<s:param name="id" value="id" />
+			</s:url>
+			<input type="button" class="btn btn-default grayBtn" value="取消"
+				onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+		</s:form>	
+	</div>	
 </body>
 </html>
