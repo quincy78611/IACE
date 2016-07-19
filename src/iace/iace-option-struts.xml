@@ -483,30 +483,21 @@
 			<result name="success">/WEB-INF/jsp/iace/option/country/index.jsp</result>
 		</action>
 		<action name="create" class="iace.action.OptionCountryAction" method="create">
-			<result name="input">/WEB-INF/jsp/iace/option/country/create.jsp</result>
-			<result name="error" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>			
+			<result name="input">/WEB-INF/jsp/iace/option/country/create.jsp</result>		
 		</action>
 		<action name="createSubmit" class="iace.action.OptionCountryAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/iace/option/country/create.jsp</result>
 			<result name="error">/WEB-INF/jsp/iace/option/country/create.jsp</result>
-			<result name="success" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>
+			<result name="success">/WEB-INF/jsp/iace/option/country/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionCountryAction" method="update">
 			<result name="input">/WEB-INF/jsp/iace/option/country/update.jsp</result>
-			<result name="error" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>			
+			<result name="error">/WEB-INF/jsp/iace/option/country/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionCountryAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/iace/option/country/update.jsp</result>
 			<result name="error">/WEB-INF/jsp/iace/option/country/update.jsp</result>
-			<result name="success" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>
+			<result name="success">/WEB-INF/jsp/iace/option/country/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionCountryAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/iace/option/country/index.jsp</result>

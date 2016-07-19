@@ -55,7 +55,7 @@
 			setInterval(function () {
                 /* $("#div-top-message").attr("hidden", "hidden"); */
                 $("#div-top-message").hide();
-            }, 3000);
+            }, 5000);
 		});
 	</script>
 	

@@ -80,6 +80,9 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 	
 	@Override
 	public void delete(OptionEntity entity) {
+		if (entity == null) {
+			throw new IllegalArgumentException("無法刪除不存在的資料！");
+		}
 		if (realDelete) {			
 			super.delete(entity);	
 		} else {

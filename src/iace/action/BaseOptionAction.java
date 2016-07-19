@@ -49,14 +49,17 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 	}
 
 	public String createSubmit() {
+		String rtnStr;
 		try {
 			this.optionService.create(this.option);
-			return SUCCESS;
+			rtnStr = SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
-			this.addActionError(e.getMessage());
-			return ERROR;
-		}		
+			this.addActionError(e.getMessage());			
+			rtnStr = ERROR;
+		}
+		this.optionList = this.optionService.listAll();
+		return rtnStr;
 	}
 	
 	public String update() {
@@ -66,6 +69,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 		} catch (Exception e) {
 			log.error("", e);
 			this.addActionError(e.getMessage());
+			this.optionList = this.optionService.listAll();
 			return ERROR;
 		}
 	}
@@ -76,30 +80,34 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 	}
 	
 	public String updateSubmit() {
+		String rtnStr;
 		try {			
 			this.optionService.update(this.option);
-			return SUCCESS;
+			rtnStr = SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
 			this.addActionError(e.getMessage());
-			return INPUT;
+			rtnStr = INPUT;
 		}
+		this.optionList = this.optionService.listAll();
+		return rtnStr;
 	}
 	
 	public String deleteSubmit() {
+		String rtnStr;
 		try {
 			if (this.optionService.hasBeenUsed(this.id)) {
 				throw new IllegalArgumentException("不可刪除已被使用的代碼");
 			}
 			this.optionService.delete(this.id);
-			this.optionList = this.optionService.listAll();
-			return SUCCESS;
+			rtnStr = SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
 			this.addActionError(e.getMessage());
-			this.optionList = this.optionService.listAll();
-			return ERROR;
+			rtnStr = ERROR;
 		}
+		this.optionList = this.optionService.listAll();
+		return rtnStr;
 	}
 	
 	
