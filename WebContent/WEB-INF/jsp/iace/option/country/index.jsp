@@ -22,7 +22,7 @@
 	<table width="100%">
 		<tr>
 			<th width="2%" nowrap>No.</th>
-			<th width="5%" nowrap>代碼</th>
+			<th width="" nowrap>代碼</th>
 			<th width="" nowrap>名稱</th>
 			<th width="17%">功能</th>
 		</tr>
