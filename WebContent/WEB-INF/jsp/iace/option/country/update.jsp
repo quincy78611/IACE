@@ -28,8 +28,8 @@
 				<s:textfield name="option.name"/>
 			</li>			
 		</ul>
-		<s:submit cssClass="btn btn-default" value="儲存" />	
-		<input type ="button" class="btn btn-default" onclick="history.back()" value="回上一頁"/>		
+		<s:submit cssClass="btn btn-default redBtn" value="儲存" />	
+		<input type ="button" class="btn btn-default grayBtn" onclick="history.back()" value="回上一頁"/>		
 		
 	</s:form>
 </body>

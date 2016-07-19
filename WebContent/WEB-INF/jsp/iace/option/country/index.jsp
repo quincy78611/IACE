@@ -6,18 +6,25 @@
 <head>
 	<script type="text/javascript">
 		$(document).ready(function () {
-
+			$(".btn-del").click(function() {
+				if(confirm("確定要刪除？")) {
+					var url = $(this).attr("href");
+					window.location.href=url;
+				}
+			});	
 		});
 	</script>
 </head>
 <body>
-	<a class="redBtn" href="<s:url value="create.action"/>">新增代碼</a>
+	<input type="button" class="redBtn" value="新增代碼" onclick="window.location.href='<s:url value="create.action"/>'" />
+	<div class="clear"></div>
+	<br>
 	<table width="100%">
 		<tr>
 			<th width="2%" nowrap>No.</th>
 			<th width="5%" nowrap>代碼</th>
 			<th width="" nowrap>名稱</th>
-			<th width="20%">功能</th>
+			<th width="17%">功能</th>
 		</tr>
 		<s:iterator value="optionList" status="stat">
 			<tr>
@@ -31,19 +38,16 @@
 					<s:url value="update.action" var="updateUrlTag">
 						<s:param name="id" value="id" />
 					</s:url>
-					<input type="button" class="edit" value="編輯" 
+					<input type="button" class="btn-func btn-edit" value="編輯" 
 						onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
 						
-					<s:url value="delete.action" var="deleteUrlTag">
+					<s:url value="deleteSubmit.action" var="deleteUrlTag">
 						<s:param name="id" value="id" />
 					</s:url>
-					<input type="button" class="del" value="刪除" 
-						onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
+					<input type="button" class="btn-func btn-del" value="刪除" href='<s:property value="#deleteUrlTag" />' />								
 				</td>
 			</tr>
 		</s:iterator>
 	</table>
-
-
 </body>
 </html>

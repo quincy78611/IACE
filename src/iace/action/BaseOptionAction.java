@@ -86,30 +86,18 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 		}
 	}
 	
-	public String delete() {
-		try {
-			if (this.optionService.hasBeenUsed(this.id)) {
-				throw new IllegalArgumentException("不可刪除已被使用的代碼");
-			}
-			this.option = this.optionService.get(this.id);			
-			return INPUT;
-		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
-			return ERROR;
-		}
-	}
-	
 	public String deleteSubmit() {
 		try {
 			if (this.optionService.hasBeenUsed(this.id)) {
 				throw new IllegalArgumentException("不可刪除已被使用的代碼");
 			}
-			this.optionService.delete(this.option);
+			this.optionService.delete(this.id);
+			this.optionList = this.optionService.listAll();
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
 			this.addActionError(e.getMessage());
+			this.optionList = this.optionService.listAll();
 			return ERROR;
 		}
 	}

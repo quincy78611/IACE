@@ -508,20 +508,9 @@
 				<param name="actionName">index</param>
 			</result>
 		</action>
-		<action name="delete" class="iace.action.OptionCountryAction" method="delete">
-			<result name="input">/WEB-INF/jsp/iace/option/country/delete.jsp</result>
-			<result name="error" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>			
-		</action>
 		<action name="deleteSubmit" class="iace.action.OptionCountryAction" method="deleteSubmit">
-			<result name="input">/WEB-INF/jsp/iace/option/country/delete.jsp</result>
-			<result name="error" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>
-			<result name="success" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>
+			<result name="success">/WEB-INF/jsp/iace/option/country/index.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/country/index.jsp</result>
 		</action>
 	</package>
 	
