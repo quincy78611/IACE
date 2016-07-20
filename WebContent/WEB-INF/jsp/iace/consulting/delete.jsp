@@ -7,7 +7,7 @@
 
 </head>
 <body>
-	<h2 class="itemTitle">刪除</h2>	
+	<h2 class="itemTitle">編輯管理 > 刪除</h2>	
 	<s:form action="deleteSubmit" method="post" validate="true">
 		<s:hidden name="id" />			
 		<ul>

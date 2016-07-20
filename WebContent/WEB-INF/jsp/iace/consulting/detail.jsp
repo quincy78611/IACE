@@ -7,7 +7,7 @@
 
 </head>
 <body>
-	<h2 class="itemTitle">檢視</h2>
+	<h2 class="itemTitle">編輯管理 > 檢視</h2>
 
 	<ul>
 		<li class="half">

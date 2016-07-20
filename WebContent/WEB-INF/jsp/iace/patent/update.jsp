@@ -3,8 +3,20 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-
+<head>	
+	<script type="text/javascript">
+	    function readURL(input) {
+	        if (input.files && input.files[0]) {
+	            var reader = new FileReader();
+	
+	            reader.onload = function (e) {
+	                $('#patent_img').attr('src', e.target.result);
+	            };
+	
+	            reader.readAsDataURL(input.files[0]);
+	        }
+	    }
+	</script>
 </head>
 <body>
 	<h2 class="itemTitle">編輯</h2>
@@ -37,7 +49,7 @@
 			</li>			
 			<li class="quarter">
 				<b>申請國別</b>
-				<s:textfield name="patent.country" cssClass="form-control" />
+				<s:select name="patent.country.code" list="optionCountryList" listKey="code" listValue="%{code +' ' +name}" />
 			</li>
 			<li class="quarter">
 				<b>申請號</b>
@@ -45,7 +57,7 @@
 			</li>
 			<li class="quarter">
 				<b>申請日</b>
-				<s:textfield name="patent.applicationDate" cssClass="form-control calendarBox" >			
+				<s:textfield name="patent.applicationDate" cssClass="form-control calendarBox" autocomplete="off">			
 					<s:param name="value">
 						<s:date name="patent.applicationDate" format="yyyy/MM/dd" /> 
 					</s:param>
@@ -57,7 +69,7 @@
 			</li>						
 			<li class="quarter">
 				<b>公開日</b>
-				<s:textfield name="patent.openDate" cssClass="form-control calendarBox" >
+				<s:textfield name="patent.openDate" cssClass="form-control calendarBox" autocomplete="off">
 					<s:param name="value">
 						<s:date name="patent.openDate" format="yyyy/MM/dd" /> 
 					</s:param>				
@@ -69,7 +81,7 @@
 			</li>						
 			<li class="quarter">
 				<b>公告日</b>
-				<s:textfield name="patent.publicationDate" cssClass="form-control calendarBox" >
+				<s:textfield name="patent.publicationDate" cssClass="form-control calendarBox" autocomplete="off">
 					<s:param name="value">
 						<s:date name="patent.publicationDate" format="yyyy/MM/dd" /> 
 					</s:param>			
@@ -89,21 +101,20 @@
 			</li>
 			<li class="all">
 				<b>專利技術摘要</b>
-				<s:textfield name="patent.techAbstract" cssClass="form-control" />
+				<s:textarea name="patent.techAbstract" cssClass="form-control" rows="10"/>
 			</li>
 			<li class="all">
 				<b>重要圖式</b>
-
 				<div>
-					<img id="patent_img" src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:800px; max-height:800px;">
-					<span class="btn btn-default btn-file">
-						瀏覽
+					<a href="<s:url value="%{patent.patentPictureLink}"/>" target="_blank">
+						<img id="patent_img" src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:400px; max-height:400px;">
+					</a>
+					<span class="btn-file">
+						上傳圖檔
 		                <input class="upload" name="uploadPatentImg" type="file" onchange = "readURL(this);">
 					</span>
-<%-- 					<s:textfield label="重要圖示代碼" name="patent.importantPictureCode" cssClass="form-control" /> --%>
 				</div>
 			</li>
-			<li class="all"></li>
 			<li class="half">
 				<b>專利技術領域</b>
 				<s:select name="patent.techField.name" list="techFieldList" listKey="name" listValue="name" />
@@ -118,29 +129,14 @@
 			</li>									
 			<li class="all">
 				<b>技術發展階段說明</b>
-				<s:textfield name="patent.trlDesc" cssClass="form-control" />
-			</li>									
+				<s:textarea name="patent.trlDesc" cssClass="form-control" rows="10"/>
+			</li>
 		</ul>
 		<div class="clear"></div>
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 			<s:submit cssClass="redBtn" value="儲存" />
-			<a class="grayBtn" href="<s:url value="/iace/patent/init"/>">回上一頁</a>	
+			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/patent/init"/>'" />
 		</div>
-	</s:form>
-	
-	<script type="text/javascript">
-	    function readURL(input) {
-	        if (input.files && input.files[0]) {
-	            var reader = new FileReader();
-	
-	            reader.onload = function (e) {
-	                $('#patent_img').attr('src', e.target.result);
-	            };
-	
-	            reader.readAsDataURL(input.files[0]);
-	        }
-	    }
-	</script>	
-	
+	</s:form>	
 </body>
 </html>

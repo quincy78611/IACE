@@ -55,10 +55,8 @@
 		</action>
 		<action name="showDetail" class="iace.action.PatentAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/patent/detail.jsp</result>			
-			<result name="error" type="redirectAction">
-				<param name="actionName">index</param>
-			</result>			
+			<result name="input">/WEB-INF/jsp/iace/patent/detail.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/patent/index.jsp</result>		
 		</action>
 		<action name="create" class="iace.action.PatentAction" method="create">
 			<result name="success">/WEB-INF/jsp/iace/patent/create.jsp</result>	
@@ -110,9 +108,7 @@
 		<action name="showDetail" class="iace.action.ConsultingAction" method="showDetail">
 			<result name="input">/WEB-INF/jsp/iace/consulting/detail.jsp</result>			
 			<result name="success">/WEB-INF/jsp/iace/consulting/detail.jsp</result>
-			<result name="error" type="redirectAction">
-				<param name="actionName">init</param>
-			</result>			
+			<result name="error">/WEB-INF/jsp/iace/consulting/index.jsp</result>			
 		</action>
 		<action name="create" class="iace.action.ConsultingAction" method="create">
 			<result name="success">/WEB-INF/jsp/iace/consulting/create.jsp</result>	

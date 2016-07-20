@@ -18,6 +18,7 @@ import core.util.PagedList;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
 import iace.entity.Patent;
+import iace.entity.PatentSearchModel;
 import iace.entity.TechField;
 
 public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
@@ -50,6 +51,7 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		}
 	}
 
+	@Deprecated
 	@Override
 	public List<Patent> searchBy(String name, String appNo, String country, TechField techField) {
 		try {
@@ -79,6 +81,7 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		}
 	}
 	
+	@Deprecated
 	@Override
 	public PagedList<Patent> searchBy(int pageIndex, int pageSize, String name, String appNo, String country, TechField techField) {
 		long totalItemCount = QueryTotalRecordsCount(name, appNo, country, techField);			
@@ -86,19 +89,7 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		try {	
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Patent.class);
-			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
-			if (StringUtils.isNotBlank(name)) {
-				criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
-			}
-			if (StringUtils.isNotBlank(appNo)) {
-				criteria.add(Restrictions.like("appliactionNo", appNo, MatchMode.START).ignoreCase());
-			}
-			if (StringUtils.isNotBlank(country)) {
-				criteria.add(Restrictions.eq("country", country));
-			}
-			if (techField != null) {
-				criteria.add(Restrictions.eq("techField", techField));
-			}
+			addCriteriaRestrictionsForSearch(name, appNo, country, techField, criteria);
 			criteria.addOrder(Order.asc("id"));
 			
 			criteria.setFirstResult(results.getItemStart()-1);
@@ -115,23 +106,36 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		}
 	}
 	
+	@Override
+	public PagedList<Patent> searchBy(PatentSearchModel model) {
+		long totalItemCount = queryTotalRecordsCount(model);
+		PagedList<Patent> results = new PagedList<Patent>(totalItemCount, model.getPageSize(), model.getPageIndex());
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Patent.class);
+			addCriteriaRestrictionsForSearch(model, criteria);
+			criteria.addOrder(Order.asc("id"));
+			
+			criteria.setFirstResult(results.getItemStart()-1);
+			criteria.setMaxResults(model.getPageSize());
+			
+			@SuppressWarnings("unchecked")
+			List<Patent> list = criteria.list();
+			results.setList(list);
+			return results;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Deprecated
 	private long QueryTotalRecordsCount(String name, String appNo, String country, TechField techField) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Patent.class);
-			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
-			if (StringUtils.isNotBlank(name)) {
-				criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
-			}
-			if (StringUtils.isNotBlank(appNo)) {
-				criteria.add(Restrictions.like("appliactionNo", appNo, MatchMode.START).ignoreCase());
-			}
-			if (StringUtils.isNotBlank(country)) {
-				criteria.add(Restrictions.eq("country", country));
-			}
-			if (techField != null) {
-				criteria.add(Restrictions.eq("techField", techField));
-			}
+			addCriteriaRestrictionsForSearch(name, appNo, country, techField, criteria);
 			criteria.addOrder(Order.asc("id"));
 
 			criteria.setProjection(Projections.rowCount());
@@ -142,6 +146,56 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		} finally {
 			HibernateSessionFactory.closeSession();
 		}
+	}
+	
+	private long queryTotalRecordsCount(PatentSearchModel model) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Patent.class);
+			addCriteriaRestrictionsForSearch(model, criteria);
+			criteria.addOrder(Order.asc("id"));
+
+			criteria.setProjection(Projections.rowCount());
+			Object count = criteria.uniqueResult();
+			return (long) count;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	@Deprecated
+	private void addCriteriaRestrictionsForSearch(String name, String appNo, String country, TechField techField, Criteria criteria) {
+		if (StringUtils.isNotBlank(name)) {
+			criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
+		}
+		if (StringUtils.isNotBlank(appNo)) {
+			criteria.add(Restrictions.like("appliactionNo", appNo, MatchMode.START).ignoreCase());
+		}
+		if (StringUtils.isNotBlank(country)) {
+			criteria.add(Restrictions.eq("country.code", country));
+		}
+		if (techField != null) {
+			criteria.add(Restrictions.eq("techField", techField));
+		}		
+		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+	}
+	
+	private void addCriteriaRestrictionsForSearch(PatentSearchModel model, Criteria criteria) {
+		if (StringUtils.isNotBlank(model.getName())) {
+			criteria.add(Restrictions.like("name", model.getName(), MatchMode.ANYWHERE).ignoreCase());
+		}
+		if (StringUtils.isNotBlank(model.getAppNo())) {
+			criteria.add(Restrictions.like("appliactionNo", model.getAppNo(), MatchMode.START).ignoreCase());
+		}
+		if (StringUtils.isNotBlank(model.getCountryCode())) {
+			criteria.add(Restrictions.eq("country.code", model.getCountryCode()));
+		}
+		if (model.getTechFieldId() > 0) {
+			criteria.add(Restrictions.eq("techField.id", model.getTechFieldId()));
+		}		
+		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
 
 	@SuppressWarnings("unchecked")

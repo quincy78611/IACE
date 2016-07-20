@@ -15,6 +15,7 @@ import org.hibernate.criterion.Restrictions;
 import core.dao.BaseDao;
 import core.dao.HibernateSessionFactory;
 import iace.entity.BaseEntity;
+import iace.entity.TechField;
 import iace.entity.option.BaseOption;
 
 
@@ -25,6 +26,25 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 	
 	protected BaseOptionDao(Class<OptionEntity> optionEntityClass) {
 		this.optionEntityClass = optionEntityClass;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public OptionEntity getByCode(String code) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			String hql = "FROM " + optionEntityClass.getSimpleName() +" o "
+					+ "WHERE o.code = :code AND o.isValid = :isValid";
+			Query query = session.createQuery(hql);
+			query.setString("code", code);
+			query.setString("isValid", BaseEntity.TRUE);
+			Object obj = query.uniqueResult();
+			return (OptionEntity)obj;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -58,6 +78,8 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 	public OptionEntity get(long id) {
 		return (OptionEntity) super.get(optionEntityClass, id);
 	}
+	
+	
 	
 	@Override
 	public void create(OptionEntity entity) {

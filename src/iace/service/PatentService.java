@@ -17,6 +17,7 @@ import iace.dao.option.IOptionDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.techField.ITechFieldDao;
 import iace.entity.Patent;
+import iace.entity.PatentSearchModel;
 import iace.entity.TechField;
 import iace.entity.option.OptionCountry;
 
@@ -71,6 +72,14 @@ public class PatentService extends BaseService<Patent, Long> {
 		return res;
 	}
 	
+	public PagedList<Patent> searchBy(PatentSearchModel model) {
+		PagedList<Patent> res = this.patentDao.searchBy(model);
+		for (Patent p : res.getList()) {
+			loadImportantPicToEntity(p);
+		}
+		return res;
+	}
+	
 	@Override
 	public Patent get(Long id) {
 		Patent p = this.patentDao.get(id);
@@ -80,7 +89,7 @@ public class PatentService extends BaseService<Patent, Long> {
 
 	@Override
 	public void create(Patent entity) throws IOException {
-		getOrInsertOptionCountry(entity);
+		setOptionCountryToEntity(entity);
 		getOrInsertTechField(entity);
 		setPatentImportantPicturePath(entity);
 		try {
@@ -94,7 +103,7 @@ public class PatentService extends BaseService<Patent, Long> {
 	public List<String> createAll(List<Patent> entities) {
 		// entity設值
 		for (Patent p : entities) {
-			getOrInsertOptionCountry(p);
+			setOptionCountryToEntity(p);
 			getOrInsertTechField(p);
 			setPatentImportantPicturePath(p);
 		}
@@ -141,8 +150,8 @@ public class PatentService extends BaseService<Patent, Long> {
 	}
 
 	@Override
-	public void update(Patent entity) {		
-		getOrInsertOptionCountry(entity);
+	public void update(Patent entity) {
+		setOptionCountryToEntity(entity);
 		getOrInsertTechField(entity);
 		setPatentImportantPicturePath(entity);
 		try {
@@ -171,13 +180,13 @@ public class PatentService extends BaseService<Patent, Long> {
 		return this.patentDao.checkUK(entity);
 	}
 	
-	private void getOrInsertOptionCountry(Patent entity) {
-		if (this.optionCountryDao.isCodeExist(entity.getCountry()) == false) {
-			OptionCountry oc = new OptionCountry();
-			oc.setCode(entity.getCountry());
-			oc.setName(entity.getCountry());
-			this.optionCountryDao.create(oc);
-			entity.setCountry(oc.getCode());
+	private void setOptionCountryToEntity(Patent entity) {		
+		if (this.optionCountryDao.isCodeExist(entity.getCountry().getCode())) {
+			OptionCountry opt = this.optionCountryDao.getByCode(entity.getCountry().getCode());
+			entity.setCountry(opt);
+		}
+		else {
+			throw new IllegalArgumentException("國別代碼:「"+entity.getCountry().getCode()+"」不存在");
 		}
 	}
 	

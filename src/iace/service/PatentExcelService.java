@@ -51,10 +51,10 @@ public class PatentExcelService extends BaseExcelService {
 				p.setApplicationDate(new java.sql.Date(applicationDate.getTime()));
 				p.setOpenNo(getCell(r, ++c).getStringCellValue());
 				Date openDate = getCell(r, ++c).getDateCellValue();
-				p.setOpenDate(new java.sql.Date(openDate.getTime()));
+				p.setOpenDate(openDate == null ? null : new java.sql.Date(openDate.getTime()));
 				p.setPublicationNo(getCell(r, ++c).getStringCellValue());
 				Date publicationDate = getCell(r, ++c).getDateCellValue();
-				p.setPublicationDate(new java.sql.Date(publicationDate.getTime()));
+				p.setPublicationDate(publicationDate == null ? null : new java.sql.Date(publicationDate.getTime()));
 				p.setCategory(getCell(r, ++c).getStringCellValue());
 				p.setPatentStatus(getCell(r, ++c).getStringCellValue());
 				p.setFamilyNo(getCell(r, ++c).getStringCellValue());

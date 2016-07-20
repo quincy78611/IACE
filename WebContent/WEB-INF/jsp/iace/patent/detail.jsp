@@ -11,99 +11,88 @@
 	<ul>
 		<li class="all">
 			<b>專利名稱</b>
-			<s:textfield name="patent.name" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.name"/></div>
 		</li>
 		<li class="all">
 			<b>專利權人</b>
-			<s:textfield name="patent.assignee" cssClass="form-control"  readonly="true" />
+			<div><s:property value="patent.assignee"/></div>
 		</li>	
 		<li class="all">
 			<b>發明人</b>
-			<s:textfield name="patent.invertor" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.invertor"/></div>
 		</li>
 		<li class="quarter">
 			<b>國際分類號</b>
-			<s:textfield name="patent.ipc" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.ipc"/></div>
 		</li>			
 		<li class="quarter">
 			<b>申請國別</b>
-			<s:textfield name="patent.country" cssClass="form-control" readonly="true" />
+			<div><s:property value="%{patent.country.code + ' ' +patent.country.name}"/></div>
 		</li>
 		<li class="quarter">
 			<b>申請號</b>
-			<s:textfield name="patent.appliactionNo" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.appliactionNo"/></div>
 		</li>
 		<li class="quarter">
 			<b>申請日</b>
-			<s:textfield name="patent.applicationDate" cssClass="form-control" readonly="true" >			
-				<s:param name="value">
-					<s:date name="patent.applicationDate" format="yyyy/MM/dd" /> 
-				</s:param>
-			</s:textfield>
+			<div><s:property value="patent.applicationDate"/></div>
 		</li>
 		<li class="quarter">
 			<b>公開號</b>
-			<s:textfield name="patent.openNo" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.openNo"/></div>
 		</li>						
 		<li class="quarter">
 			<b>公開日</b>
-			<s:textfield name="patent.openDate" cssClass="form-control" readonly="true" >
-				<s:param name="value">
-					<s:date name="patent.openDate" format="yyyy/MM/dd" /> 
-				</s:param>				
-			</s:textfield>
+			<div><s:property value="patent.openDate"/></div>
 		</li>						
 		<li class="quarter">
 			<b>公告號</b>
-			<s:textfield name="patent.publicationNo" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.publicationNo"/></div>
 		</li>						
 		<li class="quarter">
 			<b>公告日</b>
-			<s:textfield name="patent.publicationDate" cssClass="form-control" readonly="true" >
-				<s:param name="value">
-					<s:date name="patent.publicationDate" format="yyyy/MM/dd" /> 
-				</s:param>			
-			</s:textfield>
+			<div><s:property value="patent.publicationDate"/></div>
 		</li>
 		<li class="quarter">
 			<b>專利類別</b>
-			<s:textfield name="patent.category" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.category"/></div>
 		</li>
 		<li class="quarter">
 			<b>專利狀態</b>
-			<s:textfield name="patent.patentStatus" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.patentStatus"/></div>
 		</li>			
 		<li class="half">
 			<b>專利家族</b>
-			<s:textfield name="patent.familyNo" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.familyNo"/></div>
 		</li>
 		<li class="all">
 			<b>專利技術摘要</b>
-			<s:textfield name="patent.techAbstract" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.techAbstract"/></div>
 		</li>
 		<li class="all">
 			<b>重要圖式</b>
 			<div>
-				<img id="patent_img" src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:800px; max-height:800px;">
+				<a href="<s:url value="%{patent.patentPictureLink}"/>" target="_blank">
+					<img id="patent_img" src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:400px; max-height:400px;">
+				</a>
 			</div>
 		</li>
-		<li class="all"></li>
 		<li class="half">
 			<b>專利技術領域</b>
-			<s:select name="patent.techField.name" list="techFieldList" listKey="name" listValue="name" disabled="true"/>
+			<div><s:property value="patent.techField.name"/></div>
 		</li>
 		<li class="half">
 			<b>應用範圍/產業</b>
-			<s:textfield name="patent.usage" cssClass="form-control" readonly="true" />
+			<div><s:property value="patent.usage"/></div>
 		</li>									
 		<li class="all">
 			<b>技術發展階段</b>
-			<s:select name="patent.trl.code" list="optionTrlList" listKey="code" listValue="%{code +' ' +name}" headerKey="" headerValue="" disabled="true"/>
+			<div><s:property value="%{patent.trl.code + ' ' +patent.trl.name}"/></div>
 		</li>									
 		<li class="all">
 			<b>技術發展階段說明</b>
-			<s:textfield name="patent.trlDesc" cssClass="form-control" readonly="true" />
-		</li>									
+			<div><s:property value="patent.trlDesc"/></div>
+		</li>
 	</ul>
 	<div class="clear"></div>
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
@@ -111,10 +100,10 @@
 			<s:param name="id" value="patent.id" />
 		</s:url>
 		<s:if test="#request.context['struts.actionMapping'].name == 'showDetail'">
-			<input type="button" class="btn btn-info" value="編輯" 
+			<input type="button" class="btn btn-info redBtn" value="編輯" 
 				onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
 		</s:if>
-		<a class="grayBtn" href="<s:url value="/iace/patent/init"/>">回上一頁</a>
+		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/patent/init"/>'" />
 	</div>	
 
 

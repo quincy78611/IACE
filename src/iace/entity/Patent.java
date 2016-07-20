@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import core.util.ValidateUtil;
+import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionTrl;
 
 @Entity
@@ -33,7 +34,7 @@ public class Patent extends BaseEntity {
 	private String name;
 	private String assignee;
 	private String invertor;
-	private String country;
+	private OptionCountry country;
 	private String appliactionNo;
 	private Date applicationDate;
 	private String openNo;
@@ -83,6 +84,19 @@ public class Patent extends BaseEntity {
 	public void setAssignee(String assignee) {
 		this.assignee = assignee;
 	}
+	
+	@Transient
+	public String getAssigneeShort() {
+		String[] assignees = StringUtils.split(this.assignee, "|");
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i < Math.min(2, assignees.length); i++) {
+			sb.append(assignees[i]).append("\r\n");
+		}
+		if (assignees.length > 2) {
+			sb.append(" ...");
+		}
+		return sb.toString();
+	}
 
 	@Column(name = "INVENTOR", length = 500, nullable = false)
 	public String getInvertor() {
@@ -92,14 +106,21 @@ public class Patent extends BaseEntity {
 	public void setInvertor(String invertor) {
 		this.invertor = invertor;
 	}
-
-	@Column(name = "COUNTRY", length = 10, nullable = false)
-	public String getCountry() {
+	
+	@ManyToOne
+	@JoinColumn(name="COUNTRY", referencedColumnName= "CODE")
+	public OptionCountry getCountry() {
 		return country;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setCountry(OptionCountry optionCountry) {
+		this.country = optionCountry;
+	}
+	
+	public void setCountry(String code) {
+		OptionCountry opt = new OptionCountry();
+		opt.setCode(code);
+		setCountry(opt);
 	}
 
 	@Column(name = "APPLICATION_NO", length = 100, nullable = false)
@@ -302,7 +323,7 @@ public class Patent extends BaseEntity {
 		ValidateUtil.notBlankNLength(this.name, 300, "專利資料", errMsgs);
 		ValidateUtil.notBlankNLength(this.assignee, 500, "專利權人", errMsgs);
 		ValidateUtil.notBlankNLength(this.invertor, 500, "發明人", errMsgs);
-		ValidateUtil.notBlankNLength(this.country, 10, "申請國別", errMsgs);
+//		ValidateUtil.notBlankNLength(this.country, 10, "申請國別", errMsgs);
 		ValidateUtil.notBlankNLength(this.appliactionNo, 100, "申請號", errMsgs);	
 		ValidateUtil.notNull(this.applicationDate,"申請日", errMsgs);
 		ValidateUtil.maxLength(this.openNo, 100, "公開號", errMsgs);

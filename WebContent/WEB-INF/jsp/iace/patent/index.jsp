@@ -4,123 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	
-</head>
-<body>	
-	<s:form action="index" method="post" validate="true" >
-		<div id="searchZone">
-			<ul>
-				<li>
-					<s:textfield placeholder="專利名稱" name="searchPatentName" maxlength="300" cssClass="form-control" />
-				</li>
-				<li>
-					<s:textfield placeholder="申請號" name="searchAppliactionNo" maxlength="100" cssClass="form-control" />
-				</li>
-				<li>
-					<s:select name="searchCountry" list="optionCountryList" listKey="code" listValue="%{code+' - '+name}" headerKey="" headerValue="請選擇申請國" />
-				</li>
-				<li>
-					<s:select name="searchTechField" list="techFieldList" listKey="id" listValue="name" headerKey="-1" headerValue="請選擇專利技術領域" />
-				</li>
-			</ul>
-			<div class="send">
-				<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
-				<br>
-				<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
-			</div>
-		</div>
-		<div class="clear"></div>
-		<div class="">
-			<table width="100%" >
-				<tr>
-					<th nowrap width="2%">No.</th>
-					<th nowrap width="">專利名稱</th>
-					<th nowrap width="">專利權人</th>
-					<th nowrap width="5%">申請號</th>
-					<th nowrap width="5%">申請日</th>
-					<th nowrap width="5%">狀態</th>
-					<th nowrap width="5%">專利技術領域</th>
-					<!-- <th nowrap width="15%">圖示</th> -->
-					<th nowrap width="5%">功能</th>
-				</tr>
-				<s:if test="patentPagedList != null">
-					<s:iterator value="patentPagedList.list" status="stat">
-						<tr>
-							<td>
-								<s:property value="%{patentPagedList.itemStart + #stat.count -1}" />
-								<%-- <s:property value="id" /> --%>
-							</td>						
-							<td><s:property value="name" /></td>
-							<td><s:property value="assignee" /></td>
-							<td><s:property value="appliactionNo" /></td>
-							<td><s:date name="applicationDate" format="yyyy/M/d"/></td>
-							<td><s:property value="patentStatus" /></td>
-							<td><s:property value="techField.name" /></td>
-<%-- 							<td>
-								<a href="<s:url value="%{patentPictureLink}"/>">
-									<img src="data:image;base64,<s:property value="base64PatentPicture"/>" style="max-width:200px; max-height:200px;">
-								</a>
-							</td> --%>
-							
-							<td class="col-md-1">
-								<!-- 檢視 -->
-								<s:url value="showDetail.action" var="detailUrlTag">
-									<s:param name="id" value="id" />
-								</s:url>
-								<input type="button" class="btn-info" value="檢視" 
-									onclick="window.location.href='<s:property value="detailUrlTag" />'" />
-									
-								<!-- 編輯 -->
-								<s:url value="update.action" var="updateUrlTag">
-									<s:param name="id" value="id" />
-								</s:url>
-								<input type="button" class="btn-info" value="編輯" 
-									onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
-									
-								<!-- 刪除 -->	
-								<s:url value="delete.action" var="deleteUrlTag">
-									<s:param name="id" value="id" />
-								</s:url>
-								<input type="button" class="btn-danger" value="刪除" 
-									onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
-							</td>
-						</tr>
-					</s:iterator>
-				</s:if>
-			</table>
-		</div>
-
-		<div>
-			<s:hidden id="pageIndex" name="pageIndex" value="0"/>
-			<s:hidden id="pageSize" name="pageSize" value="5" />
-			
-			<s:if test="patentPagedList != null && patentPagedList.pageCount > 0">
-				<ul class="pagination">
-					<li><input type="submit" value="First" class="btn-first-page" /></li>
-					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
-					<s:if test="pageIndex >= 5">
-						......
-					</s:if>
-					<s:iterator value="patentPagedList.pageNumberList" status="stat" 
-						begin="%{pageIndex < 5 ? 0 : pageIndex - 5 }"
-						end="%{pageIndex > patentPagedList.pageCount - 6 ? patentPagedList.pageCount -1 : pageIndex +5 }">
-						<li><input type="submit" value=<s:property/> class="btn-page" /></li>
-					</s:iterator>
-					<s:if test="pageIndex <= patentPagedList.pageCount - 6">
-						......
-					</s:if>
-					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
-					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
-				</ul>
-			
-				<p>Displaying <s:property value="patentPagedList.itemStart"/> - <s:property value="patentPagedList.itemEnd"/> of <s:property value="patentPagedList.totatlItemCount"/> item(s)</p> 
-			</s:if>
-		</div>
-	</s:form>
-	
 	<script type="text/javascript">		
 		$(document).ready(function () {			
-				$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
+			$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
 			
 			var pageIndex = parseInt('<s:property value="patentPagedList.pageIndex"/>');
 			var pageNumber = parseInt('<s:property value="patentPagedList.pageNumber"/>');
@@ -167,20 +53,140 @@
 					return false;
 				}
 			});
-						
-			// 注意: 在include此頁面的頁面的搜尋按鈕記得要加上id
+			
+			// 注意: 在此頁面的搜尋按鈕記得要加上id
 		    $("#btn-search").click(function(){
 		        $("#pageIndex").val(0);
 		        return true;
 		    });
-			
+		 	// 注意: 在此頁面的重置按鈕記得要加上id
 			$("#btn-reset").click(function(){
 				$("input.form-control:text").val("");
 				$("select").prop('selectedIndex', 0);
 			});
 
 		});
-	</script>
+	</script>	
+</head>
+<body>	
+	<s:form action="index" method="post" validate="true" >
+		<div>
+			<ul>
+				<li class="all">
+					<s:textfield placeholder="專利名稱" name="searchCondition.name" maxlength="300" cssClass="form-control" />
+				</li>
+				<li class="quarter">
+					<s:textfield placeholder="申請號" name="searchCondition.appNo" maxlength="100" cssClass="form-control" />
+				</li>
+				<li class="quarter">
+					<s:select name="searchCondition.countryCode" list="optionCountryList" listKey="code" listValue="%{code+' - '+name}" headerKey="" headerValue="請選擇申請國" />
+				</li>
+				<li class="quarter">
+					<s:select name="searchCondition.techFieldId" list="techFieldList" listKey="id" listValue="name" headerKey="-1" headerValue="請選擇專利技術領域" />
+				</li>
+				<li class="quarter">
+					<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
+					<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
+				</li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+		<div class="">
+			<table width="100%" >
+				<tr>
+					<th nowrap width="2%">No.</th>
+					<th nowrap width="">專利名稱</th>
+					<th nowrap width="">專利權人</th>
+					<th nowrap width="">申請國別</th>
+					<th nowrap width="5%">申請號</th>
+					<th nowrap width="5%">申請日</th>
+					<th nowrap width="5%">狀態</th>
+					<th nowrap width="5%">專利技術領域</th>
+					<!-- <th nowrap width="15%">圖示</th> -->
+					<th nowrap width="5%">功能</th>
+				</tr>
+				<s:if test="patentPagedList != null">
+					<s:iterator value="patentPagedList.list" status="stat">
+						<tr>
+							<td>
+								<s:property value="%{patentPagedList.itemStart + #stat.count -1}" />
+								<%-- <s:property value="id" /> --%>
+							</td>						
+							<td><s:property value="name" /></td>
+							<td title='<s:property value="assignee" />'>
+								<s:property value="assigneeShort" />
+							</td>
+							<td><s:property value="country.name" /></td>
+							<td><s:property value="appliactionNo" /></td>
+							<td><s:date name="applicationDate" format="yyyy/M/d"/></td>
+							<td><s:property value="patentStatus" /></td>
+							<td><s:property value="techField.name" /></td>
+<%-- 							<td>
+								<a href="<s:url value="%{patentPictureLink}"/>">
+									<img src="data:image;base64,<s:property value="base64PatentPicture"/>" style="max-width:200px; max-height:200px;">
+								</a>
+							</td> --%>
+							
+							<td class="col-md-1">
+								<!-- 檢視 -->
+								<s:url value="showDetail.action" var="detailUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<input type="button" class="btn-info btn-func btn-view" value="檢視" 
+									onclick="window.location.href='<s:property value="detailUrlTag" />'" />
+									
+								<!-- 編輯 -->
+								<s:url value="update.action" var="updateUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" 
+									onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+									
+								<!-- 刪除 -->	
+								<s:url value="delete.action" var="deleteUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<input type="button" class="btn-danger btn-func btn-del" value="刪除" 
+									onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
+							</td>
+						</tr>
+					</s:iterator>
+				</s:if>
+			</table>
+		</div>
+		
+		<div class="page">
+			<s:hidden id="pageIndex" name="searchCondition.pageIndex" value="0"/>
+			<s:hidden id="pageSize" name="searchCondition.pageSize" value="20" />
+						
+			<s:set var="pgList" value="patentPagedList"/>
+			<s:set var="pgIndex" value="searchCondition.pageIndex"/>
+			<s:set var="pgCount" value="#pgList.pageCount"/>
+			
+			<ul class="pagination">
+				<s:if test="#pgList != null && #pgCount > 0">					
+					<li><input type="submit" value="First" class="btn-first-page" /></li>
+					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
+					<s:if test="#pgIndex >= 5">
+						<li>......</li>
+					</s:if>
+					<s:iterator value="#pgList.pageNumberList" status="stat" 
+						begin="%{#pgIndex < 5 ? 0 : #pgIndex - 5 }"
+						end="%{#pgIndex > #pgCount - 6 ? #pgCount -1 : #pgIndex +5 }">
+						<li><input type="submit" value=<s:property/> class="btn-page" /></li>
+					</s:iterator>
+					<s:if test="#pgIndex <= #pgCount - 6">
+						<li>......</li>
+					</s:if>
+					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
+					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>					
+				</s:if>
+				<li>
+					<p>共 <s:property value="#pgList.totatlItemCount"/> 筆資料</p>
+				</li>
+			</ul>
+		</div>		
+	</s:form>
 </body>
 </html>
 

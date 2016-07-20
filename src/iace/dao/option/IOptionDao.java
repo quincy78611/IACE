@@ -7,6 +7,7 @@ import iace.dao.IBaseIaceDao;
 import iace.entity.option.BaseOption;
 
 public interface IOptionDao<OptionEntity extends BaseOption> extends IBaseIaceDao<OptionEntity> {
+	public OptionEntity getByCode(String code);
 	
 	public List<OptionEntity> listNotIn(List<String> codes);
 	

@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 import core.util.PagedList;
 import iace.entity.Patent;
+import iace.entity.PatentSearchModel;
 import iace.entity.TechField;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionTrl;
@@ -35,6 +36,7 @@ public class PatentAction extends BaseIaceAction {
 	private String searchAppliactionNo;
 	private String searchCountry;
 	private long searchTechField;
+	private PatentSearchModel searchCondition;
 
 	private List<TechField> techFieldList;
 	private List<OptionCountry> optionCountryList;
@@ -62,8 +64,10 @@ public class PatentAction extends BaseIaceAction {
 
 	public String index() {
 		try {
-			this.patentPagedList = this.patentService.searchBy(pageIndex, pageSize, 
-					searchPatentName, searchAppliactionNo, searchCountry, searchTechField);
+//			this.patentPagedList = this.patentService.searchBy(pageIndex, pageSize, 
+//					searchPatentName, searchAppliactionNo, searchCountry, searchTechField);
+			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
+			
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -155,7 +159,7 @@ public class PatentAction extends BaseIaceAction {
 
 	public String deleteSubmit() {
 		try {
-			this.patentService.delete(this.patent);
+			this.patentService.delete(this.id);
 			this.addActionMessage("DELETE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -177,7 +181,7 @@ public class PatentAction extends BaseIaceAction {
 		super.validateNotBlankNLength(this.patent.getName(), 300, "patent.name");
 		super.validateNotBlankNLength(this.patent.getAssignee(), 500, "patent.assignee");
 		super.validateNotBlankNLength(this.patent.getInvertor(), 500, "patent.invertor");
-		super.validateNotBlankNLength(this.patent.getCountry(), 10, "patent.country");
+//		super.validateNotBlankNLength(this.patent.getCountry(), 10, "patent.country");
 		super.validateNotBlankNLength(this.patent.getAppliactionNo(), 100, "patent.appliactionNo");
 		super.validateNotNull(this.patent.getApplicationDate(), "patent.applicationDate");
 		super.validateTextMaxLength(this.patent.getOpenNo(), 100, "patent.openNo");
@@ -223,7 +227,7 @@ public class PatentAction extends BaseIaceAction {
 	}
 
 	private void setUploadFileToEntity() throws IOException {
-		try {
+		if (StringUtils.isNotBlank(this.uploadPatentImgFileName)) {
 			int index = this.uploadPatentImgFileName.lastIndexOf(".");
 			String extension = this.uploadPatentImgFileName.substring(index + 1);
 			this.patent.setImportantPatentPictureExtension(extension);
@@ -231,12 +235,14 @@ public class PatentAction extends BaseIaceAction {
 			Path path = Paths.get(this.uploadPatentImg.getAbsolutePath());
 			byte[] data = Files.readAllBytes(path);
 			this.patent.setImportantPatentPicture(data);
-		} catch (NullPointerException e) {
-			Patent oldP = this.patentService.get(this.patent.getId());
-			int index = oldP.getImportantPicturePath().lastIndexOf(".");
-			this.patent.setImportantPatentPictureExtension(oldP.getImportantPicturePath().substring(index + 1));
-			
-			this.patent.setImportantPatentPicture(oldP.getImportantPatentPicture());			
+		} else {
+			if (this.patent.getId() != 0) {
+				Patent oldP = this.patentService.get(this.patent.getId());
+				int index = oldP.getImportantPicturePath().lastIndexOf(".");
+				this.patent.setImportantPatentPictureExtension(oldP.getImportantPicturePath().substring(index + 1));
+				
+				this.patent.setImportantPatentPicture(oldP.getImportantPatentPicture());
+			}
 		}
 	}
 
@@ -349,4 +355,13 @@ public class PatentAction extends BaseIaceAction {
 		this.uploadPatentImgFileName = uploadPatentImgFileName;
 	}
 
+	public PatentSearchModel getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(PatentSearchModel searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	
 }

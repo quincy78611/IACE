@@ -67,7 +67,8 @@
 	});
 	</script>	
 </head>
-<body>	
+<body>
+	<h2 class="itemTitle">編輯管理</h2>
 	<s:form action="index" method="post" validate="true" >
 		<div class="">
 			<ul>
