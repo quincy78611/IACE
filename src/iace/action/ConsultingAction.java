@@ -4,6 +4,7 @@ import java.util.List;
 
 import core.util.PagedList;
 import iace.entity.Consulting;
+import iace.entity.ConsultingSearchModel;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionOrganizationType;
@@ -22,13 +23,8 @@ public class ConsultingAction extends BaseIaceAction {
 	private OptionConsultService optionConsultService = ServiceFactory.getOptionConsultService();
 	private OptionIndustryService optionIndustryService = ServiceFactory.getOptionIndustryService();
 	
-	private String searchName;
-	private String searchOrganization;
-	
+	private ConsultingSearchModel searchCondition;	
 	private PagedList<Consulting> consultingPagedList;
-	private int pageIndex;
-	private int pageSize = 5;
-
 	
 	private List<OptionOrganizationType> optionOrganizationTypeList;
 	private List<OptionConsult> optionConsultList;
@@ -47,9 +43,10 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	public String index() {
 		try {
-			this.consultingPagedList = this.consultingService.searchBy(
-					this.pageIndex, this.pageSize, 
-					this.searchName, this.searchOrganization);
+//			this.consultingPagedList = this.consultingService.searchBy(
+//					this.pageIndex, this.pageSize, 
+//					this.searchName, this.searchOrganization);
+			this.consultingPagedList = this.consultingService.searchBy(searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -158,38 +155,6 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	//==========================================================================
 	
-	public String getSearchName() {
-		return searchName;
-	}
-
-	public void setSearchName(String searchName) {
-		this.searchName = searchName;
-	}
-
-	public String getSearchOrganization() {
-		return searchOrganization;
-	}
-
-	public void setSearchOrganization(String searchOrganization) {
-		this.searchOrganization = searchOrganization;
-	}
-
-	public int getPageIndex() {
-		return pageIndex;
-	}
-
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = pageIndex;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -229,6 +194,14 @@ public class ConsultingAction extends BaseIaceAction {
 			optionIndustryList = this.optionIndustryService.listAll();
 		}
 		return optionIndustryList;
+	}
+
+	public ConsultingSearchModel getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(ConsultingSearchModel searchCondition) {
+		this.searchCondition = searchCondition;
 	}
 	
 	

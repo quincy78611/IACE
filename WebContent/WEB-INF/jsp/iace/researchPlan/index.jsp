@@ -6,10 +6,7 @@
 <head>
 	<script type="text/javascript">		
 		$(document).ready(function () {
-			$("#btn-reset").click(function(){
-				$("input.form-control:text").val("");
-				$("select").prop('selectedIndex', 0);
-			});			
+	
 			
  			$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
 			
@@ -59,48 +56,53 @@
 				}
 			});
 						
-			// 注意: 在include此頁面的頁面的搜尋按鈕記得要加上id
+			// 注意: 在此頁面的搜尋按鈕記得要加上id
 		    $("#btn-search").click(function(){
 		        $("#pageIndex").val(0);
 		        return true;
 		    });
+		 	// 注意: 在此頁面的重置按鈕記得要加上id
+			$("#btn-reset").click(function(){
+				$("input.form-control:text").val("");
+				$("select").prop('selectedIndex', 0);
+			});		
 		});
 	</script>
 </head>
 <body>	
 	<h2 class="itemTitle">編輯管理</h2>
 	<s:form action="index" method="post" validate="true" >
-		<div class="searchZone">
+		<div class="">
 			<ul>
-				<li>
+				<li class="third">
 					<s:textfield placeholder="計畫編號" name="searchCondition.planNo" maxlength="100" cssClass="form-control" />
 				</li>
-				<li>
+				<li class="third">
 					<s:textfield placeholder="計畫名稱" name="searchCondition.planName" maxlength="4000" cssClass="form-control" />
 				</li>
-				<li>
+				<li class="third">
 					<s:select name="searchCondition.grbDomainCode" list="optionGrbDomainList" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部研究領域"/>
 				</li>
-				<li>
+				<li class="third">
 					<s:textfield placeholder="計畫主持人" name="searchCondition.manager" maxlength="100" cssClass="form-control" />
 				</li>
-				<li>
+				<li class="third">
 					<s:textfield placeholder="計畫關鍵字" name="searchCondition.keyword" maxlength="4000" cssClass="form-control" />
 				</li>
-				<li>
+				<li class="third">
 					<s:textfield placeholder="技術名稱" name="searchCondition.rndResultName" maxlength="4000" cssClass="form-control" />
 				</li>
-				<li>
+				<li class="third">
 					<s:select name="searchCondition.trlCode" list="optionTrlList" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部計畫發展階段"/>
 				</li>
-				<li>
+				<li class="third">
 					<s:textfield placeholder="年度" name="searchCondition.year" maxlength="4" cssClass="form-control" />
-				</li>		
+				</li>
+				<li class="third">
+					<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
+					<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
+				</li>	
 			</ul>
-			<div class="send">
-				<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
-				<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
-			</div>
 		</div>
 		<div class="clear"></div>
 		<div class="">
@@ -163,30 +165,32 @@
 			<s:hidden id="pageIndex" name="searchCondition.pageIndex" value="0"/>
 			<s:hidden id="pageSize" name="searchCondition.pageSize" value="20" />
 			
-			<s:if test="researchPlanPagedList != null && researchPlanPagedList.pageCount > 0">
-				<ul class="pagination">
+			<s:set var="pgList" value="researchPlanPagedList"/>
+			<s:set var="pgIndex" value="searchCondition.pageIndex"/>
+			<s:set var="pgCount" value="#pgList.pageCount"/>
+			
+			<ul class="pagination">
+				<s:if test="#pgList != null && #pgCount > 0">
 					<li><input type="submit" value="First" class="btn-first-page" /></li>
 					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
-					<s:if test="searchCondition.pageIndex >= 5">
-						<li><p>......</p></li>
+					<s:if test="#pgIndex >= 5">
+						<li>......</li>
 					</s:if>
-					<s:iterator value="researchPlanPagedList.pageNumberList" status="stat" 
-						begin="%{searchCondition.pageIndex < 5 ? 0 : searchCondition.pageIndex - 5 }"
-						end="%{searchCondition.pageIndex > researchPlanPagedList.pageCount - 6 ? researchPlanPagedList.pageCount -1 : searchCondition.pageIndex +5 }">
+					<s:iterator value="#pgList.pageNumberList" status="stat" 
+						begin="%{#pgIndex < 5 ? 0 : #pgIndex - 5 }"
+						end="%{#pgIndex > #pgCount - 6 ? #pgCount -1 : #pgIndex +5 }">
 						<li><input type="submit" value=<s:property/> class="btn-page" /></li>
 					</s:iterator>
-					<s:if test="searchCondition.pageIndex <= researchPlanPagedList.pageCount - 6">
-						<li><p>......</p></li>
+					<s:if test="#pgIndex <= #pgCount - 6">
+						<li>......</li>
 					</s:if>
 					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
 					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
-					<li>				
-						<%-- <p>Displaying <s:property value="researchPlanPagedList.itemStart"/> - <s:property value="researchPlanPagedList.itemEnd"/> of <s:property value="researchPlanPagedList.totatlItemCount"/> item(s)</p> --%> 				
-						<p>共 <s:property value="researchPlanPagedList.totatlItemCount"/> 筆資料</p>
-					</li>
-				</ul>
-
-			</s:if>
+				</s:if>
+				<li>
+					<p>共 <s:property value="#pgList.totatlItemCount"/> 筆資料</p>
+				</li>
+			</ul>
 		</div>
 	</s:form>
 </body>

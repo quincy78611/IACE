@@ -4,113 +4,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	
-</head>
-<body>	
-	<s:form action="index" method="post" validate="true" >
-		<div id="searchZone">
-			<ul>
-				<li><s:textfield placeholder="姓名" name="searchName" maxlength="100" cssClass="form-control" /></li>
-				<li><s:textfield placeholder="單位名稱" name="searchOrganization" maxlength="500" cssClass="form-control" /></li>
-				<li></li>
-			</ul>		
-			<div class="send">			
-				<input type="submit" value="查詢" class="btn btn-primary" id="btn-search"/>
-				<input type="button" value="清除" class="btn btn-warning" id="btn-reset"/>
-			</div>
-		</div>
-		<div class="clear"></div>
-		<div class="">
-			<table width="100%" class="table table-striped table-hover table-bordered">
-				<thead>
-					<tr>
-						<th nowrap width="2%">No.</th>
-						<th nowrap width="">姓名</th>
-						<th nowrap width="">單位名稱</th>
-						<th nowrap width="">單位類型</th>
-						<th nowrap width="">諮詢類型</th>
-						<th nowrap width="">產業/領域別</th>
-						<th nowrap width="">聯絡電話</th>
-						<th nowrap width="">E-MAIL</th>
-						<th nowrap width="">諮詢日期</th>
-						<th nowrap width="">功能</th>
-					</tr>
-				</thead>
-				<tbody>
-					<s:if test="consultingPagedList != null">
-						<s:iterator value="consultingPagedList.list" status="stat">
-							<tr>
-								<td>
-									<s:property value="%{consultingPagedList.itemStart + #stat.count -1}" />
-									<%-- <s:property value="id" /> --%>
-								</td>						
-								<td><s:property value="name" /></td>
-								<td><s:property value="organization" /></td>
-								<td><s:property value="%{optionOrganizationType.code + ' ' + optionOrganizationType.name}" /></td>
-								<td><s:property value="%{optionConsult.code + ' ' + optionConsult.name}" /></td>
-								<td><s:property value="%{optionIndustry.code + ' ' + optionIndustry.name}" /></td>
-								<td><s:property value="phone" /></td>
-								<td><s:property value="email" /></td>
-								<td><s:property value="consultDate" /></td>								
-								
-								<td class="col-md-1">
-									<!-- 檢視 -->
-									<s:url value="showDetail.action" var="detailUrlTag">
-										<s:param name="id" value="id" />
-									</s:url>
-									<input type="button" class="btn-info" value="檢視" 
-										onclick="window.location.href='<s:property value="detailUrlTag" />'" />
-										
-									<!-- 編輯 -->
-									<s:url value="update.action" var="updateUrlTag">
-										<s:param name="id" value="id" />
-									</s:url>
-									<input type="button" class="btn-info" value="編輯" 
-										onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
-										
-									<!-- 刪除 -->	
-									<s:url value="delete.action" var="deleteUrlTag">
-										<s:param name="id" value="id" />
-									</s:url>
-									<input type="button" class="btn-danger" value="刪除" 
-										onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
-								</td>
-							</tr>
-						</s:iterator>
-					</s:if>	
-				</tbody>
-			</table>
-		</div>
-
-		<div>
-			<s:hidden id="pageIndex" name="pageIndex" value="0"/>
-			<s:hidden id="pageSize" name="pageSize" value="5" />
-			
-			<s:if test="consultingPagedList != null && consultingPagedList.pageCount > 0">
-				<ul class="pagination">
-					<li><input type="submit" value="First" class="btn-first-page" /></li>
-					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
-					<s:if test="pageIndex >= 5">
-						......
-					</s:if>
-					<s:iterator value="consultingPagedList.pageNumberList" status="stat" 
-						begin="%{pageIndex < 5 ? 0 : pageIndex - 5 }"
-						end="%{pageIndex > consultingPagedList.pageCount - 6 ? consultingPagedList.pageCount -1 : pageIndex +5 }">
-						<li><input type="submit" value=<s:property/> class="btn-page" /></li>
-					</s:iterator>
-					<s:if test="pageIndex <= consultingPagedList.pageCount - 6">
-						......
-					</s:if>
-					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
-					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
-				</ul>
-			
-				<p>Displaying <s:property value="consultingPagedList.itemStart"/> - <s:property value="consultingPagedList.itemEnd"/> of <s:property value="consultingPagedList.totatlItemCount"/> item(s)</p> 
-			</s:if>
-
-		</div>
-	</s:form>
-	
 	<script type="text/javascript">
 	$(document).ready(function () {			
 		$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
@@ -161,18 +54,142 @@
 			}
 		});
 					
-		// 注意: 在include此頁面的頁面的搜尋按鈕記得要加上id
+		// 注意: 在此頁面的搜尋按鈕記得要加上id
 	    $("#btn-search").click(function(){
 	        $("#pageIndex").val(0);
 	        return true;
 	    });
-		
+	 	// 注意: 在此頁面的重置按鈕記得要加上id
 		$("#btn-reset").click(function(){
 			$("input.form-control:text").val("");
 			$("select").prop('selectedIndex', 0);
 		});
 	});
-	</script>
+	</script>	
+</head>
+<body>	
+	<s:form action="index" method="post" validate="true" >
+		<div class="">
+			<ul>
+				<li class="half">
+					<s:textfield placeholder="請輸入姓名或單位名稱" name="searchCondition.searchText"/>
+				</li>
+				<li class="quarter">
+					<s:textfield placeholder="諮詢日期(起)" name="searchCondition.consultDateStart" class="calendarBox"/>
+				</li>
+				<li class="quarter">
+					<s:textfield placeholder="諮詢日期(訖)" name="searchCondition.consultDateEnd" class="calendarBox"/>
+				</li>				
+				<li class="quarter">
+					<s:select name="searchCondition.optionOrganizationTypeCode" list="optionOrganizationTypeList" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部單位類型"/>
+				</li>
+				<li class="quarter">
+					<s:select name="searchCondition.optionConsultCode" list="optionConsultList" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部諮詢類型"/>
+				</li>
+				<li class="quarter">
+					<s:select name="searchCondition.optionIndustryCode" list="optionIndustryList" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部產業/領域別"/>
+				</li>
+				<li class="quarter">
+					<input type="submit" value="查詢" class="btn btn-primary redBtn" id="btn-search"/>
+					<input type="button" value="清除" class="btn btn-warning grayBtn" id="btn-reset"/>
+				</li>										
+			</ul>
+		</div>
+		<div class="clear"></div>
+		<div class="">
+			<table width="100%" class="table table-striped table-hover table-bordered">
+				<thead>
+					<tr>
+						<th nowrap width="2%">No.</th>
+						<th nowrap width="">姓名</th>
+						<th nowrap width="">單位名稱</th>
+						<th nowrap width="">單位類型</th>
+						<th nowrap width="">諮詢類型</th>
+						<th nowrap width="">產業/領域別</th>
+<!-- 						<th nowrap width="">聯絡電話</th> -->
+<!-- 						<th nowrap width="">E-MAIL</th> -->
+						<th nowrap width="">諮詢日期</th>
+						<th nowrap width="24%">功能</th>
+					</tr>
+				</thead>
+				<tbody>
+					<s:if test="consultingPagedList != null">
+						<s:iterator value="consultingPagedList.list" status="stat">
+							<tr>
+								<td>
+									<s:property value="%{consultingPagedList.itemStart + #stat.count -1}" />
+									<%-- <s:property value="id" /> --%>
+								</td>						
+								<td><s:property value="name" /></td>
+								<td><s:property value="organization" /></td>
+								<td><s:property value="%{optionOrganizationType.code + ' ' + optionOrganizationType.name}" /></td>
+								<td><s:property value="%{optionConsult.code + ' ' + optionConsult.name}" /></td>
+								<td><s:property value="%{optionIndustry.code + ' ' + optionIndustry.name}" /></td>
+<%-- 								<td><s:property value="phone" /></td> --%>
+<%-- 								<td><s:property value="email" /></td> --%>
+								<td><s:property value="consultDate" /></td>								
+								
+								<td class="col-md-1">
+									<!-- 檢視 -->
+									<s:url value="showDetail.action" var="detailUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<input type="button" class="btn-info btn-func btn-view" value="檢視" 
+										onclick="window.location.href='<s:property value="detailUrlTag" />'" />
+										
+									<!-- 編輯 -->
+									<s:url value="update.action" var="updateUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<input type="button" class="btn-info btn-func btn-edit" value="編輯" 
+										onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+										
+									<!-- 刪除 -->	
+									<s:url value="delete.action" var="deleteUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<input type="button" class="btn-danger btn-func btn-del" value="刪除" 
+										onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
+								</td>
+							</tr>
+						</s:iterator>
+					</s:if>	
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="page">
+			<s:hidden id="pageIndex" name="searchCondition.pageIndex" value="0"/>
+			<s:hidden id="pageSize" name="searchCondition.pageSize" value="20" />
+						
+			<s:set var="pgList" value="consultingPagedList"/>
+			<s:set var="pgIndex" value="searchCondition.pageIndex"/>
+			<s:set var="pgCount" value="#pgList.pageCount"/>
+			
+			<ul class="pagination">
+				<s:if test="#pgList != null && #pgCount > 0">					
+					<li><input type="submit" value="First" class="btn-first-page" /></li>
+					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
+					<s:if test="#pgIndex >= 5">
+						<li>......</li>
+					</s:if>
+					<s:iterator value="#pgList.pageNumberList" status="stat" 
+						begin="%{#pgIndex < 5 ? 0 : #pgIndex - 5 }"
+						end="%{#pgIndex > #pgCount - 6 ? #pgCount -1 : #pgIndex +5 }">
+						<li><input type="submit" value=<s:property/> class="btn-page" /></li>
+					</s:iterator>
+					<s:if test="#pgIndex <= #pgCount - 6">
+						<li>......</li>
+					</s:if>
+					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
+					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>					
+				</s:if>
+				<li>
+					<p>共 <s:property value="#pgList.totatlItemCount"/> 筆資料</p>
+				</li>
+			</ul>
+		</div>		
+	</s:form>
 </body>
 </html>
 

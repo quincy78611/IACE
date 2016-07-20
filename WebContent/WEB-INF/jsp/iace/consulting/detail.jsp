@@ -72,11 +72,10 @@
 			<s:param name="id" value="consulting.id" />
 		</s:url>
 		<s:if test="#request.context['struts.actionMapping'].name == 'showDetail'">
-			<input type="button" class="btn btn-info" value="編輯" 
+			<input type="button" class="btn btn-info redBtn" value="編輯" 
 				onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
-		</s:if>	
-		<a class="grayBtn" href="<s:url value="/iace/consulting/init"/>">回上一頁</a>	
-
+		</s:if>
+		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/consulting/init"/>'" />
 	
 	</div>
 	
