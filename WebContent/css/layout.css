@@ -82,8 +82,6 @@ h1.pageTitle { background:url(../images/h1BG.gif) no-repeat left center; padding
 .redBtn:hover { background:#666;}
 .grayBtn { color:#8e3022; padding:8px 20px; background:#e1e1e1; display: inline-block; text-align:center; font-size:15px; border:none; cursor: pointer;}
 .grayBtn:hover { background:#666; color:#fff;}
-/* input[type=file] { color:#ffffff; padding:8px 20px; background:#804040; display: inline-block; text-align:center; font-size:15px; border:none; cursor: pointer;} */
-/* input[type=file]:hover { background:#666;} */
 
 input.left[type=button] { background:url(../images/left.png) no-repeat left top; width:198px; height:41px; display:block; margin: 25px auto 0 auto; cursor:pointer; border:none; color:#fff;}
 input.right[type=button] { background:url(../images/right.png) no-repeat left top; width:198px; height:41px; display:block; margin: 25px auto 0 auto; cursor:pointer; border:none; color:#fff;}
@@ -115,9 +113,9 @@ article { width:1100px; margin:0 auto; clear:both; line-height:1.6em; background
 .rightContent li.third { width:32%; margin-right:1%;}
 .rightContent li.quarter { width:24%; margin-right:1%;}
 .rightContent li.eighth { width:11.5%; margin-right:1%;}
-.rightContent li select,
+.rightContent li select { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.80em; font-family:"微軟正黑體";}
 .rightContent li input[type=text],
-.rightContent li textarea { width:100%; border:#e6eff5 1px solid; font-size:1em; padding: 7px 5px; font-size:0.91em; font-family:"微軟正黑體";}
+.rightContent li textarea { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.91em; font-family:"微軟正黑體";}
 .rightContent li input[type=checkbox] { margin-right:8px; }
 
 
@@ -125,7 +123,7 @@ article { width:1100px; margin:0 auto; clear:both; line-height:1.6em; background
 
 
 h2.itemTitle { font-size:1.25em; color:#666; border-bottom:#0a5f9a 1px dotted; padding:0 0 20px 24px; margin-bottom:20px; background:url(../images/icon_Edit-L.png) no-repeat left top; display:block; position:relative;}
-h2.Down { padding: 0 0 20px 24px; border:none; margin-bottom:0;}
+h2.Down {border:none; margin-bottom:0;}
 
 article table { margin-bottom:30px;}
 article table th { background: url(../images/thBG.gif) repeat-x; height:40px; line-height:40px; text-align:left; color:#fff; font-size:0.81em; padding:0 5px;}

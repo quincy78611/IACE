@@ -19,7 +19,7 @@
 	<div class="">
 		<div class="row">
 			<s:form action="batchImportResearchPlan" method="post" validate="true" enctype="multipart/form-data">
-				<h2 class="itemTitle">研究計畫</h2>
+				<h2 class="itemTitle Down">研究計畫</h2>
 				<ul>
 					<li class="half">
 						<input type="text" id="research_plan_file_display" class="form-control" readonly="readonly"/>
@@ -42,7 +42,7 @@
 		<br>
 		<div class="row">
 			<s:form action="batchImportPatent" method="post" validate="true" enctype="multipart/form-data">
-				<h2 class="itemTitle">專利資料</h2>
+				<h2 class="itemTitle Down">專利資料</h2>
 				<ul>
 					<li class="half">
 						<input type="text" id="patten_file_display" class="form-control" readonly="readonly"/>
