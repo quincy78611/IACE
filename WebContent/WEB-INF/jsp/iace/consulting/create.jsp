@@ -9,10 +9,7 @@
 <body>
 	<h2 class="itemTitle">新增</h2>
 	<s:form action="createSubmit" method="post" validate="true">
-		<ul>
-			<li class="quarter">
-				
-			</li>						
+		<ul>						
 			<li class="half">
 				<b>姓名</b>
 				<s:textfield name="consulting.name" class="form-control" />
