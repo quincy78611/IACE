@@ -142,6 +142,7 @@
 					        <li><a href="<s:url value="/iace/option/organizationType/index"/>">單位類型</a></li>
 					        <li><a href="<s:url value="/iace/option/trl/index"/>">發展階段</a></li>
 					        <li><a href="<s:url value="/iace/option/subject/index"/>">科技部學門</a></li>
+					        <li><a href="<s:url value="/iace/option/school/index"/>">學校</a></li>
 						</ul>
 					</li>
 				</ul>

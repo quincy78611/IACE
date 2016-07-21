@@ -22,6 +22,7 @@ public class ServiceFactory {
 	private static OptionOrganizationTypeService optionOrganizationTypeService;
 	private static OptionTrlService optionTrlService;
 	private static OptionSubjectService optionSubjectService;
+	private static SchoolService schoolService;
 	
 	private static PatentService patentService;
 	private static TechFieldService techFieldService;
@@ -119,6 +120,13 @@ public class ServiceFactory {
 			optionSubjectService = new OptionSubjectService(DaoFactory.getOptionSubjectDao());
 		}
 		return optionSubjectService;
+	}
+	
+	public static SchoolService getSchoolService() {
+		if (schoolService == null) {
+			schoolService = new SchoolService(DaoFactory.getSchoolDao());
+		}
+		return schoolService;
 	}
 	
 	public static PatentService getPatentService() {

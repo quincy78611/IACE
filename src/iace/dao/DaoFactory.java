@@ -18,6 +18,7 @@ import iace.dao.option.OptionOrganizationClassDao;
 import iace.dao.option.OptionOrganizationTypeDao;
 import iace.dao.option.OptionSubjectDao;
 import iace.dao.option.OptionTrlDao;
+import iace.dao.option.SchoolDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
 import iace.dao.questionnaire.IQnrTemplateDao;
@@ -42,6 +43,7 @@ import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionSubject;
 import iace.entity.option.OptionTrl;
+import iace.entity.option.School;
 
 public class DaoFactory {
 	protected static Logger log = LogManager.getLogger(DaoFactory.class);
@@ -58,7 +60,8 @@ public class DaoFactory {
 	private static IOptionDao<OptionOrganizationClass> optionOrganizationClassDao;
 	private static IOptionDao<OptionOrganizationType> optionOrganizationTypeDao;
 	private static IOptionDao<OptionTrl> optionTrlDao;
-	private static IOptionDao<OptionSubject> optionSubjectDao; 
+	private static IOptionDao<OptionSubject> optionSubjectDao;
+	private static IOptionDao<School> schoolDao;
 	
 	private static ITechFieldDao techFieldDao;
 	private static IPatentDao patentDao;
@@ -152,6 +155,13 @@ public class DaoFactory {
 			optionSubjectDao = new OptionSubjectDao();
 		}
 		return optionSubjectDao;
+	}
+	
+	public static IOptionDao<School> getSchoolDao() {
+		if (schoolDao == null) {
+			schoolDao = new SchoolDao();
+		}
+		return schoolDao;
 	}
 	
 	public static ITechFieldDao getTechFieldDao() {

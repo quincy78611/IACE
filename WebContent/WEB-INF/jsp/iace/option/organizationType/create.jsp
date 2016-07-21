@@ -21,7 +21,7 @@
 		</ul>
 		
 		<s:submit cssClass="btn btn-default redBtn" value="儲存" />	
-		<input type ="button" class="btn btn-default grayBtn" onclick="history.back()" value="回上一頁"/>		
+		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="index"/>'" />
 	</s:form>
 </body>
 </html>

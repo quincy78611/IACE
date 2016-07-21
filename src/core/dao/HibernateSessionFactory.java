@@ -3,7 +3,6 @@ package core.dao;
 
 import java.util.Map.Entry;
 import java.util.Properties;
-import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -15,10 +14,10 @@ import org.hibernate.service.ServiceRegistry;
 import iace.entity.Consulting;
 import iace.entity.Patent;
 import iace.entity.ResearchPlan;
-import iace.entity.Technology;
 import iace.entity.SysRole;
 import iace.entity.SysUser;
 import iace.entity.TechField;
+import iace.entity.Technology;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
@@ -31,8 +30,9 @@ import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionSubject;
 import iace.entity.option.OptionTrl;
-import iace.entity.questionnaire.QnrTableColumn;
+import iace.entity.option.School;
 import iace.entity.questionnaire.QnrTable;
+import iace.entity.questionnaire.QnrTableColumn;
 
 
 public class HibernateSessionFactory {
@@ -145,6 +145,7 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(OptionOrganizationType.class);
     	configuration.addAnnotatedClass(OptionTrl.class);
     	configuration.addAnnotatedClass(OptionSubject.class);
+    	configuration.addAnnotatedClass(School.class);
     	
     	configuration.addAnnotatedClass(Patent.class);
     	configuration.addAnnotatedClass(ResearchPlan.class);

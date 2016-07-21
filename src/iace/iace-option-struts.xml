@@ -303,5 +303,32 @@
 			<result name="success">/WEB-INF/jsp/iace/option/trl/index.jsp</result>
 			<result name="error">/WEB-INF/jsp/iace/option/trl/index.jsp</result>
 		</action>
+	</package>
+	
+	<package name="School" namespace="/iace/option/school" extends="struts-default">
+		<action name="index" class="iace.action.SchoolAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/school/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.SchoolAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/school/create.jsp</result>		
+		</action>
+		<action name="createSubmit" class="iace.action.SchoolAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/school/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/school/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/option/school/index.jsp</result>
+		</action>
+		<action name="update" class="iace.action.SchoolAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/school/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/school/index.jsp</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.SchoolAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/school/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/school/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/option/school/index.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.SchoolAction" method="deleteSubmit">
+			<result name="success">/WEB-INF/jsp/iace/option/school/index.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/school/index.jsp</result>
+		</action>
 	</package>	
 </struts>
