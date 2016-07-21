@@ -4,84 +4,63 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("input[type=file]#btn_research_plan_file").change(function() {
+				$("input[type=text]#research_plan_file_display").val($(this).val());
+			});
+			$("input[type=file]#btn_patten_file").change(function() {
+				$("input[type=text]#patten_file_display").val($(this).val());
+			});
+		});
+	</script>
 </head>
 <body>
-
 	<div class="">
 		<div class="row">
 			<s:form action="batchImportResearchPlan" method="post" validate="true" enctype="multipart/form-data">
 				<h2 class="itemTitle">研究計畫</h2>
 				<ul>
-					<li class="quarter">
-						<input type="button" class="btn btn-default" value="下載範例格式"/>
-					</li>
 					<li class="half">
 						<input type="text" id="research_plan_file_display" class="form-control" readonly="readonly"/>
-						<span class="btn btn-default btn-file"> 瀏覽 
-							<input type="file" id="btn_research_plan_file" name="uploadFile" class="btn-file">
-						</span>						
 					</li>
 					<li class="quarter">
-						<input type="submit" value="開始匯入" class="btn btn-info" />
+						<span class="btn btn-default btn-file"> 選擇批次匯入檔案 
+							<input type="file" id="btn_research_plan_file" name="uploadFile" class="btn-file">
+						</span>
+					</li>
+					<li class="eighth">
+						<input type="submit" value="匯入" class="btn btn-info redBtn" />
+					</li>
+					<li class="eighth">
+						<input type="button" class="btn btn-default grayBtn" value="下載範例"/>	
 					</li>
 				</ul>
-				
-<%-- 				
-				<div class="col-md-2">
-					<h4>研究計畫</h4>
-				</div>
-				<div class="col-md-2">
-					<input type="button" class="btn btn-default" value="下載範例格式"/>
-				</div>				
-				<div class="col-md-5">
-					<input type="text" id="research_plan_file_display" class="form-control" readonly="readonly"/>
-				</div>
-				<div class="col-md-1">
-					<span class="btn btn-default btn-file"> 瀏覽 
-						<input type="file" id="btn_research_plan_file" name="uploadFile" class="btn-file">
-					</span>
-				</div>
-				<div class="col-md-1">
-					<input type="submit" value="開始匯入" class="btn btn-info" />
-				</div> --%>
+
 			</s:form>		
 		</div>
-		<hr>
+		<br>
 		<div class="row">
 			<s:form action="batchImportPatent" method="post" validate="true" enctype="multipart/form-data">
-				<div class="col-md-2">
-					<h4>專利資料</h4>
-				</div>
-				<div class="col-md-2">
-					<input type="button" class="btn btn-default" value="下載範例格式"/>
-				</div>				
-				<div class="col-md-5">
-					<input type="text" id="patten_file_display" class="form-control" readonly="readonly"/>
-				</div>
-				<div class="col-md-1">
-					<span class="btn btn-default btn-file"> 瀏覽 
-						<input type="file" id="btn_patten_file" name="uploadFile" class="btn-file">
-					</span>
-				</div>
-				<div class="col-md-1">
-					<input type="submit" value="開始匯入" class="btn btn-info" />
-				</div>
+				<h2 class="itemTitle">專利資料</h2>
+				<ul>
+					<li class="half">
+						<input type="text" id="patten_file_display" class="form-control" readonly="readonly"/>
+					</li>
+					<li class="quarter">
+						<span class="btn btn-default btn-file"> 選擇批次匯入檔案
+							<input type="file" id="btn_patten_file" name="uploadFile" class="btn-file">
+						</span>
+					</li>
+					<li class="eighth">
+						<input type="submit" value="匯入" class="btn btn-info redBtn" />
+					</li>
+					<li class="eighth">
+						<input type="button" class="btn btn-default grayBtn" value="下載範例"/>
+					</li>									
+				</ul>
 			</s:form>
 		</div>		
 	</div>
-
-	<script type="text/javascript">
-		$(document).ready(function() {
-
-		});
-
-		$("input[type=file]#btn_research_plan_file").change(function() {
-			$("input[type=text]#research_plan_file_display").val($(this).val());
-		});
-		$("input[type=file]#btn_patten_file").change(function() {
-			$("input[type=text]#patten_file_display").val($(this).val());
-		});
-	</script>
 </body>
 </html>
