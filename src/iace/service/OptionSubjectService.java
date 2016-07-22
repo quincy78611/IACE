@@ -1,11 +1,21 @@
 package iace.service;
 
-import iace.dao.option.IOptionDao;
+import java.util.List;
+
+import iace.dao.option.IOptionSubjectDao;
 import iace.entity.option.OptionSubject;
 
 public class OptionSubjectService extends BaseOptionService<OptionSubject> {
-
-	OptionSubjectService(IOptionDao<OptionSubject> dao) {
+	private IOptionSubjectDao dao;
+	
+	OptionSubjectService(IOptionSubjectDao dao) {
 		super(dao);
+		this.dao = dao;
 	}
+	
+	public List<OptionSubject> listSpecificLv(int lv, String parentCode) {
+		return this.dao.listSpecificLv(lv, parentCode);
+	}
+	
+	
 }

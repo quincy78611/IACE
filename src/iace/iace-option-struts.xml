@@ -251,7 +251,7 @@
 		</action>
 	</package>
 
-	<package name="OptionSubject" namespace="/iace/option/subject" extends="struts-default">
+	<package name="OptionSubject" namespace="/iace/option/subject" extends="json-default">
 		<action name="index" class="iace.action.OptionSubjectAction" method="index">
 			<result name="success">/WEB-INF/jsp/iace/option/subject/index.jsp</result>
 		</action>
@@ -276,6 +276,12 @@
 			<result name="success">/WEB-INF/jsp/iace/option/subject/index.jsp</result>
 			<result name="error">/WEB-INF/jsp/iace/option/subject/index.jsp</result>
 		</action>
+		<action name="getOptionSubjectListAjax" class="iace.action.OptionSubjectAction" method="getOptionSubjectListAjax">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+				<param name="noCache">true</param>
+			</result>
+		</action>		
 	</package>
 	
 	<package name="OptionTrl" namespace="/iace/option/trl" extends="struts-default">

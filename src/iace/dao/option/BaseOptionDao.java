@@ -15,7 +15,6 @@ import org.hibernate.criterion.Restrictions;
 import core.dao.BaseDao;
 import core.dao.HibernateSessionFactory;
 import iace.entity.BaseEntity;
-import iace.entity.TechField;
 import iace.entity.option.BaseOption;
 
 

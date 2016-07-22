@@ -28,11 +28,15 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 
 	@Override
 	public void create(OptionEntity entity) {
+		entity.setCode(entity.getCode().trim());
+		entity.setName(entity.getName().trim());
 		dao.create(entity);
 	}
 
 	@Override
 	public void update(OptionEntity entity) {
+		entity.setCode(entity.getCode().trim());
+		entity.setName(entity.getName().trim());
 		dao.update(entity);
 	}
 

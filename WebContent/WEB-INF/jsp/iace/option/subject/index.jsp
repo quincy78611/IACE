@@ -4,18 +4,107 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$(".btn-del").click(function() {
-				if(confirm("確定要刪除？")) {
-					var url = $(this).attr("href");
-					window.location.href=url;
-				}
-			});	
+<script type="text/javascript">
+	$(document).ready(function () {
+		deleteBtnSetting();
+		optionSubjectLv2ListSetting();
+		optionSubjectLv3ListSetting();
+	});
+</script>
+<script>
+	function deleteBtnSetting() {
+		$(".btn-del").click(function() {
+			if (confirm("確定要刪除？")) {
+				var url = $(this).attr("href");
+				window.location.href = url;
+			}
 		});
-	</script>
+	}
+</script>
+<script>
+	function optionSubjectLv2ListSetting() {
+		$('select[name=searchLv2Code]').hide();
+		
+		$("select[name=searchLv1Code]").change(function() {
+			var parentCode = $(this).val();			
+			var select = $('select[name=searchLv2Code]');
+			if (parentCode == "") {
+				select.hide();
+			} else {
+				select.show();
+			}
+			
+			$.getJSON(
+				'getOptionSubjectListAjax', 
+				{ ajaxSearchLv : 2, ajaxSearchParentCode : parentCode}, 
+				function(jsonResponse) {
+					$('#ajaxResponse').text(jsonResponse.dummyMsg);
+					
+					select.find('option').remove();
+					$('<option>').val("").text("全部").appendTo(select);
+					select.val("").change();
+					for (var i=0; i<jsonResponse.optionSubjectList.length; i++) {
+						var optionSubject = jsonResponse.optionSubjectList[i];
+						$('<option>').val(optionSubject.code).text(optionSubject.code+"-"+optionSubject.name).appendTo(select);
+					}
+				}
+			);
+			
+			
+		});
+	}
+</script>
+<script>
+	function optionSubjectLv3ListSetting() {
+		$('select[name=searchLv3Code]').hide();
+		
+		$("select[name=searchLv2Code]").change(function() {
+			var parentCode = $(this).val();			
+			var select = $('select[name=searchLv3Code]');
+			if (parentCode == "") {
+				select.hide();
+			} else {
+				select.show();
+			}
+			
+			$.getJSON(
+				'getOptionSubjectListAjax', 
+				{ ajaxSearchLv : 3, ajaxSearchParentCode : parentCode}, 
+				function(jsonResponse) {
+					$('#ajaxResponse').text(jsonResponse.dummyMsg);
+					
+					select.find('option').remove();
+					$('<option>').val("").text("全部").appendTo(select);
+					for (var i=0; i<jsonResponse.optionSubjectList.length; i++) {
+						var optionSubject = jsonResponse.optionSubjectList[i];
+						$('<option>').val(optionSubject.code).text(optionSubject.code+"-"+optionSubject.name).appendTo(select);
+					}
+				}
+			);
+		});		
+	}
+</script>
 </head>
 <body>
+	<s:form action="search" method="post" validate="true" >
+		<ul>
+			<li class="quarter">
+				<s:select name="searchLv1Code" list="optionSubjectLv1List" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部"/>
+			</li>
+			<li class="quarter">
+				<s:select name="searchLv2Code" list="{}" headerKey="" headerValue="全部"/>
+			</li>
+			<li class="quarter">
+				<s:select name="searchLv3Code" list="{}" headerKey="" headerValue="全部"/>
+			</li>							
+			<li class="quarter"><input type="submit" value="查詢"
+				class="btn btn-primary redBtn" id="btn-search" /> <input
+				type="button" value="清除" class="btn btn-warning grayBtn"
+				id="btn-reset" />
+			</li>
+		</ul>
+	</s:form>
+	<div class="clear"></div>
 	<input type="button" class="redBtn" value="新增代碼" onclick="window.location.href='<s:url value="create.action"/>'" />
 	<div class="clear"></div>
 	<br>
