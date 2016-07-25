@@ -227,4 +227,24 @@
 			<result name="success">/WEB-INF/jsp/iace/qnr/detail.jsp</result>
 		</action>
 	</package>
+	
+	<package name="QnrCooperateWay" namespace="/iace/qnrCooperateWay" extends="struts-default,json-default">
+		<action name="index" class="iace.action.QnrCooperateWayAction" method="index">
+			<result>/WEB-INF/jsp/iace/qnrCooperateWay/index.jsp</result>
+		</action>
+		<action name="fillInQnrPart0To3" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart0To3">
+			<result name="success">/WEB-INF/jsp/iace/qnrCooperateWay/qnrCooperateWay.jsp</result>
+		</action>
+		<action name="fillInQnrPart0To3Submit" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart0To3Submit">
+			<result name="input">/WEB-INF/jsp/iace/qnrCooperateWay/qnrCooperateWay.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
+		</action>		
+		<action name="fillInQnrPart4" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart4">
+			<result name="success">/WEB-INF/jsp/iace/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
+		</action>
+		<action name="fillInQnrPart4Submit" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart4Submit">
+			<result name="input">/WEB-INF/jsp/iace/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
+		</action>		
+	</package>
 </struts>

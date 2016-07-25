@@ -69,6 +69,30 @@ public class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> implements IBa
 		entity.update();
 		super.update(entity);
 	}
+	
+	@Override
+	public void updateAll(List<T> entities) {
+		Transaction tran = null;
+		try{
+			Session session = HibernateSessionFactory.getSession();
+			tran = session.beginTransaction();
+			for (int i = 0; i < entities.size(); i++) {
+				entities.get(i).update();
+				session.update(entities.get(i));
+				if (i % 100 == 0) {
+					session.flush();
+				}
+			}
+			tran.commit();
+		} catch (Exception e) {
+			if (tran != null) {
+				tran.rollback();
+			}
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 
 	@Override
 	public void delete(T entity) {

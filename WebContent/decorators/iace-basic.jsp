@@ -129,6 +129,11 @@
 							</s:iterator>
 						</ul>
 					</li>
+					<li><a href=#>精進大學產學合作發展機制調查問卷</a>
+						<ul>
+							<li><a href="<s:url value="/iace/qnrCooperateWay/index"/>">問卷連結</a></li>
+						</ul>
+					</li>
 					<li><a href="#">代碼管理</a>
 						<ul>
 					    	<li><a href="<s:url value="/iace/option/country/index"/>">專利國別</a></li>

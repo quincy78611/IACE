@@ -22,6 +22,10 @@ import iace.dao.option.OptionTrlDao;
 import iace.dao.option.SchoolDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
+import iace.dao.qnrCooperateWay.IQnrCooperateWayDao;
+import iace.dao.qnrCooperateWay.IQnrCooperateWayMeritDao;
+import iace.dao.qnrCooperateWay.QnrCooperateWayDao;
+import iace.dao.qnrCooperateWay.QnrCooperateWayMeritDao;
 import iace.dao.questionnaire.IQnrDao;
 import iace.dao.questionnaire.IQnrTemplateDao;
 import iace.dao.questionnaire.QnrDao;
@@ -71,6 +75,8 @@ public class DaoFactory {
 	
 	private static IQnrTemplateDao qnrTemplateDao;
 	private static IQnrDao qnrDao;
+	private static IQnrCooperateWayDao qnrCooperateWayDao;
+	private static IQnrCooperateWayMeritDao qnrCooperateWayMeritDao;
 	
 	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {
 		if (optionCompanyLocationDao == null) {
@@ -212,8 +218,20 @@ public class DaoFactory {
 		}
 		return qnrDao;
 	}
-
 	
+	public static IQnrCooperateWayDao getQnrCooperateWayDao() {
+		if (qnrCooperateWayDao == null) {
+			qnrCooperateWayDao = new QnrCooperateWayDao();
+		}
+		return qnrCooperateWayDao;
+	}
+
+	public static IQnrCooperateWayMeritDao getQnrCooperateWayMeritDao() {
+		if (qnrCooperateWayMeritDao == null) {
+			qnrCooperateWayMeritDao = new QnrCooperateWayMeritDao();
+		}
+		return qnrCooperateWayMeritDao;
+	}
 	
 
 }

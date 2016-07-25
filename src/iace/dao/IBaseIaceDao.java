@@ -14,6 +14,8 @@ public interface IBaseIaceDao <Entity extends BaseEntity>{
 	public void createAll(List<Entity> entities);
 
 	public void update(Entity entity);
+	
+	public void updateAll(List<Entity> entities);
 
 	public void delete(Entity entity);
 

@@ -76,9 +76,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 	@SuppressWarnings("unchecked")
 	public OptionEntity get(long id) {
 		return (OptionEntity) super.get(optionEntityClass, id);
-	}
-	
-	
+	}	
 	
 	@Override
 	public void create(OptionEntity entity) {
@@ -97,6 +95,12 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 	public void update(OptionEntity entity) {
 		entity.update();
 		super.update(entity);
+	}
+	
+	@Deprecated
+	@Override
+	public void updateAll(List<OptionEntity> entities) {
+		// TODO Auto-generated method stub
 	}
 	
 	@Override
