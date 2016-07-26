@@ -196,6 +196,33 @@
 			<result name="error">/WEB-INF/jsp/iace/option/industry/index.jsp</result>
 		</action>
 	</package>
+
+	<package name="OptionIndustryForEnterpriseAction" namespace="/iace/option/industryForEnterprise" extends="struts-default">
+		<action name="index" class="iace.action.OptionIndustryForEnterpriseAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/option/industryForEnterprise/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionIndustryForEnterpriseAction" method="create">
+			<result name="input">/WEB-INF/jsp/iace/option/industryForEnterprise/create.jsp</result>		
+		</action>
+		<action name="createSubmit" class="iace.action.OptionIndustryForEnterpriseAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/industryForEnterprise/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/industryForEnterprise/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/option/industryForEnterprise/index.jsp</result>
+		</action>
+		<action name="update" class="iace.action.OptionIndustryForEnterpriseAction" method="update">
+			<result name="input">/WEB-INF/jsp/iace/option/industryForEnterprise/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/industryForEnterprise/index.jsp</result>			
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionIndustryForEnterpriseAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/option/industryForEnterprise/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/industryForEnterprise/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/option/industryForEnterprise/index.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionIndustryForEnterpriseAction" method="deleteSubmit">
+			<result name="success">/WEB-INF/jsp/iace/option/industryForEnterprise/index.jsp</result>
+			<result name="error">/WEB-INF/jsp/iace/option/industryForEnterprise/index.jsp</result>
+		</action>
+	</package>	
 	
 	<package name="OptionOrganizationClass" namespace="/iace/option/organizationClass" extends="struts-default">
 		<action name="index" class="iace.action.OptionOrganizationClassAction" method="index">

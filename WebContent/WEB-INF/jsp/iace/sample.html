@@ -1,203 +1,861 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0121)http://localhost:8080/IACE/iace/qnrCooperateWay/fillInQnrPart4?encryptSchoolId=Q3ZUweI65g1SZVVaEFVrCA%253D%253D%250D%250A -->
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>iACE鏈結產學媒合平台</title>
-<link href="CSS/layout.css" rel="stylesheet" type="text/css">
-<link href="CSS/jquerysctipttop.css" rel="stylesheet" type="text/css">
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script src="JS/menu.js"></script>
-<!--[if lt IE 9]>
-	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+
+<script type="text/javascript" src="./精進大學產學合作發展機制調查問卷_files/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="./精進大學產學合作發展機制調查問卷_files/jquery.validate.js"></script>
+
+
+<script type="text/javascript" src="./精進大學產學合作發展機制調查問卷_files/calendarBox.js"></script>
+<script type="text/javascript" src="./精進大學產學合作發展機制調查問卷_files/jquery.datetimepicker.full.js"></script>
+<script type="text/javascript" src="./精進大學產學合作發展機制調查問卷_files/menu.js"></script>
+<script type="text/javascript" src="./精進大學產學合作發展機制調查問卷_files/vmenuModule.js"></script>
+<link rel="stylesheet" type="text/css" href="./精進大學產學合作發展機制調查問卷_files/jquerysctipttop.css">
+<link rel="stylesheet" type="text/css" href="./精進大學產學合作發展機制調查問卷_files/layout.css">
+
+
+<link rel="stylesheet" type="text/css" href="./精進大學產學合作發展機制調查問卷_files/btn.file.browse.css">
+<link rel="stylesheet" type="text/css" href="./精進大學產學合作發展機制調查問卷_files/jquery.datetimepicker.css">
+<link rel="stylesheet" type="text/css" href="./精進大學產學合作發展機制調查問卷_files/PagedList.css">
+
+
+
+<title>精進大學產學合作發展機制調查問卷</title>
+
+
+
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".u-vmenu").vmenuModule({
+			Speed : 200,
+			autostart : false,
+			autohide : true
+		});
+
+		setInterval(function() {
+			/* $("#div-top-message").attr("hidden", "hidden"); */
+			$("#div-top-message").hide();
+		}, 5000);
+	});
+</script>
+
+
+
+
+
+<style>
+/* 	table {border:solid 1px;} */
+/* 	tr {border:solid 1px;} */
+th {
+	border: solid 1px;
+	white-space: nowrap;
+}
+/* 	td {border:solid 1px;} */
+</style>
+
+<style id="style-1-cropbar-clipper">/* Copyright 2014 Evernote Corporation. All rights reserved. */
+.en-markup-crop-options {
+	top: 18px !important;
+	left: 50% !important;
+	margin-left: -100px !important;
+	width: 200px !important;
+	border: 2px rgba(255, 255, 255, .38) solid !important;
+	border-radius: 4px !important;
+}
+
+.en-markup-crop-options div div:first-of-type {
+	margin-left: 0px !important;
+}
+</style>
 </head>
-<body>
+<body data-feedly-mini="yes">
 	<header>
-		<div class="LOGO">
-			<img src="images/LOGO.gif" class="hlogo">
-		</div>
-		<div class="Link">
-			帳號<input name="" type="text">密碼<input name="" type="text"><input
-				type="submit" id="" value="登入" />
-		</div>
-	</header>
+	<div class="LOGO">
+		<img src="./精進大學產學合作發展機制調查問卷_files/LOGO.gif" class="hlogo">
+	</div>
+	<!-- 	    <div class="Link">
+	    	帳號<input name="" type="text">
+	    	密碼<input name="" type="text">
+	    	<a href="#" class="login">登入</a>
+	    </div> --> </header>
 	<article>
-		<h1 class="pageTitle">研究計畫資料</h1>
-		<div class="leftMenu">
-			<div class="u-vmenu">
-				<ul>
-					<li><a href="###">研究計畫研究計畫研究計畫研究計畫研究計畫研究計畫</a>
-						<ul>
-							<li><a href="#">新增計畫新增計畫新增計畫新增計畫</a></li>
-							<li><a href="#">編輯計畫</a></li>
-							<li><a href="#">批次匯入</a></li>
-						</ul></li>
-					<li><a href="###">專利資料</a>
-						<ul>
-							<li><a href="#">新增計畫</a></li>
-							<li><a href="#">編輯計畫</a></li>
-							<li><a href="#">批次匯入</a></li>
-						</ul></li>
-					<li><a href="###">諮詢服務表</a>
-						<ul>
-							<li><a href="#">新增計畫</a></li>
-							<li><a href="#">編輯計畫</a></li>
-							<li><a href="#">批次匯入</a></li>
-						</ul></li>
-					<li><a href="###">企業需求單</a>
-						<ul>
-							<li><a href="#">新增計畫</a></li>
-							<li><a href="#">編輯計畫</a></li>
-							<li><a href="#">批次匯入</a></li>
-						</ul></li>
-					<li><a href="###">產業技術需求調查</a>
-						<ul>
-							<li><a href="#">新增計畫</a></li>
-							<li><a href="#">編輯計畫</a></li>
-							<li><a href="#">批次匯入</a></li>
-						</ul></li>
-					<li><a href="###">產學人才資料庫</a>
-						<ul>
-							<li><a href="#">新增計畫</a></li>
-							<li><a href="#">編輯計畫</a></li>
-							<li><a href="#">批次匯入</a></li>
-						</ul></li>
-					<li><a href="###">代碼管理</a>
-						<ul>
-							<li><a href="#">新增計畫</a></li>
-							<li><a href="#">編輯計畫</a></li>
-							<li><a href="#">批次匯入</a></li>
-						</ul></li>
-				</ul>
-			</div>
-			<script type="text/javascript" src="JS/vmenuModule.js"></script>
-			<script type="text/javascript">
-				$(document).ready(function() {
-					$(".u-vmenu").vmenuModule({
-						Speed : 200,
-						autostart : false,
-						autohide : true
-					});
-				});
-			</script>
-		</div>
-		<div class="rightContent">
-			<h2 class="itemTitle">編輯計畫</h2>
+
+	<h1 class="pageTitle">精進大學產學合作發展機制調查問卷</h1>
+
+	<div class="leftMenu">
+		<div class="u-vmenu">
 			<ul>
-				<li class="all"><b>計畫名稱：</b><input name="textfield" type="text"
-					id="textfield" value="使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池及其成長機制探討">
-				</li>
-				<li class="half"><b>計畫編號：</b><input name="textfield"
-					type="text" id="textfield" value="NSC100-2221-E150-032"></li>
-				<li class="quarter"><b>計畫主持人：</b><input name="textfield"
-					type="text" id="textfield" value="鄭明哲"></li>
-				<li class="quarter"><b>計畫年度：</b><input name="textfield"
-					type="text" id="textfield" value="101年"></li>
-				<li class="half"><b>ORB計畫編號：</b><input name="textfield"
-					type="text" id="textfield" value="NSC100-2221-E150-032"></li>
-				<li class="half"><b>成果報告ID:</b><input name="textfield"
-					type="text" id="textfield" value="NSC100-2221-E150-032"></li>
-				<li class="all"><b>計畫關鍵字：</b><input name="textfield"
-					type="text" id="textfield" value="引發共電鍍法；銅銦硒/銅銦鎵硒吸收層；太陽能電池；微波光傳導反應"></li>
-				<li class="all"><b>技術發展階段：</b><select name="">
-						<option>TRL1 瞭解此項技術研發的基本科學原理</option>
-				</select></li>
-				<li class="third"><b>研究領域清單</b>
-					<div class="form-group">
-						<div class="controls">
-							<select name="" size="9" id="grbCodesList" class="form-control"
-								multiple="multiple">
-								<option value="11">11 物理</option>
-								<option value="12">12 化學</option>
-								<option value="13">13 大氣科學</option>
-								<option value="14">14 地球科學</option>
-								<option value="15">15 生物科學</option>
-							</select> <input type="hidden" id="__multiselect_grbCodesList"
-								name="__multiselect_" value="" />
-						</div>
-					</div></li>
-				<li class="third"><a href="###" class="right"></a><a href="###"
-					class="left"></a><input type="button" id="btn-selectGrb"
-					class="right" value="移至已選取領域清單" /><input type="button"
-					id="btn-diselectGrb" class="left" value="移至研究領域清單" /></li>
-				<li class="third"><b>已選研究領域</b>
-					<div class="form-group">
-						<div class="controls">
-							<select name="researchPlan.grbDomainCodes" size="9"
-								id="selectedGrbCodes" class="form-control" multiple="multiple">
-								<option value="10" selected="selected">10 數學</option>
-								<option value="22" selected="selected">22 電子電機工程</option>
-							</select> <input type="hidden" id="__multiselect_selectedGrbCodes"
-								name="__multiselect_researchPlan.grbDomainCodes" value="" />
-						</div>
-					</div></li>
-				<div class="clear"></div>
-				<div
-					style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-					<a href="#" class="redBtn">儲存計畫</a> <a href="#" class="grayBtn">回上一頁</a>
-				</div>
+				<li><a href="http://localhost:8080/IACE/iace/qnrCooperateWay/fillInQnrPart4?encryptSchoolId=Q3ZUweI65g1SZVVaEFVrCA%253D%253D%250D%250A#" data-option="off">研發成果</a>
+					<ul>
+						<li><a href="http://localhost:8080/IACE/iace/researchPlan/init">編輯管理</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/batchImport/init">批次匯入</a></li>
+					</ul></li>
+				<li><a href="http://localhost:8080/IACE/iace/qnrCooperateWay/fillInQnrPart4?encryptSchoolId=Q3ZUweI65g1SZVVaEFVrCA%253D%253D%250D%250A#" data-option="off">專利資料</a>
+					<ul>
+						<li><a href="http://localhost:8080/IACE/iace/patent/init">編輯管理</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/patent/create">新增</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/batchImport/init">批次匯入</a></li>
+					</ul></li>
+				<li><a href="http://localhost:8080/IACE/iace/qnrCooperateWay/fillInQnrPart4?encryptSchoolId=Q3ZUweI65g1SZVVaEFVrCA%253D%253D%250D%250A#" data-option="off">諮詢服務表</a>
+					<ul>
+						<li><a href="http://localhost:8080/IACE/iace/consulting/init">編輯管理</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/consulting/create">新增</a></li>
+					</ul></li>
+				<li><a href="http://localhost:8080/IACE/iace/qnrCooperateWay/fillInQnrPart4?encryptSchoolId=Q3ZUweI65g1SZVVaEFVrCA%253D%253D%250D%250A#" data-option="off">問卷調查模板</a>
+					<ul>
+						<li><a href="http://localhost:8080/IACE/iace/qnrTemplate/init">編輯管理</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/qnrTemplate/create">新增</a></li>
+					</ul></li>
+				<li><a href="http://localhost:8080/IACE/iace/qnrCooperateWay/fillInQnrPart4?encryptSchoolId=Q3ZUweI65g1SZVVaEFVrCA%253D%253D%250D%250A#" data-option="off">問卷</a>
+					<ul>
+
+						<li><a href="http://localhost:8080/IACE/iace/questionnaire/init?qnrTableId=658&amp;qnrTableName=QNR658"> 維護 測試問卷2 </a></li>
+						<li><a href="http://localhost:8080/IACE/iace/questionnaire/create?qnrTableId=658&amp;qnrTableName=QNR658"> 填寫 測試問卷2 </a></li>
+
+						<li><a href="http://localhost:8080/IACE/iace/questionnaire/init?qnrTableId=690&amp;qnrTableName=QNR690"> 維護 測試問卷3 </a></li>
+						<li><a href="http://localhost:8080/IACE/iace/questionnaire/create?qnrTableId=690&amp;qnrTableName=QNR690"> 填寫 測試問卷3 </a></li>
+
+						<li><a href="http://localhost:8080/IACE/iace/questionnaire/init?qnrTableId=798&amp;qnrTableName=QNR798"> 維護 測試問卷4 </a></li>
+						<li><a href="http://localhost:8080/IACE/iace/questionnaire/create?qnrTableId=798&amp;qnrTableName=QNR798"> 填寫 測試問卷4 </a></li>
+
+						<li><a href="http://localhost:8080/IACE/iace/questionnaire/init?qnrTableId=740&amp;qnrTableName=QNR740"> 維護 測試問卷6 </a></li>
+						<li><a href="http://localhost:8080/IACE/iace/questionnaire/create?qnrTableId=740&amp;qnrTableName=QNR740"> 填寫 測試問卷6 </a></li>
+
+					</ul></li>
+				<li><a href="http://localhost:8080/IACE/iace/qnrCooperateWay/fillInQnrPart4?encryptSchoolId=Q3ZUweI65g1SZVVaEFVrCA%253D%253D%250D%250A#" data-option="off">精進大學產學合作發展機制調查問卷</a>
+					<ul>
+						<li><a href="http://localhost:8080/IACE/iace/qnrCooperateWay/index">問卷連結</a></li>
+					</ul></li>
+				<li><a href="http://localhost:8080/IACE/iace/qnrCooperateWay/fillInQnrPart4?encryptSchoolId=Q3ZUweI65g1SZVVaEFVrCA%253D%253D%250D%250A#" data-option="off">代碼管理</a>
+					<ul>
+						<li><a href="http://localhost:8080/IACE/iace/option/country/index">專利國別</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/companyLocation/index">公司地域別</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/consult/index">諮詢類型代</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/cooperateMode/index">合作模式</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/grbDomain/index">GRB領域別</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/hadTecSrc/index">企業已有技術來源</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/industry/index">產業/領域別</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/organizationClass/index">單位類別</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/organizationType/index">單位類型</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/trl/index">發展階段</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/subject/index">科技部學門</a></li>
+						<li><a href="http://localhost:8080/IACE/iace/option/school/index">學校</a></li>
+					</ul></li>
 			</ul>
-			<h2 class="itemTitle Down">
-				研發成果列表
-				<div style="position: absolute; right: 0; top: 0;">
-					<a href="#" class="redBtn">＋ 新增研發成果</a>
-				</div>
-			</h2>
-			<table width="100%">
-				<tr>
-					<th width="3%" nowrap>No</th>
-					<th width="30%" nowrap>技術名稱</th>
-					<th width="22%" nowrap>技術簡述</th>
-					<th width="10%" nowrap>技術發展階段</th>
-					<th width="7%" nowrap>異動人員</th>
-					<th width="7%" nowrap>異動日期</th>
-					<th width="21%">功能</th>
-				</tr>
-				<tr>
-					<td>001</td>
-					<td class="plan"><a href="#">使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池機制探討</a></td>
-					<td>與俄羅斯合作使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池製作</td>
-					<td>TRL1</td>
-					<td>鄭明哲</td>
-					<td>2016/06/30</td>
-					<td><input name="" type="button" value="檢視" class="view"><input
-						name="" type="button" value="編輯" class="edit"><input
-						name="" type="button" value="刪除" class="del"><input
-						name="" type="button" value="列印" class="print"><input
-						name="" type="button" value="編輯" class="export"><input
-						name="" type="button" value="複製" class="copy"></td>
-				</tr>
-				<tr>
-					<td>002</td>
-					<td class="plan"><a href="#">使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池機制探討</a></td>
-					<td>與俄羅斯合作使用引發共電鍍法沉積銅銦硒/銅銦鎵硒吸收層之太陽能電池製作</td>
-					<td>TRL1</td>
-					<td>鄭明哲</td>
-					<td>2016/06/30</td>
-					<td><input name="" type="button" value="檢視" class="view"><input
-						name="" type="button" value="編輯" class="edit"><input
-						name="" type="button" value="刪除" class="del"><input
-						name="" type="button" value="列印" class="print"><input
-						name="" type="button" value="編輯" class="export"><input
-						name="" type="button" value="複製" class="copy"></td>
-				</tr>
-			</table>
 		</div>
-		<div class="clear"></div>
+
+	</div>
+	<div class="rightContent">
+		<input type="hidden" name="#context[&#39;struts.actionMapping&#39;].name" value="fillInQnrPart4" id="currentActionName">
+		<div id="div-top-message" style="display: none;"></div>
+
+		<h2 class="itemTitle">《第四部份》學校於2013~2015年期間研發產出及產學合作績效</h2>
+		<h3>【說明】請您將貴校於西元2013~2015年期間研發產出及產學合作績效，填寫下表：</h3>
+		<h3>(一) 研發合作與智財推廣</h3>
+		<table width="100%">
+			<tbody>
+				<tr>
+					<th></th>
+					<th colspan="2">企業委託研究</th>
+					<th colspan="2">獲證專利</th>
+					<th colspan="2">專利授權</th>
+					<th colspan="3">技術移轉</th>
+				</tr>
+				<tr>
+					<th>年度</th>
+					<th>計畫件數</th>
+					<th>總經費(NT$萬)</th>
+					<th>獲證件數(國內)</th>
+					<th>獲證件數(國外)</th>
+					<th>廠商家數</th>
+					<th>授權收入</th>
+					<th>件數</th>
+					<th>廠商家數</th>
+					<th>技轉收入</th>
+				</tr>
+
+				<tr>
+					<input type="hidden" name="qnrCooperateWayMerits[0].year" value="2013" id="qnrCooperateWayMerits_0__year">
+					<td>2013</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p1_1_1" value="" id="qnrCooperateWayMerits_0__p1_1_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p1_1_2" value="" id="qnrCooperateWayMerits_0__p1_1_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p1_2_1" value="" id="qnrCooperateWayMerits_0__p1_2_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p1_2_2" value="" id="qnrCooperateWayMerits_0__p1_2_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p1_3_1" value="" id="qnrCooperateWayMerits_0__p1_3_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p1_3_2" value="" id="qnrCooperateWayMerits_0__p1_3_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p1_4_1" value="" id="qnrCooperateWayMerits_0__p1_4_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p1_4_2" value="" id="qnrCooperateWayMerits_0__p1_4_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p1_4_3" value="" id="qnrCooperateWayMerits_0__p1_4_3" class="form-control">
+							</div>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<input type="hidden" name="qnrCooperateWayMerits[1].year" value="2014" id="qnrCooperateWayMerits_1__year">
+					<td>2014</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p1_1_1" value="" id="qnrCooperateWayMerits_1__p1_1_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p1_1_2" value="" id="qnrCooperateWayMerits_1__p1_1_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p1_2_1" value="" id="qnrCooperateWayMerits_1__p1_2_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p1_2_2" value="" id="qnrCooperateWayMerits_1__p1_2_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p1_3_1" value="" id="qnrCooperateWayMerits_1__p1_3_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p1_3_2" value="" id="qnrCooperateWayMerits_1__p1_3_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p1_4_1" value="" id="qnrCooperateWayMerits_1__p1_4_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p1_4_2" value="" id="qnrCooperateWayMerits_1__p1_4_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p1_4_3" value="" id="qnrCooperateWayMerits_1__p1_4_3" class="form-control">
+							</div>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<input type="hidden" name="qnrCooperateWayMerits[2].year" value="2015" id="qnrCooperateWayMerits_2__year">
+					<td>2015</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p1_1_1" value="" id="qnrCooperateWayMerits_2__p1_1_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p1_1_2" value="" id="qnrCooperateWayMerits_2__p1_1_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p1_2_1" value="" id="qnrCooperateWayMerits_2__p1_2_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p1_2_2" value="" id="qnrCooperateWayMerits_2__p1_2_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p1_3_1" value="" id="qnrCooperateWayMerits_2__p1_3_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p1_3_2" value="" id="qnrCooperateWayMerits_2__p1_3_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p1_4_1" value="" id="qnrCooperateWayMerits_2__p1_4_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p1_4_2" value="" id="qnrCooperateWayMerits_2__p1_4_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p1_4_3" value="" id="qnrCooperateWayMerits_2__p1_4_3" class="form-control">
+							</div>
+						</div>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+		<h3>(二) 發展資源及新創事業</h3>
+		<table width="100%">
+			<tbody>
+				<tr>
+					<th></th>
+					<th colspan="2">研發活動主管單位</th>
+					<th colspan="2">產學合作主管單位</th>
+					<th colspan="2">技轉中心</th>
+					<th colspan="5">育成中心</th>
+				</tr>
+				<tr>
+					<th>年度</th>
+					<th>預算</th>
+					<th>年平均受雇全職人數</th>
+					<th>預算</th>
+					<th>年平均受雇全職人數</th>
+					<th>政府補助經費</th>
+					<th>受雇人數</th>
+					<th>政府補助經費</th>
+					<th>受雇人數</th>
+					<th>進駐家數</th>
+					<th>育成中心回饋收入</th>
+					<th>本校師生創<br />業進駐家數
+					</th>
+				</tr>
+
+				<tr>
+					<td>2013</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_1_1" value="" id="qnrCooperateWayMerits_0__p2_1_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_1_2" value="" id="qnrCooperateWayMerits_0__p2_1_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_2_1" value="" id="qnrCooperateWayMerits_0__p2_2_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_2_2" value="" id="qnrCooperateWayMerits_0__p2_2_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_3_1" value="" id="qnrCooperateWayMerits_0__p2_3_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_3_2" value="" id="qnrCooperateWayMerits_0__p2_3_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_4_1" value="" id="qnrCooperateWayMerits_0__p2_4_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_4_2" value="" id="qnrCooperateWayMerits_0__p2_4_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_4_3" value="" id="qnrCooperateWayMerits_0__p2_4_3" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_4_4" value="" id="qnrCooperateWayMerits_0__p2_4_4" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[0].p2_4_5" value="" id="qnrCooperateWayMerits_0__p2_4_5" class="form-control">
+							</div>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>2014</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_1_1" value="" id="qnrCooperateWayMerits_1__p2_1_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_1_2" value="" id="qnrCooperateWayMerits_1__p2_1_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_2_1" value="" id="qnrCooperateWayMerits_1__p2_2_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_2_2" value="" id="qnrCooperateWayMerits_1__p2_2_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_3_1" value="" id="qnrCooperateWayMerits_1__p2_3_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_3_2" value="" id="qnrCooperateWayMerits_1__p2_3_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_4_1" value="" id="qnrCooperateWayMerits_1__p2_4_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_4_2" value="" id="qnrCooperateWayMerits_1__p2_4_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_4_3" value="" id="qnrCooperateWayMerits_1__p2_4_3" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_4_4" value="" id="qnrCooperateWayMerits_1__p2_4_4" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[1].p2_4_5" value="" id="qnrCooperateWayMerits_1__p2_4_5" class="form-control">
+							</div>
+						</div>
+					</td>
+				</tr>
+
+				<tr>
+					<td>2015</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_1_1" value="" id="qnrCooperateWayMerits_2__p2_1_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_1_2" value="" id="qnrCooperateWayMerits_2__p2_1_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_2_1" value="" id="qnrCooperateWayMerits_2__p2_2_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_2_2" value="" id="qnrCooperateWayMerits_2__p2_2_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_3_1" value="" id="qnrCooperateWayMerits_2__p2_3_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_3_2" value="" id="qnrCooperateWayMerits_2__p2_3_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_4_1" value="" id="qnrCooperateWayMerits_2__p2_4_1" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_4_2" value="" id="qnrCooperateWayMerits_2__p2_4_2" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_4_3" value="" id="qnrCooperateWayMerits_2__p2_4_3" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_4_4" value="" id="qnrCooperateWayMerits_2__p2_4_4" class="form-control">
+							</div>
+						</div>
+					</td>
+					<td>
+
+
+						<div class="form-group ">
+							<div class=" controls">
+
+								<input type="text" name="qnrCooperateWayMerits[2].p2_4_5" value="" id="qnrCooperateWayMerits_2__p2_4_5" class="form-control">
+							</div>
+						</div>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+
+
+
+	</div>
+	<div class="clear"></div>
 	</article>
 	<footer>
-		<div class="con">
-			<div class="subLink">
-				<img src="images/footerLOGO.gif">
-			</div>
-			<div class="contact">
-				科技部鏈結產學合作計畫辦公室/服務專線：02-27377373/聯絡地址：台北市和平東路二段106號<br>
-				網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 請用Google Chrome 或 IE 9.0 以上版本瀏覽
-				最佳觀看解析度1200x800
-			</div>
+	<div class="con">
+		<div class="subLink">
+			<img src="./精進大學產學合作發展機制調查問卷_files/footerLOGO.gif">
 		</div>
+		<div class="contact">
+			科技部鏈結產學合作計畫辦公室/服務專線：02-27377373/聯絡地址：台北市和平東路二段106號<br> 網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 請用Google Chrome 或 IE 9.0 以上版本瀏覽 最佳觀看解析度1200x800
+		</div>
+	</div>
 	</footer>
+
+	<div id="feedly-mini" title="feedly Mini tookit"></div>
 </body>
 </html>

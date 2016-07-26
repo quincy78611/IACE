@@ -14,6 +14,7 @@ import iace.dao.option.OptionCountryDao;
 import iace.dao.option.OptionGrbDomainDao;
 import iace.dao.option.OptionHadTecSrcDao;
 import iace.dao.option.OptionIndustryDao;
+import iace.dao.option.OptionIndustryForEnterpriseDao;
 import iace.dao.option.OptionOrganizationClassDao;
 import iace.dao.option.OptionOrganizationTypeDao;
 import iace.dao.option.OptionSubjectDao;
@@ -42,6 +43,7 @@ import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionHadTecSrc;
 import iace.entity.option.OptionIndustry;
+import iace.entity.option.OptionIndustryForEnterprise;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionTrl;
@@ -57,6 +59,7 @@ public class DaoFactory {
 	private static IOptionDao<OptionGrbDomain> optionGrbDomainDao;
 	private static IOptionDao<OptionHadTecSrc> optionHadTecSrcDao;
 	private static IOptionDao<OptionIndustry> optionIndustryDao;
+	private static IOptionDao<OptionIndustryForEnterprise> optionIndustryForEnterpriseDao;
 	private static IOptionDao<OptionOrganizationClass> optionOrganizationClassDao;
 	private static IOptionDao<OptionOrganizationType> optionOrganizationTypeDao;
 	private static IOptionDao<OptionTrl> optionTrlDao;
@@ -121,6 +124,13 @@ public class DaoFactory {
 			optionIndustryDao = new OptionIndustryDao();
 		}
 		return optionIndustryDao;
+	}
+	
+	public static IOptionDao<OptionIndustryForEnterprise> getOptionIndustryForEnterpriseDao() {
+		if (optionIndustryForEnterpriseDao == null) {
+			optionIndustryForEnterpriseDao = new OptionIndustryForEnterpriseDao();
+		}
+		return optionIndustryForEnterpriseDao;
 	}
 
 	public static IOptionDao<OptionOrganizationClass> getOptionOrganizationClassDao() {

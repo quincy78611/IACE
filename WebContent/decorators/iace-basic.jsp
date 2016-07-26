@@ -141,7 +141,8 @@
 					        <li><a href="<s:url value="/iace/option/cooperateMode/index"/>">合作模式</a></li>
 					        <li><a href="<s:url value="/iace/option/grbDomain/index"/>">GRB領域別</a></li>
 					        <li><a href="<s:url value="/iace/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
-					        <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別</a></li>					        
+					        <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別</a></li>	
+					        <li><a href="<s:url value="/iace/option/industryForEnterprise/index"/>">企業需求單 產業類別</a></li>				        
 					        <li><a href="<s:url value="/iace/option/organizationClass/index"/>">單位類別</a></li>
 					        <li><a href="<s:url value="/iace/option/organizationType/index"/>">單位類型</a></li>
 					        <li><a href="<s:url value="/iace/option/trl/index"/>">發展階段</a></li>
