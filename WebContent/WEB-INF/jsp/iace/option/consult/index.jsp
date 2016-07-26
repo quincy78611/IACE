@@ -7,8 +7,8 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$(".btn-del").click(function() {
+				var url = $(this).siblings(".deleteUrl").val();
 				if(confirm("確定要刪除？")) {
-					var url = $(this).attr("href");
 					window.location.href=url;
 				}
 			});	
@@ -44,7 +44,8 @@
 					<s:url value="deleteSubmit.action" var="deleteUrlTag">
 						<s:param name="id" value="id" />
 					</s:url>
-					<input type="button" class="btn-func btn-del" value="刪除" href='<s:property value="#deleteUrlTag" />' />								
+					<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+					<input type="button" class="btn-func btn-del" value="刪除" />								
 				</td>
 			</tr>
 		</s:iterator>

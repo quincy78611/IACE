@@ -38,6 +38,7 @@ public class ResearchPlanService extends BaseIaceService<ResearchPlan> {
 		Map<String, OptionGrbDomain> grbDomains = this.optionGrbDomainDao.mapAll();
 		Map<String, OptionTrl> trls = this.optionTrlDao.mapAll();
 		for (ResearchPlan rp : entities) {
+			rp.getTechnologies().forEach(t -> t.create());
 			try {				
 				boolean planExist = this.researchPlanDao.planNoExist(rp.getPlanNo());
 				if (planExist) {

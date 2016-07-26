@@ -10,8 +10,9 @@
 			subFormSettingDisplaySetting();
 			
 			$(".btn-del").click(function() {
+				var url = $(this).siblings(".deleteUrl").val();
+				alert(url);				
 				if(confirm("確定要刪除？")) {
-					var url = $(this).attr("href");
 					window.location.href=url;
 				}
 			});			
@@ -136,10 +137,9 @@
 								<s:url value="deleteTechnologySubmit.action" var="deleteUrlTag" escapeAmp="false">
 									<s:param name="id" value="researchPlan.id" />
 									<s:param name="TechnologyId" value="id" />
-								</s:url>		
-								<input type="button" class="btn-func btn-del" value="刪除" href='<s:property value="#deleteUrlTag" />'
-									 />
-																				
+								</s:url>
+								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+								<input type="button" class="btn-func btn-del" value="刪除" />																				
 							</td>
 						</tr>
 					</s:iterator>
@@ -169,7 +169,7 @@
 				</li>
 				<li class="all">
 					<b>技術簡述</b>
-					<s:textarea name="technology.descriptoin" rows="5"/>
+					<s:textarea name="technology.descriptoin" rows="5" />
 				</li>
 				<li class="all">
 					<b>技術發展階段</b>
