@@ -1,7 +1,13 @@
 package iace.action;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
+
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
 
 import iace.entity.Patent;
 import iace.entity.ResearchPlan;
@@ -23,6 +29,9 @@ public class BatchImportAction extends BaseIaceAction {
 	private File uploadFile;
 	private String uploadFileContentType;
 	private String uploadFileFileName;
+	
+	private String downloadFileName;
+	private InputStream sampleFileInputStream;
 	
 	public BatchImportAction() {
 		super.setTitle("批次匯入");
@@ -49,6 +58,21 @@ public class BatchImportAction extends BaseIaceAction {
 		}
 	}
 	
+	public String downloadResearchPlanBatchSample() {
+		try {
+			ServletContext context = ServletActionContext.getServletContext();
+			this.downloadFileName = "技術資料匯入_sample.xlsx";
+			String filePath = context.getRealPath("/files/"+this.downloadFileName);
+			log.debug(filePath);
+			sampleFileInputStream = new FileInputStream(new File(filePath));
+			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}	    
+	}
+	
 	public String batchImportPatent() {
 		try {
 //			String filePath = "D:\\SYSVIN\\2016\\i-ACE鏈結產學媒合平台";
@@ -71,6 +95,21 @@ public class BatchImportAction extends BaseIaceAction {
 			super.addActionError(e.getMessage());
 			return INPUT;
 		}
+	}
+	
+	public String downloadPatentBatchSample() {
+		try {
+			ServletContext context = ServletActionContext.getServletContext();
+			this.downloadFileName = "專利資料匯入_sample.xlsx";
+			String filePath = context.getRealPath("/files/"+this.downloadFileName);
+			log.debug(filePath);
+			sampleFileInputStream = new FileInputStream(new File(filePath));
+			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}	    
 	}
 	
 	//==========================================================================
@@ -98,6 +137,15 @@ public class BatchImportAction extends BaseIaceAction {
 	public void setUploadFileFileName(String uploadFileFileName) {
 		this.uploadFileFileName = uploadFileFileName;
 	}
+	
+	public String getDownloadFileName() {
+		return downloadFileName;
+	}
+
+	public InputStream getSampleFileInputStream() {
+		return sampleFileInputStream;
+	}
+
 	
 	
 

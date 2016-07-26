@@ -32,8 +32,9 @@
 					<li class="eighth">
 						<input type="submit" value="匯入" class="btn btn-info redBtn" />
 					</li>
-					<li class="eighth">
-						<input type="button" class="btn btn-default grayBtn" value="下載範例"/>	
+					<li class="eighth">						
+						<input type="button" class="btn btn-default grayBtn" value="下載範例" 
+							onclick="window.location.href='<s:url value="downloadResearchPlanBatchSample"/>'"/>	
 					</li>
 				</ul>
 
@@ -56,7 +57,8 @@
 						<input type="submit" value="匯入" class="btn btn-info redBtn" />
 					</li>
 					<li class="eighth">
-						<input type="button" class="btn btn-default grayBtn" value="下載範例"/>
+						<input type="button" class="btn btn-default grayBtn" value="下載範例"
+							onclick="window.location.href='<s:url value="downloadPatentBatchSample"/>'"/>
 					</li>									
 				</ul>
 			</s:form>

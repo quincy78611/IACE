@@ -147,7 +147,15 @@
 		    
 		    <result name="success">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
 		    <result name="input">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
-		</action>			
+		</action>
+		<action name="downloadResearchPlanBatchSample" class="iace.action.BatchImportAction" method="downloadResearchPlanBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>
 		<action name="batchImportPatent" class="iace.action.BatchImportAction" method="batchImportPatent">
 		    <interceptor-ref name="fileUpload">                
                 <param name="allowedTypes">application/ms-excel,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</param>
@@ -157,6 +165,14 @@
 		    <result name="success">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
 		    <result name="input">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
 		</action>
+		<action name="downloadPatentBatchSample" class="iace.action.BatchImportAction" method="downloadPatentBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 	
 	<package name="qnrTemplate" namespace="/iace/qnrTemplate" extends="struts-default,json-default">
