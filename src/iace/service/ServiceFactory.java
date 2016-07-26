@@ -17,7 +17,6 @@ public class ServiceFactory {
 	private static OptionGrbDomainService optionGrbDomainService;
 	private static OptionHadTecSrcService optionHadTecSrcService;
 	private static OptionIndustryService optionIndustryService;
-	private static OptionIndustryClassService optionIndustryClassService;
 	private static OptionOrganizationClassService optionOrganizationClassService;
 	private static OptionOrganizationTypeService optionOrganizationTypeService;
 	private static OptionTrlService optionTrlService;
@@ -86,14 +85,6 @@ public class ServiceFactory {
 			optionIndustryService = new OptionIndustryService(DaoFactory.getOptionIndustryDao());
 		}
 		return optionIndustryService;
-	}
-	
-	@Deprecated
-	public static OptionIndustryClassService getOptionIndustryClassService() {
-		if (optionIndustryClassService == null) {
-			optionIndustryClassService = new OptionIndustryClassService(DaoFactory.getOptionIndustryClassDao());
-		}
-		return optionIndustryClassService;
 	}
 	
 	public static OptionOrganizationClassService getOptionOrganizationClassService() {

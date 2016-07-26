@@ -25,7 +25,6 @@ import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionHadTecSrc;
 import iace.entity.option.OptionIndustry;
-import iace.entity.option.OptionIndustryClass;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionSubject;
@@ -142,7 +141,6 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(OptionGrbDomain.class);
     	configuration.addAnnotatedClass(OptionHadTecSrc.class);
     	configuration.addAnnotatedClass(OptionIndustry.class);
-    	configuration.addAnnotatedClass(OptionIndustryClass.class);
     	configuration.addAnnotatedClass(OptionOrganizationClass.class);
     	configuration.addAnnotatedClass(OptionOrganizationType.class);
     	configuration.addAnnotatedClass(OptionTrl.class);
