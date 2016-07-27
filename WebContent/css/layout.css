@@ -127,7 +127,7 @@ h2.itemTitle { font-size:1.25em; color:#666; border-bottom:#0a5f9a 1px dotted; p
 h2.Down {border:none; margin-bottom:0;}
 
 article table { margin-bottom:30px;}
-article table th { background: url(../images/thBG.gif) repeat-x; height:40px; line-height:40px; text-align:left; color:#fff; font-size:0.81em; padding:0 5px;}
+article table th { background: url(../images/thBG.gif) repeat-x; height:40px; line-height:150%; vertical-align:middle; text-align:middle; color:#fff; font-size:0.81em; padding:0 5px;}
 article table td { border-bottom:#ccc 1px dotted; text-align:left; padding:5px 5px; font-size:0.81em; color:#606060; line-height:20px;}
 article table tr:hover { background:#f4f8fb;}
 article table td.plan { font-size:1em; line-height:26px; color:#175987;}

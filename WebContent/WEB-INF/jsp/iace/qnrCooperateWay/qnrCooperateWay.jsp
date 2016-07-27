@@ -90,15 +90,15 @@
 
 			<table width="100%">
 				<tr>
-					<td></td>
-					<td></td>
-					<td nowrap>非常不同意</td>
-					<td nowrap>不同意</td>
-					<td nowrap>稍微不同意</td>
-					<td nowrap>普通</td>
-					<td nowrap>稍微同意</td>
-					<td nowrap>同意</td>
-					<td nowrap>非常同意</td>
+					<th></th>
+					<th></th>
+					<th nowrap>非常<br>不同意</th>
+					<th nowrap>不同意</th>
+					<th nowrap>稍微<br>不同意</th>
+					<th nowrap>普通</th>
+					<th nowrap>稍微<br>同意</th>
+					<th nowrap>同意</th>
+					<th nowrap>非常<br>同意</th>
 				</tr>
 				<tr>
 					<td>1</td>
@@ -278,15 +278,15 @@
 			</div>
 			<table width="100%">
 				<tr>
-					<td></td>
-					<td></td>
-					<td nowrap>非常不同意</td>
-					<td nowrap>不同意</td>
-					<td nowrap>稍微不同意</td>
-					<td nowrap>普通</td>
-					<td nowrap>稍微同意</td>
-					<td nowrap>同意</td>
-					<td nowrap>非常同意</td>
+					<th></th>
+					<th></th>
+					<th nowrap>非常<br>不同意</th>
+					<th nowrap>不同意</th>
+					<th nowrap>稍微<br>不同意</th>
+					<th nowrap>普通</th>
+					<th nowrap>稍微<br>同意</th>
+					<th nowrap>同意</th>
+					<th nowrap>非常<br>同意</th>
 				</tr>
 				<tr>
 					<td>1</td>
@@ -411,15 +411,15 @@
 			</div>
 			<table width="100%">
 				<tr>
-					<td></td>
-					<td></td>
-					<td nowrap>非常不同意</td>
-					<td nowrap>不同意</td>
-					<td nowrap>稍微不同意</td>
-					<td nowrap>普通</td>
-					<td nowrap>稍微同意</td>
-					<td nowrap>同意</td>
-					<td nowrap>非常同意</td>
+					<th></th>
+					<th></th>
+					<th nowrap>非常<br>不同意</th>
+					<th nowrap>不同意</th>
+					<th nowrap>稍微<br>不同意</th>
+					<th nowrap>普通</th>
+					<th nowrap>稍微<br>同意</th>
+					<th nowrap>同意</th>
+					<th nowrap>非常<br>同意</th>
 				</tr>
 				<tr>
 					<td>1</td>

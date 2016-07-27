@@ -72,18 +72,18 @@ th {
 				<th colspan="5">育成中心</th>
 			</tr>
 			<tr>
-				<td>年度</td>
-				<td>預算</td>
-				<td>年平均受雇全職人數</td>
-				<td>預算</td>
-				<td>年平均受雇全職人數</td>
-				<td>政府補助經費</td>
-				<td>受雇人數</td>
-				<td>政府補助經費</td>
-				<td>受雇人數</td>
-				<td>進駐家數</td>
-				<td>育成中心回饋收入</td>
-				<td>本校師生創業進駐家數</td>
+				<th>年度</th>
+				<th>預算</th>
+				<th>年平均受雇<br>全職人數</th>
+				<th>預算</th>
+				<th>年平均受雇<br>全職人數</th>
+				<th>政府補<br>助經費</th>
+				<th>受雇人數</th>
+				<th>政府補<br>助經費</th>
+				<th>受雇人數</th>
+				<th>進駐家數</th>
+				<th>育成中心<br>回饋收入</th>
+				<th>本校師生創<br>業進駐家數</th>
 			</tr>
 			<s:iterator value="qnrCooperateWayMerits" status="stat">
 				<tr>
