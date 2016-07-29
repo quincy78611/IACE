@@ -81,8 +81,42 @@
 </style>
 </head>
 <body>
-	<h2 class="itemTitle">新增</h2>
-	<s:form action="createSubmit" method="post" validate="true" >
+	<h2 class="itemTitle">編輯管理 > 編輯</h2>
+	<s:form action="updateSubmit" method="post" validate="true" >
+		<s:hidden name="id"/>
+		
+		<s:hidden name="enterpriseInfo.id"/>
+		<s:hidden name="enterpriseInfo.isValid"/>
+		<s:hidden name="enterpriseInfo.createTime"/>
+		<s:hidden name="enterpriseInfo.createUser"/>
+		<s:hidden name="enterpriseInfo.updateTime"/>
+		<s:hidden name="enterpriseInfo.updateUser"/>
+		<s:hidden name="enterpriseInfo.ver"/>
+
+		<s:hidden name="enterpriseInfo.enterpriseRequireTech.id"/>
+		<s:hidden name="enterpriseInfo.enterpriseRequireTech.isValid"/>
+		<s:hidden name="enterpriseInfo.enterpriseRequireTech.createTime"/>
+		<s:hidden name="enterpriseInfo.enterpriseRequireTech.createUser"/>
+		<s:hidden name="enterpriseInfo.enterpriseRequireTech.updateTime"/>
+		<s:hidden name="enterpriseInfo.enterpriseRequireTech.updateUser"/>
+		<s:hidden name="enterpriseInfo.enterpriseRequireTech.ver"/>
+
+		<s:hidden name="enterpriseInfo.enterpriseSituation.id"/>
+		<s:hidden name="enterpriseInfo.enterpriseSituation.isValid"/>
+		<s:hidden name="enterpriseInfo.enterpriseSituation.createTime"/>
+		<s:hidden name="enterpriseInfo.enterpriseSituation.createUser"/>
+		<s:hidden name="enterpriseInfo.enterpriseSituation.updateTime"/>
+		<s:hidden name="enterpriseInfo.enterpriseSituation.updateUser"/>
+		<s:hidden name="enterpriseInfo.enterpriseSituation.ver"/>
+
+		<s:hidden name="enterpriseInfo.enterpriseAcademiaCoop.id"/>
+		<s:hidden name="enterpriseInfo.enterpriseAcademiaCoop.isValid"/>
+		<s:hidden name="enterpriseInfo.enterpriseAcademiaCoop.createTime"/>
+		<s:hidden name="enterpriseInfo.enterpriseAcademiaCoop.createUser"/>
+		<s:hidden name="enterpriseInfo.enterpriseAcademiaCoop.updateTime"/>
+		<s:hidden name="enterpriseInfo.enterpriseAcademiaCoop.updateUser"/>
+		<s:hidden name="enterpriseInfo.enterpriseAcademiaCoop.ver"/>
+
 		<table>
 			<tr>
 				<th colspan="2">企業基本資料</th>
@@ -442,6 +476,7 @@
 		
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 			<input type="submit" value="儲存" class="redBtn"/>
+			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/enterpriseNeed/init"/>'" />
 		</div>	
 	</s:form>	
 </body>

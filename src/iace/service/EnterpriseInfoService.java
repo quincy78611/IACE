@@ -78,6 +78,29 @@ public class EnterpriseInfoService extends BaseIaceService<EnterpriseInfo> {
 		super.create(entity);
 	}
 	
+	@Override
+	public void update(EnterpriseInfo entity) throws IOException, SQLException {
+		setOptionIndustryList(entity);
+		setOptionCompanyLocation(entity);		
+
+		EnterpriseRequireTech requireTech = entity.getEnterpriseRequireTech();
+		setPhase1(requireTech);
+		requireTech.update();
+		requireTech.setEnterpriseInfo(entity);
+
+		EnterpriseSituation situation = entity.getEnterpriseSituation();
+		setHadTecSrc(situation);
+		setCoopMode(situation);
+		situation.update();
+		situation.setEnterpriseInfo(entity);
+		
+		EnterpriseAcademiaCoop academiaCoop = entity.getEnterpriseAcademiaCoop();
+		academiaCoop.update();
+		academiaCoop.setEnterpriseInfo(entity);
+		
+		super.update(entity);
+	}
+	
 	private void setOptionCompanyLocation(EnterpriseInfo entity) {
 		if (entity.getOptionCompanyLocation() != null) {
 			long optId = entity.getOptionCompanyLocation().getId();

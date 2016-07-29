@@ -272,13 +272,30 @@
 			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
 			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
 		</action>
+		<action name="showDetail" class="iace.action.EnterpriseNeedAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/detail.jsp</result>
+		</action>		
 		<action name="create" class="iace.action.EnterpriseNeedAction" method="create">
 			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/create.jsp</result>
 		</action>
 		<action name="createSubmit" class="iace.action.EnterpriseNeedAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.EnterpriseNeedAction" method="update">
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.EnterpriseNeedAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/detail.jsp</result>
 		</action>		
+		<action name="delete" class="iace.action.EnterpriseNeedAction" method="delete">
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.EnterpriseNeedAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
+		</action>	
 	</package>
 	
 </struts>

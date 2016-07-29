@@ -31,6 +31,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	private List<OptionHadTecSrc> optionHadTecSrcList;
 	private List<OptionCooperateMode> optionCooperateModeList;
 	
+	private long id;
 	private EnterpriseInfo enterpriseInfo;
 	private EnterpriseNeedSearchModel searchCondition;
 	private PagedList<EnterpriseInfo> enterpriseInfoPagedList;
@@ -57,14 +58,22 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 		}
 	}
 	
+	public String showDetail() {
+		try {
+			this.enterpriseInfo = this.enterpriseInfoService.get(this.id);
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
+	}
+	
 	public String create() {
 		return SUCCESS;
 	}
 	
 	public void validateCreateSubmit() {
-		//TODO
-		double hadTecSrcRation = this.enterpriseInfo.getEnterpriseSituation().getHadTecSrcRation();
-		validateNumberRange(hadTecSrcRation, 1, 0, "enterpriseInfo.enterpriseSituation.hadTecSrcRation");
+		validateBeforeSubmit();
 	}
 	
 	public String createSubmit() {
@@ -77,6 +86,59 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 			this.addActionError(e.getMessage());
 			return ERROR;
 		}
+	}
+	
+	public String update() {
+		try {
+			this.enterpriseInfo = this.enterpriseInfoService.get(this.id);
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
+	}
+	
+	public void validateUpdateSubmit() {
+		validateBeforeSubmit();
+	}
+	
+	public String updateSubmit() {
+		try {
+			this.enterpriseInfoService.update(this.enterpriseInfo);
+			this.addActionMessage("UPDATE SUCCESS!");
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			this.addActionError(e.getMessage());
+			return ERROR;
+		}
+	}
+	
+	public String delete() {
+		try {
+			this.enterpriseInfo = this.enterpriseInfoService.get(this.id);
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
+	}
+	
+	public String deleteSubmit() {
+		try {
+			this.enterpriseInfoService.delete(this.id);
+			super.addActionMessage("DELETE SUCCESS!");
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
+	}
+	
+	public void validateBeforeSubmit() {
+		//TODO
+		double hadTecSrcRation = this.enterpriseInfo.getEnterpriseSituation().getHadTecSrcRation();
+		validateNumberRange(hadTecSrcRation, 1, 0, "enterpriseInfo.enterpriseSituation.hadTecSrcRation");
 	}
 
 	public EnterpriseInfo getEnterpriseInfo() {
@@ -117,6 +179,14 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 
 	public void setEnterpriseInfoPagedList(PagedList<EnterpriseInfo> enterpriseInfoPagedList) {
 		this.enterpriseInfoPagedList = enterpriseInfoPagedList;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	

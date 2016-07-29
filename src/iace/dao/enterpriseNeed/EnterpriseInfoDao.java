@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
@@ -22,6 +23,25 @@ public class EnterpriseInfoDao extends BaseIaceDao<EnterpriseInfo> implements IE
 
 	public EnterpriseInfoDao() {
 		super(EnterpriseInfo.class);
+	}
+	
+	@Override
+	public EnterpriseInfo get(long id) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(EnterpriseInfo.class);
+			criteria.add(Restrictions.eq("id", id));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			EnterpriseInfo res = (EnterpriseInfo) criteria.uniqueResult();
+			Hibernate.initialize(res.getEnterpriseRequireTech());
+			Hibernate.initialize(res.getEnterpriseSituation());
+			Hibernate.initialize(res.getEnterpriseAcademiaCoop());
+			return res;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
 	}
 
 	@Override
