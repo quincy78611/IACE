@@ -13,7 +13,7 @@ import core.dao.BaseDao;
 import core.dao.HibernateSessionFactory;
 import iace.entity.BaseEntity;
 
-public class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> implements IBaseIaceDao<T> {
+public abstract class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> implements IBaseIaceDao<T> {
 	protected static boolean realDelete = true;
 	
 	protected Class<T> entityClass;

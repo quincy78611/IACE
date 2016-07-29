@@ -106,8 +106,8 @@ article { width:1100px; margin:0 auto; clear:both; line-height:1.6em; background
 .rightContent li { float:left; margin-bottom:15px; font-size:1.12em;}
 .rightContent ul > li > ul { margin-bottom:10px;}
 .rightContent ul > li > ul > li { font-size: 16px; float:none; margin-bottom:10px;}
-.rightContent li b,
-.rightContent li.form-group label { color:#5b92b9; font-weight:normal; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;}
+.rightContent b { color:#5b92b9; font-weight:normal; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;}
+/* .rightContent form-group label { color:#5b92b9; font-weight:normal; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;} */
 
 .rightContent li.all { width:100%;}
 .rightContent li.half { width:49%; margin-right:1%;}
@@ -119,16 +119,15 @@ article { width:1100px; margin:0 auto; clear:both; line-height:1.6em; background
 .rightContent li textarea { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.91em; font-family:"·L³n¥¿¶ÂÅé";}
 .rightContent li input[type=checkbox] { margin-right:8px; }
 
-
-
-
+.rightContent .horizontalList div.checkbox,
+.rightContent .horizontalList div.radio { float:left; margin-right:2%;}
 
 h2.itemTitle { font-size:1.25em; color:#666; border-bottom:#0a5f9a 1px dotted; padding:0 0 20px 24px; margin-bottom:20px; background:url(../images/icon_Edit-L.png) no-repeat left top; display:block; position:relative;}
 h2.Down {border:none; margin-bottom:0;}
 
 article table { margin-bottom:30px;}
-article table th { background: url(../images/thBG.gif) repeat-x; height:40px; line-height:150%; vertical-align:middle; text-align:middle; color:#fff; font-size:0.81em; padding:0 5px;}
-article table td { border-bottom:#ccc 1px dotted; text-align:left; padding:5px 5px; font-size:0.81em; color:#606060; line-height:20px;}
+article table th { background: url(../images/thBG.gif) repeat-x; height:40px; line-height:150%; vertical-align:middle; text-align:left; color:#fff; font-size:0.81em; padding:0 5px;}
+article table td { border-bottom:#ccc 1px dotted; vertical-align:middle; text-align:left; padding:5px 5px; font-size:0.81em; color:#606060; line-height:20px;}
 article table tr:hover { background:#f4f8fb;}
 article table td.plan { font-size:1em; line-height:26px; color:#175987;}
 article table td a:link { color:#3b91af;}

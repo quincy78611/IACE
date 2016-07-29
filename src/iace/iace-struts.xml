@@ -263,4 +263,15 @@
 			<result name="success">/WEB-INF/jsp/iace/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
 		</action>		
 	</package>
+	
+	<package name="EnterpriseNeed" namespace="/iace/enterpriseNeed" extends="struts-default,json-default">
+		<action name="create" class="iace.action.EnterpriseNeedAction" method="create">
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.EnterpriseNeedAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/create.jsp</result>
+		</action>		
+	</package>
+	
 </struts>

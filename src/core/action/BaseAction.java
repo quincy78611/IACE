@@ -100,6 +100,17 @@ public abstract class BaseAction extends ActionSupport {
 		return validateEmail(testValue, fieldName, "必須是email格式");
 	}
 	
+	protected boolean validateNumberRange(double testValue, double max, double min, String fieldName, String errMsg) {
+		if (testValue > max || testValue < min) {
+			this.addFieldError(fieldName, errMsg);
+			return false;
+		}
+		return true;
+	}
+	
+	protected boolean validateNumberRange(double testValue, double max, double min, String fieldName) {
+		return validateNumberRange(testValue, max, min, fieldName, "必須介於"+min+"~"+max+"之間");
+	}
 	
 	/**
 	 * @param num

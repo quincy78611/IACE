@@ -34,6 +34,8 @@ public class ServiceFactory {
 	
 	private static ConsultingService consultingService;
 	
+	private static EnterpriseInfoService enterpriseInfoService;
+	
 	private static QnrTemplateService qnrTemplateService;
 	private static QnrService qnrService;
 	private static QnrCooperateWayService qnrCooperateWayService;
@@ -184,6 +186,18 @@ public class ServiceFactory {
 			consultingService = new ConsultingService(DaoFactory.getConsultingDao());
 		}
 		return consultingService;
+	}
+	
+	public static EnterpriseInfoService getEnterpriseInfoService() {
+		if (enterpriseInfoService == null) {
+			enterpriseInfoService = new EnterpriseInfoService(
+					DaoFactory.getEnterpriseInfoDao(),
+					DaoFactory.getOptionIndustryForEnterpriseDao(),
+					DaoFactory.getOptionCompanyLocationDao(),
+					DaoFactory.getOptionHadTecSrcDao(),
+					DaoFactory.getOptionCooperateModeDao());
+		}
+		return enterpriseInfoService;
 	}
 
 	public static QnrTemplateService getQnrTemplateService() {

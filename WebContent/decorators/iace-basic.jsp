@@ -98,6 +98,12 @@
 							<li><a href="<s:url value="/iace/consulting/create"/>">新增</a></li>
 						</ul>
 					</li>
+					<li><a href="#">企業需求單</a>
+						<ul>
+							<li><a href="<s:url value="/iace/enterpriseNeed/init"/>">編輯管理</a></li>
+							<li><a href="<s:url value="/iace/enterpriseNeed/create"/>">新增</a></li>
+						</ul>
+					</li>					
 					<li><a href="#">問卷調查模板</a>
 						<ul>
 							<li><a href="<s:url value="/iace/qnrTemplate/init"/>">編輯管理</a></li>

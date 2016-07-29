@@ -5,6 +5,14 @@ import org.apache.logging.log4j.Logger;
 
 import iace.dao.consulting.ConsultingDao;
 import iace.dao.consulting.IConsultingDao;
+import iace.dao.enterpriseNeed.EnterpriseAcademiaCoopDao;
+import iace.dao.enterpriseNeed.EnterpriseInfoDao;
+import iace.dao.enterpriseNeed.EnterpriseRequireTechDao;
+import iace.dao.enterpriseNeed.EnterpriseSituationDao;
+import iace.dao.enterpriseNeed.IEnterpriseAcademiaCoopDao;
+import iace.dao.enterpriseNeed.IEnterpriseInfoDao;
+import iace.dao.enterpriseNeed.IEnterpriseRequireTechDao;
+import iace.dao.enterpriseNeed.IEnterpriseSituationDao;
 import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionSubjectDao;
 import iace.dao.option.OptionCompanyLocationDao;
@@ -71,6 +79,10 @@ public class DaoFactory {
 	private static IResearchPlanDao researchPlanDao;
 	private static ITechnologyDao technologyDao;
 	private static IConsultingDao consultingDao;
+	private static IEnterpriseInfoDao enterpriseInfoDao;
+	private static IEnterpriseRequireTechDao enterpriseRequireTechDao;
+	private static IEnterpriseSituationDao enterpriseSituationDao;
+	private static IEnterpriseAcademiaCoopDao enterpriseAcademiaCoopDao;
 	
 	private static IQnrTemplateDao qnrTemplateDao;
 	private static IQnrDao qnrDao;
@@ -201,6 +213,34 @@ public class DaoFactory {
 			consultingDao = new ConsultingDao();
 		}
 		return consultingDao;
+	}
+	
+	public static IEnterpriseInfoDao getEnterpriseInfoDao() {
+		if (enterpriseInfoDao == null) {
+			enterpriseInfoDao = new EnterpriseInfoDao();
+		}
+		return enterpriseInfoDao;
+	}
+	
+	public static IEnterpriseRequireTechDao getEnterpriseRequireTechDao() {
+		if (enterpriseRequireTechDao == null) {
+			enterpriseRequireTechDao = new EnterpriseRequireTechDao(); 
+		}
+		return enterpriseRequireTechDao;
+	}
+	
+	public static IEnterpriseSituationDao getEnterpriseSituationDao() {
+		if (enterpriseSituationDao == null) {
+			enterpriseSituationDao = new EnterpriseSituationDao();
+		}
+		return enterpriseSituationDao;
+	}
+	
+	public static IEnterpriseAcademiaCoopDao getEnterpriseAcademiaCoopDao() {
+		if (enterpriseAcademiaCoopDao == null) {
+			enterpriseAcademiaCoopDao = new EnterpriseAcademiaCoopDao();
+		}
+		return enterpriseAcademiaCoopDao;
 	}
 
 	public static IQnrTemplateDao getQnrTemplateDao() {

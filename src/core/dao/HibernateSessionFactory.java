@@ -18,6 +18,10 @@ import iace.entity.SysRole;
 import iace.entity.SysUser;
 import iace.entity.TechField;
 import iace.entity.Technology;
+import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
+import iace.entity.enterpriseNeed.EnterpriseInfo;
+import iace.entity.enterpriseNeed.EnterpriseRequireTech;
+import iace.entity.enterpriseNeed.EnterpriseSituation;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
@@ -149,6 +153,10 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(OptionSubject.class);
     	configuration.addAnnotatedClass(School.class);
     	
+    	configuration.addAnnotatedClass(EnterpriseInfo.class);
+    	configuration.addAnnotatedClass(EnterpriseRequireTech.class);
+    	configuration.addAnnotatedClass(EnterpriseSituation.class);
+    	configuration.addAnnotatedClass(EnterpriseAcademiaCoop.class);
     	configuration.addAnnotatedClass(Patent.class);
     	configuration.addAnnotatedClass(ResearchPlan.class);
     	configuration.addAnnotatedClass(Technology.class);
