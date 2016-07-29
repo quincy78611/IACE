@@ -22,7 +22,7 @@
 			<tr>
 				<td>
 					<span style="font-weight:bold">
-						<s:property value="%{school.name + ' ' + school.id}"/>
+						<s:property value="%{school.name}"/>
 					</span>	
 					<br/>					
 					前三部分

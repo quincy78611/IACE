@@ -104,13 +104,13 @@
 							<li><a href="<s:url value="/iace/enterpriseNeed/create"/>">新增</a></li>
 						</ul>
 					</li>					
-					<li><a href="#">問卷調查模板</a>
+					<li hidden="hidden"><a href="#">問卷調查模板</a>
 						<ul>
 							<li><a href="<s:url value="/iace/qnrTemplate/init"/>">編輯管理</a></li>
 							<li><a href="<s:url value="/iace/qnrTemplate/create"/>">新增</a></li>
 						</ul>
 					</li>	
-					<li><a href="#">問卷</a>
+					<li hidden="hidden"><a href="#">問卷</a>
 						<ul>
 							<s:iterator value="qnrTemplateList" status="stat">
 								<li>
@@ -180,9 +180,9 @@
 				<img src="<s:url value="/images/footerLOGO.gif"/>" >
 			</div>
 			<div class="contact">
-				科技部鏈結產學合作計畫辦公室/服務專線：02-27377373/聯絡地址：台北市和平東路二段106號<br>
-				網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 請用Google Chrome 或 IE 9.0 以上版本瀏覽
-				最佳觀看解析度1200x800
+				科技部鏈結產學合作計畫辦公室 / 服務專線：02-27377373 / 聯絡地址：台北市和平東路二段106號<br>
+				網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 
+				請用Google Chrome 或 IE 9.0 以上版本瀏覽最佳觀看解析度1200x800
 			</div>
 		</div>
 	</footer>
