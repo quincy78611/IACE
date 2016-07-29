@@ -265,6 +265,13 @@
 	</package>
 	
 	<package name="EnterpriseNeed" namespace="/iace/enterpriseNeed" extends="struts-default,json-default">
+		<action name="init" class="iace.action.EnterpriseNeedAction" method="init">
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.EnterpriseNeedAction" method="index">
+			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
+		</action>
 		<action name="create" class="iace.action.EnterpriseNeedAction" method="create">
 			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/create.jsp</result>
 		</action>

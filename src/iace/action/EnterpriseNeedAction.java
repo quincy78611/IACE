@@ -2,7 +2,9 @@ package iace.action;
 
 import java.util.List;
 
+import core.util.PagedList;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
+import iace.entity.enterpriseNeed.EnterpriseNeedSearchModel;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionCooperateMode;
 import iace.entity.option.OptionHadTecSrc;
@@ -29,7 +31,9 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	private List<OptionHadTecSrc> optionHadTecSrcList;
 	private List<OptionCooperateMode> optionCooperateModeList;
 	
-	private EnterpriseInfo enterpriseInfo;	
+	private EnterpriseInfo enterpriseInfo;
+	private EnterpriseNeedSearchModel searchCondition;
+	private PagedList<EnterpriseInfo> enterpriseInfoPagedList;
 	
 	public EnterpriseNeedAction() {
 		super.setTitle("企業需求單");
@@ -37,6 +41,20 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 		this.optionCompanyLocationList = this.optionCompanyLocationService.listAll();
 		this.optionHadTecSrcList = this.optionHadTecSrcService.listAll();
 		this.optionCooperateModeList = this.optionCooperateModeService.listAll();		
+	}
+	
+	public String init() {
+		return SUCCESS;
+	}
+	
+	public String index() {
+		try {
+			this.enterpriseInfoPagedList = this.enterpriseInfoService.searchBy(searchCondition);
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
 	}
 	
 	public String create() {
@@ -83,6 +101,22 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 
 	public List<OptionCooperateMode> getOptionCooperateModeList() {
 		return optionCooperateModeList;
+	}
+
+	public EnterpriseNeedSearchModel getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(EnterpriseNeedSearchModel searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public PagedList<EnterpriseInfo> getEnterpriseInfoPagedList() {
+		return enterpriseInfoPagedList;
+	}
+
+	public void setEnterpriseInfoPagedList(PagedList<EnterpriseInfo> enterpriseInfoPagedList) {
+		this.enterpriseInfoPagedList = enterpriseInfoPagedList;
 	}
 	
 	

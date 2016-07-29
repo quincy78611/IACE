@@ -19,6 +19,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import iace.entity.BaseEntity;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionIndustryForEnterprise;
@@ -93,7 +96,7 @@ public class EnterpriseInfo extends BaseEntity {
 	@JoinTable(name="ENTERPRISE_INDUSTRY_RELATION", 
     	joinColumns={@JoinColumn(name="ENTERPRISE_INFO_ID")}, 
     	inverseJoinColumns={@JoinColumn(name="OPT_INDUSRTY_ID")})
-//	@Fetch(FetchMode.SUBSELECT)
+	@Fetch(FetchMode.SUBSELECT) // 這行要是沒加，則在列表頁搜尋時一筆EnterpriseInfo若有5筆OptionIndustryForEnterprise就會變成5筆EnterpriseInfo而不是一筆EnterpriseInfo內含5個OptionIndustryForEnterprise
 	public List<OptionIndustryForEnterprise> getOptionIndustryForEnterpriseList() {
 		return optionIndustryForEnterpriseList;
 	}
@@ -227,7 +230,7 @@ public class EnterpriseInfo extends BaseEntity {
 		this.intervieweeEmail = intervieweeEmail;
 	}
 
-	@OneToOne(mappedBy = "enterpriseInfo", cascade= { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "enterpriseInfo", cascade= { CascadeType.ALL }, fetch = FetchType.LAZY)
 	public EnterpriseRequireTech getEnterpriseRequireTech() {
 		return enterpriseRequireTech;
 	}
@@ -236,7 +239,7 @@ public class EnterpriseInfo extends BaseEntity {
 		this.enterpriseRequireTech = enterpriseRequireTech;
 	}
 
-	@OneToOne(mappedBy = "enterpriseInfo", cascade= { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "enterpriseInfo", cascade= { CascadeType.ALL }, fetch = FetchType.LAZY)
 	public EnterpriseSituation getEnterpriseSituation() {
 		return enterpriseSituation;
 	}
@@ -245,7 +248,7 @@ public class EnterpriseInfo extends BaseEntity {
 		this.enterpriseSituation = enterpriseSituation;
 	}
 
-	@OneToOne(mappedBy = "enterpriseInfo", cascade= { CascadeType.ALL }, fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "enterpriseInfo", cascade= { CascadeType.ALL }, fetch = FetchType.LAZY)
 	public EnterpriseAcademiaCoop getEnterpriseAcademiaCoop() {
 		return enterpriseAcademiaCoop;
 	}

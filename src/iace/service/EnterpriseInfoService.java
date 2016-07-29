@@ -5,10 +5,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import core.util.PagedList;
 import iace.dao.enterpriseNeed.IEnterpriseInfoDao;
 import iace.dao.option.IOptionDao;
 import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
+import iace.entity.enterpriseNeed.EnterpriseNeedSearchModel;
 import iace.entity.enterpriseNeed.EnterpriseRequireTech;
 import iace.entity.enterpriseNeed.EnterpriseSituation;
 import iace.entity.option.OptionCompanyLocation;
@@ -35,6 +37,10 @@ public class EnterpriseInfoService extends BaseIaceService<EnterpriseInfo> {
 		this.optCompanyLocationDao = optCompanyLocationDao;
 		this.optHadTecSrcDao = optHadTecSrcDao;
 		this.optCooperateModeDao = optCooperateModeDao;
+	}
+		
+	public PagedList<EnterpriseInfo> searchBy(EnterpriseNeedSearchModel searchCondition) {
+		return this.enterpriseInfoDao.searchBy(searchCondition);
 	}
 	
 	@Override
@@ -113,5 +119,6 @@ public class EnterpriseInfoService extends BaseIaceService<EnterpriseInfo> {
 			entity.setOptionCooperateMode(opt);
 		}
 	}
+
 
 }
