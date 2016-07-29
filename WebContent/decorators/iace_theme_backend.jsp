@@ -18,7 +18,7 @@
 	<script type="text/javascript" src="<s:url value="/scripts/menu.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/vmenuModule.js"/>"></script>
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_backend.css"/>" />
 	<%-- <link rel="stylesheet" type="text/css" href="<s:url value="/css/bootstrap.css"/>" /> --%>
 	<%-- <link rel="stylesheet" type="text/css" href="<s:url value="/css/Site.css"/>" /> --%>
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.file.browse.css"/>" />
