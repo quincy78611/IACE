@@ -70,7 +70,7 @@
 	
 		<div class="container-fluid">
 			<s:submit cssClass="btn btn-primary" value="確定" />
-			<a class="btn btn-success" href="<s:url value="/iace/qnrTemplate/init"/>">回索引頁</a>		
+			<a class="btn btn-success" href="<s:url value="/qnrTemplate/init"/>">回索引頁</a>		
 		</div>
 	</s:form>
 		

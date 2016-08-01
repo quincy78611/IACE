@@ -7,12 +7,14 @@
 
 </head>
 <body>
-	<h3>複製</h3>
-	<s:form action="copySubmit" method="post" validate="true">
+	<h3>編輯</h3>
+	<s:form action="updateSubmit" method="post" validate="true">
+		<s:hidden name="qnrTable.id"/>
+		<s:hidden name="qnrTable.tableName"/>
 		<div class="container-fluid ">
 			<div class="col-md-12">
 				<s:textfield label="問卷名稱" name="qnrTable.name" />
-			</div>			
+			</div>		
 		</div>
 		<div class="container-fluid">
 			<div class="col-md-2">
@@ -61,7 +63,7 @@
 									</td>
 									<td class="col-md-1">
 										<s:checkbox label="" class="searchCondition" name="%{'qnrTable.questionList['+#stat.index+'].searchCondition'}" fieldValue="true"/>	
-									</td>									
+									</td>
 									<td class="col-md-1">
 										<input type="button" class="btn-delete-question btn btn-danger" value="刪除" />
 									</td>
@@ -78,7 +80,7 @@
 		<div class="container-fluid">
 			<input type="button" id="btn-add-question" class="btn btn-default" value="增加問題"/>	
 			<s:submit class="btn btn-primary" value="儲存" />
-			<a class="btn btn-success" href="<s:url value="/iace/qnrTemplate/init"/>">回索引頁</a>	
+			<a class="btn btn-success" href="<s:url value="/qnrTemplate/init"/>">回索引頁</a>	
 		</div>
 	</s:form>
 	

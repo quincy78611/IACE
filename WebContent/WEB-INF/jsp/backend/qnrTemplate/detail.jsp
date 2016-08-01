@@ -68,7 +68,7 @@
 	</div>
 
 	<div class="container-fluid">
-		<a class="btn btn-success" href="<s:url value="/iace/qnrTemplate/init"/>">確定</a>
+		<a class="btn btn-success" href="<s:url value="/qnrTemplate/init"/>">確定</a>
 	</div>
 		
 	<script type="text/javascript">

@@ -377,7 +377,7 @@
 		<s:form action="deleteSubmit" method="post" validate="true">
 			<s:hidden name="id"/>
 			<s:submit class="btn btn-primary redBtn" value="確定" />
-			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/enterpriseNeed/init"/>'" />
+			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/enterpriseNeed/init"/>'" />
 		</s:form>
 	</div>	
 </body>

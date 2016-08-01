@@ -8,58 +8,58 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
 	
-	<package name="ResearchPlan" namespace="/iace/researchPlan" extends="struts-default">
+	<package name="ResearchPlan" namespace="/researchPlan" extends="struts-default">
 		<action name="init" class="iace.action.ResearchPlanAction" method="init">
-			<result>/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+			<result>/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
 		</action>	
 		<action name="index" class="iace.action.ResearchPlanAction" method="index">
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
 		</action>
 		<action name="showDetail" class="iace.action.ResearchPlanAction" method="showDetail">
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/detail.jsp</result>		
+			<result name="input">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/detail.jsp</result>		
 		</action>			
 		<action name="update" class="iace.action.ResearchPlanAction" method="update">
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>		
+			<result name="input">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>		
 		</action>
 		<action name="createTechnology" class="iace.action.ResearchPlanAction" method="createTechnology">
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>		
+			<result name="input">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>		
 		</action>
 		<action name="createTechnologySubmit" class="iace.action.ResearchPlanAction" method="createTechnologySubmit">		
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>
 		</action>
 		<action name="updateTechnology" class="iace.action.ResearchPlanAction" method="updateTechnology">
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>		
+			<result name="input">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>		
 		</action>
 		<action name="updateTechnologySubmit" class="iace.action.ResearchPlanAction" method="updateTechnologySubmit">		
-			<result name="input">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>
 		</action>
 		<action name="deleteTechnologySubmit" class="iace.action.ResearchPlanAction" method="deleteTechnologySubmit">
-			<result name="success">/WEB-INF/jsp/iace/researchPlan/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>
 		</action>	
 	</package>
 	
-	<package name="Patent" namespace="/iace/patent" extends="struts-default">
+	<package name="Patent" namespace="/patent" extends="struts-default">
 		<action name="init" class="iace.action.PatentAction" method="init">
-			<result>/WEB-INF/jsp/iace/patent/index.jsp</result>
+			<result>/WEB-INF/jsp/backend/patent/index.jsp</result>
 		</action>	
 		<action name="index" class="iace.action.PatentAction" method="index">
-			<result name="success">/WEB-INF/jsp/iace/patent/index.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/patent/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/patent/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/patent/index.jsp</result>
 		</action>
 		<action name="showDetail" class="iace.action.PatentAction" method="showDetail">
-			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/patent/detail.jsp</result>
-			<result name="error">/WEB-INF/jsp/iace/patent/index.jsp</result>		
+			<result name="success">/WEB-INF/jsp/backend/patent/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/patent/detail.jsp</result>
+			<result name="error">/WEB-INF/jsp/backend/patent/index.jsp</result>		
 		</action>
 		<action name="create" class="iace.action.PatentAction" method="create">
-			<result name="success">/WEB-INF/jsp/iace/patent/create.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/patent/create.jsp</result>	
 		</action>
 		<action name="createSubmit" class="iace.action.PatentAction" method="createSubmit">
 			<interceptor-ref name="fileUpload">
@@ -69,12 +69,12 @@
 			</interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 
-			<result name="input">/WEB-INF/jsp/iace/patent/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/patent/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/patent/detail.jsp</result>
 		</action>
 		<action name="update" class="iace.action.PatentAction" method="update">
-			<result name="input">/WEB-INF/jsp/iace/patent/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/patent/update.jsp</result>		
+			<result name="input">/WEB-INF/jsp/backend/patent/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/patent/update.jsp</result>		
 		</action>
 		<action name="updateSubmit" class="iace.action.PatentAction" method="updateSubmit">
 			<interceptor-ref name="fileUpload">
@@ -84,60 +84,60 @@
 			</interceptor-ref>
 			<interceptor-ref name="defaultStack"></interceptor-ref>
 			
-			<result name="input">/WEB-INF/jsp/iace/patent/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/patent/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/patent/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/patent/detail.jsp</result>
 		</action>	
 		<action name="delete" class="iace.action.PatentAction" method="delete">
-			<result name="input">/WEB-INF/jsp/iace/patent/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/patent/delete.jsp</result>		
+			<result name="input">/WEB-INF/jsp/backend/patent/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/patent/delete.jsp</result>		
 		</action>
 		<action name="deleteSubmit" class="iace.action.PatentAction" method="deleteSubmit">
-			<result name="input">/WEB-INF/jsp/iace/patent/delete.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/patent/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/patent/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/patent/index.jsp</result>
 		</action>			
 	</package>
 	
-	<package name="consulting" namespace="/iace/consulting" extends="struts-default">
+	<package name="consulting" namespace="/consulting" extends="struts-default">
 		<action name="init" class="iace.action.ConsultingAction" method="init">
-			<result>/WEB-INF/jsp/iace/consulting/index.jsp</result>
+			<result>/WEB-INF/jsp/backend/consulting/index.jsp</result>
 		</action>	
 		<action name="index" class="iace.action.ConsultingAction" method="index">
-			<result name="input">/WEB-INF/jsp/iace/consulting/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/consulting/index.jsp</result>			
+			<result name="input">/WEB-INF/jsp/backend/consulting/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/consulting/index.jsp</result>			
 		</action>
 		<action name="showDetail" class="iace.action.ConsultingAction" method="showDetail">
-			<result name="input">/WEB-INF/jsp/iace/consulting/detail.jsp</result>			
-			<result name="success">/WEB-INF/jsp/iace/consulting/detail.jsp</result>
-			<result name="error">/WEB-INF/jsp/iace/consulting/index.jsp</result>			
+			<result name="input">/WEB-INF/jsp/backend/consulting/detail.jsp</result>			
+			<result name="success">/WEB-INF/jsp/backend/consulting/detail.jsp</result>
+			<result name="error">/WEB-INF/jsp/backend/consulting/index.jsp</result>			
 		</action>
 		<action name="create" class="iace.action.ConsultingAction" method="create">
-			<result name="success">/WEB-INF/jsp/iace/consulting/create.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/consulting/create.jsp</result>	
 		</action>
 		<action name="createSubmit" class="iace.action.ConsultingAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/iace/consulting/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/consulting/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/consulting/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/consulting/detail.jsp</result>
 		</action>
 		<action name="update" class="iace.action.ConsultingAction" method="update">
-			<result name="input">/WEB-INF/jsp/iace/consulting/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/consulting/update.jsp</result>		
+			<result name="input">/WEB-INF/jsp/backend/consulting/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/consulting/update.jsp</result>		
 		</action>
 		<action name="updateSubmit" class="iace.action.ConsultingAction" method="updateSubmit">		
-			<result name="input">/WEB-INF/jsp/iace/consulting/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/consulting/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/consulting/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/consulting/detail.jsp</result>
 		</action>	
 		<action name="delete" class="iace.action.ConsultingAction" method="delete">
-			<result name="input">/WEB-INF/jsp/iace/consulting/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/consulting/delete.jsp</result>		
+			<result name="input">/WEB-INF/jsp/backend/consulting/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/consulting/delete.jsp</result>		
 		</action>
 		<action name="deleteSubmit" class="iace.action.ConsultingAction" method="deleteSubmit">
-			<result name="input">/WEB-INF/jsp/iace/consulting/delete.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/consulting/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/consulting/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/consulting/index.jsp</result>
 		</action>		
 	</package>
 	
-	<package name="batchImport" namespace="/iace/batchImport" extends="struts-default">
+	<package name="batchImport" namespace="/batchImport" extends="struts-default">
 		<action name="init" class="iace.action.BatchImportAction">
-			<result>/WEB-INF/jsp/iace/batchImport/index.jsp</result>
+			<result>/WEB-INF/jsp/backend/batchImport/index.jsp</result>
 		</action>
 		<action name="batchImportResearchPlan" class="iace.action.BatchImportAction" method="batchImportResearchPlan">
 		    <interceptor-ref name="fileUpload">                
@@ -145,8 +145,8 @@
             </interceptor-ref> 
             <interceptor-ref name="defaultStack"></interceptor-ref>
 		    
-		    <result name="success">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
-		    <result name="input">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
+		    <result name="success">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
 		</action>
 		<action name="downloadResearchPlanBatchSample" class="iace.action.BatchImportAction" method="downloadResearchPlanBatchSample">
 			<result name="success" type="stream">
@@ -162,8 +162,8 @@
             </interceptor-ref> 
             <interceptor-ref name="defaultStack"></interceptor-ref>
 		    
-		    <result name="success">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
-		    <result name="input">/WEB-INF/jsp/iace/batchImport/index.jsp</result>
+		    <result name="success">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
 		</action>
 		<action name="downloadPatentBatchSample" class="iace.action.BatchImportAction" method="downloadPatentBatchSample">
 			<result name="success" type="stream">
@@ -175,47 +175,47 @@
 		</action>		
 	</package>
 	
-	<package name="qnrTemplate" namespace="/iace/qnrTemplate" extends="struts-default,json-default">
+	<package name="qnrTemplate" namespace="/qnrTemplate" extends="struts-default,json-default">
 		<action name="init" class="iace.action.QnrTemplateAction" method="init">
-			<result>/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>
+			<result>/WEB-INF/jsp/backend/qnrTemplate/index.jsp</result>
 		</action>
 		<action name="index" class="iace.action.QnrTemplateAction" method="index">
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/index.jsp</result>
 		</action>
 		<action name="showDetail" class="iace.action.QnrTemplateAction" method="showDetail">
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/index.jsp</result>
 		</action>
 		<action name="create" class="iace.action.QnrTemplateAction" method="create">
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/create.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/create.jsp</result>	
 		</action>
 		<action name="createSubmit" class="iace.action.QnrTemplateAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/detail.jsp</result>
 		</action>
 		<action name="copy" class="iace.action.QnrTemplateAction" method="copy">
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/copy.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/copy.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/index.jsp</result>	
 		</action>
 		<action name="copySubmit" class="iace.action.QnrTemplateAction" method="copySubmit">
-			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/copy.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/copy.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/detail.jsp</result>
 		</action>		
 		<action name="update" class="iace.action.QnrTemplateAction" method="update">
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/update.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/update.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/index.jsp</result>	
 		</action>
 		<action name="updateSubmit" class="iace.action.QnrTemplateAction" method="updateSubmit">
-			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/detail.jsp</result>
 		</action>		
 		<action name="delete" class="iace.action.QnrTemplateAction" method="delete">
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/delete.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/index.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/delete.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/index.jsp</result>	
 		</action>
 		<action name="deleteSubmit" class="iace.action.QnrTemplateAction" method="deleteSubmit">
-			<result name="input">/WEB-INF/jsp/iace/qnrTemplate/delete.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/qnrTemplate/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/detail.jsp</result>
 		</action>
 		<action name="isQnrHasDataAjax" class="iace.action.QnrTemplateAction" method="isQnrHasDataAjax">
 			<result type="json">
@@ -224,29 +224,29 @@
 		</action>
 	</package>
 	
-	<package name="questionnaire" namespace="/iace/questionnaire" extends="struts-default">
+	<package name="questionnaire" namespace="/questionnaire" extends="struts-default">
 		<action name="init" class="iace.action.QnrAction" method="init">
-			<result name="success">/WEB-INF/jsp/iace/qnr/index.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/qnr/index.jsp</result>	
 		</action>		
 		<action name="index" class="iace.action.QnrAction" method="index">
-			<result name="success">/WEB-INF/jsp/iace/qnr/index.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/qnr/index.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/qnr/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnr/index.jsp</result>	
 		</action>
 		<action name="showDetail" class="iace.action.QnrAction" method="showDetail">
-			<result name="success">/WEB-INF/jsp/iace/qnr/detail.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/qnr/detail.jsp</result>	
 		</action>	
 		<action name="create" class="iace.action.QnrAction" method="create">
-			<result name="success">/WEB-INF/jsp/iace/qnr/create.jsp</result>	
+			<result name="success">/WEB-INF/jsp/backend/qnr/create.jsp</result>	
 		</action>
 		<action name="createSubmit" class="iace.action.QnrAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/iace/qnr/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/qnr/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/qnr/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/qnr/detail.jsp</result>
 		</action>
 	</package>
 	
-	<package name="QnrCooperateWay" namespace="/iace/qnrCooperateWay" extends="struts-default,json-default">
+	<package name="QnrCooperateWay" namespace="/qnrCooperateWay" extends="struts-default,json-default">
 		<action name="index" class="iace.action.QnrCooperateWayAction" method="index">
-			<result>/WEB-INF/jsp/iace/qnrCooperateWay/index.jsp</result>
+			<result>/WEB-INF/jsp/backend/qnrCooperateWay/index.jsp</result>
 		</action>
 		<action name="fillInQnrPart0To3" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart0To3">
 			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
@@ -264,37 +264,37 @@
 		</action>		
 	</package>
 	
-	<package name="EnterpriseNeed" namespace="/iace/enterpriseNeed" extends="struts-default,json-default">
+	<package name="EnterpriseNeed" namespace="/enterpriseNeed" extends="struts-default,json-default">
 		<action name="init" class="iace.action.EnterpriseNeedAction" method="init">
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/index.jsp</result>
 		</action>
 		<action name="index" class="iace.action.EnterpriseNeedAction" method="index">
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
-			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/enterpriseNeed/index.jsp</result>
 		</action>
 		<action name="showDetail" class="iace.action.EnterpriseNeedAction" method="showDetail">
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/detail.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/detail.jsp</result>
 		</action>		
 		<action name="create" class="iace.action.EnterpriseNeedAction" method="create">
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/create.jsp</result>
 		</action>
 		<action name="createSubmit" class="iace.action.EnterpriseNeedAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/enterpriseNeed/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/detail.jsp</result>
 		</action>
 		<action name="update" class="iace.action.EnterpriseNeedAction" method="update">
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/update.jsp</result>
 		</action>
 		<action name="updateSubmit" class="iace.action.EnterpriseNeedAction" method="updateSubmit">
-			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/enterpriseNeed/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/detail.jsp</result>
 		</action>		
 		<action name="delete" class="iace.action.EnterpriseNeedAction" method="delete">
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/delete.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.EnterpriseNeedAction" method="deleteSubmit">
-			<result name="input">/WEB-INF/jsp/iace/enterpriseNeed/delete.jsp</result>
-			<result name="success">/WEB-INF/jsp/iace/enterpriseNeed/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/enterpriseNeed/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/index.jsp</result>
 		</action>	
 	</package>
 	

@@ -153,7 +153,7 @@
 			<s:param name="id" value="researchPlan.id" />
 		</s:url>
 		<input type="button" class="redBtn" value="+ 新增研發成果" onclick="window.location.href='<s:property value="#createUrlTag" />'" />
-		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/researchPlan/init"/>'" />	
+		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/researchPlan/init"/>'" />	
 	</div>	
 	
 	<div class="clear"></div>

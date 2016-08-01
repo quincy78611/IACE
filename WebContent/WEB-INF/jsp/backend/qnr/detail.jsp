@@ -46,7 +46,7 @@
 		</s:iterator>
 	</div>
 	<div class="container-fluid">
-		<s:url value="/iace/questionnaire/init" var="initUrlTag" escapeAmp="false">
+		<s:url value="/questionnaire/init" var="initUrlTag" escapeAmp="false">
 			<s:param name="qnrTableId" value="qnrTableId" />
 			<s:param name="qnrTableName" value="qnrTableName" />
 		</s:url>

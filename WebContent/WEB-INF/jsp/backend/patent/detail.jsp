@@ -103,7 +103,7 @@
 			<input type="button" class="btn btn-info redBtn" value="編輯" 
 				onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
 		</s:if>
-		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/patent/init"/>'" />
+		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/patent/init"/>'" />
 	</div>	
 
 

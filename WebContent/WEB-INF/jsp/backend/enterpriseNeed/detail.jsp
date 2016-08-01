@@ -375,7 +375,7 @@
 	</table>		
 		
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/enterpriseNeed/init"/>'" />
+		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/enterpriseNeed/init"/>'" />
 	</div>	
 </body>
 </html>

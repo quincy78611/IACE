@@ -116,7 +116,7 @@
 			//TODO ajax
 			$.ajax({
 				type:"post",
-				url: '<s:url value="/iace/qnrTemplate/isQnrHasDataAjax"/>',
+				url: '<s:url value="/qnrTemplate/isQnrHasDataAjax"/>',
 				data:{
                     id:id
                 },

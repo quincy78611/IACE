@@ -81,40 +81,40 @@
     			<ul>
 					<li><a href="#">研發成果</a>
 						<ul>
-							<li><a href="<s:url value="/iace/researchPlan/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>
+							<li><a href="<s:url value="/researchPlan/init"/>">編輯管理</a></li>
+							<li><a href="<s:url value="/batchImport/init"/>">批次匯入</a></li>
 						</ul>
 					</li>    			
 					<li><a href="#">專利資料</a>
 						<ul>
-							<li><a href="<s:url value="/iace/patent/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/iace/patent/create"/>">新增</a></li>
-							<li><a href="<s:url value="/iace/batchImport/init"/>">批次匯入</a></li>
+							<li><a href="<s:url value="/patent/init"/>">編輯管理</a></li>
+							<li><a href="<s:url value="/patent/create"/>">新增</a></li>
+							<li><a href="<s:url value="/batchImport/init"/>">批次匯入</a></li>
 						</ul>
 					</li>
 					<li><a href="#">諮詢服務表</a>
 						<ul>
-							<li><a href="<s:url value="/iace/consulting/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/iace/consulting/create"/>">新增</a></li>
+							<li><a href="<s:url value="/consulting/init"/>">編輯管理</a></li>
+							<li><a href="<s:url value="/consulting/create"/>">新增</a></li>
 						</ul>
 					</li>
 					<li><a href="#">企業需求單</a>
 						<ul>
-							<li><a href="<s:url value="/iace/enterpriseNeed/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/iace/enterpriseNeed/create"/>">新增</a></li>
+							<li><a href="<s:url value="/enterpriseNeed/init"/>">編輯管理</a></li>
+							<li><a href="<s:url value="/enterpriseNeed/create"/>">新增</a></li>
 						</ul>
 					</li>					
 					<li hidden="hidden"><a href="#">問卷調查模板</a>
 						<ul>
-							<li><a href="<s:url value="/iace/qnrTemplate/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/iace/qnrTemplate/create"/>">新增</a></li>
+							<li><a href="<s:url value="/qnrTemplate/init"/>">編輯管理</a></li>
+							<li><a href="<s:url value="/qnrTemplate/create"/>">新增</a></li>
 						</ul>
 					</li>	
 					<li hidden="hidden"><a href="#">問卷</a>
 						<ul>
 							<s:iterator value="qnrTemplateList" status="stat">
 								<li>
-									<s:url value="/iace/questionnaire/init" var="initUrlTag" escapeAmp="false">
+									<s:url value="/questionnaire/init" var="initUrlTag" escapeAmp="false">
 										<s:param name="qnrTableId" value="id" />
 										<s:param name="qnrTableName" value="tableName" />
 									</s:url>
@@ -123,7 +123,7 @@
 									</a>
 								</li>
 								<li>	
-									<s:url value="/iace/questionnaire/create" var="createUrlTag" escapeAmp="false">
+									<s:url value="/questionnaire/create" var="createUrlTag" escapeAmp="false">
 										<s:param name="qnrTableId" value="id" />
 										<s:param name="qnrTableName" value="tableName" />
 									</s:url>
@@ -136,24 +136,24 @@
 					</li>
 					<li><a href=#>精進大學產學合作發展機制調查問卷</a>
 						<ul>
-							<li><a href="<s:url value="/iace/qnrCooperateWay/index"/>">問卷連結</a></li>
+							<li><a href="<s:url value="/qnrCooperateWay/index"/>">問卷連結</a></li>
 						</ul>
 					</li>
 					<li><a href="#">代碼管理</a>
 						<ul>
-					    	<li><a href="<s:url value="/iace/option/country/index"/>">專利國別</a></li>
-					        <li><a href="<s:url value="/iace/option/companyLocation/index"/>">公司地域別</a></li>
-					        <li><a href="<s:url value="/iace/option/consult/index"/>">諮詢類型代</a></li>
-					        <li><a href="<s:url value="/iace/option/cooperateMode/index"/>">合作模式</a></li>
-					        <li><a href="<s:url value="/iace/option/grbDomain/index"/>">GRB領域別</a></li>
-					        <li><a href="<s:url value="/iace/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
-					        <li><a href="<s:url value="/iace/option/industry/index"/>">產業/領域別</a></li>	
-					        <li><a href="<s:url value="/iace/option/industryForEnterprise/index"/>">企業需求單 產業類別</a></li>				        
-					        <li><a href="<s:url value="/iace/option/organizationClass/index"/>">單位類別</a></li>
-					        <li><a href="<s:url value="/iace/option/organizationType/index"/>">單位類型</a></li>
-					        <li><a href="<s:url value="/iace/option/trl/index"/>">發展階段</a></li>
-					        <li><a href="<s:url value="/iace/option/subject/index"/>">科技部學門</a></li>
-					        <li><a href="<s:url value="/iace/option/school/index"/>">學校</a></li>
+					    	<li><a href="<s:url value="/option/country/index"/>">專利國別</a></li>
+					        <li><a href="<s:url value="/option/companyLocation/index"/>">公司地域別</a></li>
+					        <li><a href="<s:url value="/option/consult/index"/>">諮詢類型代</a></li>
+					        <li><a href="<s:url value="/option/cooperateMode/index"/>">合作模式</a></li>
+					        <li><a href="<s:url value="/option/grbDomain/index"/>">GRB領域別</a></li>
+					        <li><a href="<s:url value="/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
+					        <li><a href="<s:url value="/option/industry/index"/>">產業/領域別</a></li>	
+					        <li><a href="<s:url value="/option/industryForEnterprise/index"/>">企業需求單 產業類別</a></li>				        
+					        <li><a href="<s:url value="/option/organizationClass/index"/>">單位類別</a></li>
+					        <li><a href="<s:url value="/option/organizationType/index"/>">單位類型</a></li>
+					        <li><a href="<s:url value="/option/trl/index"/>">發展階段</a></li>
+					        <li><a href="<s:url value="/option/subject/index"/>">科技部學門</a></li>
+					        <li><a href="<s:url value="/option/school/index"/>">學校</a></li>
 						</ul>
 					</li>
 				</ul>

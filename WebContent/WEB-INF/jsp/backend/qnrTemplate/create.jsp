@@ -74,7 +74,7 @@
 		<div class="container-fluid">
 			<input type="button" id="btn-add-question" class="btn btn-default" value="增加問題"/>	
 			<s:submit class="btn btn-primary" value="儲存" onclick="submitClick()"/>
-			<a class="btn btn-success" href="<s:url value="/iace/qnrTemplate/init"/>">回索引頁</a>	
+			<a class="btn btn-success" href="<s:url value="/qnrTemplate/init"/>">回索引頁</a>	
 		</div>
 	</s:form>
 	

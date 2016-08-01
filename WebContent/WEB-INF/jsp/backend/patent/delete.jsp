@@ -101,7 +101,7 @@
 		<div class="clear"></div>
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 			<s:submit cssClass="btn btn-info redBtn" value="確定" />	
-			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/iace/patent/init"/>'" />
+			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/patent/init"/>'" />
 		</div>	
 		
 	</s:form>
