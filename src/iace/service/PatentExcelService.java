@@ -45,7 +45,7 @@ public class PatentExcelService extends BaseExcelService {
 				p.setName(getCell(r, ++c).getStringCellValue());
 				p.setAssignee(getCell(r, ++c).getStringCellValue());
 				p.setInvertor(getCell(r, ++c).getStringCellValue());
-				p.setCountry(getCell(r, ++c).getStringCellValue());
+				p.setCountryByCode(getCell(r, ++c).getStringCellValue());
 				p.setAppliactionNo(getCell(r, ++c).getStringCellValue());
 				Date applicationDate = getCell(r, ++c).getDateCellValue();
 				p.setApplicationDate(new java.sql.Date(applicationDate.getTime()));

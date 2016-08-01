@@ -117,7 +117,7 @@ public class Patent extends BaseEntity {
 		this.country = optionCountry;
 	}
 	
-	public void setCountry(String code) {
+	public void setCountryByCode(String code) {
 		OptionCountry opt = new OptionCountry();
 		opt.setCode(code);
 		setCountry(opt);
