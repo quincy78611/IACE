@@ -72,11 +72,11 @@
 			<img src="<s:url value="/images/qnrCooperateWayDesc.jpg"/>" style="max-width: 800px; max-height: 800px;"> <br /> <br /> <br />
 			<h2 class="itemTitle">基本資料</h2>
 			<ul>
-				<li class="all">1. 請問您目前任職單位職稱為： <s:radio name="qnrCoopereateWay.q0_1" list="#{'1':'研發處研發長', '2':'產學合作中心單位主管', '3':'技轉中心單位主管', '4':'育成中心單位主管' }" />
+				<li class="all">1. 請問您目前任職單位職稱為： <s:radio name="qnrCoopereateWay.q0_1" list="#{'1':'研發處研發長', '2':'產學合作中心單位主管', '3':'技轉中心單位主管', '4':'育成中心單位主管' }" cssClass="horizontalList"/>
 				</li>
-				<li class="all">2. 請問您服務於學術界年資合計： <s:radio name="qnrCoopereateWay.q0_2" list="#{'1':'5年以下', '2':'5-10年', '3':'11-15年', '4':'16-20年', '5':'21-25年', '6':'26-30年', '7':'30年以上' }" />
+				<li class="all">2. 請問您服務於學術界年資合計： <s:radio name="qnrCoopereateWay.q0_2" list="#{'1':'5年以下', '2':'5-10年', '3':'11-15年', '4':'16-20年', '5':'21-25年', '6':'26-30年', '7':'30年以上' }" cssClass="horizontalList"/>
 				</li>
-				<li class="all">3. 請問您參與產學合作活動/計畫相關資歷合計： <s:radio name="qnrCoopereateWay.q0_3" list="#{'1':'5年以下', '2':'5-10年', '3':'11-15年', '4':'16-20年', '5':'20年以上' }" />
+				<li class="all">3. 請問您參與產學合作活動/計畫相關資歷合計： <s:radio name="qnrCoopereateWay.q0_3" list="#{'1':'5年以下', '2':'5-10年', '3':'11-15年', '4':'16-20年', '5':'20年以上' }" cssClass="horizontalList"/>
 				</li>
 			</ul>
 			<input type="button" class="goToPart1 redBtn" value="下一頁">
