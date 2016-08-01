@@ -34,7 +34,7 @@ import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionSubject;
 import iace.entity.option.OptionTrl;
-import iace.entity.option.School;
+import iace.entity.option.OptionSchool;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
 import iace.entity.qnrCooperateWay.QnrCooperateWayMerit;
 import iace.entity.questionnaire.QnrTable;
@@ -151,7 +151,7 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(OptionOrganizationType.class);
     	configuration.addAnnotatedClass(OptionTrl.class);
     	configuration.addAnnotatedClass(OptionSubject.class);
-    	configuration.addAnnotatedClass(School.class);
+    	configuration.addAnnotatedClass(OptionSchool.class);
     	
     	configuration.addAnnotatedClass(EnterpriseInfo.class);
     	configuration.addAnnotatedClass(EnterpriseRequireTech.class);

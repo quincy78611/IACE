@@ -22,7 +22,7 @@ public class ServiceFactory {
 	private static OptionOrganizationTypeService optionOrganizationTypeService;
 	private static OptionTrlService optionTrlService;
 	private static OptionSubjectService optionSubjectService;
-	private static SchoolService schoolService;
+	private static OptionSchoolService schoolService;
 	
 	private static PatentService patentService;
 	private static TechFieldService techFieldService;
@@ -125,9 +125,9 @@ public class ServiceFactory {
 		return optionSubjectService;
 	}
 	
-	public static SchoolService getSchoolService() {
+	public static OptionSchoolService getSchoolService() {
 		if (schoolService == null) {
-			schoolService = new SchoolService(DaoFactory.getSchoolDao());
+			schoolService = new OptionSchoolService(DaoFactory.getOptionSchoolDao());
 		}
 		return schoolService;
 	}
@@ -227,7 +227,7 @@ public class ServiceFactory {
 		if (qnrCooperateWayMeritService == null) {
 			qnrCooperateWayMeritService = new QnrCooperateWayMeritService(
 					DaoFactory.getQnrCooperateWayMeritDao(),
-					DaoFactory.getSchoolDao());
+					DaoFactory.getOptionSchoolDao());
 		}
 		return qnrCooperateWayMeritService;
 	}

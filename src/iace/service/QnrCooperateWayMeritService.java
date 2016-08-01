@@ -6,15 +6,15 @@ import java.util.List;
 import core.util.BeanComparator;
 import iace.dao.option.IOptionDao;
 import iace.dao.qnrCooperateWay.IQnrCooperateWayMeritDao;
-import iace.entity.option.School;
+import iace.entity.option.OptionSchool;
 import iace.entity.qnrCooperateWay.QnrCooperateWayMerit;
 
 public class QnrCooperateWayMeritService extends BaseIaceService<QnrCooperateWayMerit> {
 
 	private IQnrCooperateWayMeritDao qnrCooperateWayMeritDao;
-	private IOptionDao<School> schoolDao;
+	private IOptionDao<OptionSchool> schoolDao;
 	
-	QnrCooperateWayMeritService(IQnrCooperateWayMeritDao dao, IOptionDao<School> schoolDao) {
+	QnrCooperateWayMeritService(IQnrCooperateWayMeritDao dao, IOptionDao<OptionSchool> schoolDao) {
 		super(dao);
 		this.qnrCooperateWayMeritDao = dao;
 		this.schoolDao = schoolDao;
@@ -24,7 +24,7 @@ public class QnrCooperateWayMeritService extends BaseIaceService<QnrCooperateWay
 	public List<QnrCooperateWayMerit> getForUpdate(long schoolId) {
 		List<QnrCooperateWayMerit> yearMeritList = this.qnrCooperateWayMeritDao.getBySchool(schoolId);
 		if (yearMeritList == null || yearMeritList.size() != 3) {
-			School school = this.schoolDao.get(schoolId);
+			OptionSchool school = this.schoolDao.get(schoolId);
 			int[] years = {2013, 2014, 2015};
 			for (int year : years) {
 				QnrCooperateWayMerit yearMerit = this.qnrCooperateWayMeritDao.getBySchool(schoolId, year);

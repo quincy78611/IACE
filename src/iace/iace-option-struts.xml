@@ -339,27 +339,27 @@
 	</package>
 	
 	<package name="School" namespace="/option/school" extends="struts-default">
-		<action name="index" class="iace.action.SchoolAction" method="index">
+		<action name="index" class="iace.action.OptionSchoolAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>
-		<action name="create" class="iace.action.SchoolAction" method="create">
+		<action name="create" class="iace.action.OptionSchoolAction" method="create">
 			<result name="input">/WEB-INF/jsp/backend/option/school/create.jsp</result>		
 		</action>
-		<action name="createSubmit" class="iace.action.SchoolAction" method="createSubmit">
+		<action name="createSubmit" class="iace.action.OptionSchoolAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/school/create.jsp</result>
 			<result name="error">/WEB-INF/jsp/backend/option/school/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>
-		<action name="update" class="iace.action.SchoolAction" method="update">
+		<action name="update" class="iace.action.OptionSchoolAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/school/update.jsp</result>
 			<result name="error">/WEB-INF/jsp/backend/option/school/index.jsp</result>			
 		</action>
-		<action name="updateSubmit" class="iace.action.SchoolAction" method="updateSubmit">
+		<action name="updateSubmit" class="iace.action.OptionSchoolAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/school/update.jsp</result>
 			<result name="error">/WEB-INF/jsp/backend/option/school/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>
-		<action name="deleteSubmit" class="iace.action.SchoolAction" method="deleteSubmit">
+		<action name="deleteSubmit" class="iace.action.OptionSchoolAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 			<result name="error">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>

@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.util.AESEncrypter;
-import iace.entity.option.School;
+import iace.entity.option.OptionSchool;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
 import iace.entity.qnrCooperateWay.QnrCooperateWayLinkModel;
 import iace.entity.qnrCooperateWay.QnrCooperateWayMerit;
 import iace.service.QnrCooperateWayMeritService;
 import iace.service.QnrCooperateWayService;
-import iace.service.SchoolService;
+import iace.service.OptionSchoolService;
 import iace.service.ServiceFactory;
 
 public class QnrCooperateWayAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = -8674132276568056185L;
 
-	private SchoolService schoolService = ServiceFactory.getSchoolService(); 
+	private OptionSchoolService schoolService = ServiceFactory.getSchoolService(); 
 	private QnrCooperateWayService qnrCooperateWayService = ServiceFactory.getQnrCooperateWayService();
 	private QnrCooperateWayMeritService qnrCooperateWayMeritService = ServiceFactory.getQnrCooperateWayMeritService();
 
@@ -35,9 +35,9 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 
 	public String index() {
 		try {
-			List<School> schools = this.schoolService.listAll();
+			List<OptionSchool> schools = this.schoolService.listAll();
 			this.qnrCooperateWayLinks = new ArrayList<QnrCooperateWayLinkModel>();
-			for (School school : schools) {
+			for (OptionSchool school : schools) {
 				QnrCooperateWayLinkModel model = new QnrCooperateWayLinkModel();
 				model.setSchool(school);
 				String encryptId = AESEncrypter.encrypt(encryptKey, String.valueOf(school.getId()));
@@ -64,7 +64,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	
 	public String fillInQnrPart0To3Submit() {
 		try {
-			School school = this.schoolService.get(this.schoolId);
+			OptionSchool school = this.schoolService.get(this.schoolId);
 			this.qnrCoopereateWay.setSchool(school);
 			this.qnrCooperateWayService.create(this.qnrCoopereateWay);
 			this.schoolId = this.qnrCoopereateWay.getSchool().getId();
@@ -98,11 +98,11 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		}
 	}
 
-	public SchoolService getSchoolService() {
+	public OptionSchoolService getSchoolService() {
 		return schoolService;
 	}
 
-	public void setSchoolService(SchoolService schoolService) {
+	public void setSchoolService(OptionSchoolService schoolService) {
 		this.schoolService = schoolService;
 	}
 

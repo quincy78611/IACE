@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SCHOOL")
-public class School extends BaseOption {
+@Table(name = "OPT_SCHOOL")
+public class OptionSchool extends BaseOption {
 
 	private static final long serialVersionUID = 4644255723852421978L;
 	

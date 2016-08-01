@@ -12,7 +12,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import iace.entity.BaseEntity;
-import iace.entity.option.School;
+import iace.entity.option.OptionSchool;
 
 @Entity
 @Table(name = "QNR_COOPERATE_WAY")
@@ -21,7 +21,7 @@ public class QnrCooperateWay extends BaseEntity {
 	private static final long serialVersionUID = 9162172455947173462L;
 
 	private long id;
-	private School school;
+	private OptionSchool school;
 	private Integer q0_1;
 	private Integer q0_2;
 	private Integer q0_3;
@@ -79,11 +79,11 @@ public class QnrCooperateWay extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "SCHOOL_ID", referencedColumnName = "ID", nullable = false, updatable = false)
-	public School getSchool() {
+	public OptionSchool getSchool() {
 		return school;
 	}
 
-	public void setSchool(School school) {
+	public void setSchool(OptionSchool school) {
 		this.school = school;
 	}
 
