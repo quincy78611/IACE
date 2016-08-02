@@ -4,7 +4,46 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});		
+		
+		$("select.orgType").change(function(){
+			var name = $(this).find("option:selected").html();
+			if (name.includes("其他")) {
+				$("input[type='text'].orgType").removeAttr("disabled");
+			} else {
+				$("input[type='text'].orgType").val("");
+				$("input[type='text'].orgType").attr("disabled", "disabled");
+			}
+		});
+		$("select.orgType").trigger('change');
+		
+		$("select.consult").change(function(){
+			var name = $(this).find("option:selected").html();
+			if (name.includes("其他")) {
+				$("input[type='text'].consult").removeAttr("disabled");
+			} else {
+				$("input[type='text'].consult").val("");
+				$("input[type='text'].consult").attr("disabled", "disabled");
+			}
+		});
+		$("select.consult").trigger('change');
+		
+		$("select.industry").change(function(){
+			var name = $(this).find("option:selected").html();
+			if (name.includes("其他")) {
+				$("input[type='text'].industry").removeAttr("disabled");
+			} else {
+				$("input[type='text'].industry").val("");
+				$("input[type='text'].industry").attr("disabled", "disabled");
+			}
+		});
+		$("select.industry").trigger('change');
+	});
+</script>
 </head>
 <body>
 	<h2 class="itemTitle">編輯管理 > 檢視</h2>
@@ -68,52 +107,17 @@
 	</ul>
 	<div class="clear"></div>
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-		<s:url value="update.action" var="updateUrlTag">
-			<s:param name="id" value="consulting.id" />
-		</s:url>
-		<s:if test="#request.context['struts.actionMapping'].name == 'showDetail'">
-			<input type="button" class="btn btn-info redBtn" value="編輯" 
-				onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
-		</s:if>
-		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/consulting/init"/>'" />
-	
+		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 	</div>
-	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("select.orgType").change(function(){
-				var name = $(this).find("option:selected").html();
-				if (name.includes("其他")) {
-					$("input[type='text'].orgType").removeAttr("disabled");
-				} else {
-					$("input[type='text'].orgType").val("");
-					$("input[type='text'].orgType").attr("disabled", "disabled");
-				}
-			});
-			$("select.orgType").trigger('change');
-			
-			$("select.consult").change(function(){
-				var name = $(this).find("option:selected").html();
-				if (name.includes("其他")) {
-					$("input[type='text'].consult").removeAttr("disabled");
-				} else {
-					$("input[type='text'].consult").val("");
-					$("input[type='text'].consult").attr("disabled", "disabled");
-				}
-			});
-			$("select.consult").trigger('change');
-			
-			$("select.industry").change(function(){
-				var name = $(this).find("option:selected").html();
-				if (name.includes("其他")) {
-					$("input[type='text'].industry").removeAttr("disabled");
-				} else {
-					$("input[type='text'].industry").val("");
-					$("input[type='text'].industry").attr("disabled", "disabled");
-				}
-			});
-			$("select.industry").trigger('change');
-		});
-	</script>	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.searchText"/>
+		<s:hidden name="searchCondition.optionOrganizationTypeCode"/>
+		<s:hidden name="searchCondition.optionConsultCode"/>
+		<s:hidden name="searchCondition.optionIndustryCode"/>
+		<s:hidden name="searchCondition.consultDateStart"/>
+		<s:hidden name="searchCondition.consultDateEnd"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>
 </body>
 </html>

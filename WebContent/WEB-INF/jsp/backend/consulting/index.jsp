@@ -4,8 +4,33 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function () {			
+		paggingSetting();
+		funcBtnSetting();
+	});
+</script>
+<script>
+	function funcBtnSetting() {
+		$(".btn-view").click(function() {
+			var url = $(this).siblings(".detailUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
+		});
+		$(".btn-edit").click(function() {
+			var url = $(this).siblings(".updateUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
+		});
+		$(".btn-del").click(function() {
+			var url = $(this).siblings(".deleteUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
+		});		
+	}
+</script>
+<script>	
+	function paggingSetting() {
 		$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
 		
 		var pageIndex = parseInt('<s:property value="consultingPagedList.pageIndex"/>');
@@ -64,8 +89,8 @@
 			$("input.form-control:text").val("");
 			$("select").prop('selectedIndex', 0);
 		});
-	});
-	</script>	
+	}
+</script>
 </head>
 <body>
 	<h2 class="itemTitle">編輯管理</h2>
@@ -107,8 +132,6 @@
 						<th nowrap width="">單位類型</th>
 						<th nowrap width="">諮詢類型</th>
 						<th nowrap width="">產業/領域別</th>
-<!-- 						<th nowrap width="">聯絡電話</th> -->
-<!-- 						<th nowrap width="">E-MAIL</th> -->
 						<th nowrap width="">諮詢日期</th>
 						<th nowrap width="24%">功能</th>
 					</tr>
@@ -126,8 +149,6 @@
 								<td><s:property value="%{optionOrganizationType.code + ' ' + optionOrganizationType.name}" /></td>
 								<td><s:property value="%{optionConsult.code + ' ' + optionConsult.name}" /></td>
 								<td><s:property value="%{optionIndustry.code + ' ' + optionIndustry.name}" /></td>
-<%-- 								<td><s:property value="phone" /></td> --%>
-<%-- 								<td><s:property value="email" /></td> --%>
 								<td><s:property value="consultDate" /></td>								
 								
 								<td class="col-md-1">
@@ -135,22 +156,22 @@
 									<s:url value="showDetail.action" var="detailUrlTag">
 										<s:param name="id" value="id" />
 									</s:url>
-									<input type="button" class="btn-info btn-func btn-view" value="檢視" 
-										onclick="window.location.href='<s:property value="detailUrlTag" />'" />
+									<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
+									<input type="button" class="btn-info btn-func btn-view" value="檢視" />	
 										
 									<!-- 編輯 -->
 									<s:url value="update.action" var="updateUrlTag">
 										<s:param name="id" value="id" />
 									</s:url>
-									<input type="button" class="btn-info btn-func btn-edit" value="編輯" 
-										onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+									<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+									<input type="button" class="btn-info btn-func btn-edit" value="編輯" />	
 										
 									<!-- 刪除 -->	
 									<s:url value="delete.action" var="deleteUrlTag">
 										<s:param name="id" value="id" />
 									</s:url>
-									<input type="button" class="btn-danger btn-func btn-del" value="刪除" 
-										onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
+									<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+									<input type="button" class="btn-info btn-func btn-del" value="刪除" />	
 								</td>
 							</tr>
 						</s:iterator>
@@ -160,7 +181,7 @@
 		</div>
 		
 		<div class="page">
-			<s:hidden id="pageIndex" name="searchCondition.pageIndex" value="0"/>
+			<s:hidden id="pageIndex" name="searchCondition.pageIndex"/>
 			<s:hidden id="pageSize" name="searchCondition.pageSize" value="20" />
 						
 			<s:set var="pgList" value="consultingPagedList"/>

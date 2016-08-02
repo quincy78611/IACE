@@ -43,9 +43,6 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	public String index() {
 		try {
-//			this.consultingPagedList = this.consultingService.searchBy(
-//					this.pageIndex, this.pageSize, 
-//					this.searchName, this.searchOrganization);
 			this.consultingPagedList = this.consultingService.searchBy(searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
