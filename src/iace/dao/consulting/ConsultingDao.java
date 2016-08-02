@@ -17,8 +17,8 @@ import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
-import iace.entity.Consulting;
-import iace.entity.ConsultingSearchModel;
+import iace.entity.consulting.Consulting;
+import iace.entity.consulting.ConsultingSearchModel;
 
 public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultingDao {
 

@@ -1,4 +1,4 @@
-package iace.entity;
+package iace.entity.researchPlan;
 
 public class ResearchPlanSearchModel {
 	private int pageIndex;

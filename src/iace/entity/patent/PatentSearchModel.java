@@ -1,4 +1,4 @@
-package iace.entity;
+package iace.entity.patent;
 
 public class PatentSearchModel {
 

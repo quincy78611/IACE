@@ -1,4 +1,4 @@
-package iace.entity;
+package iace.entity.patent;
 
 import java.io.File;
 import java.io.FileOutputStream;

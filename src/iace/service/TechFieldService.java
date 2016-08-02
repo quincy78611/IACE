@@ -1,7 +1,7 @@
 package iace.service;
 
 import iace.dao.techField.ITechFieldDao;
-import iace.entity.TechField;
+import iace.entity.patent.TechField;
 
 public class TechFieldService extends BaseIaceService<TechField> {	
 

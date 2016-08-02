@@ -1,4 +1,4 @@
-package iace.entity;
+package iace.entity.consulting;
 
 import java.util.Date;
 

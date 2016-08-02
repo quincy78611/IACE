@@ -17,9 +17,9 @@ import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
-import iace.entity.ResearchPlan;
-import iace.entity.ResearchPlanSearchModel;
-import iace.entity.Technology;
+import iace.entity.researchPlan.ResearchPlan;
+import iace.entity.researchPlan.ResearchPlanSearchModel;
+import iace.entity.researchPlan.Technology;
 
 public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResearchPlanDao {
 

@@ -1,4 +1,4 @@
-package iace.entity;
+package iace.entity.consulting;
 
 import java.util.Date;
 
@@ -16,6 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import iace.entity.BaseEntity;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionOrganizationType;

@@ -5,9 +5,9 @@ import java.util.Set;
 
 import core.util.PagedList;
 import iace.dao.IBaseIaceDao;
-import iace.entity.Patent;
-import iace.entity.PatentSearchModel;
-import iace.entity.TechField;
+import iace.entity.patent.Patent;
+import iace.entity.patent.PatentSearchModel;
+import iace.entity.patent.TechField;
 
 public interface IPatentDao extends IBaseIaceDao<Patent> {
 

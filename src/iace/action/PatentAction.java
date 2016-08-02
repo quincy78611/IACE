@@ -12,11 +12,11 @@ import org.apache.commons.lang3.StringUtils;
 import com.opensymphony.xwork2.ActionContext;
 
 import core.util.PagedList;
-import iace.entity.Patent;
-import iace.entity.PatentSearchModel;
-import iace.entity.TechField;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionTrl;
+import iace.entity.patent.Patent;
+import iace.entity.patent.PatentSearchModel;
+import iace.entity.patent.TechField;
 import iace.service.OptionCountryService;
 import iace.service.OptionTrlService;
 import iace.service.PatentService;

@@ -7,7 +7,7 @@ import org.hibernate.criterion.Restrictions;
 import core.dao.HibernateSessionFactory;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
-import iace.entity.Technology;
+import iace.entity.researchPlan.Technology;
 
 public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnologyDao {
 

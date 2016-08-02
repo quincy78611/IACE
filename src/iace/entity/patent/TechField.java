@@ -1,4 +1,4 @@
-package iace.entity;
+package iace.entity.patent;
 
 import java.util.List;
 
@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import iace.entity.BaseEntity;
 
 @Entity
 @Table(name = "TECH_FIELD")

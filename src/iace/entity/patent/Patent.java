@@ -1,4 +1,4 @@
-package iace.entity;
+package iace.entity.patent;
 
 import java.util.ArrayList;
 import java.sql.Date;
@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import core.util.ValidateUtil;
+import iace.entity.BaseEntity;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionTrl;
 

@@ -14,10 +14,10 @@ import org.apache.poi.xssf.usermodel.XSSFShape;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import iace.entity.Patent;
-import iace.entity.PatentPicture;
-import iace.entity.TechField;
 import iace.entity.option.OptionTrl;
+import iace.entity.patent.Patent;
+import iace.entity.patent.PatentPicture;
+import iace.entity.patent.TechField;
 
 public class PatentExcelService extends BaseExcelService {
 	

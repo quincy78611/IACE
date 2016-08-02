@@ -16,10 +16,10 @@ import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.techField.ITechFieldDao;
-import iace.entity.Patent;
-import iace.entity.PatentSearchModel;
-import iace.entity.TechField;
 import iace.entity.option.OptionCountry;
+import iace.entity.patent.Patent;
+import iace.entity.patent.PatentSearchModel;
+import iace.entity.patent.TechField;
 
 public class PatentService extends BaseService<Patent, Long> {
 

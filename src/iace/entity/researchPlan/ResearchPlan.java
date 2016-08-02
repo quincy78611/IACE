@@ -1,4 +1,4 @@
-package iace.entity;
+package iace.entity.researchPlan;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import iace.entity.BaseEntity;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
 

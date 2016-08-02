@@ -3,8 +3,8 @@ package iace.action;
 import java.util.List;
 
 import core.util.PagedList;
-import iace.entity.Consulting;
-import iace.entity.ConsultingSearchModel;
+import iace.entity.consulting.Consulting;
+import iace.entity.consulting.ConsultingSearchModel;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionOrganizationType;

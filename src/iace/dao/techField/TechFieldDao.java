@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import core.dao.HibernateSessionFactory;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
-import iace.entity.TechField;
+import iace.entity.patent.TechField;
 
 public class TechFieldDao extends BaseIaceDao<TechField> implements ITechFieldDao {
 	public TechFieldDao() {

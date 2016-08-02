@@ -17,9 +17,9 @@ import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
-import iace.entity.Patent;
-import iace.entity.PatentSearchModel;
-import iace.entity.TechField;
+import iace.entity.patent.Patent;
+import iace.entity.patent.PatentSearchModel;
+import iace.entity.patent.TechField;
 
 public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 	

@@ -2,8 +2,8 @@ package iace.service;
 
 import core.util.PagedList;
 import iace.dao.consulting.IConsultingDao;
-import iace.entity.Consulting;
-import iace.entity.ConsultingSearchModel;
+import iace.entity.consulting.Consulting;
+import iace.entity.consulting.ConsultingSearchModel;
 
 public class ConsultingService extends BaseIaceService<Consulting> {
 	private IConsultingDao consultingDao;

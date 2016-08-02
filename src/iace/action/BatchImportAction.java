@@ -9,8 +9,8 @@ import javax.servlet.ServletContext;
 
 import org.apache.struts2.ServletActionContext;
 
-import iace.entity.Patent;
-import iace.entity.ResearchPlan;
+import iace.entity.patent.Patent;
+import iace.entity.researchPlan.ResearchPlan;
 import iace.service.PatentExcelService;
 import iace.service.PatentService;
 import iace.service.ResearchPlanExcelService;

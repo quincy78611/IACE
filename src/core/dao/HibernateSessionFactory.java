@@ -11,13 +11,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import iace.entity.Consulting;
-import iace.entity.Patent;
-import iace.entity.ResearchPlan;
 import iace.entity.SysRole;
 import iace.entity.SysUser;
-import iace.entity.TechField;
-import iace.entity.Technology;
+import iace.entity.consulting.Consulting;
 import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
 import iace.entity.enterpriseNeed.EnterpriseRequireTech;
@@ -34,11 +30,15 @@ import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionSubject;
 import iace.entity.option.OptionTrl;
+import iace.entity.patent.Patent;
+import iace.entity.patent.TechField;
 import iace.entity.option.OptionSchool;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
 import iace.entity.qnrCooperateWay.QnrCooperateWayMerit;
 import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
+import iace.entity.researchPlan.ResearchPlan;
+import iace.entity.researchPlan.Technology;
 
 
 public class HibernateSessionFactory {

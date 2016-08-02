@@ -12,8 +12,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import iace.entity.ResearchPlan;
-import iace.entity.Technology;
+import iace.entity.researchPlan.ResearchPlan;
+import iace.entity.researchPlan.Technology;
 
 public class ResearchPlanExcelService extends BaseExcelService {
 	

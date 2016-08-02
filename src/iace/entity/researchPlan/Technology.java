@@ -1,4 +1,4 @@
-package iace.entity;
+package iace.entity.researchPlan;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,6 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import iace.entity.BaseEntity;
 import iace.entity.option.OptionTrl;
 
 @Entity
