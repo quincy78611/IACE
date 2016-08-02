@@ -58,9 +58,11 @@
 		</div>
 	</header>
 	<article>
-		<s:if test="%{title != null && title != ''}">
-    		<h1 class="pageTitle"><s:property value="title" /></h1>
-    	</s:if>  
+   		<h1 class="pageTitle">
+   			<s:if test="%{title != null && title != ''}">
+   				<s:property value="title" />
+   			</s:if>
+   		</h1>  
     	<div class="rightContent">
     		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
 			<div id="div-top-message">

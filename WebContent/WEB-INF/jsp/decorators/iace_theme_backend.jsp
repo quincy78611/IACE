@@ -73,9 +73,11 @@
 	    </div> -->
 	</header>
 	<article>
-		<s:if test="%{title != null && title != ''}">
-    		<h1 class="pageTitle"><s:property value="title" /></h1>
-    	</s:if>  
+   		<h1 class="pageTitle">
+   			<s:if test="%{title != null && title != ''}">
+   				<s:property value="title" />
+   			</s:if>
+   		</h1>
     	<div class="leftMenu">
     		<div class="u-vmenu">
     			<ul>

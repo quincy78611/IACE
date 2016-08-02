@@ -36,7 +36,7 @@
 	</filter-mapping>
 
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.action</welcome-file>
 	</welcome-file-list>
 
 	<!-- Restricts access to pure JSP files - access available only via Struts action -->
