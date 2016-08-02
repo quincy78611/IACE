@@ -4,70 +4,83 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script type="text/javascript">		
-		$(document).ready(function () {
-	
-			
- 			$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
-			
-			var pageIndex = parseInt('<s:property value="researchPlanPagedList.pageIndex"/>');
-			var pageNumber = parseInt('<s:property value="researchPlanPagedList.pageNumber"/>');
-			var pageCount = parseInt('<s:property value="researchPlanPagedList.pageCount"/>');
-			
-			$("ul > li > input.btn-page").click(function() {
-				$("#pageIndex").val($(this).attr("value") - 1);
-				return true;
-			});
-			$("ul.pagination > li > input.btn-page[value='"+pageNumber+"']").addClass("active");
-
-			//第一頁按鈕
-			$("ul > li > input.btn-first-page").click(function() {
-				$("#pageIndex").val(0);
-			});
-			
-			//最後一頁按鈕
-			$("ul > li > input.btn-last-page").click(function() {
-				$("#pageIndex").val(pageCount-1);
-			});
-			
-			//上一頁按鈕
-			if (pageIndex == 0) {
-				$("ul > li > input.btn-previous-page").addClass("disabled");
-			}
-			$("ul > li > input.btn-previous-page").click(function() {
-				if (pageIndex > 0) {
-					$("#pageIndex").val(pageIndex - 1);
-					return true;
-				} else {
-					return false;
-				}
-			});
-			
-			//下一頁按鈕
-			if (pageIndex == pageCount - 1) {
-				$("ul > li > input.btn-next-page").addClass("disabled");
-			}
-			$("ul > li > input.btn-next-page").click(function() {
-				if (pageIndex < (pageCount - 1)) {
-					$("#pageIndex").val(pageIndex + 1);
-					return true;
-				} else {
-					return false;
-				}
-			});
-						
-			// 注意: 在此頁面的搜尋按鈕記得要加上id
-		    $("#btn-search").click(function(){
-		        $("#pageIndex").val(0);
-		        return true;
-		    });
-		 	// 注意: 在此頁面的重置按鈕記得要加上id
-			$("#btn-reset").click(function(){
-				$("input.form-control:text").val("");
-				$("select").prop('selectedIndex', 0);
-			});		
+<script type="text/javascript">		
+	$(document).ready(function () {
+		paggingSetting();
+		funcBtnSetting();
+	});
+</script>
+<script>
+	function funcBtnSetting() {
+		$(".btn-edit").click(function() {
+			var url = $(this).siblings(".updateUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
 		});
-	</script>
+	}
+</script>
+<script>
+	function paggingSetting() {
+		$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
+		
+		var pageIndex = parseInt('<s:property value="researchPlanPagedList.pageIndex"/>');
+		var pageNumber = parseInt('<s:property value="researchPlanPagedList.pageNumber"/>');
+		var pageCount = parseInt('<s:property value="researchPlanPagedList.pageCount"/>');
+		
+		$("ul > li > input.btn-page").click(function() {
+			$("#pageIndex").val($(this).attr("value") - 1);
+			return true;
+		});
+		$("ul.pagination > li > input.btn-page[value='"+pageNumber+"']").addClass("active");
+
+		//第一頁按鈕
+		$("ul > li > input.btn-first-page").click(function() {
+			$("#pageIndex").val(0);
+		});
+		
+		//最後一頁按鈕
+		$("ul > li > input.btn-last-page").click(function() {
+			$("#pageIndex").val(pageCount-1);
+		});
+		
+		//上一頁按鈕
+		if (pageIndex == 0) {
+			$("ul > li > input.btn-previous-page").addClass("disabled");
+		}
+		$("ul > li > input.btn-previous-page").click(function() {
+			if (pageIndex > 0) {
+				$("#pageIndex").val(pageIndex - 1);
+				return true;
+			} else {
+				return false;
+			}
+		});
+		
+		//下一頁按鈕
+		if (pageIndex == pageCount - 1) {
+			$("ul > li > input.btn-next-page").addClass("disabled");
+		}
+		$("ul > li > input.btn-next-page").click(function() {
+			if (pageIndex < (pageCount - 1)) {
+				$("#pageIndex").val(pageIndex + 1);
+				return true;
+			} else {
+				return false;
+			}
+		});
+					
+		// 注意: 在此頁面的搜尋按鈕記得要加上id
+	    $("#btn-search").click(function(){
+	        $("#pageIndex").val(0);
+	        return true;
+	    });
+	 	// 注意: 在此頁面的重置按鈕記得要加上id
+		$("#btn-reset").click(function(){
+			$("input.form-control:text").val("");
+			$("select").prop('selectedIndex', 0);
+		});
+	}
+</script>
 </head>
 <body>	
 	<h2 class="itemTitle">編輯管理</h2>
@@ -152,8 +165,8 @@
 								<s:url value="update.action" var="updateUrlTag" escapeAmp="false">
 									<s:param name="id" value="id" />
 								</s:url>
-								<input type="button" class="btn-func btn-edit" value="編輯" 
-									onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />									
 							</td>
 						</tr>
 					</s:iterator>
@@ -162,7 +175,7 @@
 		</div>
 
 		<div class="page">
-			<s:hidden id="pageIndex" name="searchCondition.pageIndex" value="0"/>
+			<s:hidden id="pageIndex" name="searchCondition.pageIndex" />
 			<s:hidden id="pageSize" name="searchCondition.pageSize" value="20" />
 			
 			<s:set var="pgList" value="researchPlanPagedList"/>

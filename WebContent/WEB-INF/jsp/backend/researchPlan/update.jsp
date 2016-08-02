@@ -4,35 +4,65 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script type="text/javascript">
-		$(document).ready(function(){
-			/* alert($("#currentActionName").val()); */
-			subFormSettingDisplaySetting();
-			
-			$(".btn-del").click(function() {
-				var url = $(this).siblings(".deleteUrl").val();
-				alert(url);				
-				if(confirm("確定要刪除？")) {
-					window.location.href=url;
-				}
-			});			
+<script type="text/javascript">
+	$(document).ready(function(){
+		subFormSettingDisplaySetting();
+		funcBtnSetting();
+		addSearchConditionHiddenToForm();
+		
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
 		});
-	</script>
-	<script type="text/javascript">
-		function subFormSettingDisplaySetting() {
+	});
+</script>
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-createTechnology").append($(this).clone());
+			$("#form-updateTechnology").append($(this).clone());
+		});
+	}
+</script>
+<script>
+	function funcBtnSetting() {
+		$("#btn-createTechnology").click(function() {
+			var url = $(this).siblings(".createUrl").val();
+			$("#form-backToIndex").attr("action", url);
+			$("#form-backToIndex").submit();
+		});
+		$(".btn-edit").click(function() {
+			var url = $(this).siblings(".updateUrl").val();
+			$("#form-backToIndex").attr('action', url);
+			$("#form-backToIndex").submit();
+		});
+		$(".btn-del").click(function() {
+			var url = $(this).siblings(".deleteUrl").val();
+			$("#form-backToIndex").attr('action', url);
+			if(confirm("確定要刪除？")) {
+				$("#form-backToIndex").submit();
+			}
+		});	
+		$(".btn-cancel").click(function(){
 			$("#div-create-technology").hide();
 			$("#div-update-technology").hide();
-			
-			if ($("#currentActionName").val() == "createTechnology") {
-				$("#div-create-technology").show();
-				$('html,body').animate({scrollTop:$('#div-create-technology').offset().top},300);
-			}
-			if ($("#currentActionName").val() == "updateTechnology") {
-				$("#div-update-technology").show();
-				$('html,body').animate({scrollTop:$('#div-update-technology').offset().top},300);
-			}
+		});
+	}
+</script>	
+<script type="text/javascript">
+	function subFormSettingDisplaySetting() {
+		$("#div-create-technology").hide();
+		$("#div-update-technology").hide();
+		
+		if ($("#currentActionName").val() == "createTechnology") {
+			$("#div-create-technology").show();
+			$('html,body').animate({scrollTop:$('#div-create-technology').offset().top},300);
 		}
-	</script>	
+		if ($("#currentActionName").val() == "updateTechnology") {
+			$("#div-update-technology").show();
+			$('html,body').animate({scrollTop:$('#div-update-technology').offset().top},300);
+		}
+	}
+</script>	
 </head>
 <body>
 	<h2 class="itemTitle">編輯管理 > 編輯</h2>
@@ -129,9 +159,9 @@
 								<s:url value="updateTechnology.action" var="updateUrlTag" escapeAmp="false">
 									<s:param name="id" value="researchPlan.id" />
 									<s:param name="TechnologyId" value="id" />
-								</s:url>		
-								<input type="button" class="btn-func btn-edit" value="編輯" 
-									onclick="window.location.href='<s:property value="updateUrlTag" />'" />														
+								</s:url>
+								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />		
 							
 								<!-- 刪除 -->
 								<s:url value="deleteTechnologySubmit.action" var="deleteUrlTag" escapeAmp="false">
@@ -139,7 +169,7 @@
 									<s:param name="TechnologyId" value="id" />
 								</s:url>
 								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-								<input type="button" class="btn-func btn-del" value="刪除" />																				
+								<input type="button" class="btn-func btn-del" value="刪除" />	
 							</td>
 						</tr>
 					</s:iterator>
@@ -152,16 +182,31 @@
 		<s:url value="createTechnology.action" var="createUrlTag" escapeAmp="false">
 			<s:param name="id" value="researchPlan.id" />
 		</s:url>
-		<input type="button" class="redBtn" value="+ 新增研發成果" onclick="window.location.href='<s:property value="#createUrlTag" />'" />
-		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/researchPlan/init"/>'" />	
+		<s:hidden value="%{#createUrlTag}" class="createUrl" disabled="true"/>
+		<input type="button" class="redBtn" value="+ 新增研發成果" id="btn-createTechnology"/>
+		
+		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 	</div>	
-	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.planNo"/>
+		<s:hidden name="searchCondition.planName"/>
+		<s:hidden name="searchCondition.year"/>
+		<s:hidden name="searchCondition.grbDomainCode"/>
+		<s:hidden name="searchCondition.manager"/>
+		<s:hidden name="searchCondition.keyword"/>
+		<s:hidden name="searchCondition.trlCode"/>
+		<s:hidden name="searchCondition.rndResultName"/>		
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>
+		
 	<div class="clear"></div>
 
 	<div id="div-create-technology" class="subForm">		
 		<h2 class="itemTitle">新增研發成果</h2>
-		<s:form action="createTechnologySubmit" method="post" validate="true" >
+		<s:form action="createTechnologySubmit" method="post" validate="true" id="form-createTechnology">
 			<s:hidden name="id"/>
+			
 			<ul>
 				<li class="all">
 					<b>技術名稱</b>
@@ -181,17 +226,13 @@
 				</li>			
 			</ul>
 			
-			<s:submit cssClass="redBtn" value="儲存" />
-			<s:url value="update.action" var="updateUrlTag">
-				<s:param name="id" value="id" />
-			</s:url>
-			<input type="button" class="grayBtn" value="取消"
-				onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+			<s:submit cssClass="redBtn" value="儲存" id="createTechnologySubmitButton"/>
+			<input type="button" class="grayBtn btn-cancel" value="取消"/>
 		</s:form>
 	</div>
 	<div id="div-update-technology" class="subForm">
 		<h2 class="itemTitle">編輯研發成果</h2>
-		<s:form action="updateTechnologySubmit" method="post" validate="true" >
+		<s:form action="updateTechnologySubmit" method="post" validate="true" id="form-updateTechnology">
 			<s:hidden name="id"/>
 			<s:hidden name="technology.id" />
 			<s:hidden name="technology.isValid" />
@@ -221,11 +262,7 @@
 			</ul>
 			
 			<s:submit cssClass="btn btn-info redBtn" value="儲存" />
-			<s:url value="update.action" var="updateUrlTag">
-				<s:param name="id" value="id" />
-			</s:url>
-			<input type="button" class="btn btn-default grayBtn" value="取消"
-				onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+			<input type="button" class="grayBtn btn-cancel" value="取消"/>
 		</s:form>	
 	</div>	
 </body>
