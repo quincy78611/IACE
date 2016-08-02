@@ -14,6 +14,11 @@
 </script>
 </head>
 <body>
+	<input type="button" class="btn btn-default grayBtn" value="匯出問卷連結報表" 
+		onclick="window.location.href='<s:url value="downloadQnrLinksExcel"/>'"/>	
+
+	<div class="clear"></div>
+
 	<table width="100%">
 		<tr>
 			<th nowrap>學校</th>

@@ -248,6 +248,14 @@
 		<action name="index" class="iace.action.QnrCooperateWayAction" method="index">
 			<result>/WEB-INF/jsp/backend/qnrCooperateWay/index.jsp</result>
 		</action>
+		<action name="downloadQnrLinksExcel" class="iace.action.QnrCooperateWayAction" method="downloadQnrLinksExcel">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">qrnExcelFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${qnrExcelFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 		<action name="fillInQnrPart0To3" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart0To3">
 			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
 		</action>

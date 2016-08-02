@@ -4,8 +4,6 @@ import iace.entity.option.OptionSchool;
 
 public class QnrCooperateWayLinkModel {
 	private OptionSchool school;
-//	private String part0To3Link;
-//	private String part4Link;
 	
 	private String encryptSchoolId;
 

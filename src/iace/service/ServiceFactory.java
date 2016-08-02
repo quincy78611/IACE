@@ -40,6 +40,7 @@ public class ServiceFactory {
 	private static QnrService qnrService;
 	private static QnrCooperateWayService qnrCooperateWayService;
 	private static QnrCooperateWayMeritService qnrCooperateWayMeritService;
+	private static QnrCooperateWayExcelService qnrCooperateWayExcelService;
 	
 	public static OptionCompanyLocationService getOptionCompanyLocationService() {
 		if (optionCompanyLocationService == null) {
@@ -230,5 +231,12 @@ public class ServiceFactory {
 					DaoFactory.getOptionSchoolDao());
 		}
 		return qnrCooperateWayMeritService;
+	}
+	
+	public static QnrCooperateWayExcelService getQnrCooperateWayExcelService() {
+		if (qnrCooperateWayExcelService == null) {
+			qnrCooperateWayExcelService = new QnrCooperateWayExcelService();
+		}
+		return qnrCooperateWayExcelService;
 	}
 }
