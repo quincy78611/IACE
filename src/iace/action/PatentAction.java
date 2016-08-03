@@ -134,6 +134,8 @@ public class PatentAction extends BaseIaceAction {
 
 			this.patentService.update(this.patent);
 			this.addActionMessage("UPDATE SUCCESS!");
+			
+			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -161,6 +163,8 @@ public class PatentAction extends BaseIaceAction {
 		try {
 			this.patentService.delete(this.id);
 			this.addActionMessage("DELETE SUCCESS!");
+			
+			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);

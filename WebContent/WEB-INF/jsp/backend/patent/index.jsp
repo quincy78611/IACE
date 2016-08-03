@@ -4,69 +4,93 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script type="text/javascript">		
-		$(document).ready(function () {			
-			$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
-			
-			var pageIndex = parseInt('<s:property value="patentPagedList.pageIndex"/>');
-			var pageNumber = parseInt('<s:property value="patentPagedList.pageNumber"/>');
-			var pageCount = parseInt('<s:property value="patentPagedList.pageCount"/>');
-			
-			$("ul > li > input.btn-page").click(function() {
-				$("#pageIndex").val($(this).attr("value") - 1);
-				return true;
-			});
-			$("ul.pagination > li > input.btn-page[value='"+pageNumber+"']").addClass("active");
-	
-			//第一頁按鈕
-			$("ul > li > input.btn-first-page").click(function() {
-				$("#pageIndex").val(0);
-			});
-			
-			//最後一頁按鈕
-			$("ul > li > input.btn-last-page").click(function() {
-				$("#pageIndex").val(pageCount-1);
-			});
-			
-			//上一頁按鈕
-			if (pageIndex == 0) {
-				$("ul > li > input.btn-previous-page").addClass("disabled");
-			}
-			$("ul > li > input.btn-previous-page").click(function() {
-				if (pageIndex > 0) {
-					$("#pageIndex").val(pageIndex - 1);
-					return true;
-				} else {
-					return false;
-				}
-			});
-			
-			//下一頁按鈕
-			if (pageIndex == pageCount - 1) {
-				$("ul > li > input.btn-next-page").addClass("disabled");
-			}
-			$("ul > li > input.btn-next-page").click(function() {
-				if (pageIndex < (pageCount - 1)) {
-					$("#pageIndex").val(pageIndex + 1);
-					return true;
-				} else {
-					return false;
-				}
-			});
-			
-			// 注意: 在此頁面的搜尋按鈕記得要加上id
-		    $("#btn-search").click(function(){
-		        $("#pageIndex").val(0);
-		        return true;
-		    });
-		 	// 注意: 在此頁面的重置按鈕記得要加上id
-			$("#btn-reset").click(function(){
-				$("input.form-control:text").val("");
-				$("select").prop('selectedIndex', 0);
-			});
-
+<script type="text/javascript">
+	$(document).ready(function () {			
+		paggingSetting();
+		funcBtnSetting();
+	});
+</script>
+<script>
+	function funcBtnSetting() {
+		$(".btn-view").click(function() {
+			var url = $(this).siblings(".detailUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
 		});
-	</script>	
+		$(".btn-edit").click(function() {
+			var url = $(this).siblings(".updateUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
+		});
+		$(".btn-del").click(function() {
+			var url = $(this).siblings(".deleteUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
+		});		
+	}
+</script>
+<script>	
+	function paggingSetting() {
+		$("ul.pagination > li > input").addClass("btn btn-default btn-sm");
+		
+		var pageIndex = parseInt('<s:property value="patentPagedList.pageIndex"/>');
+		var pageNumber = parseInt('<s:property value="patentPagedList.pageNumber"/>');
+		var pageCount = parseInt('<s:property value="patentPagedList.pageCount"/>');
+		
+		$("ul > li > input.btn-page").click(function() {
+			$("#pageIndex").val($(this).attr("value") - 1);
+			return true;
+		});
+		$("ul.pagination > li > input.btn-page[value='"+pageNumber+"']").addClass("active");
+
+		//第一頁按鈕
+		$("ul > li > input.btn-first-page").click(function() {
+			$("#pageIndex").val(0);
+		});
+		
+		//最後一頁按鈕
+		$("ul > li > input.btn-last-page").click(function() {
+			$("#pageIndex").val(pageCount-1);
+		});
+		
+		//上一頁按鈕
+		if (pageIndex == 0) {
+			$("ul > li > input.btn-previous-page").addClass("disabled");
+		}
+		$("ul > li > input.btn-previous-page").click(function() {
+			if (pageIndex > 0) {
+				$("#pageIndex").val(pageIndex - 1);
+				return true;
+			} else {
+				return false;
+			}
+		});
+		
+		//下一頁按鈕
+		if (pageIndex == pageCount - 1) {
+			$("ul > li > input.btn-next-page").addClass("disabled");
+		}
+		$("ul > li > input.btn-next-page").click(function() {
+			if (pageIndex < (pageCount - 1)) {
+				$("#pageIndex").val(pageIndex + 1);
+				return true;
+			} else {
+				return false;
+			}
+		});
+					
+		// 注意: 在此頁面的搜尋按鈕記得要加上id
+	    $("#btn-search").click(function(){
+	        $("#pageIndex").val(0);
+	        return true;
+	    });
+	 	// 注意: 在此頁面的重置按鈕記得要加上id
+		$("#btn-reset").click(function(){
+			$("input.form-control:text").val("");
+			$("select").prop('selectedIndex', 0);
+		});
+	}
+</script>	
 </head>
 <body>
 	<h2 class="itemTitle">編輯管理</h2>
@@ -103,7 +127,6 @@
 					<th nowrap width="5%">申請日</th>
 					<th nowrap width="5%">狀態</th>
 					<th nowrap width="5%">專利技術領域</th>
-					<!-- <th nowrap width="15%">圖示</th> -->
 					<th nowrap width="5%">功能</th>
 				</tr>
 				<s:if test="patentPagedList != null">
@@ -122,33 +145,28 @@
 							<td><s:date name="applicationDate" format="yyyy/M/d"/></td>
 							<td><s:property value="patentStatus" /></td>
 							<td><s:property value="techField.name" /></td>
-<%-- 							<td>
-								<a href="<s:url value="%{patentPictureLink}"/>">
-									<img src="data:image;base64,<s:property value="base64PatentPicture"/>" style="max-width:200px; max-height:200px;">
-								</a>
-							</td> --%>
 							
 							<td class="col-md-1">
 								<!-- 檢視 -->
 								<s:url value="showDetail.action" var="detailUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
-								<input type="button" class="btn-info btn-func btn-view" value="檢視" 
-									onclick="window.location.href='<s:property value="detailUrlTag" />'" />
+								<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-view" value="檢視" />	
 									
 								<!-- 編輯 -->
 								<s:url value="update.action" var="updateUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
-								<input type="button" class="btn-info btn-func btn-edit" value="編輯" 
-									onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />	
 									
 								<!-- 刪除 -->	
 								<s:url value="delete.action" var="deleteUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
-								<input type="button" class="btn-danger btn-func btn-del" value="刪除" 
-									onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />								
+								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-del" value="刪除" />	
 							</td>
 						</tr>
 					</s:iterator>
@@ -157,7 +175,7 @@
 		</div>
 		
 		<div class="page">
-			<s:hidden id="pageIndex" name="searchCondition.pageIndex" value="0"/>
+			<s:hidden id="pageIndex" name="searchCondition.pageIndex"/>
 			<s:hidden id="pageSize" name="searchCondition.pageSize" value="20" />
 						
 			<s:set var="pgList" value="patentPagedList"/>

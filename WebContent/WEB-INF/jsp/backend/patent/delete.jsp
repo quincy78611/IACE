@@ -4,12 +4,26 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<script>
+	$(document).ready(function(){
+		addSearchConditionHiddenToForm();
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
+	});
+</script>
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-delete").append($(this).clone());
+		});
+	}
+</script>
 </head>
 <body>
 	<h2 class="itemTitle">刪除</h2>
 
-	<s:form action="deleteSubmit" method="post" validate="true" >
+	<s:form action="deleteSubmit" method="post" validate="true" id="form-delete">
 		<s:hidden name="id" />
 
 		<ul>
@@ -101,9 +115,17 @@
 		<div class="clear"></div>
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 			<s:submit cssClass="btn btn-info redBtn" value="確定" />	
-			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/patent/init"/>'" />
+			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</div>	
-		
 	</s:form>
+	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.name"/>
+		<s:hidden name="searchCondition.appNo"/>
+		<s:hidden name="searchCondition.countryCode"/>
+		<s:hidden name="searchCondition.techFieldId"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>	
 </body>
 </html>

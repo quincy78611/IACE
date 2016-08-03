@@ -4,7 +4,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<script>
+	$(document).ready(function(){
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<h2 class="itemTitle">檢視</h2>	
@@ -96,18 +102,15 @@
 	</ul>
 	<div class="clear"></div>
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-		<s:url value="update.action" var="updateUrlTag">
-			<s:param name="id" value="patent.id" />
-		</s:url>
-		<s:if test="#request.context['struts.actionMapping'].name == 'showDetail'">
-			<input type="button" class="btn btn-info redBtn" value="編輯" 
-				onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
-		</s:if>
-		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/patent/init"/>'" />
+		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>	
 	</div>	
-
-
-	
-
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.name"/>
+		<s:hidden name="searchCondition.appNo"/>
+		<s:hidden name="searchCondition.countryCode"/>
+		<s:hidden name="searchCondition.techFieldId"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>
 </body>
 </html>

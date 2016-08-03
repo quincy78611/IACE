@@ -3,25 +3,41 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>	
-	<script type="text/javascript">
-	    function readURL(input) {
-	        if (input.files && input.files[0]) {
-	            var reader = new FileReader();
-	
-	            reader.onload = function (e) {
-	                $('#patent_img').attr('src', e.target.result);
-	            };
-	
-	            reader.readAsDataURL(input.files[0]);
-	        }
-	    }
-	</script>
+<head>
+
+<script>
+	$(document).ready(function(){
+		addSearchConditionHiddenToForm();
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
+	});
+</script>
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-update").append($(this).clone());
+		});
+	}
+</script>
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#patent_img').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 </head>
 <body>
 	<h2 class="itemTitle">編輯</h2>
 
-	<s:form action="updateSubmit" method="post" validate="true" enctype="multipart/form-data">
+	<s:form action="updateSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-update">
 		<s:hidden name="patent.id" />
 		<s:hidden name="patent.isValid" />
 		<s:hidden name="patent.createTime" />
@@ -135,8 +151,16 @@
 		<div class="clear"></div>
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 			<s:submit cssClass="redBtn" value="儲存" />
-			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/patent/init"/>'" />
+			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</div>
-	</s:form>	
+	</s:form>
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.name"/>
+		<s:hidden name="searchCondition.appNo"/>
+		<s:hidden name="searchCondition.countryCode"/>
+		<s:hidden name="searchCondition.techFieldId"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>	
 </body>
 </html>

@@ -228,7 +228,7 @@ public class PatentService extends BaseService<Patent, Long> {
 			byte[] data = Files.readAllBytes(Paths.get(f.getAbsolutePath()));
 			p.setImportantPatentPicture(data);
 		} catch (IOException | NullPointerException e) {
-			log.warn("load image fail", e);
+			log.warn("load image fail");
 		}
 	}
 
