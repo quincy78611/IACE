@@ -1,16 +1,10 @@
 package iace.entity.enterpriseNeed;
 
-public class EnterpriseNeedSearchModel {
+import iace.entity.BaseSearchModel;
+
+public class EnterpriseNeedSearchModel extends BaseSearchModel {
 
 	private String searchText;
-
-	private int pageIndex;
-	private int pageSize;
-	
-	public EnterpriseNeedSearchModel() {
-		this.pageIndex = 0;
-		this.pageSize = 20;
-	}
 
 	public String getSearchText() {
 		return searchText;
@@ -19,21 +13,4 @@ public class EnterpriseNeedSearchModel {
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
 	}
-
-	public int getPageIndex() {
-		return pageIndex;
-	}
-
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = pageIndex;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
 }

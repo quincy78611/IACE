@@ -25,7 +25,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 	private OptionGrbDomainService optionGrbDomainService = ServiceFactory.getOptionGrbDomainService();
 	private OptionTrlService optionTrlService = ServiceFactory.getOptionTrlService();
 	
-	private ResearchPlanSearchModel searchCondition;
+	private ResearchPlanSearchModel searchCondition = new ResearchPlanSearchModel();
 	private List<OptionGrbDomain> optionGrbDomainList;
 	private List<OptionTrl> optionTrlList;	
 	private PagedList<ResearchPlan> researchPlanPagedList;

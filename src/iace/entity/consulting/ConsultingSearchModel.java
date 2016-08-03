@@ -2,7 +2,9 @@ package iace.entity.consulting;
 
 import java.util.Date;
 
-public class ConsultingSearchModel {
+import iace.entity.BaseSearchModel;
+
+public class ConsultingSearchModel extends BaseSearchModel {
 
 	private String searchText;
 	private String optionOrganizationTypeCode;
@@ -10,9 +12,6 @@ public class ConsultingSearchModel {
 	private String optionIndustryCode;
 	private Date consultDateStart;
 	private Date consultDateEnd;
-
-	private int pageIndex;
-	private int pageSize;
 
 	public String getSearchText() {
 		return searchText;
@@ -60,22 +59,6 @@ public class ConsultingSearchModel {
 
 	public void setConsultDateEnd(Date consultDateEnd) {
 		this.consultDateEnd = consultDateEnd;
-	}
-
-	public int getPageIndex() {
-		return pageIndex;
-	}
-
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = pageIndex;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
 	}
 
 }

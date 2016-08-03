@@ -33,7 +33,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	
 	private long id;
 	private EnterpriseInfo enterpriseInfo;
-	private EnterpriseNeedSearchModel searchCondition = new EnterpriseNeedSearchModel();;
+	private EnterpriseNeedSearchModel searchCondition = new EnterpriseNeedSearchModel();
 	private PagedList<EnterpriseInfo> enterpriseInfoPagedList;
 	
 	public EnterpriseNeedAction() {

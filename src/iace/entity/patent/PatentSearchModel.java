@@ -1,15 +1,13 @@
 package iace.entity.patent;
 
-public class PatentSearchModel {
+import iace.entity.BaseSearchModel;
+
+public class PatentSearchModel extends BaseSearchModel {
 
 	private String name;
 	private String appNo;
 	private String countryCode;
-	// private TechField techField;
 	private long techFieldId;
-
-	private int pageIndex;
-	private int pageSize;
 
 	public String getName() {
 		return name;
@@ -41,22 +39,6 @@ public class PatentSearchModel {
 
 	public void setTechFieldId(long techFieldId) {
 		this.techFieldId = techFieldId;
-	}
-
-	public int getPageIndex() {
-		return pageIndex;
-	}
-
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = pageIndex;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
 	}
 
 }

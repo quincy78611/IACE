@@ -32,11 +32,7 @@ public class PatentAction extends BaseIaceAction {
 	private OptionCountryService optionCountryService = ServiceFactory.getOptionCountryService();
 	private OptionTrlService optionTrlService = ServiceFactory.getOptionTrlService();
 
-	private String searchPatentName;
-	private String searchAppliactionNo;
-	private String searchCountry;
-	private long searchTechField;
-	private PatentSearchModel searchCondition;
+	private PatentSearchModel searchCondition = new PatentSearchModel();
 
 	private List<TechField> techFieldList;
 	private List<OptionCountry> optionCountryList;
@@ -64,8 +60,6 @@ public class PatentAction extends BaseIaceAction {
 
 	public String index() {
 		try {
-//			this.patentPagedList = this.patentService.searchBy(pageIndex, pageSize, 
-//					searchPatentName, searchAppliactionNo, searchCountry, searchTechField);
 			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
 			
 			return SUCCESS;
@@ -281,38 +275,6 @@ public class PatentAction extends BaseIaceAction {
 	public List<TechField> getTechFieldList() {
 		this.techFieldList = this.techFieldService.listAll();
 		return techFieldList;
-	}
-
-	public String getSearchCountry() {
-		return searchCountry;
-	}
-
-	public void setSearchCountry(String searchCountry) {
-		this.searchCountry = searchCountry;
-	}
-
-	public String getSearchPatentName() {
-		return searchPatentName;
-	}
-
-	public void setSearchPatentName(String searchPatentName) {
-		this.searchPatentName = searchPatentName;
-	}
-
-	public String getSearchAppliactionNo() {
-		return searchAppliactionNo;
-	}
-
-	public void setSearchAppliactionNo(String searchAppliactionNo) {
-		this.searchAppliactionNo = searchAppliactionNo;
-	}
-
-	public long getSearchTechField() {
-		return searchTechField;
-	}
-
-	public void setSearchTechField(long searchTechField) {
-		this.searchTechField = searchTechField;
 	}
 
 	public PagedList<Patent> getPatentPagedList() {

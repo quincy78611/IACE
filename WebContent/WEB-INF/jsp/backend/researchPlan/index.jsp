@@ -176,7 +176,7 @@
 
 		<div class="page">
 			<s:hidden id="pageIndex" name="searchCondition.pageIndex" />
-			<s:hidden id="pageSize" name="searchCondition.pageSize" value="20" />
+			<s:hidden id="pageSize" name="searchCondition.pageSize" />
 			
 			<s:set var="pgList" value="researchPlanPagedList"/>
 			<s:set var="pgIndex" value="searchCondition.pageIndex"/>

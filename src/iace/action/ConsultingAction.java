@@ -23,7 +23,7 @@ public class ConsultingAction extends BaseIaceAction {
 	private OptionConsultService optionConsultService = ServiceFactory.getOptionConsultService();
 	private OptionIndustryService optionIndustryService = ServiceFactory.getOptionIndustryService();
 	
-	private ConsultingSearchModel searchCondition;	
+	private ConsultingSearchModel searchCondition = new ConsultingSearchModel();	
 	private PagedList<Consulting> consultingPagedList;
 	
 	private List<OptionOrganizationType> optionOrganizationTypeList;
@@ -78,7 +78,7 @@ public class ConsultingAction extends BaseIaceAction {
 	public String createSubmit() {
 		try {
 			this.consultingService.create(this.consulting);
-						this.addActionMessage("CREATE SUCCESS!");
+			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);

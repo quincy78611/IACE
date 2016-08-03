@@ -1,8 +1,9 @@
 package iace.entity.researchPlan;
 
-public class ResearchPlanSearchModel {
-	private int pageIndex;
-	private int pageSize;
+import iace.entity.BaseSearchModel;
+
+public class ResearchPlanSearchModel extends BaseSearchModel {
+
 	private String planNo;
 	private String planName;
 	private Integer year;
@@ -11,22 +12,6 @@ public class ResearchPlanSearchModel {
 	private String keyword;
 	private String trlCode;
 	private String rndResultName;
-
-	public int getPageIndex() {
-		return pageIndex;
-	}
-
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = pageIndex;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
 
 	public String getPlanNo() {
 		return planNo;

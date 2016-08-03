@@ -102,7 +102,7 @@
 		</div>
 
 		<div>
-			<s:hidden id="pageIndex" name="serachConditionSet.pageIndex" value="0"/>
+			<s:hidden id="pageIndex" name="serachConditionSet.pageIndex" />
 			<s:hidden id="pageSize" name="serachConditionSet.pageSize" value="5" />
 			
 			<s:if test="searchResult != null && searchResult.pageCount > 0">

@@ -69,7 +69,7 @@
 		</div>
 
 		<div>
-			<s:hidden id="pageIndex" name="pageIndex" value="0"/>
+			<s:hidden id="pageIndex" name="pageIndex" />
 			<s:hidden id="pageSize" name="pageSize" value="5" />
 			
 			<s:if test="qnrTableList != null && qnrTableList.pageCount > 0">
