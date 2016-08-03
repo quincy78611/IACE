@@ -7,9 +7,27 @@
 <script type="text/javascript">		
 	$(document).ready(function () {
 		paggingSetting();
-		
-		
+		funcBtnSetting();
 	});
+</script>
+<script>
+	function funcBtnSetting() {
+		$(".btn-view").click(function() {
+			var url = $(this).siblings(".detailUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
+		});
+		$(".btn-edit").click(function() {
+			var url = $(this).siblings(".updateUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
+		});
+		$(".btn-del").click(function() {
+			var url = $(this).siblings(".deleteUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
+		});		
+	}
 </script>
 <script>	
 	function paggingSetting() {
@@ -113,23 +131,26 @@
 							<td><s:property value="personInChargeName" /></td>
 							<td><s:property value="intervieweeName" /></td>															
 							<td>							
-								<s:url value="showDetail.action" var="showDetailUrlTag" escapeAmp="false">
+								<!-- 檢視 -->
+								<s:url value="showDetail.action" var="detailUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
-								<input type="button" class="btn-func btn-view" value="檢視" 
-									onclick="window.location.href='<s:property value="#showDetailUrlTag" />'" />
-
-								<s:url value="update.action" var="updateUrlTag" escapeAmp="false">
+								<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-view" value="檢視" />	
+									
+								<!-- 編輯 -->
+								<s:url value="update.action" var="updateUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
-								<input type="button" class="btn-func btn-edit" value="編輯" 
-									onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
-
-								<s:url value="delete.action" var="deleteUrlTag" escapeAmp="false">
+								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />	
+									
+								<!-- 刪除 -->	
+								<s:url value="delete.action" var="deleteUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
-								<input type="button" class="btn-func btn-del" value="刪除" 
-									onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />
+								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-del" value="刪除" />
 							</td>
 						</tr>
 					</s:iterator>
@@ -138,8 +159,8 @@
 		</div>
 
 		<div class="page">
-			<s:hidden id="pageIndex" name="searchCondition.pageIndex" value="0"/>
-			<s:hidden id="pageSize" name="searchCondition.pageSize" value="20" />
+			<s:hidden id="pageIndex" name="searchCondition.pageIndex" />
+			<s:hidden id="pageSize" name="searchCondition.pageSize" />
 			
 			<s:set var="pgList" value="enterpriseInfoPagedList"/>
 			<s:set var="pgIndex" value="searchCondition.pageIndex"/>

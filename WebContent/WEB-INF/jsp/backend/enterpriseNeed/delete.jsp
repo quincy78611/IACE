@@ -6,7 +6,18 @@
 <head>
 <script>
 	$(document).ready(function() {
+		addSearchConditionHiddenToForm();
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
 	});
+</script>
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-delete").append($(this).clone());
+		});
+	}
 </script>
 <style>
 	table {border:solid 1px; width:100%;}
@@ -374,11 +385,17 @@
 	</table>		
 		
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-		<s:form action="deleteSubmit" method="post" validate="true">
+		<s:form action="deleteSubmit" method="post" validate="true" id="form-delete">
 			<s:hidden name="id"/>
 			<s:submit class="btn btn-primary redBtn" value="確定" />
-			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/enterpriseNeed/init"/>'" />
+			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</s:form>
-	</div>	
+	</div>
+	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.searchText"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>
 </body>
 </html>

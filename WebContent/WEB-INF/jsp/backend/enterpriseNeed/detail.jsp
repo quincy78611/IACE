@@ -6,7 +6,9 @@
 <head>
 <script>
 	$(document).ready(function() {
-
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
 	});
 </script>
 <style>
@@ -375,7 +377,13 @@
 	</table>		
 		
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/enterpriseNeed/init"/>'" />
-	</div>	
+		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
+	</div>
+	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.searchText"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>
 </body>
 </html>

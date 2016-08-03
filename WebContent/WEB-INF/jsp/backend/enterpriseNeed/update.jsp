@@ -11,7 +11,19 @@
 		otherCoopTargetRadioSetting();
 		currentCoopProjectRadioSetting();
 		wantedCoopSchoolRadioSetting();
+		
+		addSearchConditionHiddenToForm();
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
 	});
+</script>
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-update").append($(this).clone());
+		});
+	}
 </script>
 <script>
 	function companyLocationSelectSetting() {
@@ -82,7 +94,7 @@
 </head>
 <body>
 	<h2 class="itemTitle">編輯管理 > 編輯</h2>
-	<s:form action="updateSubmit" method="post" validate="true" >
+	<s:form action="updateSubmit" method="post" validate="true" id="form-update">
 		<s:hidden name="id"/>
 		
 		<s:hidden name="enterpriseInfo.id"/>
@@ -476,8 +488,13 @@
 		
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 			<input type="submit" value="儲存" class="redBtn"/>
-			<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="/enterpriseNeed/init"/>'" />
+			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</div>	
-	</s:form>	
+	</s:form>
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.searchText"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>		
 </body>
 </html>

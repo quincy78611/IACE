@@ -6,6 +6,11 @@ public class EnterpriseNeedSearchModel {
 
 	private int pageIndex;
 	private int pageSize;
+	
+	public EnterpriseNeedSearchModel() {
+		this.pageIndex = 0;
+		this.pageSize = 20;
+	}
 
 	public String getSearchText() {
 		return searchText;

@@ -33,7 +33,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	
 	private long id;
 	private EnterpriseInfo enterpriseInfo;
-	private EnterpriseNeedSearchModel searchCondition;
+	private EnterpriseNeedSearchModel searchCondition = new EnterpriseNeedSearchModel();;
 	private PagedList<EnterpriseInfo> enterpriseInfoPagedList;
 	
 	public EnterpriseNeedAction() {
@@ -128,6 +128,8 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 		try {
 			this.enterpriseInfoService.delete(this.id);
 			super.addActionMessage("DELETE SUCCESS!");
+			
+			this.enterpriseInfoPagedList = this.enterpriseInfoService.searchBy(searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
