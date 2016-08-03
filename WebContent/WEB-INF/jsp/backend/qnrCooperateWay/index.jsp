@@ -14,8 +14,14 @@
 </script>
 </head>
 <body>
+
+
 	<input type="button" class="btn btn-default grayBtn" value="匯出問卷連結報表" 
 		onclick="window.location.href='<s:url value="downloadQnrLinksExcel"/>'"/>	
+	<input type="button" class="btn btn-default grayBtn" value="匯出問卷前三部分結果報表" 
+		onclick="window.location.href='<s:url value="downloadQnrPart0To3Excel"/>'"/>	
+	<input type="button" class="btn btn-default grayBtn" value="匯出問卷第四部分結果報表" 
+		onclick="window.location.href='<s:url value="downloadQnrPart4Excel"/>'"/>	
 
 	<div class="clear"></div>
 

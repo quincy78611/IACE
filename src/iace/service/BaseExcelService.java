@@ -42,5 +42,23 @@ public abstract class BaseExcelService {
 		XSSFCell cell = row.getCell(c, Row.CREATE_NULL_AS_BLANK);
 		return cell;		
 	}
+	
+	protected XSSFCell setCellValue(XSSFCell cell, String value) {
+		if (value != null) {
+			cell.setCellValue(value);
+		} else {
+			cell.setCellValue("");
+		}
+		return cell;
+	}
+	
+	XSSFCell setCellValue(XSSFCell cell, Integer value) {
+		if (value != null) {
+			cell.setCellValue(value);
+		} else {
+			cell.setCellValue("");
+		}
+		return cell;
+	}
 
 }

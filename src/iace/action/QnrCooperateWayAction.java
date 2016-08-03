@@ -91,6 +91,40 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		}
 	}
 	
+	public String downloadQnrPart0To3Excel() {
+		try {
+			List<QnrCooperateWay> qnrList = this.qnrCooperateWayService.listAll();
+			XSSFWorkbook wb = this.excelService.exportQnrPart0To3ResultExcel(qnrList);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			wb.write(baos);
+			this.qrnExcelFileInputStream = new ByteArrayInputStream(baos.toByteArray());
+			this.qnrExcelFileName = "前三部分問卷結果.xlsx";
+			this.qnrExcelFileName = new String(this.qnrExcelFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
+	}
+	
+	public String downloadQnrPart4Excel() {
+		try {
+			List<QnrCooperateWayMerit> qnrList = this.qnrCooperateWayMeritService.listAll();
+			XSSFWorkbook wb = this.excelService.exportQnrPart4ResultExcel(qnrList);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			wb.write(baos);
+			this.qrnExcelFileInputStream = new ByteArrayInputStream(baos.toByteArray());
+			this.qnrExcelFileName = "第四部分問卷結果.xlsx";
+			this.qnrExcelFileName = new String(this.qnrExcelFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
+	}
+	
 	public String fillInQnrPDPL() {
 		try {
 			this.schoolId = Integer.valueOf(AESEncrypter.decrypt(AESEncrypter.KEY, encryptSchoolId));	
