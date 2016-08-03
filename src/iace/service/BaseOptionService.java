@@ -25,6 +25,10 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 	public OptionEntity get(Long id) {
 		return dao.get(id);
 	}
+	
+	public OptionEntity getByCode(String code) {
+		return dao.getByCode(code);
+	}
 
 	@Override
 	public void create(OptionEntity entity) {

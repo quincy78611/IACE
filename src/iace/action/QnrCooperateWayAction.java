@@ -44,7 +44,9 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 
 	public String index() {
 		try {
-			List<OptionSchool> schools = this.schoolService.listAll();
+			List<OptionSchool> schools = new ArrayList<OptionSchool>();
+			schools.add(this.schoolService.getByCode("TEST"));
+			
 			this.qnrCooperateWayLinks = new ArrayList<QnrCooperateWayLinkModel>();
 			for (OptionSchool school : schools) {
 				QnrCooperateWayLinkModel model = new QnrCooperateWayLinkModel();

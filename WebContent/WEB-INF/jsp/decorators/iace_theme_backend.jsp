@@ -138,7 +138,7 @@
 					</li>
 					<li><a href=#>產學合作問卷</a>
 						<ul>
-							<li><a href="<s:url value="/qnrCooperateWay/index"/>">問卷連結</a></li>
+							<li><a href="<s:url value="/qnrCooperateWay/index"/>">問卷管理</a></li>
 						</ul>
 					</li>
 					<li><a href="#">代碼管理</a>
