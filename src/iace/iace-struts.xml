@@ -255,7 +255,14 @@
 				<param name="contentDisposition">attachment;filename="${qnrExcelFileName}"</param>
 				<param name="bufferSize">1024</param>
 			</result>	
-		</action>		
+		</action>
+		<action name="fillInQnrPDPL" class="iace.action.QnrCooperateWayAction" method="fillInQnrPDPL">
+			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayPDPL.jsp</result>
+		</action>
+		<action name="fillInQnrPDPLSubmit" class="iace.action.QnrCooperateWayAction" method="fillInQnrPDPLSubmit">
+			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayPDPL.jsp</result>
+			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
+		</action>
 		<action name="fillInQnrPart0To3" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart0To3">
 			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
 		</action>

@@ -10,7 +10,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import org.hibernate.annotations.Type;
+
+import core.util.AESEncrypter;
 import iace.entity.BaseEntity;
 import iace.entity.option.OptionSchool;
 
@@ -65,6 +69,12 @@ public class QnrCooperateWay extends BaseEntity {
 	private Integer q3_13;
 	private Integer q3_14;
 
+	private Boolean aggreePDPL;
+	private String name;
+	private String encryptedName;
+	private String email;	
+	private String encryptedEmail;	
+	
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_QUESTIONNAIRE_ID")
@@ -464,5 +474,57 @@ public class QnrCooperateWay extends BaseEntity {
 	public void setQ3_14(Integer q3_14) {
 		this.q3_14 = q3_14;
 	}
+
+	@Column(name = "AGREE_PDPL")
+	@Type(type="true_false")
+	public Boolean getAggreePDPL() {
+		return aggreePDPL;
+	}
+
+	public void setAggreePDPL(Boolean aggreePDPL) {
+		this.aggreePDPL = aggreePDPL;
+	}
+
+	@Transient
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+		this.encryptedName = AESEncrypter.encrypt(AESEncrypter.KEY, name);
+	}
+	
+	@Column(name = "NAME")
+	public String getEncryptedName() {
+		return encryptedName;
+	}
+
+	public void setEncryptedName(String encryptedName) {
+		this.encryptedName = encryptedName;
+		this.name = AESEncrypter.decrypt(AESEncrypter.KEY, encryptedName);
+	}
+
+	@Transient
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+		this.encryptedEmail = AESEncrypter.encrypt(AESEncrypter.KEY, email);
+	}
+
+	@Column(name = "EMAIL")
+	public String getEncryptedEmail() {
+		return encryptedEmail;
+	}
+
+	public void setEncryptedEmail(String encryptedEmail) {
+		this.encryptedEmail = encryptedEmail;
+		this.email = AESEncrypter.decrypt(AESEncrypter.KEY, encryptedEmail);
+	}
+	
+	
 
 }

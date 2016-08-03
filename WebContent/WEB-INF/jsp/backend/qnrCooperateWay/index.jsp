@@ -31,7 +31,7 @@
 					</span>	
 					<br/>					
 					前三部分
-					<s:url value="fillInQnrPart0To3" var="fillInQnrPart0To3UrlTag" escapeAmp="false">
+					<s:url value="fillInQnrPDPL" var="fillInQnrPart0To3UrlTag" escapeAmp="false">
 						<s:param name="encryptSchoolId" value="encryptSchoolId" />
 					</s:url>					
 					<a href="<s:property value="fillInQnrPart0To3UrlTag" />" class="qnr-link"></a>

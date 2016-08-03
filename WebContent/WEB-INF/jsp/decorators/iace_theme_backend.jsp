@@ -136,7 +136,7 @@
 							</s:iterator>
 						</ul>
 					</li>
-					<li><a href=#>精進大學產學合作發展機制調查問卷</a>
+					<li><a href=#>產學合作問卷</a>
 						<ul>
 							<li><a href="<s:url value="/qnrCooperateWay/index"/>">問卷連結</a></li>
 						</ul>
