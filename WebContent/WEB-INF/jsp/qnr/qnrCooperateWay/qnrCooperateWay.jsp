@@ -18,6 +18,8 @@
 				return true;
 			}
 		});
+		
+		$("input[type=radio][value=1]").prop("checked", true);
 	});
 </script>
 <script>
@@ -67,10 +69,11 @@
 <body>
 	<s:form action="fillInQnrPart0To3Submit" method="post" validate="true">
 		<s:hidden name="schoolId" />
-		<s:hidden name="qnrCoopereateWay.isValid" value="T" />
 		<s:hidden name="qnrCoopereateWay.aggreePDPL" />
 		<s:hidden name="qnrCoopereateWay.name" />
+		<s:hidden name="qnrCoopereateWay.applicantId" />
 		<s:hidden name="qnrCoopereateWay.email" />
+		<s:hidden name="qnrCoopereateWay.address" />
 		<div id="div-part0">
 			<img src="<s:url value="/images/qnrCooperateWayDesc.jpg"/>" style="max-width: 800px; max-height: 800px;"> <br /> <br /> <br />
 			<h2 class="itemTitle">基本資料</h2>

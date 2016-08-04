@@ -16,27 +16,13 @@
 <body>
 	
 	<ul>
-		<s:iterator value="qnrCooperateWayLinks" status="stat">
-			<li class="all">
-				<span style="font-weight:bold">
-					<s:property value="%{school.name}"/>
-				</span>
-			</li>
-			<li class="all">
-				<b>前三部分問卷連結</b><br>
-				<s:url value="fillInQnrPDPL" var="fillInQnrPart0To3UrlTag" escapeAmp="false">
-					<s:param name="encryptSchoolId" value="encryptSchoolId" />
-				</s:url>					
-				<a href="<s:property value="fillInQnrPart0To3UrlTag" />" class="qnr-link"></a>
-			</li>	
-			<li class="all">
-				<b>第四部分問卷連結</b><br>
-				<s:url value="fillInQnrPart4" var="fillInQnrPart4UrlTag" escapeAmp="false">
-					<s:param name="encryptSchoolId" value="encryptSchoolId" />
-				</s:url>
-				<a href="<s:property value="#fillInQnrPart4UrlTag" />" class="qnr-link"></a>
-			</li>
-		</s:iterator>
+		<li class="all">
+			範例問卷連結<br>
+			<s:url value="fillInQnrPDPL" var="fillInQnrPart0To3UrlTag" escapeAmp="false">
+				<s:param name="encryptSchoolId" value="encryptSchoolId" />
+			</s:url>					
+			<a href="<s:property value="fillInQnrPart0To3UrlTag" />" class="qnr-link"></a>
+		</li>	
 	</ul>
 	
 	<div class="clear"></div><br><br>
@@ -48,14 +34,9 @@
 				onclick="window.location.href='<s:url value="downloadQnrLinksExcel"/>'"/>	
 		</li>
 		<li class="all">
-			問卷前三部分結果報表
+			問卷結果報表
 			<input type="button" class="btn btn-default grayBtn" value="匯出" 
-				onclick="window.location.href='<s:url value="downloadQnrPart0To3Excel"/>'"/>	
-		</li>
-		<li class="all">
-			問卷第四部分結果報表
-			<input type="button" class="btn btn-default grayBtn" value="匯出" 
-				onclick="window.location.href='<s:url value="downloadQnrPart4Excel"/>'"/>	
+				onclick="window.location.href='<s:url value="downloadQnrResultExcel"/>'"/>	
 		</li>
 	</ul>
 	

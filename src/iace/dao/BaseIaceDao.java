@@ -3,6 +3,7 @@ package iace.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
@@ -32,6 +33,22 @@ public abstract class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> imple
 	@SuppressWarnings("unchecked")
 	public T get(long id) {
 		return (T) super.get(entityClass, id);
+	}
+	
+	public T get(List<Criterion> criterions) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(entityClass);
+			criterions.forEach(v -> criteria.add(v));
+			@SuppressWarnings("unchecked")
+			T entity =  (T) criteria.uniqueResult();
+			
+			return entity;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
 	}
 
 	@Override

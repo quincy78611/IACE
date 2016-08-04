@@ -6,18 +6,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 
 import core.util.AESEncrypter;
 import iace.entity.option.OptionSchool;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
-import iace.entity.qnrCooperateWay.QnrCooperateWayLinkModel;
 import iace.entity.qnrCooperateWay.QnrCooperateWayMerit;
-import iace.service.QnrCooperateWayMeritService;
-import iace.service.QnrCooperateWayService;
 import iace.service.OptionSchoolService;
 import iace.service.QnrCooperateWayExcelService;
+import iace.service.QnrCooperateWayService;
 import iace.service.ServiceFactory;
 
 public class QnrCooperateWayAction extends BaseIaceAction {
@@ -26,13 +25,12 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 
 	private OptionSchoolService schoolService = ServiceFactory.getSchoolService(); 
 	private QnrCooperateWayService qnrCooperateWayService = ServiceFactory.getQnrCooperateWayService();
-	private QnrCooperateWayMeritService qnrCooperateWayMeritService = ServiceFactory.getQnrCooperateWayMeritService();
 	private QnrCooperateWayExcelService excelService = ServiceFactory.getQnrCooperateWayExcelService();
 
 	private long schoolId;
 	private String encryptSchoolId;
+	private long qnrCooperateWayId;
 	private QnrCooperateWay qnrCoopereateWay;
-	private List<QnrCooperateWayLinkModel> qnrCooperateWayLinks;
 	private List<QnrCooperateWayMerit> qnrCooperateWayMerits;
 	
 	private String qnrExcelFileName;
@@ -44,17 +42,8 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 
 	public String index() {
 		try {
-			List<OptionSchool> schools = new ArrayList<OptionSchool>();
-			schools.add(this.schoolService.getByCode("TEST"));
-			
-			this.qnrCooperateWayLinks = new ArrayList<QnrCooperateWayLinkModel>();
-			for (OptionSchool school : schools) {
-				QnrCooperateWayLinkModel model = new QnrCooperateWayLinkModel();
-				model.setSchool(school);
-				String encryptId = AESEncrypter.encrypt(AESEncrypter.KEY, String.valueOf(school.getId()));
-				model.setEncryptSchoolId(encryptId);
-				this.qnrCooperateWayLinks.add(model);
-			}
+			OptionSchool school = this.schoolService.getByCode("TEST");
+			this.encryptSchoolId = AESEncrypter.encrypt(AESEncrypter.KEY, String.valueOf(school.getId()));
 			
 			return SUCCESS;
 		} catch (Exception e) {
@@ -66,20 +55,11 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	public String downloadQnrLinksExcel() {
 		try {
 			List<OptionSchool> schools = this.schoolService.listAll();
-			this.qnrCooperateWayLinks = new ArrayList<QnrCooperateWayLinkModel>();
-			for (OptionSchool school : schools) {
-				QnrCooperateWayLinkModel model = new QnrCooperateWayLinkModel();
-				model.setSchool(school);
-				String encryptId = AESEncrypter.encrypt(AESEncrypter.KEY, String.valueOf(school.getId()));
-				model.setEncryptSchoolId(encryptId);
-				this.qnrCooperateWayLinks.add(model);
-			}
 			
 			String currentUrl = ServletActionContext.getRequest().getRequestURL().toString();
-			String urlPart0To3 = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnrPDPL";
-			String urlPart4 = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnrPart4";
+			String qnrUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnrPDPL";
 			
-			XSSFWorkbook wb = this.excelService.exportQnrLinksExcel(this.qnrCooperateWayLinks, urlPart0To3, urlPart4);
+			XSSFWorkbook wb = this.excelService.exportQnrLinksExcel(schools, qnrUrl);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			wb.write(baos);
 			this.qrnExcelFileInputStream = new ByteArrayInputStream(baos.toByteArray());
@@ -93,10 +73,10 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		}
 	}
 	
-	public String downloadQnrPart0To3Excel() {
+	public String downloadQnrResultExcel() {
 		try {
 			List<QnrCooperateWay> qnrList = this.qnrCooperateWayService.listAll();
-			XSSFWorkbook wb = this.excelService.exportQnrPart0To3ResultExcel(qnrList);
+			XSSFWorkbook wb = this.excelService.exportQnrResulotExcel(qnrList);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			wb.write(baos);
 			this.qrnExcelFileInputStream = new ByteArrayInputStream(baos.toByteArray());
@@ -110,26 +90,9 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		}
 	}
 	
-	public String downloadQnrPart4Excel() {
-		try {
-			List<QnrCooperateWayMerit> qnrList = this.qnrCooperateWayMeritService.listAll();
-			XSSFWorkbook wb = this.excelService.exportQnrPart4ResultExcel(qnrList);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			wb.write(baos);
-			this.qrnExcelFileInputStream = new ByteArrayInputStream(baos.toByteArray());
-			this.qnrExcelFileName = "第四部分問卷結果.xlsx";
-			this.qnrExcelFileName = new String(this.qnrExcelFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
-			
-			return SUCCESS;
-		} catch (Exception e) {
-			log.error("", e);
-			return ERROR;
-		}
-	}
-	
 	public String fillInQnrPDPL() {
 		try {
-			this.schoolId = Integer.valueOf(AESEncrypter.decrypt(AESEncrypter.KEY, encryptSchoolId));	
+			this.schoolId = Long.valueOf(AESEncrypter.decrypt(AESEncrypter.KEY, this.encryptSchoolId));	
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -141,7 +104,9 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		if (this.qnrCoopereateWay.getAggreePDPL()) {
 			super.validateTextMaxLength(this.qnrCoopereateWay.getName(), 20, "qnrCoopereateWay.name");
 			super.validateTextMaxLength(this.qnrCoopereateWay.getEmail(), 100, "qnrCoopereateWay.email");
-			super.validateEmail(this.qnrCoopereateWay.getEmail(), "qnrCoopereateWay.email");
+			if (StringUtils.isNotBlank(this.qnrCoopereateWay.getEmail())) {
+				super.validateEmail(this.qnrCoopereateWay.getEmail(), "qnrCoopereateWay.email");
+			}
 		}
 	}
 	
@@ -149,34 +114,21 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		return SUCCESS;
 	}
 	
-	public String fillInQnrPart0To3() {
-		try {
-			this.schoolId = Integer.valueOf(AESEncrypter.decrypt(AESEncrypter.KEY, encryptSchoolId));	
-			return SUCCESS;
-		} catch (Exception e) {
-			log.error("", e);
-			return ERROR;
-		}
-	}
-	
 	public String fillInQnrPart0To3Submit() {
 		try {
 			OptionSchool school = this.schoolService.get(this.schoolId);
 			this.qnrCoopereateWay.setSchool(school);
 			this.qnrCooperateWayService.create(this.qnrCoopereateWay);
-			this.schoolId = this.qnrCoopereateWay.getSchool().getId();
-			this.qnrCooperateWayMerits = this.qnrCooperateWayMeritService.getForUpdate(this.schoolId);
-			return SUCCESS;
-		} catch (Exception e) {
-			log.error("", e);
-			return ERROR;
-		}
-	}
-
-	public String fillInQnrPart4() {
-		try {
-			this.schoolId = Integer.valueOf(AESEncrypter.decrypt(AESEncrypter.KEY, encryptSchoolId));			
-			this.qnrCooperateWayMerits = this.qnrCooperateWayMeritService.getForUpdate(this.schoolId);
+			
+			this.qnrCooperateWayId = this.qnrCoopereateWay.getId();
+			this.qnrCooperateWayMerits = new ArrayList<QnrCooperateWayMerit>();
+			for (int year : QnrCooperateWayMerit.YEARS) {
+				QnrCooperateWayMerit m = new QnrCooperateWayMerit();
+				m.setYear(year);
+				m.setQnrCooperateWay(this.qnrCoopereateWay);
+				this.qnrCooperateWayMerits.add(m);
+			}			
+			
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -186,21 +138,28 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	
 	public String fillInQnrPart4Submit() {
 		try {
-			this.qnrCooperateWayMeritService.updateSchoolMerit(this.qnrCooperateWayMerits);
-			super.addActionMessage("成功儲存!");
+			QnrCooperateWay orgignQnrCooperateWay = this.qnrCooperateWayService.get(this.qnrCooperateWayId);
+			if (orgignQnrCooperateWay.getQnrCooperateWayMerits() == null || 
+				orgignQnrCooperateWay.getQnrCooperateWayMerits().size() == 0) {
+				orgignQnrCooperateWay.setName(this.qnrCoopereateWay.getName());
+				orgignQnrCooperateWay.setApplicantId(this.qnrCoopereateWay.getApplicantId());
+				orgignQnrCooperateWay.setEmail(this.qnrCoopereateWay.getEmail());
+				orgignQnrCooperateWay.setAddress(this.qnrCoopereateWay.getAddress());
+				orgignQnrCooperateWay.setQnrCooperateWayMerits(this.qnrCooperateWayMerits);
+				for (QnrCooperateWayMerit entity : this.qnrCooperateWayMerits) {
+					entity.setQnrCooperateWay(orgignQnrCooperateWay);
+					entity.create();
+				}
+				this.qnrCooperateWayService.update(orgignQnrCooperateWay);
+			} else {
+				this.addActionError("您已經填過此問卷，無法重複填寫!");
+			}
+			
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
 			return ERROR;
 		}
-	}
-
-	public OptionSchoolService getSchoolService() {
-		return schoolService;
-	}
-
-	public void setSchoolService(OptionSchoolService schoolService) {
-		this.schoolService = schoolService;
 	}
 
 	public long getSchoolId() {
@@ -219,12 +178,12 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		this.encryptSchoolId = encryptSchoolId;
 	}
 
-	public List<QnrCooperateWayLinkModel> getQnrCooperateWayLinks() {
-		return qnrCooperateWayLinks;
+	public long getQnrCooperateWayId() {
+		return qnrCooperateWayId;
 	}
 
-	public void setQnrCooperateWayLinks(List<QnrCooperateWayLinkModel> qnrCooperateWayLinks) {
-		this.qnrCooperateWayLinks = qnrCooperateWayLinks;
+	public void setQnrCooperateWayId(long qnrCooperateWayId) {
+		this.qnrCooperateWayId = qnrCooperateWayId;
 	}
 
 	public QnrCooperateWay getQnrCoopereateWay() {
@@ -258,6 +217,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	public void setQrnExcelFileInputStream(InputStream qrnExcelFileInputStream) {
 		this.qrnExcelFileInputStream = qrnExcelFileInputStream;
 	}
+
 	
 	
 

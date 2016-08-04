@@ -256,15 +256,7 @@
 				<param name="bufferSize">1024</param>
 			</result>	
 		</action>
-		<action name="downloadQnrPart0To3Excel" class="iace.action.QnrCooperateWayAction" method="downloadQnrPart0To3Excel">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">qrnExcelFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${qnrExcelFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>	
-		</action>
-		<action name="downloadQnrPart4Excel" class="iace.action.QnrCooperateWayAction" method="downloadQnrPart4Excel">
+		<action name="downloadQnrResultExcel" class="iace.action.QnrCooperateWayAction" method="downloadQnrResultExcel">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">qrnExcelFileInputStream</param>
@@ -279,19 +271,13 @@
 			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayPDPL.jsp</result>
 			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
 		</action>
-		<action name="fillInQnrPart0To3" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart0To3">
-			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
-		</action>
 		<action name="fillInQnrPart0To3Submit" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart0To3Submit">
 			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
 			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
 		</action>		
-		<action name="fillInQnrPart4" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart4">
-			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
-		</action>
 		<action name="fillInQnrPart4Submit" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart4Submit">
 			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
-			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
+			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayFinish.jsp</result>
 		</action>		
 	</package>
 	

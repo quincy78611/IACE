@@ -115,6 +115,15 @@ article { width:1100px; margin:0 auto; clear:both; line-height:1.6em; background
 .rightContent li.quarter { width:24%; margin-right:1%;}
 .rightContent li.eighth { width:11.5%; margin-right:1%;}
 .rightContent li select { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.80em; font-family:"微軟正黑體";}
+.rightContent li input[type=date],
+.rightContent li input[type=datetime],
+.rightContent li input[type=email],
+.rightContent li input[type=month],
+.rightContent li input[type=week],
+.rightContent li input[type=number],
+.rightContent li input[type=range],
+.rightContent li input[type=search],
+.rightContent li input[type=tel],
 .rightContent li input[type=text],
 .rightContent li textarea { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.91em; font-family:"微軟正黑體";}
 .rightContent li input[type=checkbox] { margin-right:8px; }

@@ -17,6 +17,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import iace.entity.BaseEntity;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
@@ -255,6 +258,7 @@ public class ResearchPlan extends BaseEntity {
 	}
 
 	@OneToMany(mappedBy="researchPlan", cascade={CascadeType.ALL}, fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SUBSELECT)
 	public List<Technology> getTechnologies() {
 		return technologies;
 	}

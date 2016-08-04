@@ -4,11 +4,54 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
-
+<script>
+	$(document).ready(function() {
+		pdplSetting();
+		hideOrShowApplicantData();
+	});
+</script>
+<script>
+	function pdplSetting() {
+		$("input[type=checkbox][name='qnrCoopereateWay.aggreePDPL']").click(function(){
+			hideOrShowApplicantData();			
+		});
+	}
+	
+	function hideOrShowApplicantData() {
+		if($("input[type=checkbox][name='qnrCoopereateWay.aggreePDPL']").prop("checked")) {
+			$("#li-name").show();
+			$("#li-applicantId").show();
+			$("#li-email").show();
+			$("#li-address").show();
+		} else {
+			$("#li-name").hide();
+			$("#li-applicantId").hide();
+			$("#li-email").hide();
+			$("#li-address").hide();
+			
+			$("#li-name input").val("");
+			$("#li-applicantId input").val("");
+			$("#li-email input").val("");
+			$("#li-address input").val("");
+		}
+	}
+</script>
 <style>
 th {
 	border: solid 1px;
 	white-space: nowrap;
+}
+.applicant-data {
+  padding: 15px;
+  margin-bottom: 23px;
+  border: 1px solid transparent;
+}
+.applicant-data {
+  overflow-y:auto;
+  padding: 15px;
+  margin-bottom: 23px;
+  border: 1px solid transparent;
+  border-color: #000000;
 }
 </style>
 </head>
@@ -16,6 +59,8 @@ th {
 	<h2 class="itemTitle">《第四部份》學校於2013~2015年期間研發產出及產學合作績效</h2>
 	<h3>【說明】請您將貴校於西元2013~2015年期間研發產出及產學合作績效，填寫下表：</h3>
 	<s:form action="fillInQnrPart4Submit" method="post" validate="true">
+		<s:hidden name="qnrCooperateWayId"/>
+	
 		<h3>(一) 研發合作與智財推廣</h3>
 		<table width="100%">
 			<tr>
@@ -39,25 +84,18 @@ th {
 			</tr>
 			<s:iterator value="qnrCooperateWayMerits" status="stat">
 				<tr>
-					<s:hidden name="%{'qnrCooperateWayMerits['+#stat.index+'].id'}" />
 					<s:hidden name="%{'qnrCooperateWayMerits['+#stat.index+'].year'}" />
-					<s:hidden name="%{'qnrCooperateWayMerits['+#stat.index+'].school.id'}" />
-					<s:hidden name="%{'qnrCooperateWayMerits['+#stat.index+'].isValid'}" />
-					<s:hidden name="%{'qnrCooperateWayMerits['+#stat.index+'].createTime'}" />
-					<s:hidden name="%{'qnrCooperateWayMerits['+#stat.index+'].createUser'}" />
-					<s:hidden name="%{'qnrCooperateWayMerits['+#stat.index+'].updateTime'}" />
-					<s:hidden name="%{'qnrCooperateWayMerits['+#stat.index+'].updateUser'}" />
-					<s:hidden name="%{'qnrCooperateWayMerits['+#stat.index+'].ver'}" />
+					
 					<td><s:property value="year" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_1_1'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_1_2'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_2_1'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_2_2'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_3_1'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_3_2'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_4_1'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_4_2'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_4_3'}" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_1_1'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_1_2'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_2_1'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_2_2'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_3_1'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_3_2'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_4_1'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_4_2'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p1_4_3'}" autocomplete="off" /></td>
 				</tr>
 			</s:iterator>
 		</table>
@@ -88,20 +126,48 @@ th {
 			<s:iterator value="qnrCooperateWayMerits" status="stat">
 				<tr>
 					<td><s:property value="year" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_1_1'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_1_2'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_2_1'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_2_2'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_3_1'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_3_2'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_1'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_2'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_3'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_4'}" /></td>
-					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_5'}" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_1_1'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_1_2'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_2_1'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_2_2'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_3_1'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_3_2'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_1'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_2'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_3'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_4'}" autocomplete="off" /></td>
+					<td><s:textfield name="%{'qnrCooperateWayMerits['+#stat.index+'].p2_4_5'}" autocomplete="off" /></td>
 				</tr>
 			</s:iterator>
 		</table>
+		
+		<div class="applicant-data">
+			<span>【同意事項】</span><br>
+			<span>
+				本人已閱讀並瞭解上述告知事項，並同意科技部、工研院、「運用法人鏈結產學合作計畫」網站及「鏈結產學媒合平台」(Industry-Academia Catalyst E-Platform, I-ACE) 網站在符合上述告知事項範圍內，蒐集、處理及利用本人的個資。本項同意得以電子文件方式表達。
+			</span>			
+			<ul>
+				<li class="all">
+					<s:checkbox label="同意" name="qnrCoopereateWay.aggreePDPL"/>
+				</li>
+				<li class="quarter" id="li-name">
+					<b>姓名</b>				
+					<s:textfield name="qnrCoopereateWay.name"/>
+				</li>
+				<li class="quarter" id="li-applicantId">
+					<b>身份證字號</b>
+					<s:textfield name="qnrCoopereateWay.applicantId"/>
+				</li>
+				<li class="half" id="li-email">
+					<b>Email</b>
+					<s:textfield name="qnrCoopereateWay.email" type="email"/>
+				</li>	
+				<li class="all" id="li-address">
+					<b>地址</b>				
+					<s:textfield name="qnrCoopereateWay.address"/>
+				</li>			
+			</ul>			
+		</div>
 		
 		<s:submit cssClass="redBtn" value="送出" />
 	</s:form>

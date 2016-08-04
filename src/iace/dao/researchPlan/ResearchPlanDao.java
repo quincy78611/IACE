@@ -27,7 +27,8 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		super(ResearchPlan.class);
 	}
 	
-	private ResearchPlan get(List<Criterion> criterions) {
+	@Override
+	public ResearchPlan get(List<Criterion> criterions) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(ResearchPlan.class);

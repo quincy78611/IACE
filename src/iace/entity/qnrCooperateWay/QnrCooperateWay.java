@@ -1,5 +1,8 @@
 package iace.entity.qnrCooperateWay;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,10 +11,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
 
 import core.util.AESEncrypter;
@@ -19,7 +25,7 @@ import iace.entity.BaseEntity;
 import iace.entity.option.OptionSchool;
 
 @Entity
-@Table(name = "QNR_COOPERATE_WAY")
+@Table(name = "QNR_COOP_WAY")
 public class QnrCooperateWay extends BaseEntity {
 
 	private static final long serialVersionUID = 9162172455947173462L;
@@ -72,9 +78,15 @@ public class QnrCooperateWay extends BaseEntity {
 	private Boolean aggreePDPL;
 	private String name;
 	private String encryptedName;
-	private String email;	
-	private String encryptedEmail;	
-	
+	private String email;
+	private String encryptedEmail;
+	private String address;
+	private String encryptedAddress;
+	private String applicantId;
+	private String encryptedApplicantId;
+
+	private List<QnrCooperateWayMerit> qnrCooperateWayMerits;
+
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_QUESTIONNAIRE_ID")
@@ -476,7 +488,7 @@ public class QnrCooperateWay extends BaseEntity {
 	}
 
 	@Column(name = "AGREE_PDPL")
-	@Type(type="true_false")
+	@Type(type = "true_false")
 	public Boolean getAggreePDPL() {
 		return aggreePDPL;
 	}
@@ -494,8 +506,8 @@ public class QnrCooperateWay extends BaseEntity {
 		this.name = name;
 		this.encryptedName = AESEncrypter.encrypt(AESEncrypter.KEY, name);
 	}
-	
-	@Column(name = "NAME")
+
+	@Column(name = "APPLICANT_NAME")
 	public String getEncryptedName() {
 		return encryptedName;
 	}
@@ -515,7 +527,7 @@ public class QnrCooperateWay extends BaseEntity {
 		this.encryptedEmail = AESEncrypter.encrypt(AESEncrypter.KEY, email);
 	}
 
-	@Column(name = "EMAIL")
+	@Column(name = "APPLICANT_EMAIL")
 	public String getEncryptedEmail() {
 		return encryptedEmail;
 	}
@@ -524,7 +536,87 @@ public class QnrCooperateWay extends BaseEntity {
 		this.encryptedEmail = encryptedEmail;
 		this.email = AESEncrypter.decrypt(AESEncrypter.KEY, encryptedEmail);
 	}
+
+	@Transient
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+		this.encryptedAddress = AESEncrypter.encrypt(AESEncrypter.KEY, address);
+	}
+
+	@Column(name = "APPLICANT_ADDRESS")
+	public String getEncryptedAddress() {
+		return encryptedAddress;
+	}
+
+	public void setEncryptedAddress(String encryptedAddress) {
+		this.encryptedAddress = encryptedAddress;
+		this.address = AESEncrypter.decrypt(AESEncrypter.KEY, encryptedAddress);
+	}
 	
+	@Transient
+	public String getApplicantId() {
+		return applicantId;
+	}
+
+	public void setApplicantId(String applicantId) {
+		this.applicantId = applicantId;
+		this.encryptedApplicantId = AESEncrypter.encrypt(AESEncrypter.KEY, applicantId);
+	}
+
+	@Column(name = "APPLICANT_ID")
+	public String getEncryptedApplicantId() {
+		return encryptedApplicantId;
+	}
+
+	public void setEncryptedApplicantId(String encryptedApplicantId) {
+		this.encryptedApplicantId = encryptedApplicantId;
+		this.applicantId = AESEncrypter.decrypt(AESEncrypter.KEY, encryptedApplicantId);
+	}
+
+	@OneToMany(mappedBy="qnrCooperateWay", cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
+	@Fetch(FetchMode.SUBSELECT)
+	public List<QnrCooperateWayMerit> getQnrCooperateWayMerits() {
+		return qnrCooperateWayMerits;
+	}
+
+	public void setQnrCooperateWayMerits(List<QnrCooperateWayMerit> qnrCooperateWayMerits) {
+		this.qnrCooperateWayMerits = qnrCooperateWayMerits;
+	}
 	
+	//==========================================================================
+	
+	@Override
+	public void create() {
+		super.create();
+		if (this.qnrCooperateWayMerits != null && this.qnrCooperateWayMerits.size() > 0) {
+			for (QnrCooperateWayMerit m : this.qnrCooperateWayMerits) {
+				m.create();
+			}
+		}
+	}
+	
+	@Override
+	public void update() {
+		super.update();
+		if (this.qnrCooperateWayMerits != null && this.qnrCooperateWayMerits.size() > 0) {
+			for (QnrCooperateWayMerit m : this.qnrCooperateWayMerits) {
+				m.update();
+			}
+		}
+	}
+	
+	@Override
+	public void delete() {
+		super.delete();
+		if (this.qnrCooperateWayMerits != null && this.qnrCooperateWayMerits.size() > 0) {
+			for (QnrCooperateWayMerit m : this.qnrCooperateWayMerits) {
+				m.delete();
+			}
+		}
+	}
 
 }

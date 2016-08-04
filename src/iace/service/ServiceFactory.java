@@ -227,8 +227,7 @@ public class ServiceFactory {
 	public static QnrCooperateWayMeritService getQnrCooperateWayMeritService(){
 		if (qnrCooperateWayMeritService == null) {
 			qnrCooperateWayMeritService = new QnrCooperateWayMeritService(
-					DaoFactory.getQnrCooperateWayMeritDao(),
-					DaoFactory.getOptionSchoolDao());
+					DaoFactory.getQnrCooperateWayMeritDao());
 		}
 		return qnrCooperateWayMeritService;
 	}

@@ -1,13 +1,10 @@
 package iace.entity.patent;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,8 +18,6 @@ public class TechField extends BaseEntity {
 
 	private long id;
 	private String name;
-	
-	private List<Patent> patentList;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -45,20 +40,9 @@ public class TechField extends BaseEntity {
 		this.name = name;
 	}	
 
-	@OneToMany(mappedBy="techField")
-	public List<Patent> getPatentList() {
-		return patentList;
-	}
-
-	public void setPatentList(List<Patent> patentList) {
-		this.patentList = patentList;
-	}
-
 	@Override
 	public String toString() {
 		return "TechField [id=" + id + ", name=" + name + "]";
 	}
 	
-	
-
 }

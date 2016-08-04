@@ -4,6 +4,5 @@ import iace.dao.IBaseIaceDao;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
 
 public interface IQnrCooperateWayDao extends IBaseIaceDao<QnrCooperateWay> {
-	public QnrCooperateWay getBySchool(long schoolId);
 	
 }

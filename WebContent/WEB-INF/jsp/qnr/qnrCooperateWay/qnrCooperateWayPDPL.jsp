@@ -7,23 +7,32 @@
 <script>
 	$(document).ready(function() {
 		pdplSetting();
-		hideOrShowNameEmail();
+		hideOrShowApplicantData();
 	});
 </script>
 <script>
 	function pdplSetting() {
 		$("input[type=checkbox][name='qnrCoopereateWay.aggreePDPL']").click(function(){
-			hideOrShowNameEmail();			
+			hideOrShowApplicantData();			
 		});
 	}
 	
-	function hideOrShowNameEmail() {
+	function hideOrShowApplicantData() {
 		if($("input[type=checkbox][name='qnrCoopereateWay.aggreePDPL']").prop("checked")) {
 			$("#li-name").show();
+			$("#li-applicantId").show();
 			$("#li-email").show();
+			$("#li-address").show();
 		} else {
 			$("#li-name").hide();
+			$("#li-applicantId").hide();
 			$("#li-email").hide();
+			$("#li-address").hide();
+			
+			$("#li-name input").val("");
+			$("#li-applicantId input").val("");
+			$("#li-email input").val("");
+			$("#li-address input").val("");
 		}
 	}
 </script>
@@ -45,13 +54,19 @@
   border-color: #505050;
   color: #000000;
 }
+.applicant-data {
+  overflow-y:auto;
+  padding: 15px;
+  margin-bottom: 23px;
+  border: 1px solid transparent;
+  border-color: #000000;
+}
 </style>
 </head>
 <body>
 	<s:form action="fillInQnrPDPLSubmit" method="post" validate="true">
 		<s:hidden name="schoolId" />
-		<s:hidden name="qnrCoopereateWay.isValid" value="T" />
-		<div id="div-part0">
+		<div>
 			<h2 class="itemTitle"> 個人資料蒐集、處理及利用之告知暨同意書 </h2>
 
 			<div class="top-desc">
@@ -143,11 +158,14 @@
 				</span><br><br>
 			</div>
 			
+
+		</div>	
+
+		<div class="applicant-data">
 			<span>【同意事項】</span><br>
 			<span>
 				本人已閱讀並瞭解上述告知事項，並同意科技部、工研院、「運用法人鏈結產學合作計畫」網站及「鏈結產學媒合平台」(Industry-Academia Catalyst E-Platform, I-ACE) 網站在符合上述告知事項範圍內，蒐集、處理及利用本人的個資。本項同意得以電子文件方式表達。
-			</span>
-			
+			</span>		
 			<ul>
 				<li class="all">
 					<s:checkbox label="同意" name="qnrCoopereateWay.aggreePDPL"/>
@@ -156,15 +174,25 @@
 					<b>姓名</b>				
 					<s:textfield name="qnrCoopereateWay.name"/>
 				</li>
+				<li class="quarter" id="li-applicantId">
+					<b>身份證字號</b>
+					<s:textfield name="qnrCoopereateWay.applicantId"/>
+				</li>
 				<li class="half" id="li-email">
 					<b>Email</b>
-					<s:textfield name="qnrCoopereateWay.email"/>
-				</li>				
+					<s:textfield name="qnrCoopereateWay.email" type="email"/>
+				</li>	
+				<li class="all" id="li-address">
+					<b>地址</b>				
+					<s:textfield name="qnrCoopereateWay.address"/>
+				</li>			
 			</ul>
-			<div class="clear"></div>
-			
-			<input type="submit" class="redBtn" value="提交">
 		</div>
+
+		<div class="clear"></div>
+		
+		<input type="submit" class="redBtn" value="提交">
+		
 	</s:form>
 </body>
 </html>
