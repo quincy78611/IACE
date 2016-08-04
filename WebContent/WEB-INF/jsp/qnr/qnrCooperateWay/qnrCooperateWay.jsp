@@ -19,7 +19,7 @@
 			}
 		});
 		
-		$("input[type=radio][value=1]").prop("checked", true);
+// 		$("input[type=radio][value=1]").prop("checked", true);
 	});
 </script>
 <script>
