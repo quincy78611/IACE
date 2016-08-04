@@ -11,20 +11,13 @@
 	
 	<script type="text/javascript" src="<s:url value="/scripts/jquery-1.10.2.min.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.validate.js"/>"></script>
-	<%-- <script type="text/javascript" src="<s:url value="/scripts/bootstrap.js"/>"></script> --%>
-	<%-- <script type="text/javascript" src="<s:url value="/scripts/respond.js"/>"></script> --%>
 	<script type="text/javascript" src="<s:url value="/scripts/calendarBox.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/menu.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/vmenuModule.js"/>"></script>
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_qnr.css"/>" />
-	<%-- <link rel="stylesheet" type="text/css" href="<s:url value="/css/bootstrap.css"/>" /> --%>
-	<%-- <link rel="stylesheet" type="text/css" href="<s:url value="/css/Site.css"/>" /> --%>
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.file.browse.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/PagedList.css"/>" />
-
 	
     <s:if test="%{title != null && title != ''}">
    		<title><s:property value="title" /></title>

@@ -11,20 +11,13 @@
 	
 	<script type="text/javascript" src="<s:url value="/scripts/jquery-1.10.2.min.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.validate.js"/>"></script>
-	<%-- <script type="text/javascript" src="<s:url value="/scripts/bootstrap.js"/>"></script> --%>
-	<%-- <script type="text/javascript" src="<s:url value="/scripts/respond.js"/>"></script> --%>
 	<script type="text/javascript" src="<s:url value="/scripts/calendarBox.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/menu.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/vmenuModule.js"/>"></script>
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_backend.css"/>" />
-	<%-- <link rel="stylesheet" type="text/css" href="<s:url value="/css/bootstrap.css"/>" /> --%>
-	<%-- <link rel="stylesheet" type="text/css" href="<s:url value="/css/Site.css"/>" /> --%>
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.file.browse.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/PagedList.css"/>" />
-
 	
     <s:if test="%{title != null && title != ''}">
    		<title><s:property value="title" /></title>
@@ -32,16 +25,6 @@
    	<s:else>
    		<title><decorator:title default="Welcome!" /></title>
    	</s:else>
-
-<%-- 	<script type="text/javascript">
-		$(window).load(function() {
-			//目前這作法只是權宜之計，比較好的做法應該是用更改template & theme
-			//http://www.mkyong.com/struts2/working-with-struts-2-theme-template/
-			//http://struts.apache.org/docs/xhtml-theme.html
-			$("span.help-block").removeClass("help-block");
-			$("span.glyphicon").remove();
-		});
-	</script> --%>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
