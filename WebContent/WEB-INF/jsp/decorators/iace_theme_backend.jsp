@@ -15,9 +15,16 @@
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/menu.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/vmenuModule.js"/>"></script>
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_backend.css"/>" />
+	
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/alert.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.file.browse.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_backend.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/pageBtnList.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/rightContentElement.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/u-vmenu.css"/>" />
 	
     <s:if test="%{title != null && title != ''}">
    		<title><s:property value="title" /></title>

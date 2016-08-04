@@ -12,7 +12,10 @@
 	border: none;
 	cursor: pointer;
 }
-.btn-file:hover { background:#666;}
+
+.btn-file:hover {
+	background: #666;
+}
 
 .btn-file input[type=file] {
 	position: absolute;

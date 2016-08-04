@@ -13,11 +13,17 @@
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.validate.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/calendarBox.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
-	<script type="text/javascript" src="<s:url value="/scripts/menu.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/vmenuModule.js"/>"></script>
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_qnr.css"/>" />
+	
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/alert.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.file.browse.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_qnr.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/pageBtnList.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/rightContentElement.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/u-vmenu.css"/>" />
 	
     <s:if test="%{title != null && title != ''}">
    		<title><s:property value="title" /></title>
@@ -72,9 +78,6 @@
 	</article>
 	<footer>
 		<div class="con">
-<!-- 			<div class="subLink"> -->
-<%-- 				<img src="<s:url value="/images/footerLOGO.gif"/>" > --%>
-<!-- 			</div> -->
 			<div class="contact">
 				科技部鏈結產學合作計畫辦公室 / 服務專線：02-27377373 / 聯絡地址：台北市和平東路二段106號 / 
 				網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 
