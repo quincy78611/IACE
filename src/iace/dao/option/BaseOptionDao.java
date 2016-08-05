@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -64,6 +65,25 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));		
 		return (List<OptionEntity>) super.listAll(optionEntityClass, Order.asc("code"), criterionList);
 	}
+	
+	@Override
+	public List<String> listAllCode() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			String hql = "SELECT code "
+					+ "FROM " + this.optionEntityClass.getSimpleName() + " o "
+					+ "WHERE o.isValid = :isValid";
+			Query query = session.createQuery(hql);
+			query.setString("isValid", BaseEntity.TRUE);
+			@SuppressWarnings("unchecked")
+			List<String> codeList = query.list();
+			return codeList;			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 
 	@Override
 	public Map<String, OptionEntity> mapAll() {
@@ -84,11 +104,28 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 		super.create(entity);
 	}
 	
-	@Deprecated
 	@Override
 	public void createAll(List<OptionEntity> entities) {
-		// TODO Auto-generated method stub
-		
+		Transaction tran = null;
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			tran = session.beginTransaction();
+			for (int i = 0; i < entities.size(); i++) {
+				entities.get(i).create();
+				session.save(entities.get(i));
+				if (i % 100 == 0) {
+					session.flush();
+				}
+			}
+			tran.commit();			
+		} catch (Exception e) {
+			if (tran != null) {
+				tran.rollback();
+			}
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
 	}
 
 	@Override

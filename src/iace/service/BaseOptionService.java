@@ -1,5 +1,6 @@
 package iace.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import core.service.BaseService;
@@ -35,6 +36,20 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 		entity.setCode(entity.getCode().trim());
 		entity.setName(entity.getName().trim());
 		dao.create(entity);
+	}
+	
+	public void createAll(List<OptionEntity> entities) {
+		List<OptionEntity> entitiesWithoutExist = new ArrayList<OptionEntity>();
+		List<String> codeList = this.dao.listAllCode();
+		for (OptionEntity opt : entities) {
+			opt.setCode(opt.getCode().trim());
+			opt.setName(opt.getName().trim());
+			if (codeList.contains(opt.getCode()) == false) {
+				entitiesWithoutExist.add(opt);
+			}
+		}		
+		
+		dao.createAll(entitiesWithoutExist);
 	}
 
 	@Override

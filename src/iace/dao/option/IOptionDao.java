@@ -11,6 +11,8 @@ public interface IOptionDao<OptionEntity extends BaseOption> extends IBaseIaceDa
 	
 	public List<OptionEntity> listNotIn(List<String> codes);
 	
+	public List<String> listAllCode();
+	
 	public Map<String, OptionEntity> mapAll();
 
 	public boolean isCodeExist(String code);

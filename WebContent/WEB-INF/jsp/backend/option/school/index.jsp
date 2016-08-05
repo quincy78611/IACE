@@ -4,16 +4,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$(".btn-del").click(function() {
-				var url = $(this).siblings(".deleteUrl").val();
-				if(confirm("確定要刪除？")) {
-					window.location.href=url;
-				}
-			});	
-		});
-	</script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$(".btn-del").click(function() {
+			var url = $(this).siblings(".deleteUrl").val();
+			if(confirm("確定要刪除？")) {
+				window.location.href=url;
+			}
+		});	
+	});
+</script>
 </head>
 <body>
 	<input type="button" class="redBtn" value="新增代碼" onclick="window.location.href='<s:url value="create.action"/>'" />
