@@ -1,12 +1,21 @@
 package iace.service;
 
-import iace.dao.option.IOptionDao;
+import java.util.List;
+
+import iace.dao.option.IOptionSchoolDao;
 import iace.entity.option.OptionSchool;
 
 public class OptionSchoolService extends BaseOptionService<OptionSchool> {
-
-	OptionSchoolService(IOptionDao<OptionSchool> dao) {
+	
+	private IOptionSchoolDao dao;
+	
+	OptionSchoolService(IOptionSchoolDao dao) {
 		super(dao);
+		this.dao = dao;
+	}
+	
+	public List<OptionSchool> listUnfillQnrCooperateWay() {
+		return this.dao.listUnfillQnrCooperateWay();
 	}
 
 }

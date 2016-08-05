@@ -14,6 +14,7 @@ import iace.dao.enterpriseNeed.IEnterpriseInfoDao;
 import iace.dao.enterpriseNeed.IEnterpriseRequireTechDao;
 import iace.dao.enterpriseNeed.IEnterpriseSituationDao;
 import iace.dao.option.IOptionDao;
+import iace.dao.option.IOptionSchoolDao;
 import iace.dao.option.IOptionSubjectDao;
 import iace.dao.option.OptionCompanyLocationDao;
 import iace.dao.option.OptionConsultDao;
@@ -25,9 +26,9 @@ import iace.dao.option.OptionIndustryDao;
 import iace.dao.option.OptionIndustryForEnterpriseDao;
 import iace.dao.option.OptionOrganizationClassDao;
 import iace.dao.option.OptionOrganizationTypeDao;
+import iace.dao.option.OptionSchoolDao;
 import iace.dao.option.OptionSubjectDao;
 import iace.dao.option.OptionTrlDao;
-import iace.dao.option.OptionSchoolDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
 import iace.dao.qnrCooperateWay.IQnrCooperateWayDao;
@@ -55,7 +56,6 @@ import iace.entity.option.OptionIndustryForEnterprise;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionTrl;
-import iace.entity.option.OptionSchool;
 
 public class DaoFactory {
 	protected static Logger log = LogManager.getLogger(DaoFactory.class);
@@ -72,7 +72,7 @@ public class DaoFactory {
 	private static IOptionDao<OptionOrganizationType> optionOrganizationTypeDao;
 	private static IOptionDao<OptionTrl> optionTrlDao;
 	private static IOptionSubjectDao optionSubjectDao;
-	private static IOptionDao<OptionSchool> optionSchoolDao;
+	private static IOptionSchoolDao optionSchoolDao;
 	
 	private static ITechFieldDao techFieldDao;
 	private static IPatentDao patentDao;
@@ -173,7 +173,7 @@ public class DaoFactory {
 		return optionSubjectDao;
 	}
 	
-	public static IOptionDao<OptionSchool> getOptionSchoolDao() {
+	public static IOptionSchoolDao getOptionSchoolDao() {
 		if (optionSchoolDao == null) {
 			optionSchoolDao = new OptionSchoolDao();
 		}

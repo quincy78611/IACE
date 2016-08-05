@@ -29,10 +29,15 @@
 	
 	<ul>	
 		<li class="all">
-			<label style="font-size:16px">問卷連結報表</label>
+			<label style="font-size:16px">問卷連結報表(全部學校)</label>
 			<input type="button" class="btn btn-default grayBtn" value="匯出" 
 				onclick="window.location.href='<s:url value="downloadQnrLinksExcel"/>'"/>	
 		</li>
+		<li class="all">
+			<label style="font-size:16px">問卷連結報表(未填學校)</label>
+			<input type="button" class="btn btn-default grayBtn" value="匯出" 
+				onclick="window.location.href='<s:url value="downloadUnfillQnrLinksExcel"/>'"/>	
+		</li>		
 		<li class="all">
 			<label style="font-size:16px">問卷結果報表</label>
 			<input type="button" class="btn btn-default grayBtn" value="匯出" 

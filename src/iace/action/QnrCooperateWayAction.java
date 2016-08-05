@@ -72,6 +72,27 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		}
 	}
 	
+	public String downloadUnfillQnrLinksExcel() {
+		try {
+			List<OptionSchool> schools = this.schoolService.listUnfillQnrCooperateWay();
+			
+			String currentUrl = ServletActionContext.getRequest().getRequestURL().toString();
+			String qnrUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnrPDPL";
+			
+			XSSFWorkbook wb = this.excelService.exportQnrLinksExcel(schools, qnrUrl);
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			wb.write(baos);
+			this.qrnExcelFileInputStream = new ByteArrayInputStream(baos.toByteArray());
+			this.qnrExcelFileName = "問卷連結.xlsx";
+			this.qnrExcelFileName = new String(this.qnrExcelFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
+	}
+	
 	public String downloadQnrResultExcel() {
 		try {
 			List<QnrCooperateWay> qnrList = this.qnrCooperateWayService.listAll();

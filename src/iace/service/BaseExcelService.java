@@ -3,6 +3,8 @@ package iace.service;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.ss.usermodel.Row;
@@ -17,6 +19,8 @@ public abstract class BaseExcelService {
 	protected static Logger log = Logger.getLogger(BaseExcelService.class);
 	
 	protected XSSFSheet currentSheet;
+	
+	protected SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	
 	protected XSSFWorkbook getXlsxFile(File file) throws IOException {
 		FileInputStream fis = null;
@@ -52,9 +56,18 @@ public abstract class BaseExcelService {
 		return cell;
 	}
 	
-	XSSFCell setCellValue(XSSFCell cell, Integer value) {
+	protected XSSFCell setCellValue(XSSFCell cell, Integer value) {
 		if (value != null) {
 			cell.setCellValue(value);
+		} else {
+			cell.setCellValue("");
+		}
+		return cell;
+	}
+	
+	protected XSSFCell setCellValue(XSSFCell cell, Timestamp value) {
+		if (value != null) {
+			cell.setCellValue(sdf.format(value));
 		} else {
 			cell.setCellValue("");
 		}
