@@ -9,12 +9,6 @@ public class OptionOrganizationClassDao extends BaseOptionDao<OptionOrganization
 	}
 
 	@Override
-	public boolean hasBeenUsed(OptionOrganizationClass entity) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean hasBeenUsed(Long id) {
 		// TODO Auto-generated method stub
 		return false;

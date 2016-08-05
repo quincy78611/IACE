@@ -10,12 +10,6 @@ public class OptionIndustryForEnterpriseDao extends BaseOptionDao<OptionIndustry
 	}
 
 	@Override
-	public boolean hasBeenUsed(OptionIndustryForEnterprise entity) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean hasBeenUsed(Long id) {
 		// TODO Auto-generated method stub
 		return false;

@@ -14,12 +14,6 @@ public class OptionSubjectDao extends BaseOptionDao<OptionSubject> implements IO
 	public OptionSubjectDao() {
 		super(OptionSubject.class);
 	}
-	
-	@Override
-	public boolean hasBeenUsed(OptionSubject entity) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
 	public boolean hasBeenUsed(Long id) {

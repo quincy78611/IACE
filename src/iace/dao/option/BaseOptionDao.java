@@ -202,4 +202,9 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 			HibernateSessionFactory.closeSession();
 		}
 	}
+
+	@Override
+	public boolean hasBeenUsed(OptionEntity entity) {
+		return hasBeenUsed(entity.getId());
+	}
 }

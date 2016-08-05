@@ -17,12 +17,6 @@ public class OptionSchoolDao extends BaseOptionDao<OptionSchool> implements IOpt
 	}
 
 	@Override
-	public boolean hasBeenUsed(OptionSchool entity) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean hasBeenUsed(Long id) {
 		// TODO Auto-generated method stub
 		return false;

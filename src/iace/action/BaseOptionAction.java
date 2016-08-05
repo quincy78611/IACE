@@ -94,11 +94,8 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 	}
 	
 	public String deleteSubmit() {
-		String rtnStr;
+		String rtnStr = SUCCESS;
 		try {
-			if (this.optionService.hasBeenUsed(this.id)) {
-				throw new IllegalArgumentException("不可刪除已被使用的代碼");
-			}
 			this.optionService.delete(this.id);
 			rtnStr = SUCCESS;
 		} catch (Exception e) {

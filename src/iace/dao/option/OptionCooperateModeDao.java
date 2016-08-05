@@ -9,12 +9,6 @@ public class OptionCooperateModeDao extends BaseOptionDao<OptionCooperateMode> {
 	}
 
 	@Override
-	public boolean hasBeenUsed(OptionCooperateMode entity) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean hasBeenUsed(Long id) {
 		// TODO Auto-generated method stub
 		return false;

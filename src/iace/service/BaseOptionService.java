@@ -38,7 +38,7 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 		dao.create(entity);
 	}
 	
-	public void createAll(List<OptionEntity> entities) {
+	public int createAll(List<OptionEntity> entities) {
 		List<OptionEntity> entitiesWithoutExist = new ArrayList<OptionEntity>();
 		List<String> codeList = this.dao.listAllCode();
 		for (OptionEntity opt : entities) {
@@ -50,6 +50,7 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 		}		
 		
 		dao.createAll(entitiesWithoutExist);
+		return entitiesWithoutExist.size();
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 	@Override
 	public void delete(OptionEntity entity) {
 		if (hasBeenUsed(entity)) {
-			String msg = "Can't be delete because it had been used!";
+			String msg = "無法刪除已被使用的代碼!";
 			throw new IllegalArgumentException(msg);
 		}
 		dao.delete(entity);		
@@ -70,7 +71,7 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 	
 	public void delete(Long id) {
 		if (hasBeenUsed(id)) {
-			String msg = "Can't be delete because it had been used!";
+			String msg = "無法刪除已被使用的代碼!";
 			throw new IllegalArgumentException(msg);
 		}
 		dao.delete(id);

@@ -9,12 +9,6 @@ public class OptionHadTecSrcDao extends BaseOptionDao<OptionHadTecSrc> {
 	}
 
 	@Override
-	public boolean hasBeenUsed(OptionHadTecSrc entity) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public boolean hasBeenUsed(Long id) {
 		// TODO Auto-generated method stub
 		return false;

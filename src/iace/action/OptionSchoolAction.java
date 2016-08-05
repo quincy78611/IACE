@@ -33,8 +33,8 @@ public class OptionSchoolAction extends BaseOptionAction<OptionSchool> {
 	public String batchImport() {
 		try {
 			List<OptionSchool> optionList = this.optionSchoolExcelService.excelToOptionSchoolList(this.uploadFile);
-			super.optionService.createAll(optionList);
-			super.addActionMessage("成功新增"+optionList.size()+"筆資料");
+			int newInsertDataCount = super.optionService.createAll(optionList);
+			super.addActionMessage("成功新增"+newInsertDataCount+"筆資料");
 			super.index();
 			return SUCCESS;
 		} catch (Exception e) {
