@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 
@@ -101,13 +100,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	}
 	
 	public void validateFillInQnrPDPLSubmit() {
-		if (this.qnrCoopereateWay.getAggreePDPL()) {
-			super.validateTextMaxLength(this.qnrCoopereateWay.getName(), 20, "qnrCoopereateWay.name");
-			super.validateTextMaxLength(this.qnrCoopereateWay.getEmail(), 100, "qnrCoopereateWay.email");
-			if (StringUtils.isNotBlank(this.qnrCoopereateWay.getEmail())) {
-				super.validateEmail(this.qnrCoopereateWay.getEmail(), "qnrCoopereateWay.email");
-			}
-		}
+		validateApplicantData();
 	}
 	
 	public String fillInQnrPDPLSubmit() {
@@ -136,6 +129,10 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		}
 	}
 	
+	public void validateFillInQnrPart4Submit() {
+		validateApplicantData();
+	}
+	
 	public String fillInQnrPart4Submit() {
 		try {
 			QnrCooperateWay orgignQnrCooperateWay = this.qnrCooperateWayService.get(this.qnrCooperateWayId);
@@ -159,6 +156,24 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		} catch (Exception e) {
 			log.error("", e);
 			return ERROR;
+		}
+	}
+	
+	private void validateApplicantData() {
+		boolean isAllValid = true;
+		if (this.qnrCoopereateWay.getAggreePDPL()) {
+			isAllValid = super.validateNotBlankNLength(this.qnrCoopereateWay.getName(), 20, "qnrCoopereateWay.name") && isAllValid;
+			isAllValid = super.validateNotBlankNLength(this.qnrCoopereateWay.getApplicantId(), 20, "qnrCoopereateWay.applicantId") && isAllValid;
+			if (super.validateNotBlankNLength(this.qnrCoopereateWay.getEmail(), 100, "qnrCoopereateWay.email")) {
+				isAllValid = super.validateEmail(this.qnrCoopereateWay.getEmail(), "qnrCoopereateWay.email") && isAllValid;
+			} else {
+				isAllValid = false;
+			}
+			isAllValid = super.validateNotBlankNLength(this.qnrCoopereateWay.getAddress(), 200, "qnrCoopereateWay.address") && isAllValid;
+		}
+		
+		if (!isAllValid) {
+			this.addActionError("部分資料有問題，請重新檢查!");
 		}
 	}
 

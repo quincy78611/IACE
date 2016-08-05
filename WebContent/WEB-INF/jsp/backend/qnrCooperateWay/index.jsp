@@ -17,7 +17,7 @@
 	
 	<ul>
 		<li class="all">
-			範例問卷連結<br>
+			<label style="font-size:16px">範例問卷連結</label><br>
 			<s:url value="fillInQnrPDPL" var="fillInQnrPart0To3UrlTag" escapeAmp="false">
 				<s:param name="encryptSchoolId" value="encryptSchoolId" />
 			</s:url>					
@@ -29,12 +29,12 @@
 	
 	<ul>	
 		<li class="all">
-			問卷連結報表
+			<label style="font-size:16px">問卷連結報表</label>
 			<input type="button" class="btn btn-default grayBtn" value="匯出" 
 				onclick="window.location.href='<s:url value="downloadQnrLinksExcel"/>'"/>	
 		</li>
 		<li class="all">
-			問卷結果報表
+			<label style="font-size:16px">問卷結果報表</label>
 			<input type="button" class="btn btn-default grayBtn" value="匯出" 
 				onclick="window.location.href='<s:url value="downloadQnrResultExcel"/>'"/>	
 		</li>

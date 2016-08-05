@@ -36,41 +36,38 @@
 		}
 	}
 </script>
+<link rel="stylesheet" type="text/css" href="<s:url value="/css/subTitle-qnrCooperateWay.css"/>" />
 <style>
 th {
 	border: solid 1px;
 	white-space: nowrap;
 }
+
 .applicant-data {
-  padding: 15px;
-  margin-bottom: 23px;
-  border: 1px solid transparent;
-}
-.applicant-data {
-  overflow-y:auto;
-  padding: 15px;
-  margin-bottom: 23px;
-  border: 1px solid transparent;
-  border-color: #000000;
+	overflow-y: auto;
+	padding: 15px;
+	margin-bottom: 23px;
+	border: 1px solid transparent;
+	border-color: #000000;
 }
 </style>
 </head>
 <body>
-	<h2 class="itemTitle">《第四部份》學校於2013~2015年期間研發產出及產學合作績效</h2>
+	<h2 class="subTitle-qnrCooperateWay">《第四部份》學校於2013~2015年期間研發產出及產學合作績效</h2>
 	<h3>【說明】請您將貴校於西元2013~2015年期間研發產出及產學合作績效，填寫下表：</h3>
 	<s:form action="fillInQnrPart4Submit" method="post" validate="true">
 		<s:hidden name="qnrCooperateWayId"/>
 	
 		<h3>(一) 研發合作與智財推廣</h3>
 		<table width="100%">
-			<tr>
+			<tr class="text-align-center">
 				<th></th>
 				<th colspan="2">企業委託研究</th>
 				<th colspan="2">獲證專利</th>
 				<th colspan="2">專利授權</th>
 				<th colspan="3">技術移轉</th>
 			</tr>
-			<tr>
+			<tr class="text-align-center">
 				<th>年度</th>
 				<th>計畫件數</th>
 				<th>總經費(NT$萬)</th>
@@ -102,14 +99,14 @@ th {
 
 		<h3>(二) 發展資源及新創事業</h3>
 		<table width="100%">
-			<tr>
+			<tr class="text-align-center">
 				<th></th>
 				<th colspan="2">研發活動主管單位</th>
 				<th colspan="2">產學合作主管單位</th>
 				<th colspan="2">技轉中心</th>
 				<th colspan="5">育成中心</th>
 			</tr>
-			<tr>
+			<tr class="text-align-center">
 				<th>年度</th>
 				<th>預算</th>
 				<th>年平均受雇<br>全職人數</th>
