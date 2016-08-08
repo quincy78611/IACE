@@ -32,6 +32,9 @@ public class OptionSchoolAction extends BaseOptionAction<OptionSchool> {
 
 	public String batchImport() {
 		try {
+			log.info("Upload file: "+this.uploadFile);
+			log.info("ContentType: "+this.uploadFileContentType);
+			log.info("FileName: "+this.uploadFileFileName);
 			List<OptionSchool> optionList = this.optionSchoolExcelService.excelToOptionSchoolList(this.uploadFile);
 			int newInsertDataCount = super.optionService.createAll(optionList);
 			super.addActionMessage("成功新增"+newInsertDataCount+"筆資料");

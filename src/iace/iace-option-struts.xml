@@ -365,7 +365,11 @@
 		</action>
 		<action name="batchImport" class="iace.action.OptionSchoolAction" method="batchImport">
 		    <interceptor-ref name="fileUpload">                
-                <param name="allowedTypes">application/ms-excel,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</param>
+<!--                 <param name="allowedTypes"> -->
+<!--                 	application/ms-excel, -->
+<!--                 	application/vnd.ms-excel, -->
+<!--                 	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet -->
+<!--                 </param> -->
             </interceptor-ref> 
             <interceptor-ref name="defaultStack"></interceptor-ref>
 		    
