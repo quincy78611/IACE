@@ -61,7 +61,7 @@ th {
 		<h3>(一) 研發合作與智財推廣</h3>
 		<table width="100%">
 			<tr class="text-align-center">
-				<th></th>
+				<th>項目</th>
 				<th colspan="2">企業委託研究</th>
 				<th colspan="2">獲證專利</th>
 				<th colspan="2">專利授權</th>

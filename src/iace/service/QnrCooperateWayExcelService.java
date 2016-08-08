@@ -140,6 +140,10 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			}
 		}//title row END		
 		
+		String[] opts0_1 = {"", "研發處研發長", "產學合作中心單位主管", "技轉中心單位主管", "育成中心單位主管"};
+		String[] opts0_2 = {"", "5年以下", "5-10年", "11-15年", "16-20年", "21-25年", "26-30年", "30年以上"};
+		String[] opts0_3 = {"", "5年以下", "5-10年", "11-15年", "16-20年", "20年以上"};
+		
 		// data part
 		for (QnrCooperateWay qnr : qnrList) {
 			c = -1;
@@ -152,9 +156,9 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			row.createCell(++c).setCellValue(qnr.getApplicantId());
 			row.createCell(++c).setCellValue(qnr.getEmail());
 			row.createCell(++c).setCellValue(qnr.getAddress());
-			row.createCell(++c).setCellValue(qnr.getQ0_1());
-			row.createCell(++c).setCellValue(qnr.getQ0_2());
-			row.createCell(++c).setCellValue(qnr.getQ0_3());
+			row.createCell(++c).setCellValue(opts0_1[qnr.getQ0_1()]);
+			row.createCell(++c).setCellValue(opts0_2[qnr.getQ0_2()]);
+			row.createCell(++c).setCellValue(opts0_3[qnr.getQ0_3()]);
 			row.createCell(++c).setCellValue(qnr.getQ1_1());
 			row.createCell(++c).setCellValue(qnr.getQ1_2());
 			row.createCell(++c).setCellValue(qnr.getQ1_3());

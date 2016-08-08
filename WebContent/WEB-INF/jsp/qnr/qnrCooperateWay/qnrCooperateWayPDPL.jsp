@@ -95,7 +95,6 @@
 				<br> <span> 財團法人工業技術研究院 </span><br>
 				<br> <span> 姓 名：蘇孟宗 </span><br>
 				<br> <span> 職 稱：產業經濟與趨勢中心主任 </span><br>
-				<br> <span> 中華民國 105 年 7 月 25 日 </span><br>
 				<br>
 			</div>
 		</div>
