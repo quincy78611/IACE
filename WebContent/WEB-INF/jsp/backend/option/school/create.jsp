@@ -6,10 +6,24 @@
 <head>
 <script type="text/javascript">
 	$(document).ready(function() {
+		addSearchConditionHiddenToForm();
+		
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
+		
 		$("input[type=file]#btn_file").change(function() {
 			$("input[type=text]#file_display").val($(this).val());
 		});
 	});
+</script>
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-create").append($(this).clone());
+			$("#form-batchImport").append($(this).clone());
+		});
+	}
 </script>
 <style>
 .batch-import {
@@ -17,14 +31,13 @@
 	margin-top: 23px;
 	margin-bottom: 23px;
 	border: 1px solid transparent;
-/* 	border-color: #000000; */
 }
 </style>
 </head>
 <body>
 	<div class="subForm">
 		<h2 class="itemTitle Down">單筆新增</h2>
-		<s:form action="createSubmit" method="post" validate="true" >		
+		<s:form action="createSubmit" method="post" validate="true" id="form-create">		
 			<ul>
 				<li class="half">
 					<b>代碼</b>
@@ -42,7 +55,7 @@
 	</div>
 		
 	<div class="subForm batch-import">
-		<s:form action="batchImport" method="post" validate="true" enctype="multipart/form-data">
+		<s:form action="batchImport" method="post" validate="true" enctype="multipart/form-data" id="form-batchImport">
 			<h2 class="itemTitle Down">批次匯入</h2>
 			<ul>
 				<li class="all">
@@ -70,6 +83,12 @@
 		</s:form>
 	</div>
 	
-	<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="index"/>'" />
+	<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>	
+	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.searchText"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>	
 </body>
 </html>

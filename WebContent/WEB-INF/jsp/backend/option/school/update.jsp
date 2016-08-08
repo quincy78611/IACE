@@ -4,12 +4,27 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<script type="text/javascript">
+	$(document).ready(function(){
+		addSearchConditionHiddenToForm();
+		
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
+	});
+</script>
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-update").append($(this).clone());
+		});
+	}
+</script>
 </head>
 <body>
 	<h2 class="itemTitle">編輯</h2>
 
-	<s:form action="updateSubmit" method="post" validate="true" >
+	<s:form action="updateSubmit" method="post" validate="true" id="form-update">
 		<s:hidden name="option.id" />
 		<s:hidden name="option.isValid" />
 		<s:hidden name="option.createTime" />
@@ -29,7 +44,13 @@
 			</li>			
 		</ul>
 		<s:submit cssClass="btn btn-default redBtn" value="儲存" />	
-		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="index"/>'" />		
+		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>		
 	</s:form>
+	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.searchText"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>	
 </body>
 </html>

@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.service.BaseService;
+import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.entity.option.BaseOption;
+import iace.entity.option.BaseOptionSearchModel;
 
 public abstract class BaseOptionService<OptionEntity extends BaseOption> extends BaseService<OptionEntity, Long> {
 	protected IOptionDao<OptionEntity> dao;
@@ -20,6 +22,10 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 	
 	public List<OptionEntity> listNotIn(List<String> codes) {
 		return dao.listNotIn(codes);
+	}
+	
+	public PagedList<OptionEntity> searchBy(BaseOptionSearchModel args) {
+		return this.dao.searchBy(args);
 	}
 	
 	@Override

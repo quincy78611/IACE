@@ -6,17 +6,23 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import core.dao.BaseDao;
 import core.dao.HibernateSessionFactory;
+import core.util.PagedList;
 import iace.entity.BaseEntity;
 import iace.entity.option.BaseOption;
+import iace.entity.option.BaseOptionSearchModel;
 
 
 public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends BaseDao<OptionEntity> implements IOptionDao<OptionEntity> {
@@ -93,6 +99,56 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 		return map;
 	}
 	
+	@Override
+	public PagedList<OptionEntity> searchBy(BaseOptionSearchModel args) {
+		try {
+			long totalItemCount = queryTotalRecordsCount(args);
+			PagedList<OptionEntity> results = new PagedList<OptionEntity>(totalItemCount, args.getPageSize(), args.getPageIndex());
+			
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(this.optionEntityClass);
+			addCriteriaRestrictionsForSearch(args, criteria);
+			criteria.addOrder(Order.asc("code"));			
+			criteria.setFirstResult(results.getItemStart()-1);
+			criteria.setMaxResults(args.getPageSize());
+			
+			@SuppressWarnings("unchecked")
+			List<OptionEntity> list = criteria.list();
+			results.setList(list);
+			return results;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	private long queryTotalRecordsCount(BaseOptionSearchModel args) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(this.optionEntityClass);
+			addCriteriaRestrictionsForSearch(args, criteria);
+			criteria.setProjection(Projections.rowCount());
+			Object count = criteria.uniqueResult();
+			return (long) count;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	private void addCriteriaRestrictionsForSearch(BaseOptionSearchModel args, Criteria criteria) {
+		if (StringUtils.isNotBlank(args.getSearchText())) {
+			Disjunction or = Restrictions.disjunction();
+			or.add(Restrictions.like("code", args.getSearchText(), MatchMode.START).ignoreCase());
+			or.add(Restrictions.like("name", args.getSearchText(), MatchMode.START).ignoreCase());			
+			criteria.add(or);
+		}
+		
+		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+	}
+
 	@SuppressWarnings("unchecked")
 	public OptionEntity get(long id) {
 		return (OptionEntity) super.get(optionEntityClass, id);

@@ -2,7 +2,9 @@ package iace.action;
 
 import java.util.List;
 
+import core.util.PagedList;
 import iace.entity.option.BaseOption;
+import iace.entity.option.BaseOptionSearchModel;
 import iace.service.BaseOptionService;
 
 public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceAction {
@@ -12,7 +14,10 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 	protected BaseOptionService<OptionEntity> optionService;
 	
 	protected List<OptionEntity> optionList;
+	protected PagedList<OptionEntity> optionPagedList;
 
+	protected BaseOptionSearchModel searchCondition = new BaseOptionSearchModel();
+	
 	protected long id;
 	protected OptionEntity option;
 
@@ -24,6 +29,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 	public String index() {
 		try {
 			this.optionList = this.optionService.listAll();
+			this.optionPagedList = this.optionService.searchBy(this.searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -58,7 +64,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 			this.addActionError(e.getMessage());			
 			rtnStr = ERROR;
 		}
-		this.optionList = this.optionService.listAll();
+		this.index();
 		return rtnStr;
 	}
 	
@@ -89,7 +95,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 			this.addActionError(e.getMessage());
 			rtnStr = INPUT;
 		}
-		this.optionList = this.optionService.listAll();
+		this.index();
 		return rtnStr;
 	}
 	
@@ -103,7 +109,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 			this.addActionError(e.getMessage());
 			rtnStr = ERROR;
 		}
-		this.optionList = this.optionService.listAll();
+		this.index();
 		return rtnStr;
 	}
 	
@@ -128,6 +134,18 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 
 	public List<OptionEntity> getOptionList() {
 		return optionList;
+	}
+
+	public BaseOptionSearchModel getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(BaseOptionSearchModel searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public PagedList<OptionEntity> getOptionPagedList() {
+		return optionPagedList;
 	}
 	
 	
