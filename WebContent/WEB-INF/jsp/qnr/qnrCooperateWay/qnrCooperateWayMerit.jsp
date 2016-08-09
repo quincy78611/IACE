@@ -100,7 +100,7 @@ th {
 		<h3>(二) 發展資源及新創事業</h3>
 		<table width="100%">
 			<tr class="text-align-center">
-				<th></th>
+				<th>項目</th>
 				<th colspan="2">研發活動主管單位</th>
 				<th colspan="2">產學合作主管單位</th>
 				<th colspan="2">技轉中心</th>

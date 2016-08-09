@@ -28,7 +28,7 @@
 		</Root>
 		<Logger name="core.action.BaseAction" level="debug" />
 		<Logger name="core.service.BaseService" level="debug" />
-		<Logger name="core.service.BaseExcelService" level="debug" />
+		<Logger name="iace.service.BaseExcelService" level="debug" />
 		<Logger name="core.dao.BaseDao" level="debug" />
 	</Loggers>
 </Configuration>

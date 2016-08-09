@@ -59,7 +59,7 @@
 			<h2 class="itemTitle Down">批次匯入</h2>
 			<ul>
 				<li class="all">
-					<b>注意1: 只接受代碼長度為4的資料，其餘資料都將被忽略</b>
+					<b>注意1: 代碼欄皆為文字非數字</b>
 				</li>
 				<li class="all">
 					<b>注意2: 將忽略已存在代碼</b>
