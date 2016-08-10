@@ -130,18 +130,14 @@ public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultin
 			criteria.add(Restrictions.eq("optionIndustry.code", model.getOptionIndustryCode()));
 		}	
 		if (model.getConsultDateStart() != null) {
-			criteria.add(Restrictions.gt("consultDate", model.getConsultDateStart()));
+			criteria.add(Restrictions.ge("consultDate", model.getConsultDateStart()));
 		}
 		if (model.getConsultDateEnd() != null) {
 			Calendar c = Calendar.getInstance();
 			c.setTime(model.getConsultDateEnd()); 
-			c.add(Calendar.DATE, 1);
-//			c.set(Calendar.HOUR_OF_DAY, 23);
-//		    c.set(Calendar.MINUTE, 59);
-//		    c.set(Calendar.SECOND, 59);
-//		    c.set(Calendar.MILLISECOND, 999);
+//			c.add(Calendar.DATE, 1);
 			Date endDate = c.getTime();
-			criteria.add(Restrictions.lt("consultDate", endDate));
+			criteria.add(Restrictions.le("consultDate", endDate));
 		}
 		
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
