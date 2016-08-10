@@ -24,26 +24,14 @@ public class QnrCooperateWayMerit extends BaseEntity {
 	private long id;
 	private QnrCooperateWay qnrCooperateWay;
 	private int year;
-	private Integer p1_1_1;
-	private Integer p1_1_2;
-	private Integer p1_2_1;
-	private Integer p1_2_2;
-	private Integer p1_3_1;
-	private Integer p1_3_2;
-	private Integer p1_4_1;
-	private Integer p1_4_2;
-	private Integer p1_4_3;
-	private Integer p2_1_1;
-	private Integer p2_1_2;
-	private Integer p2_2_1;
-	private Integer p2_2_2;
-	private Integer p2_3_1;
-	private Integer p2_3_2;
-	private Integer p2_4_1;
-	private Integer p2_4_2;
-	private Integer p2_4_3;
-	private Integer p2_4_4;
-	private Integer p2_4_5;
+	private String c1;
+	private String c2;
+	private String c3;
+	private String c4;
+	private String c5;
+	private String c6;
+	private String c7;
+	private String c8;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -76,184 +64,79 @@ public class QnrCooperateWayMerit extends BaseEntity {
 		this.year = year;
 	}
 
-	@Column(name = "P1_1_1", nullable = true, length = 10)
-	public Integer getP1_1_1() {
-		return p1_1_1;
+	@Column(name = "C1", nullable = false, length = 20)
+	public String getC1() {
+		return c1;
 	}
 
-	public void setP1_1_1(Integer p1_1_1) {
-		this.p1_1_1 = p1_1_1;
+	public void setC1(String c1) {
+		this.c1 = c1;
 	}
 
-	@Column(name = "P1_1_2", nullable = true, length = 10)
-	public Integer getP1_1_2() {
-		return p1_1_2;
+	@Column(name = "C2", nullable = false, length = 20)
+	public String getC2() {
+		return c2;
 	}
 
-	public void setP1_1_2(Integer p1_1_2) {
-		this.p1_1_2 = p1_1_2;
+	public void setC2(String c2) {
+		this.c2 = c2;
 	}
 
-	@Column(name = "P1_2_1", nullable = true, length = 10)
-	public Integer getP1_2_1() {
-		return p1_2_1;
+	@Column(name = "C3", nullable = false, length = 20)
+	public String getC3() {
+		return c3;
 	}
 
-	public void setP1_2_1(Integer p1_2_1) {
-		this.p1_2_1 = p1_2_1;
+	public void setC3(String c3) {
+		this.c3 = c3;
 	}
 
-	@Column(name = "P1_2_2", nullable = true, length = 10)
-	public Integer getP1_2_2() {
-		return p1_2_2;
+	@Column(name = "C4", nullable = false, length = 20)
+	public String getC4() {
+		return c4;
 	}
 
-	public void setP1_2_2(Integer p1_2_2) {
-		this.p1_2_2 = p1_2_2;
+	public void setC4(String c4) {
+		this.c4 = c4;
 	}
 
-	@Column(name = "P1_3_1", nullable = true, length = 10)
-	public Integer getP1_3_1() {
-		return p1_3_1;
+	@Column(name = "C5", nullable = false, length = 20)
+	public String getC5() {
+		return c5;
 	}
 
-	public void setP1_3_1(Integer p1_3_1) {
-		this.p1_3_1 = p1_3_1;
+	public void setC5(String c5) {
+		this.c5 = c5;
 	}
 
-	@Column(name = "P1_3_2", nullable = true, length = 10)
-	public Integer getP1_3_2() {
-		return p1_3_2;
+	@Column(name = "C6", nullable = false, length = 20)
+	public String getC6() {
+		return c6;
 	}
 
-	public void setP1_3_2(Integer p1_3_2) {
-		this.p1_3_2 = p1_3_2;
+	public void setC6(String c6) {
+		this.c6 = c6;
 	}
 
-	@Column(name = "P1_4_1", nullable = true, length = 10)
-	public Integer getP1_4_1() {
-		return p1_4_1;
+	@Column(name = "C7", nullable = false, length = 20)
+	public String getC7() {
+		return c7;
 	}
 
-	public void setP1_4_1(Integer p1_4_1) {
-		this.p1_4_1 = p1_4_1;
+	public void setC7(String c7) {
+		this.c7 = c7;
 	}
 
-	@Column(name = "P1_4_2", nullable = true, length = 10)
-	public Integer getP1_4_2() {
-		return p1_4_2;
+	@Column(name = "C8", nullable = false, length = 20)
+	public String getC8() {
+		return c8;
 	}
 
-	public void setP1_4_2(Integer p1_4_2) {
-		this.p1_4_2 = p1_4_2;
+	public void setC8(String c8) {
+		this.c8 = c8;
 	}
 
-	@Column(name = "P1_4_3", nullable = true, length = 10)
-	public Integer getP1_4_3() {
-		return p1_4_3;
-	}
-
-	public void setP1_4_3(Integer p1_4_3) {
-		this.p1_4_3 = p1_4_3;
-	}
-
-	@Column(name = "P2_1_1", nullable = true, length = 10)
-	public Integer getP2_1_1() {
-		return p2_1_1;
-	}
-
-	public void setP2_1_1(Integer p2_1_1) {
-		this.p2_1_1 = p2_1_1;
-	}
-
-	@Column(name = "P2_1_2", nullable = true, length = 10)
-	public Integer getP2_1_2() {
-		return p2_1_2;
-	}
-
-	public void setP2_1_2(Integer p2_1_2) {
-		this.p2_1_2 = p2_1_2;
-	}
-
-	@Column(name = "P2_2_1", nullable = true, length = 10)
-	public Integer getP2_2_1() {
-		return p2_2_1;
-	}
-
-	public void setP2_2_1(Integer p2_2_1) {
-		this.p2_2_1 = p2_2_1;
-	}
-
-	@Column(name = "P2_2_2", nullable = true, length = 10)
-	public Integer getP2_2_2() {
-		return p2_2_2;
-	}
-
-	public void setP2_2_2(Integer p2_2_2) {
-		this.p2_2_2 = p2_2_2;
-	}
-
-	@Column(name = "P2_3_1", nullable = true, length = 10)
-	public Integer getP2_3_1() {
-		return p2_3_1;
-	}
-
-	public void setP2_3_1(Integer p2_3_1) {
-		this.p2_3_1 = p2_3_1;
-	}
-
-	@Column(name = "P2_3_2", nullable = true, length = 10)
-	public Integer getP2_3_2() {
-		return p2_3_2;
-	}
-
-	public void setP2_3_2(Integer p2_3_2) {
-		this.p2_3_2 = p2_3_2;
-	}
-
-	@Column(name = "P2_4_1", nullable = true, length = 10)
-	public Integer getP2_4_1() {
-		return p2_4_1;
-	}
-
-	public void setP2_4_1(Integer p2_4_1) {
-		this.p2_4_1 = p2_4_1;
-	}
-
-	@Column(name = "P2_4_2", nullable = true, length = 10)
-	public Integer getP2_4_2() {
-		return p2_4_2;
-	}
-
-	public void setP2_4_2(Integer p2_4_2) {
-		this.p2_4_2 = p2_4_2;
-	}
-
-	@Column(name = "P2_4_3", nullable = true, length = 10)
-	public Integer getP2_4_3() {
-		return p2_4_3;
-	}
-
-	public void setP2_4_3(Integer p2_4_3) {
-		this.p2_4_3 = p2_4_3;
-	}
-
-	@Column(name = "P2_4_4", nullable = true, length = 10)
-	public Integer getP2_4_4() {
-		return p2_4_4;
-	}
-
-	public void setP2_4_4(Integer p2_4_4) {
-		this.p2_4_4 = p2_4_4;
-	}
-
-	@Column(name = "P2_4_5", nullable = true, length = 10)
-	public Integer getP2_4_5() {
-		return p2_4_5;
-	}
-
-	public void setP2_4_5(Integer p2_4_5) {
-		this.p2_4_5 = p2_4_5;
-	}
+	
+	
 
 }

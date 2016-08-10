@@ -152,6 +152,58 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	
 	public void validateFillInQnrPart4Submit() {
 		validateApplicantData();
+		for (int i=0; i<this.qnrCooperateWayMerits.size(); i++) {
+			String testValue, fieldName;
+			QnrCooperateWayMerit merit = this.qnrCooperateWayMerits.get(i);
+			
+			testValue = merit.getC1();
+			fieldName = "qnrCooperateWayMerits["+i+"].c1";
+			if (super.validateNotBlank(testValue, fieldName)) {
+				super.validateStringAsDouble(testValue, fieldName);
+			}
+			
+			testValue = merit.getC2();
+			fieldName = "qnrCooperateWayMerits["+i+"].c2";
+			if (super.validateNotBlank(testValue, fieldName)) {
+				super.validateStringAsDouble(testValue, fieldName);
+			}
+			
+			testValue = merit.getC3();
+			fieldName = "qnrCooperateWayMerits["+i+"].c3";
+			if (super.validateNotBlank(testValue, fieldName)) {
+				super.validateStringAsDouble(testValue, fieldName);
+			}
+			
+			testValue = merit.getC4();
+			fieldName = "qnrCooperateWayMerits["+i+"].c4";
+			if (super.validateNotBlank(testValue, fieldName)) {
+				super.validateStringAsDouble(testValue, fieldName);
+			}
+			
+			testValue = merit.getC5();
+			fieldName = "qnrCooperateWayMerits["+i+"].c5";
+			if (super.validateNotBlank(testValue, fieldName)) {
+				super.validateStringAsDouble(testValue, fieldName);
+			}
+			
+			testValue = merit.getC6();
+			fieldName = "qnrCooperateWayMerits["+i+"].c6";
+			if (super.validateNotBlank(testValue, fieldName)) {
+				super.validateStringAsDouble(testValue, fieldName);
+			}
+			
+			testValue = merit.getC7();
+			fieldName = "qnrCooperateWayMerits["+i+"].c7";
+			if (super.validateNotBlank(testValue, fieldName)) {
+				super.validateStringAsDouble(testValue, fieldName);
+			}
+			
+			testValue = merit.getC8();
+			fieldName = "qnrCooperateWayMerits["+i+"].c8";
+			if (super.validateNotBlank(testValue, fieldName)) {
+				super.validateStringAsDouble(testValue, fieldName);
+			}
+		}
 	}
 	
 	public String fillInQnrPart4Submit() {
