@@ -55,11 +55,14 @@
 		<div class="LOGO">
 			<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
 		</div>
-<!-- 	    <div class="Link">
-	    	帳號<input name="" type="text">
-	    	密碼<input name="" type="text">
-	    	<a href="#" class="login">登入</a>
-	    </div> -->
+ 	    <div class="Link">
+ 	    	<s:if test="#session.sysUser == null">
+ 	    		<a href="<s:url value="/login/login"/>" class="login">登入</a>
+ 	    	</s:if>
+ 	    	<s:else>
+ 	    		<a href="<s:url value="/login/logout"/>" class="login">登出</a>
+ 	    	</s:else>
+	    </div>
 	</header>
 	<article>
    		<h1 class="pageTitle">
@@ -69,85 +72,97 @@
    		</h1>
     	<div class="leftMenu">
     		<div class="u-vmenu">
-    			<ul>
-					<li><a href="#">研發成果</a>
-						<ul>
-							<li><a href="<s:url value="/researchPlan/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/batchImport/init"/>">批次匯入</a></li>
-						</ul>
-					</li>    			
-					<li><a href="#">專利資料</a>
-						<ul>
-							<li><a href="<s:url value="/patent/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/patent/create"/>">新增</a></li>
-							<li><a href="<s:url value="/batchImport/init"/>">批次匯入</a></li>
-						</ul>
-					</li>
-					<li><a href="#">諮詢服務表</a>
-						<ul>
-							<li><a href="<s:url value="/consulting/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/consulting/create"/>">新增</a></li>
-						</ul>
-					</li>
-					<li><a href="#">企業需求單</a>
-						<ul>
-							<li><a href="<s:url value="/enterpriseNeed/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/enterpriseNeed/create"/>">新增</a></li>
-						</ul>
-					</li>					
-					<li hidden="hidden"><a href="#">問卷調查模板</a>
-						<ul>
-							<li><a href="<s:url value="/qnrTemplate/init"/>">編輯管理</a></li>
-							<li><a href="<s:url value="/qnrTemplate/create"/>">新增</a></li>
-						</ul>
-					</li>	
-					<li hidden="hidden"><a href="#">問卷</a>
-						<ul>
-							<s:iterator value="qnrTemplateList" status="stat">
-								<li>
-									<s:url value="/questionnaire/init" var="initUrlTag" escapeAmp="false">
-										<s:param name="qnrTableId" value="id" />
-										<s:param name="qnrTableName" value="tableName" />
-									</s:url>
-									<a href='<s:property value="initUrlTag" />'>
-										<s:property value="%{'維護 '+name}"/>
-									</a>
-								</li>
-								<li>	
-									<s:url value="/questionnaire/create" var="createUrlTag" escapeAmp="false">
-										<s:param name="qnrTableId" value="id" />
-										<s:param name="qnrTableName" value="tableName" />
-									</s:url>
-									<a href='<s:property value="createUrlTag" />'>
-										<s:property value="%{'填寫 '+name}"/>
-									</a>									
-								</li>	
-							</s:iterator>
-						</ul>
-					</li>
-					<li><a href=#>產學合作問卷</a>
-						<ul>
-							<li><a href="<s:url value="/qnrCooperateWay/index"/>">問卷管理</a></li>
-						</ul>
-					</li>
-					<li><a href="#">代碼管理</a>
-						<ul>
-					    	<li><a href="<s:url value="/option/country/index"/>">專利國別</a></li>
-					        <li><a href="<s:url value="/option/companyLocation/index"/>">公司地域別</a></li>
-					        <li><a href="<s:url value="/option/consult/index"/>">諮詢類型代</a></li>
-					        <li><a href="<s:url value="/option/cooperateMode/index"/>">合作模式</a></li>
-					        <li><a href="<s:url value="/option/grbDomain/index"/>">GRB領域別</a></li>
-					        <li><a href="<s:url value="/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
-					        <li><a href="<s:url value="/option/industry/index"/>">產業/領域別</a></li>	
-					        <li><a href="<s:url value="/option/industryForEnterprise/index"/>">企業需求單 產業類別</a></li>				        
-					        <li><a href="<s:url value="/option/organizationClass/index"/>">單位類別</a></li>
-					        <li><a href="<s:url value="/option/organizationType/index"/>">單位類型</a></li>
-					        <li><a href="<s:url value="/option/trl/index"/>">發展階段</a></li>
-					        <li><a href="<s:url value="/option/subject/index"/>">科技部學門</a></li>
-					        <li><a href="<s:url value="/option/school/index"/>">學校</a></li>
-						</ul>
-					</li>
-				</ul>
+    			<s:if test="#session.sysUser != null">
+	    			<ul>
+						<li hidden="hidden"><a href="#">問卷調查模板</a>
+							<ul>
+								<li><a href="<s:url value="/qnrTemplate/init"/>">編輯管理</a></li>
+								<li><a href="<s:url value="/qnrTemplate/create"/>">新增</a></li>
+							</ul>
+						</li>	
+						<li hidden="hidden"><a href="#">問卷</a>
+							<ul>
+								<s:iterator value="qnrTemplateList" status="stat">
+									<li>
+										<s:url value="/questionnaire/init" var="initUrlTag" escapeAmp="false">
+											<s:param name="qnrTableId" value="id" />
+											<s:param name="qnrTableName" value="tableName" />
+										</s:url>
+										<a href='<s:property value="initUrlTag" />'>
+											<s:property value="%{'維護 '+name}"/>
+										</a>
+									</li>
+									<li>	
+										<s:url value="/questionnaire/create" var="createUrlTag" escapeAmp="false">
+											<s:param name="qnrTableId" value="id" />
+											<s:param name="qnrTableName" value="tableName" />
+										</s:url>
+										<a href='<s:property value="createUrlTag" />'>
+											<s:property value="%{'填寫 '+name}"/>
+										</a>									
+									</li>	
+								</s:iterator>
+							</ul>
+						</li>
+						<li><a href=#>產學合作問卷</a>
+							<ul>
+								<li><a href="<s:url value="/qnrCooperateWay/index"/>">問卷管理</a></li>
+							</ul>
+						</li>
+	    				<s:if test="#session.sysUser.sysRole.name == '系統開發人員' || #session.sysUser.sysRole.name == '系統管理員'">
+						<li><a href="#">研發成果</a>
+							<ul>
+								<li><a href="<s:url value="/researchPlan/init"/>">編輯管理</a></li>
+								<li><a href="<s:url value="/batchImport/init"/>">批次匯入</a></li>
+							</ul>
+						</li>
+						<li><a href="#">專利資料</a>
+							<ul>
+								<li><a href="<s:url value="/patent/init"/>">編輯管理</a></li>
+								<li><a href="<s:url value="/patent/create"/>">新增</a></li>
+								<li><a href="<s:url value="/batchImport/init"/>">批次匯入</a></li>
+							</ul>
+						</li>
+						<li><a href="#">諮詢服務表</a>
+							<ul>
+								<li><a href="<s:url value="/consulting/init"/>">編輯管理</a></li>
+								<li><a href="<s:url value="/consulting/create"/>">新增</a></li>
+							</ul>
+						</li>
+						<li><a href="#">企業需求單</a>
+							<ul>
+								<li><a href="<s:url value="/enterpriseNeed/init"/>">編輯管理</a></li>
+								<li><a href="<s:url value="/enterpriseNeed/create"/>">新增</a></li>
+							</ul>
+						</li>
+										
+						<li><a href="#">代碼管理</a>
+							<ul>
+						    	<li><a href="<s:url value="/option/country/index"/>">專利國別</a></li>
+						        <li><a href="<s:url value="/option/companyLocation/index"/>">公司地域別</a></li>
+						        <li><a href="<s:url value="/option/consult/index"/>">諮詢類型代</a></li>
+						        <li><a href="<s:url value="/option/cooperateMode/index"/>">合作模式</a></li>
+						        <li><a href="<s:url value="/option/grbDomain/index"/>">GRB領域別</a></li>
+						        <li><a href="<s:url value="/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
+						        <li><a href="<s:url value="/option/industry/index"/>">產業/領域別</a></li>	
+						        <li><a href="<s:url value="/option/industryForEnterprise/index"/>">企業需求單 產業類別</a></li>				        
+						        <li><a href="<s:url value="/option/organizationClass/index"/>">單位類別</a></li>
+						        <li><a href="<s:url value="/option/organizationType/index"/>">單位類型</a></li>
+						        <li><a href="<s:url value="/option/trl/index"/>">發展階段</a></li>
+						        <li><a href="<s:url value="/option/subject/index"/>">科技部學門</a></li>
+						        <li><a href="<s:url value="/option/school/index"/>">學校</a></li>
+							</ul>
+						</li>
+						<li><a href="#">系統管理</a>
+							<ul>
+								<li><a href="<s:url value="/sysUser/init"/>">系統使用者</a></li>
+<%-- 								<li><a href="<s:url value="/sysRole/init"/>">系統角色 </a></li> --%>
+<%-- 								<li><a href="<s:url value="/sysFunction/init"/>">系統功能 </a></li> --%>
+							</ul>
+						</li>
+						</s:if>
+					</ul>
+				</s:if>
     		</div>
 
     	</div>

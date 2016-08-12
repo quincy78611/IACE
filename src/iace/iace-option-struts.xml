@@ -8,7 +8,9 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
 	
-	<package name="OptionCompanyLocation" namespace="/option/companyLocation" extends="struts-default">
+	<package name="OptionCompanyLocation" namespace="/option/companyLocation" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+	
 		<action name="index" class="iace.action.OptionCompanyLocationAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/companyLocation/index.jsp</result>
 		</action>
@@ -35,7 +37,8 @@
 		</action>
 	</package>
 	
-	<package name="OptionConsult" namespace="/option/consult" extends="struts-default">
+	<package name="OptionConsult" namespace="/option/consult" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionConsultAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/consult/index.jsp</result>
 		</action>
@@ -62,7 +65,8 @@
 		</action>
 	</package>
 
-	<package name="OptionCooperateMode" namespace="/option/cooperateMode" extends="struts-default">
+	<package name="OptionCooperateMode" namespace="/option/cooperateMode" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionCooperateModeAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/cooperateMode/index.jsp</result>
 		</action>
@@ -89,7 +93,8 @@
 		</action>
 	</package>
 		
-	<package name="OptionCountry" namespace="/option/country" extends="struts-default">
+	<package name="OptionCountry" namespace="/option/country" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionCountryAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/country/index.jsp</result>
 		</action>
@@ -116,7 +121,8 @@
 		</action>
 	</package>	
 	
-	<package name="OptionGrbDomain" namespace="/option/grbDomain" extends="struts-default">
+	<package name="OptionGrbDomain" namespace="/option/grbDomain" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionGrbDomainAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/grbDomain/index.jsp</result>
 		</action>
@@ -143,7 +149,8 @@
 		</action>
 	</package>
 
-	<package name="OptionHadTecSrc" namespace="/option/hadTecSrc" extends="struts-default">
+	<package name="OptionHadTecSrc" namespace="/option/hadTecSrc" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>		
 		<action name="index" class="iace.action.OptionHadTecSrcAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/hadTecSrc/index.jsp</result>
 		</action>
@@ -170,7 +177,8 @@
 		</action>
 	</package>
 	
-	<package name="OptionIndustryAction" namespace="/option/industry" extends="struts-default">
+	<package name="OptionIndustryAction" namespace="/option/industry" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionIndustryAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/industry/index.jsp</result>
 		</action>
@@ -197,7 +205,8 @@
 		</action>
 	</package>
 
-	<package name="OptionIndustryForEnterpriseAction" namespace="/option/industryForEnterprise" extends="struts-default">
+	<package name="OptionIndustryForEnterpriseAction" namespace="/option/industryForEnterprise" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionIndustryForEnterpriseAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/industryForEnterprise/index.jsp</result>
 		</action>
@@ -224,7 +233,8 @@
 		</action>
 	</package>	
 	
-	<package name="OptionOrganizationClass" namespace="/option/organizationClass" extends="struts-default">
+	<package name="OptionOrganizationClass" namespace="/option/organizationClass" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionOrganizationClassAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/organizationClass/index.jsp</result>
 		</action>
@@ -251,7 +261,8 @@
 		</action>
 	</package>	
 	
-	<package name="OptionOrganizationType" namespace="/option/organizationType" extends="struts-default">
+	<package name="OptionOrganizationType" namespace="/option/organizationType" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionOrganizationTypeAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/organizationType/index.jsp</result>
 		</action>
@@ -278,7 +289,8 @@
 		</action>
 	</package>
 
-	<package name="OptionSubject" namespace="/option/subject" extends="json-default">
+	<package name="OptionSubject" namespace="/option/subject" extends="struts-default, default, json-default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionSubjectAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/subject/index.jsp</result>
 		</action>
@@ -311,7 +323,8 @@
 		</action>		
 	</package>
 	
-	<package name="OptionTrl" namespace="/option/trl" extends="struts-default">
+	<package name="OptionTrl" namespace="/option/trl" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionTrlAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/trl/index.jsp</result>
 		</action>
@@ -338,7 +351,8 @@
 		</action>
 	</package>
 	
-	<package name="School" namespace="/option/school" extends="struts-default">
+	<package name="School" namespace="/option/school" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionSchoolAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>

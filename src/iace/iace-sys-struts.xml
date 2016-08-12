@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	
+	<package name="sysFunction" namespace="/sysFunction" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.SysFunctionAction" method="init">
+			<result>/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
+		</action>	
+		<action name="index" class="iace.action.SysFunctionAction" method="index">
+			<result name="input">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>			
+		</action>
+		<action name="create" class="iace.action.SysFunctionAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/sysFunction/create.jsp</result>	
+		</action>
+		<action name="createSubmit" class="iace.action.SysFunctionAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/sysFunction/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
+		</action>
+		<action name="update" class="iace.action.SysFunctionAction" method="update">
+			<result name="input">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysFunction/update.jsp</result>		
+		</action>
+		<action name="updateSubmit" class="iace.action.SysFunctionAction" method="updateSubmit">		
+			<result name="input">/WEB-INF/jsp/backend/sysFunction/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
+		</action>		
+	</package>
+	
+	<package name="sysRole" namespace="/sysRole" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.SysRoleAction" method="init">
+			<result>/WEB-INF/jsp/backend/sysRole/index.jsp</result>
+		</action>	
+		<action name="index" class="iace.action.SysRoleAction" method="index">
+			<result name="input">/WEB-INF/jsp/backend/sysRole/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysRole/index.jsp</result>			
+		</action>
+		<action name="create" class="iace.action.SysRoleAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/sysRole/create.jsp</result>	
+		</action>
+		<action name="createSubmit" class="iace.action.SysRoleAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/sysRole/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysRole/index.jsp</result>
+		</action>
+		<action name="update" class="iace.action.SysRoleAction" method="update">
+			<result name="input">/WEB-INF/jsp/backend/sysRole/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysRole/update.jsp</result>		
+		</action>
+		<action name="updateSubmit" class="iace.action.SysRoleAction" method="updateSubmit">		
+			<result name="input">/WEB-INF/jsp/backend/sysRole/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysRole/index.jsp</result>
+		</action>		
+	</package>
+	
+	<package name="sysUser" namespace="/sysUser" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.SysUserAction" method="init">
+			<result>/WEB-INF/jsp/backend/sysUser/index.jsp</result>
+		</action>	
+		<action name="index" class="iace.action.SysUserAction" method="index">
+			<result name="input">/WEB-INF/jsp/backend/sysUser/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysUser/index.jsp</result>			
+		</action>
+		<action name="create" class="iace.action.SysUserAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/sysUser/create.jsp</result>	
+		</action>
+		<action name="createSubmit" class="iace.action.SysUserAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/sysUser/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysUser/index.jsp</result>
+		</action>
+		<action name="update" class="iace.action.SysUserAction" method="update">
+			<result name="input">/WEB-INF/jsp/backend/sysUser/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysUser/update.jsp</result>		
+		</action>
+		<action name="updateSubmit" class="iace.action.SysUserAction" method="updateSubmit">		
+			<result name="input">/WEB-INF/jsp/backend/sysUser/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysUser/index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="login" namespace="/login" extends="struts-default">
+		<action name="login" class="iace.action.SysUserAction" method="login">
+			<result>/WEB-INF/jsp/login.jsp</result>
+		</action>
+		<action name="loginSubmit" class="iace.action.SysUserAction" method="loginSubmit">
+			<result name="input">/WEB-INF/jsp/login.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/home/index.jsp</result>
+		</action>
+		<action name="logout" class="iace.action.SysUserAction"	method="logout">
+			<result name="success">/WEB-INF/jsp/login.jsp</result>
+		</action>	
+	</package>
+	
+</struts>

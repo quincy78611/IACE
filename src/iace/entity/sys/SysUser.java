@@ -1,12 +1,19 @@
-package iace.entity;
+package iace.entity.sys;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.apache.commons.lang3.StringUtils;
+
+import iace.entity.BaseEntity;
 
 @Entity
 @Table(name = "SYS_USER")
@@ -18,6 +25,7 @@ public class SysUser extends BaseEntity {
 	private String account;
 	private String password;
 	private String name;
+	private SysRole sysRole;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -58,14 +66,37 @@ public class SysUser extends BaseEntity {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "\"SysUser\" : {\"id\"=\"" + id + "\", \"account\"=\"" + account + "\", \"password\"=\"" + password
-				+ "\", \"name\"=\"" + name + "\",  " + super.toString() + "}";
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="SYS_ROLE_ID", referencedColumnName= "ID")
+	public SysRole getSysRole() {
+		return sysRole;
 	}
 
-	
-	
+	public void setSysRole(SysRole sysRole) {
+		this.sysRole = sysRole;
+	}
+
+	public boolean hasAuth(String namespace, String actionName) {
+		for (SysAuth auth : this.sysRole.getAuthList()) {
+			SysFunction action = auth.getSysFunction();
+			if (auth.getEnable() &&
+				StringUtils.equals(action.getNamespace(), namespace) && 
+				action.hasActionName(actionName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean hasNamespace(String namespace) {
+		for (SysAuth auth : this.sysRole.getAuthList()) {
+			SysFunction action = auth.getSysFunction();
+			if (auth.getEnable() && StringUtils.equals(action.getNamespace(), namespace)) {
+				return true;
+			}			
+		}
+		return false;
+	}
 	
 
 }

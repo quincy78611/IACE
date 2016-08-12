@@ -10,6 +10,10 @@ public class ServiceFactory {
 	
 	protected static Logger log = LogManager.getLogger(ServiceFactory.class);
 	
+	private static SysFunctionService sysFunctionService;
+	private static SysRoleService sysRoleService;
+	private static SysUserService sysUserService;
+	
 	private static OptionCompanyLocationService optionCompanyLocationService;
 	private static OptionConsultService optionConsultService;
 	private static OptionCooperateModeService optionCooperateModeService;
@@ -42,6 +46,29 @@ public class ServiceFactory {
 	private static QnrCooperateWayService qnrCooperateWayService;
 	private static QnrCooperateWayMeritService qnrCooperateWayMeritService;
 	private static QnrCooperateWayExcelService qnrCooperateWayExcelService;
+	
+	public static SysFunctionService getSysFunctionService() {
+		if (sysFunctionService == null) {
+			sysFunctionService = new SysFunctionService(DaoFactory.getSysFunctionDao());
+		}
+		return sysFunctionService;
+	}
+	
+	public static SysRoleService getSysRoleService() {
+		if (sysRoleService == null) {
+			sysRoleService = new SysRoleService(
+					DaoFactory.getSysRoleDao(), 
+					DaoFactory.getSysFunctionDao());
+		}
+		return sysRoleService;
+	}
+	
+	public static SysUserService getSysUserService() {
+		if (sysUserService == null) {
+			sysUserService = new SysUserService(DaoFactory.getSysUserDao());
+		}
+		return sysUserService;
+	}
 	
 	public static OptionCompanyLocationService getOptionCompanyLocationService() {
 		if (optionCompanyLocationService == null) {

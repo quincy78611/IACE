@@ -11,8 +11,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import iace.entity.SysRole;
-import iace.entity.SysUser;
 import iace.entity.consulting.Consulting;
 import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
@@ -39,6 +37,10 @@ import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.Technology;
+import iace.entity.sys.SysFunction;
+import iace.entity.sys.SysAuth;
+import iace.entity.sys.SysRole;
+import iace.entity.sys.SysUser;
 
 
 public class HibernateSessionFactory {
@@ -160,8 +162,6 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(Patent.class);
     	configuration.addAnnotatedClass(ResearchPlan.class);
     	configuration.addAnnotatedClass(Technology.class);
-    	configuration.addAnnotatedClass(SysRole.class);
-    	configuration.addAnnotatedClass(SysUser.class);
     	configuration.addAnnotatedClass(TechField.class);
     	configuration.addAnnotatedClass(Consulting.class);
     	
@@ -169,5 +169,11 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(QnrTableColumn.class);
     	configuration.addAnnotatedClass(QnrCooperateWay.class);
     	configuration.addAnnotatedClass(QnrCooperateWayMerit.class);
+    	
+    	configuration.addAnnotatedClass(SysUser.class);
+    	configuration.addAnnotatedClass(SysRole.class);
+    	configuration.addAnnotatedClass(SysAuth.class);
+    	configuration.addAnnotatedClass(SysFunction.class);
+    	
     }
 }

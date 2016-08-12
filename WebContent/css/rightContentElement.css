@@ -31,6 +31,7 @@
 .rightContent li input[type=search],
 .rightContent li input[type=tel],
 .rightContent li input[type=text],
+.rightContent li input[type=password],
 .rightContent li textarea { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.91em; font-family:"·L³n¥¿¶ÂÅé";}
 .rightContent li input[type=checkbox] { margin-right:8px; }
 

@@ -2,9 +2,11 @@
 <decorators>
     <decorator name="basic-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend.jsp">
     	<pattern>/WEB-INF/jsp/backend/*</pattern>
+    	<pattern>/WEB-INF/jsp/login.jsp</pattern>
     </decorator>
     
     <decorator name="qnr-theme" page="/WEB-INF/jsp/decorators/iace_theme_qnr.jsp">
         <pattern>/WEB-INF/jsp/qnr/*</pattern>
+        <pattern>/WEB-INF/jsp/error.jsp</pattern>
     </decorator>    
 </decorators>

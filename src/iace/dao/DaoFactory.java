@@ -43,6 +43,12 @@ import iace.dao.researchPlan.IResearchPlanDao;
 import iace.dao.researchPlan.ITechnologyDao;
 import iace.dao.researchPlan.ResearchPlanDao;
 import iace.dao.researchPlan.TechnologyDao;
+import iace.dao.sys.ISysFunctionDao;
+import iace.dao.sys.ISysRoleDao;
+import iace.dao.sys.ISysUserDao;
+import iace.dao.sys.SysFunctionDao;
+import iace.dao.sys.SysRoleDao;
+import iace.dao.sys.SysUserDao;
 import iace.dao.techField.ITechFieldDao;
 import iace.dao.techField.TechFieldDao;
 import iace.entity.option.OptionCompanyLocation;
@@ -59,6 +65,10 @@ import iace.entity.option.OptionTrl;
 
 public class DaoFactory {
 	protected static Logger log = LogManager.getLogger(DaoFactory.class);
+	
+	private static ISysFunctionDao sysFunctionDao;
+	private static ISysRoleDao sysRoleDao;
+	private static ISysUserDao sysUserDao;
 	
 	private static IOptionDao<OptionCompanyLocation> optionCompanyLocationDao;
 	private static IOptionDao<OptionConsult> optionConsultDao;
@@ -88,6 +98,27 @@ public class DaoFactory {
 	private static IQnrDao qnrDao;
 	private static IQnrCooperateWayDao qnrCooperateWayDao;
 	private static IQnrCooperateWayMeritDao qnrCooperateWayMeritDao;
+	
+	public static ISysFunctionDao getSysFunctionDao() {
+		if (sysFunctionDao == null) {
+			sysFunctionDao = new SysFunctionDao();
+		}
+		return sysFunctionDao;
+	}
+	
+	public static ISysRoleDao getSysRoleDao() {
+		if (sysRoleDao == null) {
+			sysRoleDao = new SysRoleDao();
+		}
+		return sysRoleDao;
+	}
+	
+	public static ISysUserDao getSysUserDao() {
+		if (sysUserDao == null) {
+			sysUserDao = new SysUserDao();
+		}
+		return sysUserDao;
+	}
 	
 	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {
 		if (optionCompanyLocationDao == null) {

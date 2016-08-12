@@ -8,18 +8,18 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
 	
-	<package name="ResearchPlan" namespace="/researchPlan" extends="struts-default">
+
+	
+	<package name="ResearchPlan" namespace="/researchPlan" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+			
 		<action name="init" class="iace.action.ResearchPlanAction" method="init">
-			<result>/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
+			<result>/WEB-INF/jsp/backend/researchPlan/index.jsp</result>			
 		</action>	
 		<action name="index" class="iace.action.ResearchPlanAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
 			<result name="input">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
 		</action>
-		<action name="showDetail" class="iace.action.ResearchPlanAction" method="showDetail">
-			<result name="input">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend/researchPlan/detail.jsp</result>		
-		</action>			
 		<action name="update" class="iace.action.ResearchPlanAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>		
@@ -45,7 +45,8 @@
 		</action>	
 	</package>
 	
-	<package name="Patent" namespace="/patent" extends="struts-default">
+	<package name="Patent" namespace="/patent" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.PatentAction" method="init">
 			<result>/WEB-INF/jsp/backend/patent/index.jsp</result>
 		</action>	
@@ -97,7 +98,8 @@
 		</action>			
 	</package>
 	
-	<package name="consulting" namespace="/consulting" extends="struts-default">
+	<package name="consulting" namespace="/consulting" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.ConsultingAction" method="init">
 			<result>/WEB-INF/jsp/backend/consulting/index.jsp</result>
 		</action>	
@@ -135,11 +137,13 @@
 		</action>		
 	</package>
 	
-	<package name="batchImport" namespace="/batchImport" extends="struts-default">
+	<package name="batchImport" namespace="/batchImport" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.BatchImportAction">
 			<result>/WEB-INF/jsp/backend/batchImport/index.jsp</result>
 		</action>
 		<action name="batchImportResearchPlan" class="iace.action.BatchImportAction" method="batchImportResearchPlan">
+			<interceptor-ref name="iaceBackEnd"/>
 		    <interceptor-ref name="fileUpload">                
 <!--                 <param name="allowedTypes"> -->
 <!--                 	application/ms-excel, -->
@@ -161,6 +165,7 @@
 			</result>	
 		</action>
 		<action name="batchImportPatent" class="iace.action.BatchImportAction" method="batchImportPatent">
+			<interceptor-ref name="iaceBackEnd"/>
 		    <interceptor-ref name="fileUpload">                
 <!--                 <param name="allowedTypes"> -->
 <!--                 	application/ms-excel, -->
@@ -183,7 +188,8 @@
 		</action>		
 	</package>
 	
-	<package name="qnrTemplate" namespace="/qnrTemplate" extends="struts-default,json-default">
+	<package name="qnrTemplate" namespace="/qnrTemplate" extends="struts-default,json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.QnrTemplateAction" method="init">
 			<result>/WEB-INF/jsp/backend/qnrTemplate/index.jsp</result>
 		</action>
@@ -232,7 +238,8 @@
 		</action>
 	</package>
 	
-	<package name="questionnaire" namespace="/questionnaire" extends="struts-default">
+	<package name="questionnaire" namespace="/questionnaire" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.QnrAction" method="init">
 			<result name="success">/WEB-INF/jsp/backend/qnr/index.jsp</result>	
 		</action>		
@@ -252,11 +259,13 @@
 		</action>
 	</package>
 	
-	<package name="QnrCooperateWay" namespace="/qnrCooperateWay" extends="struts-default,json-default">
+	<package name="QnrCooperateWay" namespace="/qnrCooperateWay" extends="struts-default, json-default, default">
 		<action name="index" class="iace.action.QnrCooperateWayAction" method="index">
+			<interceptor-ref name="iaceBackEnd"/>
 			<result>/WEB-INF/jsp/backend/qnrCooperateWay/index.jsp</result>
 		</action>
 		<action name="downloadQnrLinksExcel" class="iace.action.QnrCooperateWayAction" method="downloadQnrLinksExcel">
+			<interceptor-ref name="iaceBackEnd"/>
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">qrnExcelFileInputStream</param>
@@ -265,6 +274,7 @@
 			</result>	
 		</action>
 		<action name="downloadUnfillQnrLinksExcel" class="iace.action.QnrCooperateWayAction" method="downloadUnfillQnrLinksExcel">
+			<interceptor-ref name="iaceBackEnd"/>
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">qrnExcelFileInputStream</param>
@@ -273,6 +283,7 @@
 			</result>
 		</action>
 		<action name="downloadQnrResultExcel" class="iace.action.QnrCooperateWayAction" method="downloadQnrResultExcel">
+			<interceptor-ref name="iaceBackEnd"/>
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">qrnExcelFileInputStream</param>
@@ -297,7 +308,8 @@
 		</action>		
 	</package>
 	
-	<package name="EnterpriseNeed" namespace="/enterpriseNeed" extends="struts-default,json-default">
+	<package name="EnterpriseNeed" namespace="/enterpriseNeed" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.EnterpriseNeedAction" method="init">
 			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/index.jsp</result>
 		</action>
