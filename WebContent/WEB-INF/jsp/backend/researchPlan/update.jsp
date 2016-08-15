@@ -67,8 +67,8 @@
 <body>
 	<h2 class="itemTitle">編輯管理 > 編輯</h2>
 	<div id="div-researchPlan">
+		<h2 class="itemTitle Down">研究計畫資料</h2>
 		<ul>
-
 			<li class="all">
 				<b>計畫名稱</b>
 				<div>
@@ -123,7 +123,7 @@
 			</li>
 		</ul>
 	</div>
-	<div class="clear"></div>		
+	<div class="clear"><hr></div>		
 	<div id="div-technologhList">
 		<h2 class="itemTitle Down">研發成果列表</h2>
 		<table id="rndResultsTable" width="100%">

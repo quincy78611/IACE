@@ -65,11 +65,14 @@
 	    </div>
 	</header>
 	<article>
-   		<h1 class="pageTitle">
+		<div class="pageTitle">
    			<s:if test="%{title != null && title != ''}">
-   				<s:property value="title" />
+   				<h1 class="funcTitle"><s:property value="title" /></h1>
    			</s:if>
-   		</h1>
+   			<s:if test="%{funcPath != null && funcPath != ''}">
+   				<h4 class="funcPath"><s:property value="funcPath" /></h4>
+   			</s:if>
+		</div>
     	<div class="leftMenu">
     		<div class="u-vmenu">
     			<s:if test="#session.sysUser != null">
@@ -192,6 +195,13 @@
 				網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 
 				請用Google Chrome 或 IE 9.0 以上版本瀏覽最佳觀看解析度1200x800
 			</div>
+			<div  id="twcaseal" class="ssl-logo MEDIUM">
+				<img src="<s:url value="/images/TWCA-SSL-LOGO-MEDIUM.gif"/>" >
+			</div>
+			<script type="text/javascript" charset="utf-8" >
+				var twca_cn="iace.stpi.narl.org.tw";
+			</script>
+			<script type="text/javascript" src="//ssllogo.twca.com.tw/twcaseal_v3.js"charset="utf-8"></script> 
 		</div>
 	</footer>
 </body>

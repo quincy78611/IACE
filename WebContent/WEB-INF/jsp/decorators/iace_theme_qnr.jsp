@@ -50,11 +50,12 @@
 		</div>
 	</header>
 	<article>
-   		<h1 class="pageTitle">
+		<div class="pageTitle">   		
    			<s:if test="%{title != null && title != ''}">
-   				<s:property value="title" />
-   			</s:if>
-   		</h1>  
+   				<h1><s:property value="title" /></h1>
+   			</s:if>   		 
+		</div>
+ 
     	<div class="rightContent">
     		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
 			<div id="div-top-message">
@@ -72,10 +73,18 @@
 	<footer>
 		<div class="con">
 			<div class="contact">
-				科技部鏈結產學合作計畫辦公室 / 服務專線：02-27377373 / 聯絡地址：台北市和平東路二段106號 / 
+				科技部鏈結產學合作計畫辦公室 / 服務專線：02-27377373 / 聯絡地址：台北市和平東路二段106號 / <br>
 				網站維護：財團法人國家實驗研究院科技政策研究與資訊中心<br> 
 				請用Google Chrome 或 IE 9.0 以上版本瀏覽最佳觀看解析度1200x800
 			</div>
+			<div  id="twcaseal" class="ssl-logo MEDIUM">
+				<img src="<s:url value="/images/TWCA-SSL-LOGO-MEDIUM.gif"/>" >
+			</div>
+			<script type="text/javascript" charset="utf-8" >
+				var twca_cn="iace.stpi.narl.org.tw";
+			</script>
+			<script type="text/javascript" src="//ssllogo.twca.com.tw/twcaseal_v3.js"charset="utf-8"></script> 
+			
 		</div>
 	</footer>
 </body>
