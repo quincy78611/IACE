@@ -11,7 +11,6 @@ public class BaseIaceAction extends BaseAction {
 	private static final long serialVersionUID = 1771742807180192593L;
 	
 	private String title;
-	private String funcPath;
 
 	// =========================================================================
 
@@ -21,14 +20,6 @@ public class BaseIaceAction extends BaseAction {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getFuncPath() {
-		return funcPath;
-	}
-
-	public void setFuncPath(String funcPath) {
-		this.funcPath = funcPath;
 	}
 
 	public List<QnrTable> getQnrTemplateList() {

@@ -62,6 +62,8 @@ header .LOGO { position: absolute; top:25px; left:2px;}
 header .Link { position:absolute; top:76px; right:19px;}
 header .Link a { font-size:0.87em; display:inline-block;}
 header .Link input[type=text] { margin:0 15px 0 5px; border:#CCC 1px solid; font-size:1em; padding: 7px 5px;}
+header a.login { color:#fff; padding:10px 20px; background:#8e3022; display:inline-block; font-size:15px; text-decoration:none;}
+header a.login:hover { background:#666;}
 
 div.pageTitle { background:url(../images/h1BG.gif) no-repeat left center; padding: 0 0 0 220px; height:78px; line-height:85px; letter-spacing:2px; }
 div.pageTitle h1.funcTitle { font-size:1.5em; color:#044470; font-weight:bold; display:inline;}

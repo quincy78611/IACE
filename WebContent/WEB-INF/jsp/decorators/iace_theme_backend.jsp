@@ -69,9 +69,9 @@
    			<s:if test="%{title != null && title != ''}">
    				<h1 class="funcTitle"><s:property value="title" /></h1>
    			</s:if>
-   			<s:if test="%{funcPath != null && funcPath != ''}">
-   				<h4 class="funcPath"><s:property value="funcPath" /></h4>
-   			</s:if>
+   			<h4 class="funcPath">
+   				
+   			</h4>
 		</div>
     	<div class="leftMenu">
     		<div class="u-vmenu">
@@ -179,7 +179,7 @@
 				</s:if>
 				<s:if test="hasActionErrors()">
 					<s:actionerror />
-				</s:if>			
+				</s:if>
 			</div>
 			<decorator:body />
     	</div>
