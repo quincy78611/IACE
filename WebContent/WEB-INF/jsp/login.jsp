@@ -8,7 +8,7 @@
 </head>
 <body>
     <h2 class="itemTitle">登入後台管理系統</h2>
-    <s:form action="loginSubmit" method="post" validate="true" >
+    <s:form namespace="/login" action="loginSubmit" method="post" validate="true" >
 		<ul>
 			<li class="half">
 				<b>帳號</b>
