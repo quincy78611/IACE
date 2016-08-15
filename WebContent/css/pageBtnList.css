@@ -1,7 +1,9 @@
 /*--PAGE LIST--*/
-.page { font-size:15px; color:#888; width:100%; height:35px; margin-bottom:40px;}
-.page ul { float:left;}
-.page li { margin:0 2px; display:inline-block; float:left;}
-.page li input[type='submit'] 		 { background: #ffffff; color:#074e7f; text-align:center; padding:5px 10px; border:none;}
+.page { font-size:15px; color:#888; background: #89cdeb; width:100%; }
+.page ul { float:left; margin-bottom:5px;}
+.page li { margin:0 2px; display:inline-block; float:left; font-size:15px; }
+.page li input[type='submit'] { background: #ffffff; color:#074e7f; text-align:center; padding:5px 5px; border:none;}
+.page li input[type='submit']:hover { color:#890107; }
 .page li input[type='submit'].active { background: #074e7f; color:#FFF;}
-.page li input[type='submit']:hover { color:#890107; text-decoration:none; }
+.page li input[type='submit'].active:hover { background: #890107; color:#FFF;}
+.page li select { padding: 2px 3px; }

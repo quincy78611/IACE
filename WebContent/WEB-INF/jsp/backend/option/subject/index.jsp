@@ -86,7 +86,7 @@
 </script>
 </head>
 <body>
-	<s:form action="search" method="post" validate="true" >
+	<s:form action="index" method="post" validate="true" >
 		<ul>
 			<li class="quarter">
 				<s:select name="searchLv1Code" list="optionSubjectLv1List" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部"/>

@@ -59,6 +59,15 @@
 				return false;
 			}
 		});
+		
+		// 每頁筆數
+		$(".select-pageSize").change(function() {
+			var pageSize = $(this).find(":checked").val();
+			$("#pageSize").val(pageSize);
+			$("#pageIndex").val(0);
+			$("form").submit();
+		});
+		$(".select-pageSize").val($("#pageSize").val());		
 					
 		// 注意: 在此頁面的搜尋按鈕記得要加上id
 	    $("#btn-search").click(function(){
@@ -113,9 +122,47 @@
 				<input type="button" class="redBtn btn-create" value="新增代碼"  />
 			</li>
 		</ul>
-		
-		<div class="clear"></div>
-		<br>
+
+		<div class="page">
+			<s:set var="pgList" value="optionPagedList"/>
+			<s:set var="pgIndex" value="searchCondition.pageIndex"/>
+			<s:set var="pgCount" value="#pgList.pageCount"/>
+			
+			<ul class="pagination">
+				<s:if test="#pgList != null && #pgCount > 0">					
+					<li><input type="submit" value="First" class="btn-first-page" /></li>
+					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
+					<s:if test="#pgIndex >= 5">
+						<li>......</li>
+					</s:if>
+					<s:iterator value="#pgList.pageNumberList" status="stat" 
+						begin="%{#pgIndex < 5 ? 0 : #pgIndex - 5 }"
+						end="%{#pgIndex > #pgCount - 6 ? #pgCount -1 : #pgIndex +5 }">
+						<li><input type="submit" value=<s:property/> class="btn-page" /></li>
+					</s:iterator>
+					<s:if test="#pgIndex <= #pgCount - 6">
+						<li>......</li>
+					</s:if>
+					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
+					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>					
+				</s:if>
+				<li>
+					<p>共 <s:property value="#pgList.totatlItemCount"/> 筆資料</p>
+				</li>
+				<li>
+					&nbsp;&nbsp;&nbsp;每頁筆數:
+				</li>
+				<li>
+					<select class="select-pageSize">
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="20">20</option>
+						<option value="50">50</option>
+					</select>
+				</li>				
+			</ul>
+		</div>
+
 		<table width="100%">
 			<tr>
 				<th width="2%" nowrap>No.</th>
@@ -180,6 +227,17 @@
 				<li>
 					<p>共 <s:property value="#pgList.totatlItemCount"/> 筆資料</p>
 				</li>
+				<li>
+					&nbsp;&nbsp;&nbsp;每頁筆數:
+				</li>
+				<li>
+					<select class="select-pageSize">
+						<option value="5">5</option>
+						<option value="10">10</option>
+						<option value="20">20</option>
+						<option value="50">50</option>
+					</select>
+				</li>				
 			</ul>
 		</div>
 	</s:form>		
