@@ -7,7 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
-import iace.interceptor.LoginInterceptor;
+import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
 import iace.service.SysRoleService;
 import iace.service.SysUserService;
@@ -108,7 +108,7 @@ public class SysUserAction extends BaseIaceAction implements SessionAware {
 				this.sysUser = this.sysUserService.getBy(this.sysUser.getAccount(), this.sysUser.getPassword());
 //				ActionContext actionContext = ActionContext.getContext();
 //				actionContext.getSession().put(LoginInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
-				this.userSession.put(LoginInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
+				this.userSession.put(SessionInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
 				
 				return SUCCESS;
 			} else {
