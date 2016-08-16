@@ -177,7 +177,7 @@
 					<th nowrap width="5%">主持人</th>
 					<th nowrap width="10%">研究領域</th>
 					<th nowrap width="10%">計畫發展階段</th>
-					<th nowrap width="10%">GRB計畫編號</th>
+					<th nowrap width="10%">GRB系統編號</th>
 					<th nowrap width="5%">成果報告</th>
 					<th nowrap width="5%">功能</th>
 				</tr>

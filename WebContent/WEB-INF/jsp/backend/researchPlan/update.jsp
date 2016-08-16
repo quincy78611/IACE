@@ -94,7 +94,7 @@
 				</div>
 			</li>
 			<li class="quarter">
-				<b>GRB計畫編號</b>
+				<b>GRB系統編號</b>
 				<div>
 					<s:property value="researchPlan.projkey" />
 				</div>
