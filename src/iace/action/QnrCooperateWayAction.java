@@ -236,7 +236,12 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		boolean isAllValid = true;
 		if (this.qnrCoopereateWay.getAggreePDPL()) {
 			isAllValid = super.validateNotBlankNLength(this.qnrCoopereateWay.getName(), 20, "qnrCoopereateWay.name") && isAllValid;
-			isAllValid = super.validateNotBlankNLength(this.qnrCoopereateWay.getApplicantId(), 20, "qnrCoopereateWay.applicantId") && isAllValid;
+			if (super.validateNotBlankNLength(this.qnrCoopereateWay.getApplicantId(), 20, "qnrCoopereateWay.applicantId")) {
+				isAllValid = super.validateTWPID(this.qnrCoopereateWay.getApplicantId(), "qnrCoopereateWay.applicantId") && isAllValid;
+			} else {
+				isAllValid = false;
+			}
+			
 			if (super.validateNotBlankNLength(this.qnrCoopereateWay.getEmail(), 100, "qnrCoopereateWay.email")) {
 				isAllValid = super.validateEmail(this.qnrCoopereateWay.getEmail(), "qnrCoopereateWay.email") && isAllValid;
 			} else {
@@ -250,6 +255,8 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		}
 	}
 
+	// =========================================================================
+	
 	public long getSchoolId() {
 		return schoolId;
 	}

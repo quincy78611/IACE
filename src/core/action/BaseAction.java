@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import core.util.Validator;
+
 public abstract class BaseAction extends ActionSupport {
 
 	/**
@@ -98,6 +100,18 @@ public abstract class BaseAction extends ActionSupport {
 
 	protected boolean validateEmail(CharSequence testValue, String fieldName) {
 		return validateEmail(testValue, fieldName, "必須是email格式");
+	}
+	
+	protected boolean validateTWPID(CharSequence testValue, String fieldName, String errMsg) {
+		boolean isValid = Validator.isValidTWPID((String) testValue);
+		if (isValid == false) {
+			this.addFieldError(fieldName, errMsg);
+		}
+		return isValid;
+	}
+	
+	protected boolean validateTWPID(CharSequence testValue, String fieldName) {
+		return validateTWPID(testValue, fieldName, "必須是有效的身分證");
 	}
 	
 	protected boolean validateNumberRange(double testValue, double max, double min, String fieldName, String errMsg) {
