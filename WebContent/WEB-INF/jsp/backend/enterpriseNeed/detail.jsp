@@ -16,9 +16,10 @@
 	table tr {border:solid 1px;}
 	table tr td {border:solid 1px;}
 </style>
+<meta name="funcPathText" content="編輯管理  > 檢視"/>
 </head>
 <body>
-	<h2 class="itemTitle">編輯管理 > 檢視</h2>
+<!-- 	<h2 class="itemTitle">編輯管理 > 檢視</h2> -->
 	<table>
 		<tr>
 			<th colspan="2">企業基本資料</th>

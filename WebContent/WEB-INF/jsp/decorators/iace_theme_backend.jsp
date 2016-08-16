@@ -60,6 +60,7 @@
  	    		<a href="<s:url value="/login/login"/>" class="login">登入</a>
  	    	</s:if>
  	    	<s:else>
+ 	    		<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
  	    		<a href="<s:url value="/login/logout"/>" class="login">登出</a>
  	    	</s:else>
 	    </div>
@@ -70,7 +71,7 @@
    				<h1 class="funcTitle"><s:property value="title" /></h1>
    			</s:if>
    			<h4 class="funcPath">
-   				
+   				<decorator:getProperty property="meta.funcPathText"/>
    			</h4>
 		</div>
     	<div class="leftMenu">

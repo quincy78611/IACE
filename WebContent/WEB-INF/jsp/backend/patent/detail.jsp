@@ -11,9 +11,10 @@
 		});
 	});
 </script>
+<meta name="funcPathText" content="編輯管理  > 檢視"/>
 </head>
 <body>
-	<h2 class="itemTitle">檢視</h2>	
+<!-- 	<h2 class="itemTitle">檢視</h2>	 -->
 	<ul>
 		<li class="all">
 			<b>專利名稱</b>

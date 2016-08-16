@@ -79,9 +79,10 @@
 	table tr {border:solid 1px;}
 	table tr td {border:solid 1px;}
 </style>
+<meta name="funcPathText" content="新增"/>
 </head>
 <body>
-	<h2 class="itemTitle">新增</h2>
+<!-- 	<h2 class="itemTitle">新增</h2> -->
 	<s:form action="createSubmit" method="post" validate="true" >
 		<table>
 			<tr>

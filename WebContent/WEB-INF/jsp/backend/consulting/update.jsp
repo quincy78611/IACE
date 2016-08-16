@@ -44,9 +44,10 @@
 		$("select.industry").trigger('change');
 	});
 </script>
+<meta name="funcPathText" content="編輯管理  > 編輯"/>
 </head>
 <body>
-	<h2 class="itemTitle">編輯管理 > 編輯</h2>
+<!-- 	<h2 class="itemTitle">編輯管理 > 編輯</h2> -->
 	<s:form action="updateSubmit" method="post" validate="true">	
 		<s:hidden name="consulting.id" />
 		<s:hidden name="consulting.isValid" />

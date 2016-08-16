@@ -62,10 +62,10 @@
 			$('html,body').animate({scrollTop:$('#div-update-technology').offset().top},300);
 		}
 	}
-</script>	
+</script>
+<meta name="funcPathText" content="編輯管理  > 編輯"/>
 </head>
 <body>
-	<h2 class="itemTitle">編輯管理 > 編輯</h2>
 	<div id="div-researchPlan">
 		<h2 class="itemTitle Down">研究計畫資料</h2>
 		<ul>

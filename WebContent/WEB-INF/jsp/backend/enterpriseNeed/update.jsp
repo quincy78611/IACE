@@ -91,9 +91,10 @@
 	table tr {border:solid 1px;}
 	table tr td {border:solid 1px;}
 </style>
+<meta name="funcPathText" content="編輯管理  > 編輯"/>
 </head>
 <body>
-	<h2 class="itemTitle">編輯管理 > 編輯</h2>
+<!-- 	<h2 class="itemTitle">編輯管理 > 編輯</h2> -->
 	<s:form action="updateSubmit" method="post" validate="true" id="form-update">
 		<s:hidden name="id"/>
 		

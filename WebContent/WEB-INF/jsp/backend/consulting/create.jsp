@@ -4,10 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-
+<meta name="funcPathText" content="新增"/>
 </head>
 <body>
-	<h2 class="itemTitle">新增</h2>
+<!-- 	<h2 class="itemTitle">新增</h2> -->
 	<s:form action="createSubmit" method="post" validate="true">
 		<ul>						
 			<li class="half">

@@ -20,9 +20,10 @@
 		});
 	}
 </script>
+<meta name="funcPathText" content="編輯"/>
 </head>
 <body>
-	<h2 class="itemTitle">編輯</h2>
+<!-- 	<h2 class="itemTitle">編輯</h2> -->
 
 	<s:form action="updateSubmit" method="post" validate="true" id="form-update">
 		<s:hidden name="option.id" />

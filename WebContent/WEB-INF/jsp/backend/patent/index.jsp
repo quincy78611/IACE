@@ -99,10 +99,11 @@
 			$("select").prop('selectedIndex', 0);
 		});
 	}
-</script>	
+</script>
+<meta name="funcPathText" content="編輯管理 "/>
 </head>
 <body>
-	<h2 class="itemTitle">編輯管理</h2>
+<!-- 	<h2 class="itemTitle">編輯管理</h2> -->
 	<s:form action="index" method="post" validate="true" >
 		<div>
 			<ul>

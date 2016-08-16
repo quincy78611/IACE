@@ -33,6 +33,7 @@
 	border: 1px solid transparent;
 }
 </style>
+<meta name="funcPathText" content="新增"/>
 </head>
 <body>
 	<div class="subForm">
