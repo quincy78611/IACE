@@ -38,9 +38,12 @@
 </script>
 <link rel="stylesheet" type="text/css" href="<s:url value="/css/subTitle-qnrCooperateWay.css"/>" />
 <style>
-th {
+#table-qnrCooperateWayMerit th {
 	border: solid 1px;
 	white-space: nowrap;
+}
+#table-qnrCooperateWayMerit td {
+	font-size: 1em;
 }
 
 .applicant-data {
@@ -53,12 +56,12 @@ th {
 </style>
 </head>
 <body>
-	<h2 class="subTitle-qnrCooperateWay">《第四部份》學校於2013~2015年期間研發產出及產學合作績效</h2>
+	<h2 class="subTitle-qnrCooperateWay">《第四部份》</h2>
 	<h3>【說明】請您將貴校於西元2013~2015年期間研發產出及產學合作績效，填寫下表：</h3>
 	<s:form action="fillInQnrPart4Submit" method="post" validate="true">
 		<s:hidden name="qnrCooperateWayId"/>
 	
-		<table width="100%">
+		<table width="100%" id="table-qnrCooperateWayMerit">
 			<tr class="text-align-center">
 				<th>項目</th>
 				<th>參與人員</th>

@@ -64,6 +64,17 @@
 		$("#div-part3").hide();
 	}
 </script>
+<style>
+table.table-qnrCooperateWay th {
+	border: solid 1px;
+	white-space: nowrap;
+ 	font-size: 0.9em;
+}
+table.table-qnrCooperateWay td {
+	font-size: 1em;
+}
+
+</style>
 <link rel="stylesheet" type="text/css" href="<s:url value="/css/subTitle-qnrCooperateWay.css"/>" />
 </head>
 <body>
@@ -89,22 +100,22 @@
 		</div>
 		<div class="clear"></div>
 		<div id="div-part1">
-			<h2 class="subTitle-qnrCooperateWay Down">《第一部份》學校對於推動新興特色的重視程度</h2>
+			<h2 class="subTitle-qnrCooperateWay Down">《第一部份》</h2>
 			<div style="background-color: #056690; color: white; padding: 20px; border: 1px solid">
 				<p>【說明】您目前服務的學校對於推動新興特色的重視程度，如產學合作、創業型大學、教學卓越大學等，請勾選適當的程度，皆為單選題。</p>
 			</div>
 
-			<table width="100%">
+			<table width="100%" class="table-qnrCooperateWay">
 				<tr class="text-align-center">
 					<th></th>
 					<th></th>
-					<th nowrap>非常<br>同意</th>
+					<th nowrap>非常同意</th>
 					<th nowrap>同意</th>
-					<th nowrap>稍微<br>同意</th>
+					<th nowrap>稍微同意</th>
 					<th nowrap>普通</th>
-					<th nowrap>稍微<br>不同意</th>
+					<th nowrap>稍微不同意</th>
 					<th nowrap>不同意</th>
-					<th nowrap>非常<br>不同意</th>
+					<th nowrap>非常不同意</th>
 				</tr>
 				<tr>
 					<td>1</td>
@@ -278,21 +289,21 @@
 		</div>
 		<div class="clear"></div>
 		<div id="div-part2">
-			<h2 class="subTitle-qnrCooperateWay Down">《第二部份》學校推動研究商品化活動的組織設計與管理</h2>
+			<h2 class="subTitle-qnrCooperateWay Down">《第二部份》</h2>
 			<div style="background-color: #056690; color: white; padding: 20px; border: 1px solid">
 				<p>【說明】您目前服務的學校針對研發活動及產學合作提供之組織設計與管理，請勾選適當的程度，皆為單選題。</p>
 			</div>
-			<table width="100%">
+			<table width="100%" class="table-qnrCooperateWay">
 				<tr class="text-align-center">
 					<th></th>
 					<th></th>
-					<th nowrap>非常<br>同意</th>
+					<th nowrap>非常同意</th>
 					<th nowrap>同意</th>
-					<th nowrap>稍微<br>同意</th>
+					<th nowrap>稍微同意</th>
 					<th nowrap>普通</th>
-					<th nowrap>稍微<br>不同意</th>
+					<th nowrap>稍微不同意</th>
 					<th nowrap>不同意</th>
-					<th nowrap>非常<br>不同意</th>
+					<th nowrap>非常不同意</th>
 				</tr>
 				<tr>
 					<td>1</td>
@@ -411,21 +422,21 @@
 		</div>
 		<div class="clear"></div>
 		<div id="div-part3">
-			<h2 class="subTitle-qnrCooperateWay Down">《第三部份》學校針對研究商品化活動提供之相關輔導與激勵措施</h2>
+			<h2 class="subTitle-qnrCooperateWay Down">《第三部份》</h2>
 			<div style="background-color: #056690; color: white; padding: 20px; border: 1px solid">
 				<p>【說明】您目前服務的學校為推動研究商品化活動(專利申請、產學合作、技術移轉、新創事業等)所提供之相關輔導與激勵措施，請勾選適當的程度，皆為單選題。</p>
 			</div>
-			<table width="100%">
+			<table width="100%" class="table-qnrCooperateWay">
 				<tr class="text-align-center">
 					<th></th>
 					<th></th>
-					<th nowrap>非常<br>同意</th>
+					<th nowrap>非常同意</th>
 					<th nowrap>同意</th>
-					<th nowrap>稍微<br>同意</th>
+					<th nowrap>稍微同意</th>
 					<th nowrap>普通</th>
-					<th nowrap>稍微<br>不同意</th>
+					<th nowrap>稍微不同意</th>
 					<th nowrap>不同意</th>
-					<th nowrap>非常<br>不同意</th>
+					<th nowrap>非常不同意</th>
 				</tr>
 				<tr>
 					<td>1</td>
