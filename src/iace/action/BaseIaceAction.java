@@ -1,16 +1,25 @@
 package iace.action;
 
 import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
 
 import core.action.BaseAction;
 import iace.entity.questionnaire.QnrTable;
 import iace.service.ServiceFactory;
 
-public class BaseIaceAction extends BaseAction {
+public class BaseIaceAction extends BaseAction implements SessionAware {
 
 	private static final long serialVersionUID = 1771742807180192593L;
-	
+
 	private String title;
+	
+	protected Map<String, Object> session;
+	
+	private String exceptionName;
+	private String exceptionMessage;
+	private StackTraceElement[] exceptionStack;
 
 	// =========================================================================
 
@@ -58,5 +67,46 @@ public class BaseIaceAction extends BaseAction {
 	protected boolean validateStringAsDouble(String testValue, String fieldName) {
 		return validateStringAsDouble(testValue, fieldName, "Not a number!");
 	}
+	
+	protected void showExceptionToPage(Exception e) {
+		log.error("", e);
+		this.addActionError(e.getMessage());
+		this.exceptionName = e.getClass().getName();
+		this.exceptionMessage = e.getMessage();
+		this.exceptionStack = e.getStackTrace();
+	}
 
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
+	public String getExceptionName() {
+		return exceptionName;
+	}
+
+	public void setExceptionName(String exceptionName) {
+		this.exceptionName = exceptionName;
+	}
+
+	public StackTraceElement[] getExceptionStack() {
+		return exceptionStack;
+	}
+
+	public void setExceptionStack(StackTraceElement[] exceptionStack) {
+		this.exceptionStack = exceptionStack;
+	}
+
+	public String getExceptionMessage() {
+		return exceptionMessage;
+	}
+
+	public void setExceptionMessage(String exceptionMessage) {
+		this.exceptionMessage = exceptionMessage;
+	}
+
+	
 }

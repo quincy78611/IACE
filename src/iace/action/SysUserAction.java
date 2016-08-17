@@ -1,9 +1,6 @@
 package iace.action;
 
 import java.util.List;
-import java.util.Map;
-
-import org.apache.struts2.interceptor.SessionAware;
 
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
@@ -12,7 +9,7 @@ import iace.service.ServiceFactory;
 import iace.service.SysRoleService;
 import iace.service.SysUserService;
 
-public class SysUserAction extends BaseIaceAction implements SessionAware {
+public class SysUserAction extends BaseIaceAction {
 	private static final long serialVersionUID = 8080624976522044142L;
 
 	private SysUserService sysUserService = ServiceFactory.getSysUserService();
@@ -24,8 +21,6 @@ public class SysUserAction extends BaseIaceAction implements SessionAware {
 	private SysUser sysUser;
 
 	private List<SysRole> sysRoleList;
-
-	private Map<String, Object> userSession;
 
 	public SysUserAction() {
 		super.setTitle("系統使用者");
@@ -108,7 +103,7 @@ public class SysUserAction extends BaseIaceAction implements SessionAware {
 				this.sysUser = this.sysUserService.getBy(this.sysUser.getAccount(), this.sysUser.getPassword());
 //				ActionContext actionContext = ActionContext.getContext();
 //				actionContext.getSession().put(LoginInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
-				this.userSession.put(SessionInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
+				super.session.put(SessionInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
 				
 				return SUCCESS;
 			} else {
@@ -124,7 +119,7 @@ public class SysUserAction extends BaseIaceAction implements SessionAware {
 
 	public String logout() {
 		try {
-			this.userSession.clear();
+			this.session.clear();
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -170,11 +165,6 @@ public class SysUserAction extends BaseIaceAction implements SessionAware {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	@Override
-	public void setSession(Map<String, Object> session) {
-		this.userSession = session;
 	}
 
 }

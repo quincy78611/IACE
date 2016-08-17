@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <script>
 	$(document).ready(function() {
+		setValueBackToRadio();
 		switchPartSetting();
 
 		$("input[type=submit]").click(function(event) {
@@ -19,13 +20,114 @@
 			}
 		});
 		
-// 		$("input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
+// 		$("#table-part1 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
+// 		$("#table-part2 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
+// 		$("#table-part3 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
+		
+
 	});
+</script>
+<script>
+	function setValueBackToRadio() {
+		var q0_1 = "<s:property value="qnrCoopereateWay.q0_1"/>";
+		$("input[name='qnrCoopereateWay.q0_1'][value="+q0_1+"]").prop("checked", true);		
+		var q0_2 = "<s:property value="qnrCoopereateWay.q0_2"/>";
+		$("input[name='qnrCoopereateWay.q0_2'][value="+q0_2+"]").prop("checked", true);		
+		var q0_3 = "<s:property value="qnrCoopereateWay.q0_3"/>";
+		$("input[name='qnrCoopereateWay.q0_3'][value="+q0_3+"]").prop("checked", true);
+		
+		var q1_1 = "<s:property value="qnrCoopereateWay.q1_1"/>";
+		$("input[name='qnrCoopereateWay.q1_1'][value="+q1_1+"]").prop("checked", true);		
+		var q1_2 = "<s:property value="qnrCoopereateWay.q1_2"/>";
+		$("input[name='qnrCoopereateWay.q1_2'][value="+q1_2+"]").prop("checked", true);		
+		var q1_3 = "<s:property value="qnrCoopereateWay.q1_3"/>";
+		$("input[name='qnrCoopereateWay.q1_3'][value="+q1_3+"]").prop("checked", true);
+		var q1_4 = "<s:property value="qnrCoopereateWay.q1_4"/>";
+		$("input[name='qnrCoopereateWay.q1_4'][value="+q1_4+"]").prop("checked", true);
+		var q1_5 = "<s:property value="qnrCoopereateWay.q1_5"/>";
+		$("input[name='qnrCoopereateWay.q1_5'][value="+q1_5+"]").prop("checked", true);
+		var q1_6 = "<s:property value="qnrCoopereateWay.q1_6"/>";
+		$("input[name='qnrCoopereateWay.q1_6'][value="+q1_6+"]").prop("checked", true);
+		var q1_7 = "<s:property value="qnrCoopereateWay.q1_7"/>";
+		$("input[name='qnrCoopereateWay.q1_7'][value="+q1_7+"]").prop("checked", true);
+		var q1_8 = "<s:property value="qnrCoopereateWay.q1_8"/>";
+		$("input[name='qnrCoopereateWay.q1_8'][value="+q1_8+"]").prop("checked", true);
+		var q1_9 = "<s:property value="qnrCoopereateWay.q1_9"/>";
+		$("input[name='qnrCoopereateWay.q1_9'][value="+q1_9+"]").prop("checked", true);
+		var q1_10 = "<s:property value="qnrCoopereateWay.q1_10"/>";
+		$("input[name='qnrCoopereateWay.q1_10'][value="+q1_10+"]").prop("checked", true);
+		var q1_11 = "<s:property value="qnrCoopereateWay.q1_11"/>";
+		$("input[name='qnrCoopereateWay.q1_11'][value="+q1_11+"]").prop("checked", true);
+		var q1_12 = "<s:property value="qnrCoopereateWay.q1_12"/>";
+		$("input[name='qnrCoopereateWay.q1_12'][value="+q1_12+"]").prop("checked", true);
+		var q1_13 = "<s:property value="qnrCoopereateWay.q1_13"/>";
+		$("input[name='qnrCoopereateWay.q1_13'][value="+q1_13+"]").prop("checked", true);
+		var q1_14 = "<s:property value="qnrCoopereateWay.q1_14"/>";
+		$("input[name='qnrCoopereateWay.q1_14'][value="+q1_14+"]").prop("checked", true);
+		var q1_15 = "<s:property value="qnrCoopereateWay.q1_15"/>";
+		$("input[name='qnrCoopereateWay.q1_15'][value="+q1_15+"]").prop("checked", true);
+
+		var q2_1 = "<s:property value="qnrCoopereateWay.q2_1"/>";
+		$("input[name='qnrCoopereateWay.q2_1'][value="+q2_1+"]").prop("checked", true);
+		var q2_2 = "<s:property value="qnrCoopereateWay.q2_2"/>";
+		$("input[name='qnrCoopereateWay.q2_2'][value="+q2_2+"]").prop("checked", true);
+		var q2_3 = "<s:property value="qnrCoopereateWay.q2_3"/>";
+		$("input[name='qnrCoopereateWay.q2_3'][value="+q2_3+"]").prop("checked", true);
+		var q2_4 = "<s:property value="qnrCoopereateWay.q2_4"/>";
+		$("input[name='qnrCoopereateWay.q2_4'][value="+q2_4+"]").prop("checked", true);
+		var q2_5 = "<s:property value="qnrCoopereateWay.q2_5"/>";
+		$("input[name='qnrCoopereateWay.q2_5'][value="+q2_5+"]").prop("checked", true);
+		var q2_6 = "<s:property value="qnrCoopereateWay.q2_6"/>";
+		$("input[name='qnrCoopereateWay.q2_6'][value="+q2_6+"]").prop("checked", true);
+		var q2_7 = "<s:property value="qnrCoopereateWay.q2_7"/>";
+		$("input[name='qnrCoopereateWay.q2_7'][value="+q2_7+"]").prop("checked", true);
+		var q2_8 = "<s:property value="qnrCoopereateWay.q2_8"/>";
+		$("input[name='qnrCoopereateWay.q2_8'][value="+q2_8+"]").prop("checked", true);
+		var q2_9 = "<s:property value="qnrCoopereateWay.q2_9"/>";
+		$("input[name='qnrCoopereateWay.q2_9'][value="+q2_9+"]").prop("checked", true);
+		var q2_10 = "<s:property value="qnrCoopereateWay.q2_10"/>";
+		$("input[name='qnrCoopereateWay.q2_10'][value="+q2_10+"]").prop("checked", true);
+		
+		var q3_1 = "<s:property value="qnrCoopereateWay.q3_1"/>";
+		$("input[name='qnrCoopereateWay.q3_1'][value="+q3_1+"]").prop("checked", true);
+		var q3_2 = "<s:property value="qnrCoopereateWay.q3_2"/>";
+		$("input[name='qnrCoopereateWay.q3_2'][value="+q3_2+"]").prop("checked", true);
+		var q3_3 = "<s:property value="qnrCoopereateWay.q3_3"/>";
+		$("input[name='qnrCoopereateWay.q3_3'][value="+q3_3+"]").prop("checked", true);
+		var q3_4 = "<s:property value="qnrCoopereateWay.q3_4"/>";
+		$("input[name='qnrCoopereateWay.q3_4'][value="+q3_4+"]").prop("checked", true);
+		var q3_5 = "<s:property value="qnrCoopereateWay.q3_5"/>";
+		$("input[name='qnrCoopereateWay.q3_5'][value="+q3_5+"]").prop("checked", true);
+		var q3_6 = "<s:property value="qnrCoopereateWay.q3_6"/>";
+		$("input[name='qnrCoopereateWay.q3_6'][value="+q3_6+"]").prop("checked", true);
+		var q3_7 = "<s:property value="qnrCoopereateWay.q3_7"/>";
+		$("input[name='qnrCoopereateWay.q3_7'][value="+q3_7+"]").prop("checked", true);
+		var q3_8 = "<s:property value="qnrCoopereateWay.q3_8"/>";
+		$("input[name='qnrCoopereateWay.q3_8'][value="+q3_8+"]").prop("checked", true);
+		var q3_9 = "<s:property value="qnrCoopereateWay.q3_9"/>";
+		$("input[name='qnrCoopereateWay.q3_9'][value="+q3_9+"]").prop("checked", true);
+		var q3_10 = "<s:property value="qnrCoopereateWay.q3_10"/>";
+		$("input[name='qnrCoopereateWay.q3_10'][value="+q3_10+"]").prop("checked", true);
+		var q3_11 = "<s:property value="qnrCoopereateWay.q3_11"/>";
+		$("input[name='qnrCoopereateWay.q3_11'][value="+q3_11+"]").prop("checked", true);
+		var q3_12 = "<s:property value="qnrCoopereateWay.q3_12"/>";
+		$("input[name='qnrCoopereateWay.q3_12'][value="+q3_12+"]").prop("checked", true);
+		var q3_13 = "<s:property value="qnrCoopereateWay.q3_13"/>";
+		$("input[name='qnrCoopereateWay.q3_13'][value="+q3_13+"]").prop("checked", true);
+		var q3_14 = "<s:property value="qnrCoopereateWay.q3_14"/>";
+		$("input[name='qnrCoopereateWay.q3_14'][value="+q3_14+"]").prop("checked", true);
+	}
 </script>
 <script>
 	function switchPartSetting() {
 		hideAllPart();
-		$("#div-part0").show();
+		
+		var submitPageFrom = "<s:property value="submitPageFrom"/>";
+		if (submitPageFrom == null || submitPageFrom == "") {
+			$("#div-part0").show();
+		} else {
+			$("#div-part3").show();
+		}		
 
 		$("input[type=button].goToPart0").click(function() {
 			hideAllPart();
@@ -73,6 +175,9 @@ table.table-qnrCooperateWay th {
 table.table-qnrCooperateWay td {
 	font-size: 1em;
 }
+table.table-qnrCooperateWay td .radio {
+	font-size: 0.75em;
+}
 
 </style>
 <link rel="stylesheet" type="text/css" href="<s:url value="/css/subTitle-qnrCooperateWay.css"/>" />
@@ -105,7 +210,7 @@ table.table-qnrCooperateWay td {
 				<p>【說明】您目前服務的學校對於推動新興特色的重視程度，如產學合作、創業型大學、教學卓越大學等，請勾選適當的程度，皆為單選題。</p>
 			</div>
 
-			<table width="100%" class="table-qnrCooperateWay">
+			<table width="100%" class="table-qnrCooperateWay" id="table-part1">
 				<tr class="text-align-center">
 					<th></th>
 					<th></th>
@@ -284,7 +389,7 @@ table.table-qnrCooperateWay td {
 				</tr>
 			</table>
 
-			<!-- 			<input type="button" class="goToPart0 redBtn" value="上一頁">  -->
+			<input type="button" class="goToPart0 redBtn" value="上一頁"> 
 			<input type="button" class="goToPart2 redBtn" value="下一頁">
 		</div>
 		<div class="clear"></div>
@@ -293,7 +398,7 @@ table.table-qnrCooperateWay td {
 			<div style="background-color: #056690; color: white; padding: 20px; border: 1px solid">
 				<p>【說明】您目前服務的學校針對研發活動及產學合作提供之組織設計與管理，請勾選適當的程度，皆為單選題。</p>
 			</div>
-			<table width="100%" class="table-qnrCooperateWay">
+			<table width="100%" class="table-qnrCooperateWay" id="table-part2">
 				<tr class="text-align-center">
 					<th></th>
 					<th></th>
@@ -326,6 +431,7 @@ table.table-qnrCooperateWay td {
 					<td class="text-align-center"><input type="radio" name="qnrCoopereateWay.q2_2" value="3" /></td>
 					<td class="text-align-center"><input type="radio" name="qnrCoopereateWay.q2_2" value="2" /></td>
 					<td class="text-align-center"><input type="radio" name="qnrCoopereateWay.q2_2" value="1" /></td>
+					
 				</tr>
 				<tr>
 					<td>3</td>
@@ -417,7 +523,7 @@ table.table-qnrCooperateWay td {
 				</tr>
 			</table>
 
-<!-- 			<input type="button" class="goToPart1 redBtn" value="上一頁">  -->
+			<input type="button" class="goToPart1 redBtn" value="上一頁"> 
 			<input type="button" class="goToPart3 redBtn" value="下一頁">
 		</div>
 		<div class="clear"></div>
@@ -426,7 +532,7 @@ table.table-qnrCooperateWay td {
 			<div style="background-color: #056690; color: white; padding: 20px; border: 1px solid">
 				<p>【說明】您目前服務的學校為推動研究商品化活動(專利申請、產學合作、技術移轉、新創事業等)所提供之相關輔導與激勵措施，請勾選適當的程度，皆為單選題。</p>
 			</div>
-			<table width="100%" class="table-qnrCooperateWay">
+			<table width="100%" class="table-qnrCooperateWay" id="table-part3">
 				<tr class="text-align-center">
 					<th></th>
 					<th></th>
@@ -593,7 +699,7 @@ table.table-qnrCooperateWay td {
 					<td class="text-align-center"><input type="radio" name="qnrCoopereateWay.q3_14" value="1" /></td>
 				</tr>
 			</table>
-<!-- 			<input type="button" class="goToPart2 redBtn" value="上一頁"> -->
+			<input type="button" class="goToPart2 redBtn" value="上一頁">
 			<s:submit cssClass="redBtn" value="下一頁" />
 		</div>
 	</s:form>

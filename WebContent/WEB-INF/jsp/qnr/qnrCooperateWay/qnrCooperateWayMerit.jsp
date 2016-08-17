@@ -6,9 +6,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
 <script>
 	$(document).ready(function() {
+		backToPreviousPage();
 		pdplSetting();
 		hideOrShowApplicantData();
 	});
+</script>
+<script type="text/javascript">
+	function backToPreviousPage() {
+		$("#btn-backToPreviousPage").click(function() {
+			$("form").attr("action", "backToQnrPart0To3");
+			$("form").submit();
+		});
+	}
 </script>
 <script>
 	function pdplSetting() {
@@ -59,7 +68,8 @@
 	<h2 class="subTitle-qnrCooperateWay">《第四部份》</h2>
 	<h3>【說明】請您將貴校於西元2013~2015年期間研發產出及產學合作績效，填寫下表：</h3>
 	<s:form action="fillInQnrPart4Submit" method="post" validate="true">
-		<s:hidden name="qnrCooperateWayId"/>
+		<s:hidden name="schoolId" />
+<%-- 		<s:hidden name="qnrCooperateWayId"/> --%>
 	
 		<table width="100%" id="table-qnrCooperateWayMerit">
 			<tr class="text-align-center">
@@ -135,6 +145,7 @@
 			</ul>			
 		</div>
 		
+		<input type="button" id="btn-backToPreviousPage" class="redBtn" value="上一頁"/>
 		<s:submit cssClass="redBtn" value="送出" />
 	</s:form>
 

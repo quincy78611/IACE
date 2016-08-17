@@ -305,7 +305,12 @@
 		<action name="fillInQnrPart4Submit" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart4Submit">
 			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
 			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayFinish.jsp</result>
-		</action>		
+		</action>
+		<action name="backToQnrPart0To3" class="iace.action.QnrCooperateWayAction" method="backToQnrPart0To3">
+			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
+			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
+		</action>
+				
 	</package>
 	
 	<package name="EnterpriseNeed" namespace="/enterpriseNeed" extends="struts-default, json-default, default">

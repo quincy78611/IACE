@@ -21,6 +21,8 @@ import iace.service.ServiceFactory;
 public class QnrCooperateWayAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = -8674132276568056185L;
+	private static final String SESSION_KEY_QNR = "SESSION_KEY_QNR";
+	private static final String SESSION_KEY_QNR_MERIT = "SESSION_KEY_QNR_MERIT";
 
 	private OptionSchoolService schoolService = ServiceFactory.getSchoolService(); 
 	private QnrCooperateWayService qnrCooperateWayService = ServiceFactory.getQnrCooperateWayService();
@@ -35,6 +37,8 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	private String qnrExcelFileName;
 	private InputStream qrnExcelFileInputStream;
 	
+	private String submitPageFrom; 
+	
 	public QnrCooperateWayAction() {
 		super.setTitle("精進大學產學合作發展機制調查問卷");
 	}
@@ -46,7 +50,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -67,7 +71,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -88,7 +92,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -105,7 +109,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -115,7 +119,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			this.schoolId = Long.valueOf(AESEncrypter.decrypt(AESEncrypter.KEY, this.encryptSchoolId));	
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -128,24 +132,38 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		return SUCCESS;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public String fillInQnrPart0To3Submit() {
 		try {
-			OptionSchool school = this.schoolService.get(this.schoolId);
-			this.qnrCoopereateWay.setSchool(school);
-			this.qnrCooperateWayService.create(this.qnrCoopereateWay);
-			
-			this.qnrCooperateWayId = this.qnrCoopereateWay.getId();
-			this.qnrCooperateWayMerits = new ArrayList<QnrCooperateWayMerit>();
-			for (int year : QnrCooperateWayMerit.YEARS) {
-				QnrCooperateWayMerit m = new QnrCooperateWayMerit();
-				m.setYear(year);
-				m.setQnrCooperateWay(this.qnrCoopereateWay);
-				this.qnrCooperateWayMerits.add(m);
-			}			
+			if (super.session.get(SESSION_KEY_QNR_MERIT) == null) { //從qnrCooperateWayPDPL.jsp來的
+				this.qnrCooperateWayMerits = new ArrayList<QnrCooperateWayMerit>();
+				for (int year : QnrCooperateWayMerit.YEARS) {
+					QnrCooperateWayMerit m = new QnrCooperateWayMerit();
+					m.setYear(year);
+					m.setQnrCooperateWay(this.qnrCoopereateWay);
+					this.qnrCooperateWayMerits.add(m);
+				}
+			} else { //從qnrCooperateWayMerit.jsp按回上一頁來的
+				this.qnrCooperateWayMerits = (List<QnrCooperateWayMerit>) super.session.get(SESSION_KEY_QNR_MERIT);
+			}
+
+			super.session.put(SESSION_KEY_QNR, this.qnrCoopereateWay);
 			
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String backToQnrPart0To3() {
+		try {
+			this.submitPageFrom = "qnrCooperateWayMerit.jsp";
+			updateApplicantDataAndSetToSession();
+			super.session.put(SESSION_KEY_QNR_MERIT, this.qnrCooperateWayMerits);
+			return SUCCESS;			
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -208,28 +226,35 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	
 	public String fillInQnrPart4Submit() {
 		try {
-			QnrCooperateWay orgignQnrCooperateWay = this.qnrCooperateWayService.get(this.qnrCooperateWayId);
-			if (orgignQnrCooperateWay.getQnrCooperateWayMerits() == null || 
-				orgignQnrCooperateWay.getQnrCooperateWayMerits().size() == 0) {
-				orgignQnrCooperateWay.setName(this.qnrCoopereateWay.getName());
-				orgignQnrCooperateWay.setApplicantId(this.qnrCoopereateWay.getApplicantId());
-				orgignQnrCooperateWay.setEmail(this.qnrCoopereateWay.getEmail());
-				orgignQnrCooperateWay.setAddress(this.qnrCoopereateWay.getAddress());
-				orgignQnrCooperateWay.setQnrCooperateWayMerits(this.qnrCooperateWayMerits);
-				for (QnrCooperateWayMerit entity : this.qnrCooperateWayMerits) {
-					entity.setQnrCooperateWay(orgignQnrCooperateWay);
-					entity.create();
-				}
-				this.qnrCooperateWayService.update(orgignQnrCooperateWay);
-			} else {
-				this.addActionError("您已經填過此問卷，無法重複填寫!");
+			updateApplicantDataAndSetToSession();
+			OptionSchool school = this.schoolService.get(this.schoolId);
+			this.qnrCoopereateWay.setSchool(school);
+			for (QnrCooperateWayMerit entity : this.qnrCooperateWayMerits) {
+				entity.setQnrCooperateWay(this.qnrCoopereateWay);
+				entity.create();
 			}
+			this.qnrCoopereateWay.setQnrCooperateWayMerits(this.qnrCooperateWayMerits);
+			this.qnrCooperateWayService.create(this.qnrCoopereateWay);
+			
+			this.session.remove(SESSION_KEY_QNR);
+			this.session.remove(SESSION_KEY_QNR_MERIT);
 			
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
+	}
+	
+	// 將 this.qnrCoopereateWay 中的個人資料進行更新並重新放到session中
+	public void updateApplicantDataAndSetToSession() {
+		QnrCooperateWay old = (QnrCooperateWay) super.session.get(SESSION_KEY_QNR);
+		old.setName(this.qnrCoopereateWay.getName());
+		old.setApplicantId(this.qnrCoopereateWay.getApplicantId());
+		old.setEmail(this.qnrCoopereateWay.getEmail());
+		old.setAddress(this.qnrCoopereateWay.getAddress());
+		this.qnrCoopereateWay = old;
+		super.session.put(SESSION_KEY_QNR, this.qnrCoopereateWay);
 	}
 	
 	private void validateApplicantData() {
@@ -313,7 +338,59 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		this.qrnExcelFileInputStream = qrnExcelFileInputStream;
 	}
 
+
+	public String getSubmitPageFrom() {
+		return submitPageFrom;
+	}
 	
+
+	public void setSubmitPageFrom(String submitPageFrom) {
+		this.submitPageFrom = submitPageFrom;
+	}
+
+
+	public List<OptionAgree> getOptionAgreeList() {
+		return OptionAgree.getQnrCooperateWayList();
+	}
+
+}
+
+class OptionAgree {
+	private String code;
+	private String name;
 	
+	public OptionAgree(String code, String name) {
+		this.code = code;
+		this.name = name;
+	}
+
+	public static List<OptionAgree> getQnrCooperateWayList() {
+		List<OptionAgree> list = new ArrayList<OptionAgree>();
+		list.add(new OptionAgree("7", "非常同意"));
+		list.add(new OptionAgree("6", "同意"));
+		list.add(new OptionAgree("5", "稍微同意"));
+		list.add(new OptionAgree("6", "普通"));
+		list.add(new OptionAgree("3", "稍微不同意"));
+		list.add(new OptionAgree("2", "不同意"));
+		list.add(new OptionAgree("1", "非常不同意"));
+		
+		return list;
+	}
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }

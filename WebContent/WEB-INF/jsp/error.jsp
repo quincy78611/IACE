@@ -5,13 +5,19 @@
 <html>
 <head><title>Error page</title></head>
 <body>
-    <s:property value="exception"/>
 
-	<s:if test="exceptionStack != null">
-	    <h3>Stack trace:</h3>
-	    <pre>
-	        <s:property value="exceptionStack"/>
-	    </pre>
-    </s:if>
+	<div class="alert alert-danger">
+	    <h1><s:property value="exceptionName"/> : <s:property value="exceptionMessage"/></h1>
+	    <br/>
+	
+		<s:if test="exceptionStack != null">
+			<s:iterator value="exceptionStack" status="stat">
+			    <pre>
+			        <s:property />
+			    </pre>
+		    </s:iterator>
+	    </s:if>	
+	</div>
+
 </body>
 </html>
