@@ -12,6 +12,10 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import iace.entity.consulting.Consulting;
+import iace.entity.coopExample.CoopEx;
+import iace.entity.coopExample.CoopExAttachFile;
+import iace.entity.coopExample.CoopExImg;
+import iace.entity.coopExample.CoopExVideo;
 import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
 import iace.entity.enterpriseNeed.EnterpriseRequireTech;
@@ -26,19 +30,19 @@ import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionIndustryForEnterprise;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
+import iace.entity.option.OptionSchool;
 import iace.entity.option.OptionSubject;
 import iace.entity.option.OptionTrl;
 import iace.entity.patent.Patent;
 import iace.entity.patent.TechField;
-import iace.entity.option.OptionSchool;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
 import iace.entity.qnrCooperateWay.QnrCooperateWayMerit;
 import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.Technology;
-import iace.entity.sys.SysFunction;
 import iace.entity.sys.SysAuth;
+import iace.entity.sys.SysFunction;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 
@@ -159,14 +163,18 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(EnterpriseRequireTech.class);
     	configuration.addAnnotatedClass(EnterpriseSituation.class);
     	configuration.addAnnotatedClass(EnterpriseAcademiaCoop.class);
+    	
     	configuration.addAnnotatedClass(Patent.class);
+    	configuration.addAnnotatedClass(TechField.class);
+    	
     	configuration.addAnnotatedClass(ResearchPlan.class);
     	configuration.addAnnotatedClass(Technology.class);
-    	configuration.addAnnotatedClass(TechField.class);
+
     	configuration.addAnnotatedClass(Consulting.class);
     	
     	configuration.addAnnotatedClass(QnrTable.class);
     	configuration.addAnnotatedClass(QnrTableColumn.class);
+    	
     	configuration.addAnnotatedClass(QnrCooperateWay.class);
     	configuration.addAnnotatedClass(QnrCooperateWayMerit.class);
     	
@@ -175,5 +183,10 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(SysAuth.class);
     	configuration.addAnnotatedClass(SysFunction.class);
     	
+    	configuration.addAnnotatedClass(CoopEx.class);
+    	configuration.addAnnotatedClass(CoopExImg.class);
+    	configuration.addAnnotatedClass(CoopExVideo.class);
+    	configuration.addAnnotatedClass(CoopExAttachFile.class);
+   	
     }
 }

@@ -378,14 +378,8 @@
 			<result name="error">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>
 		<action name="batchImport" class="iace.action.OptionSchoolAction" method="batchImport">
-		    <interceptor-ref name="fileUpload">                
-<!--                 <param name="allowedTypes"> -->
-<!--                 	application/ms-excel, -->
-<!--                 	application/vnd.ms-excel, -->
-<!--                 	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet -->
-<!--                 </param> -->
-            </interceptor-ref> 
-            <interceptor-ref name="defaultStack"></interceptor-ref>
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
 		    
 		    <result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		    <result name="input">/WEB-INF/jsp/backend/option/school/create.jsp</result>

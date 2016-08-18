@@ -8,8 +8,6 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
 	
-
-	
 	<package name="ResearchPlan" namespace="/researchPlan" extends="struts-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 			
@@ -63,12 +61,12 @@
 			<result name="success">/WEB-INF/jsp/backend/patent/create.jsp</result>	
 		</action>
 		<action name="createSubmit" class="iace.action.PatentAction" method="createSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
 			<interceptor-ref name="fileUpload">
 				<param name="allowedTypes">
 					image/png,image/gif,image/jpeg
 				</param>
 			</interceptor-ref>
-			<interceptor-ref name="defaultStack"></interceptor-ref>
 
 			<result name="input">/WEB-INF/jsp/backend/patent/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/patent/detail.jsp</result>
@@ -166,14 +164,7 @@
 		</action>
 		<action name="batchImportPatent" class="iace.action.BatchImportAction" method="batchImportPatent">
 			<interceptor-ref name="iaceBackEnd"/>
-		    <interceptor-ref name="fileUpload">                
-<!--                 <param name="allowedTypes"> -->
-<!--                 	application/ms-excel, -->
-<!--                 	application/vnd.ms-excel, -->
-<!--                 	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet -->
-<!--                 </param> -->            
-			</interceptor-ref> 
-            <interceptor-ref name="defaultStack"></interceptor-ref>
+		    <interceptor-ref name="fileUpload"/>                
 		    
 		    <result name="success">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
 		    <result name="input">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
@@ -348,4 +339,19 @@
 		</action>	
 	</package>
 	
+	<package name="CoopEx" namespace="/coopEx" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		
+		<action name="create" class="iace.action.CoopExAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/coopEx/create.jsp</result>	
+		</action>
+		<action name="createSubmit" class="iace.action.CoopExAction" method="createSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+			<interceptor-ref name="fileUpload"/>
+
+			<result name="input">/WEB-INF/jsp/backend/coopEx/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/coopEx/detail.jsp</result>
+		</action>
+		
+	</package>
 </struts>

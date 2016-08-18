@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import iace.dao.consulting.ConsultingDao;
 import iace.dao.consulting.IConsultingDao;
+import iace.dao.coopExample.CoopExDao;
+import iace.dao.coopExample.ICoopExDao;
 import iace.dao.enterpriseNeed.EnterpriseAcademiaCoopDao;
 import iace.dao.enterpriseNeed.EnterpriseInfoDao;
 import iace.dao.enterpriseNeed.EnterpriseRequireTechDao;
@@ -86,9 +88,12 @@ public class DaoFactory {
 	
 	private static ITechFieldDao techFieldDao;
 	private static IPatentDao patentDao;
+	
 	private static IResearchPlanDao researchPlanDao;
 	private static ITechnologyDao technologyDao;
+	
 	private static IConsultingDao consultingDao;
+	
 	private static IEnterpriseInfoDao enterpriseInfoDao;
 	private static IEnterpriseRequireTechDao enterpriseRequireTechDao;
 	private static IEnterpriseSituationDao enterpriseSituationDao;
@@ -96,8 +101,11 @@ public class DaoFactory {
 	
 	private static IQnrTemplateDao qnrTemplateDao;
 	private static IQnrDao qnrDao;
+	
 	private static IQnrCooperateWayDao qnrCooperateWayDao;
 	private static IQnrCooperateWayMeritDao qnrCooperateWayMeritDao;
+	
+	private static ICoopExDao coopExDao;
 	
 	public static ISysFunctionDao getSysFunctionDao() {
 		if (sysFunctionDao == null) {
@@ -301,6 +309,13 @@ public class DaoFactory {
 		}
 		return qnrCooperateWayMeritDao;
 	}
-	
 
+	public static ICoopExDao getCoopExDao() {
+		if (coopExDao == null) {
+			coopExDao = new CoopExDao();
+		}
+		return coopExDao;
+	}
+	
+	
 }

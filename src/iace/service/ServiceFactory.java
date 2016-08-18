@@ -4,6 +4,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import iace.dao.DaoFactory;
+import iace.service.coopExample.CoopExService;
 
 
 public class ServiceFactory {
@@ -43,9 +44,12 @@ public class ServiceFactory {
 	
 	private static QnrTemplateService qnrTemplateService;
 	private static QnrService qnrService;
+	
 	private static QnrCooperateWayService qnrCooperateWayService;
 	private static QnrCooperateWayMeritService qnrCooperateWayMeritService;
 	private static QnrCooperateWayExcelService qnrCooperateWayExcelService;
+	
+	private static CoopExService coopExService;
 	
 	public static SysFunctionService getSysFunctionService() {
 		if (sysFunctionService == null) {
@@ -273,4 +277,13 @@ public class ServiceFactory {
 		}
 		return qnrCooperateWayExcelService;
 	}
+
+	public static CoopExService getCoopExService() {
+		if (coopExService == null) {
+			coopExService = new CoopExService(DaoFactory.getCoopExDao());
+		}
+		return coopExService;
+	}
+	
+	
 }
