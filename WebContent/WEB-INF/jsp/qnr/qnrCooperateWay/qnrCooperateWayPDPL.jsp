@@ -38,17 +38,8 @@
 		}
 	}
 </script>
-<link rel="stylesheet" type="text/css" href="<s:url value="/css/subTitle-qnrCooperateWay.css"/>" />
+<link rel="stylesheet" type="text/css" href="<s:url value="/css/qnrCooperateWay.css"/>" />
 <style>
-.top-desc {
-	padding: 15px;
-	margin-bottom: 23px;
-	border: 1px solid transparent;
-	border-radius: 3px;
-	background-color: #F8F8FF;
-	color: #0000a0;
-}
-
 .detail-desc {
 	padding: 15px;
 	margin-bottom: 23px;
@@ -57,14 +48,6 @@
 	background-color: #EEEEEE;
 	border-color: #505050;
 	color: #000000;
-}
-
-.applicant-data {
-	overflow-y: auto;
-	padding: 15px;
-	margin-bottom: 23px;
-	border: 1px solid transparent;
-	border-color: #000000;
 }
 </style>
 </head>

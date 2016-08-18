@@ -45,33 +45,16 @@
 		}
 	}
 </script>
-<link rel="stylesheet" type="text/css" href="<s:url value="/css/subTitle-qnrCooperateWay.css"/>" />
-<style>
-#table-qnrCooperateWayMerit th {
-	border: solid 1px;
-	white-space: nowrap;
-}
-#table-qnrCooperateWayMerit td {
-	font-size: 1em;
-}
-
-.applicant-data {
-	overflow-y: auto;
-	padding: 15px;
-	margin-bottom: 23px;
-	border: 1px solid transparent;
-	border-color: #000000;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="<s:url value="/css/qnrCooperateWay.css"/>" />
 </head>
 <body>
 	<h2 class="subTitle-qnrCooperateWay">《第四部份》</h2>
-	<h3>【說明】請您將貴校於西元2013~2015年期間研發產出及產學合作績效，填寫下表：</h3>
+	<div class="top-desc">【說明】請您將貴校於西元2013~2015年期間研發產出及產學合作績效，填寫下表：</div>
 	<s:form action="fillInQnrPart4Submit" method="post" validate="true">
 		<s:hidden name="schoolId" />
 <%-- 		<s:hidden name="qnrCooperateWayId"/> --%>
 	
-		<table width="100%" id="table-qnrCooperateWayMerit">
+		<table width="100%" class="table-qnrCooperateWay">
 			<tr class="text-align-center">
 				<th>項目</th>
 				<th>參與人員</th>
@@ -107,11 +90,11 @@
 			</s:iterator>
 		</table>
 		
-		<div style="margin-bottom: 23px;">
+		<div style="margin-bottom: 23px; font-size:1.15em;">
 			<span style="color:blue;">【備註】技術移轉分為「專利授權」與「非專利授權」，非專利授權收入包括資料庫（data base）、服務（service）或是技術協助（technical assistance）等技術服務收入。</span>
 			<br/>
 			<span style="color:red;">【備註】無相關數據填答者請填入「N/A」</span>
-			<br/>
+			<br/><br/>
 			<span>【本問卷到此結束，敬請再次確認是否有漏答，謝謝!】</span>
 		</div>
 		

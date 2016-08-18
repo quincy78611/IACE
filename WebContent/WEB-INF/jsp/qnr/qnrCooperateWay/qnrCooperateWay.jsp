@@ -23,8 +23,6 @@
 // 		$("#table-part1 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
 // 		$("#table-part2 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
 // 		$("#table-part3 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
-		
-
 	});
 </script>
 <script>
@@ -166,21 +164,7 @@
 		$("#div-part3").hide();
 	}
 </script>
-<style>
-table.table-qnrCooperateWay th {
-	border: solid 1px;
-	white-space: nowrap;
- 	font-size: 0.9em;
-}
-table.table-qnrCooperateWay td {
-	font-size: 1em;
-}
-table.table-qnrCooperateWay td .radio {
-	font-size: 0.75em;
-}
-
-</style>
-<link rel="stylesheet" type="text/css" href="<s:url value="/css/subTitle-qnrCooperateWay.css"/>" />
+<link rel="stylesheet" type="text/css" href="<s:url value="/css/qnrCooperateWay.css"/>" />
 </head>
 <body>
 	<s:form action="fillInQnrPart0To3Submit" method="post" validate="true">
@@ -190,7 +174,8 @@ table.table-qnrCooperateWay td .radio {
 		<s:hidden name="qnrCoopereateWay.applicantId" />
 		<s:hidden name="qnrCoopereateWay.email" />
 		<s:hidden name="qnrCoopereateWay.address" />
-		<div id="div-part0">
+		
+		<div id="div-part0" style="font-size: 1.15em;">
 			<img src="<s:url value="/images/qnrCooperateWayDesc.jpg"/>" style="max-width: 800px; max-height: 800px;"> <br /> <br /> <br />
 			<h2 class="itemTitle Down">基本資料</h2>
 			<ul>
@@ -204,9 +189,10 @@ table.table-qnrCooperateWay td .radio {
 			<input type="button" class="goToPart1 redBtn" value="下一頁">
 		</div>
 		<div class="clear"></div>
+		
 		<div id="div-part1">
-			<h2 class="subTitle-qnrCooperateWay Down">《第一部份》</h2>
-			<div style="background-color: #056690; color: white; padding: 20px; border: 1px solid">
+			<h2 class="subTitle-qnrCooperateWay">《第一部份》</h2>
+			<div class="top-desc">
 				<p>【說明】您目前服務的學校對於推動新興特色的重視程度，如產學合作、創業型大學、教學卓越大學等，請勾選適當的程度，皆為單選題。</p>
 			</div>
 
@@ -393,9 +379,10 @@ table.table-qnrCooperateWay td .radio {
 			<input type="button" class="goToPart2 redBtn" value="下一頁">
 		</div>
 		<div class="clear"></div>
+		
 		<div id="div-part2">
-			<h2 class="subTitle-qnrCooperateWay Down">《第二部份》</h2>
-			<div style="background-color: #056690; color: white; padding: 20px; border: 1px solid">
+			<h2 class="subTitle-qnrCooperateWay">《第二部份》</h2>
+			<div class="top-desc">
 				<p>【說明】您目前服務的學校針對研發活動及產學合作提供之組織設計與管理，請勾選適當的程度，皆為單選題。</p>
 			</div>
 			<table width="100%" class="table-qnrCooperateWay" id="table-part2">
@@ -527,9 +514,10 @@ table.table-qnrCooperateWay td .radio {
 			<input type="button" class="goToPart3 redBtn" value="下一頁">
 		</div>
 		<div class="clear"></div>
+		
 		<div id="div-part3">
-			<h2 class="subTitle-qnrCooperateWay Down">《第三部份》</h2>
-			<div style="background-color: #056690; color: white; padding: 20px; border: 1px solid">
+			<h2 class="subTitle-qnrCooperateWay">《第三部份》</h2>
+			<div class="top-desc">
 				<p>【說明】您目前服務的學校為推動研究商品化活動(專利申請、產學合作、技術移轉、新創事業等)所提供之相關輔導與激勵措施，請勾選適當的程度，皆為單選題。</p>
 			</div>
 			<table width="100%" class="table-qnrCooperateWay" id="table-part3">
