@@ -24,7 +24,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	private static final String SESSION_KEY_QNR = "SESSION_KEY_QNR";
 	private static final String SESSION_KEY_QNR_MERIT = "SESSION_KEY_QNR_MERIT";
 
-	private OptionSchoolService schoolService = ServiceFactory.getSchoolService(); 
+	private OptionSchoolService schoolService = ServiceFactory.getOptionSchoolService(); 
 	private QnrCooperateWayService qnrCooperateWayService = ServiceFactory.getQnrCooperateWayService();
 	private QnrCooperateWayExcelService excelService = ServiceFactory.getQnrCooperateWayExcelService();
 

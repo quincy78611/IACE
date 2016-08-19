@@ -5,8 +5,12 @@ import org.apache.logging.log4j.Logger;
 
 import iace.dao.consulting.ConsultingDao;
 import iace.dao.consulting.IConsultingDao;
+import iace.dao.coopExample.CoopExAttachFileDao;
 import iace.dao.coopExample.CoopExDao;
+import iace.dao.coopExample.CoopExVideoDao;
+import iace.dao.coopExample.ICoopExAttachFileDao;
 import iace.dao.coopExample.ICoopExDao;
+import iace.dao.coopExample.ICoopExVideoDao;
 import iace.dao.enterpriseNeed.EnterpriseAcademiaCoopDao;
 import iace.dao.enterpriseNeed.EnterpriseInfoDao;
 import iace.dao.enterpriseNeed.EnterpriseRequireTechDao;
@@ -106,6 +110,8 @@ public class DaoFactory {
 	private static IQnrCooperateWayMeritDao qnrCooperateWayMeritDao;
 	
 	private static ICoopExDao coopExDao;
+	private static ICoopExVideoDao coopExVideoDao;
+	private static ICoopExAttachFileDao coopExAttachFileDao;
 	
 	public static ISysFunctionDao getSysFunctionDao() {
 		if (sysFunctionDao == null) {
@@ -315,6 +321,20 @@ public class DaoFactory {
 			coopExDao = new CoopExDao();
 		}
 		return coopExDao;
+	}
+	
+	public static ICoopExVideoDao getCoopExVideoDao() {
+		if (coopExVideoDao == null) {
+			coopExVideoDao = new CoopExVideoDao();
+		}
+		return coopExVideoDao;
+	}
+
+	public static ICoopExAttachFileDao getCoopExAttachFileDao() {
+		if (coopExAttachFileDao == null) {
+			coopExAttachFileDao = new CoopExAttachFileDao();
+		}
+		return coopExAttachFileDao;
 	}
 	
 	

@@ -43,7 +43,7 @@ public class CoopExFile extends BaseEntity {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "COOP_EXAMPLE_ID", updatable = false)
 	public CoopEx getCoopEx() {
 		return coopEx;

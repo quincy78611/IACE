@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -120,6 +121,14 @@ public class CoopEx extends BaseEntity {
 
 	public void setAttachFiles(List<CoopExAttachFile> attachFiles) {
 		this.attachFiles = attachFiles;
+	}
+	
+	@Transient
+	public String getFirstBase64Img() {
+		if (this.imgs != null && this.imgs.size() > 0) {
+			return this.imgs.get(0).getBase64Img();
+		}
+		return null;		
 	}
 
 	//==========================================================================

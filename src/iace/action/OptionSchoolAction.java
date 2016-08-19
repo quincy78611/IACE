@@ -17,7 +17,7 @@ public class OptionSchoolAction extends BaseOptionAction<OptionSchool> {
 
 	private static final long serialVersionUID = 3938291958134335193L;
 
-	private OptionSchoolExcelService optionSchoolExcelService = ServiceFactory.getOptionSchoolService();
+	private OptionSchoolExcelService optionSchoolExcelService = ServiceFactory.getOptionSchoolExcelService();
 	
 	private File uploadFile;
 	private String uploadFileContentType;
@@ -27,7 +27,7 @@ public class OptionSchoolAction extends BaseOptionAction<OptionSchool> {
 	private InputStream sampleFileInputStream;
 	
 	public OptionSchoolAction() {
-		super("學校 代碼", ServiceFactory.getSchoolService());
+		super("學校 代碼", ServiceFactory.getOptionSchoolService());
 	}
 
 	public String batchImport() {

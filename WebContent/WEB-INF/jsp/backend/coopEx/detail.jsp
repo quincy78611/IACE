@@ -6,80 +6,10 @@
 <head>
 <script>
 	$(document).ready(function() {
-		addMore();
-		fileBrowseSetting();
+
 	});
 </script>
-<script>
-	function addMore() {	
-		$("input[type=button].btn-addMoreImg").click(function(){
-			var tbody = $(this).parents("table").find("tbody");
-			var newTr = tbody.find("tr:last").clone();
-			tbody.append(newTr);
-			var newIndex = parseInt(tbody.find("tr:last").index());
-			newTr.find("input[type=file]").attr("name", "coopEx.imgs["+newIndex+"].upload");
-			newTr.find("textarea").attr("name", "coopEx.imgs["+newIndex+"].fileDesc");
-			fileBrowseSetting();
-			newTr.find("input[type=button].cancelSelectFile").trigger("click");
-		});
-		
-		$("input[type=button].btn-addMoreVideo").click(function(){
-			var tbody = $(this).parents("table").find("tbody");
-			var newTr = tbody.find("tr:last").clone();
-			tbody.append(newTr);
-			var newIndex = parseInt(tbody.find("tr:last").index());
-			newTr.find("input[type=file]").attr("name", "coopEx.videos["+newIndex+"].upload");
-			newTr.find("textarea").attr("name", "coopEx.videos["+newIndex+"].fileDesc");
-			fileBrowseSetting();
-			newTr.find("input[type=button].cancelSelectFile").trigger("click");
-		});		
-		
-		$("input[type=button].btn-addMoreAttach").click(function(){
-			var tbody = $(this).parents("table").find("tbody");
-			var newTr = tbody.find("tr:last").clone();
-			tbody.append(newTr);
-			var newIndex = parseInt(tbody.find("tr:last").index());
-			newTr.find("input[type=file]").attr("name", "coopEx.attachFiles["+newIndex+"].upload");
-			newTr.find("textarea").attr("name", "coopEx.attachFiles["+newIndex+"].fileDesc");
-			fileBrowseSetting();
-			newTr.find("input[type=button].cancelSelectFile").trigger("click");
-		});
-	}
-</script>
-<script>
-	function fileBrowseSetting() {
-		$(".btn-fake-browse").click(function(){
-			$(this).parents("tr").find("input[type=file]").trigger("click");
-		});
-		
-		$("input[type=file]").change(function() {
-			var fileName = $(this).get(0).files[0].name;
-			$(this).parents("tr").find(".fileName").html(fileName);
-			readURL(this);
-		});
-		
-		$("input[type=button].cancelSelectFile").click(function(){
-			$(this).parents("tr").find(".fileName").html("");
-			$(this).parents("tr").find("textarea").val("");
-			$(this).parents("tr").find("input[type=file]").val("");
-			$(this).parents("tr").find("img").attr('src', "");
-			$(this).parents("tr").find("video").attr('src', "");
-		});
-	}
-	
-	function readURL(input) {
-	    if (input.files && input.files[0]) {
-	        var reader = new FileReader();
 
-	        reader.onload = function (e) {
-	        	$(input).parents("tr").find("img").attr('src', e.target.result);
-	        	$(input).parents("tr").find("video").attr('src', e.target.result);
-	        }
-
-	        reader.readAsDataURL(input.files[0]);
-	    }
-	}
-</script>
 <style>
 .table-files tr, th, td { border: solid 1px; }
 .table-files td li { margin-bottom: 1px; }
@@ -120,21 +50,23 @@
 				</tr>
 			</thead>
 			<tbody>
+				<s:iterator value="coopEx.imgs" status="stat">
 				<tr>
 					<td width="15%">
-						<img src="" style="max-width:120px; max-height:120px;" />
+						<img src="data:image;base64,<s:property value="base64Img"/>" style="max-width:120px; max-height:120px;" />
 					</td>
 					<td>
 						<ul>
 							<li>
-								<s:textfield name="coopEx.imgs[0].fileName" readonly="true"/>
+								<s:property value="fileName"/>
 							</li>
 							<li class="all">
-								<s:textarea name="coopEx.imgs[0].fileDesc" placeholder="請輸入檔案說明" readonly="true"/>
+								<s:textarea name="fileDesc" placeholder="無檔案說明" readonly="true"/>
 							</li>
 						</ul>
 					</td>
-				</tr>
+				</tr>				
+				</s:iterator>
 			</tbody>
 		</table>
 		
@@ -146,28 +78,33 @@
 				</tr>
 			</thead>
 			<tbody>
+				<s:iterator value="coopEx.videos" status="stat">
 				<tr>
 					<td width="15%">
-						<video style="max-width:120px; max-height:120px;" poster=""></video>
+						<s:url value="downloadVideo.action" var="downloadVideoUrl">
+							<s:param name="videoId" value="id" />
+						</s:url>					
+						<video 
+							src="<s:property value="downloadVideoUrl" />" 
+							controls="controls" preload="none"
+							style="max-width:120px; max-height:120px;">
+<%-- 							<source src="<s:property value="downloadVideoUrl" />" type="video/mp4"> --%>
+						</video>
 					</td>
 					<td>
 						<ul>
 							<li>
-								<input type="file" name="coopEx.videos[0].upload" accept=".mp4" style="display:none;">
-								<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案"/>
-								<input type="button" class="btn-func btn-del cancelSelectFile" value="清除檔案和說明" />
-							</li>
-							<li>
-								<label class="fileName"></label>
+								<s:property value="fileName"/>
 							</li>
 							<li class="all">
-								<s:textarea name="coopEx.videos[0].fileDesc" placeholder="請輸入檔案說明"/>
+								<s:textarea name="fileDesc" placeholder="無檔案說明" readonly="true"/>
 							</li>
 						</ul>
 					</td>
-				</tr>
+				</tr>				
+				</s:iterator>
 			</tbody>
-		</table>
+		</table>		
 		
 		<!-- 附檔 -->
 		<table class="table-files" width="100%">
@@ -177,23 +114,25 @@
 				</tr>
 			</thead>
 			<tbody>
+				<s:iterator value="coopEx.attachFiles" status="stat">
 				<tr>
 					<td>
 						<ul>
 							<li>
-								<input type="file" name="coopEx.attachFiles[0].upload" style="display:none;">
-								<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案"/>
-								<input type="button" class="btn-func btn-del cancelSelectFile" value="清除檔案和說明" />
-							</li>
-							<li>
-								<label class="fileName"></label>
+								<s:url value="downloadAttach.action" var="downloadAttachUrl">
+									<s:param name="attachFileId" value="id" />
+								</s:url>
+								<a href="<s:property value="downloadAttachUrl" />" >
+									<s:property value="fileName"/>
+								</a>
 							</li>
 							<li class="all">
-								<s:textarea name="coopEx.attachFiles[0].fileDesc" placeholder="請輸入檔案說明"/>
+								<s:textarea name="fileDesc" placeholder="無檔案說明" readonly="true"/>
 							</li>
 						</ul>
 					</td>
-				</tr>
+				</tr>				
+				</s:iterator>
 			</tbody>
 		</table>
 		

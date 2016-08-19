@@ -342,6 +342,17 @@
 	<package name="CoopEx" namespace="/coopEx" extends="struts-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 		
+		<action name="init" class="iace.action.CoopExAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/coopEx/index.jsp</result>	
+		</action>
+		<action name="index" class="iace.action.CoopExAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/coopEx/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/coopEx/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.CoopExAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/coopEx/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/coopEx/index.jsp</result>
+		</action>		
 		<action name="create" class="iace.action.CoopExAction" method="create">
 			<result name="success">/WEB-INF/jsp/backend/coopEx/create.jsp</result>	
 		</action>
@@ -352,6 +363,21 @@
 			<result name="input">/WEB-INF/jsp/backend/coopEx/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/coopEx/detail.jsp</result>
 		</action>
-		
+		<action name="downloadVideo" class="iace.action.CoopExAction" method="downloadVideo">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
+		<action name="downloadAttach" class="iace.action.CoopExAction" method="downloadAttach">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 </struts>

@@ -1,15 +1,12 @@
 package iace.service;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import iace.dao.DaoFactory;
+import iace.service.coopExample.CoopExAttachFileService;
 import iace.service.coopExample.CoopExService;
+import iace.service.coopExample.CoopExVideoService;
 
 
 public class ServiceFactory {
-	
-	protected static Logger log = LogManager.getLogger(ServiceFactory.class);
 	
 	private static SysFunctionService sysFunctionService;
 	private static SysRoleService sysRoleService;
@@ -27,7 +24,7 @@ public class ServiceFactory {
 	private static OptionOrganizationTypeService optionOrganizationTypeService;
 	private static OptionTrlService optionTrlService;
 	private static OptionSubjectService optionSubjectService;
-	private static OptionSchoolService schoolService;
+	private static OptionSchoolService optionSchoolService;
 	private static OptionSchoolExcelService optionSchoolExcelService;
 	
 	private static PatentService patentService;
@@ -50,6 +47,8 @@ public class ServiceFactory {
 	private static QnrCooperateWayExcelService qnrCooperateWayExcelService;
 	
 	private static CoopExService coopExService;
+	private static CoopExVideoService coopExVideoService;
+	private static CoopExAttachFileService coopExAttachFileService;
 	
 	public static SysFunctionService getSysFunctionService() {
 		if (sysFunctionService == null) {
@@ -158,14 +157,14 @@ public class ServiceFactory {
 		return optionSubjectService;
 	}
 	
-	public static OptionSchoolService getSchoolService() {
-		if (schoolService == null) {
-			schoolService = new OptionSchoolService(DaoFactory.getOptionSchoolDao());
+	public static OptionSchoolService getOptionSchoolService() {
+		if (optionSchoolService == null) {
+			optionSchoolService = new OptionSchoolService(DaoFactory.getOptionSchoolDao());
 		}
-		return schoolService;
+		return optionSchoolService;
 	}
 	
-	public static OptionSchoolExcelService getOptionSchoolService() {
+	public static OptionSchoolExcelService getOptionSchoolExcelService() {
 		if (optionSchoolExcelService == null) {
 			optionSchoolExcelService = new OptionSchoolExcelService();
 		}
@@ -283,6 +282,20 @@ public class ServiceFactory {
 			coopExService = new CoopExService(DaoFactory.getCoopExDao());
 		}
 		return coopExService;
+	}
+
+	public static CoopExVideoService getCoopExVideoService() {
+		if (coopExVideoService == null) {
+			coopExVideoService = new CoopExVideoService(DaoFactory.getCoopExVideoDao());
+		}
+		return coopExVideoService;
+	}
+
+	public static CoopExAttachFileService getCoopExAttachFileService() {
+		if (coopExAttachFileService == null) {
+			coopExAttachFileService = new CoopExAttachFileService(DaoFactory.getCoopExAttachFileDao());
+		}
+		return coopExAttachFileService;
 	}
 	
 	
