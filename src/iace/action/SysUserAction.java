@@ -2,6 +2,8 @@ package iace.action;
 
 import java.util.List;
 
+import org.hibernate.exception.JDBCConnectionException;
+
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 import iace.interceptor.SessionInterceptor;
@@ -110,6 +112,10 @@ public class SysUserAction extends BaseIaceAction {
 				super.addActionError("帳號或密碼錯誤!");
 				return INPUT;
 			}
+		} catch (JDBCConnectionException e) {
+			log.error("資料庫連線錯誤，請重新嘗試!", e);
+			super.addActionError("資料庫連線錯誤，請重新嘗試!");
+			return INPUT;
 		} catch (Exception e) {
 			log.error("", e);
 			super.addActionError(e.getMessage());
