@@ -363,6 +363,23 @@
 			<result name="input">/WEB-INF/jsp/backend/coopEx/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/coopEx/detail.jsp</result>
 		</action>
+		<action name="update" class="iace.action.CoopExAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/coopEx/update.jsp</result>	
+		</action>
+		<action name="updateSubmit" class="iace.action.CoopExAction" method="updateSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+			<interceptor-ref name="fileUpload"/>
+
+			<result name="input">/WEB-INF/jsp/backend/coopEx/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/coopEx/detail.jsp</result>
+		</action>
+		<action name="delete" class="iace.action.CoopExAction" method="delete">
+			<result name="success">/WEB-INF/jsp/backend/coopEx/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.CoopExAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/coopEx/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/coopEx/index.jsp</result>
+		</action>
 		<action name="downloadVideo" class="iace.action.CoopExAction" method="downloadVideo">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>

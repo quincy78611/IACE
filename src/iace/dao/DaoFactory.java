@@ -1,15 +1,14 @@
 package iace.dao;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import iace.dao.consulting.ConsultingDao;
 import iace.dao.consulting.IConsultingDao;
 import iace.dao.coopExample.CoopExAttachFileDao;
 import iace.dao.coopExample.CoopExDao;
+import iace.dao.coopExample.CoopExImgDao;
 import iace.dao.coopExample.CoopExVideoDao;
 import iace.dao.coopExample.ICoopExAttachFileDao;
 import iace.dao.coopExample.ICoopExDao;
+import iace.dao.coopExample.ICoopExImgDao;
 import iace.dao.coopExample.ICoopExVideoDao;
 import iace.dao.enterpriseNeed.EnterpriseAcademiaCoopDao;
 import iace.dao.enterpriseNeed.EnterpriseInfoDao;
@@ -70,7 +69,6 @@ import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionTrl;
 
 public class DaoFactory {
-	protected static Logger log = LogManager.getLogger(DaoFactory.class);
 	
 	private static ISysFunctionDao sysFunctionDao;
 	private static ISysRoleDao sysRoleDao;
@@ -110,6 +108,7 @@ public class DaoFactory {
 	private static IQnrCooperateWayMeritDao qnrCooperateWayMeritDao;
 	
 	private static ICoopExDao coopExDao;
+	private static ICoopExImgDao coopExImgDao;
 	private static ICoopExVideoDao coopExVideoDao;
 	private static ICoopExAttachFileDao coopExAttachFileDao;
 	
@@ -323,6 +322,13 @@ public class DaoFactory {
 		return coopExDao;
 	}
 	
+	public static ICoopExImgDao getCoopExImgDao() {
+		if (coopExImgDao == null) {
+			coopExImgDao = new CoopExImgDao();
+		}
+		return coopExImgDao;
+	}
+
 	public static ICoopExVideoDao getCoopExVideoDao() {
 		if (coopExVideoDao == null) {
 			coopExVideoDao = new CoopExVideoDao();

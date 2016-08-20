@@ -67,13 +67,69 @@ public class CoopExAction extends BaseIaceAction {
 	}
 	
 	public void validateCreateSubmit() {
-		super.validateNotBlankNLength(this.coopEx.getProjName(), 1000, "coopEx.projName");
+		validateBeforeSubmit();
 	}
 	
 	public String createSubmit() {
 		try {
 			this.coopExService.create(this.coopEx);
 			super.addActionMessage("CREATE SUCCESS");
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String update() {
+		try {
+			this.coopEx = this.coopExService.get(this.id);
+			if (this.coopEx == null) {
+				super.addActionError("找不到選擇的資料紀錄!");
+				return INPUT;
+			}
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;			
+		}
+	}
+	
+	public void validateUpdateSubmit() {
+		validateBeforeSubmit();
+	}
+	
+	public String updateSubmit() {
+		try {
+			this.coopExService.update(this.coopEx);
+			super.addActionMessage("UPDATE SUCCESS");
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;			
+		}
+	}
+	
+	public String delete() {
+		try {
+			this.coopEx = this.coopExService.get(this.id);
+			if (this.coopEx == null) {
+				super.addActionError("找不到選擇的資料紀錄!");
+				return INPUT;
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;			
+		}
+	}
+	
+	public String deleteSubmit() {
+		try {
+			this.coopExService.delete(this.id);
+			super.addActionMessage("DELETE SUCCESS");
+			index();
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -105,6 +161,19 @@ public class CoopExAction extends BaseIaceAction {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
+	}
+	
+	public void validateBeforeSubmit() {
+		if (super.validateNotBlankNLength(this.coopEx.getProjName(), 1000, "coopEx.projName")) {
+			boolean isExist = this.coopExService.isProjNameExist(this.coopEx.getId(), this.coopEx.getProjName());
+			if (isExist) {
+				super.addFieldError("coopEx.projName", "案名已存在");
+			}
+		}
+		super.validateNotNull(this.coopEx.getYear(), "coopEx.year");
+		super.validateNotBlankNLength(this.coopEx.getRdTeam(), 1000, "coopEx.rdTeam");
+		super.validateNotBlankNLength(this.coopEx.getAssisTeam(), 1000, "coopEx.assisTeam");
+		super.validateNotBlankNLength(this.coopEx.getContent(), 2000, "coopEx.content");
 	}
 	
 	// ========================================================================

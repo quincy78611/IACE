@@ -116,5 +116,8 @@ public class CoopExFile extends BaseEntity {
 		this.uploadFileName = uploadFileName;
 	}
 
-	
+	@Transient 
+	public boolean hasUploadFile() {
+		return this.upload != null && this.uploadContentType != null && this.uploadFileName != null;
+	}
 }

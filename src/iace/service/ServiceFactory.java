@@ -279,7 +279,11 @@ public class ServiceFactory {
 
 	public static CoopExService getCoopExService() {
 		if (coopExService == null) {
-			coopExService = new CoopExService(DaoFactory.getCoopExDao());
+			coopExService = new CoopExService(
+					DaoFactory.getCoopExDao(),
+					DaoFactory.getCoopExImgDao(),
+					DaoFactory.getCoopExVideoDao(),
+					DaoFactory.getCoopExAttachFileDao());
 		}
 		return coopExService;
 	}

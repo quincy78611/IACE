@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 import core.dao.HibernateSessionFactory;
@@ -47,6 +49,8 @@ public class CoopExDao extends BaseIaceDao<CoopEx> implements ICoopExDao {
 			Criteria criteria = session.createCriteria(CoopEx.class);
 			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+			criteria.addOrder(Order.desc("year"));
+			criteria.addOrder(Order.asc("projName"));
 			
 			@SuppressWarnings("unchecked")
 			List<CoopEx> list = criteria.list();
@@ -57,6 +61,28 @@ public class CoopExDao extends BaseIaceDao<CoopEx> implements ICoopExDao {
 			}
 			
 			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Override
+	public boolean isProjNameExist(long currentId, String projName) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			String hql = "SELECT count(*) " 
+					+ "FROM " + CoopEx.class.getSimpleName() + " ce "
+					+ "WHERE ce.id != :currentId "
+					+ "AND ce.projName = :projName "
+					+ "AND ce.isValid = :isValid ";
+			Query query = session.createQuery(hql);
+			query.setLong("currentId", currentId);
+			query.setString("projName", projName);
+			query.setString("isValid", BaseEntity.TRUE);
+			Object obj = query.uniqueResult();
+			return (long)obj > 0;
 		} catch (Exception e) {
 			throw e;
 		} finally {

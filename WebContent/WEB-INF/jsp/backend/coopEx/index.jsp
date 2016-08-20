@@ -47,11 +47,11 @@ $(document).ready(function() {
 					<input type="button" class="btn-func btn-edit" value="編輯" 
 						onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
 						
-					<s:url value="deleteSubmit.action" var="deleteUrlTag">
+					<s:url value="delete.action" var="deleteUrlTag">
 						<s:param name="id" value="id" />
 					</s:url>
-					<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-					<input type="button" class="btn-func btn-del" value="刪除" />	
+					<input type="button" class="btn-func btn-del" value="刪除" 
+						onclick="window.location.href='<s:property value="#deleteUrlTag" />'" />
 				</td>
 			</tr>
 		</s:iterator>
