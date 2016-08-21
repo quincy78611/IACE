@@ -13,29 +13,26 @@
 <script>
 	function addMore() {	
 		$("input[type=button].btn-addMoreImg").click(function(){
-			var tbody = $(this).parents("table").find("tbody");
-			var newTr = tbody.find("tr:last").clone();
-			tbody.append(newTr);
+			var newTr = $(this).parents("table").find("tr.hidden-sample-tr").clone();
+			newTr.removeClass("hidden-sample-tr");
+			$(this).parents("table").find("tbody").append(newTr);
 			fileBrowseSetting();
-			cleanFileAndDesc(newTr);
 			resetNameAttrForImgTable();
 		});
 		
 		$("input[type=button].btn-addMoreVideo").click(function(){
-			var tbody = $(this).parents("table").find("tbody");
-			var newTr = tbody.find("tr:last").clone();
-			tbody.append(newTr);
+			var newTr = $(this).parents("table").find("tr.hidden-sample-tr").clone();
+			newTr.removeClass("hidden-sample-tr");
+			$(this).parents("table").find("tbody").append(newTr);
 			fileBrowseSetting();
-			cleanFileAndDesc(newTr);
 			resetNameAttrForVideoTable();
 		});		
 		
 		$("input[type=button].btn-addMoreAttach").click(function(){
-			var tbody = $(this).parents("table").find("tbody");
-			var newTr = tbody.find("tr:last").clone();
-			tbody.append(newTr);
+			var newTr = $(this).parents("table").find("tr.hidden-sample-tr").clone();
+			newTr.removeClass("hidden-sample-tr");
+			$(this).parents("table").find("tbody").append(newTr);
 			fileBrowseSetting();
-			cleanFileAndDesc(newTr);
 			resetNameAttrForAttachTable();
 		});
 	}
@@ -48,28 +45,17 @@
 		
 		$("input[type=file]").change(function() {
 			var fileName = $(this).get(0).files[0].name;
-			$(this).parents("tr").find(".fileName").html(fileName);
+			$(this).parents("tr").find(".label-fileName").html(fileName);
 			readURL(this); // display subnail
 		});
 		
 		$("input[type=button].cancelSelectFile").click(function(){
 			var rowCount = $(this).parents("tbody").find("tr").length;
-			if (rowCount > 1) {
-				$(this).parents("tr").remove();
-				resetNameAttrForImgTable();
-				resetNameAttrForVideoTable();
-				resetNameAttrForAttachTable();
-			}
+			$(this).parents("tr").remove();
+			resetNameAttrForImgTable();
+			resetNameAttrForVideoTable();
+			resetNameAttrForAttachTable();
 		});
-	}
-</script>
-<script>
-	function cleanFileAndDesc(tr) {
-		tr.find(".fileName").html("");
-		tr.find("textarea").val("");
-		tr.find("input[type=file]").val("");
-		tr.find("img").attr('src', "");
-		tr.find("video").attr('src', "");
 	}
 </script>
 <script>
@@ -90,31 +76,47 @@
 function resetNameAttrForImgTable() {
 	$("#table-img > tbody > tr").each(function( index ){
 		var tr = $("#table-img > tbody > tr").eq(index);
-		tr.find("input[type=file]").attr("name", "coopEx.imgs["+index+"].upload");
-		tr.find("textarea").attr("name", "coopEx.imgs["+index+"].fileDesc");
+		
+		tr.find(".id").attr("name", "coopEx.imgs["+index+"].id");
+		tr.find(".filePath").attr("name", "coopEx.imgs["+index+"].filePath");
+		tr.find(".fileContentType").attr("name", "coopEx.imgs["+index+"].fileContentType");
+		tr.find(".fileName").attr("name", "coopEx.imgs["+index+"].fileName");
+		tr.find(".fileDesc").attr("name", "coopEx.imgs["+index+"].fileDesc");
+		tr.find(".upload").attr("name", "coopEx.imgs["+index+"].upload");
 	});
 }
 
 function resetNameAttrForVideoTable() {
 	$("#table-video > tbody > tr").each(function( index ){
 		var tr = $("#table-video > tbody > tr").eq(index);
-		tr.find("input[type=file]").attr("name", "coopEx.videos["+index+"].upload");
-		tr.find("textarea").attr("name", "coopEx.videos["+index+"].fileDesc");
+		
+		tr.find(".id").attr("name", "coopEx.videos["+index+"].id");
+		tr.find(".filePath").attr("name", "coopEx.videos["+index+"].filePath");
+		tr.find(".fileContentType").attr("name", "coopEx.videos["+index+"].fileContentType");
+		tr.find(".fileName").attr("name", "coopEx.videos["+index+"].fileName");
+		tr.find(".fileDesc").attr("name", "coopEx.videos["+index+"].fileDesc");
+		tr.find(".upload").attr("name", "coopEx.videos["+index+"].upload");
 	});
 }
 
 function resetNameAttrForAttachTable() {
 	$("#table-attach > tbody > tr").each(function( index ){
 		var tr = $("#table-attach > tbody > tr").eq(index);
-		tr.find("input[type=file]").attr("name", "coopEx.attachFiles["+index+"].upload");
-		tr.find("textarea").attr("name", "coopEx.attachFiles["+index+"].fileDesc");
+
+		tr.find(".id").attr("name", "coopEx.attachFiles["+index+"].id");
+		tr.find(".filePath").attr("name", "coopEx.attachFiles["+index+"].filePath");
+		tr.find(".fileContentType").attr("name", "coopEx.attachFiles["+index+"].fileContentType");
+		tr.find(".fileName").attr("name", "coopEx.attachFiles["+index+"].fileName");
+		tr.find(".fileDesc").attr("name", "coopEx.attachFiles["+index+"].fileDesc");
+		tr.find(".upload").attr("name", "coopEx.attachFiles["+index+"].upload");
 	});
 }
 </script>
 <style>
-.table-files tr, th, td { border: solid 1px; }
-.table-files td li { margin-bottom: 1px; }
-.table-files input[type=file] { display:none; }
+table.table-files tr, th, td { border: solid 1px; }
+table.table-files td li { margin-bottom: 1px; }
+table.table-files input[type=file] { display:none; }
+table.table-files tr.hidden-sample-tr { display:none; }
 </style>
 <meta name="funcPathText" content="新增"/>
 </head>
@@ -151,28 +153,28 @@ function resetNameAttrForAttachTable() {
 						<input type="button" value="+ 增加照片" class="btn-addMoreImg redBtn"/>
 					</td>			
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
+				<tr class="hidden-sample-tr">
 					<td width="15%">
 						<img src="" style="max-width:120px; max-height:120px;" />
 					</td>
 					<td>
 						<ul>
 							<li>
-								<input type="file" name="coopEx.imgs[0].upload" accept=".jpg, .jpeg, .png, .gif" >
+								<s:file type="file" class="upload" accept=".jpg, .jpeg, .png, .gif" />
 								<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案"/>
 								<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
 							</li>
 							<li>
-								<label class="fileName"></label>
+								<label class="label-fileName"></label>
 							</li>
 							<li class="all">
-								<s:textarea name="coopEx.imgs[0].fileDesc" placeholder="請輸入檔案說明"/>
+								<s:textarea class="fileDesc" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
 							</li>
 						</ul>
 					</td>
-				</tr>
+				</tr>				
+			</thead>
+			<tbody>
 			</tbody>
 		</table>
 		
@@ -184,28 +186,31 @@ function resetNameAttrForAttachTable() {
 						<input type="button" value="+ 增加影片" class="btn-addMoreVideo redBtn"/>
 					</td>			
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
+				<tr class="hidden-sample-tr">
 					<td width="15%">
-						<video style="max-width:120px; max-height:120px;" poster=""></video>
+						<video 
+							controls="controls" preload="none"
+							style="max-width:120px; max-height:120px;">
+						</video>
 					</td>
 					<td>
 						<ul>
 							<li>
-								<input type="file" name="coopEx.videos[0].upload" accept=".mp4" >
+								<s:file type="file" class="upload" accept=".mp4" />
 								<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案"/>
 								<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
 							</li>
 							<li>
-								<label class="fileName"></label>
+								<label class="label-fileName"></label>
 							</li>
 							<li class="all">
-								<s:textarea name="coopEx.videos[0].fileDesc" placeholder="請輸入檔案說明"/>
+								<s:textarea class="fileDesc" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
 							</li>
 						</ul>
 					</td>
-				</tr>
+				</tr>				
+			</thead>
+			<tbody>
 			</tbody>
 		</table>
 		
@@ -217,25 +222,25 @@ function resetNameAttrForAttachTable() {
 						<input type="button" value="+ 增加附檔" class="btn-addMoreAttach redBtn"/>
 					</td>			
 				</tr>
-			</thead>
-			<tbody>
-				<tr>
+				<tr class="hidden-sample-tr">
 					<td>
 						<ul>
 							<li>
-								<input type="file" name="coopEx.attachFiles[0].upload" >
+								<s:file type="file" class="upload" />
 								<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案"/>
 								<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
 							</li>
 							<li>
-								<label class="fileName"></label>
+								<label class="label-fileName"></label>
 							</li>
 							<li class="all">
-								<s:textarea name="coopEx.attachFiles[0].fileDesc" placeholder="請輸入檔案說明"/>
+								<s:textarea class="fileDesc" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
 							</li>
 						</ul>
 					</td>
-				</tr>
+				</tr>				
+			</thead>
+			<tbody>
 			</tbody>
 		</table>
 		

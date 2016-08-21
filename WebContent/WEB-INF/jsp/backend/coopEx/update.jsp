@@ -113,10 +113,10 @@ function resetNameAttrForAttachTable() {
 }
 </script>
 <style>
-.table-files tr, th, td { border: solid 1px; }
-.table-files td li { margin-bottom: 1px; }
-.table-files input[type=file] { display:none; }
-.table-files tr.hidden-sample-tr { display:none; }
+table.table-files tr, th, td { border: solid 1px; }
+table.table-files td li { margin-bottom: 1px; }
+table.table-files input[type=file] { display:none; }
+table.table-files tr.hidden-sample-tr { display:none; }
 </style>
 <meta name="funcPathText" content="編輯管理 > 編輯"/>
 </head>
@@ -181,7 +181,7 @@ function resetNameAttrForAttachTable() {
 								<label class="label-fileName"></label>
 							</li>
 							<li class="all">
-								<s:textarea class="fileDesc" placeholder="請輸入檔案說明"/>
+								<s:textarea class="fileDesc" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
 							</li>
 						</ul>
 					</td>
@@ -210,7 +210,7 @@ function resetNameAttrForAttachTable() {
 								</label>
 							</li>
 							<li class="all">
-								<s:textarea class="fileDesc" name="%{'coopEx.imgs['+#stat.index+'].fileDesc'}" placeholder="請輸入檔案說明"/>
+								<s:textarea class="fileDesc" name="%{'coopEx.imgs['+#stat.index+'].fileDesc'}" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
 							</li>
 						</ul>
 					</td>
@@ -249,7 +249,7 @@ function resetNameAttrForAttachTable() {
 								<label class="label-fileName"></label>
 							</li>
 							<li class="all">
-								<s:textarea class="fileDesc" placeholder="請輸入檔案說明"/>
+								<s:textarea class="fileDesc" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
 							</li>
 						</ul>
 					</td>
@@ -285,7 +285,7 @@ function resetNameAttrForAttachTable() {
 								</label>
 							</li>
 							<li class="all">
-								<s:textarea class="fileDesc" name="%{'coopEx.videos['+#stat.index+'].fileDesc'}" placeholder="請輸入檔案說明"/>
+								<s:textarea class="fileDesc" name="%{'coopEx.videos['+#stat.index+'].fileDesc'}" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
 							</li>
 						</ul>
 					</td>
@@ -319,7 +319,7 @@ function resetNameAttrForAttachTable() {
 								<label class="label-fileName"></label>
 							</li>
 							<li class="all">
-								<s:textarea class="fileDesc" placeholder="請輸入檔案說明"/>
+								<s:textarea class="fileDesc" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
 							</li>
 						</ul>
 					</td>
@@ -346,7 +346,7 @@ function resetNameAttrForAttachTable() {
 								</label>
 							</li>
 							<li class="all">
-								<s:textarea class="fileDesc" name="%{'coopEx.attachFiles['+#stat.index+'].fileDesc'}" placeholder="請輸入檔案說明"/>
+								<s:textarea class="fileDesc" name="%{'coopEx.attachFiles['+#stat.index+'].fileDesc'}" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
 							</li>
 						</ul>
 					</td>
