@@ -165,7 +165,9 @@ table.table-files tr.hidden-sample-tr { display:none; }
 								<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
 							</li>
 							<li>
-								<label class="label-fileName"></label>
+								<label class="label-fileName">
+									<span style="color:#AA3333;">(尚未選取檔案)</span>
+								</label>
 							</li>
 							<li class="all">
 								<s:textarea class="fileDesc" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
@@ -201,7 +203,9 @@ table.table-files tr.hidden-sample-tr { display:none; }
 								<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
 							</li>
 							<li>
-								<label class="label-fileName"></label>
+								<label class="label-fileName">
+									<span style="color:#AA3333;">(尚未選取檔案)</span>
+								</label>
 							</li>
 							<li class="all">
 								<s:textarea class="fileDesc" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
@@ -231,7 +235,9 @@ table.table-files tr.hidden-sample-tr { display:none; }
 								<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
 							</li>
 							<li>
-								<label class="label-fileName"></label>
+								<label class="label-fileName">
+									<span style="color:#AA3333;">(尚未選取檔案)</span>
+								</label>
 							</li>
 							<li class="all">
 								<s:textarea class="fileDesc" placeholder="請輸入檔案說明。(若沒有選擇任何檔案，則在此輸入的說明將不會被記錄)"/>
