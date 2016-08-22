@@ -100,13 +100,13 @@
 				</div>
 			</li>
 			<li class="half">
-				<b>技術發展階段</b>
+				<b>計畫發展階段</b>
 				<div>
 					<s:property value="%{researchPlan.trl.showString}" />
 				</div>					
 			</li>
 			<li class="half">
-				<b>技術發展階段</b>
+				<b>研究領域</b>
 				<div>
 					<s:if test="researchPlan.grbDomains != null">
 						<s:iterator value="researchPlan.grbDomains" status="stat">
@@ -116,7 +116,7 @@
 				</div>					
 			</li>
 			<li class="all">
-				<b>計畫關鍵字</b>
+				<b>計畫關鍵詞</b>
 				<div>
 					<s:property value="researchPlan.keyword" />
 				</div>				

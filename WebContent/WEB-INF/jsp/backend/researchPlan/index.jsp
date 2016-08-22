@@ -203,11 +203,11 @@
 								</s:iterator>
 							</td>
 							<td title="<s:property value="trl.showString"/>">
-								<s:property value="trl.code" />
+								<s:property value="trl.name" />
 							</td>
 							<td><s:property value="projkey" /></td>
 							<td>
-								<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/GRB_Search/grb/show_doc.jsp?id='+grb05Id}"/>" target="_blank">連結</a>
+								<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/search/planDetail2?id=	'+grb05Id}"/>" target="_blank">連結</a>
 							</td>															
 							<td>							
 								<s:url value="update.action" var="updateUrlTag" escapeAmp="false">

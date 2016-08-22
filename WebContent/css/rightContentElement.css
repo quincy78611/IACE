@@ -1,4 +1,4 @@
-.rightContent h2.itemTitle { font-size:1.25em; color:#666; border-bottom:#0a5f9a 1px dotted; padding:0 0 20px 24px; margin-bottom:20px; background:url(../images/icon_Edit-L.png) no-repeat left top; display:block; position:relative;}
+.rightContent h2.itemTitle { font-size:1.25em; font-weight: bold; color:#666; border-bottom:#0a5f9a 1px dotted; padding:0 0 20px 24px; margin-bottom:20px; background:url(../images/icon_Edit-L.png) no-repeat left top; display:block; position:relative;}
 .rightContent h2.Down {border:none; margin-bottom:0;}
 
 .rightContent .searchZone { position:relative;}
