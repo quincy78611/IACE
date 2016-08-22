@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <script type="text/javascript">
@@ -11,7 +11,7 @@
 	<input type="button" class="redBtn" value="新增系統使用者" onclick="window.location.href='<s:url value="create.action"/>'" />
 	<div class="clear"></div>
 	<br>
-	<table width="100%" class="">
+	<table>
 		<tr>
 			<th width="2%" nowrap>No.</th>
 			<th width="" nowrap>帳號</th>

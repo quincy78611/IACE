@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
@@ -146,7 +145,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 		</ul>
 		
 		<!-- 照片 -->
-		<table id="table-img" class="table-files" width="100%">
+		<table id="table-img" class="table-files">
 			<thead>
 				<tr>
 					<td colspan="2">
@@ -181,7 +180,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 		</table>
 		
 		<!-- 影片 -->
-		<table id="table-video" class="table-files" width="100%">
+		<table id="table-video" class="table-files">
 			<thead>
 				<tr>
 					<td colspan="2">
@@ -219,7 +218,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 		</table>
 		
 		<!-- 附檔 -->
-		<table id="table-attach" class="table-files" width="100%">
+		<table id="table-attach" class="table-files">
 			<thead>
 				<tr>
 					<td>

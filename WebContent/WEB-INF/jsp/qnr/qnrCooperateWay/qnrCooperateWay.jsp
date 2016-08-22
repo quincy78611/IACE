@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
@@ -196,7 +196,7 @@
 				<p>【說明】您目前服務的學校對於推動新興特色的重視程度，如產學合作、創業型大學、教學卓越大學等，請勾選適當的程度，皆為單選題。</p>
 			</div>
 
-			<table width="100%" class="table-qnrCooperateWay" id="table-part1">
+			<table class="table-qnrCooperateWay" id="table-part1">
 				<tr class="text-align-center">
 					<th></th>
 					<th></th>
@@ -385,7 +385,7 @@
 			<div class="top-desc">
 				<p>【說明】您目前服務的學校針對研發活動及產學合作提供之組織設計與管理，請勾選適當的程度，皆為單選題。</p>
 			</div>
-			<table width="100%" class="table-qnrCooperateWay" id="table-part2">
+			<table class="table-qnrCooperateWay" id="table-part2">
 				<tr class="text-align-center">
 					<th></th>
 					<th></th>
@@ -520,7 +520,7 @@
 			<div class="top-desc">
 				<p>【說明】您目前服務的學校為推動研究商品化活動(專利申請、產學合作、技術移轉、新創事業等)所提供之相關輔導與激勵措施，請勾選適當的程度，皆為單選題。</p>
 			</div>
-			<table width="100%" class="table-qnrCooperateWay" id="table-part3">
+			<table class="table-qnrCooperateWay" id="table-part3">
 				<tr class="text-align-center">
 					<th></th>
 					<th></th>

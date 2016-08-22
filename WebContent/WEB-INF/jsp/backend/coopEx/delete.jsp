@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
@@ -44,7 +43,7 @@
 		<br>
 		
 		<!-- 照片 -->
-		<table class="table-files" width="100%">
+		<table class="table-files">
 			<thead>
 				<tr>
 					<td colspan="2">照片清單</td>			
@@ -72,7 +71,7 @@
 		</table>
 		
 		<!-- 影片 -->
-		<table class="table-files" width="100%">
+		<table class="table-files">
 			<thead>
 				<tr>
 					<td colspan="2">影片清單</td>			
@@ -107,7 +106,7 @@
 		</table>		
 		
 		<!-- 附檔 -->
-		<table class="table-files" width="100%">
+		<table class="table-files">
 			<thead>
 				<tr>
 					<td>附檔清單</td>			

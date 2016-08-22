@@ -41,7 +41,7 @@
 .rightContent a:link, a:visited { color:#066b8f; text-decoration:none;}
 .rightContent a:hover, a:active { color:#890107; text-decoration:none;} 
 
-.rightContent table { margin-bottom:30px;}
+.rightContent table { margin-bottom:30px; width:100% }
 .rightContent table tr.text-align-center>th, td { text-align: center; }
 .rightContent table th { background: url(../images/thBG.gif) repeat-x; height:40px; line-height:150%; vertical-align:middle; text-align:left; color:#fff; font-size:0.81em; padding:0 5px;}
 .rightContent table th.text-align-center { text-align:center; }

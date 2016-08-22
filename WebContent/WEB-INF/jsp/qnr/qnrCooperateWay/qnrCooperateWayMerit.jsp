@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=BIG5">
@@ -54,7 +54,7 @@
 		<s:hidden name="schoolId" />
 <%-- 		<s:hidden name="qnrCooperateWayId"/> --%>
 	
-		<table width="100%" class="table-qnrCooperateWay">
+		<table class="table-qnrCooperateWay">
 			<tr class="text-align-center">
 				<th>項目</th>
 				<th>參與人員</th>

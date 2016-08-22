@@ -15,6 +15,7 @@ import java.util.*;
  * a) ascending (default true) b) ignore case (default true) c) nulls last
  * (default true)
  */
+@SuppressWarnings("rawtypes")
 public class BeanComparator implements Comparator {
 	private static final Class[] EMPTY_CLASS_ARRAY = new Class[] {};
 	private static final Object[] EMPTY_OBJECT_ARRAY = new Object[] {};
