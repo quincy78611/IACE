@@ -9,8 +9,8 @@ import iace.entity.sys.SysAuth;
 import iace.entity.sys.SysFunction;
 import iace.entity.sys.SysRole;
 import iace.service.ServiceFactory;
-import iace.service.SysFunctionService;
-import iace.service.SysRoleService;
+import iace.service.sys.SysFunctionService;
+import iace.service.sys.SysRoleService;
 
 public class SysRoleAction extends BaseIaceAction {
 

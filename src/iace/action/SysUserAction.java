@@ -8,8 +8,8 @@ import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
-import iace.service.SysRoleService;
-import iace.service.SysUserService;
+import iace.service.sys.SysRoleService;
+import iace.service.sys.SysUserService;
 
 public class SysUserAction extends BaseIaceAction {
 	private static final long serialVersionUID = 8080624976522044142L;

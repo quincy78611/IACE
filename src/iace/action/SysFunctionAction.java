@@ -4,7 +4,7 @@ import java.util.List;
 
 import iace.entity.sys.SysFunction;
 import iace.service.ServiceFactory;
-import iace.service.SysFunctionService;
+import iace.service.sys.SysFunctionService;
 
 public class SysFunctionAction extends BaseIaceAction {
 

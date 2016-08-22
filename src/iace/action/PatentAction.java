@@ -17,11 +17,11 @@ import iace.entity.option.OptionTrl;
 import iace.entity.patent.Patent;
 import iace.entity.patent.PatentSearchModel;
 import iace.entity.patent.TechField;
-import iace.service.OptionCountryService;
-import iace.service.OptionTrlService;
-import iace.service.PatentService;
 import iace.service.ServiceFactory;
-import iace.service.TechFieldService;
+import iace.service.option.OptionCountryService;
+import iace.service.option.OptionTrlService;
+import iace.service.patent.PatentService;
+import iace.service.patent.TechFieldService;
 
 public class PatentAction extends BaseIaceAction {
 

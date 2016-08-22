@@ -10,11 +10,11 @@ import iace.entity.option.OptionTrl;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.ResearchPlanSearchModel;
 import iace.entity.researchPlan.Technology;
-import iace.service.OptionGrbDomainService;
-import iace.service.OptionTrlService;
-import iace.service.ResearchPlanService;
 import iace.service.ServiceFactory;
-import iace.service.TechnologyService;
+import iace.service.option.OptionGrbDomainService;
+import iace.service.option.OptionTrlService;
+import iace.service.researchPlan.ResearchPlanService;
+import iace.service.researchPlan.TechnologyService;
 
 public class ResearchPlanAction extends BaseIaceAction {
 

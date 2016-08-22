@@ -3,8 +3,8 @@ package iace.action;
 import java.util.List;
 
 import iace.entity.option.OptionSubject;
-import iace.service.OptionSubjectService;
 import iace.service.ServiceFactory;
+import iace.service.option.OptionSubjectService;
 
 public class OptionSubjectAction extends BaseOptionAction<OptionSubject> {
 

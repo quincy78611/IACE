@@ -11,11 +11,11 @@ import org.apache.struts2.ServletActionContext;
 
 import iace.entity.patent.Patent;
 import iace.entity.researchPlan.ResearchPlan;
-import iace.service.PatentExcelService;
-import iace.service.PatentService;
-import iace.service.ResearchPlanExcelService;
-import iace.service.ResearchPlanService;
 import iace.service.ServiceFactory;
+import iace.service.patent.PatentExcelService;
+import iace.service.patent.PatentService;
+import iace.service.researchPlan.ResearchPlanExcelService;
+import iace.service.researchPlan.ResearchPlanService;
 
 public class BatchImportAction extends BaseIaceAction {
 

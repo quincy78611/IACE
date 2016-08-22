@@ -7,9 +7,9 @@ import iace.entity.questionnaire.QnrSearchCondition;
 import iace.entity.questionnaire.QnrSearchConditionSet;
 import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
-import iace.service.QnrService;
-import iace.service.QnrTemplateService;
 import iace.service.ServiceFactory;
+import iace.service.questionnaire.QnrService;
+import iace.service.questionnaire.QnrTemplateService;
 
 public class QnrAction extends BaseIaceAction {
 

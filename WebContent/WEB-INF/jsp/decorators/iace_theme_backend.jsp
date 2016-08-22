@@ -68,10 +68,12 @@
 	<article>
 		<div class="pageTitle">
    			<s:if test="%{title != null && title != ''}">
-   				<h1 class="funcTitle"><s:property value="title" /></h1>
+   				<h1 class="funcTitle">
+   					<s:property value="title" /> > <decorator:getProperty property="meta.funcPathText"/>
+   				</h1>
    			</s:if>
    			<h4 class="funcPath">
-   				<decorator:getProperty property="meta.funcPathText"/>
+   				
    			</h4>
 		</div>
     	<div class="leftMenu">

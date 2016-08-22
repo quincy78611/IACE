@@ -5,7 +5,7 @@ import java.util.List;
 import core.util.PagedList;
 import iace.entity.option.BaseOption;
 import iace.entity.option.BaseOptionSearchModel;
-import iace.service.BaseOptionService;
+import iace.service.option.BaseOptionService;
 
 public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceAction {
 

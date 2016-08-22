@@ -8,11 +8,11 @@ import iace.entity.consulting.ConsultingSearchModel;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionOrganizationType;
-import iace.service.ConsultingService;
-import iace.service.OptionConsultService;
-import iace.service.OptionIndustryService;
-import iace.service.OptionOrganizationTypeService;
 import iace.service.ServiceFactory;
+import iace.service.consulting.ConsultingService;
+import iace.service.option.OptionConsultService;
+import iace.service.option.OptionIndustryService;
+import iace.service.option.OptionOrganizationTypeService;
 
 public class ConsultingAction extends BaseIaceAction {
 
