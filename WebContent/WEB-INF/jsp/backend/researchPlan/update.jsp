@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <script type="text/javascript">
@@ -126,7 +125,7 @@
 	<div class="clear"><hr></div>		
 	<div id="div-technologhList">
 		<h2 class="itemTitle Down">研發成果列表</h2>
-		<table id="rndResultsTable" width="100%">
+		<table id="rndResultsTable">
 			<thead>
 				<tr>
 					<th nowrap width="2%">No.</th>
