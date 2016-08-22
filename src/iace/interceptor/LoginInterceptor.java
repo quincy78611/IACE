@@ -20,8 +20,6 @@ public class LoginInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation arg0) throws Exception {
-		log.debug("LoginInterceptor");
-
 		ActionContext actionContext = arg0.getInvocationContext();
 		Map<String, Object> sessionMap = actionContext.getSession();
 		SysUser user = (SysUser) sessionMap.get(SessionInterceptor.SESSION_KEY_SYS_USER);
@@ -30,6 +28,7 @@ public class LoginInterceptor extends AbstractInterceptor {
 			action.addActionMessage("您尚未登入!");
 			return Action.LOGIN;
 		} else {
+			log.debug("LoginInterceptor : "+user.getAccount());
 			return arg0.invoke();
 		}
 	}

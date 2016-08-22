@@ -20,13 +20,13 @@ public class AuthInterceptor extends AbstractInterceptor {
 
 	@Override
 	public String intercept(ActionInvocation arg0) throws Exception {
-		log.debug("AuthInterceptor");
 		String namespace = arg0.getProxy().getNamespace();
 		String actionName = arg0.getProxy().getActionName();
 
 		ActionContext actionContext = arg0.getInvocationContext();
 		Map<String, Object> sessionMap = actionContext.getSession();
 		SysUser user = (SysUser) sessionMap.get(SessionInterceptor.SESSION_KEY_SYS_USER);
+		log.debug("AuthInterceptor : "+namespace+"/"+actionName);
 		if (user == null) {
 			return Action.LOGIN;
 		} else if (user.hasAuth(namespace, actionName)) {
