@@ -105,6 +105,7 @@
 		});		
 	}
 </script>
+<meta name="funcPathText" content="編輯管理"/>
 </head>
 <body>
 	<s:form action="index" method="post" validate="true" >

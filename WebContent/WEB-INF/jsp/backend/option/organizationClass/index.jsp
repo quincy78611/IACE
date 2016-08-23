@@ -14,6 +14,7 @@
 			});	
 		});
 	</script>
+	<meta name="funcPathText" content="編輯管理"/>
 </head>
 <body>
 	<input type="button" class="redBtn" value="新增代碼" onclick="window.location.href='<s:url value="create.action"/>'" />
