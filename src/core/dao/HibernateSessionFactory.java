@@ -11,7 +11,6 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
-import iace.entity.brTalentedPeople.BRTalentedPeople;
 import iace.entity.consulting.Consulting;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.coopExample.CoopExAttachFile;
@@ -46,6 +45,7 @@ import iace.entity.sys.SysAuth;
 import iace.entity.sys.SysFunction;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
+import iace.entity.talentedPeople.TalentedPeople;
 
 
 public class HibernateSessionFactory {
@@ -189,6 +189,6 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(CoopExVideo.class);
     	configuration.addAnnotatedClass(CoopExAttachFile.class);
    	
-    	configuration.addAnnotatedClass(BRTalentedPeople.class);
+    	configuration.addAnnotatedClass(TalentedPeople.class);
     }
 }

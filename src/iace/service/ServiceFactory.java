@@ -34,6 +34,7 @@ import iace.service.researchPlan.TechnologyService;
 import iace.service.sys.SysFunctionService;
 import iace.service.sys.SysRoleService;
 import iace.service.sys.SysUserService;
+import iace.service.talentedPeople.TalentedPeopleService;
 
 
 public class ServiceFactory {
@@ -79,6 +80,8 @@ public class ServiceFactory {
 	private static CoopExService coopExService;
 	private static CoopExVideoService coopExVideoService;
 	private static CoopExAttachFileService coopExAttachFileService;
+	
+	private static TalentedPeopleService talentedPeopleService;
 	
 	public static SysFunctionService getSysFunctionService() {
 		if (sysFunctionService == null) {
@@ -330,6 +333,13 @@ public class ServiceFactory {
 			coopExAttachFileService = new CoopExAttachFileService(DaoFactory.getCoopExAttachFileDao());
 		}
 		return coopExAttachFileService;
+	}
+
+	public static TalentedPeopleService getTalentedPeopleService() {
+		if (talentedPeopleService == null) {
+			talentedPeopleService = new TalentedPeopleService(DaoFactory.getTalentedPeopleDao());
+		}
+		return talentedPeopleService;
 	}
 	
 	

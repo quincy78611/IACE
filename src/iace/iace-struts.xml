@@ -397,4 +397,39 @@
 			</result>	
 		</action>		
 	</package>
+	
+	<package name="TalentedPeople" namespace="/talentedPeople" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.TalentedPeopleAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.TalentedPeopleAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.TalentedPeopleAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/detail.jsp</result>
+		</action>		
+		<action name="create" class="iace.action.TalentedPeopleAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.TalentedPeopleAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.TalentedPeopleAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.TalentedPeopleAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/detail.jsp</result>
+		</action>		
+		<action name="delete" class="iace.action.TalentedPeopleAction" method="delete">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.TalentedPeopleAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/index.jsp</result>
+		</action>	
+	</package>
 </struts>

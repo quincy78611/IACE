@@ -54,6 +54,8 @@ import iace.dao.sys.ISysUserDao;
 import iace.dao.sys.SysFunctionDao;
 import iace.dao.sys.SysRoleDao;
 import iace.dao.sys.SysUserDao;
+import iace.dao.talentedPeople.ITalentedPeopleDao;
+import iace.dao.talentedPeople.TalentedPeopleDao;
 import iace.dao.techField.ITechFieldDao;
 import iace.dao.techField.TechFieldDao;
 import iace.entity.option.OptionCompanyLocation;
@@ -111,6 +113,8 @@ public class DaoFactory {
 	private static ICoopExImgDao coopExImgDao;
 	private static ICoopExVideoDao coopExVideoDao;
 	private static ICoopExAttachFileDao coopExAttachFileDao;
+	
+	private static ITalentedPeopleDao talentedPeopleDao;
 	
 	public static ISysFunctionDao getSysFunctionDao() {
 		if (sysFunctionDao == null) {
@@ -341,6 +345,13 @@ public class DaoFactory {
 			coopExAttachFileDao = new CoopExAttachFileDao();
 		}
 		return coopExAttachFileDao;
+	}
+
+	public static ITalentedPeopleDao getTalentedPeopleDao() {
+		if (talentedPeopleDao == null) {
+			talentedPeopleDao = new TalentedPeopleDao();
+		}
+		return talentedPeopleDao;
 	}
 	
 	

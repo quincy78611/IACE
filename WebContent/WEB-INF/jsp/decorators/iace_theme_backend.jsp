@@ -147,6 +147,12 @@
 								<li><a href="<s:url value="/coopEx/create"/>">新增</a></li>
 							</ul>
 						</li>
+						<li><a href="#">人才庫</a>
+							<ul>
+								<li><a href="<s:url value="/talentedPeople/init"/>">編輯管理</a></li>
+								<li><a href="<s:url value="/talentedPeople/create"/>">新增</a></li>
+							</ul>
+						</li>						
 						<li><a href="#">代碼管理</a>
 							<ul>
 						    	<li><a href="<s:url value="/option/country/index"/>">專利國別</a></li>
