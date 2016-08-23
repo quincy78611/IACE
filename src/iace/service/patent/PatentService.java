@@ -43,34 +43,6 @@ public class PatentService extends BaseService<Patent, Long> {
 			log.fatal("", e);			
 		}
 	}
-
-	@Deprecated
-	public List<Patent> listAll() {
-		List<Patent> res = this.patentDao.listAll();
-		for (Patent p : res) {
-			loadImportantPicToEntity(p);
-		}
-		return res;
-	}
-	
-	@Deprecated
-	public List<Patent> searchBy(String name, String appNo, String country, long techFieldId) {
-		TechField techField = this.techFieldDao.get(techFieldId);
-		List<Patent> res = this.patentDao.searchBy(name, appNo, country, techField);
-		for (Patent p : res) {
-			loadImportantPicToEntity(p);
-		}
-		return res;
-	}
-	
-	public PagedList<Patent> searchBy(int pageIndex, int pageSize, String name, String appNo, String country, long techFieldId){
-		TechField techField = this.techFieldDao.get(techFieldId);
-		PagedList<Patent> res = this.patentDao.searchBy(pageIndex, pageSize, name, appNo, country, techField);
-		for (Patent p : res.getList()) {
-			loadImportantPicToEntity(p);
-		}
-		return res;
-	}
 	
 	public PagedList<Patent> searchBy(PatentSearchModel model) {
 		PagedList<Patent> res = this.patentDao.searchBy(model);

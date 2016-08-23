@@ -108,14 +108,24 @@
 		<div>
 			<ul>
 				<li class="all">
-					<s:textfield placeholder="專利名稱" name="searchCondition.name" maxlength="300" cssClass="form-control" />
+					<s:textfield placeholder="專利名稱" name="searchCondition.name" maxlength="300" />
+				</li>
+				<li class="half">
+					<s:textfield placeholder="專利權人" name="searchCondition.assignee" maxlength="500" />
+				</li>				
+				<li class="quarter">
+					<s:textfield placeholder="申請日(起)" name="searchCondition.applicationDateS" maxlength="10" cssClass="calendarBox" />
 				</li>
 				<li class="quarter">
-					<s:textfield placeholder="申請號" name="searchCondition.appNo" maxlength="100" cssClass="form-control" />
+					<s:textfield placeholder="申請號日(迄)" name="searchCondition.applicationDateE" maxlength="10" cssClass="calendarBox" />
+				</li>
+				<li class="quarter">
+					<s:textfield placeholder="申請號" name="searchCondition.appliactionNo" maxlength="100" />
 				</li>
 				<li class="quarter">
 					<s:select name="searchCondition.countryCode" list="optionCountryList" listKey="code" listValue="%{code+' - '+name}" headerKey="" headerValue="請選擇申請國" />
 				</li>
+
 				<li class="quarter">
 					<s:select name="searchCondition.techFieldId" list="techFieldList" listKey="id" listValue="name" headerKey="-1" headerValue="請選擇專利技術領域" />
 				</li>
@@ -125,6 +135,7 @@
 				</li>
 			</ul>
 		</div>
+		<div class="clear"></div>
 
 		<div class="page">
 			<s:set var="pgList" value="patentPagedList"/>

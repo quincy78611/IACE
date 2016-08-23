@@ -157,7 +157,7 @@
 	</s:form>
 	<form action="index" method="post" id="form-backToIndex">
 		<s:hidden name="searchCondition.name"/>
-		<s:hidden name="searchCondition.appNo"/>
+		<s:hidden name="searchCondition.appliactionNo"/>
 		<s:hidden name="searchCondition.countryCode"/>
 		<s:hidden name="searchCondition.techFieldId"/>
 		<s:hidden name="searchCondition.pageIndex"/>

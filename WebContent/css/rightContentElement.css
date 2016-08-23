@@ -14,7 +14,7 @@
 .rightContent ul > li > ul > li { font-size: 16px; float:none; margin-bottom:10px;}
 .rightContent b { color:#5b92b9; font-weight:normal; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;}
 
-.rightContent li.all { width:100%;}
+.rightContent li.all { width:99%; margin-right:1%;}
 .rightContent li.half { width:49%; margin-right:1%;}
 .rightContent li.third { width:32%; margin-right:1%;}
 .rightContent li.quarter { width:24%; margin-right:1%;}

@@ -7,7 +7,6 @@ import core.util.PagedList;
 import iace.dao.IBaseIaceDao;
 import iace.entity.patent.Patent;
 import iace.entity.patent.PatentSearchModel;
-import iace.entity.patent.TechField;
 
 public interface IPatentDao extends IBaseIaceDao<Patent> {
 
@@ -23,8 +22,6 @@ public interface IPatentDao extends IBaseIaceDao<Patent> {
 	 */
 	public Set<String> getUKs();
 	
-	public List<Patent> searchBy(String name, String appNo, String country, TechField techField);
-	public PagedList<Patent> searchBy(int pageIndex, int pageSize, String name, String appNo, String country, TechField techField);
 	public PagedList<Patent> searchBy(PatentSearchModel model);
 	
 	public void createAll(List<Patent> entities);
