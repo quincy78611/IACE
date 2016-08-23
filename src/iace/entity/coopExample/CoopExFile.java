@@ -62,7 +62,7 @@ public class CoopExFile extends BaseEntity {
 		this.filePath = filePath;
 	}
 
-	@Column(name = "FILE_CONTENT_TYPE", length = 50)
+	@Column(name = "FILE_CONTENT_TYPE", length = 200)
 	public String getFileContentType() {
 		return fileContentType;
 	}
