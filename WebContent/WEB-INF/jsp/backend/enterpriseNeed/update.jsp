@@ -493,6 +493,11 @@
 	</s:form>
 	<form action="index" method="post" id="form-backToIndex">
 		<s:hidden name="searchCondition.searchText"/>
+		<s:hidden name="searchCondition.optionCompanyLocationId"/>
+		<s:hidden name="searchCondition.personInChargeName"/>
+		<s:hidden name="searchCondition.intervieweeName"/>
+		<s:hidden name="searchCondition.interviewDateS"/>
+		<s:hidden name="searchCondition.interviewDateE"/>
 		<s:hidden name="searchCondition.pageIndex"/>
 		<s:hidden name="searchCondition.pageSize"/>
 	</form>		

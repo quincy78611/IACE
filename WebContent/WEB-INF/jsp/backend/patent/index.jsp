@@ -125,7 +125,6 @@
 				<li class="quarter">
 					<s:select name="searchCondition.countryCode" list="optionCountryList" listKey="code" listValue="%{code+' - '+name}" headerKey="" headerValue="請選擇申請國" />
 				</li>
-
 				<li class="quarter">
 					<s:select name="searchCondition.techFieldId" list="techFieldList" listKey="id" listValue="name" headerKey="-1" headerValue="請選擇專利技術領域" />
 				</li>

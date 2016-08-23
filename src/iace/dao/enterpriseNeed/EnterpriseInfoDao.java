@@ -90,6 +90,22 @@ public class EnterpriseInfoDao extends BaseIaceDao<EnterpriseInfo> implements IE
 			or.add(Restrictions.like("companyId", arg.getSearchText(), MatchMode.START).ignoreCase());			
 			criteria.add(or);
 		}
+		if (arg.getOptionCompanyLocationId() != null) {
+			criteria.add(Restrictions.eq("optionCompanyLocation.id", arg.getOptionCompanyLocationId()));
+		}
+		if (StringUtils.isNotBlank(arg.getPersonInChargeName())) {
+			criteria.add(Restrictions.like("personInChargeName", arg.getPersonInChargeName(), MatchMode.START).ignoreCase());
+		}
+		if (StringUtils.isNotBlank(arg.getIntervieweeName())) {
+			criteria.add(Restrictions.like("intervieweeName", arg.getIntervieweeName(), MatchMode.START).ignoreCase());
+		}
+		criteria.createAlias("enterpriseRequireTech", "rt");
+		if (arg.getInterviewDateS() != null) {
+			criteria.add(Restrictions.ge("rt.interviewDate", arg.getInterviewDateS()));
+		}
+		if (arg.getInterviewDateE() != null) {
+			criteria.add(Restrictions.le("rt.interviewDate", arg.getInterviewDateE()));
+		}
 		
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}

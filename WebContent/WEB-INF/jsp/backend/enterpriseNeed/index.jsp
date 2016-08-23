@@ -106,8 +106,23 @@
 		<div class="">
 			<ul>
 				<li class="half">
-					<s:textfield placeholder="請輸入企業名稱或統編" name="searchCondition.searchText" maxlength="100" cssClass="form-control" />
+					<s:textfield placeholder="企業名稱或統編" name="searchCondition.searchText" maxlength="100" />
 				</li>
+				<li class="quarter">
+					<s:textfield placeholder="負責人" name="searchCondition.personInChargeName" maxlength="100" />
+				</li>
+				<li class="quarter">
+					<s:textfield placeholder="受訪人" name="searchCondition.intervieweeName" maxlength="100" />
+				</li>
+				<li class="quarter">
+					<s:select name="searchCondition.optionCompanyLocationId" list="optionCompanyLocationList" listKey="id" listValue="%{code+' - '+name}" headerKey="" headerValue="請選擇公司地域別" />
+				</li>
+				<li class="quarter">
+					<s:textfield placeholder="訪談日(起)" name="searchCondition.interviewDateS" maxlength="10" cssClass="calendarBox" />
+				</li>
+				<li class="quarter">
+					<s:textfield placeholder="訪談日(迄)" name="searchCondition.interviewDateE" maxlength="10" cssClass="calendarBox" />
+				</li>				
 				<li class="quarter">
 					<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
 					<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
