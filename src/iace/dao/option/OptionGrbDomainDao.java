@@ -24,7 +24,7 @@ public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> {
 			{
 				String hql = "SELECT count(*) "
 						+ "FROM " + ResearchPlan.class.getSimpleName() + " o "
-						+ "WHERE ( o.grbDomain1.code = :optionCode AND o.isValid = :isValid ";
+						+ "WHERE ( o.grbDomain1.code = :optionCode AND o.isValid = :isValid )";
 				Query query = session.createQuery(hql);
 				query.setString("optionCode", option.getCode());
 				query.setString("isValid", BaseEntity.TRUE);
@@ -34,7 +34,7 @@ public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> {
 			{
 				String hql = "SELECT count(*) "
 						+ "FROM " + ResearchPlan.class.getSimpleName() + " o "
-						+ "WHERE ( o.grbDomain2.code = :optionCode AND o.isValid = :isValid ";
+						+ "WHERE ( o.grbDomain2.code = :optionCode AND o.isValid = :isValid )";
 				Query query = session.createQuery(hql);
 				query.setString("optionCode", option.getCode());
 				query.setString("isValid", BaseEntity.TRUE);
@@ -44,7 +44,7 @@ public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> {
 			{
 				String hql = "SELECT count(*) "
 						+ "FROM " + ResearchPlan.class.getSimpleName() + " o "
-						+ "WHERE ( o.grbDomain3.code = :optionCode AND o.isValid = :isValid ";
+						+ "WHERE ( o.grbDomain3.code = :optionCode AND o.isValid = :isValid )";
 				Query query = session.createQuery(hql);
 				query.setString("optionCode", option.getCode());
 				query.setString("isValid", BaseEntity.TRUE);
@@ -54,7 +54,7 @@ public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> {
 			{
 				String hql = "SELECT count(*) "
 						+ "FROM " + ResearchPlan.class.getSimpleName() + " o "
-						+ "WHERE ( o.grbDomain4.code = :optionCode AND o.isValid = :isValid ";
+						+ "WHERE ( o.grbDomain4.code = :optionCode AND o.isValid = :isValid )";
 				Query query = session.createQuery(hql);
 				query.setString("optionCode", option.getCode());
 				query.setString("isValid", BaseEntity.TRUE);
@@ -64,7 +64,7 @@ public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> {
 			{
 				String hql = "SELECT count(*) "
 						+ "FROM " + ResearchPlan.class.getSimpleName() + " o "
-						+ "WHERE ( o.grbDomain5.code = :optionCode AND o.isValid = :isValid ";
+						+ "WHERE ( o.grbDomain5.code = :optionCode AND o.isValid = :isValid )";
 				Query query = session.createQuery(hql);
 				query.setString("optionCode", option.getCode());
 				query.setString("isValid", BaseEntity.TRUE);
@@ -74,7 +74,7 @@ public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> {
 			{
 				String hql = "SELECT count(*) "
 						+ "FROM " + ResearchPlan.class.getSimpleName() + " o "
-						+ "WHERE ( o.grbDomain6.code = :optionCode AND o.isValid = :isValid ";
+						+ "WHERE ( o.grbDomain6.code = :optionCode AND o.isValid = :isValid )";
 				Query query = session.createQuery(hql);
 				query.setString("optionCode", option.getCode());
 				query.setString("isValid", BaseEntity.TRUE);
