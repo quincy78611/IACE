@@ -96,35 +96,39 @@
 		<div class="">
 			<ul>
 				<li class="third">
-					<s:textfield placeholder="計畫編號" name="searchCondition.planNo" maxlength="100" cssClass="form-control" />
-				</li>
-				<li class="third">
 					<s:textfield placeholder="計畫名稱" name="searchCondition.planName" maxlength="4000" cssClass="form-control" />
 				</li>
 				<li class="third">
-					<s:select name="searchCondition.grbDomainCode" list="optionGrbDomainList" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部研究領域"/>
+					<s:textfield placeholder="計畫編號" name="searchCondition.planNo" maxlength="100" cssClass="form-control" />
+				</li>
+				<li class="third">
+					<s:textfield placeholder="計畫年度" name="searchCondition.year" maxlength="4" cssClass="form-control" />
+				</li>
+				<li class="third">
+					<s:textfield placeholder="計畫關鍵詞" name="searchCondition.keyword" maxlength="4000" cssClass="form-control" />
+				</li>
+				<li class="third">
+					<s:select name="searchCondition.trlId" list="optionTrlList" listKey="id" listValue="%{code +'-'+ name}" headerKey="-1" headerValue="全部計畫發展階段"/>
 				</li>
 				<li class="third">
 					<s:textfield placeholder="計畫主持人" name="searchCondition.manager" maxlength="100" cssClass="form-control" />
 				</li>
 				<li class="third">
-					<s:textfield placeholder="計畫關鍵字" name="searchCondition.keyword" maxlength="4000" cssClass="form-control" />
+					<s:select name="searchCondition.grbDomainId" list="optionGrbDomainList" listKey="id" listValue="%{code +'-'+ name}" headerKey="-1" headerValue="全部研究領域"/>
 				</li>
 				<li class="third">
-					<s:textfield placeholder="技術名稱" name="searchCondition.rndResultName" maxlength="4000" cssClass="form-control" />
+					<s:textfield placeholder="技術名稱" name="searchCondition.technologyName" maxlength="4000" cssClass="form-control" />
 				</li>
 				<li class="third">
-					<s:select name="searchCondition.trlCode" list="optionTrlList" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部計畫發展階段"/>
-				</li>
-				<li class="third">
-					<s:textfield placeholder="年度" name="searchCondition.year" maxlength="4" cssClass="form-control" />
-				</li>
+					<s:select name="searchCondition.technologyTrlId" list="optionTrlList" listKey="id" listValue="%{code +'-'+ name}" headerKey="-1" headerValue="全部技術發展階段"/>
+				</li>				
 				<li class="third">
 					<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
 					<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
 				</li>	
 			</ul>
 		</div>
+		<div class="clear"></div>
 		
 		<div class="page">
 			<s:set var="pgList" value="researchPlanPagedList"/>

@@ -4,22 +4,15 @@ import iace.entity.BaseSearchModel;
 
 public class ResearchPlanSearchModel extends BaseSearchModel {
 
-	private String planNo;
 	private String planName;
+	private String planNo;
 	private Integer year;
-	private String grbDomainCode;
-	private String manager;
 	private String keyword;
-	private String trlCode;
-	private String rndResultName;
-
-	public String getPlanNo() {
-		return planNo;
-	}
-
-	public void setPlanNo(String planNo) {
-		this.planNo = planNo;
-	}
+	private Long trlId;
+	private String manager;
+	private Long grbDomainId;
+	private String technologyName;
+	private Long technologyTrlId;
 
 	public String getPlanName() {
 		return planName;
@@ -27,6 +20,14 @@ public class ResearchPlanSearchModel extends BaseSearchModel {
 
 	public void setPlanName(String planName) {
 		this.planName = planName;
+	}
+
+	public String getPlanNo() {
+		return planNo;
+	}
+
+	public void setPlanNo(String planNo) {
+		this.planNo = planNo;
 	}
 
 	public Integer getYear() {
@@ -37,12 +38,20 @@ public class ResearchPlanSearchModel extends BaseSearchModel {
 		this.year = year;
 	}
 
-	public String getGrbDomainCode() {
-		return grbDomainCode;
+	public String getKeyword() {
+		return keyword;
 	}
 
-	public void setGrbDomainCode(String grbDomainCode) {
-		this.grbDomainCode = grbDomainCode;
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public Long getTrlId() {
+		return trlId;
+	}
+
+	public void setTrlId(Long trlId) {
+		this.trlId = trlId;
 	}
 
 	public String getManager() {
@@ -53,28 +62,28 @@ public class ResearchPlanSearchModel extends BaseSearchModel {
 		this.manager = manager;
 	}
 
-	public String getKeyword() {
-		return keyword;
+	public Long getGrbDomainId() {
+		return grbDomainId;
 	}
 
-	public void setKeyword(String keyword) {
-		this.keyword = keyword;
+	public void setGrbDomainId(Long grbDomainId) {
+		this.grbDomainId = grbDomainId;
 	}
 
-	public String getTrlCode() {
-		return trlCode;
+	public String getTechnologyName() {
+		return technologyName;
 	}
 
-	public void setTrlCode(String trlCode) {
-		this.trlCode = trlCode;
+	public void setTechnologyName(String technologyName) {
+		this.technologyName = technologyName;
 	}
 
-	public String getRndResultName() {
-		return rndResultName;
+	public Long getTechnologyTrlId() {
+		return technologyTrlId;
 	}
 
-	public void setRndResultName(String rndResultName) {
-		this.rndResultName = rndResultName;
+	public void setTechnologyTrlId(Long technologyTrlId) {
+		this.technologyTrlId = technologyTrlId;
 	}
 
 }

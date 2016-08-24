@@ -187,14 +187,15 @@
 		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 	</div>	
 	<form action="index" method="post" id="form-backToIndex">
-		<s:hidden name="searchCondition.planNo"/>
 		<s:hidden name="searchCondition.planName"/>
+		<s:hidden name="searchCondition.planNo"/>
 		<s:hidden name="searchCondition.year"/>
-		<s:hidden name="searchCondition.grbDomainCode"/>
-		<s:hidden name="searchCondition.manager"/>
 		<s:hidden name="searchCondition.keyword"/>
-		<s:hidden name="searchCondition.trlCode"/>
-		<s:hidden name="searchCondition.rndResultName"/>		
+		<s:hidden name="searchCondition.trlId"/>
+		<s:hidden name="searchCondition.manager"/>
+		<s:hidden name="searchCondition.grbDomainId"/>
+		<s:hidden name="searchCondition.technologyName"/>
+		<s:hidden name="searchCondition.technologyTrlId"/>		
 		<s:hidden name="searchCondition.pageIndex"/>
 		<s:hidden name="searchCondition.pageSize"/>
 	</form>

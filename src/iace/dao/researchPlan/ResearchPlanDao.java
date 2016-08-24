@@ -12,6 +12,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 
 import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
@@ -119,7 +120,10 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(ResearchPlan.class);			
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.setProjection(Projections.rowCount());
+			
+//			criteria.setProjection(Projections.rowCount());
+			criteria.setProjection(Projections.countDistinct("id")); // when using rowCount() and there are more than one child entities, then it will return the number of child entities instead of only count main entity
+			
 			Object count = criteria.uniqueResult();
 			return (long) count;
 		} catch (Exception e) {
@@ -139,11 +143,11 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		if (arg.getYear() != null) {
 			criteria.add(Restrictions.eq("year", arg.getYear()));
 		}
-		if (StringUtils.isNotBlank(arg.getGrbDomainCode())) {				
+		if (arg.getGrbDomainId() != null && arg.getGrbDomainId() > 0) {	
 			Criterion[] rests = new Criterion[6];
 			for (int i=0; i<6; i++) {
-				String propertyName = "grbDomain"+(i+1)+".code";
-				rests[i] = Restrictions.eq(propertyName, arg.getGrbDomainCode());
+				criteria.createAlias("grbDomain"+(i+1), "grbD"+(i+1),  JoinType.LEFT_OUTER_JOIN);
+				rests[i] = Restrictions.eq("grbD"+(i+1)+".id", arg.getGrbDomainId());
 			}				
 			criteria.add(Restrictions.or(rests));
 		}
@@ -153,19 +157,22 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		if (StringUtils.isNotBlank(arg.getKeyword())) {
 			criteria.add(Restrictions.like("keyword", arg.getKeyword(), MatchMode.ANYWHERE).ignoreCase());
 		}
-		if (StringUtils.isNotBlank(arg.getTrlCode())) {
-			criteria.add(Restrictions.eq("trl.code", arg.getTrlCode()));
+		if (arg.getTrlId() != null && arg.getTrlId() > 0) {
+			criteria.createAlias("trl", "trl");
+			criteria.add(Restrictions.eq("trl.id", arg.getTrlId()));
 		}
-		if (StringUtils.isNotBlank(arg.getRndResultName())) {
-			Criteria rCrit = criteria.createCriteria("technologies");
-			rCrit.add(Restrictions.like("name", arg.getRndResultName(), MatchMode.ANYWHERE).ignoreCase());
-		}		
+		Criteria rCrit = criteria.createCriteria("technologies");
+		if (StringUtils.isNotBlank(arg.getTechnologyName())) {
+			rCrit.add(Restrictions.like("name", arg.getTechnologyName(), MatchMode.ANYWHERE).ignoreCase());
+		}
+		if (arg.getTechnologyTrlId() != null && arg.getTechnologyTrlId() > 0) {
+			rCrit.createAlias("optionTrlList", "trlL");
+			rCrit.add(Restrictions.eq("trlL.id", arg.getTechnologyTrlId()));
+		}
 		
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 		
-		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY); // IMPORTANT: without this line, it might return duplicate entities when main entity(ResearchPlan) has more than one child entity(Technology)
 	}
-
-
 
 }
