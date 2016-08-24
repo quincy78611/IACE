@@ -99,9 +99,13 @@
 			$("form").submit();
 		});
 		$(".btn-del").click(function() {
-			var url = $(this).siblings(".deleteUrl").val();
-			$("form").attr('action', url);
-			$("form").submit();
+			var code = $(this).parents("tr").find("td.code").html();
+			var name = $(this).parents("tr").find("td.name").html();
+			if (confirm("確定要刪除 ["+code+":"+name+"] ?")) {
+				var url = $(this).siblings(".deleteUrl").val();
+				$("form").attr('action', url);
+				$("form").submit();
+			}
 		});		
 	}
 </script>
@@ -177,9 +181,9 @@
 							<s:property value="%{optionPagedList.itemStart + #stat.count -1}" />
 							<%-- <s:property value="id" /> --%>
 						</td>						
-						<td><s:property value="code" /></td>
-						<td><s:property value="name" /></td>
-						<td class="col-md-2">
+						<td class="code"><s:property value="code" /></td>
+						<td class="name"><s:property value="name" /></td>
+						<td>
 							<!-- 編輯 -->
 							<s:url value="update.action" var="updateUrlTag">
 								<s:param name="id" value="id" />

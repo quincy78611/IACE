@@ -149,7 +149,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 		if (StringUtils.isNotBlank(args.getSearchText())) {
 			Disjunction or = Restrictions.disjunction();
 			or.add(Restrictions.like("code", args.getSearchText(), MatchMode.START).ignoreCase());
-			or.add(Restrictions.like("name", args.getSearchText(), MatchMode.START).ignoreCase());			
+			or.add(Restrictions.like("name", args.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
 			criteria.add(or);
 		}
 		

@@ -19,21 +19,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionCompanyLocationAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/companyLocation/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/companyLocation/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/companyLocation/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionCompanyLocationAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/companyLocation/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/companyLocation/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionCompanyLocationAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/companyLocation/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/companyLocation/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/companyLocation/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionCompanyLocationAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/companyLocation/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/companyLocation/index.jsp</result>
 		</action>
 	</package>
 	
@@ -47,21 +43,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionConsultAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/consult/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/consult/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/consult/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionConsultAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/consult/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/consult/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionConsultAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/consult/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/consult/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/consult/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionConsultAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/consult/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/consult/index.jsp</result>
 		</action>
 	</package>
 
@@ -75,21 +67,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionCooperateModeAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/cooperateMode/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/cooperateMode/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/cooperateMode/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionCooperateModeAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/cooperateMode/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/cooperateMode/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionCooperateModeAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/cooperateMode/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/cooperateMode/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/cooperateMode/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionCooperateModeAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/cooperateMode/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/cooperateMode/index.jsp</result>
 		</action>
 	</package>
 		
@@ -103,21 +91,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionCountryAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/country/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/country/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/country/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionCountryAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/country/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/country/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionCountryAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/country/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/country/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/country/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionCountryAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/country/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/country/index.jsp</result>
 		</action>
 	</package>	
 	
@@ -131,21 +115,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionGrbDomainAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/grbDomain/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/grbDomain/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/grbDomain/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionGrbDomainAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/grbDomain/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/grbDomain/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionGrbDomainAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/grbDomain/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/grbDomain/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/grbDomain/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionGrbDomainAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/grbDomain/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/grbDomain/index.jsp</result>
 		</action>
 	</package>
 
@@ -159,21 +139,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionHadTecSrcAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/hadTecSrc/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/hadTecSrc/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/hadTecSrc/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionHadTecSrcAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/hadTecSrc/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/hadTecSrc/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionHadTecSrcAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/hadTecSrc/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/hadTecSrc/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/hadTecSrc/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionHadTecSrcAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/hadTecSrc/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/hadTecSrc/index.jsp</result>
 		</action>
 	</package>
 	
@@ -187,21 +163,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionIndustryAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/industry/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/industry/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/industry/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionIndustryAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/industry/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/industry/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionIndustryAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/industry/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/industry/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/industry/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionIndustryAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/industry/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/industry/index.jsp</result>
 		</action>
 	</package>
 
@@ -215,21 +187,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionDomainAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/domain/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/domain/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionDomainAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/domain/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/domain/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionDomainAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/domain/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/domain/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionDomainAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
 		</action>
 	</package>	
 	
@@ -243,21 +211,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionOrganizationClassAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/organizationClass/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/organizationClass/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/organizationClass/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionOrganizationClassAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/organizationClass/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/organizationClass/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionOrganizationClassAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/organizationClass/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/organizationClass/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/organizationClass/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionOrganizationClassAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/organizationClass/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/organizationClass/index.jsp</result>
 		</action>
 	</package>	
 	
@@ -271,21 +235,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionOrganizationTypeAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/organizationType/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/organizationType/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/organizationType/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionOrganizationTypeAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/organizationType/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/organizationType/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionOrganizationTypeAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/organizationType/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/organizationType/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/organizationType/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionOrganizationTypeAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/organizationType/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/organizationType/index.jsp</result>
 		</action>
 	</package>
 
@@ -299,21 +259,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionSubjectAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/subject/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/subject/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/subject/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionSubjectAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/subject/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/subject/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionSubjectAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/subject/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/subject/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/subject/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionSubjectAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/subject/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/subject/index.jsp</result>
 		</action>
 		<action name="getOptionSubjectListAjax" class="iace.action.OptionSubjectAction" method="getOptionSubjectListAjax">
 			<result type="json">
@@ -333,21 +289,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionTrlAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/trl/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/trl/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/trl/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionTrlAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/trl/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/trl/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionTrlAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/trl/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/trl/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/trl/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionTrlAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/trl/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/trl/index.jsp</result>
 		</action>
 	</package>
 	
@@ -361,21 +313,17 @@
 		</action>
 		<action name="createSubmit" class="iace.action.OptionSchoolAction" method="createSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/school/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/school/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>
 		<action name="update" class="iace.action.OptionSchoolAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/option/school/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/school/index.jsp</result>			
 		</action>
 		<action name="updateSubmit" class="iace.action.OptionSchoolAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/option/school/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/school/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>
 		<action name="deleteSubmit" class="iace.action.OptionSchoolAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>
 		<action name="batchImport" class="iace.action.OptionSchoolAction" method="batchImport">
 			<interceptor-ref name="iaceBackEnd"/>

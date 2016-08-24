@@ -1,7 +1,5 @@
 package iace.action;
 
-import java.util.List;
-
 import core.util.PagedList;
 import iace.entity.option.BaseOption;
 import iace.entity.option.BaseOptionSearchModel;
@@ -13,9 +11,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 	
 	protected BaseOptionService<OptionEntity> optionService;
 	
-	protected List<OptionEntity> optionList;
 	protected PagedList<OptionEntity> optionPagedList;
-
 	protected BaseOptionSearchModel searchCondition = new BaseOptionSearchModel();
 	
 	protected long id;
@@ -28,7 +24,6 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 
 	public String index() {
 		try {
-			this.optionList = this.optionService.listAll();
 			this.optionPagedList = this.optionService.searchBy(this.searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
@@ -75,7 +70,6 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 		} catch (Exception e) {
 			log.error("", e);
 			this.addActionError(e.getMessage());
-			this.optionList = this.optionService.listAll();
 			return ERROR;
 		}
 	}
@@ -130,10 +124,6 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 
 	public void setOption(OptionEntity option) {
 		this.option = option;
-	}
-
-	public List<OptionEntity> getOptionList() {
-		return optionList;
 	}
 
 	public BaseOptionSearchModel getSearchCondition() {

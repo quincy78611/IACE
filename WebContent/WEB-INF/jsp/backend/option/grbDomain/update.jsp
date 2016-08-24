@@ -3,10 +3,25 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+	$(document).ready(function(){
+		addSearchConditionHiddenToForm();
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
+	});
+</script>
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-update").append($(this).clone());
+		});
+	}
+</script>
 <meta name="funcPathText" content="編輯"/>
 </head>
 <body>
-	<s:form action="updateSubmit" method="post" validate="true" >
+	<s:form action="updateSubmit" method="post" validate="true" id="form-update">
 		<s:hidden name="option.id" />
 		<s:hidden name="option.isValid" />
 		<s:hidden name="option.createTime" />
@@ -32,7 +47,13 @@
 		<div class="clear"></div>
 		
 		<s:submit cssClass="btn btn-default redBtn" value="儲存" />	
-		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="index"/>'" />		
+<%-- 		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="index"/>'" /> --%>
+		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>		
 	</s:form>
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.searchText"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>		
 </body>
 </html>
