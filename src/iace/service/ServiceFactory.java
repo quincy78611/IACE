@@ -10,9 +10,9 @@ import iace.service.option.OptionCompanyLocationService;
 import iace.service.option.OptionConsultService;
 import iace.service.option.OptionCooperateModeService;
 import iace.service.option.OptionCountryService;
+import iace.service.option.OptionDomainService;
 import iace.service.option.OptionGrbDomainService;
 import iace.service.option.OptionHadTecSrcService;
-import iace.service.option.OptionDomainService;
 import iace.service.option.OptionIndustryService;
 import iace.service.option.OptionOrganizationClassService;
 import iace.service.option.OptionOrganizationTypeService;
@@ -203,7 +203,7 @@ public class ServiceFactory {
 		}
 		return optionSchoolExcelService;
 	}
-	
+
 	public static PatentService getPatentService() {
 		if (patentService == null) {
 			patentService = new PatentService(

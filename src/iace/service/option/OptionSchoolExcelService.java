@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import iace.entity.option.OptionSchool;
@@ -16,13 +17,13 @@ public class OptionSchoolExcelService extends BaseExcelService {
 	public List<OptionSchool> excelToOptionSchoolList(File file) throws IOException {
 		List<OptionSchool> optionSchoolList = new ArrayList<OptionSchool>();
 		XSSFWorkbook wb = getXlsxFile(file);
-		super.currentSheet = wb.getSheetAt(0);	
-		for (int r = 1; r <= super.currentSheet.getLastRowNum(); r++) {
+		XSSFSheet sheet = wb.getSheetAt(0);	
+		for (int r = 1; r <= sheet.getLastRowNum(); r++) {
 			int c = -1;
 			try {
 				OptionSchool option = new OptionSchool();
-				option.setCode(getCell(r, ++c).getStringCellValue().trim());
-				option.setName(getCell(r, ++c).getStringCellValue().trim());
+				option.setCode(getCell(sheet, r, ++c).getStringCellValue().trim());
+				option.setName(getCell(sheet, r, ++c).getStringCellValue().trim());
 				if (StringUtils.isNotBlank(option.getCode()) && StringUtils.isNotBlank(option.getName())) {
 					optionSchoolList.add(option);
 				}				

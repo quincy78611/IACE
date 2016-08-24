@@ -17,10 +17,7 @@ import core.util.CloseableTool;
 
 public abstract class BaseExcelService {
 	protected static Logger log = Logger.getLogger(BaseExcelService.class);
-	
-	protected XSSFSheet currentSheet;
-	
-	protected SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+	protected final static SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 	
 	protected XSSFWorkbook getXlsxFile(File file) throws IOException {
 		FileInputStream fis = null;
@@ -41,8 +38,8 @@ public abstract class BaseExcelService {
 	 * @param c column index. start with 0
 	 * @return
 	 */
-	protected XSSFCell getCell(int r, int c) {
-		XSSFRow row = this.currentSheet.getRow(r);
+	protected XSSFCell getCell(XSSFSheet sheet, int r, int c) {
+		XSSFRow row = sheet.getRow(r);
 		XSSFCell cell = row.getCell(c, Row.CREATE_NULL_AS_BLANK);
 		return cell;		
 	}

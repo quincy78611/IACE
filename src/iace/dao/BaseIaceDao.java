@@ -26,8 +26,10 @@ public abstract class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> imple
 	@SuppressWarnings("unchecked")
 	public List<T> listAll() {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
-		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));		
-		return (List<T>) super.listAll(entityClass, Order.asc("id"), criterionList);
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("id"));
+		return (List<T>) super.listAll(entityClass, orderList, criterionList);
 	}
 
 	@SuppressWarnings("unchecked")

@@ -11,13 +11,16 @@ import javax.persistence.Transient;
 import iace.entity.BaseEntity;
 
 @MappedSuperclass
-public abstract class BaseOption  extends BaseEntity {
+public class BaseOption  extends BaseEntity {
 
 	private static final long serialVersionUID = -6693566207871210805L;
 
 	private long id;
 	private String name;
 	private String code;
+	private Float priority;
+	
+	public BaseOption() {};
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -47,6 +50,15 @@ public abstract class BaseOption  extends BaseEntity {
 
 	public void setCode(String code) {
 		this.code = code;
+	}
+	
+	@Column(name = "PRIORITY")
+	public Float getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Float priority) {
+		this.priority = priority;
 	}
 
 	@Override

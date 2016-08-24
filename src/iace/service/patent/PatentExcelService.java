@@ -35,37 +35,37 @@ public class PatentExcelService extends BaseExcelService {
 	
 	public List<Patent> excelToPatents(File file) throws IOException {
 		XSSFWorkbook wb = getXlsxFile(file);
-		super.currentSheet = wb.getSheetAt(0);	
-		Map<Integer, PatentPicture> pics =  getPatnetPictures(super.currentSheet);		
+		XSSFSheet sheet = wb.getSheetAt(0);	
+		Map<Integer, PatentPicture> pics =  getPatnetPictures(sheet);		
 		List<Patent> patentList = new ArrayList<Patent>();
-		for (int r = 1; r <= super.currentSheet.getLastRowNum(); r++) {
+		for (int r = 1; r <= sheet.getLastRowNum(); r++) {
 			int c = -1;
 			try {
 				//TODO validate
 				Patent p = new Patent();
-				p.setName(getCell(r, ++c).getStringCellValue());
-				p.setAssignee(getCell(r, ++c).getStringCellValue());
-				p.setInvertor(getCell(r, ++c).getStringCellValue());
-				p.setCountryByCode(getCell(r, ++c).getStringCellValue());
-				p.setAppliactionNo(getCell(r, ++c).getStringCellValue());
-				Date applicationDate = getCell(r, ++c).getDateCellValue();
+				p.setName(getCell(sheet, r, ++c).getStringCellValue());
+				p.setAssignee(getCell(sheet, r, ++c).getStringCellValue());
+				p.setInvertor(getCell(sheet, r, ++c).getStringCellValue());
+				p.setCountryByCode(getCell(sheet, r, ++c).getStringCellValue());
+				p.setAppliactionNo(getCell(sheet, r, ++c).getStringCellValue());
+				Date applicationDate = getCell(sheet, r, ++c).getDateCellValue();
 				p.setApplicationDate(new java.sql.Date(applicationDate.getTime()));
-				p.setOpenNo(getCell(r, ++c).getStringCellValue());
-				Date openDate = getCell(r, ++c).getDateCellValue();
+				p.setOpenNo(getCell(sheet, r, ++c).getStringCellValue());
+				Date openDate = getCell(sheet, r, ++c).getDateCellValue();
 				p.setOpenDate(openDate == null ? null : new java.sql.Date(openDate.getTime()));
-				p.setPublicationNo(getCell(r, ++c).getStringCellValue());
-				Date publicationDate = getCell(r, ++c).getDateCellValue();
+				p.setPublicationNo(getCell(sheet, r, ++c).getStringCellValue());
+				Date publicationDate = getCell(sheet, r, ++c).getDateCellValue();
 				p.setPublicationDate(publicationDate == null ? null : new java.sql.Date(publicationDate.getTime()));
-				p.setCategory(getCell(r, ++c).getStringCellValue());
-				p.setPatentStatus(getCell(r, ++c).getStringCellValue());
-				p.setFamilyNo(getCell(r, ++c).getStringCellValue());
-				p.setIpc(getCell(r, ++c).getStringCellValue());
+				p.setCategory(getCell(sheet, r, ++c).getStringCellValue());
+				p.setPatentStatus(getCell(sheet, r, ++c).getStringCellValue());
+				p.setFamilyNo(getCell(sheet, r, ++c).getStringCellValue());
+				p.setIpc(getCell(sheet, r, ++c).getStringCellValue());
 				TechField tf = new TechField();
-				tf.setName(getCell(r, ++c).getStringCellValue());
+				tf.setName(getCell(sheet, r, ++c).getStringCellValue());
 				p.setTechField(tf);
-				p.setUsage(getCell(r, ++c).getStringCellValue());
-				p.setTechAbstract(getCell(r, ++c).getStringCellValue());
-//				p.setImportantPictureCode(getCell(r, ++c).getStringCellValue());
+				p.setUsage(getCell(sheet, r, ++c).getStringCellValue());
+				p.setTechAbstract(getCell(sheet, r, ++c).getStringCellValue());
+//				p.setImportantPictureCode(getCell(sheet, r, ++c).getStringCellValue());
 				p.setImportantPatentPicture(pics.get(r).getData());
 				p.setImportantPatentPictureExtension(pics.get(r).getFileExtension());
 				p.setTrl(new OptionTrl());

@@ -114,14 +114,16 @@ public abstract class BaseDao<T> {
 		}
 	}
 	
-	protected List<?> listAll(Class<?> cla, Order order, List<Criterion> criterionList) {
+	protected List<?> listAll(Class<?> cla, List<Order> orderList, List<Criterion> criterionList) {
 		Session session = HibernateSessionFactory.getSession();
 		try {
 			Criteria criteria = session.createCriteria(cla);
 			for (Criterion c : criterionList) {
 				criteria.add(c);
 			}			
-			criteria.addOrder(order);
+			for (Order order : orderList) {
+				criteria.addOrder(order);
+			}
 			List<?> entityList = criteria.list();
 			return entityList;
 		} catch (HibernateException e) {

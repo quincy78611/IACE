@@ -57,8 +57,11 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 	@Override
 	public List<OptionEntity> listAll() {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
-		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));		
-		return (List<OptionEntity>) super.listAll(optionEntityClass, Order.asc("code"), criterionList);
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("priority"));
+		orderList.add(Order.asc("code"));
+		return (List<OptionEntity>) super.listAll(optionEntityClass, orderList, criterionList);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -68,8 +71,11 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 		if (codes != null && codes.size() > 0) {
 			criterionList.add(Restrictions.not(Restrictions.in("code", codes)));
 		}
-		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));		
-		return (List<OptionEntity>) super.listAll(optionEntityClass, Order.asc("code"), criterionList);
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("priority"));
+		orderList.add(Order.asc("code"));
+		return (List<OptionEntity>) super.listAll(optionEntityClass, orderList, criterionList);
 	}
 	
 	@Override
@@ -108,6 +114,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(this.optionEntityClass);
 			addCriteriaRestrictionsForSearch(args, criteria);
+			criteria.addOrder(Order.asc("priority"));	
 			criteria.addOrder(Order.asc("code"));			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(args.getPageSize());

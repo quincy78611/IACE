@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import iace.entity.researchPlan.ResearchPlan;
@@ -20,33 +21,33 @@ public class ResearchPlanExcelService extends BaseExcelService {
 	
 	public List<ResearchPlan> excelToResearchPlans(File file) throws IOException {
 		XSSFWorkbook wb = getXlsxFile(file);
-		super.currentSheet = wb.getSheetAt(0);
+		XSSFSheet sheet = wb.getSheetAt(0);
 		Map<String, ResearchPlan> researchPlanMap = new LinkedHashMap<String, ResearchPlan>();
-		for (int r = 1; r <= super.currentSheet.getLastRowNum(); r++) {
+		for (int r = 1; r <= sheet.getLastRowNum(); r++) {
 			int c = -1;
 			try {
 				//TODO validate
 				ResearchPlan rp = new ResearchPlan();
 				{					
-					rp.setYear((int) getCell(r, ++c).getNumericCellValue());
-					rp.setPlanNo(getCell(r, ++c).getStringCellValue());
-					rp.setName(getCell(r, ++c).getStringCellValue());
-					rp.setManager(getCell(r, ++c).getStringCellValue());
-					String grbDomains = readStringFromNumericOrStringCell(getCell(r, ++c));
+					rp.setYear((int) getCell(sheet, r, ++c).getNumericCellValue());
+					rp.setPlanNo(getCell(sheet, r, ++c).getStringCellValue());
+					rp.setName(getCell(sheet, r, ++c).getStringCellValue());
+					rp.setManager(getCell(sheet, r, ++c).getStringCellValue());
+					String grbDomains = readStringFromNumericOrStringCell(getCell(sheet, r, ++c));
 					rp.setGrbDomainCodes(Arrays.asList(StringUtils.split(grbDomains, ";")));
-					rp.setKeyword(getCell(r, ++c).getStringCellValue());
-					String rawTrl = readStringFromNumericOrStringCell(getCell(r, ++c));
+					rp.setKeyword(getCell(sheet, r, ++c).getStringCellValue());
+					String rawTrl = readStringFromNumericOrStringCell(getCell(sheet, r, ++c));
 					String trlCode = rawTrl.startsWith("TRL") ? rawTrl : "TRL"+rawTrl;
 					rp.setTrlCode(trlCode);
-					rp.setProjkey(getCell(r, ++c).getStringCellValue());
-					rp.setGrb05Id(getCell(r, ++c).getRawValue());
+					rp.setProjkey(getCell(sheet, r, ++c).getStringCellValue());
+					rp.setGrb05Id(getCell(sheet, r, ++c).getRawValue());
 				}
 
 				Technology tec = new Technology();
 				{					
-					tec.setName(getCell(r, ++c).getStringCellValue());
-					tec.setDescriptoin(getCell(r, ++c).getStringCellValue());
-					String trlCell = readStringFromNumericOrStringCell(getCell(r, ++c));				
+					tec.setName(getCell(sheet, r, ++c).getStringCellValue());
+					tec.setDescriptoin(getCell(sheet, r, ++c).getStringCellValue());
+					String trlCell = readStringFromNumericOrStringCell(getCell(sheet, r, ++c));				
 					List<String> trlCodes = Arrays.asList(StringUtils.split(trlCell, ";"));
 					for (int i=0;i<trlCodes.size();i++) {
 						if (trlCodes.get(i).startsWith("TRL") == false) {
@@ -54,7 +55,7 @@ public class ResearchPlanExcelService extends BaseExcelService {
 						}
 					}
 					tec.setOptionTrlCodes(trlCodes);
-					tec.setTrlDesc(getCell(r, ++c).getStringCellValue());
+					tec.setTrlDesc(getCell(sheet, r, ++c).getStringCellValue());
 				}
 				
 				String key = rp.getPlanNo();
