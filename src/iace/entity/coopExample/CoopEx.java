@@ -28,6 +28,7 @@ public class CoopEx extends BaseEntity {
 
 	private long id;
 	private Integer year;
+	private String type;
 	private String projName;
 	private String rdTeam;
 	private String assisTeam;
@@ -55,6 +56,15 @@ public class CoopEx extends BaseEntity {
 
 	public void setYear(Integer year) {
 		this.year = year;
+	}
+	
+	@Column(name = "TYPE", length = 20)
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	@Column(name = "PROJ_NAME", length = 1000)

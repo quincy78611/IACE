@@ -141,7 +141,7 @@
 								<li><a href="<s:url value="/enterpriseNeed/create"/>">新增</a></li>
 							</ul>
 						</li>
-						<li><a href="#">成功案例</a>
+						<li><a href="#">產學合作案例</a>
 							<ul>
 								<li><a href="<s:url value="/coopEx/init"/>">編輯管理</a></li>
 								<li><a href="<s:url value="/coopEx/create"/>">新增</a></li>

@@ -131,9 +131,13 @@ table.table-files tr.hidden-sample-tr { display:none; }
 		<s:hidden name="coopEx.ver"/>
 		
 		<ul>
-			<li class="all">
+			<li class="half">
 				<b>年度</b>
-				<s:textfield name="coopEx.year" />
+				<s:select name="coopEx.year" list="#{'2014':'2014', '2015':'2015', '2016':'2016', '2017':'2017' }" />
+			</li>
+			<li class="half">
+				<b>類別</b>
+				<s:select name="coopEx.type" list="#{'商品化':'商品化', '專利推廣':'專利推廣', '新創事業':'新創事業'}" />
 			</li>
 			<li class="all">
 				<b>案名</b>

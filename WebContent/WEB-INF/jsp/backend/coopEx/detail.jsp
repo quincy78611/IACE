@@ -17,25 +17,33 @@
 </head>
 <body>
 	<ul>
-		<li class="all">
+		<li class="half">
 			<b>年度</b>
-			<s:textfield name="coopEx.year" disabled="true"/>
+			<div class="border-text">
+				<s:property value="coopEx.year"/>
+			</div>
 		</li>
-		<li class="all">
-			<b>案名</b>
-			<s:textfield name="coopEx.projName" disabled="true"/>
+		<li class="half">
+			<b>類別</b>
+			<div class="border-text">
+				<s:property value="coopEx.type"/>
+			</div>			
 		</li>
 		<li class="all">
 			<b>研發團隊</b>
-			<s:textfield name="coopEx.rdTeam" disabled="true"/>
+			<div class="border-text">
+				<s:property value="coopEx.rdTeam"/>
+			</div>			
 		</li>
 		<li class="all">
 			<b>輔導團隊</b>
-			<s:textfield name="coopEx.assisTeam" disabled="true"/>
+			<div class="border-text">
+				<s:property value="coopEx.assisTeam"/>
+			</div>
 		</li>			
 		<li class="all">
 			<b>內容</b>
-			<s:textarea name="coopEx.content" rows="10" disabled="true"/>
+			<s:textarea name="coopEx.content" rows="10" readonly="true"/>
 		</li>				
 	</ul>
 	<br>
@@ -59,7 +67,7 @@
 							<s:property value="fileName"/>
 						</li>
 						<li class="all">
-							<s:textarea name="fileDesc" placeholder="無檔案說明" disabled="true"/>
+							<s:textarea name="fileDesc" placeholder="無檔案說明" readonly="true"/>
 						</li>
 					</ul>
 				</td>
@@ -94,7 +102,7 @@
 							<s:property value="fileName"/>
 						</li>
 						<li class="all">
-							<s:textarea name="fileDesc" placeholder="無檔案說明" disabled="true"/>
+							<s:textarea name="fileDesc" placeholder="無檔案說明" readonly="true"/>
 						</li>
 					</ul>
 				</td>
@@ -124,7 +132,7 @@
 							</a>
 						</li>
 						<li class="all">
-							<s:textarea name="fileDesc" placeholder="無檔案說明" disabled="true"/>
+							<s:textarea name="fileDesc" placeholder="無檔案說明" readonly="true"/>
 						</li>
 					</ul>
 				</td>

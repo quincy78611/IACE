@@ -25,7 +25,7 @@ $(document).ready(function() {
 					<img src="data:image;base64,<s:property value="firstBase64Img"/>" style="max-width:120px; max-height:120px;" />
 				</td>
 				<td>
-					<label class="projName"><s:property value="projName"/></label><s:property value="year"/>
+					<label class="projName"><s:property value="projName"/></label><s:property value="%{type+' ('+year+')'}"/>
 					<div style="color:#3366FF;">
 						<p>研發團隊:<s:property value="rdTeam"/></p>
 						<p>輔導團隊:<s:property value="assisTeam"/></p>					
