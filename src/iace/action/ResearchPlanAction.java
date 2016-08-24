@@ -100,8 +100,6 @@ public class ResearchPlanAction extends BaseIaceAction {
 				return INPUT;
 			}
 
-			this.optionGrbDomainList = this.optionGrbDomainService.listNotIn(this.researchPlan.getGrbDomainCodes());
-			
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);

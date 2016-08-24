@@ -38,10 +38,6 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	
 	public EnterpriseNeedAction() {
 		super.setTitle("企業需求單");
-		this.optionDomainList = this.optionDomainService.listAll();
-		this.optionCompanyLocationList = this.optionCompanyLocationService.listAll();
-		this.optionHadTecSrcList = this.optionHadTecSrcService.listAll();
-		this.optionCooperateModeList = this.optionCooperateModeService.listAll();		
 	}
 	
 	public String init() {
@@ -152,18 +148,30 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	}
 
 	public List<OptionDomain> getOptionDomainList() {
+		if (optionDomainList == null) {
+			optionDomainList = this.optionDomainService.listAll();
+		}
 		return optionDomainList;
 	}
 
 	public List<OptionCompanyLocation> getOptionCompanyLocationList() {
+		if (optionCompanyLocationList == null) {
+			optionCompanyLocationList = this.optionCompanyLocationService.listAll();
+		}
 		return optionCompanyLocationList;
 	}
 
 	public List<OptionHadTecSrc> getOptionHadTecSrcList() {
+		if (optionHadTecSrcList == null) {
+			optionHadTecSrcList = this.optionHadTecSrcService.listAll();
+		}
 		return optionHadTecSrcList;
 	}
 
 	public List<OptionCooperateMode> getOptionCooperateModeList() {
+		if (optionCooperateModeList == null) {
+			optionCooperateModeList = this.optionCooperateModeService.listAll();
+		}
 		return optionCooperateModeList;
 	}
 

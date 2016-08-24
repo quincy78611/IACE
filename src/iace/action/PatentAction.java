@@ -263,17 +263,23 @@ public class PatentAction extends BaseIaceAction {
 	}
 
 	public List<OptionCountry> getOptionCountryList() {
-		this.optionCountryList = this.optionCountryService.listAll();
+		if (optionCountryList == null) {
+			this.optionCountryList = this.optionCountryService.listAll();
+		}
 		return optionCountryList;
 	}
 
 	public List<OptionTrl> getOptionTrlList() {
-		this.optionTrlList = this.optionTrlService.listAll();
+		if (optionTrlList == null) {
+			this.optionTrlList = this.optionTrlService.listAll();
+		}
 		return optionTrlList;
 	}
 
 	public List<TechField> getTechFieldList() {
-		this.techFieldList = this.techFieldService.listAll();
+		if (techFieldList == null) {
+			this.techFieldList = this.techFieldService.listAll();
+		}
 		return techFieldList;
 	}
 
