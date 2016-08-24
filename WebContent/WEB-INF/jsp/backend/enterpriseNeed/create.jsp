@@ -106,7 +106,7 @@
 						<b>(一階)領域:</b>
 					</div>
 					<div style="width:70%; margin-right:1%; float:left; ">
-						<s:checkboxlist name="enterpriseInfo.optionIndustryIdList" list="optionIndustryList" listKey="id" listValue="name" cssClass="horizontalList"/>
+						<s:checkboxlist name="enterpriseInfo.optionDomainIdList" list="optionDomainList" listKey="id" listValue="name" cssClass="horizontalList"/>
 					</div>
 					<div class="clear"></div>
 					<div style="margin-right:1%; float:left; ">
@@ -216,7 +216,7 @@
 						<b>(一階)領域:</b>
 					</div>
 					<div style="width:80%; margin-right:1%; float:left; ">
-						<s:radio name="enterpriseInfo.enterpriseRequireTech.phase1.id" list="optionIndustryList" listKey="id" listValue="name" cssClass="horizontalList"/>					
+						<s:radio name="enterpriseInfo.enterpriseRequireTech.phase1.id" list="optionDomainList" listKey="id" listValue="name" cssClass="horizontalList"/>					
 					</div>
 				</td>
 			</tr>

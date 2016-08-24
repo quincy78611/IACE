@@ -162,7 +162,7 @@
 						        <li><a href="<s:url value="/option/grbDomain/index"/>">GRB領域別</a></li>
 						        <li><a href="<s:url value="/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
 						        <li><a href="<s:url value="/option/industry/index"/>">產業/領域別</a></li>	
-						        <li><a href="<s:url value="/option/industryForEnterprise/index"/>">企業需求單 產業類別</a></li>				        
+						        <li><a href="<s:url value="/option/domain/index"/>">領域</a></li>				        
 						        <li><a href="<s:url value="/option/organizationClass/index"/>">單位類別</a></li>
 						        <li><a href="<s:url value="/option/organizationType/index"/>">單位類型</a></li>
 						        <li><a href="<s:url value="/option/trl/index"/>">發展階段</a></li>

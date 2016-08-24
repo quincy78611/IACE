@@ -16,19 +16,19 @@ import iace.entity.enterpriseNeed.EnterpriseSituation;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionCooperateMode;
 import iace.entity.option.OptionHadTecSrc;
-import iace.entity.option.OptionIndustryForEnterprise;
+import iace.entity.option.OptionDomain;
 import iace.service.BaseIaceService;
 
 public class EnterpriseInfoService extends BaseIaceService<EnterpriseInfo> {
 
 	private IEnterpriseInfoDao enterpriseInfoDao;
-	private IOptionDao<OptionIndustryForEnterprise> optIndustryDao;
+	private IOptionDao<OptionDomain> optIndustryDao;
 	private IOptionDao<OptionCompanyLocation> optCompanyLocationDao;
 	private IOptionDao<OptionHadTecSrc> optHadTecSrcDao;
 	private IOptionDao<OptionCooperateMode> optCooperateModeDao;
 	
 	public EnterpriseInfoService(IEnterpriseInfoDao dao, 
-			IOptionDao<OptionIndustryForEnterprise> optIndustryDao,
+			IOptionDao<OptionDomain> optIndustryDao,
 			IOptionDao<OptionCompanyLocation> optCompanyLocationDao, 
 			IOptionDao<OptionHadTecSrc> optHadTecSrcDao, 
 			IOptionDao<OptionCooperateMode> optCooperateModeDao) {
@@ -111,19 +111,19 @@ public class EnterpriseInfoService extends BaseIaceService<EnterpriseInfo> {
 	}
 	
 	private void setOptionIndustryList(EnterpriseInfo entity) {
-		if (entity.getOptionIndustryForEnterpriseList() != null) {
-			List<OptionIndustryForEnterprise> newList = new ArrayList<OptionIndustryForEnterprise>();
-			for (OptionIndustryForEnterprise opt : entity.getOptionIndustryForEnterpriseList()) {
+		if (entity.getOptionDomainList() != null) {
+			List<OptionDomain> newList = new ArrayList<OptionDomain>();
+			for (OptionDomain opt : entity.getOptionDomainList()) {
 				newList.add(this.optIndustryDao.get(opt.getId()));
 			}
-			entity.setOptionIndustryForEnterpriseList(newList);
+			entity.setOptionDomainList(newList);
 		}
 	}
 	
 	private void setPhase1(EnterpriseRequireTech entity) {
 		if (entity.getPhase1() != null) {
 			long optId = entity.getPhase1().getId();
-			OptionIndustryForEnterprise opt = this.optIndustryDao.get(optId);
+			OptionDomain opt = this.optIndustryDao.get(optId);
 			entity.setPhase1(opt);
 		}
 	}

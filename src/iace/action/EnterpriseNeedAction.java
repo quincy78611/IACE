@@ -8,25 +8,25 @@ import iace.entity.enterpriseNeed.EnterpriseNeedSearchModel;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionCooperateMode;
 import iace.entity.option.OptionHadTecSrc;
-import iace.entity.option.OptionIndustryForEnterprise;
+import iace.entity.option.OptionDomain;
 import iace.service.ServiceFactory;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
 import iace.service.option.OptionCompanyLocationService;
 import iace.service.option.OptionCooperateModeService;
 import iace.service.option.OptionHadTecSrcService;
-import iace.service.option.OptionIndustryForEnterpriseService;
+import iace.service.option.OptionDomainService;
 
 public class EnterpriseNeedAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = -4591959836078338744L;
 
 	private EnterpriseInfoService enterpriseInfoService = ServiceFactory.getEnterpriseInfoService();
-	private OptionIndustryForEnterpriseService optionIndustryService = ServiceFactory.getOptionIndustryForEnterpriseService();
+	private OptionDomainService optionDomainService = ServiceFactory.getOptionDomainService();
 	private OptionCompanyLocationService optionCompanyLocationService = ServiceFactory.getOptionCompanyLocationService();
 	private OptionHadTecSrcService optionHadTecSrcService = ServiceFactory.getOptionHadTecSrcService();
 	private OptionCooperateModeService optionCooperateModeService = ServiceFactory.getOptionCooperateModeService();
 	
-	private List<OptionIndustryForEnterprise> optionIndustryList;
+	private List<OptionDomain> optionDomainList;
 	private List<OptionCompanyLocation> optionCompanyLocationList;
 	private List<OptionHadTecSrc> optionHadTecSrcList;
 	private List<OptionCooperateMode> optionCooperateModeList;
@@ -38,7 +38,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	
 	public EnterpriseNeedAction() {
 		super.setTitle("企業需求單");
-		this.optionIndustryList = this.optionIndustryService.listAll();
+		this.optionDomainList = this.optionDomainService.listAll();
 		this.optionCompanyLocationList = this.optionCompanyLocationService.listAll();
 		this.optionHadTecSrcList = this.optionHadTecSrcService.listAll();
 		this.optionCooperateModeList = this.optionCooperateModeService.listAll();		
@@ -151,8 +151,8 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 		this.enterpriseInfo = enterpriseInfo;
 	}
 
-	public List<OptionIndustryForEnterprise> getOptionIndustryList() {
-		return optionIndustryList;
+	public List<OptionDomain> getOptionDomainList() {
+		return optionDomainList;
 	}
 
 	public List<OptionCompanyLocation> getOptionCompanyLocationList() {

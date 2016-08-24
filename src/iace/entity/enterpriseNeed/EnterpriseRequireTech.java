@@ -16,7 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import iace.entity.BaseEntity;
-import iace.entity.option.OptionIndustryForEnterprise;
+import iace.entity.option.OptionDomain;
 
 @Entity
 @Table(name = "ENTERPRISE_REQUIRE_TECH")
@@ -26,7 +26,7 @@ public class EnterpriseRequireTech extends BaseEntity {
 
 	private long id;
 	private EnterpriseInfo enterpriseInfo;
-	private OptionIndustryForEnterprise phase1;
+	private OptionDomain phase1;
 	private String phase2;
 	private String phase3;
 	private String inquiredOrg;
@@ -56,12 +56,12 @@ public class EnterpriseRequireTech extends BaseEntity {
 	}
 
 	@ManyToOne
-	@JoinColumn(name="PHASE1_INDUSTRY_ID", referencedColumnName= "ID")	
-	public OptionIndustryForEnterprise getPhase1() {
+	@JoinColumn(name="PHASE1_DOMAIN_ID", referencedColumnName= "ID")	
+	public OptionDomain getPhase1() {
 		return phase1;
 	}
 
-	public void setPhase1(OptionIndustryForEnterprise phase1) {
+	public void setPhase1(OptionDomain phase1) {
 		this.phase1 = phase1;
 	}
 

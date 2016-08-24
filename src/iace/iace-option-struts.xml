@@ -205,31 +205,31 @@
 		</action>
 	</package>
 
-	<package name="OptionIndustryForEnterpriseAction" namespace="/option/industryForEnterprise" extends="struts-default, default">
+	<package name="OptionDomainAction" namespace="/option/domain" extends="struts-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
-		<action name="index" class="iace.action.OptionIndustryForEnterpriseAction" method="index">
-			<result name="success">/WEB-INF/jsp/backend/option/industryForEnterprise/index.jsp</result>
+		<action name="index" class="iace.action.OptionDomainAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
 		</action>
-		<action name="create" class="iace.action.OptionIndustryForEnterpriseAction" method="create">
-			<result name="input">/WEB-INF/jsp/backend/option/industryForEnterprise/create.jsp</result>		
+		<action name="create" class="iace.action.OptionDomainAction" method="create">
+			<result name="input">/WEB-INF/jsp/backend/option/domain/create.jsp</result>		
 		</action>
-		<action name="createSubmit" class="iace.action.OptionIndustryForEnterpriseAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/backend/option/industryForEnterprise/create.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/industryForEnterprise/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend/option/industryForEnterprise/index.jsp</result>
+		<action name="createSubmit" class="iace.action.OptionDomainAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/option/domain/create.jsp</result>
+			<result name="error">/WEB-INF/jsp/backend/option/domain/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
 		</action>
-		<action name="update" class="iace.action.OptionIndustryForEnterpriseAction" method="update">
-			<result name="input">/WEB-INF/jsp/backend/option/industryForEnterprise/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/industryForEnterprise/index.jsp</result>			
+		<action name="update" class="iace.action.OptionDomainAction" method="update">
+			<result name="input">/WEB-INF/jsp/backend/option/domain/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/backend/option/domain/index.jsp</result>			
 		</action>
-		<action name="updateSubmit" class="iace.action.OptionIndustryForEnterpriseAction" method="updateSubmit">
-			<result name="input">/WEB-INF/jsp/backend/option/industryForEnterprise/update.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/industryForEnterprise/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend/option/industryForEnterprise/index.jsp</result>
+		<action name="updateSubmit" class="iace.action.OptionDomainAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/option/domain/update.jsp</result>
+			<result name="error">/WEB-INF/jsp/backend/option/domain/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
 		</action>
-		<action name="deleteSubmit" class="iace.action.OptionIndustryForEnterpriseAction" method="deleteSubmit">
-			<result name="success">/WEB-INF/jsp/backend/option/industryForEnterprise/index.jsp</result>
-			<result name="error">/WEB-INF/jsp/backend/option/industryForEnterprise/index.jsp</result>
+		<action name="deleteSubmit" class="iace.action.OptionDomainAction" method="deleteSubmit">
+			<result name="success">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
+			<result name="error">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
 		</action>
 	</package>	
 	

@@ -12,7 +12,7 @@ import iace.service.option.OptionCooperateModeService;
 import iace.service.option.OptionCountryService;
 import iace.service.option.OptionGrbDomainService;
 import iace.service.option.OptionHadTecSrcService;
-import iace.service.option.OptionIndustryForEnterpriseService;
+import iace.service.option.OptionDomainService;
 import iace.service.option.OptionIndustryService;
 import iace.service.option.OptionOrganizationClassService;
 import iace.service.option.OptionOrganizationTypeService;
@@ -50,7 +50,7 @@ public class ServiceFactory {
 	private static OptionGrbDomainService optionGrbDomainService;
 	private static OptionHadTecSrcService optionHadTecSrcService;
 	private static OptionIndustryService optionIndustryService;
-	private static OptionIndustryForEnterpriseService optionIndustryForEnterpriseService;
+	private static OptionDomainService optionDomainService;
 	private static OptionOrganizationClassService optionOrganizationClassService;
 	private static OptionOrganizationTypeService optionOrganizationTypeService;
 	private static OptionTrlService optionTrlService;
@@ -155,11 +155,11 @@ public class ServiceFactory {
 		return optionIndustryService;
 	}
 	
-	public static OptionIndustryForEnterpriseService getOptionIndustryForEnterpriseService() {
-		if (optionIndustryForEnterpriseService == null) {
-			optionIndustryForEnterpriseService = new OptionIndustryForEnterpriseService(DaoFactory.getOptionIndustryForEnterpriseDao());
+	public static OptionDomainService getOptionDomainService() {
+		if (optionDomainService == null) {
+			optionDomainService = new OptionDomainService(DaoFactory.getOptionDomainDao());
 		}
-		return optionIndustryForEnterpriseService;
+		return optionDomainService;
 	}
 	
 	public static OptionOrganizationClassService getOptionOrganizationClassService() {
@@ -264,7 +264,7 @@ public class ServiceFactory {
 		if (enterpriseInfoService == null) {
 			enterpriseInfoService = new EnterpriseInfoService(
 					DaoFactory.getEnterpriseInfoDao(),
-					DaoFactory.getOptionIndustryForEnterpriseDao(),
+					DaoFactory.getOptionDomainDao(),
 					DaoFactory.getOptionCompanyLocationDao(),
 					DaoFactory.getOptionHadTecSrcDao(),
 					DaoFactory.getOptionCooperateModeDao());

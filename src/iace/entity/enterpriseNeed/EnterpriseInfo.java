@@ -24,7 +24,7 @@ import org.hibernate.annotations.FetchMode;
 
 import iace.entity.BaseEntity;
 import iace.entity.option.OptionCompanyLocation;
-import iace.entity.option.OptionIndustryForEnterprise;
+import iace.entity.option.OptionDomain;
 
 @Entity
 @Table(name = "ENTERPRISE_INFO")
@@ -36,7 +36,7 @@ public class EnterpriseInfo extends BaseEntity {
 	private String name;
 	private String companyId;
 	private String mainProduct;
-	private List<OptionIndustryForEnterprise> optionIndustryForEnterpriseList;
+	private List<OptionDomain> optionDomainList;
 	private String phase2;
 	private String phase3;
 	private OptionCompanyLocation optionCompanyLocation;
@@ -93,31 +93,31 @@ public class EnterpriseInfo extends BaseEntity {
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(name="ENTERPRISE_INDUSTRY_RELATION", 
+	@JoinTable(name="ENTERPRISE_DOMAIN_RELATION", 
     	joinColumns={@JoinColumn(name="ENTERPRISE_INFO_ID")}, 
-    	inverseJoinColumns={@JoinColumn(name="OPT_INDUSRTY_ID")})
-	@Fetch(FetchMode.SUBSELECT) // 這行要是沒加，則在列表頁搜尋時一筆EnterpriseInfo若有5筆OptionIndustryForEnterprise就會變成5筆EnterpriseInfo而不是一筆EnterpriseInfo內含5個OptionIndustryForEnterprise
-	public List<OptionIndustryForEnterprise> getOptionIndustryForEnterpriseList() {
-		return optionIndustryForEnterpriseList;
+    	inverseJoinColumns={@JoinColumn(name="OPT_DOMAIN_ID")})
+	@Fetch(FetchMode.SUBSELECT) // 這行要是沒加，則在列表頁搜尋時一筆EnterpriseInfo若有5筆OptionDomain就會變成5筆EnterpriseInfo而不是一筆EnterpriseInfo內含5個OptionDomain
+	public List<OptionDomain> getOptionDomainList() {
+		return optionDomainList;
 	}
 
-	public void setOptionIndustryForEnterpriseList(List<OptionIndustryForEnterprise> optionIndustryForEnterpriseList) {
-		this.optionIndustryForEnterpriseList = optionIndustryForEnterpriseList;
+	public void setOptionDomainList(List<OptionDomain> optionDomainList) {
+		this.optionDomainList = optionDomainList;
 	}
 	
 	@Transient
-	public List<Long> getOptionIndustryIdList() {
+	public List<Long> getOptionDomainIdList() {
 		ArrayList<Long> list = new ArrayList<Long>();
-		this.optionIndustryForEnterpriseList.forEach(v -> list.add(v.getId()));
+		this.optionDomainList.forEach(v -> list.add(v.getId()));
 		return list;
 	}
 	
-	public void setOptionIndustryIdList(List<Long> idList) {
-		this.optionIndustryForEnterpriseList = new ArrayList<OptionIndustryForEnterprise>();
+	public void setOptionDomainIdList(List<Long> idList) {
+		this.optionDomainList = new ArrayList<OptionDomain>();
 		for (long id : idList) {
-			OptionIndustryForEnterprise option = new OptionIndustryForEnterprise();
+			OptionDomain option = new OptionDomain();
 			option.setId(id);
-			this.optionIndustryForEnterpriseList.add(option);
+			this.optionDomainList.add(option);
 		}		
 	}
 
