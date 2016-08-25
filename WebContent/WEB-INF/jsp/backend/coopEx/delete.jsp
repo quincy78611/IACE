@@ -4,11 +4,20 @@
 <html>
 <head>
 <script>
-	$(document).ready(function() {
-
+	$(document).ready(function(){
+		addSearchConditionHiddenToForm();
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
 	});
 </script>
-
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-delete").append($(this).clone());
+		});
+	}
+</script>
 <style>
 .table-files tr, th, td { border: solid 1px; }
 .table-files td li { margin-bottom: 1px; }
@@ -16,7 +25,7 @@
 <meta name="funcPathText" content="編輯管理 > 刪除"/>
 </head>
 <body>
-	<s:form action="deleteSubmit" method="post" validate="true" enctype="multipart/form-data">
+	<s:form action="deleteSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-delete">
 		<s:hidden name="id" />
 		<ul>
 			<li class="half">
@@ -146,8 +155,18 @@
 		<div class="clear"></div>
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 			<input type="submit" value="確定刪除" class="redBtn"/>
-			<input type="button" class="grayBtn" value="回列表頁" onclick="window.location.href='<s:url value="index"/>'" />	
+			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</div>		
-	</s:form>	
+	</s:form>
+	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.year"/>
+		<s:hidden name="searchCondition.type"/>
+		<s:hidden name="searchCondition.projName"/>
+		<s:hidden name="searchCondition.rdTeam"/>
+		<s:hidden name="searchCondition.assisTeam"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>	
 </body>
 </html>

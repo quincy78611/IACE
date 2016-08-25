@@ -5,9 +5,34 @@
 <head>
 <script>
 	$(document).ready(function() {
+		addSearchConditionHiddenToForm();
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
+		
 		addMore();
 		fileBrowseSetting();
 	});
+</script>
+<script>
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-update").append($(this).clone());
+		});
+	}
+</script>
+<script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#patent_img').attr('src', e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 </script>
 <script>
 	function addMore() {	
@@ -120,7 +145,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 <meta name="funcPathText" content="編輯管理 > 編輯"/>
 </head>
 <body>
-	<s:form action="updateSubmit" method="post" validate="true" enctype="multipart/form-data">
+	<s:form action="updateSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-update">
 		<s:hidden name="id"/>
 		<s:hidden name="coopEx.id"/>
 		<s:hidden name="coopEx.isValid"/>
@@ -367,8 +392,18 @@ table.table-files tr.hidden-sample-tr { display:none; }
 		<div class="clear"></div>
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 			<s:submit cssClass="redBtn" value="送出" />
-			<input type="button" class="grayBtn" value="回列表頁" onclick="window.location.href='<s:url value="index"/>'" />
+			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</div>		
 	</s:form>	
+	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.year"/>
+		<s:hidden name="searchCondition.type"/>
+		<s:hidden name="searchCondition.projName"/>
+		<s:hidden name="searchCondition.rdTeam"/>
+		<s:hidden name="searchCondition.assisTeam"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>	
 </body>
 </html>

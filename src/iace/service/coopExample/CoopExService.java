@@ -15,6 +15,7 @@ import java.util.Set;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import core.util.PagedList;
 import iace.dao.coopExample.ICoopExAttachFileDao;
 import iace.dao.coopExample.ICoopExDao;
 import iace.dao.coopExample.ICoopExImgDao;
@@ -23,6 +24,7 @@ import iace.entity.coopExample.CoopEx;
 import iace.entity.coopExample.CoopExAttachFile;
 import iace.entity.coopExample.CoopExFile;
 import iace.entity.coopExample.CoopExImg;
+import iace.entity.coopExample.CoopExSearchModel;
 import iace.entity.coopExample.CoopExVideo;
 import iace.service.BaseIaceService;
 
@@ -68,6 +70,11 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 			}
 		}	
 		
+		return list;
+	}
+	
+	public PagedList<CoopEx> searchBy(CoopExSearchModel arg) {
+		PagedList<CoopEx> list = this.coopExDao.searchBy(arg);
 		return list;
 	}
 

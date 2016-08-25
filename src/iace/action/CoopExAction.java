@@ -1,10 +1,11 @@
 package iace.action;
 
 import java.io.InputStream;
-import java.util.List;
 
+import core.util.PagedList;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.coopExample.CoopExAttachFile;
+import iace.entity.coopExample.CoopExSearchModel;
 import iace.entity.coopExample.CoopExVideo;
 import iace.service.ServiceFactory;
 import iace.service.coopExample.CoopExAttachFileService;
@@ -19,7 +20,8 @@ public class CoopExAction extends BaseIaceAction {
 	private CoopExVideoService coopExVideoService = ServiceFactory.getCoopExVideoService();
 	private CoopExAttachFileService coopExAttachFileService = ServiceFactory.getCoopExAttachFileService();
 	
-	private List<CoopEx> coopExList;
+	private CoopExSearchModel searchCondition = new CoopExSearchModel();
+	private PagedList<CoopEx> coopExPagedList;
 	
 	private long id; 
 	private CoopEx coopEx;
@@ -39,7 +41,7 @@ public class CoopExAction extends BaseIaceAction {
 
 	public String index() {
 		try {
-			this.coopExList = this.coopExService.listAll();
+			this.coopExPagedList = this.coopExService.searchBy(searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -178,14 +180,6 @@ public class CoopExAction extends BaseIaceAction {
 	
 	// ========================================================================
 
-	public List<CoopEx> getCoopExList() {
-		return coopExList;
-	}
-
-	public void setCoopExList(List<CoopEx> coopExList) {
-		this.coopExList = coopExList;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -232,6 +226,22 @@ public class CoopExAction extends BaseIaceAction {
 
 	public void setVideoId(long videoId) {
 		this.videoId = videoId;
+	}
+
+	public CoopExSearchModel getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(CoopExSearchModel searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public PagedList<CoopEx> getCoopExPagedList() {
+		return coopExPagedList;
+	}
+
+	public void setCoopExPagedList(PagedList<CoopEx> coopExPagedList) {
+		this.coopExPagedList = coopExPagedList;
 	}
 	
 	

@@ -5,10 +5,11 @@
 <head>
 <script>
 	$(document).ready(function() {
-
+		$("#btn-back").click(function(){				
+			$("#form-backToIndex").submit();
+		});
 	});
 </script>
-
 <style>
 .table-files tr, th, td { border: solid 1px; }
 .table-files td li { margin-bottom: 1px; }
@@ -143,7 +144,17 @@
 	
 	<div class="clear"></div>
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-		<input type="button" class="grayBtn" value="回列表頁" onclick="window.location.href='<s:url value="index"/>'" />	
-	</div>		
+		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>		
+	</div>
+	
+	<form action="index" method="post" id="form-backToIndex">
+		<s:hidden name="searchCondition.year"/>
+		<s:hidden name="searchCondition.type"/>
+		<s:hidden name="searchCondition.projName"/>
+		<s:hidden name="searchCondition.rdTeam"/>
+		<s:hidden name="searchCondition.assisTeam"/>
+		<s:hidden name="searchCondition.pageIndex"/>
+		<s:hidden name="searchCondition.pageSize"/>
+	</form>	
 </body>
 </html>

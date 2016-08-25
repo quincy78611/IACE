@@ -2,11 +2,13 @@
 .rightContent h2.Down {border:none; margin-bottom:0;}
 
 .rightContent .searchZone { position:relative;}
-.rightContent .searchZone ul { width:87%; margin-bottom:40px;}
-.rightContent .searchZone li { width:31%; margin:0 2% 10px 0; float:left;}
-.rightContent .searchZone li input,
-.rightContent .searchZone li select { margin:0 15px 0 5px; border:#e6eff5 1px solid; font-size:1em; padding: 7px 5px; width:100%; font-size:0.91em; font-family:"微軟正黑體";}
-.rightContent .searchZone .send { position:absolute; right:0; top:0; width:13%;}
+.rightContent .searchZone ul { width:89%; margin-bottom:40px;}
+/* .rightContent .searchZone li { width:31%; margin:0 2% 10px 0; float:left;} */
+/* .rightContent .searchZone li input, */
+/* .rightContent .searchZone li select { margin:0 15px 0 5px; border:#e6eff5 1px solid; font-size:1em; padding: 7px 5px; width:100%; font-size:0.91em; font-family:"微軟正黑體";} */
+.rightContent .searchZone .send { position:absolute; right:0; top:0; width:10%;}
+.rightContent .searchZone .send input[type=button], 
+.rightContent .searchZone .send input[type=submit] { margin-bottom:10px;}
 
 .rightContent ul { margin-bottom:40px;}
 .rightContent li { float:left; margin-bottom:15px; margin-right:1%; font-size:1.12em;}
