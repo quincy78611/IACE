@@ -12,7 +12,7 @@
 .rightContent li { float:left; margin-bottom:15px; margin-right:1%; font-size:1.12em;}
 .rightContent ul > li > ul { margin-bottom:10px;}
 .rightContent ul > li > ul > li { font-size: 16px; float:none; margin-bottom:10px;}
-.rightContent b { color:#5b92b9; font-weight:normal; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;}
+.rightContent b { color:#5b92b9; font-weight:bold; font-size:16px; display:inline-block; margin-right:4px; white-space:nowrap;}
 
 .rightContent li.all { width:99%; margin-right:1%;}
 .rightContent li.half { width:49%; margin-right:1%;}
@@ -33,7 +33,8 @@
 .rightContent li input[type=text],
 .rightContent li input[type=password],
 .rightContent li textarea { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.91em; font-family:"微軟正黑體";}
-.rightContent li input[type=checkbox] { margin-right:8px; }
+.rightContent li input[type=checkbox],
+.rightContent li input[type=radio] { margin-right:8px; }
 .rightContent li div.border-text {width:100%; border:#e6eff5 1px solid; padding: 5px 5px; font-size:0.91em; font-family:"微軟正黑體"; color:black; background: #FFFFFF; }
 
 .rightContent .horizontalList div.checkbox,
