@@ -262,6 +262,48 @@
 		</action>		
 	</package>
 	
+	<package name="OptionHrst" namespace="/option/hrst" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>		
+		<action name="index" class="iace.action.OptionHrstAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/option/hrst/index.jsp</result>
+		</action>
+		<action name="create" class="iace.action.OptionHrstAction" method="create">
+			<result name="input">/WEB-INF/jsp/backend/option/hrst/create.jsp</result>		
+		</action>
+		<action name="createSubmit" class="iace.action.OptionHrstAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/option/hrst/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/option/hrst/index.jsp</result>
+		</action>
+		<action name="update" class="iace.action.OptionHrstAction" method="update">
+			<result name="input">/WEB-INF/jsp/backend/option/hrst/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.OptionHrstAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/option/hrst/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/option/hrst/index.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.OptionHrstAction" method="deleteSubmit">
+			<result name="success">/WEB-INF/jsp/backend/option/hrst/index.jsp</result>
+		</action>
+		<action name="batchImport" class="iace.action.OptionHrstAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionHrstAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionHrstAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
+	</package>	
+	
 	<package name="OptionIndustryAction" namespace="/option/industry" extends="struts-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="index" class="iace.action.OptionIndustryAction" method="index">

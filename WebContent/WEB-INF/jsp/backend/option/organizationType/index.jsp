@@ -109,6 +109,10 @@
 		});		
 	}
 </script>
+<style>
+table tr td.code { font-weight:bold; color:#5b92b9; }
+table tr td.name { font-weight:bold; color:#000000; }
+</style>
 <meta name="funcPathText" content="編輯管理"/>
 </head>
 <body>
@@ -133,6 +137,7 @@
 				</li>
 			</s:if>
 		</ul>
+		<div class="clear"></div>
 
 		<div class="page">
 			<s:set var="pgList" value="optionPagedList"/>
@@ -175,10 +180,11 @@
 
 		<table>
 			<tr>
-				<th width="2%" nowrap>No.</th>
+				<th width="3%" nowrap>No.</th>
+				<th width="5%" nowrap>Order</th>
 				<th width="" nowrap>代碼</th>
 				<th width="" nowrap>名稱</th>
-				<th width="17%">功能</th>
+				<th width="16%">功能</th>
 			</tr>
 			<s:if test="optionPagedList != null">
 				<s:iterator value="optionPagedList.list" status="stat">
@@ -186,7 +192,8 @@
 						<td>
 							<s:property value="%{optionPagedList.itemStart + #stat.count -1}" />
 							<%-- <s:property value="id" /> --%>
-						</td>						
+						</td>
+						<td><s:property value="priority" /></td>
 						<td class="code"><s:property value="code" /></td>
 						<td class="name"><s:property value="name" /></td>
 						<td>

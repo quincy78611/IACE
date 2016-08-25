@@ -1,4 +1,4 @@
-.btn-func {height:17px; padding-left:20px; margin:0 5px 10px 0; line-height:17px; font-size:0.93em; display:inline-block; color:#175987; border:none; cursor:pointer; }
+.btn-func { height:17px; padding-left:20px; margin:5px 5px 5px 0; line-height:17px; font-size:0.93em; display:inline-block; color:#175987; border:none; cursor:pointer; }
 .btn-func:hover { background-position: left -17px; color:#890107;}
 .btn-view { background:url(../images/icon_View.png) no-repeat left top; }
 .btn-edit { background:url(../images/icon_Edit.png) no-repeat left top; }

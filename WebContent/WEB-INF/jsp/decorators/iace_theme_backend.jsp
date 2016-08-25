@@ -155,12 +155,13 @@
 						</li>						
 						<li><a href="#">代碼管理</a>
 							<ul>
-						    	<li><a href="<s:url value="/option/country/index"/>">專利國別</a></li>
 						        <li><a href="<s:url value="/option/companyLocation/index"/>">公司地域別</a></li>
 						        <li><a href="<s:url value="/option/consult/index"/>">諮詢類型代</a></li>
 						        <li><a href="<s:url value="/option/cooperateMode/index"/>">合作模式</a></li>
+						    	<li><a href="<s:url value="/option/country/index"/>">專利國別</a></li>
 						        <li><a href="<s:url value="/option/grbDomain/index"/>">GRB領域別</a></li>
 						        <li><a href="<s:url value="/option/hadTecSrc/index"/>">企業已有技術來源</a></li>
+								<li><a href="<s:url value="/option/hrst/index"/>">HRST專長 </a></li>
 						        <li><a href="<s:url value="/option/industry/index"/>">產業/領域別</a></li>	
 						        <li><a href="<s:url value="/option/domain/index"/>">領域</a></li>				        
 						        <li><a href="<s:url value="/option/organizationClass/index"/>">單位類別</a></li>

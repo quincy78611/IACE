@@ -36,7 +36,7 @@
 				</li>
 				<li class="quarter">
 					<span class="btn btn-default btn-file"> 選擇批次匯入檔案 
-						<input type="file" id="btn_file" name="uploadFile" class="btn-file">
+						<input type="file" id="btn_file" name="uploadFile" class="btn-file" accept=".xlsx">
 					</span>
 				</li>
 				<li class="eighth">

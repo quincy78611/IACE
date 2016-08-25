@@ -13,6 +13,7 @@ import iace.service.option.OptionCountryService;
 import iace.service.option.OptionDomainService;
 import iace.service.option.OptionGrbDomainService;
 import iace.service.option.OptionHadTecSrcService;
+import iace.service.option.OptionHrstService;
 import iace.service.option.OptionIndustryService;
 import iace.service.option.OptionOrganizationClassService;
 import iace.service.option.OptionOrganizationTypeService;
@@ -48,6 +49,7 @@ public class ServiceFactory {
 	private static OptionCountryService optionCountryService;
 	private static OptionGrbDomainService optionGrbDomainService;
 	private static OptionHadTecSrcService optionHadTecSrcService;
+	private static OptionHrstService optionHrstService;
 	private static OptionIndustryService optionIndustryService;
 	private static OptionDomainService optionDomainService;
 	private static OptionOrganizationClassService optionOrganizationClassService;
@@ -146,6 +148,13 @@ public class ServiceFactory {
 		return optionHadTecSrcService;
 	}
 	
+	public static OptionHrstService getOptionHrstService() {
+		if (optionHrstService == null) {
+			optionHrstService = new OptionHrstService(DaoFactory.getOptionHrstDao());
+		}
+		return optionHrstService;
+	}
+
 	public static OptionIndustryService getOptionIndustryService() {
 		if (optionIndustryService == null) {
 			optionIndustryService = new OptionIndustryService(DaoFactory.getOptionIndustryDao());
