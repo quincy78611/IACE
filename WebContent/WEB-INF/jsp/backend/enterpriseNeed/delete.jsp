@@ -213,9 +213,9 @@
 					<s:radio name="enterpriseInfo.enterpriseSituation.optionHadTecSrc.id" list="optionHadTecSrcList" listKey="id" listValue="name" cssClass="horizontalList" disabled="true"/>
 				</div>
 				<div style="margin-right:1%; float:left; ">
-					<b>比例: </b>					
+					<b>比例:</b>					
 				</div>
-				<div style="width:10%; float:left; ">
+				<div style="float:left; ">
 					<s:property value="%{enterpriseInfo.enterpriseSituation.hadTecSrcRation * 100 +'%'}" />
 				</div>
 			</td>
@@ -223,7 +223,7 @@
 		<tr>
 			<td rowspan="3" ><b>2.與法人機構，<br>技術合作的意願</b></td>
 			<td>
-				<div style="width:49%; margin-right:1%; float:left; ">
+				<div style="margin-right:1%; float:left; ">
 					<b>2-1.是否有過跟法人機構技術合作(含技轉)的經驗？</b>
 				</div>
 				<s:radio name="enterpriseInfo.enterpriseSituation.hasComCoopExp" list="#{'true':'是', 'false':'否' }" cssClass="horizontalList" disabled="true"/>

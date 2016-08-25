@@ -115,7 +115,7 @@
 					<s:textfield placeholder="受訪人" name="searchCondition.intervieweeName" maxlength="100" />
 				</li>
 				<li class="quarter">
-					<s:select name="searchCondition.optionCompanyLocationId" list="optionCompanyLocationList" listKey="id" listValue="%{code+' - '+name}" headerKey="" headerValue="請選擇公司地域別" />
+					<s:select name="searchCondition.optionCompanyLocationId" list="optionCompanyLocationList" listKey="id" listValue="name" headerKey="" headerValue="請選擇公司地域別" />
 				</li>
 				<li class="quarter">
 					<s:textfield placeholder="訪談日(起)" name="searchCondition.interviewDateS" maxlength="10" cssClass="calendarBox" />
