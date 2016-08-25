@@ -275,7 +275,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 
 	public List<OptionGrbDomain> getOptionGrbDomainList() {
 		if (this.optionGrbDomainList == null) {
-			this.optionGrbDomainList = this.optionGrbDomainService.listAll();
+			this.optionGrbDomainList = this.optionGrbDomainService.listForResearchPlan();
 		}
 		return this.optionGrbDomainList;
 	}

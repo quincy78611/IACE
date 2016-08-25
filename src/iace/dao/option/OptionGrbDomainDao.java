@@ -1,14 +1,20 @@
 package iace.dao.option;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import core.dao.HibernateSessionFactory;
 import iace.entity.BaseEntity;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.researchPlan.ResearchPlan;
 
-public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> {
+public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> implements IOptionGrbDomainDao {
 
 	public OptionGrbDomainDao() {
 		super(OptionGrbDomain.class);
@@ -93,4 +99,17 @@ public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> {
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OptionGrbDomain> listForResearchPlan() {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		criterionList.add(Restrictions.eq("forResearchPlan", true));	
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("priority"));
+		orderList.add(Order.asc("code"));
+		return (List<OptionGrbDomain>) super.listAll(optionEntityClass, orderList, criterionList);
+	}
+
+	
 }

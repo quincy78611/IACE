@@ -19,16 +19,17 @@ import iace.dao.enterpriseNeed.IEnterpriseInfoDao;
 import iace.dao.enterpriseNeed.IEnterpriseRequireTechDao;
 import iace.dao.enterpriseNeed.IEnterpriseSituationDao;
 import iace.dao.option.IOptionDao;
+import iace.dao.option.IOptionGrbDomainDao;
 import iace.dao.option.IOptionSchoolDao;
 import iace.dao.option.IOptionSubjectDao;
 import iace.dao.option.OptionCompanyLocationDao;
 import iace.dao.option.OptionConsultDao;
 import iace.dao.option.OptionCooperateModeDao;
 import iace.dao.option.OptionCountryDao;
+import iace.dao.option.OptionDomainDao;
 import iace.dao.option.OptionGrbDomainDao;
 import iace.dao.option.OptionHadTecSrcDao;
 import iace.dao.option.OptionIndustryDao;
-import iace.dao.option.OptionDomainDao;
 import iace.dao.option.OptionOrganizationClassDao;
 import iace.dao.option.OptionOrganizationTypeDao;
 import iace.dao.option.OptionSchoolDao;
@@ -62,10 +63,9 @@ import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
 import iace.entity.option.OptionCountry;
-import iace.entity.option.OptionGrbDomain;
+import iace.entity.option.OptionDomain;
 import iace.entity.option.OptionHadTecSrc;
 import iace.entity.option.OptionIndustry;
-import iace.entity.option.OptionDomain;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionTrl;
@@ -80,7 +80,7 @@ public class DaoFactory {
 	private static IOptionDao<OptionConsult> optionConsultDao;
 	private static IOptionDao<OptionCooperateMode> optionCooperateModeDao;
 	private static IOptionDao<OptionCountry> optionCountryDao;
-	private static IOptionDao<OptionGrbDomain> optionGrbDomainDao;
+	private static IOptionGrbDomainDao optionGrbDomainDao;
 	private static IOptionDao<OptionHadTecSrc> optionHadTecSrcDao;
 	private static IOptionDao<OptionIndustry> optionIndustryDao;
 	private static IOptionDao<OptionDomain> optionDomainDao;
@@ -165,7 +165,7 @@ public class DaoFactory {
 		return optionCountryDao;
 	}
 	
-	public static IOptionDao<OptionGrbDomain> getOptionGrbDomainDao() {
+	public static IOptionGrbDomainDao getOptionGrbDomainDao() {
 		if (optionGrbDomainDao == null) {
 			optionGrbDomainDao = new OptionGrbDomainDao();
 		}
