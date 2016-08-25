@@ -9,7 +9,7 @@ public class OptionSubjectService extends BaseOptionService<OptionSubject> {
 	private IOptionSubjectDao dao;
 	
 	public OptionSubjectService(IOptionSubjectDao dao) {
-		super(dao);
+		super(dao, OptionSubject.class);
 		this.dao = dao;
 	}
 	

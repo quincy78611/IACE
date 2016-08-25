@@ -6,8 +6,7 @@ import iace.entity.option.OptionHadTecSrc;
 public class OptionHadTecSrcService extends BaseOptionService<OptionHadTecSrc> {
 
 	public OptionHadTecSrcService(IOptionDao<OptionHadTecSrc> dao) {
-		super(dao);
-		// TODO Auto-generated constructor stub
+		super(dao, OptionHadTecSrc.class);
 	}
 
 }

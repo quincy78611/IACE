@@ -6,7 +6,7 @@ import iace.entity.option.OptionConsult;
 public class OptionConsultService extends BaseOptionService<OptionConsult> {
 
 	public OptionConsultService(IOptionDao<OptionConsult> dao) {
-		super(dao);
+		super(dao, OptionConsult.class);
 	}
 
 }

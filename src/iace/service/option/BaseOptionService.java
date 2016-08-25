@@ -1,19 +1,33 @@
 package iace.service.option;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import core.service.BaseService;
+import core.util.CloseableTool;
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.entity.option.BaseOption;
 import iace.entity.option.BaseOptionSearchModel;
+import iace.entity.option.BatchImportOptionResult;
 
 public abstract class BaseOptionService<OptionEntity extends BaseOption> extends BaseService<OptionEntity, Long> {
 	protected IOptionDao<OptionEntity> dao;
+	protected Class<OptionEntity> optoinEntityClass;
 
-	protected BaseOptionService(IOptionDao<OptionEntity> dao) {
+	protected BaseOptionService(IOptionDao<OptionEntity> dao, Class<OptionEntity> optoinEntityClass) {
 		this.dao = dao;
+		this.optoinEntityClass = optoinEntityClass;
 	}
 	
 	public List<OptionEntity> listAll() {
@@ -97,5 +111,63 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 	
 	public boolean hasBeenUsed(Long id) {
 		return dao.hasBeenUsed(id);
+	}
+	
+	/**
+	 * 
+	 * @param uploadFile
+	 * @return JSONObject
+	 * {"createCount":int, "updateCount":int, "error":List<String> errorMsgs}
+	 * 
+	 * @throws IOException
+	 */
+	public BatchImportOptionResult batchImport(File uploadFile) throws IOException {
+		BatchImportOptionResult res = new BatchImportOptionResult();
+		
+		Map<String, OptionEntity> oldOptions = this.dao.mapAll();	
+		FileInputStream fis = null;
+		try {
+			fis = new FileInputStream(uploadFile);
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			XSSFSheet sheet = wb.getSheetAt(0);
+			for (int r = 1; r <= sheet.getLastRowNum(); r++) {
+				int c = -1;
+				XSSFRow row = sheet.getRow(r);
+				XSSFCell cell;
+				try {
+					OptionEntity option = optoinEntityClass.newInstance();
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					option.setCode(cell.getStringCellValue().trim());
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					option.setName(cell.getStringCellValue().trim());
+					
+					option.setPriority(row.getCell(++c).getNumericCellValue());
+					
+					if (oldOptions.containsKey(option.getCode())) {
+						OptionEntity oldOption = oldOptions.get(option.getCode());
+						oldOption.setName(option.getName());
+						oldOption.setPriority(option.getPriority());
+						this.dao.update(oldOption);
+						res.addUpdateOption(oldOption);
+					} else {
+						this.dao.create(option);
+						res.addNewOption(option);
+					}					
+				} catch (Exception e) {
+					String msg = String.format("第 %d 列第 %d 欄資料有問題! %s", r+1, c+1, e.getMessage());
+					res.addErrMsg(msg);
+				} 			
+			}			
+		} catch (IOException e) {
+			throw e;
+		} finally {
+			CloseableTool.close(fis);
+		}
+		
+		return res;
 	}
 }

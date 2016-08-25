@@ -9,7 +9,7 @@
 .rightContent .searchZone .send { position:absolute; right:0; top:0; width:13%;}
 
 .rightContent ul { margin-bottom:40px;}
-.rightContent li { float:left; margin-bottom:15px; font-size:1.12em;}
+.rightContent li { float:left; margin-bottom:15px; margin-right:1%; font-size:1.12em;}
 .rightContent ul > li > ul { margin-bottom:10px;}
 .rightContent ul > li > ul > li { font-size: 16px; float:none; margin-bottom:10px;}
 .rightContent b { color:#5b92b9; font-weight:normal; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;}

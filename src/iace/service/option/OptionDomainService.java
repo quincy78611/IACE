@@ -6,7 +6,7 @@ import iace.entity.option.OptionDomain;
 public class OptionDomainService extends BaseOptionService<OptionDomain> {
 
 	public OptionDomainService(IOptionDao<OptionDomain> dao) {
-		super(dao);
+		super(dao, OptionDomain.class);
 	}
 
 }

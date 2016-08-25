@@ -16,7 +16,6 @@ import iace.service.option.OptionHadTecSrcService;
 import iace.service.option.OptionIndustryService;
 import iace.service.option.OptionOrganizationClassService;
 import iace.service.option.OptionOrganizationTypeService;
-import iace.service.option.OptionSchoolExcelService;
 import iace.service.option.OptionSchoolService;
 import iace.service.option.OptionSubjectService;
 import iace.service.option.OptionTrlService;
@@ -56,7 +55,6 @@ public class ServiceFactory {
 	private static OptionTrlService optionTrlService;
 	private static OptionSubjectService optionSubjectService;
 	private static OptionSchoolService optionSchoolService;
-	private static OptionSchoolExcelService optionSchoolExcelService;
 	
 	private static PatentService patentService;
 	private static TechFieldService techFieldService;
@@ -195,13 +193,6 @@ public class ServiceFactory {
 			optionSchoolService = new OptionSchoolService(DaoFactory.getOptionSchoolDao());
 		}
 		return optionSchoolService;
-	}
-	
-	public static OptionSchoolExcelService getOptionSchoolExcelService() {
-		if (optionSchoolExcelService == null) {
-			optionSchoolExcelService = new OptionSchoolExcelService();
-		}
-		return optionSchoolExcelService;
 	}
 
 	public static PatentService getPatentService() {

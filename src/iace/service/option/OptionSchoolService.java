@@ -10,7 +10,7 @@ public class OptionSchoolService extends BaseOptionService<OptionSchool> {
 	private IOptionSchoolDao dao;
 	
 	public OptionSchoolService(IOptionSchoolDao dao) {
-		super(dao);
+		super(dao, OptionSchool.class);
 		this.dao = dao;
 	}
 	

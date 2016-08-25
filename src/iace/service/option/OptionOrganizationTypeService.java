@@ -6,7 +6,7 @@ import iace.entity.option.OptionOrganizationType;
 public class OptionOrganizationTypeService extends BaseOptionService<OptionOrganizationType> {
 
 	public OptionOrganizationTypeService(IOptionDao<OptionOrganizationType> dao) {
-		super(dao);
+		super(dao, OptionOrganizationType.class);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -6,8 +6,7 @@ import iace.entity.option.OptionCooperateMode;
 public class OptionCooperateModeService extends BaseOptionService<OptionCooperateMode> {
 
 	public OptionCooperateModeService(IOptionDao<OptionCooperateMode> dao) {
-		super(dao);
-		// TODO Auto-generated constructor stub
+		super(dao, OptionCooperateMode.class);
 	}
 
 }

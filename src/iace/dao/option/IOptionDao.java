@@ -16,6 +16,10 @@ public interface IOptionDao<OptionEntity extends BaseOption> extends IBaseIaceDa
 	
 	public List<String> listAllCode();
 	
+	/**
+	 * 
+	 * @return Map(code, OptionEntity)
+	 */
 	public Map<String, OptionEntity> mapAll();
 
 	public PagedList<OptionEntity> searchBy(BaseOptionSearchModel args);

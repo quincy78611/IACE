@@ -11,6 +11,8 @@
 .redBtn:hover { background:#666;}
 .grayBtn { color:#8e3022; padding:8px 20px; background:#e1e1e1; display: inline-block; text-align:center; font-size:15px; border:none; cursor: pointer;}
 .grayBtn:hover { background:#666; color:#fff;}
+.blueBtn  { color:#ffffff; padding:8px 20px; background:#3992fd; display: inline-block; text-align:center; font-size:15px; border:none; cursor: pointer;}
+.blueBtn:hover { background:#666;}
 
 input[type=button].left { background:url(../images/left.png) no-repeat left top; width:198px; height:41px; display:block; margin: 25px auto 0 auto; cursor:pointer; border:none; color:#fff;}
 input[type=button].right { background:url(../images/right.png) no-repeat left top; width:198px; height:41px; display:block; margin: 25px auto 0 auto; cursor:pointer; border:none; color:#fff;}

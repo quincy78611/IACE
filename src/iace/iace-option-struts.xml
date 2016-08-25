@@ -31,6 +31,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionCompanyLocationAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/companyLocation/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionCompanyLocationAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionCompanyLocationAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionCompanyLocationAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 	
 	<package name="OptionConsult" namespace="/option/consult" extends="struts-default, default">
@@ -55,6 +73,25 @@
 		<action name="deleteSubmit" class="iace.action.OptionConsultAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/consult/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionConsultAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionConsultAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionConsultAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
+		
 	</package>
 
 	<package name="OptionCooperateMode" namespace="/option/cooperateMode" extends="struts-default, default">
@@ -79,6 +116,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionCooperateModeAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/cooperateMode/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionCooperateModeAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionCooperateModeAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionCooperateModeAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 		
 	<package name="OptionCountry" namespace="/option/country" extends="struts-default, default">
@@ -103,6 +158,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionCountryAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/country/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionCountryAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionCountryAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionCountryAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>	
 	
 	<package name="OptionGrbDomain" namespace="/option/grbDomain" extends="struts-default, default">
@@ -127,6 +200,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionGrbDomainAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/grbDomain/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionGrbDomainAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionGrbDomainAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionGrbDomainAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 
 	<package name="OptionHadTecSrc" namespace="/option/hadTecSrc" extends="struts-default, default">
@@ -151,6 +242,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionHadTecSrcAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/hadTecSrc/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionHadTecSrcAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionHadTecSrcAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionHadTecSrcAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 	
 	<package name="OptionIndustryAction" namespace="/option/industry" extends="struts-default, default">
@@ -175,6 +284,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionIndustryAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/industry/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionIndustryAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionIndustryAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionIndustryAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 
 	<package name="OptionDomainAction" namespace="/option/domain" extends="struts-default, default">
@@ -199,6 +326,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionDomainAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/domain/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionDomainAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionDomainAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionDomainAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>	
 	
 	<package name="OptionOrganizationClass" namespace="/option/organizationClass" extends="struts-default, default">
@@ -223,6 +368,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionOrganizationClassAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/organizationClass/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionOrganizationClassAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionOrganizationClassAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionOrganizationClassAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>	
 	
 	<package name="OptionOrganizationType" namespace="/option/organizationType" extends="struts-default, default">
@@ -247,6 +410,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionOrganizationTypeAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/organizationType/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionOrganizationTypeAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionOrganizationTypeAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionOrganizationTypeAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 
 	<package name="OptionSubject" namespace="/option/subject" extends="struts-default, default, json-default">
@@ -277,6 +458,24 @@
 				<param name="noCache">true</param>
 			</result>
 		</action>		
+		<action name="batchImport" class="iace.action.OptionSubjectAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionSubjectAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionSubjectAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 	
 	<package name="OptionTrl" namespace="/option/trl" extends="struts-default, default">
@@ -301,6 +500,24 @@
 		<action name="deleteSubmit" class="iace.action.OptionTrlAction" method="deleteSubmit">
 			<result name="success">/WEB-INF/jsp/backend/option/trl/index.jsp</result>
 		</action>
+		<action name="batchImport" class="iace.action.OptionTrlAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionTrlAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.OptionTrlAction" method="downloadBatchSample">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 	
 	<package name="School" namespace="/option/school" extends="struts-default, default">
@@ -326,12 +543,15 @@
 			<result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
 		</action>
 		<action name="batchImport" class="iace.action.OptionSchoolAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.OptionSchoolAction" method="batchImportSubmit">
 			<interceptor-ref name="iaceBackEnd"/>
 		    <interceptor-ref name="fileUpload"/>
 		    
-		    <result name="success">/WEB-INF/jsp/backend/option/school/index.jsp</result>
-		    <result name="input">/WEB-INF/jsp/backend/option/school/create.jsp</result>
-		</action>
+		    <result name="success">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/option/batchImport.jsp</result>
+		</action>		
 		<action name="downloadBatchSample" class="iace.action.OptionSchoolAction" method="downloadBatchSample">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>

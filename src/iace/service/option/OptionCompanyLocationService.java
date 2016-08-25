@@ -6,7 +6,7 @@ import iace.entity.option.OptionCompanyLocation;
 public class OptionCompanyLocationService extends BaseOptionService<OptionCompanyLocation> {
 
 	public OptionCompanyLocationService(IOptionDao<OptionCompanyLocation> dao) {
-		super(dao);
+		super(dao, OptionCompanyLocation.class);
 	}
 
 }

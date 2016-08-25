@@ -117,15 +117,21 @@
 			<li class="half">
 				<s:textfield placeholder="請輸入代碼或名稱" name="searchCondition.searchText"/>
 			</li>
-			<li class="quarter">
+			<li>
 				<input type="submit" value="查詢" class="btn btn-primary redBtn" id="btn-search"/>
 				<input type="button" value="清除" class="btn btn-warning grayBtn" id="btn-reset"/>
 			</li>
-			<li class="quarter">
+			<li>
 				<s:url value="create.action" var="createUrlTag" />
 				<s:hidden value="%{#createUrlTag}" class="createUrl" disabled="true"/>
-				<input type="button" class="redBtn btn-create" value="新增代碼"  />
+				<input type="button" class="blueBtn btn-create" value="新增代碼"  />
 			</li>
+			<s:if test="#session.sysUser.sysRole.name == '系統開發人員'">
+				<li>
+					<input type="button" class="blueBtn" value="批次匯入" 
+						onclick="window.location.href='<s:url value="batchImport" />'" />
+				</li>
+			</s:if>
 		</ul>
 
 		<div class="page">
