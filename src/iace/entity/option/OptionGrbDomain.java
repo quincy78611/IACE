@@ -2,6 +2,8 @@ package iace.entity.option;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -13,6 +15,7 @@ public class OptionGrbDomain extends BaseOption {
 	private static final long serialVersionUID = 8701955362454487326L;
 
 	private Boolean forResearchPlan;
+	private OptionDomain mainDomain;
 
 	@Column(name = "FOR_RESEARCH_PLAN")
 	@Type(type = "true_false")
@@ -23,12 +26,15 @@ public class OptionGrbDomain extends BaseOption {
 	public void setForResearchPlan(Boolean forResearchPlan) {
 		this.forResearchPlan = forResearchPlan;
 	}
-	
-	
 
+	@ManyToOne
+	@JoinColumn(name = "OPT_DOMAIN_ID", referencedColumnName = "ID")
+	public OptionDomain getMainDomain() {
+		return mainDomain;
+	}
 
-
-	
-	
+	public void setMainDomain(OptionDomain mainDomain) {
+		this.mainDomain = mainDomain;
+	}
 
 }

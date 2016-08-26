@@ -17,4 +17,8 @@ public class OptionGrbDomainService extends BaseOptionService<OptionGrbDomain> {
 	public List<OptionGrbDomain> listForResearchPlan() {
 		return this.dao.listForResearchPlan();
 	}
+	
+	public List<OptionGrbDomain> listForTalentedPeople(long optionDomainId) {
+		return this.dao.listForTalentedPeople(optionDomainId);
+	}
 }

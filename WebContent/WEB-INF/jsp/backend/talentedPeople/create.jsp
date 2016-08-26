@@ -38,24 +38,27 @@
 	}
 </script>
 <style>
-.headShot { width:20%; }
-.headShot input[type=file] { display:none; }
+table.table-talentedPeopleInfo { margin-bottom:15px; }
+table.table-talentedPeopleInfo tr:hover { background:none; }
+table.table-talentedPeopleInfo td { border:none; }
+table.table-talentedPeopleInfo td.headShot { width:20%; border:#e6eff5 1px solid }
+input[type=file][name="talentedPeople.uploadheadShot"] { display:none }
 </style>
 <meta name="funcPathText" content="新增"/>
 </head>
 <body>
 	<s:form action="createSubmit" method="post" validate="true" enctype="multipart/form-data">
-		<table>
+		<table class="table-talentedPeopleInfo">
 			<tr>
 				<td>
 					<ul>
 						<li class="quarter">
 							<b>姓名(中)</b>
-							<s:textfield name="talentedPeople.nameCh"/>
+							<s:textfield name="talentedPeople.nameCh" maxlength="100"/>
 						</li>
 						<li class="quarter">
 							<b>姓名(英)</b>
-							<s:textfield name="talentedPeople.nameEn"/>
+							<s:textfield name="talentedPeople.nameEn" maxlength="100"/>
 						</li>
 						<li class="quarter">
 							<b>性別</b>
@@ -67,41 +70,75 @@
 						</li>
 						<li class="half">
 							<b>連絡電話</b>
-							<s:textfield name="talentedPeople.tel"/>
+							<s:textfield name="talentedPeople.tel" maxlength="20"/>
 						</li>
 						<li class="half">
 							<b>e-mail</b>
-							<s:textfield name="talentedPeople.email"/>
+							<s:textfield name="talentedPeople.email" maxlength="100"/>
 						</li>
 						<li class="half">
 							<b>現職單位</b>
-							<s:textfield name="talentedPeople.workOrg"/>
+							<s:textfield name="talentedPeople.workOrg" maxlength="100"/>
 						</li>
 						<li class="half">
 							<b>現職職位</b>
-							<s:textfield name="talentedPeople.job"/>
+							<s:textfield name="talentedPeople.job" maxlength="100"/>
 						</li>
 						<li class="all">
 							<b>網站連結</b>
-							<s:textfield name="talentedPeople.url"/>
-						</li>
-						<li class="all">
-							<b>合作專長</b>
-							
+							<s:textfield name="talentedPeople.url" maxlength="1000"/>
 						</li>						
-					</ul>
+					</ul>					
 				</td>
-				<td class="headShot">
+				<td class="headShot text-align-center">
 					<img src="" style="max-width:150px; max-height:200px;" />
 					<s:file type="file" name="talentedPeople.uploadheadShot" class="upload" accept=".jpg, .jpeg, .png, .gif" />
 					<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案"/>
 					<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
-				</td>
-			<tr>
+				</td>				
+			</tr>
 		</table>
+	
+		<ul>
+			<li class="all">
+				<b>領域</b>
+				<table>
+					<s:iterator value="mainDomainList" status="stat">
+						<tr>
+							<td>
+								<span style="font-weight:bold;"><s:property value="name"/></span>
+								<div class="horizontalList">
+									<s:iterator value="subDomainList" status="stat2">
+										<div class="checkbox">
+											<input type="checkbox" 
+												name="talentedPeople.domainsId" 
+												id="<s:property value="%{'chkbox_'+id}" />"
+												value="<s:property value="%{id}" />"
+												<s:property value="%{talentedPeople.domainsId.contains(id) ? 'checked' : ''}"/>
+											/>										
+											<label for="<s:property value="%{'chkbox_'+id}" />">
+												<s:property value="name"/>
+											</label>
+										</div>
+									</s:iterator>
+								</div>
+							<td>
+						<tr>
+					</s:iterator>
+				</table>				
+			</li>
+			<li class="all">
+				<b>合作專長</b>
+				
+			</li>
+			<li class="all">
+				<b>合作專長(其他)</b>
+				<s:textfield name="talentedPeople.otherSpecialty" maxlength="1000"/>
+			</li>		
+		</ul>
 		
 		<div class="clear"></div>
-		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
+		<div class="bottom-btn-block">
 			<s:submit cssClass="redBtn" value="送出" />	
 		</div>		
 	</s:form>	

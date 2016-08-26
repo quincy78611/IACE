@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
@@ -85,4 +86,21 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
 
+	@Override
+	public TalentedPeople get(long id) {
+		Session session = HibernateSessionFactory.getSession();
+		try {
+			Criteria criteria = session.createCriteria(TalentedPeople.class);
+			criteria.add(Restrictions.eq("id", id));
+			TalentedPeople res = (TalentedPeople) criteria.uniqueResult();
+			Hibernate.initialize(res.getDomains());
+			return res;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	
 }

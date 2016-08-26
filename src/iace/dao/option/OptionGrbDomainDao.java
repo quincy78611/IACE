@@ -110,6 +110,34 @@ public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> implement
 		orderList.add(Order.asc("code"));
 		return (List<OptionGrbDomain>) super.listAll(optionEntityClass, orderList, criterionList);
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OptionGrbDomain> listForTalentedPeople() {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		criterionList.add(Restrictions.isNotNull("mainDomain"));	
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("mainDomain.priority"));
+		orderList.add(Order.asc("mainDomain.code"));
+		orderList.add(Order.asc("priority"));
+		orderList.add(Order.asc("code"));
+		return (List<OptionGrbDomain>) super.listAll(optionEntityClass, orderList, criterionList);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OptionGrbDomain> listForTalentedPeople(long optionDomainId) {
+		List<Criterion> criterionList = new ArrayList<Criterion>();
+		criterionList.add(Restrictions.eq("mainDomain.id", optionDomainId));	
+		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("priority"));
+		orderList.add(Order.asc("code"));
+		return (List<OptionGrbDomain>) super.listAll(optionEntityClass, orderList, criterionList);
+	}
+	
+	
 
 	
 }

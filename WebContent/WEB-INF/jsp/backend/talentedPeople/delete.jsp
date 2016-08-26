@@ -19,87 +19,107 @@
 	}
 </script>
 <style>
-.headShot { width:20%; }
+table.table-talentedPeopleInfo { margin-bottom:15px; }
+table.table-talentedPeopleInfo tr:hover { background:none; }
+table.table-talentedPeopleInfo td { border:none; }
+table.table-talentedPeopleInfo td.headShot { width:20%; border:#e6eff5 1px solid; }
 </style>
 <meta name="funcPathText" content="編輯管理 > 刪除"/>
 </head>
 <body>
 	<s:form action="deleteSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-delete">
 		<s:hidden name="id"/>
-		<table>
+
+		<table class="table-talentedPeopleInfo">
 			<tr>
 				<td>
 					<ul>
 						<li class="quarter">
 							<b>姓名(中)</b>
-							<div class="border-text">
-								<s:property value="talentedPeople.nameCh"/>
-							</div>
+							<div class="border-text"><s:property value="talentedPeople.nameCh"/>&nbsp;</div>
 						</li>
 						<li class="quarter">
 							<b>姓名(英)</b>
-							<div class="border-text">
-								<s:property value="talentedPeople.nameEn"/>
-							</div>							
+							<div class="border-text"><s:property value="talentedPeople.nameEn"/>&nbsp;</div>
 						</li>
 						<li class="quarter">
 							<b>性別</b>
-							<div class="border-text">
-								<s:property value="talentedPeople.gender"/>
-							</div>							
+							<div class="border-text"><s:property value="talentedPeople.gender"/>&nbsp;</div>
 						</li>
 						<li class="quarter">
 							<b>產學經驗(年)</b>
-							<div class="border-text">
-								<s:property value="talentedPeople.expYear"/>
-							</div>							
+							<div class="border-text"><s:property value="talentedPeople.expYear"/>&nbsp;</div>
 						</li>
 						<li class="half">
 							<b>連絡電話</b>
-							<div class="border-text">
-								<s:property value="talentedPeople.tel"/>
-							</div>							
+							<div class="border-text"><s:property value="talentedPeople.tel"/>&nbsp;</div>
 						</li>
 						<li class="half">
 							<b>e-mail</b>
-							<div class="border-text">
-								<s:property value="talentedPeople.email"/>
-							</div>							
+							<div class="border-text"><s:property value="talentedPeople.email"/>&nbsp;</div>
 						</li>
 						<li class="half">
 							<b>現職單位</b>
-							<div class="border-text">
-								<s:property value="talentedPeople.workOrg"/>
-							</div>							
+							<div class="border-text"><s:property value="talentedPeople.workOrg"/>&nbsp;</div>
 						</li>
 						<li class="half">
 							<b>現職職位</b>
-							<div class="border-text">
-								<s:property value="talentedPeople.job"/>
-							</div>							
+							<div class="border-text"><s:property value="talentedPeople.job"/>&nbsp;</div>
 						</li>
 						<li class="all">
 							<b>網站連結</b>
-							<div class="border-text">
+							<a href="<s:property value="talentedPeople.url"/>">
 								<s:property value="talentedPeople.url"/>
-							</div>							
-						</li>
-						<li class="all">
-							<b>合作專長</b>
-							<div class="border-text">
-								
-							</div>							
-						</li>						
-					</ul>
+							</a>
+						</li>					
+					</ul>					
 				</td>
-				<td class="headShot">
+				<td class="headShot text-align-center">
 					<img src="data:image;base64,<s:property value="talentedPeople.base64HeadShot"/>" style="max-width:150px; max-height:200px;" />
-				</td>
-			<tr>
+				</td>				
+			</tr>
 		</table>
+	
+		<ul>
+			<li class="all">
+				<b>領域</b>
+				<table>
+					<s:iterator value="mainDomainList" status="stat">
+						<tr>
+							<td>
+								<span style="font-weight:bold;"><s:property value="name"/></span>
+								<div class="horizontalList">
+									<s:iterator value="subDomainList" status="stat2">
+										<div class="checkbox">
+											<input type="checkbox" disabled="disabled"
+												name="talentedPeople.domainsId" 
+												id="<s:property value="%{'chkbox_'+id}" />"
+												value="<s:property value="%{id}" />"
+												<s:property value="%{talentedPeople.domainsId.contains(id) ? 'checked' : ''}"/>
+											/>										
+											<label for="<s:property value="%{'chkbox_'+id}" />">
+												<s:property value="name"/>
+											</label>
+										</div>
+									</s:iterator>
+								</div>
+							<td>
+						<tr>
+					</s:iterator>
+				</table>				
+			</li>
+			<li class="all">
+				<b>合作專長</b>
+				
+			</li>
+			<li class="all">
+				<b>合作專長(其他)</b>
+				<div class="border-text"><s:property value="talentedPeople.otherSpecialty"/>&nbsp;</div>
+			</li>		
+		</ul>
 		
 		<div class="clear"></div>
-		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
+		<div class="bottom-btn-block">
 			<s:submit cssClass="redBtn" value="送出" />
 			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</div>		

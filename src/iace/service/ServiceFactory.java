@@ -337,7 +337,9 @@ public class ServiceFactory {
 
 	public static TalentedPeopleService getTalentedPeopleService() {
 		if (talentedPeopleService == null) {
-			talentedPeopleService = new TalentedPeopleService(DaoFactory.getTalentedPeopleDao());
+			talentedPeopleService = new TalentedPeopleService(
+					DaoFactory.getTalentedPeopleDao(),
+					DaoFactory.getOptionGrbDomainDao());
 		}
 		return talentedPeopleService;
 	}
