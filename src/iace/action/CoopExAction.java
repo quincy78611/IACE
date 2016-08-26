@@ -175,7 +175,6 @@ public class CoopExAction extends BaseIaceAction {
 		super.validateNotNull(this.coopEx.getYear(), "coopEx.year");
 		super.validateNotBlankNLength(this.coopEx.getRdTeam(), 1000, "coopEx.rdTeam");
 		super.validateNotBlankNLength(this.coopEx.getAssisTeam(), 1000, "coopEx.assisTeam");
-		super.validateNotBlankNLength(this.coopEx.getContent(), 2000, "coopEx.content");
 	}
 	
 	// ========================================================================

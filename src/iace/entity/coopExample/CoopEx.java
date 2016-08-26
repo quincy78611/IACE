@@ -94,7 +94,7 @@ public class CoopEx extends BaseEntity {
 		this.assisTeam = assisTeam;
 	}
 	
-	@Column(name = "CONTENT", length = 2000)
+	@Column(name = "CONTENT")
 	public String getContent() {
 		return content;
 	}
