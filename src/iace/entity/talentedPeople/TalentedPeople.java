@@ -47,9 +47,9 @@ public class TalentedPeople extends BaseEntity {
 	private List<OptionGrbDomain> domains = new ArrayList<OptionGrbDomain>();
 
 	private byte[] headShot;
-	private File uploadheadShot;
-	private String uploadheadShotContentType;
-	private String uploadheadShotFileName;
+	private transient File uploadheadShot;
+	private transient String uploadheadShotContentType;
+	private transient String uploadheadShotFileName;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)

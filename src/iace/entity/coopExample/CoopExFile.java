@@ -27,9 +27,9 @@ public class CoopExFile extends BaseEntity {
 	private String fileName;
 	private String fileDesc;
 
-	private File upload;
-	private String uploadContentType;
-	private String uploadFileName;
+	private transient File upload;
+	private transient String uploadContentType;
+	private transient String uploadFileName;
 	
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)

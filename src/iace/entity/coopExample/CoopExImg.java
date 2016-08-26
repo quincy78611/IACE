@@ -12,7 +12,7 @@ public class CoopExImg extends CoopExFile {
 
 	private static final long serialVersionUID = 963064524540265328L;
 
-	private byte[] byteImg;
+	private transient byte[] byteImg;
 
 	@Transient
 	public byte[] getByteImg() {

@@ -49,8 +49,8 @@ public class Patent extends BaseEntity {
 	private String techAbstract;
 	private String importantPicturePath;
 //	private String importantPictureCode;
-	private byte[] importantPatentPicture;
-	private String importantPatentPictureExtension;
+	private transient byte[] importantPatentPicture;
+	private transient String importantPatentPictureExtension;
 	private TechField techField;
 	private String usage;
 	private OptionTrl trl;

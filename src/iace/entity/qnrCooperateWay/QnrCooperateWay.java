@@ -76,13 +76,13 @@ public class QnrCooperateWay extends BaseEntity {
 	private int q3_14;
 
 	private Boolean aggreePDPL;
-	private String name;
+	private transient String name;
 	private String encryptedName;
-	private String email;
+	private transient String email;
 	private String encryptedEmail;
-	private String address;
+	private transient String address;
 	private String encryptedAddress;
-	private String applicantId;
+	private transient String applicantId;
 	private String encryptedApplicantId;
 
 	private List<QnrCooperateWayMerit> qnrCooperateWayMerits;
