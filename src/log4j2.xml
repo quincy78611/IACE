@@ -24,7 +24,7 @@
 		<Root level="warn">
 			<AppenderRef ref="STDOUT" />
 			<AppenderRef ref="DailyFile" />
-			<AppenderRef ref="TEMP" />
+<!-- 			<AppenderRef ref="TEMP" /> -->
 		</Root>
 		<Logger name="com.opensymphony.xwork2.interceptor.AbstractInterceptor" level="debug" />
 		<Logger name="core.action.BaseAction" level="debug" />
