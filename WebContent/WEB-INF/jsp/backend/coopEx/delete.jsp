@@ -41,6 +41,10 @@
 				</div>			
 			</li>
 			<li class="all">
+				<b>案名</b>
+				<s:textfield name="coopEx.projName" />
+			</li>			
+			<li class="all">
 				<b>研發團隊</b>
 				<div class="border-text">
 					<s:property value="coopEx.rdTeam"/>
