@@ -19,6 +19,8 @@ import iace.service.option.OptionOrganizationClassService;
 import iace.service.option.OptionOrganizationTypeService;
 import iace.service.option.OptionSchoolService;
 import iace.service.option.OptionSubjectService;
+import iace.service.option.OptionSysActionService;
+import iace.service.option.OptionSysNamespaceService;
 import iace.service.option.OptionTrlService;
 import iace.service.patent.PatentExcelService;
 import iace.service.patent.PatentService;
@@ -32,6 +34,7 @@ import iace.service.researchPlan.ResearchPlanExcelService;
 import iace.service.researchPlan.ResearchPlanService;
 import iace.service.researchPlan.TechnologyService;
 import iace.service.sys.SysFunctionService;
+import iace.service.sys.SysLogService;
 import iace.service.sys.SysRoleService;
 import iace.service.sys.SysUserService;
 import iace.service.talentedPeople.TalentedPeopleService;
@@ -42,6 +45,7 @@ public class ServiceFactory {
 	private static SysFunctionService sysFunctionService;
 	private static SysRoleService sysRoleService;
 	private static SysUserService sysUserService;
+	private static SysLogService sysLogService;
 	
 	private static OptionCompanyLocationService optionCompanyLocationService;
 	private static OptionConsultService optionConsultService;
@@ -57,6 +61,8 @@ public class ServiceFactory {
 	private static OptionTrlService optionTrlService;
 	private static OptionSubjectService optionSubjectService;
 	private static OptionSchoolService optionSchoolService;
+	private static OptionSysActionService optionSysActionService;
+	private static OptionSysNamespaceService optionSysNamespaceService;
 	
 	private static PatentService patentService;
 	private static TechFieldService techFieldService;
@@ -106,6 +112,13 @@ public class ServiceFactory {
 		return sysUserService;
 	}
 	
+	public static SysLogService getSysLogService() {
+		if (sysLogService == null) {
+			sysLogService = new SysLogService(DaoFactory.getSysLogDao());
+		}
+		return sysLogService;
+	}
+
 	public static OptionCompanyLocationService getOptionCompanyLocationService() {
 		if (optionCompanyLocationService == null) {
 			optionCompanyLocationService = new OptionCompanyLocationService(DaoFactory.getOptionCompanyLocationDao());
@@ -202,6 +215,20 @@ public class ServiceFactory {
 			optionSchoolService = new OptionSchoolService(DaoFactory.getOptionSchoolDao());
 		}
 		return optionSchoolService;
+	}
+	
+	public static OptionSysActionService getOptionSysActionService() {
+		if (optionSysActionService == null) {
+			optionSysActionService = new OptionSysActionService(DaoFactory.getOptionSysActionDao());
+		}
+		return optionSysActionService;
+	}
+
+	public static OptionSysNamespaceService getOptionSysNamespaceService() {
+		if (optionSysNamespaceService == null) {
+			optionSysNamespaceService = new OptionSysNamespaceService(DaoFactory.getOptionSysNamespaceDao());
+		}
+		return optionSysNamespaceService;
 	}
 
 	public static PatentService getPatentService() {

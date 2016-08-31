@@ -10,8 +10,8 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 
-import core.service.BaseService;
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.dao.patent.IPatentDao;
@@ -20,8 +20,9 @@ import iace.entity.option.OptionCountry;
 import iace.entity.patent.Patent;
 import iace.entity.patent.PatentSearchModel;
 import iace.entity.patent.TechField;
+import iace.service.BaseIaceService;
 
-public class PatentService extends BaseService<Patent, Long> {
+public class PatentService extends BaseIaceService<Patent> {
 
 	private IPatentDao patentDao;
 	private ITechFieldDao techFieldDao;
@@ -31,6 +32,7 @@ public class PatentService extends BaseService<Patent, Long> {
 	
 	public PatentService(IPatentDao patentDao, ITechFieldDao techFieldDao, 
 			IOptionDao<OptionCountry> optionCountryDao) {
+		super(patentDao);
 		this.patentDao = patentDao;
 		this.techFieldDao = techFieldDao;
 		this.optionCountryDao = optionCountryDao;
@@ -138,8 +140,10 @@ public class PatentService extends BaseService<Patent, Long> {
 	public void delete(Patent entity) {
 		String imagePath = entity.getImportantPicturePath();
 		this.patentDao.delete(entity.getId());
-		File f = new File(this.patentPictureFolder, imagePath);
-		if (f.exists()) f.delete();		
+		if (StringUtils.isNotBlank(imagePath)) {
+			File f = new File(this.patentPictureFolder, imagePath);
+			if (f.exists()) f.delete();		
+		}
 	}	
 
 	@Override

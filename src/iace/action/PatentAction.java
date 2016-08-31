@@ -93,7 +93,7 @@ public class PatentAction extends BaseIaceAction {
 		try {
 			setUploadFileToEntity();
 
-			this.patentService.create(this.patent);
+			this.patentService.create(this.patent, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -125,8 +125,7 @@ public class PatentAction extends BaseIaceAction {
 	public String updateSubmit() {
 		try {
 			setUploadFileToEntity();
-
-			this.patentService.update(this.patent);
+			this.patentService.update(this.patent, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			
 			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
@@ -155,7 +154,7 @@ public class PatentAction extends BaseIaceAction {
 
 	public String deleteSubmit() {
 		try {
-			this.patentService.delete(this.id);
+			this.patentService.delete(this.id, super.getSysLog());
 			this.addActionMessage("DELETE SUCCESS!");
 			
 			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
@@ -226,9 +225,9 @@ public class PatentAction extends BaseIaceAction {
 
 	private void setUploadFileToEntity() throws IOException {
 		if (StringUtils.isNotBlank(this.uploadPatentImgFileName)) {
-			int index = this.uploadPatentImgFileName.lastIndexOf(".");
-			String extension = this.uploadPatentImgFileName.substring(index + 1);
-			this.patent.setImportantPatentPictureExtension(extension);
+//			int index = this.uploadPatentImgFileName.lastIndexOf(".");
+//			String extension = this.uploadPatentImgFileName.substring(index + 1);
+//			this.patent.setImportantPatentPictureExtension(extension);
 
 			Path path = Paths.get(this.uploadPatentImg.getAbsolutePath());
 			byte[] data = Files.readAllBytes(path);
@@ -236,8 +235,8 @@ public class PatentAction extends BaseIaceAction {
 		} else {
 			if (this.patent.getId() != 0) {
 				Patent oldP = this.patentService.get(this.patent.getId());
-				int index = oldP.getImportantPicturePath().lastIndexOf(".");
-				this.patent.setImportantPatentPictureExtension(oldP.getImportantPicturePath().substring(index + 1));
+//				int index = oldP.getImportantPicturePath().lastIndexOf(".");
+//				this.patent.setImportantPatentPictureExtension(oldP.getImportantPicturePath().substring(index + 1));
 				
 				this.patent.setImportantPatentPicture(oldP.getImportantPatentPicture());
 			}

@@ -1,7 +1,7 @@
 package iace.entity.patent;
 
-import java.util.ArrayList;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
@@ -50,7 +51,7 @@ public class Patent extends BaseEntity {
 	private String importantPicturePath;
 //	private String importantPictureCode;
 	private transient byte[] importantPatentPicture;
-	private transient String importantPatentPictureExtension;
+//	private transient String importantPatentPictureExtension;
 	private TechField techField;
 	private String usage;
 	private OptionTrl trl;
@@ -272,12 +273,12 @@ public class Patent extends BaseEntity {
 
 	@Transient
 	public String getImportantPatentPictureExtension() {
-		return importantPatentPictureExtension;
+		return FilenameUtils.getExtension(this.getImportantPicturePath());
 	}
 
-	public void setImportantPatentPictureExtension(String importantPatentPictureExtension) {
-		this.importantPatentPictureExtension = importantPatentPictureExtension;
-	}
+//	public void setImportantPatentPictureExtension(String importantPatentPictureExtension) {
+//		this.importantPatentPictureExtension = importantPatentPictureExtension;
+//	}
 
 	@ManyToOne
 	@JoinColumn(name="TECH_FIELD", nullable=false)
@@ -358,5 +359,32 @@ public class Patent extends BaseEntity {
 				+ ", techField=" + techField + ", usage=" + usage + ", trl="
 				+ trl + ", trlDesc=" + trlDesc + "]";
 	}
+
+	@Override
+	public String toSysLog() {
+		String s =
+				"ID: {"+this.id+"}, \r\n"+
+				"專利名稱: {"+this.name+"}, \r\n"+
+				"專利權人: {"+this.assignee+"}, \r\n"+
+				"發明人: {"+this.invertor+"}, \r\n"+
+				"申請國別: {"+this.country.toSysLog()+"}, \r\n"+
+				"申請號: {"+this.appliactionNo+"}, \r\n"+
+				"申請日: {"+this.applicationDate+"}, \r\n"+
+				"公開號: {"+this.openNo+"}, \r\n"+
+				"公開日: {"+this.openDate+"}, \r\n"+
+				"公告號: {"+this.publicationNo+"}, \r\n"+
+				"公告日: {"+this.publicationDate+"}, \r\n"+
+				"專利類別: {"+this.category+"}, \r\n"+
+				"專利狀態: {"+this.patentStatus+"}, \r\n"+
+				"專利家族: {"+this.familyNo+"}, \r\n"+
+				"國際分類號: {"+this.ipc+"}, \r\n"+
+				"專利技術摘要: {"+this.techAbstract+"}, \r\n"+
+				"專利技術領域: {"+this.techField.getName()+"}, \r\n"+
+				"應用範圍/產業: {"+this.usage+"}, \r\n"+
+				"技術發展階段: {"+(this.trl == null ? null : this.trl.toSysLog())+"}, \r\n"+
+				"技術發展階段說明: {"+this.trlDesc+"}";
+		return s;
+	}
+
 
 }

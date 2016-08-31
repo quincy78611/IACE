@@ -77,7 +77,7 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.consultingService.create(this.consulting);
+			this.consultingService.create(this.consulting, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -109,7 +109,7 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.consultingService.update(this.consulting);
+			this.consultingService.update(this.consulting, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -136,7 +136,7 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	public String deleteSubmit() {
 		try {
-			this.consultingService.delete(this.id);
+			this.consultingService.delete(this.id, super.getSysLog());
 			this.addActionMessage("DELETE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {

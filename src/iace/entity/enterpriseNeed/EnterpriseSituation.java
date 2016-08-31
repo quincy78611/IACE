@@ -216,6 +216,30 @@ public class EnterpriseSituation extends BaseEntity {
 		this.otherCoopTarget = otherCoopTarget;
 	}
 
+	@Override
+	public String toSysLog() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID: {"+this.id+"}, \r\n");
+		sb.append("企業已有技術來源: {"+(this.optionHadTecSrc == null ? null : this.optionHadTecSrc.toSysLog())+"}, \r\n");
+		sb.append("比例: {"+this.hadTecSrcRation+"}, \r\n");
+		sb.append("有跟法人機構合作經驗: {"+this.hasComCoopExp+"}, \r\n");
+		sb.append("與法人機構合作題目: {"+this.coopTopic+"}, \r\n");
+		sb.append("與法人機構合作優點: {"+this.coopPros+"}, \r\n");
+		sb.append("與法人機構合作缺點: {"+this.coopCons+"}, \r\n");
+		sb.append("有跟學界合作經驗: {"+this.hasAcademiaCoopExp+"}, \r\n");
+		sb.append("與學界合作題目: {"+this.academiaTopic+"}, \r\n");
+		sb.append("跟學界合作意願: {"+this.academiaIntention+"}, \r\n");
+		sb.append("與學界合作優點: {"+this.academiaPros+"}, \r\n");
+		sb.append("與學界合作缺點: {"+this.academiaCons+"}, \r\n");
+		sb.append("與學校合作模式: {"+(this.optionCooperateMode == null ? null : this.optionCooperateMode.toSysLog())+"}, \r\n");
+		sb.append("與學界合作是否有特定主題: {"+this.getHasSpecificTopic()+"}, \r\n");
+		sb.append("與學界合作特定主題: {"+this.specificTopic+"}, \r\n");
+		sb.append("是否有其他合作對象: {"+this.getHasOtherCoopTarget()+"}, \r\n");
+		sb.append("其他合作對象: {"+this.otherCoopTarget+"}, \r\n");
+		
+		return sb.toString();
+	}
+
 	
 	
 }

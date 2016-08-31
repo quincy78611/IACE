@@ -107,6 +107,10 @@ public class SysUserAction extends BaseIaceAction {
 //				actionContext.getSession().put(LoginInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
 				super.session.put(SessionInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
 				
+				//sysLog
+				super.getSysLog().setSysUser(sysUser);
+				super.getSysLog().setEnableLog(true);
+				
 				return SUCCESS;
 			} else {
 				super.addActionError("帳號或密碼錯誤!");
@@ -125,6 +129,11 @@ public class SysUserAction extends BaseIaceAction {
 
 	public String logout() {
 		try {
+			//sysLog
+			this.sysUser = (SysUser) super.session.get(SessionInterceptor.SESSION_KEY_SYS_USER);
+			super.getSysLog().setSysUser(sysUser);
+			super.getSysLog().setEnableLog(sysUser != null);
+			
 			this.session.clear();
 			return SUCCESS;
 		} catch (Exception e) {

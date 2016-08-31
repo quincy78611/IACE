@@ -16,11 +16,13 @@
 			<interceptor name="iaceSession" class="iace.interceptor.SessionInterceptor"/>
 			<interceptor name="iaceBackendlogin" class="iace.interceptor.LoginInterceptor"/>
 			<interceptor name="iaceBackendAuth" class="iace.interceptor.AuthInterceptor"/>
+			<interceptor name="iaceSysLog" class="iace.interceptor.SysActionLogInterceptor"/>
 			
 			<interceptor-stack name="iaceBackEnd">
 				<interceptor-ref name="iaceSession"/>
                 <interceptor-ref name="iaceBackendlogin"/>
                 <interceptor-ref name="iaceBackendAuth"/>
+                <interceptor-ref name="iaceSysLog"/>
                 <interceptor-ref name="defaultStack"/>
             </interceptor-stack>
 		</interceptors>

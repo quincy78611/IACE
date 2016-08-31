@@ -10,6 +10,8 @@ import iace.entity.option.OptionTrl;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.ResearchPlanSearchModel;
 import iace.entity.researchPlan.Technology;
+import iace.entity.sys.SysUser;
+import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
 import iace.service.option.OptionGrbDomainService;
 import iace.service.option.OptionTrlService;
@@ -190,13 +192,14 @@ public class ResearchPlanAction extends BaseIaceAction {
 	}
 	
 	public String createTechnologySubmit() {
-		try {			
+		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.technology.setResearchPlan(this.researchPlan);
-			this.technologyService.create(this.technology);
+			this.technologyService.create(this.technology, super.getSysLog());
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("CREATE SUCCESS!");
+			
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
@@ -233,7 +236,8 @@ public class ResearchPlanAction extends BaseIaceAction {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.technology.setResearchPlan(this.researchPlan);
-			this.technologyService.update(this.technology);
+			this.technologyService.update(this.technology, super.getSysLog());
+			
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("UPDATE SUCCESS!");
@@ -247,7 +251,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 	
 	public String deleteTechnologySubmit() {
 		try {
-			this.technologyService.delete(this.technologyId);
+			this.technologyService.delete(this.technologyId, super.getSysLog());
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("DELETE SUCCESS!");

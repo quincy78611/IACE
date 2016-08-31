@@ -64,7 +64,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 		}
 
 		// name
-		super.validateNotBlankNLength(this.option.getName(), 100, "option.name");
+		super.validateNotBlankNLength(this.option.getName(), 500, "option.name");
 	}
 
 	public String createSubmit() {
@@ -93,8 +93,8 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 	}
 
 	public void validateUpdateSubmit() {
-		// name
-		super.validateNotBlankNLength(this.option.getName(), 100, "option.name");
+		super.validateNotBlankNLength(this.option.getCode(), 10, "option.code");
+		super.validateNotBlankNLength(this.option.getName(), 500, "option.name");
 	}
 
 	public String updateSubmit() {

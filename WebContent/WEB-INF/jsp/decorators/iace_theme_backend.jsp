@@ -169,10 +169,15 @@
 						        <li><a href="<s:url value="/option/trl/index"/>">發展階段</a></li>
 						        <li><a href="<s:url value="/option/subject/index"/>">科技部學門</a></li>
 						        <li><a href="<s:url value="/option/school/index"/>">學校</a></li>
+						        <s:if test="#session.sysUser.sysRole.name == '系統開發人員'">
+							        <li><a href="<s:url value="/option/sysNamespace/index"/>">系統Namespace</a></li>
+							        <li><a href="<s:url value="/option/sysAction/index"/>">系統Action</a></li>
+								</s:if>
 							</ul>
 						</li>
 						<li><a href="#">系統管理</a>
 							<ul>
+								<li><a href="<s:url value="/sysLog/init"/>">系統Log</a></li>
 								<li><a href="<s:url value="/sysUser/init"/>">系統使用者</a></li>
 								<s:if test="#session.sysUser.sysRole.name == '系統開發人員'">
 									<li><a href="<s:url value="/sysRole/init"/>">系統角色 </a></li>

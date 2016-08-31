@@ -32,7 +32,7 @@ public abstract class BaseOption  extends BaseEntity {
 		this.id = optionCompanyLocationId;
 	}
 	
-	@Column(name = "NAME", length = 500)
+	@Column(name = "NAME")
 	public String getName() {
 		return name;
 	}
@@ -41,7 +41,7 @@ public abstract class BaseOption  extends BaseEntity {
 		this.name = name;
 	}
 
-	@Column(name = "CODE", length = 10)
+	@Column(name = "CODE")
 	public String getCode() {
 		return code;
 	}
@@ -73,7 +73,12 @@ public abstract class BaseOption  extends BaseEntity {
 		return this.code+":"+this.name;
 	}
 
+	@Override
+	public String toSysLog() {
+		return this.code+"-"+this.name;
+	}
 
+	
 
 
 

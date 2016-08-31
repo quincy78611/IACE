@@ -7,6 +7,7 @@ import java.util.List;
 import core.service.BaseService;
 import iace.dao.IBaseIaceDao;
 import iace.entity.BaseEntity;
+import iace.entity.sys.SysLog;
 
 public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> {
 
@@ -25,20 +26,43 @@ public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> 
 	public void create(T entity) throws IOException, SQLException {
 		this.dao.create(entity);		
 	}
+	
+	public void create(T entity, SysLog sysLog) throws IOException, SQLException {
+		create(entity);
+		entity = get(entity.getId());
+		sysLog.setAfterEntity(entity);
+	}
 
 	@Override
 	public void update(T entity) throws IOException, SQLException {
 		this.dao.update(entity);
 	}
+	
+	public void update(T entity, SysLog sysLog) throws IOException, SQLException {
+		sysLog.setBeforeEntity(get(entity.getId()));
+		update(entity);
+		entity = get(entity.getId());
+		sysLog.setAfterEntity(entity);
+	}	
 
 	@Override
 	public void delete(T entity) throws IOException, SQLException {
 		this.dao.delete(entity);
 	}
+	
+	public void delete(T entity, SysLog sysLog) throws IOException, SQLException {
+		sysLog.setBeforeEntity(get(entity.getId()));
+		delete(entity);
+	}
 
 	@Override
 	public void delete(Long id) throws IOException, SQLException {
 		this.dao.delete(id);
+	}
+	
+	public void delete(Long id, SysLog sysLog) throws IOException, SQLException {
+		sysLog.setBeforeEntity(get(id));
+		delete(id);
 	}
 	
 	public List<T> listAll() {

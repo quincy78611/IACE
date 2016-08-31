@@ -120,6 +120,21 @@ public class EnterpriseInfo extends BaseEntity {
 			this.optionDomainList.add(option);
 		}		
 	}
+	
+	@Transient 
+	public String getOptionDomainSysLogString() {
+		if (this.optionDomainList == null) 
+			return null;
+		
+		StringBuffer sb = new StringBuffer();
+		for (int i=0;i<this.optionDomainList.size();i++) {
+			sb.append(this.optionDomainList.get(i).toSysLog());
+			if (i < this.optionDomainList.size() - 1) {
+				sb.append(";");
+			}
+		}
+		return sb.toString();
+	}
 
 	@Column(name = "PHASE2", length = 1000)
 	public String getPhase2() {
@@ -255,6 +270,33 @@ public class EnterpriseInfo extends BaseEntity {
 
 	public void setEnterpriseAcademiaCoop(EnterpriseAcademiaCoop enterpriseAcademiaCoop) {
 		this.enterpriseAcademiaCoop = enterpriseAcademiaCoop;
+	}
+
+	@Override
+	public String toSysLog() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID: {"+this.id+"}, \r\n");
+		sb.append("企業名稱: {"+this.name+"}, \r\n");
+		sb.append("統一編號: {"+this.companyId+"}, \r\n");
+		sb.append("公司目前產品/服務項目: {"+this.mainProduct+"}, \r\n");
+		sb.append("產業類別(一階)領域: {"+getOptionDomainSysLogString()+"}, \r\n");
+		sb.append("產業類別(二階)發展方向: {"+this.phase2+"}, \r\n");
+		sb.append("產業類別(三階)應用端: {"+this.phase3+"}, \r\n");
+		sb.append("公司地域別: {"+this.optionCompanyLocation.toSysLog()+"}, \r\n");
+		sb.append("公司地址: {"+this.address+"}, \r\n");
+		sb.append("負責人姓名: {"+this.personInChargeName+"}, \r\n");
+		sb.append("負責人職稱: {"+this.personInChargeJobtitle+"}, \r\n");
+		sb.append("負責人電話: {"+this.personInChargePhone+"}, \r\n");
+		sb.append("負責人Email: {"+this.personInChargeEmail+"}, \r\n");
+		sb.append("受訪人姓名: {"+this.intervieweeName+"}, \r\n");
+		sb.append("受訪人職稱: {"+this.intervieweeJobtitle+"}, \r\n");
+		sb.append("受訪人電話: {"+this.intervieweePhone+"}, \r\n");
+		sb.append("受訪人Email: {"+this.intervieweeEmail+"}, \r\n");
+		sb.append("技術需求資料: {"+this.enterpriseRequireTech.toSysLog()+"}, \r\n");
+		sb.append("企業情況調查: {"+this.enterpriseSituation.toSysLog()+"}, \r\n");
+		sb.append("產學合作: {"+this.enterpriseAcademiaCoop.toSysLog()+"}, \r\n");
+		
+		return sb.toString();
 	}
 
 	

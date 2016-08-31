@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import core.action.BaseAction;
 import iace.entity.questionnaire.QnrTable;
+import iace.entity.sys.SysLog;
 import iace.service.ServiceFactory;
 
 public class BaseIaceAction extends BaseAction implements SessionAware {
@@ -20,6 +21,8 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 	private String exceptionName;
 	private String exceptionMessage;
 	private StackTraceElement[] exceptionStack;
+	
+	private SysLog sysLog = new SysLog();
 
 	// =========================================================================
 
@@ -106,6 +109,14 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 
 	public void setExceptionMessage(String exceptionMessage) {
 		this.exceptionMessage = exceptionMessage;
+	}
+
+	public SysLog getSysLog() {
+		return sysLog;
+	}
+
+	public void setSysLog(SysLog sysLog) {
+		this.sysLog = sysLog;
 	}
 
 	

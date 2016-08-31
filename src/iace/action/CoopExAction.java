@@ -74,7 +74,7 @@ public class CoopExAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.coopExService.create(this.coopEx);
+			this.coopExService.create(this.coopEx, super.getSysLog());
 			super.addActionMessage("CREATE SUCCESS");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -104,7 +104,7 @@ public class CoopExAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.coopExService.update(this.coopEx);
+			this.coopExService.update(this.coopEx, super.getSysLog());
 			super.addActionMessage("UPDATE SUCCESS");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -129,7 +129,7 @@ public class CoopExAction extends BaseIaceAction {
 	
 	public String deleteSubmit() {
 		try {
-			this.coopExService.delete(this.id);
+			this.coopExService.delete(this.id, super.getSysLog());
 			super.addActionMessage("DELETE SUCCESS");
 			index();
 			return SUCCESS;

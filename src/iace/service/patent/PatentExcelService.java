@@ -67,7 +67,7 @@ public class PatentExcelService extends BaseExcelService {
 				p.setTechAbstract(getCell(sheet, r, ++c).getStringCellValue());
 //				p.setImportantPictureCode(getCell(sheet, r, ++c).getStringCellValue());
 				p.setImportantPatentPicture(pics.get(r).getData());
-				p.setImportantPatentPictureExtension(pics.get(r).getFileExtension());
+//				p.setImportantPatentPictureExtension(pics.get(r).getFileExtension());
 				p.setTrl(new OptionTrl());
 				
 				patentList.add(p);

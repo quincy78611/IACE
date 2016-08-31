@@ -5,7 +5,10 @@ import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import javax.persistence.Version;
+
+import com.opensymphony.xwork2.conversion.annotations.TypeConversion;
 
 @MappedSuperclass
 public abstract class BaseEntity implements Serializable {
@@ -31,7 +34,10 @@ public abstract class BaseEntity implements Serializable {
 		this.updateUser = entity.updateUser;
 		this.ver = entity.ver;
 	}
-
+	
+	@Transient
+	public abstract long getId();
+	
 	@Column(name = "IS_VALID", length=1)
 	public String getIsValid() {
 		return isValid;
@@ -42,6 +48,7 @@ public abstract class BaseEntity implements Serializable {
 	}
 
 	@Column(name = "CREATE_TIME")
+	@TypeConversion(converter="iace.converter.StringToTimestampConverter")
 //	@Temporal(TemporalType.TIMESTAMP)
 	public Timestamp getCreateTime() {
 		return createTime;
@@ -61,6 +68,7 @@ public abstract class BaseEntity implements Serializable {
 	}
 
 	@Column(name = "UPDATE_TIME")
+	@TypeConversion(converter="iace.converter.StringToTimestampConverter")
 //	@Temporal(TemporalType.TIMESTAMP)
 	public Timestamp getUpdateTime() {
 		return updateTime;
@@ -81,6 +89,7 @@ public abstract class BaseEntity implements Serializable {
 
 	@Version
 	@Column(name = "VER", nullable = false)
+	@TypeConversion(converter="iace.converter.StringToTimestampConverter")
 	public Timestamp getVer() {
 		return ver;
 	}
@@ -111,7 +120,9 @@ public abstract class BaseEntity implements Serializable {
 		this.isValid = FALSE;
 	}
 	
-	
+	public String toSysLog() {
+		return "";
+	}
 	
 
 }

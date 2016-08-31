@@ -194,4 +194,27 @@ public class Consulting extends BaseEntity {
 		this.consultDate = consultDate;
 	}
 
+	@Override
+	public String toSysLog() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID: {"+this.id+"}, \r\n");
+		sb.append("姓名: {"+this.name+"}, \r\n");
+		sb.append("單位名稱: {"+this.organization+"}, \r\n");
+		sb.append("單位類型: {"+this.optionOrganizationType.toSysLog()+"}, \r\n");
+		sb.append("單位類型(其他): {"+this.orgTypeOther+"}, \r\n");
+		sb.append("諮詢類型: {"+this.optionConsult.toSysLog()+"}, \r\n");
+		sb.append("諮詢類型(其他): {"+this.consultTypeOther+"}, \r\n");
+		sb.append("產業/領域別: {"+this.optionIndustry.toSysLog()+"}, \r\n");
+		sb.append("產業/領域別(其他): {"+this.getIndustryOther()+"}, \r\n");
+		sb.append("聯絡電話: {"+this.phone+"}, \r\n");
+		sb.append("E-MAIL: {"+this.email+"}, \r\n");
+		sb.append("諮詢日期: {"+this.consultDate+"}, \r\n");
+		sb.append("內容說明: {"+this.content+"}, \r\n");
+		sb.append("同意: {"+this.approval+"}, \r\n");
+		
+		return sb.toString();
+	}
+	
+	
+
 }

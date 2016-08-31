@@ -175,6 +175,22 @@ public class CoopEx extends BaseEntity {
 			file.setCoopEx(this);
 			file.update();
 		}		
+	}
+
+	@Override
+	public String toSysLog() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID: {"+this.id+"}, \r\n");
+		sb.append("年度: {"+this.year+"}, \r\n");
+		sb.append("類別: {"+this.type+"}, \r\n");
+		sb.append("案名: {"+this.projName+"}, \r\n");
+		sb.append("研發團隊: {"+this.rdTeam+"}, \r\n");
+		sb.append("輔導團隊: {"+this.assisTeam+"}, \r\n");
+		sb.append("內容: {"+this.content+"}, \r\n");
+		
+		return sb.toString();
 	}	
+	
+	
 
 }

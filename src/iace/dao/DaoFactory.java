@@ -35,6 +35,8 @@ import iace.dao.option.OptionOrganizationClassDao;
 import iace.dao.option.OptionOrganizationTypeDao;
 import iace.dao.option.OptionSchoolDao;
 import iace.dao.option.OptionSubjectDao;
+import iace.dao.option.OptionSysActionDao;
+import iace.dao.option.OptionSysNamespaceDao;
 import iace.dao.option.OptionTrlDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
@@ -51,9 +53,11 @@ import iace.dao.researchPlan.ITechnologyDao;
 import iace.dao.researchPlan.ResearchPlanDao;
 import iace.dao.researchPlan.TechnologyDao;
 import iace.dao.sys.ISysFunctionDao;
+import iace.dao.sys.ISysLogDao;
 import iace.dao.sys.ISysRoleDao;
 import iace.dao.sys.ISysUserDao;
 import iace.dao.sys.SysFunctionDao;
+import iace.dao.sys.SysLogDao;
 import iace.dao.sys.SysRoleDao;
 import iace.dao.sys.SysUserDao;
 import iace.dao.talentedPeople.ITalentedPeopleDao;
@@ -70,6 +74,8 @@ import iace.entity.option.OptionHrst;
 import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
+import iace.entity.option.OptionSysAction;
+import iace.entity.option.OptionSysNamespace;
 import iace.entity.option.OptionTrl;
 
 public class DaoFactory {
@@ -77,6 +83,7 @@ public class DaoFactory {
 	private static ISysFunctionDao sysFunctionDao;
 	private static ISysRoleDao sysRoleDao;
 	private static ISysUserDao sysUserDao;
+	private static ISysLogDao sysLogDao;
 	
 	private static IOptionDao<OptionCompanyLocation> optionCompanyLocationDao;
 	private static IOptionDao<OptionConsult> optionConsultDao;
@@ -92,6 +99,8 @@ public class DaoFactory {
 	private static IOptionDao<OptionTrl> optionTrlDao;
 	private static IOptionSubjectDao optionSubjectDao;
 	private static IOptionSchoolDao optionSchoolDao;
+	private static IOptionDao<OptionSysAction> optionSysActionDao;
+	private static IOptionDao<OptionSysNamespace> optionSysNamespaceDao;
 	
 	private static ITechFieldDao techFieldDao;
 	private static IPatentDao patentDao;
@@ -140,6 +149,14 @@ public class DaoFactory {
 		return sysUserDao;
 	}
 	
+	
+	public static ISysLogDao getSysLogDao() {
+		if (sysLogDao == null) {
+			sysLogDao = new SysLogDao();
+		}
+		return sysLogDao;
+	}
+
 	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {
 		if (optionCompanyLocationDao == null) {
 			optionCompanyLocationDao = new OptionCompanyLocationDao();
@@ -238,6 +255,20 @@ public class DaoFactory {
 		return optionSchoolDao;
 	}
 	
+	public static IOptionDao<OptionSysAction> getOptionSysActionDao() {
+		if (optionSysActionDao == null) {
+			optionSysActionDao = new OptionSysActionDao();
+		}
+		return optionSysActionDao;
+	}
+
+	public static IOptionDao<OptionSysNamespace> getOptionSysNamespaceDao() {
+		if (optionSysNamespaceDao == null) {
+			optionSysNamespaceDao = new OptionSysNamespaceDao();
+		}
+		return optionSysNamespaceDao;
+	}
+
 	public static ITechFieldDao getTechFieldDao() {
 		if (techFieldDao == null) {
 			techFieldDao = new TechFieldDao();

@@ -316,6 +316,27 @@ public class ResearchPlan extends BaseEntity {
 		return "ResearchPlan [id=" + id + ", year=" + year + ", planNo=" + planNo + ", name=" + name + ", manager=" + manager + ", grbDomain1=" + grbDomain1 + ", grbDomain2=" + grbDomain2 + ", grbDomain3=" + grbDomain3 + ", grbDomain4=" + grbDomain4 + ", grbDomain5=" + grbDomain5 + ", grbDomain6=" + grbDomain6 + ", keyword=" + keyword + ", trl=" + trl + ", projkey=" + projkey + ", grb05Id=" + grb05Id + ", technologies=" + technologies + "]";
 	}
 
+	@Override
+	public String toSysLog() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID: {"+this.id+"}, \r\n");
+		sb.append("計畫名稱: {"+this.name+"}, \r\n");
+		sb.append("計畫編號: {"+this.planNo+"}, \r\n");
+		sb.append("計畫主持人: {"+this.manager+"}, \r\n");
+		sb.append("計畫年度: {"+this.year+"}, \r\n");
+		sb.append("GRB系統編號: {"+this.grb05Id+"}, \r\n");
+		sb.append("計畫發展階段: {"+(this.trl == null ? null : this.trl.toSysLog())+"}, \r\n");
+		sb.append("研究領域1: {"+(this.grbDomain1 == null ? null : this.grbDomain1.toSysLog())+"}, \r\n");
+		sb.append("研究領域2: {"+(this.grbDomain2 == null ? null : this.grbDomain2.toSysLog())+"}, \r\n");
+		sb.append("研究領域3: {"+(this.grbDomain3 == null ? null : this.grbDomain3.toSysLog())+"}, \r\n");
+		sb.append("研究領域4: {"+(this.grbDomain4 == null ? null : this.grbDomain4.toSysLog())+"}, \r\n");
+		sb.append("研究領域5: {"+(this.grbDomain5 == null ? null : this.grbDomain5.toSysLog())+"}, \r\n");
+		sb.append("研究領域6: {"+(this.grbDomain6 == null ? null : this.grbDomain6.toSysLog())+"}, \r\n");
+		sb.append("計畫關鍵詞: {"+this.keyword+"}, \r\n");
+		
+		return sb.toString();
+	}
+
 	
 
 	

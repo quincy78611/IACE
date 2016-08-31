@@ -140,6 +140,19 @@ public class Technology extends BaseEntity {
 		this.trlDesc = trlDesc;
 	}
 
+	@Override
+	public String toSysLog() {
+		String s = 
+				"ID: {"+this.id+"}, \r\n"+
+				"研究計畫: {"+this.researchPlan.getName()+"}, \r\n"+
+				"技術名稱: {"+this.name+"}, \r\n"+
+				"技術簡述: {"+this.descriptoin+"}, \r\n"+
+				"技術發展階段: {"+this.getOptionTrlCodesString()+"}, \r\n"+
+				"技術發展階段說明: {"+this.trlDesc+"}, \r\n";
+				
+		return s;
+	}
+
 	
 	
 

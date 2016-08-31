@@ -86,17 +86,38 @@
 		</action>
 	</package>
 	
-	<package name="login" namespace="/login" extends="struts-default">
+	<package name="login" namespace="/login" extends="struts-default, default">
 		<action name="login" class="iace.action.SysUserAction" method="login">
 			<result>/WEB-INF/jsp/login.jsp</result>
 		</action>
 		<action name="loginSubmit" class="iace.action.SysUserAction" method="loginSubmit">
+			<interceptor-ref name="iaceSysLog"/>
+			<interceptor-ref name="defaultStack"/>
+
 			<result name="input">/WEB-INF/jsp/login.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/home/index.jsp</result>
 		</action>
 		<action name="logout" class="iace.action.SysUserAction"	method="logout">
+			<interceptor-ref name="iaceSysLog"/>
+			<interceptor-ref name="defaultStack"/>
+
 			<result name="success">/WEB-INF/jsp/login.jsp</result>
 		</action>	
 	</package>
+
 	
+	<package name="sysLog" namespace="/sysLog" extends="struts-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.SysLogAction" method="init">
+			<result>/WEB-INF/jsp/backend/sysLog/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.SysLogAction" method="index">
+			<result name="input">/WEB-INF/jsp/backend/sysLog/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysLog/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.SysLogAction" method="showDetail">
+			<result name="input">/WEB-INF/jsp/backend/sysLog/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/sysLog/detail.jsp</result>
+		</action>
+	</package>
 </struts>

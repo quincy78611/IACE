@@ -97,6 +97,15 @@ public class SysUser extends BaseEntity {
 		}
 		return false;
 	}
-	
 
+	@Override
+	public String toSysLog() {
+		String s = 
+			"帳號: {"+this.account+"}, "+
+			"名稱: {"+this.name+"}, "+
+			"腳色: {"+this.sysRole.getName()+"}";
+		return s;
+	}
+	
+	
 }

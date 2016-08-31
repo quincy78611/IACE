@@ -33,6 +33,8 @@ import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionSchool;
 import iace.entity.option.OptionSubject;
+import iace.entity.option.OptionSysAction;
+import iace.entity.option.OptionSysNamespace;
 import iace.entity.option.OptionTrl;
 import iace.entity.patent.Patent;
 import iace.entity.patent.TechField;
@@ -44,6 +46,7 @@ import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.Technology;
 import iace.entity.sys.SysAuth;
 import iace.entity.sys.SysFunction;
+import iace.entity.sys.SysLog;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
@@ -161,6 +164,8 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(OptionTrl.class);
     	configuration.addAnnotatedClass(OptionSubject.class);
     	configuration.addAnnotatedClass(OptionSchool.class);
+    	configuration.addAnnotatedClass(OptionSysNamespace.class);
+    	configuration.addAnnotatedClass(OptionSysAction.class);
     	
     	configuration.addAnnotatedClass(EnterpriseInfo.class);
     	configuration.addAnnotatedClass(EnterpriseRequireTech.class);
@@ -185,6 +190,7 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(SysRole.class);
     	configuration.addAnnotatedClass(SysAuth.class);
     	configuration.addAnnotatedClass(SysFunction.class);
+    	configuration.addAnnotatedClass(SysLog.class);
     	
     	configuration.addAnnotatedClass(CoopEx.class);
     	configuration.addAnnotatedClass(CoopExImg.class);

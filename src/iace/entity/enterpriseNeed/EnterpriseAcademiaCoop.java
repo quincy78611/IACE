@@ -88,7 +88,6 @@ public class EnterpriseAcademiaCoop extends BaseEntity {
 			this.wantedCoopSchoolTopic = null;
 		}
 	}
-	
 
 	@Column(name = "WANTED_COOP_SCHOOL_TOPIC", length = 1000)
 	public String getWantedCoopSchoolTopic() {
@@ -108,4 +107,19 @@ public class EnterpriseAcademiaCoop extends BaseEntity {
 		this.suggestion = suggestion;
 	}
 
+	@Override
+	public String toSysLog() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID: {"+this.id+"}, \r\n");
+		sb.append("傾向與哪些學校進行技術合作: {"+this.coopSchool+"}, \r\n");
+		sb.append("目前是否有其他產學合作案進行中: {"+this.getHasCurrentCoopProject()+"}, \r\n");
+		sb.append("進行中產學合作案主題: {"+this.currentCoopProjectTopic+"}, \r\n");
+		sb.append("想合作的學校: {"+this.getHasWantedCoopSchool()+"}, \r\n");
+		sb.append("想合作的學校主題: {"+this.wantedCoopSchoolTopic+"}, \r\n");
+		sb.append("建議: {"+this.suggestion+"}, \r\n");
+		
+		return sb.toString();
+	}
+
+	
 }

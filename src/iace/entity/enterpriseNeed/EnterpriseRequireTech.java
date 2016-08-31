@@ -110,4 +110,20 @@ public class EnterpriseRequireTech extends BaseEntity {
 		this.recordBy = recordBy;
 	}
 
+	@Override
+	public String toSysLog() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID: {"+this.id+"}, \r\n");
+		sb.append("(一階)領域: {"+(this.phase1 == null ? null : this.phase1.toSysLog())+"}, \r\n");
+		sb.append("(二階)發展方向: {"+this.phase2+"}, \r\n");
+		sb.append("(三階)應用端: {"+this.phase3+"}, \r\n");
+		sb.append("已經探詢過的單位: {"+this.inquiredOrg+"}, \r\n");
+		sb.append("訪談日期: {"+this.interviewDate+"}, \r\n");
+		sb.append("記錄人: {"+this.recordBy+"}, \r\n");
+		
+		return sb.toString();
+	}
+	
+	
+
 }
