@@ -150,7 +150,10 @@
 								</s:iterator>
 							</td>
 							<td title="<s:property value="#trlCodesTitle"/>">
-								<s:property value="optionTrlCodesString"/>
+<%-- 								<s:property value="optionTrlCodesString"/> --%>
+								<s:iterator value="optionTrlList" status="stat">
+									<p><s:property value="name"/>;</p>
+								</s:iterator>
 							</td>
 							<td><s:property value="trlDesc"/></td>
 							<td>							
