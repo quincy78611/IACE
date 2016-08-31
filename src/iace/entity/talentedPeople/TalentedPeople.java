@@ -43,7 +43,7 @@ public class TalentedPeople extends BaseEntity {
 	private String workOrg;
 	private String job;
 	private String url;
-	private String otherSpecialty;
+	private String specialty;
 	private List<OptionGrbDomain> domains = new ArrayList<OptionGrbDomain>();
 
 	private byte[] headShot;
@@ -162,13 +162,13 @@ public class TalentedPeople extends BaseEntity {
 		this.url = url;
 	}
 	
-	@Column(name = "OTHER_SPECIALTY", length = 1000)
-	public String getOtherSpecialty() {
-		return otherSpecialty;
+	@Column(name = "SPECIALTY", length = 1000)
+	public String getSpecialty() {
+		return specialty;
 	}
 
-	public void setOtherSpecialty(String otherSpecialty) {
-		this.otherSpecialty = otherSpecialty;
+	public void setSpecialty(String specialty) {
+		this.specialty = specialty;
 	}
 	
 	@ManyToMany(fetch = FetchType.LAZY)
@@ -200,6 +200,18 @@ public class TalentedPeople extends BaseEntity {
 			domain.setId(id);
 			this.domains.add(domain);
 		}
+	}
+	
+	@Transient
+	public String getDomainsNameForSysLog() {
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<this.domains.size(); i++) {
+			sb.append(this.domains.get(i).toSysLog());
+			if (i < this.domains.size() - 1) {
+				sb.append("; ");
+			}
+		}
+		return sb.toString();
 	}
 
 	@Column(name = "HEAD_SHOT")
@@ -256,4 +268,25 @@ public class TalentedPeople extends BaseEntity {
 	public boolean hasUploadFile() {
 		return this.uploadheadShot != null && this.uploadheadShotContentType != null && this.uploadheadShotFileName != null;
 	}
+
+	@Override
+	public String toSysLog() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("ID: {"+this.id+"}, \r\n");
+		sb.append("姓名(中): {"+this.nameCh+"}, \r\n");
+		sb.append("姓名(英): {"+this.nameEn+"}, \r\n");
+		sb.append("性別: {"+this.gender+"}, \r\n");
+		sb.append("產學經驗(年): {"+this.expYear+"}, \r\n");
+		sb.append("連絡電話: {"+this.tel+"}, \r\n");
+		sb.append("e-mail: {"+this.email+"}, \r\n");
+		sb.append("現職單位: {"+this.workOrg+"}, \r\n");
+		sb.append("現職職位: {"+this.job+"}, \r\n");
+		sb.append("網站連結: {"+this.url+"}, \r\n");
+		sb.append("領域: {"+this.getDomainsNameForSysLog()+"}, \r\n");
+		sb.append("合作專長: {"+this.specialty+"}, \r\n");
+		
+		return sb.toString();
+	}
+	
+	
 }

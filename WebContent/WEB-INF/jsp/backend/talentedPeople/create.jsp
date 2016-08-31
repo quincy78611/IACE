@@ -129,12 +129,8 @@ input[type=file][name="talentedPeople.uploadheadShot"] { display:none }
 			</li>
 			<li class="all">
 				<b>合作專長</b>
-				
+				<s:textfield name="talentedPeople.specialty" maxlength="1000"/>
 			</li>
-			<li class="all">
-				<b>合作專長(其他)</b>
-				<s:textfield name="talentedPeople.otherSpecialty" maxlength="1000"/>
-			</li>		
 		</ul>
 		
 		<div class="clear"></div>

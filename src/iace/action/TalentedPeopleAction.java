@@ -142,7 +142,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		super.validateTextMaxLength(this.talentedPeople.getWorkOrg(), 100, "talentedPeople.workOrg");
 		super.validateTextMaxLength(this.talentedPeople.getJob(), 100, "talentedPeople.job");
 		super.validateTextMaxLength(this.talentedPeople.getUrl(), 1000, "talentedPeople.url");
-		super.validateTextMaxLength(this.talentedPeople.getOtherSpecialty(), 1000, "talentedPeople.otherSpecialty");
+		super.validateTextMaxLength(this.talentedPeople.getSpecialty(), 1000, "talentedPeople.specialty");
 	}
 	
 	// =========================================================================

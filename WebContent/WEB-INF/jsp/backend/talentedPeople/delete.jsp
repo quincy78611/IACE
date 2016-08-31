@@ -110,12 +110,8 @@ table.table-talentedPeopleInfo td.headShot { width:20%; border:#e6eff5 1px solid
 			</li>
 			<li class="all">
 				<b>合作專長</b>
-				
+				<div class="border-text"><s:property value="talentedPeople.specialty"/>&nbsp;</div>
 			</li>
-			<li class="all">
-				<b>合作專長(其他)</b>
-				<div class="border-text"><s:property value="talentedPeople.otherSpecialty"/>&nbsp;</div>
-			</li>		
 		</ul>
 		
 		<div class="clear"></div>
