@@ -29,6 +29,7 @@ public class CoopEx extends BaseEntity {
 	private long id;
 	private Integer year;
 	private String type;
+	private String title;
 	private String projName;
 	private String rdTeam;
 	private String assisTeam;
@@ -65,6 +66,15 @@ public class CoopEx extends BaseEntity {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	@Column(name = "TITLE", length = 500)
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	@Column(name = "PROJ_NAME", length = 1000)
@@ -183,6 +193,7 @@ public class CoopEx extends BaseEntity {
 		sb.append("ID: {"+this.id+"}, \r\n");
 		sb.append("年度: {"+this.year+"}, \r\n");
 		sb.append("類別: {"+this.type+"}, \r\n");
+		sb.append("標題: {"+this.title+"}, \r\n");
 		sb.append("案名: {"+this.projName+"}, \r\n");
 		sb.append("研發團隊: {"+this.rdTeam+"}, \r\n");
 		sb.append("輔導團隊: {"+this.assisTeam+"}, \r\n");

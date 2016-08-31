@@ -41,6 +41,12 @@
 				</div>			
 			</li>
 			<li class="all">
+				<b>標題</b>
+				<div class="border-text">
+					<s:property value="coopEx.title"/>
+				</div>			
+			</li>			
+			<li class="all">
 				<b>案名</b>
 				<s:textfield name="coopEx.projName" />
 			</li>			

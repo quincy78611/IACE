@@ -131,6 +131,10 @@ table.table-files tr.hidden-sample-tr { display:none; }
 				<s:select name="coopEx.type" list="#{'商品化':'商品化', '專利推廣':'專利推廣', '新創事業':'新創事業'}" />
 			</li>
 			<li class="all">
+				<b>標題</b>
+				<s:textfield name="coopEx.title" />
+			</li>			
+			<li class="all">
 				<b>案名</b>
 				<s:textfield name="coopEx.projName" />
 			</li>
