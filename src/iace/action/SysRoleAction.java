@@ -67,7 +67,7 @@ public class SysRoleAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.sysRoleService.create(this.sysRole);
+			this.sysRoleService.create(this.sysRole, this.getCurrentSysUser());
 			this.addActionMessage("CREATE SUCCESS!");
 			return index();
 		} catch (Exception e) {
@@ -85,7 +85,7 @@ public class SysRoleAction extends BaseIaceAction {
 				return INPUT;
 			} 
 			
-			// 取得全部功能便轉換成Map
+			// 取得全部功能並轉換成Map
 			Map<Long, SysFunction> sysFunctionMap = new HashMap<Long, SysFunction>();
 			List<SysFunction> sysFunctionList = this.sysFunctionService.listAll();
 			sysFunctionList.forEach(func -> sysFunctionMap.put(func.getId(), func));
@@ -118,7 +118,7 @@ public class SysRoleAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.sysRoleService.update(sysRole);
+			this.sysRoleService.update(sysRole, this.getCurrentSysUser());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return index();
 		} catch (Exception e) {

@@ -85,7 +85,7 @@ public class SysUserAction extends BaseIaceAction {
 		try{
 			SysRole role = this.sysRoleService.get(this.sysUser.getSysRole().getId());
 			this.sysUser.setSysRole(role);
-			this.sysUserService.update(this.sysUser);
+			this.sysUserService.update(this.sysUser, this.getCurrentSysUser());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return index();
 		} catch (Exception e) {

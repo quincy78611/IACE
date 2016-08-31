@@ -42,7 +42,7 @@ public class SysFunctionAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.sysFunctionService.create(this.sysFunction);
+			this.sysFunctionService.create(this.sysFunction, this.getCurrentSysUser());
 			this.addActionMessage("CREATE SUCCESS!");
 			return index();
 		} catch (Exception e) {
@@ -69,7 +69,7 @@ public class SysFunctionAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.sysFunctionService.update(this.sysFunction);			
+			this.sysFunctionService.update(this.sysFunction, this.getCurrentSysUser());			
 			this.addActionMessage("UPDATE SUCCESS!");
 			return index();
 		} catch (Exception e) {

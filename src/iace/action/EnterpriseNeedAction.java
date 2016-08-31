@@ -74,7 +74,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.enterpriseInfoService.create(this.enterpriseInfo, super.getSysLog());
+			this.enterpriseInfoService.create(this.enterpriseInfo, super.getSysLog(), super.getCurrentSysUser());
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -100,7 +100,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.enterpriseInfoService.update(this.enterpriseInfo, super.getSysLog());
+			this.enterpriseInfoService.update(this.enterpriseInfo, super.getSysLog(), super.getCurrentSysUser());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {

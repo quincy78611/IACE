@@ -8,6 +8,7 @@ import core.service.BaseService;
 import iace.dao.IBaseIaceDao;
 import iace.entity.BaseEntity;
 import iace.entity.sys.SysLog;
+import iace.entity.sys.SysUser;
 
 public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> {
 
@@ -32,6 +33,16 @@ public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> 
 		entity = get(entity.getId());
 		sysLog.setAfterEntity(entity);
 	}
+	
+	public void create(T entity, SysUser user) throws IOException, SQLException {
+		entity.setCreateUser(user.getAccount());
+		create(entity);
+	}
+	
+	public void create(T entity, SysLog sysLog, SysUser user) throws IOException, SQLException {
+		entity.setCreateUser(user.getAccount());
+		create(entity, sysLog);
+	}
 
 	@Override
 	public void update(T entity) throws IOException, SQLException {
@@ -43,7 +54,17 @@ public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> 
 		update(entity);
 		entity = get(entity.getId());
 		sysLog.setAfterEntity(entity);
-	}	
+	}
+	
+	public void update(T entity, SysUser user) throws IOException, SQLException {
+		entity.setUpdateUser(user.getAccount());
+		update(entity);
+	}
+	
+	public void update(T entity, SysLog sysLog, SysUser user) throws IOException, SQLException {
+		entity.setUpdateUser(user.getAccount());
+		update(entity, sysLog);
+	}
 
 	@Override
 	public void delete(T entity) throws IOException, SQLException {

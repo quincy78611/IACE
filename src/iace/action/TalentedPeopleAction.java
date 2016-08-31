@@ -68,7 +68,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.talentedPeopleService.create(this.talentedPeople);
+			this.talentedPeopleService.create(this.talentedPeople, super.getSysLog(), super.getCurrentSysUser());
 			
 			super.addActionMessage("CREATE SUCCESS");
 			return SUCCESS;
@@ -98,7 +98,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.talentedPeopleService.update(this.talentedPeople);
+			this.talentedPeopleService.update(this.talentedPeople, super.getSysLog(), super.getCurrentSysUser());
 			
 			super.addActionMessage("UPDATE SUCCESS");
 			return SUCCESS;
@@ -124,7 +124,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	
 	public String deleteSubmit() {
 		try {
-			this.talentedPeopleService.delete(this.id);
+			this.talentedPeopleService.delete(this.id, super.getSysLog());
 			
 			super.addActionMessage("DELETE SUCCESS");
 			return index();

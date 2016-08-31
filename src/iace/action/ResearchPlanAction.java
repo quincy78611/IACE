@@ -10,8 +10,6 @@ import iace.entity.option.OptionTrl;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.ResearchPlanSearchModel;
 import iace.entity.researchPlan.Technology;
-import iace.entity.sys.SysUser;
-import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
 import iace.service.option.OptionGrbDomainService;
 import iace.service.option.OptionTrlService;
@@ -195,7 +193,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.technology.setResearchPlan(this.researchPlan);
-			this.technologyService.create(this.technology, super.getSysLog());
+			this.technologyService.create(this.technology, super.getSysLog(), super.getCurrentSysUser());
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("CREATE SUCCESS!");
@@ -236,7 +234,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.technology.setResearchPlan(this.researchPlan);
-			this.technologyService.update(this.technology, super.getSysLog());
+			this.technologyService.update(this.technology, super.getSysLog(), super.getCurrentSysUser());
 			
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);

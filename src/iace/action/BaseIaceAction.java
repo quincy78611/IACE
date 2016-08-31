@@ -8,6 +8,8 @@ import org.apache.struts2.interceptor.SessionAware;
 import core.action.BaseAction;
 import iace.entity.questionnaire.QnrTable;
 import iace.entity.sys.SysLog;
+import iace.entity.sys.SysUser;
+import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
 
 public class BaseIaceAction extends BaseAction implements SessionAware {
@@ -119,5 +121,7 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 		this.sysLog = sysLog;
 	}
 
-	
+	public SysUser getCurrentSysUser() {
+		return (SysUser) this.session.get(SessionInterceptor.SESSION_KEY_SYS_USER);
+	}
 }
