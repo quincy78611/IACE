@@ -202,7 +202,7 @@
 							</td>
 							<td title="<s:property value="grbDomainsTitle"/>">
 								<s:iterator value="grbDomains" status="stat">
-									<p><s:property value="name" /></p>
+									<p><s:property value="name" />;</p>
 								</s:iterator>
 							</td>
 							<td title="<s:property value="trl.showString"/>">

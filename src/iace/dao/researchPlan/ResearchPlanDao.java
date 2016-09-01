@@ -8,10 +8,12 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Subqueries;
 import org.hibernate.sql.JoinType;
 
 import core.dao.HibernateSessionFactory;
@@ -97,7 +99,7 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		PagedList<ResearchPlan> results = new PagedList<ResearchPlan>(totalItemCount, arg.getPageSize(), arg.getPageIndex());
 		try {	
 			Session session = HibernateSessionFactory.getSession();
-			Criteria criteria = session.createCriteria(ResearchPlan.class);
+			Criteria criteria = session.createCriteria(ResearchPlan.class, "rp");
 			addCriteriaRestrictionsForSearch(arg, criteria);		
 			
 			criteria.addOrder(Order.asc("id"));			
@@ -107,6 +109,8 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 			@SuppressWarnings("unchecked")
 			List<ResearchPlan> list = criteria.list();
 			results.setList(list);
+			
+			log.debug("result list count: "+list.size());
 			return results;
 		} catch (Exception e) {
 			throw e;
@@ -118,7 +122,7 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 	private long queryTotalRecordsCount(ResearchPlanSearchModel arg) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
-			Criteria criteria = session.createCriteria(ResearchPlan.class);			
+			Criteria criteria = session.createCriteria(ResearchPlan.class, "rp");			
 			addCriteriaRestrictionsForSearch(arg, criteria);
 			
 //			criteria.setProjection(Projections.rowCount());
@@ -161,13 +165,20 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 			criteria.createAlias("trl", "trl");
 			criteria.add(Restrictions.eq("trl.id", arg.getTrlId()));
 		}
-		Criteria rCrit = criteria.createCriteria("technologies");
-		if (StringUtils.isNotBlank(arg.getTechnologyName())) {
-			rCrit.add(Restrictions.like("name", arg.getTechnologyName(), MatchMode.ANYWHERE).ignoreCase());
-		}
-		if (arg.getTechnologyTrlId() != null && arg.getTechnologyTrlId() > 0) {
-			rCrit.createAlias("optionTrlList", "trlL");
-			rCrit.add(Restrictions.eq("trlL.id", arg.getTechnologyTrlId()));
+		
+		boolean tecNameNotBlank = StringUtils.isNotBlank(arg.getTechnologyName());
+		boolean tecTrlNotBlank = arg.getTechnologyTrlId() != null && arg.getTechnologyTrlId() > 0;
+		if (tecNameNotBlank || tecTrlNotBlank) {
+			DetachedCriteria subquery = DetachedCriteria.forClass(Technology.class, "tec");
+			if (tecNameNotBlank) {
+				subquery.add(Restrictions.like("tec.name", arg.getTechnologyName(), MatchMode.ANYWHERE).ignoreCase());
+			}
+			if (tecTrlNotBlank) {
+				subquery.createAlias("tec.optionTrlList", "trlL");
+				subquery.add(Restrictions.eq("trlL.id", arg.getTechnologyTrlId()));
+			}
+			subquery.setProjection( Projections.property("tec.researchPlan.id") );
+			criteria.add(Subqueries.propertyIn("rp.id", subquery));
 		}
 		
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
