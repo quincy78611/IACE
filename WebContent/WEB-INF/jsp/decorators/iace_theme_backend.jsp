@@ -152,7 +152,13 @@
 								<li><a href="<s:url value="/talentedPeople/init"/>">編輯管理</a></li>
 								<li><a href="<s:url value="/talentedPeople/create"/>">新增</a></li>
 							</ul>
-						</li>						
+						</li>
+						<li><a href="#">育成中心</a>
+							<ul>
+								<li><a href="<s:url value="/incubationCenter/init"/>">編輯管理</a></li>
+								<li><a href="<s:url value="/incubationCenter/batchImport"/>">批次匯入</a></li>
+							</ul>
+						</li>
 						<li><a href="#">代碼管理</a>
 							<ul>
 						        <li><a href="<s:url value="/option/companyLocation/index"/>">公司地域別</a></li>

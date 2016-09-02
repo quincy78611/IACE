@@ -18,6 +18,8 @@ import iace.dao.enterpriseNeed.IEnterpriseAcademiaCoopDao;
 import iace.dao.enterpriseNeed.IEnterpriseInfoDao;
 import iace.dao.enterpriseNeed.IEnterpriseRequireTechDao;
 import iace.dao.enterpriseNeed.IEnterpriseSituationDao;
+import iace.dao.incubationCenter.IIncubationCenterDao;
+import iace.dao.incubationCenter.IncubationCenterDao;
 import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionGrbDomainDao;
 import iace.dao.option.IOptionSchoolDao;
@@ -127,6 +129,8 @@ public class DaoFactory {
 	private static ICoopExAttachFileDao coopExAttachFileDao;
 	
 	private static ITalentedPeopleDao talentedPeopleDao;
+	
+	private static IIncubationCenterDao incubationCenterDao;
 	
 	public static ISysFunctionDao getSysFunctionDao() {
 		if (sysFunctionDao == null) {
@@ -393,6 +397,13 @@ public class DaoFactory {
 			talentedPeopleDao = new TalentedPeopleDao();
 		}
 		return talentedPeopleDao;
+	}
+
+	public static IIncubationCenterDao getIncubationCenterDao() {
+		if (incubationCenterDao == null) {
+			incubationCenterDao = new IncubationCenterDao();
+		}
+		return incubationCenterDao;
 	}
 	
 	

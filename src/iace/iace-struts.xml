@@ -432,4 +432,39 @@
 			<result name="success">/WEB-INF/jsp/backend/talentedPeople/index.jsp</result>
 		</action>	
 	</package>
+	
+	<package name="IncubationCenter" namespace="/incubationCenter" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.IncubationCenterAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/incubationCenter/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.IncubationCenterAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/incubationCenter/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/incubationCenter/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.IncubationCenterAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/incubationCenter/detail.jsp</result>
+		</action>		
+		<action name="batchImport" class="iace.action.IncubationCenterAction" method="batchImport">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+		    <result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.IncubationCenterAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.IncubationCenterAction" method="downloadBatchSample">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>
+	</package>	
 </struts>

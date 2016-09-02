@@ -6,6 +6,7 @@ import iace.service.coopExample.CoopExAttachFileService;
 import iace.service.coopExample.CoopExService;
 import iace.service.coopExample.CoopExVideoService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
+import iace.service.incubationCenter.IncubationCenterService;
 import iace.service.option.OptionCompanyLocationService;
 import iace.service.option.OptionConsultService;
 import iace.service.option.OptionCooperateModeService;
@@ -88,6 +89,8 @@ public class ServiceFactory {
 	private static CoopExAttachFileService coopExAttachFileService;
 	
 	private static TalentedPeopleService talentedPeopleService;
+	
+	private static IncubationCenterService incubationCenterService;
 	
 	public static SysFunctionService getSysFunctionService() {
 		if (sysFunctionService == null) {
@@ -369,6 +372,13 @@ public class ServiceFactory {
 					DaoFactory.getOptionGrbDomainDao());
 		}
 		return talentedPeopleService;
+	}
+
+	public static IncubationCenterService getIncubationCenterService() {
+		if (incubationCenterService == null) {
+			incubationCenterService = new IncubationCenterService(DaoFactory.getIncubationCenterDao());
+		}
+		return incubationCenterService;
 	}
 	
 	

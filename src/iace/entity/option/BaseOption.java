@@ -11,7 +11,7 @@ import javax.persistence.Transient;
 import iace.entity.BaseEntity;
 
 @MappedSuperclass
-public abstract class BaseOption  extends BaseEntity {
+public class BaseOption  extends BaseEntity {
 
 	private static final long serialVersionUID = -6693566207871210805L;
 
@@ -19,6 +19,13 @@ public abstract class BaseOption  extends BaseEntity {
 	private String name;
 	private String code;
 	private Float priority;
+	
+	public BaseOption() { }
+	
+	public BaseOption(String code, String name) {
+		this.code = code;
+		this.name = name;
+	}
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)

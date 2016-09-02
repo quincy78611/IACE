@@ -132,6 +132,9 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 	public String batchImportSubmit() {
 		try {
 			this.batchImportResult = this.optionService.batchImport(this.uploadFile);
+			if (this.batchImportResult.getErrMsgs().size() > 0) {
+				this.addActionError("部分或全部匯入資料有誤，請看下方錯誤列表");
+			}
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

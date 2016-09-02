@@ -20,6 +20,7 @@ import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
 import iace.entity.enterpriseNeed.EnterpriseRequireTech;
 import iace.entity.enterpriseNeed.EnterpriseSituation;
+import iace.entity.incubationCenter.IncubationCenter;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
@@ -198,5 +199,7 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(CoopExAttachFile.class);
    	
     	configuration.addAnnotatedClass(TalentedPeople.class);
+    	
+    	configuration.addAnnotatedClass(IncubationCenter.class);
     }
 }
