@@ -153,10 +153,12 @@
 								<li><a href="<s:url value="/talentedPeople/create"/>">新增</a></li>
 							</ul>
 						</li>
-						<li><a href="#">育成中心</a>
+						<li><a href="#">機構</a>
 							<ul>
 								<li><a href="<s:url value="/incubationCenter/init"/>">編輯管理</a></li>
-								<li><a href="<s:url value="/incubationCenter/batchImport"/>">批次匯入</a></li>
+								<s:if test="#session.sysUser.sysRole.name == '系統開發人員'">
+									<li><a href="<s:url value="/incubationCenter/batchImport"/>">批次匯入</a></li>
+								</s:if>	
 							</ul>
 						</li>
 						<li><a href="#">代碼管理</a>
