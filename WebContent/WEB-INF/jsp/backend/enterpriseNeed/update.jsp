@@ -86,9 +86,9 @@
 	}
 </script>
 <style>
-	table {border:solid 1px; width:100%;}
+	table {border:solid 1px; width:100%; }
 	table tr {border:solid 1px;}
-	table tr td {border:solid 1px;}
+	table tr td {border:solid 1px; }
 </style>
 <meta name="funcPathText" content="編輯管理  > 編輯"/>
 </head>
@@ -143,7 +143,7 @@
 			</tr>			
 			<tr>
 				<td><b>公司目前產品/服務項目</b></td>
-				<td><s:textfield name="enterpriseInfo.mainProduct"/></td>
+				<td><s:textarea name="enterpriseInfo.mainProduct"/></td>
 			</tr>
 			<tr>
 				<td><b>產業類別</b></td>
@@ -155,28 +155,19 @@
 						<s:checkboxlist name="enterpriseInfo.optionDomainIdList" list="optionDomainList" listKey="id" listValue="name" cssClass="horizontalList"/>
 					</div>
 					<div class="clear"></div>
-					<div style="margin-right:1%; float:left; ">
-						<b>(二階)發展方向:</b>
-					</div>
-					<div style="width:83%; margin-right:1%; float:left; ">
-						<s:textfield name="enterpriseInfo.phase2"/>
-					</div>
-					<div class="clear"></div>
-					<div style="margin-right:1%; float:left; ">
-						<b>(三階)應用端:</b>
-					</div>
-					<div style="width:85%; margin-right:1%; float:left; ">
-						<s:textfield name="enterpriseInfo.phase3"/>
-					</div>
+					<b>(二階)發展方向:</b>
+					<s:textarea name="enterpriseInfo.phase2"/>
+					<b>(三階)應用端:</b>
+					<s:textarea name="enterpriseInfo.phase3"/>
 				</td>
 			</tr>
 			<tr>
 				<td><b>公司地址</b></td>
 				<td>
-					<div style="margin-right:1%; float:left; ">
+					<div style="width:10%; margin-right:1%; float:left; ">
 						<s:select name="enterpriseInfo.optionCompanyLocation.id" list="optionCompanyLocationList" listKey="id" listValue="name" />
 					</div>
-					<div style="width:87%; margin-right:1%; float:left; ">
+					<div style="width:89%; float:left; ">
 						<s:textfield name="enterpriseInfo.address"/>
 					</div>
 				</td>
@@ -187,14 +178,14 @@
 					<div style="width:5%; margin-right:1%; float:left; ">
 						<b>姓名</b>
 					</div>
-					<div style="width:19%; margin-right:1%; float:left; ">
+					<div style="width:43%; margin-right:1%; float:left; ">
 						<s:textfield name="enterpriseInfo.personInChargeName"/>
 					</div>
 					
 					<div style="width:5%; margin-right:1%; float:left; ">
 						<b>職稱</b>
 					</div>
-					<div style="width:65%; margin-right:1%; float:left; ">
+					<div style="width:44%; float:left; ">
 						<s:textfield name="enterpriseInfo.personInChargeJobtitle"/>
 					</div>
 					
@@ -203,14 +194,14 @@
 					<div style="width:5%; margin-right:1%; float:left; ">
 						<b>電話</b>
 					</div>
-					<div style="width:19%; margin-right:1%; float:left; ">
+					<div style="width:43%; margin-right:1%; float:left; ">
 						<s:textfield name="enterpriseInfo.personInChargePhone"/>
 					</div>					
 
 					<div style="width:5%; margin-right:1%; float:left; ">
 						<b>Email</b>
 					</div>
-					<div style="width:65%; margin-right:1%; float:left; ">
+					<div style="width:44%; float:left; ">
 						<s:textfield name="enterpriseInfo.personInChargeEmail"/>
 					</div>	
 				</td>
@@ -221,14 +212,14 @@
 					<div style="width:5%; margin-right:1%; float:left; ">
 						<b>姓名</b>
 					</div>
-					<div style="width:19%; margin-right:1%; float:left; ">
+					<div style="width:43%; margin-right:1%; float:left; ">
 						<s:textfield name="enterpriseInfo.intervieweeName"/>
 					</div>
 					
 					<div style="width:5%; margin-right:1%; float:left; ">
 						<b>職稱</b>
 					</div>
-					<div style="width:65%; margin-right:1%; float:left; ">
+					<div style="width:44%; float:left; ">
 						<s:textfield name="enterpriseInfo.intervieweeJobtitle"/>
 					</div>
 					
@@ -237,14 +228,14 @@
 					<div style="width:5%;margin-right:1%; float:left; ">
 						<b>電話</b>
 					</div>
-					<div style="width:19%; margin-right:1%; float:left; ">
+					<div style="width:43%; margin-right:1%; float:left; ">
 						<s:textfield name="enterpriseInfo.intervieweePhone"/>
 					</div>								
 
 					<div style="width:5%; margin-right:1%; float:left; ">
 						<b>Email</b>
 					</div>
-					<div style="width:65%; margin-right:1%; float:left; ">
+					<div style="width:44%; float:left; ">
 						<s:textfield name="enterpriseInfo.intervieweeEmail"/>
 					</div>	
 				</td>
@@ -271,9 +262,7 @@
 					<div style="margin-right:1%; float:left; ">
 						<b>(二階)發展方向:</b>
 					</div>
-					<div style="width:83%; margin-right:1%; float:left; ">
-						<s:textfield name="enterpriseInfo.enterpriseRequireTech.phase2"/>
-					</div>
+					<s:textarea name="enterpriseInfo.enterpriseRequireTech.phase2"/>
 				</td>
 			</tr>
 			<tr>
@@ -281,9 +270,7 @@
 					<div style="margin-right:1%; float:left; ">
 						<b>(三階)應用端:</b>
 					</div>
-					<div style="width:85%; margin-right:1%; float:left; ">
-						<s:textfield name="enterpriseInfo.enterpriseRequireTech.phase3"/>
-					</div>
+					<s:textarea name="enterpriseInfo.enterpriseRequireTech.phase3"/>
 				</td>
 			</tr>			
 			<tr>
@@ -333,10 +320,10 @@
 			</tr>
 			<tr>
 				<td>
-					<div style="margin-right:1%; float:left;">
+					<div style="width:19%; margin-right:1%; float:left;">
 						<b>2-2.合作題目為何？</b>
 					</div>	
-					<div style="width:75%; margin-right:1%; float:left;">
+					<div style="width:80%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseSituation.coopTopic" />
 					</div>				
 				</td>
@@ -344,17 +331,17 @@
 			<tr>
 				<td>
 					<b>2-3.請闡述與法人機構技轉的優、缺點？</b><br>
-					<div style="margin-right:1%; float:left;">
+					<div style="width:5%; margin-right:1%; float:left;">
 						優點:
 					</div>
-					<div style="width:93%; margin-right:1%; float:left;">
+					<div style="width:94%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseSituation.coopPros" />
 					</div>
 					
-					<div style="margin-right:1%; float:left;">
+					<div style="width:5%; margin-right:1%; float:left;">
 						缺點:
 					</div>				
-					<div style="width:93%; margin-right:1%; float:left;">
+					<div style="width:94%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseSituation.coopCons" />
 					</div>					
 				</td>
@@ -370,29 +357,37 @@
 			</tr>
 			<tr>
 				<td>
-					<b>3-2.合作題目為何？</b>
-					<s:textfield name="enterpriseInfo.enterpriseSituation.academiaTopic" />
+					<div style="width:19%; margin-right:1%; float:left;">
+						<b>3-2.合作題目為何？</b>
+					</div>	
+					<div style="width:80%; float:left;">
+						<s:textfield name="enterpriseInfo.enterpriseSituation.academiaTopic" />
+					</div>	
 				</td>
 			</tr>			
 			<tr>
 				<td>
-					<b>3-3.對於跟學界合作的意願？</b>
-					<s:textfield name="enterpriseInfo.enterpriseSituation.academiaIntention" />
+					<div style="width:26%; margin-right:1%; float:left;">
+						<b>3-3.對於跟學界合作的意願？</b>
+					</div>
+					<div style="width:73%; float:left;">
+						<s:textfield name="enterpriseInfo.enterpriseSituation.academiaIntention" maxlength="100"/>
+					</div>
 				</td>
 			</tr>			
 			<tr>
 				<td>
 					<b>3-4.請闡述與學界技術合作的優、缺點？</b><br>
-					<div style="margin-right:1%; float:left;">
+					<div style="width:5%; margin-right:1%; float:left;">
 						優點:
 					</div>
-					<div style="width:93%; margin-right:1%; float:left;">
+					<div style="width:94%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseSituation.academiaPros" />
 					</div>
-					<div style="margin-right:1%; float:left;">
+					<div style="width:5%; margin-right:1%; float:left;">
 						缺點:
 					</div>
-					<div style="width:93%; margin-right:1%; float:left;">
+					<div style="width:94%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseSituation.academiaCons" />
 					</div>					
 				</td>
@@ -409,10 +404,10 @@
 					<div style="width:15%; margin-right:1%; float:left;">
 						<s:radio name="enterpriseInfo.enterpriseSituation.hasSpecificTopic" list="#{'true':'是', 'false':'否' }" cssClass="horizontalList"/>
 					</div>
-					<div style="margin-right:1%; float:left;">
+					<div style="width:5%; margin-right:1%; float:left;">
 						主題:
 					</div>
-					<div style="width:75%; margin-right:1%; float:left;">
+					<div style="width:78%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseSituation.specificTopic" />					
 					</div>
 				</td>
@@ -425,10 +420,10 @@
 					<div style="width:15%; margin-right:1%; float:left;">
 						<s:radio name="enterpriseInfo.enterpriseSituation.hasOtherCoopTarget" list="#{'true':'是', 'false':'否' }" cssClass="horizontalList"/>
 					</div>
-					<div style="margin-right:1%; float:left;">
+					<div style="width:5%; margin-right:1%; float:left;">
 						對象:
 					</div>
-					<div style="width:75%; margin-right:1%; float:left;">
+					<div style="width:78%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseSituation.otherCoopTarget" />					
 					</div>					
 				</td>
@@ -442,10 +437,10 @@
 			<tr>
 				<td rowspan="3" width="20%"><b>5.合作對象</b></td>
 				<td>
-					<div style="margin-right:1%; float:left;">
+					<div style="width:34%; margin-right:1%; float:left;">
 						<b>5-1傾向與哪些學校進行技術合作？</b>
 					</div>
-					<div style="width:65%; margin-right:1%; float:left;">
+					<div style="width:65%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseAcademiaCoop.coopSchool" />
 					</div>
 				</td>
@@ -456,10 +451,10 @@
 					<div style="width:15%; margin-right:1%; float:left;">
 						<s:radio name="enterpriseInfo.enterpriseAcademiaCoop.hasCurrentCoopProject" list="#{'true':'是', 'false':'否' }" cssClass="horizontalList"/>
 					</div>
-					<div style="margin-right:1%; float:left;">
+					<div style="width:5%; margin-right:1%; float:left;">
 						主題:
 					</div>
-					<div style="width:75%; margin-right:1%; float:left;">
+					<div style="width:78%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseAcademiaCoop.currentCoopProjectTopic" />					
 					</div>
 				</td>
@@ -470,10 +465,10 @@
 					<div style="width:15%; margin-right:1%; float:left;">
 						<s:radio name="enterpriseInfo.enterpriseAcademiaCoop.hasWantedCoopSchool" list="#{'true':'是', 'false':'否' }" cssClass="horizontalList"/>
 					</div>
-					<div style="margin-right:1%; float:left;">
+					<div style="width:5%; margin-right:1%; float:left;">
 						主題:
 					</div>
-					<div style="width:75%; margin-right:1%; float:left;">
+					<div style="width:78%; float:left;">
 						<s:textfield name="enterpriseInfo.enterpriseAcademiaCoop.wantedCoopSchoolTopic" />					
 					</div>
 				</td>

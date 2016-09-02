@@ -19,7 +19,7 @@
 	}
 </script>
 <style>
-	table {border:solid 1px; width:100%;}
+	table {border:solid 1px; width:100%; word-break: break-all;}
 	table tr {border:solid 1px;}
 	table tr td {border:solid 1px;}
 </style>
@@ -83,32 +83,32 @@
 			<td><b>負責人</b></td>
 			<td>
 				<div style="width:5%; margin-right:1%; float:left; ">
-					<b>姓名</b>
+					<b>姓名:</b>
 				</div>
-				<div style="width:19%; margin-right:1%; float:left; ">
+				<div style="width:43%; margin-right:1%; float:left; ">
 					<s:property value="enterpriseInfo.personInChargeName"/>
 				</div>
 				
 				<div style="width:5%; margin-right:1%; float:left; ">
-					<b>職稱</b>
+					<b>職稱:</b>
 				</div>
-				<div style="width:65%; margin-right:1%; float:left; ">
+				<div style="width:44%; float:left; ">
 					<s:property value="enterpriseInfo.personInChargeJobtitle"/>
 				</div>
 				
 				<div class="clear"></div>
 								
 				<div style="width:5%; margin-right:1%; float:left; ">
-					<b>電話</b>
+					<b>電話:</b>
 				</div>
-				<div style="width:19%; margin-right:1%; float:left; ">
+				<div style="width:43%; margin-right:1%; float:left; ">
 					<s:property value="enterpriseInfo.personInChargePhone"/>
 				</div>					
 
 				<div style="width:5%; margin-right:1%; float:left; ">
-					<b>Email</b>
+					<b>Email:</b>
 				</div>
-				<div style="width:65%; margin-right:1%; float:left; ">
+				<div style="width:44%; float:left; ">
 					<s:property value="enterpriseInfo.personInChargeEmail"/>
 				</div>	
 			</td>
@@ -117,32 +117,32 @@
 			<td><b>受訪人</b></td>
 			<td>
 				<div style="width:5%; margin-right:1%; float:left; ">
-					<b>姓名</b>
+					<b>姓名:</b>
 				</div>
-				<div style="width:19%; margin-right:1%; float:left; ">
+				<div style="width:43%; margin-right:1%; float:left; ">
 					<s:property value="enterpriseInfo.intervieweeName"/>
 				</div>
 				
 				<div style="width:5%; margin-right:1%; float:left; ">
-					<b>職稱</b>
+					<b>職稱:</b>
 				</div>
-				<div style="width:65%; margin-right:1%; float:left; ">
+				<div style="width:44%; float:left; ">
 					<s:property value="enterpriseInfo.intervieweeJobtitle"/>
 				</div>
 				
 				<div class="clear"></div>
 								
 				<div style="width:5%;margin-right:1%; float:left; ">
-					<b>電話</b>
+					<b>電話:</b>
 				</div>
-				<div style="width:19%; margin-right:1%; float:left; ">
+				<div style="width:43%; margin-right:1%; float:left; ">
 					<s:property value="enterpriseInfo.intervieweePhone"/>
 				</div>								
 
 				<div style="width:5%; margin-right:1%; float:left; ">
-					<b>Email</b>
+					<b>Email:</b>
 				</div>
-				<div style="width:65%; margin-right:1%; float:left; ">
+				<div style="width:44%; float:left; ">
 					<s:property value="enterpriseInfo.intervieweeEmail"/>
 				</div>	
 			</td>
@@ -194,11 +194,11 @@
 		</tr>
 		<tr>
 			<td width="20%"><b>訪談日期</b></td>
-			<td>
+			<td width="30%">
 				<s:property value="enterpriseInfo.enterpriseRequireTech.interviewDate"/>
 			</td>
 			<td width="20%"><b>記錄人</b></td>
-			<td>
+			<td width="30%">
 				<s:property value="enterpriseInfo.enterpriseRequireTech.recordBy" />
 			</td>			
 		</tr>			

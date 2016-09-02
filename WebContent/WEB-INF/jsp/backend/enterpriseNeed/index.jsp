@@ -178,9 +178,10 @@
 					<th nowrap width="2%">No.</th>
 					<th nowrap width="10%">統編</th>
 					<th nowrap width="">企業名稱</th>
-					<th nowrap width="10%">公司地域別</th>
-					<th nowrap width="10%">負責人</th>
-					<th nowrap width="10%">受訪人</th>
+					<th nowrap width="8%">公司地域別</th>
+					<th nowrap width="8%">負責人</th>
+					<th nowrap width="8%">受訪人</th>
+					<th nowrap width="8%">訪談日期</th>
 					<th nowrap width="23%">功能</th>
 				</tr>
 				<s:if test="enterpriseInfoPagedList != null">
@@ -194,7 +195,8 @@
 							<td><s:property value="name" /></td>
 							<td><s:property value="optionCompanyLocation.name" /></td>
 							<td><s:property value="personInChargeName" /></td>
-							<td><s:property value="intervieweeName" /></td>															
+							<td><s:property value="intervieweeName" /></td>	
+							<td><s:property value="enterpriseRequireTech.interviewDate" /></td>														
 							<td>							
 								<!-- 檢視 -->
 								<s:url value="showDetail.action" var="detailUrlTag">
