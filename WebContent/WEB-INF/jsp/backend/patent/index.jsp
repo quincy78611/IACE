@@ -228,7 +228,14 @@
 									<s:param name="id" value="id" />
 								</s:url>
 								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-del" value="刪除" />	
+								<input type="button" class="btn-info btn-func btn-del" value="刪除" />
+								
+								<!-- 報表 -->
+								<s:url value="printReport.action" var="printReportUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<input type="button" class="btn-info btn-func btn-print" value="報表" 
+									onclick="window.location.href='<s:property value="#printReportUrlTag"/>'"/>	
 							</td>
 						</tr>
 					</s:iterator>

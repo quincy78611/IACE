@@ -2,6 +2,7 @@ package iace.action;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -33,15 +34,11 @@ public class PatentAction extends BaseIaceAction {
 	private OptionTrlService optionTrlService = ServiceFactory.getOptionTrlService();
 
 	private PatentSearchModel searchCondition = new PatentSearchModel();
+	private PagedList<Patent> patentPagedList;
 
 	private List<TechField> techFieldList;
 	private List<OptionCountry> optionCountryList;
 	private List<OptionTrl> optionTrlList;
-
-	private PagedList<Patent> patentPagedList;
-
-	private int pageIndex;
-	private int pageSize = 10;
 
 	private long id;
 	private Patent patent;
@@ -49,6 +46,9 @@ public class PatentAction extends BaseIaceAction {
 	private File uploadPatentImg;
 	private String uploadPatentImgContentType;
 	private String uploadPatentImgFileName;
+	
+	private String reportFileName;
+	private InputStream reportInputStream;
 
 	public PatentAction() {
 		super.setTitle("專利資料");
@@ -242,6 +242,17 @@ public class PatentAction extends BaseIaceAction {
 			}
 		}
 	}
+	
+	public String printReport() {
+		try {
+			this.reportInputStream = this.patentService.printReport(this.id);
+			this.reportFileName = "patent.pdf";
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
 
 	// ==========================================================================
 
@@ -286,22 +297,6 @@ public class PatentAction extends BaseIaceAction {
 		return patentPagedList;
 	}
 
-	public int getPageIndex() {
-		return pageIndex;
-	}
-
-	public void setPageIndex(int pageIndex) {
-		this.pageIndex = pageIndex;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
 	public File getUploadPatentImg() {
 		return uploadPatentImg;
 	}
@@ -332,6 +327,14 @@ public class PatentAction extends BaseIaceAction {
 
 	public void setSearchCondition(PatentSearchModel searchCondition) {
 		this.searchCondition = searchCondition;
+	}
+
+	public String getReportFileName() {
+		return reportFileName;
+	}
+
+	public InputStream getReportInputStream() {
+		return reportInputStream;
 	}
 
 	

@@ -1,17 +1,30 @@
 package iace.service.patent;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.Session;
+import org.hibernate.internal.SessionImpl;
 
+import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.dao.patent.IPatentDao;
@@ -21,6 +34,8 @@ import iace.entity.patent.Patent;
 import iace.entity.patent.PatentSearchModel;
 import iace.entity.patent.TechField;
 import iace.service.BaseIaceService;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 public class PatentService extends BaseIaceService<Patent> {
 
@@ -206,6 +221,29 @@ public class PatentService extends BaseIaceService<Patent> {
 		} catch (IOException | NullPointerException e) {
 			log.warn("load image fail");
 		}
+	}
+	
+	public InputStream printReport(long id) throws JRException, IOException {
+		// inputStream
+		ServletContext context = ServletActionContext.getServletContext();
+		String reportSource = context.getRealPath("/report/jasper/patent.jasper");
+		FileInputStream fis = new FileInputStream(reportSource);
+		
+		// outputStream
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		
+		// parameters
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("patentId", id);
+		
+		// session
+		Session session = HibernateSessionFactory.getSession();
+		SessionImpl sessionImpl = (SessionImpl) session; 
+		Connection conn = sessionImpl.connection();
+		
+		// run
+		JasperRunManager.runReportToPdfStream(fis, os, parameters, conn);
+		return new ByteArrayInputStream(os.toByteArray());
 	}
 
 }
