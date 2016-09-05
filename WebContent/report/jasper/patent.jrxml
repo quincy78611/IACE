@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="patent" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c047ea03-decc-451e-9630-b59b08bca93a">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="331"/>
+	<property name="ireport.y" value="405"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -56,7 +56,7 @@ where pt.ID = $P{patentId}]]>
 	<field name="CATEGORY" class="java.lang.String"/>
 	<field name="PATENT_STATUS" class="java.lang.String"/>
 	<field name="FAMILY_NO" class="java.lang.String"/>
-	<field name="TECH_ABSTRACT" class="oracle.jdbc.OracleClob"/>
+	<field name="TECH_ABSTRACT" class="java.lang.String"/>
 	<field name="TECH_FIELD" class="java.lang.String"/>
 	<field name="USAGE" class="java.lang.String"/>
 	<field name="TRL" class="java.lang.String"/>
@@ -65,15 +65,7 @@ where pt.ID = $P{patentId}]]>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="50" splitType="Stretch">
-			<staticText>
-				<reportElement x="224" y="0" width="113" height="36" uuid="2f93e1ea-a507-4739-b670-b75cd0a7a775"/>
-				<textElement>
-					<font fontName="標楷體" size="24" isBold="true" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[專利資料]]></text>
-			</staticText>
-		</band>
+		<band height="3" splitType="Stretch"/>
 	</title>
 	<pageHeader>
 		<band splitType="Stretch"/>
@@ -83,7 +75,7 @@ where pt.ID = $P{patentId}]]>
 	</columnHeader>
 	<detail>
 		<band height="43" splitType="Stretch">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="23" width="555" height="20" uuid="19f71982-029d-42c9-bf6f-2259c54ffe29"/>
 				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
 			</textField>
@@ -97,7 +89,7 @@ where pt.ID = $P{patentId}]]>
 			</staticText>
 		</band>
 		<band height="43">
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="23" width="555" height="20" uuid="4a0088b6-ca6d-4faf-99bb-fbc41daf836c"/>
 				<textFieldExpression><![CDATA[$F{ASSIGNEE}]]></textFieldExpression>
 			</textField>
@@ -119,7 +111,7 @@ where pt.ID = $P{patentId}]]>
 				</textElement>
 				<text><![CDATA[發明人]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="23" width="555" height="20" uuid="66e35c4b-39cb-4516-9ecd-4f7ff7452bfb"/>
 				<textFieldExpression><![CDATA[$F{INVENTOR}]]></textFieldExpression>
 			</textField>
@@ -133,19 +125,19 @@ where pt.ID = $P{patentId}]]>
 				</textElement>
 				<text><![CDATA[國際分類號]]></text>
 			</staticText>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="0" y="23" width="130" height="20" uuid="dda90cef-6d7f-44bb-b16b-ca112e1ab6f6"/>
 				<textFieldExpression><![CDATA[$F{IPC}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="142" y="23" width="130" height="20" uuid="86b89dd7-8b78-44e7-b0a0-d809d92f19f5"/>
 				<textFieldExpression><![CDATA[$F{CATEGORY}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isBlankWhenNull="true">
 				<reportElement x="284" y="23" width="130" height="20" uuid="f063dc22-4122-4360-89b9-fbb95e3cbb77"/>
 				<textFieldExpression><![CDATA[$F{APPLICATION_NO}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="true">
 				<reportElement x="425" y="23" width="130" height="20" uuid="14220982-d85a-4a3f-9f7e-7c8f6617405c"/>
 				<textFieldExpression><![CDATA[$F{APPLICATION_DATE}]]></textFieldExpression>
 			</textField>
@@ -175,20 +167,160 @@ where pt.ID = $P{patentId}]]>
 				<text><![CDATA[申請日]]></text>
 			</staticText>
 		</band>
-		<band height="50"/>
-		<band height="50"/>
-		<band height="82">
+		<band height="43">
 			<staticText>
-				<reportElement x="0" y="0" width="61" height="23" forecolor="#0099FF" uuid="943f960d-89a8-4ae0-a54b-fe29167159a9"/>
+				<reportElement x="284" y="0" width="61" height="23" forecolor="#0099FF" uuid="a4ff6b9a-5499-418f-b38f-f765ac57edf3"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[公告號]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="0" width="61" height="23" forecolor="#0099FF" uuid="e7148c4c-c302-4d82-a978-22aadf5086ef"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[公告日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="142" y="0" width="61" height="23" forecolor="#0099FF" uuid="b8072979-8522-4589-a437-d6f09893e223"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[公開日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="61" height="23" forecolor="#0099FF" uuid="fe1430e5-4c30-46da-b1c9-e16ff7bf587c"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[公開號]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="23" width="130" height="20" uuid="2e120676-30ba-4552-b980-513e13ce9a86"/>
+				<textFieldExpression><![CDATA[$F{OPEN_NO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="true">
+				<reportElement x="142" y="23" width="130" height="20" uuid="55627fa0-ee68-40c7-9ffe-945054db2489"/>
+				<textFieldExpression><![CDATA[$F{OPEN_DATE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="284" y="23" width="130" height="20" uuid="b9e8a06a-49ff-414a-a666-58c6112fd02a"/>
+				<textFieldExpression><![CDATA[$F{PUBLICATION_NO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd" isBlankWhenNull="true">
+				<reportElement x="425" y="23" width="130" height="20" uuid="0963c025-2563-4c80-9bb3-177b8c366c8b"/>
+				<textFieldExpression><![CDATA[$F{PUBLICATION_DATE}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="43">
+			<staticText>
+				<reportElement x="0" y="0" width="78" height="23" forecolor="#0099FF" uuid="b5530bfd-2f4d-4e78-8226-dedc5234c811"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[專利類別]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="23" width="130" height="20" uuid="778dd02c-0071-4556-a2a8-e229f88d490b"/>
+				<textFieldExpression><![CDATA[$F{CATEGORY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="142" y="0" width="78" height="23" forecolor="#0099FF" uuid="400ec714-cd8d-4ea5-b9fa-c1b772e6eb1c"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[專利狀態]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="142" y="23" width="130" height="20" uuid="cf6087a7-1419-4cdd-8369-8644a590b797"/>
+				<textFieldExpression><![CDATA[$F{PATENT_STATUS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="284" y="0" width="78" height="23" forecolor="#0099FF" uuid="2caa69ed-5fc0-4248-9abd-2f0913af1f3d"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[專利家族]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="284" y="23" width="271" height="20" uuid="f2d0ab9a-c2a9-4a82-b881-2c1083ae0efb"/>
+				<textFieldExpression><![CDATA[$F{FAMILY_NO}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="43">
+			<staticText>
+				<reportElement x="0" y="0" width="78" height="23" forecolor="#0099FF" uuid="943f960d-89a8-4ae0-a54b-fe29167159a9"/>
 				<box topPadding="5"/>
 				<textElement>
 					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[專利技術摘要]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="0" y="23" width="555" height="59" uuid="499cc2b1-4e7c-43c2-b23d-fc9ac88834dd"/>
-				<textFieldExpression><![CDATA[""+$F{TECH_ABSTRACT}]]></textFieldExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="23" width="555" height="20" uuid="3b28440b-90db-4f6e-a017-a73e9aaf439f"/>
+				<textFieldExpression><![CDATA[$F{TECH_ABSTRACT}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="43">
+			<staticText>
+				<reportElement x="0" y="0" width="78" height="23" forecolor="#0099FF" uuid="219cc120-d7a6-4d84-9871-b662e2e738ce"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[專利技術領域]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="23" width="272" height="20" uuid="70535b4d-89c5-4032-9ee2-18c25a40b9a4"/>
+				<textFieldExpression><![CDATA[$F{TECH_FIELD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="284" y="0" width="88" height="23" forecolor="#0099FF" uuid="9ac4d312-2b64-4307-8f43-8123361794bb"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[應用範圍/產業]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="284" y="23" width="271" height="20" uuid="a0d2a1f4-14ff-498f-938d-17139559e015"/>
+				<textFieldExpression><![CDATA[$F{USAGE}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="43">
+			<staticText>
+				<reportElement x="0" y="0" width="78" height="23" forecolor="#0099FF" uuid="bebabc5d-9758-41a3-a34a-fbda3800082c"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[技術發展階段]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="0" y="23" width="555" height="20" uuid="7f530fc4-07fd-4e4e-99da-163177488c74"/>
+				<textFieldExpression><![CDATA[$F{TRL}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="43">
+			<staticText>
+				<reportElement x="0" y="0" width="106" height="23" forecolor="#0099FF" uuid="2e029cdc-2886-4e93-a33e-5f8ecfb04960"/>
+				<box topPadding="5"/>
+				<textElement>
+					<font fontName="標楷體" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[技術發展階段說明]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="23" width="555" height="20" uuid="d2b91d75-07c7-40b3-a99d-223172657f04"/>
+				<textFieldExpression><![CDATA[$F{TRL_DESC}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
