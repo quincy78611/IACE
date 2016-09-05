@@ -297,19 +297,10 @@
 			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayPDPL.jsp</result>
 			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
 		</action>
-		<action name="fillInQnrPart0To3Submit" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart0To3Submit">
+		<action name="fillInQnrSubmit" class="iace.action.QnrCooperateWayAction" method="fillInQnrSubmit">
 			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
-			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
-		</action>		
-		<action name="fillInQnrPart4Submit" class="iace.action.QnrCooperateWayAction" method="fillInQnrPart4Submit">
-			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
 			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayFinish.jsp</result>
-		</action>
-		<action name="backToQnrPart0To3" class="iace.action.QnrCooperateWayAction" method="backToQnrPart0To3">
-			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayMerit.jsp</result>
-			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
-		</action>
-				
+		</action>				
 	</package>
 	
 	<package name="EnterpriseNeed" namespace="/enterpriseNeed" extends="struts-default, json-default, default">

@@ -12,15 +12,13 @@
 </script>
 <script>
 	function pdplSetting() {
-		$("input[type=checkbox][name='qnrCoopereateWay.aggreePDPL']").click(
-				function() {
-					hideOrShowApplicantData();
-				});
+		$("input[type=checkbox][name='qnrCoopereateWay.aggreePDPL']").click(function() {
+			hideOrShowApplicantData();
+		});
 	}
 
 	function hideOrShowApplicantData() {
-		if ($("input[type=checkbox][name='qnrCoopereateWay.aggreePDPL']").prop(
-				"checked")) {
+		if ($("input[type=checkbox][name='qnrCoopereateWay.aggreePDPL']").prop("checked")) {
 			$("#li-name").show();
 			$("#li-applicantId").show();
 			$("#li-email").show();
@@ -87,7 +85,7 @@
 			<ul>
 				<li class="all"><s:checkbox label="同意" name="qnrCoopereateWay.aggreePDPL" /></li>
 				<li class="quarter" id="li-name"><b>姓名</b> <s:textfield name="qnrCoopereateWay.name" /></li>
-				<li class="quarter" id="li-applicantId"><b>身份證字號</b> <s:textfield name="qnrCoopereateWay.applicantId" /></li>
+<%-- 				<li class="quarter" id="li-applicantId"><b>身份證字號</b> <s:textfield name="qnrCoopereateWay.applicantId" /></li> --%>
 				<li class="half" id="li-email"><b>Email</b> <s:textfield name="qnrCoopereateWay.email" type="email" /></li>
 				<li class="all" id="li-address"><b>地址</b> <s:textfield name="qnrCoopereateWay.address" /></li>
 			</ul>

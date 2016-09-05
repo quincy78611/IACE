@@ -1,8 +1,5 @@
 package iace.entity.qnrCooperateWay;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,13 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
 
 import core.util.AESEncrypter;
@@ -32,7 +26,8 @@ public class QnrCooperateWay extends BaseEntity {
 
 	private long id;
 	private OptionSchool school;
-	private int q0_1;
+	
+	private String q0_1;
 	private int q0_2;
 	private int q0_3;
 	private int q1_1;
@@ -74,7 +69,16 @@ public class QnrCooperateWay extends BaseEntity {
 	private int q3_12;
 	private int q3_13;
 	private int q3_14;
-
+	private int q4_1;
+	private int q4_2;
+	private int q4_3;
+	private int q4_4;
+	private int q4_5;
+	private int q4_6;
+	private int q4_7;
+	private int q4_8;
+	private int q4_9;	
+	
 	private Boolean aggreePDPL;
 	private transient String name;
 	private String encryptedName;
@@ -84,8 +88,6 @@ public class QnrCooperateWay extends BaseEntity {
 	private String encryptedAddress;
 	private transient String applicantId;
 	private String encryptedApplicantId;
-
-	private List<QnrCooperateWayMerit> qnrCooperateWayMerits;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -109,12 +111,12 @@ public class QnrCooperateWay extends BaseEntity {
 		this.school = school;
 	}
 
-	@Column(name = "Q0_1", nullable = true, length = 1)
-	public int getQ0_1() {
+	@Column(name = "Q0_1", nullable = true, length = 20)
+	public String getQ0_1() {
 		return q0_1;
 	}
 
-	public void setQ0_1(int q0_1) {
+	public void setQ0_1(String q0_1) {
 		this.q0_1 = q0_1;
 	}
 
@@ -486,6 +488,87 @@ public class QnrCooperateWay extends BaseEntity {
 	public void setQ3_14(int q3_14) {
 		this.q3_14 = q3_14;
 	}
+	
+	@Column(name = "Q4_1", nullable = true, length = 1)
+	public int getQ4_1() {
+		return q4_1;
+	}
+
+	public void setQ4_1(int q4_1) {
+		this.q4_1 = q4_1;
+	}
+
+	@Column(name = "Q4_2", nullable = true, length = 1)
+	public int getQ4_2() {
+		return q4_2;
+	}
+
+	public void setQ4_2(int q4_2) {
+		this.q4_2 = q4_2;
+	}
+
+	@Column(name = "Q4_3", nullable = true, length = 1)
+	public int getQ4_3() {
+		return q4_3;
+	}
+
+	public void setQ4_3(int q4_3) {
+		this.q4_3 = q4_3;
+	}
+
+	@Column(name = "Q4_4", nullable = true, length = 1)
+	public int getQ4_4() {
+		return q4_4;
+	}
+
+	public void setQ4_4(int q4_4) {
+		this.q4_4 = q4_4;
+	}
+
+	@Column(name = "Q4_5", nullable = true, length = 1)
+	public int getQ4_5() {
+		return q4_5;
+	}
+
+	public void setQ4_5(int q4_5) {
+		this.q4_5 = q4_5;
+	}
+
+	@Column(name = "Q4_6", nullable = true, length = 1)
+	public int getQ4_6() {
+		return q4_6;
+	}
+
+	public void setQ4_6(int q4_6) {
+		this.q4_6 = q4_6;
+	}
+
+	@Column(name = "Q4_7", nullable = true, length = 1)
+	public int getQ4_7() {
+		return q4_7;
+	}
+
+	public void setQ4_7(int q4_7) {
+		this.q4_7 = q4_7;
+	}
+
+	@Column(name = "Q4_8", nullable = true, length = 1)
+	public int getQ4_8() {
+		return q4_8;
+	}
+
+	public void setQ4_8(int q4_8) {
+		this.q4_8 = q4_8;
+	}
+
+	@Column(name = "Q4_9", nullable = true, length = 1)
+	public int getQ4_9() {
+		return q4_9;
+	}
+
+	public void setQ4_9(int q4_9) {
+		this.q4_9 = q4_9;
+	}
 
 	@Column(name = "AGREE_PDPL")
 	@Type(type = "true_false")
@@ -575,48 +658,6 @@ public class QnrCooperateWay extends BaseEntity {
 	public void setEncryptedApplicantId(String encryptedApplicantId) {
 		this.encryptedApplicantId = encryptedApplicantId;
 		this.applicantId = AESEncrypter.decrypt(AESEncrypter.KEY, encryptedApplicantId);
-	}
-
-	@OneToMany(mappedBy="qnrCooperateWay", cascade={CascadeType.ALL}, fetch = FetchType.EAGER)
-	@Fetch(FetchMode.SUBSELECT)
-	public List<QnrCooperateWayMerit> getQnrCooperateWayMerits() {
-		return qnrCooperateWayMerits;
-	}
-
-	public void setQnrCooperateWayMerits(List<QnrCooperateWayMerit> qnrCooperateWayMerits) {
-		this.qnrCooperateWayMerits = qnrCooperateWayMerits;
-	}
-	
-	//==========================================================================
-	
-	@Override
-	public void create() {
-		super.create();
-		if (this.qnrCooperateWayMerits != null && this.qnrCooperateWayMerits.size() > 0) {
-			for (QnrCooperateWayMerit m : this.qnrCooperateWayMerits) {
-				m.create();
-			}
-		}
-	}
-	
-	@Override
-	public void update() {
-		super.update();
-		if (this.qnrCooperateWayMerits != null && this.qnrCooperateWayMerits.size() > 0) {
-			for (QnrCooperateWayMerit m : this.qnrCooperateWayMerits) {
-				m.update();
-			}
-		}
-	}
-	
-	@Override
-	public void delete() {
-		super.delete();
-		if (this.qnrCooperateWayMerits != null && this.qnrCooperateWayMerits.size() > 0) {
-			for (QnrCooperateWayMerit m : this.qnrCooperateWayMerits) {
-				m.delete();
-			}
-		}
 	}
 
 }

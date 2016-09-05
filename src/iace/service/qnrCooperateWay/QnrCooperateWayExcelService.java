@@ -9,7 +9,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import iace.entity.option.OptionSchool;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
-import iace.entity.qnrCooperateWay.QnrCooperateWayMerit;
 import iace.service.BaseExcelService;
 
 public class QnrCooperateWayExcelService extends BaseExcelService {
@@ -116,17 +115,17 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			row.createCell(++c).setCellValue("Q3_12");
 			row.createCell(++c).setCellValue("Q3_13");
 			row.createCell(++c).setCellValue("Q3_14");
+			row.createCell(++c).setCellValue("Q4_1");
+			row.createCell(++c).setCellValue("Q4_2");
+			row.createCell(++c).setCellValue("Q4_3");
+			row.createCell(++c).setCellValue("Q4_4");
+			row.createCell(++c).setCellValue("Q4_5");
+			row.createCell(++c).setCellValue("Q4_6");
+			row.createCell(++c).setCellValue("Q4_7");
+			row.createCell(++c).setCellValue("Q4_8");
+			row.createCell(++c).setCellValue("Q4_9");
 			
-			for (int year : QnrCooperateWayMerit.YEARS) {
-				row.createCell(++c).setCellValue(year+"參與產學合作教師人數");
-				row.createCell(++c).setCellValue(year+"企業委託研究-簽約計畫件數");
-				row.createCell(++c).setCellValue(year+"企業委託研究-簽約總經費(NT$萬)");
-				row.createCell(++c).setCellValue(year+"技術移轉-專利授權件數");
-				row.createCell(++c).setCellValue(year+"技術移轉-專利授權收入(NT$萬)");
-				row.createCell(++c).setCellValue(year+"技術移轉-非專利授權之技轉件數");
-				row.createCell(++c).setCellValue(year+"技術移轉-非專利授權之技轉收入(NT$萬)");
-				row.createCell(++c).setCellValue(year+"新增師生新創事業家數");
-			}
+
 		}//title row END		
 		
 		// data part
@@ -183,17 +182,16 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			row.createCell(++c).setCellValue(qnr.getQ3_12());
 			row.createCell(++c).setCellValue(qnr.getQ3_13());
 			row.createCell(++c).setCellValue(qnr.getQ3_14());
+			row.createCell(++c).setCellValue(qnr.getQ4_1());
+			row.createCell(++c).setCellValue(qnr.getQ4_2());
+			row.createCell(++c).setCellValue(qnr.getQ4_3());
+			row.createCell(++c).setCellValue(qnr.getQ4_4());
+			row.createCell(++c).setCellValue(qnr.getQ4_5());
+			row.createCell(++c).setCellValue(qnr.getQ4_6());
+			row.createCell(++c).setCellValue(qnr.getQ4_7());
+			row.createCell(++c).setCellValue(qnr.getQ4_8());
+			row.createCell(++c).setCellValue(qnr.getQ4_9());
 			
-			for (QnrCooperateWayMerit merit : qnr.getQnrCooperateWayMerits()) {
-				super.setCellValue(row.createCell(++c), merit.getC1());
-				super.setCellValue(row.createCell(++c), merit.getC2());
-				super.setCellValue(row.createCell(++c), merit.getC3());
-				super.setCellValue(row.createCell(++c), merit.getC4());
-				super.setCellValue(row.createCell(++c), merit.getC5());
-				super.setCellValue(row.createCell(++c), merit.getC6());
-				super.setCellValue(row.createCell(++c), merit.getC7());
-				super.setCellValue(row.createCell(++c), merit.getC8());
-			}
 		}
 		
 		

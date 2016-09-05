@@ -25,11 +25,11 @@ import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
 import iace.entity.option.OptionCountry;
-import iace.entity.option.OptionGrbDomain;
-import iace.entity.option.OptionHrst;
-import iace.entity.option.OptionHadTecSrc;
-import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionDomain;
+import iace.entity.option.OptionGrbDomain;
+import iace.entity.option.OptionHadTecSrc;
+import iace.entity.option.OptionHrst;
+import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionSchool;
@@ -40,7 +40,6 @@ import iace.entity.option.OptionTrl;
 import iace.entity.patent.Patent;
 import iace.entity.patent.TechField;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
-import iace.entity.qnrCooperateWay.QnrCooperateWayMerit;
 import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
 import iace.entity.researchPlan.ResearchPlan;
@@ -185,7 +184,6 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(QnrTableColumn.class);
     	
     	configuration.addAnnotatedClass(QnrCooperateWay.class);
-    	configuration.addAnnotatedClass(QnrCooperateWayMerit.class);
     	
     	configuration.addAnnotatedClass(SysUser.class);
     	configuration.addAnnotatedClass(SysRole.class);

@@ -27,7 +27,6 @@ import iace.service.patent.PatentExcelService;
 import iace.service.patent.PatentService;
 import iace.service.patent.TechFieldService;
 import iace.service.qnrCooperateWay.QnrCooperateWayExcelService;
-import iace.service.qnrCooperateWay.QnrCooperateWayMeritService;
 import iace.service.qnrCooperateWay.QnrCooperateWayService;
 import iace.service.questionnaire.QnrService;
 import iace.service.questionnaire.QnrTemplateService;
@@ -81,7 +80,6 @@ public class ServiceFactory {
 	private static QnrService qnrService;
 	
 	private static QnrCooperateWayService qnrCooperateWayService;
-	private static QnrCooperateWayMeritService qnrCooperateWayMeritService;
 	private static QnrCooperateWayExcelService qnrCooperateWayExcelService;
 	
 	private static CoopExService coopExService;
@@ -323,14 +321,6 @@ public class ServiceFactory {
 			qnrCooperateWayService = new QnrCooperateWayService(DaoFactory.getQnrCooperateWayDao());
 		}
 		return qnrCooperateWayService;
-	}
-	
-	public static QnrCooperateWayMeritService getQnrCooperateWayMeritService(){
-		if (qnrCooperateWayMeritService == null) {
-			qnrCooperateWayMeritService = new QnrCooperateWayMeritService(
-					DaoFactory.getQnrCooperateWayMeritDao());
-		}
-		return qnrCooperateWayMeritService;
 	}
 	
 	public static QnrCooperateWayExcelService getQnrCooperateWayExcelService() {

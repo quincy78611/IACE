@@ -11,12 +11,12 @@
 
 		$("input[type=submit]").click(function(event) {
 			event.preventDefault();
-			if ($("input[type='radio']:checked").length != (3 + 15 + 10 + 14)) {
-				alert("尚有題目未回答!");
-				return false;
-			} else {
+			if (isFinishPart4()) {
 				$("form").submit();
 				return true;
+			} else {
+				alert("尚有題目未回答!");
+				return false;
 			}
 		});
 		
@@ -27,12 +27,12 @@
 </script>
 <script>
 	function setValueBackToRadio() {
-		var q0_1 = "<s:property value="qnrCoopereateWay.q0_1"/>";
-		$("input[name='qnrCoopereateWay.q0_1'][value="+q0_1+"]").prop("checked", true);		
-		var q0_2 = "<s:property value="qnrCoopereateWay.q0_2"/>";
-		$("input[name='qnrCoopereateWay.q0_2'][value="+q0_2+"]").prop("checked", true);		
-		var q0_3 = "<s:property value="qnrCoopereateWay.q0_3"/>";
-		$("input[name='qnrCoopereateWay.q0_3'][value="+q0_3+"]").prop("checked", true);
+// 		var q0_1 = "<s:property value="qnrCoopereateWay.q0_1"/>";
+// 		$("input[name='qnrCoopereateWay.q0_1'][value="+q0_1+"]").prop("checked", true);		
+// 		var q0_2 = "<s:property value="qnrCoopereateWay.q0_2"/>";
+// 		$("input[name='qnrCoopereateWay.q0_2'][value="+q0_2+"]").prop("checked", true);		
+// 		var q0_3 = "<s:property value="qnrCoopereateWay.q0_3"/>";
+// 		$("input[name='qnrCoopereateWay.q0_3'][value="+q0_3+"]").prop("checked", true);
 		
 		var q1_1 = "<s:property value="qnrCoopereateWay.q1_1"/>";
 		$("input[name='qnrCoopereateWay.q1_1'][value="+q1_1+"]").prop("checked", true);		
@@ -132,29 +132,64 @@
 			$("#div-part0").show();
 		});
 		$("input[type=button].goToPart1").click(function() {
-			if ($("#div-part0 input[type='radio']:checked").length != 3) {
-				alert("尚有題目未回答!");
-			} else {
+			if (isFinishPart0()) {
 				hideAllPart();
 				$("#div-part1").show();
+			} else {
+				alert("尚有題目未回答!");
 			}
 		});
 		$("input[type=button].goToPart2").click(function() {
-			if ($("#div-part1 input[type='radio']:checked").length != 15) {
-				alert("尚有題目未回答!");
-			} else {
+			if (isFinishPart1()) {
 				hideAllPart();
 				$("#div-part2").show();
+			} else {
+				alert("尚有題目未回答!");
 			}
 		});
 		$("input[type=button].goToPart3").click(function() {
-			if ($("#div-part2 input[type='radio']:checked").length != 10) {
-				alert("尚有題目未回答!");
-			} else {
+			if (isFinishPart2()) {
 				hideAllPart();
 				$("#div-part3").show();
+			} else {
+				alert("尚有題目未回答!");
 			}
 		});
+		
+		$("input[type=button].goToPart4").click(function() {
+			if (isFinishPart3()) {
+				hideAllPart();
+				$("#div-part4").show();
+			} else {
+				alert("尚有題目未回答!");
+			}
+		});
+	}
+	
+	function isFinishPart0() {
+		if ($("#div-part0 input[type='checkbox']:checked").length < 1) {
+			return false;
+		}
+		if ($("#div-part0 input[type='radio']:checked").length != 2) {
+			return false;
+		}
+		return true;
+	}
+	
+	function isFinishPart1() {
+		return $("#div-part1 input[type='radio']:checked").length == 15;
+	}
+	
+	function isFinishPart2() {
+		return $("#div-part2 input[type='radio']:checked").length == 10;
+	}
+	
+	function isFinishPart3() {
+		return $("#div-part3 input[type='radio']:checked").length == 14;
+	}
+	
+	function isFinishPart4() {
+		return $("#div-part4 input[type='radio']:checked").length == 9;
 	}
 
 	function hideAllPart() {
@@ -162,28 +197,35 @@
 		$("#div-part1").hide();
 		$("#div-part2").hide();
 		$("#div-part3").hide();
+		$("#div-part4").hide();
 	}
 </script>
 <link rel="stylesheet" type="text/css" href="<s:url value="/css/qnrCooperateWay.css"/>" />
 </head>
 <body>
-	<s:form action="fillInQnrPart0To3Submit" method="post" validate="true">
+	<s:form action="fillInQnrSubmit" method="post" validate="true">
 		<s:hidden name="schoolId" />
 		<s:hidden name="qnrCoopereateWay.aggreePDPL" />
 		<s:hidden name="qnrCoopereateWay.name" />
-		<s:hidden name="qnrCoopereateWay.applicantId" />
 		<s:hidden name="qnrCoopereateWay.email" />
 		<s:hidden name="qnrCoopereateWay.address" />
+		<s:hidden name="qnrCoopereateWay.applicantId" />
 		
 		<div id="div-part0" style="font-size: 1.15em;">
-			<img src="<s:url value="/images/qnrCooperateWayDesc.jpg"/>" style="max-width: 800px; max-height: 800px;"> <br /> <br /> <br />
+			<img src="<s:url value="/images/qnrCooperateWayDesc.jpg"/>" style="max-width: 1000px; max-height: 1000px; margin-bottom:30px;">
 			<h2 class="itemTitle Down">基本資料</h2>
 			<ul>
-				<li class="all">1. 請問您目前任職單位職稱為： <s:radio name="qnrCoopereateWay.q0_1" list="#{'1':'產學合作業務一級主管（研究發展處研發長、技術合作處技合長、產學合作處產學長或產學合作中心單位主管）', '2':'技轉中心單位主管', '3':'育成中心單位主管'}" cssClass="horizontalList"/>
+				<li class="all">
+					1. 請問您目前任職單位職稱為：
+					 <s:checkboxlist name="qnrCoopereateWay.q0_1" list="#{'1':'產學合作業務一級主管 (研究發展處研發長, 技術合作處技合長, 產學合作處產學長或產學合作中心單位主管)', '2':'技轉中心單位主管', '3':'育成中心單位主管'}" cssClass="horizontalList"/>
 				</li>
-				<li class="all">2. 請問您服務於學術界年資合計： <s:radio name="qnrCoopereateWay.q0_2" list="#{'1':'5年以下', '2':'5-10年', '3':'11-15年', '4':'16-20年', '5':'21-25年', '6':'26-30年', '7':'30年以上' }" cssClass="horizontalList"/>
+				<li class="all">
+					2. 請問您服務於學術界年資合計： 
+					<s:radio name="qnrCoopereateWay.q0_2" list="#{'1':'5年以下', '2':'5-10年', '3':'11-15年', '4':'16-20年', '5':'21-25年', '6':'26-30年', '7':'30年以上' }" cssClass="horizontalList"/>
 				</li>
-				<li class="all">3. 請問您參與產學合作活動/計畫相關資歷合計： <s:radio name="qnrCoopereateWay.q0_3" list="#{'1':'5年以下', '2':'5-10年', '3':'11-15年', '4':'16-20年', '5':'20年以上' }" cssClass="horizontalList"/>
+				<li class="all">
+					3. 請問您參與產學合作活動/計畫相關資歷合計： 
+					<s:radio name="qnrCoopereateWay.q0_3" list="#{'1':'5年以下', '2':'5-10年', '3':'11-15年', '4':'16-20年', '5':'20年以上' }" cssClass="horizontalList"/>
 				</li>
 			</ul>
 			<input type="button" class="goToPart1 redBtn" value="下一頁">
@@ -191,9 +233,9 @@
 		<div class="clear"></div>
 		
 		<div id="div-part1">
-			<h2 class="subTitle-qnrCooperateWay">《第一部份》</h2>
+			<h2 class="subTitle-qnrCooperateWay">《第一部份》學校對於推動新興特色的發展導向</h2>
 			<div class="top-desc">
-				<p>【說明】您目前服務的學校對於推動新興特色的重視程度，如產學合作、創業型大學、教學卓越大學等，請勾選適當的程度，皆為單選題。</p>
+				<p>【說明】您目前服務的學校對於推動新興特色的發展導向，如產學合作、創業型大學、教學卓越大學等，請勾選適當的程度，皆為單選題。</p>
 			</div>
 
 			<table class="table-qnrCooperateWay" id="table-part1">
@@ -381,9 +423,9 @@
 		<div class="clear"></div>
 		
 		<div id="div-part2">
-			<h2 class="subTitle-qnrCooperateWay">《第二部份》</h2>
+			<h2 class="subTitle-qnrCooperateWay">《第二部份》學校推動研究商品化活動的支援體系</h2>
 			<div class="top-desc">
-				<p>【說明】您目前服務的學校針對研發活動及產學合作提供之組織設計與管理，請勾選適當的程度，皆為單選題。</p>
+				<p>【說明】您目前服務的學校針對研發活動及產學合作提供之支援體系，請勾選適當的程度，皆為單選題。</p>
 			</div>
 			<table class="table-qnrCooperateWay" id="table-part2">
 				<tr class="text-align-center">
@@ -516,7 +558,7 @@
 		<div class="clear"></div>
 		
 		<div id="div-part3">
-			<h2 class="subTitle-qnrCooperateWay">《第三部份》</h2>
+			<h2 class="subTitle-qnrCooperateWay">《第三部份》學校針對研究商品化活動提供之相關配套措施</h2>
 			<div class="top-desc">
 				<p>【說明】您目前服務的學校為推動研究商品化活動(專利申請、產學合作、技術移轉、新創事業等)所提供之相關輔導與激勵措施，請勾選適當的程度，皆為單選題。</p>
 			</div>
@@ -688,8 +730,68 @@
 				</tr>
 			</table>
 			<input type="button" class="goToPart2 redBtn" value="上一頁">
-			<s:submit cssClass="redBtn" value="下一頁" />
+			<input type="button" class="goToPart4 redBtn" value="下一頁">
 		</div>
+		<div class="clear"></div>
+
+		<div id="div-part4">
+			<h2 class="subTitle-qnrCooperateWay">《第四部份》學校2015年度產學資源投入及產出</h2>
+			<div class="top-desc">
+				<p>【說明】請您依據貴校過去一整年度(2015年)產學合作能力表現，勾選最為符合學校能力範疇之選項，皆為單選題。</p>
+				<p>【備註】此部份問項請依您的職掌範疇進行填答：</p>
+				<p>若您目前任職產學合作業務一級主管（研究發展處研發長、技術合作處技合長、產學合作處產學長或產學合作中心單位主管）請填寫下方「問題1~9」；</p>
+				<p>若任職技轉中心單位主管請填寫下方「問題6~8」；</p>
+				<p>育成中心單位主管請填寫下方「問題9」。</p>				
+			</div>
+			
+			<div class="clear"></div>
+			<ul>
+				<li class="all">
+					1.	請問貴校參與產學相關推動業務(含產學研發中心、技轉中心、創新育成中心等或相關行政單位)之全職聘僱人員總數為：
+					<s:radio name="qnrCoopereateWay.q4_1" list="#{'1':'7人以下', '2':'8-14人', '3':'15-21人', '4':'22-28人', '5':'29人以上'}" cssClass="horizontalList"/>
+				</li>
+				<li class="all">
+					2.	請問貴校實質參與產學合作研究計畫教職人員佔全校教職人員總數比例約為：
+					<s:radio name="qnrCoopereateWay.q4_2" list="#{'1':'10%以下', '2':'11-20%', '3':'21-33%', '4':'34-50%', '5':'51%以上'}" cssClass="horizontalList"/>
+				</li>
+				<li class="all">
+					3.	請問貴校獲得政府 (科技部、經濟部、農委會等各部會)補助之產學合作計畫經費年度總額約為：
+					<s:radio name="qnrCoopereateWay.q4_3" list="#{'1':'1,000萬元以下', '2':'1,000-5,000萬元', '3':'5,000萬-1億元', '4':'1-2億元', '5':'2億元以上'}" cssClass="horizontalList"/>
+				</li>
+				<li class="all">
+					4.	請問貴校2015年度受企業委託之研究計畫(不含政府補助計畫)簽約總件數：
+					<s:radio name="qnrCoopereateWay.q4_4" list="#{'1':'20件以下', '2':'21-50件', '3':'51-100件', '4':'100-150件', '5':'150件以上'}" cssClass="horizontalList"/>
+				</li>				
+				<li class="all">
+					5.	請問貴校2015年度受企業委託之研究計畫(不含政府補助計畫)簽約總經費：
+					<s:radio name="qnrCoopereateWay.q4_5" list="#{'1':'500萬元以下', '2':'500-1,000萬元', '3':'1,000-5,000萬元', '4':'5,000萬-1億元', '5':'1億元以上'}" cssClass="horizontalList"/>
+				</li>				
+				<li class="all">
+					6.	請問貴校2015年度獲證專利總件數(含政府補助、學校自主申請之專利案件)：
+					<s:radio name="qnrCoopereateWay.q4_6" list="#{'1':'25件以下', '2':'26-50件', '3':'51-75件', '4':'76-100件', '5':'100件以上'}" cssClass="horizontalList"/>
+				</li>				
+				<li class="all">
+					7.	請問貴校2015年度技術移轉總件數(含政府補助、學校自主簽訂之產學合作計畫成果)：
+					<s:radio name="qnrCoopereateWay.q4_7" list="#{'1':'25件以下', '2':'26-50件', '3':'51-75件', '4':'76-100件', '5':'100件以上'}" cssClass="horizontalList"/>
+				</li>				
+				<li class="all">
+					8.	請問貴校2015年度技術移轉合約授權收入總額(含政府補助計畫、學校自主簽訂之產學合作計畫)：
+					<s:radio name="qnrCoopereateWay.q4_8" list="#{'1':'1,000萬元以下', '2':'1,000-5,000萬元', '3':'5,000萬-1億元', '4':'1-1.5億元', '5':'1.5億元以上'}" cssClass="horizontalList"/>
+				</li>
+				<li class="all">
+					9.	請問貴校創新育成中心進駐企業中，屬於校內師生創業的比例約為：
+					<s:radio name="qnrCoopereateWay.q4_9" list="#{'1':'10%以下', '2':'11-20%', '3':'21-33%', '4':'34-50%', '5':'51%以上'}" cssClass="horizontalList"/>
+				</li>
+			</ul>
+			
+			<div style="margin:50px 0px 20px 0px; font-size:20px; ">
+				<span>【本問卷到此結束，敬請再次確認是否有漏答，謝謝!】</span>
+			</div>
+			
+			<input type="button" class="goToPart3 redBtn" value="上一頁">
+			<s:submit cssClass="redBtn" value="完成送出" />
+		</div>
+
 	</s:form>
 </body>
 </html>

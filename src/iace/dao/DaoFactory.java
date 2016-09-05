@@ -43,9 +43,7 @@ import iace.dao.option.OptionTrlDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
 import iace.dao.qnrCooperateWay.IQnrCooperateWayDao;
-import iace.dao.qnrCooperateWay.IQnrCooperateWayMeritDao;
 import iace.dao.qnrCooperateWay.QnrCooperateWayDao;
-import iace.dao.qnrCooperateWay.QnrCooperateWayMeritDao;
 import iace.dao.questionnaire.IQnrDao;
 import iace.dao.questionnaire.IQnrTemplateDao;
 import iace.dao.questionnaire.QnrDao;
@@ -121,7 +119,6 @@ public class DaoFactory {
 	private static IQnrDao qnrDao;
 	
 	private static IQnrCooperateWayDao qnrCooperateWayDao;
-	private static IQnrCooperateWayMeritDao qnrCooperateWayMeritDao;
 	
 	private static ICoopExDao coopExDao;
 	private static ICoopExImgDao coopExImgDao;
@@ -355,13 +352,6 @@ public class DaoFactory {
 			qnrCooperateWayDao = new QnrCooperateWayDao();
 		}
 		return qnrCooperateWayDao;
-	}
-
-	public static IQnrCooperateWayMeritDao getQnrCooperateWayMeritDao() {
-		if (qnrCooperateWayMeritDao == null) {
-			qnrCooperateWayMeritDao = new QnrCooperateWayMeritDao();
-		}
-		return qnrCooperateWayMeritDao;
 	}
 
 	public static ICoopExDao getCoopExDao() {
