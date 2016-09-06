@@ -70,7 +70,6 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			row.createCell(++c).setCellValue("學校");
 			row.createCell(++c).setCellValue("同意");
 			row.createCell(++c).setCellValue("姓名");
-			row.createCell(++c).setCellValue("身分證號");
 			row.createCell(++c).setCellValue("Email");
 			row.createCell(++c).setCellValue("地址");
 			row.createCell(++c).setCellValue("Q0_1");
@@ -137,7 +136,6 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			row.createCell(++c).setCellValue(qnr.getSchool().getName());
 			row.createCell(++c).setCellValue(qnr.getAggreePDPL() ? "是" : "否");
 			row.createCell(++c).setCellValue(qnr.getName());
-			row.createCell(++c).setCellValue(qnr.getApplicantId());
 			row.createCell(++c).setCellValue(qnr.getEmail());
 			row.createCell(++c).setCellValue(qnr.getAddress());
 			row.createCell(++c).setCellValue(qnr.getQ0_1());

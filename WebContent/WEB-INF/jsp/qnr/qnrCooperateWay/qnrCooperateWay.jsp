@@ -186,7 +186,7 @@
 		var q0_1 = [false, false, false];
 		$("input[name='qnrCoopereateWay.q0_1']:checked").map(function(index){
 			q0_1[$(this).val()-1] = true;
-		);
+		});
 		
 		var numRadioNeedToCheck = 0;
 		if (q0_1[0] == true) {
@@ -201,7 +201,7 @@
 			}
 		} 
 			
-		return $("#div-part4 input[type='radio']:checked").length >= numRadioNeedToCheck;
+		return $("#div-part4 .qnrList input[type='radio']:checked").length >= numRadioNeedToCheck;
 	}
 
 	function hideAllPart() {
@@ -220,17 +220,17 @@
 				q0_1[$(this).val()-1] = true;
 			});
 
-			$("div#div-part4 input[type=radio]").attr("disabled", true);
+			$("div#div-part4 .qnrList input[type=radio]").attr("disabled", true);
 			if (q0_1[0] == true) {
-				$("div#div-part4 input[type=radio]").removeAttr("disabled");
+				$("div#div-part4 .qnrList input[type=radio]").removeAttr("disabled");
 			} 
 			if (q0_1[1] == true) {
-				$("div#div-part4 input[type=radio][name='qnrCoopereateWay.q4_6']").removeAttr("disabled");
-				$("div#div-part4 input[type=radio][name='qnrCoopereateWay.q4_7']").removeAttr("disabled");
-				$("div#div-part4 input[type=radio][name='qnrCoopereateWay.q4_8']").removeAttr("disabled");
+				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_6']").removeAttr("disabled");
+				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_7']").removeAttr("disabled");
+				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_8']").removeAttr("disabled");
 			}
 			if (q0_1[2] == true) {
-				$("div#div-part4 input[type=radio][name='qnrCoopereateWay.q4_9']").removeAttr("disabled");
+				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_9']").removeAttr("disabled");
 			}
 		});
 	}
@@ -241,10 +241,9 @@
 	<s:form action="fillInQnrSubmit" method="post" validate="true">
 		<s:hidden name="schoolId" />
 		<s:hidden name="qnrCoopereateWay.aggreePDPL" />
-		<s:hidden name="qnrCoopereateWay.name" />
-		<s:hidden name="qnrCoopereateWay.email" />
-		<s:hidden name="qnrCoopereateWay.address" />
-		<s:hidden name="qnrCoopereateWay.applicantId" />
+<%-- 		<s:hidden name="qnrCoopereateWay.name" /> --%>
+<%-- 		<s:hidden name="qnrCoopereateWay.email" /> --%>
+<%-- 		<s:hidden name="qnrCoopereateWay.address" /> --%>
 		
 		<div id="div-part0" style="font-size: 1.15em;">
 			<img src="<s:url value="/images/qnrCooperateWayDesc.jpg"/>" style="max-width: 1000px; max-height: 1000px; margin-bottom:30px;">
@@ -252,7 +251,7 @@
 			<ul>
 				<li class="all">
 					1. 請問您目前任職單位職稱為：
-					 <s:checkboxlist name="qnrCoopereateWay.q0_1" list="#{'1':'產學合作業務一級主管 (研究發展處研發長, 技術合作處技合長, 產學合作處產學長或產學合作中心單位主管)', '2':'技轉中心單位主管', '3':'育成中心單位主管'}" cssClass="horizontalList"/>
+					<s:checkboxlist name="qnrCoopereateWay.q0_1" list="#{'1':'產學合作業務一級主管 (研究發展處研發長, 技術合作處技合長, 產學合作處產學長或產學合作中心單位主管)', '2':'技轉中心單位主管', '3':'育成中心單位主管'}" cssClass="horizontalList"/>
 				</li>
 				<li class="all">
 					2. 請問您服務於學術界年資合計： 
@@ -780,7 +779,7 @@
 			</div>
 			
 			<div class="clear"></div>
-			<ul>
+			<ul class="qnrList">
 				<li class="all">
 					1.	請問貴校參與產學相關推動業務(含產學研發中心、技轉中心、創新育成中心等或相關行政單位)之全職聘僱人員總數為：
 					<s:radio name="qnrCoopereateWay.q4_1" list="#{'1':'7人以下', '2':'8-14人', '3':'15-21人', '4':'22-28人', '5':'29人以上'}" cssClass="horizontalList"/>
@@ -819,11 +818,46 @@
 				</li>
 			</ul>
 			
-			<div style="margin:50px 0px 20px 0px; font-size:20px; ">
+			<input type="button" class="goToPart3 redBtn" value="上一頁">
+			<div style="margin:20px 0px 50px 0px; font-size:20px; ">
 				<span>【本問卷到此結束，敬請再次確認是否有漏答，謝謝!】</span>
 			</div>
 			
-			<input type="button" class="goToPart3 redBtn" value="上一頁">
+			<div class="applicant-data">
+				另本計畫期望透過工業合作推動小組計畫，擬邀請國際顧問公司的講師來台對國內大專校院進行科技成果產業化推動與引進技術整備度(Technology readiness levels , TRL)概念之專業人才培訓，以協助學校推動研發成果產業化。為確認大專校院的培訓意願與提高工合計畫通過機率，展開此次調查。申請計畫通過後，參與單位無須負擔任何培訓費用。故請問貴校是否有上課意願？<br>
+				<ul>
+					<li class="all">
+						<s:radio name="qnrCoopereateWay.attendCourseWill" list="#{'1':'有意願', '2':'無意願', '3':'其他，請說明：'}" cssClass="horizontalList"/>
+						<s:textfield name="qnrCoopereateWay.attendCourseDesc"/>
+					</li>
+
+				</ul>
+			</div>
+			<div class="applicant-data">
+				<ul>
+					<s:if test="qnrCoopereateWay.aggreePDPL == true">
+						<li>
+							<label>※為方便後續進行案例研析，請留下您的大名</label> 
+						</li>
+						<li>
+							<s:textfield name="qnrCoopereateWay.name" />
+						</li>
+						<li>
+							<label>Email</label>
+						</li>
+						<li>
+							<s:textfield name="qnrCoopereateWay.email" type="email" />
+						</li>
+						<li>
+							<label>聯絡地址(寄發禮品用)</label>
+						</li>
+						<li class="half">
+							<s:textfield name="qnrCoopereateWay.address" />
+						</li>
+					</s:if>				
+				</ul>
+			</div>
+			
 			<s:submit cssClass="redBtn" value="完成送出" />
 		</div>
 

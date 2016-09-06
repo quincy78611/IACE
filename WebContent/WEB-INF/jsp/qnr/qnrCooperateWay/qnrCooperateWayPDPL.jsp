@@ -20,17 +20,14 @@
 	function hideOrShowApplicantData() {
 		if ($("input[type=checkbox][name='qnrCoopereateWay.aggreePDPL']").prop("checked")) {
 			$("#li-name").show();
-			$("#li-applicantId").show();
 			$("#li-email").show();
 			$("#li-address").show();
 		} else {
 			$("#li-name").hide();
-			$("#li-applicantId").hide();
 			$("#li-email").hide();
 			$("#li-address").hide();
 
 			$("#li-name input").val("");
-			$("#li-applicantId input").val("");
 			$("#li-email input").val("");
 			$("#li-address input").val("");
 		}
@@ -85,7 +82,6 @@
 			<ul>
 				<li class="all"><s:checkbox label="同意" name="qnrCoopereateWay.aggreePDPL" /></li>
 				<li class="quarter" id="li-name"><b>姓名</b> <s:textfield name="qnrCoopereateWay.name" /></li>
-<%-- 				<li class="quarter" id="li-applicantId"><b>身份證字號</b> <s:textfield name="qnrCoopereateWay.applicantId" /></li> --%>
 				<li class="half" id="li-email"><b>Email</b> <s:textfield name="qnrCoopereateWay.email" type="email" /></li>
 				<li class="all" id="li-address"><b>地址</b> <s:textfield name="qnrCoopereateWay.address" /></li>
 			</ul>
