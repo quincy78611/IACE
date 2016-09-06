@@ -8,6 +8,7 @@
 	$(document).ready(function() {
 		setValueBackToRadio();
 		switchPartSetting();
+		part4controlSetting();
 
 		$("input[type=submit]").click(function(event) {
 			event.preventDefault();
@@ -27,13 +28,6 @@
 </script>
 <script>
 	function setValueBackToRadio() {
-// 		var q0_1 = "<s:property value="qnrCoopereateWay.q0_1"/>";
-// 		$("input[name='qnrCoopereateWay.q0_1'][value="+q0_1+"]").prop("checked", true);		
-// 		var q0_2 = "<s:property value="qnrCoopereateWay.q0_2"/>";
-// 		$("input[name='qnrCoopereateWay.q0_2'][value="+q0_2+"]").prop("checked", true);		
-// 		var q0_3 = "<s:property value="qnrCoopereateWay.q0_3"/>";
-// 		$("input[name='qnrCoopereateWay.q0_3'][value="+q0_3+"]").prop("checked", true);
-		
 		var q1_1 = "<s:property value="qnrCoopereateWay.q1_1"/>";
 		$("input[name='qnrCoopereateWay.q1_1'][value="+q1_1+"]").prop("checked", true);		
 		var q1_2 = "<s:property value="qnrCoopereateWay.q1_2"/>";
@@ -189,7 +183,25 @@
 	}
 	
 	function isFinishPart4() {
-		return $("#div-part4 input[type='radio']:checked").length == 9;
+		var q0_1 = [false, false, false];
+		$("input[name='qnrCoopereateWay.q0_1']:checked").map(function(index){
+			q0_1[$(this).val()-1] = true;
+		);
+		
+		var numRadioNeedToCheck = 0;
+		if (q0_1[0] == true) {
+			numRadioNeedToCheck = 9;
+		}
+		else {
+			if (q0_1[1] == true) {
+				numRadioNeedToCheck += 3;
+			}
+			if (q0_1[2] == true) {
+				numRadioNeedToCheck += 1;
+			}
+		} 
+			
+		return $("#div-part4 input[type='radio']:checked").length >= numRadioNeedToCheck;
 	}
 
 	function hideAllPart() {
@@ -198,6 +210,29 @@
 		$("#div-part2").hide();
 		$("#div-part3").hide();
 		$("#div-part4").hide();
+	}
+</script>
+<script>
+	function part4controlSetting() {
+		$("input[name='qnrCoopereateWay.q0_1']").click(function() {		
+			var q0_1 = [false, false, false];
+			$("input[name='qnrCoopereateWay.q0_1']:checked").map(function(index){
+				q0_1[$(this).val()-1] = true;
+			});
+
+			$("div#div-part4 input[type=radio]").attr("disabled", true);
+			if (q0_1[0] == true) {
+				$("div#div-part4 input[type=radio]").removeAttr("disabled");
+			} 
+			if (q0_1[1] == true) {
+				$("div#div-part4 input[type=radio][name='qnrCoopereateWay.q4_6']").removeAttr("disabled");
+				$("div#div-part4 input[type=radio][name='qnrCoopereateWay.q4_7']").removeAttr("disabled");
+				$("div#div-part4 input[type=radio][name='qnrCoopereateWay.q4_8']").removeAttr("disabled");
+			}
+			if (q0_1[2] == true) {
+				$("div#div-part4 input[type=radio][name='qnrCoopereateWay.q4_9']").removeAttr("disabled");
+			}
+		});
 	}
 </script>
 <link rel="stylesheet" type="text/css" href="<s:url value="/css/qnrCooperateWay.css"/>" />
