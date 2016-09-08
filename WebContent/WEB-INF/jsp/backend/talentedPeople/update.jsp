@@ -631,11 +631,11 @@ tr.hidden-sample-tr { display:none; }
 				</li>
 				<li class="quarter">
 					<b>7.專利期間(起)</b>
-					<input type="text" class="patentPeriodStart calendarBox" maxlength="10"/>				
+					<input type="text" class="patentPeriodStart calendarBox" maxlength="10" placeholder="格式範例:2016/12/30"/>				
 				</li>
 				<li class="quarter">
 					<b>7.專利期間(迄)</b>
-					<input type="text" class="patentPeriodEnd calendarBox" maxlength="10"/>				
+					<input type="text" class="patentPeriodEnd calendarBox" maxlength="10" placeholder="格式範例:2016/12/30"/>				
 				</li>
 				<li class="all">
 					<b>8.摘要</b>

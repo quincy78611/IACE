@@ -39,7 +39,7 @@ public class TalentedPeople extends BaseEntity {
 	private String nameCh;
 	private String nameEn;
 	private String gender;
-	private int expYear;
+	private Integer expYear;
 	private String tel;
 	private String email;
 	private String workOrg;
@@ -100,11 +100,11 @@ public class TalentedPeople extends BaseEntity {
 	}
 
 	@Column(name = "EXP_YEAR")
-	public int getExpYear() {
+	public Integer getExpYear() {
 		return expYear;
 	}
 
-	public void setExpYear(int expYear) {
+	public void setExpYear(Integer expYear) {
 		this.expYear = expYear;
 	}
 
@@ -191,6 +191,13 @@ public class TalentedPeople extends BaseEntity {
 
 	public void setDomains(List<OptionGrbDomain> domains) {
 		this.domains = domains;
+	}
+	
+	public void addDomain(OptionGrbDomain domain) {
+		if (this.domains == null) {
+			this.domains = new ArrayList<OptionGrbDomain>();
+		}
+		this.domains.add(domain);
 	}
 	
 	@Transient

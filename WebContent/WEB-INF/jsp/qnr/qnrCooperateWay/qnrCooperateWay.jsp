@@ -20,9 +20,9 @@
 			}
 		});
 		
-// 		$("#table-part1 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
-// 		$("#table-part2 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
-// 		$("#table-part3 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
+		$("#table-part1 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
+		$("#table-part2 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
+		$("#table-part3 input[type=radio][value=1]").prop("checked", true); //TODO 上版前要註解掉
 		
 		pdplSetting();
 		hideOrShowApplicantData();

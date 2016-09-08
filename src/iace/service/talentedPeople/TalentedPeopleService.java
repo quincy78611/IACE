@@ -1,5 +1,7 @@
 package iace.service.talentedPeople;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,7 +9,15 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
@@ -16,6 +26,7 @@ import iace.dao.talentedPeople.ITalentedPeopleDao;
 import iace.dao.talentedPeople.ITalentedPeopleMainProjectDao;
 import iace.dao.talentedPeople.ITalentedPeopleRdResultDao;
 import iace.dao.talentedPeople.ITalentedPeopleTransferCaseDao;
+import iace.entity.BaseBatchImportResult;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.talentedPeople.TalentedPeople;
@@ -160,6 +171,91 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 				this.talentedPeopleMainProjectDao.delete(mp);
 			}
 		}
+	}
+	
+	public BaseBatchImportResult<TalentedPeople> batchImport(File file) throws IOException {
+		BaseBatchImportResult<TalentedPeople> res = new BaseBatchImportResult<TalentedPeople>();
+		Map<String, OptionGrbDomain> grbDomainMap = this.optionGrbDomainDao.mapAll();
+		
+		try (FileInputStream fis = new FileInputStream(file);){
+			XSSFWorkbook wb = new XSSFWorkbook(fis);
+			XSSFSheet sheet = wb.getSheetAt(0);
+			for (int r = 3; r <= sheet.getLastRowNum(); r++) {
+				int c = 1;
+				XSSFRow row = sheet.getRow(r);
+				XSSFCell cell;
+				try {
+					TalentedPeople entity = new TalentedPeople();
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					entity.setNameCh(cell.getStringCellValue().trim());
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					entity.setNameEn(cell.getStringCellValue().trim());
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					entity.setGender(cell.getStringCellValue().trim().equals("1") ? "男" : "女");
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					String expYearStr = cell.getStringCellValue().trim();
+					if (StringUtils.isNumeric(expYearStr)) {
+						entity.setExpYear(Integer.valueOf(expYearStr));
+					}
+					
+					
+					cell = row.getCell(++c); // 領域別 不用紀錄
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					String domainCodesStr = cell.getStringCellValue().trim().replace(";", "；");
+					String[] domainCodes = StringUtils.split(domainCodesStr, "；");
+					if (domainCodes.length > 0) {
+						for (String code : domainCodes) {
+							entity.addDomain(grbDomainMap.get(code));
+						}
+					}
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					entity.setTel(cell.getStringCellValue().trim());
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					entity.setEmail(cell.getStringCellValue().trim());
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					entity.setWorkOrg(cell.getStringCellValue().trim());
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					entity.setJob(cell.getStringCellValue().trim());
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					entity.setUrl(cell.getStringCellValue().trim());
+					
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					entity.setSpecialty(cell.getStringCellValue().trim());
+					
+					this.dao.create(entity);
+					res.addRecordToInsertList(entity);
+				} catch (Exception e) {
+					String msg = String.format("第 %d 列第 %d 欄資料有問題! %s", r+1, c+1, e.getMessage());
+					res.addErrMsg(msg);
+					log.error(msg, e);					
+				}
+			}
+		} catch (IOException e) {
+			throw e;
+		}
+		
+		return res;
 	}
 	
 }

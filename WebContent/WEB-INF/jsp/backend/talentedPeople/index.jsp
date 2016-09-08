@@ -193,8 +193,12 @@
 								<span style="color:red;"><s:property value="nameEn" /></span>
 							</td>
 							<td><s:property value="gender" /></td>
-							<td><s:property value="expYear" />年</td>
-							<td></td>
+							<td>
+								<s:if test="expYear != null">
+									<s:property value="expYear" />年
+								</s:if>	
+							</td>
+							<td><s:property value="specialty" /></td>
 														
 							<td class="col-md-1">
 								<!-- 檢視 -->

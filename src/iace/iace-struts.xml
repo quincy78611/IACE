@@ -425,7 +425,29 @@
 		<action name="deleteSubmit" class="iace.action.TalentedPeopleAction" method="deleteSubmit">
 			<result name="input">/WEB-INF/jsp/backend/talentedPeople/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/talentedPeople/index.jsp</result>
-		</action>	
+		</action>
+		<action name="batchImport" class="iace.action.TalentedPeopleAction" method="batchImport">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+		    <result name="success">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.TalentedPeopleAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.TalentedPeopleAction" method="downloadBatchSample">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 	
 	<package name="IncubationCenter" namespace="/incubationCenter" extends="struts-default, json-default, default">

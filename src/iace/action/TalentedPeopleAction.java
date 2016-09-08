@@ -1,9 +1,17 @@
 package iace.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
+
 import core.util.PagedList;
+import iace.entity.BaseBatchImportResult;
 import iace.entity.option.BaseOption;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionDomain;
@@ -33,6 +41,14 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private List<BaseOption> rdResultTypeList;
 	private List<BaseOption> yearList;
 	private List<BaseOption> monthList;
+	
+	private File uploadFile;
+	private String uploadFileContentType;
+	private String uploadFileFileName;
+	private BaseBatchImportResult<TalentedPeople> batchImportResult;
+
+	private String downloadFileName;
+	private InputStream sampleFileInputStream;
 	
 	public TalentedPeopleAction() {
 		super.setTitle("產學合作人才資料庫訪談內容");
@@ -154,6 +170,38 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		super.validateTextMaxLength(this.talentedPeople.getSpecialty(), 1000, "talentedPeople.specialty");
 	}
 	
+	public String batchImport() {
+		return SUCCESS;
+	}
+
+	public String batchImportSubmit() {
+		try {
+			this.batchImportResult = this.talentedPeopleService.batchImport(this.uploadFile);
+			if (this.batchImportResult.getErrMsgs().size() > 0) {
+				this.addActionError("部分或全部匯入資料有誤，請看下方錯誤列表");
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String downloadBatchSample() {
+		try {
+			ServletContext context = ServletActionContext.getServletContext();
+			this.downloadFileName = "產學人才資料庫基本資料_批次匯入格式.xlsx";
+			String filePath = context.getRealPath("/files/" + this.downloadFileName);
+			log.debug(filePath);
+			sampleFileInputStream = new FileInputStream(new File(filePath));
+			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
+	}
+	
 	// =========================================================================
 
 	public TalentedPeopleSearchModel getSearchCondition() {
@@ -248,6 +296,46 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			monthList.add(new BaseOption("12", "12月"));
 		}
 		return monthList;
+	}
+
+	public File getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(File uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+	public String getUploadFileContentType() {
+		return uploadFileContentType;
+	}
+
+	public void setUploadFileContentType(String uploadFileContentType) {
+		this.uploadFileContentType = uploadFileContentType;
+	}
+
+	public String getUploadFileFileName() {
+		return uploadFileFileName;
+	}
+
+	public void setUploadFileFileName(String uploadFileFileName) {
+		this.uploadFileFileName = uploadFileFileName;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public BaseBatchImportResult<TalentedPeople> getBatchImportResult() {
+		return batchImportResult;
+	}
+
+	public String getDownloadFileName() {
+		return downloadFileName;
+	}
+
+	public InputStream getSampleFileInputStream() {
+		return sampleFileInputStream;
 	}
 	
 	
