@@ -61,7 +61,13 @@ import iace.dao.sys.SysLogDao;
 import iace.dao.sys.SysRoleDao;
 import iace.dao.sys.SysUserDao;
 import iace.dao.talentedPeople.ITalentedPeopleDao;
+import iace.dao.talentedPeople.ITalentedPeopleMainProjectDao;
+import iace.dao.talentedPeople.ITalentedPeopleRdResultDao;
+import iace.dao.talentedPeople.ITalentedPeopleTransferCaseDao;
 import iace.dao.talentedPeople.TalentedPeopleDao;
+import iace.dao.talentedPeople.TalentedPeopleMainProjectDao;
+import iace.dao.talentedPeople.TalentedPeopleRdResultDao;
+import iace.dao.talentedPeople.TalentedPeopleTransferCaseDao;
 import iace.dao.techField.ITechFieldDao;
 import iace.dao.techField.TechFieldDao;
 import iace.entity.option.OptionCompanyLocation;
@@ -126,6 +132,9 @@ public class DaoFactory {
 	private static ICoopExAttachFileDao coopExAttachFileDao;
 	
 	private static ITalentedPeopleDao talentedPeopleDao;
+	private static ITalentedPeopleRdResultDao talentedPeopleRdResultDao;
+	private static ITalentedPeopleTransferCaseDao talentedPeopleTransferCaseDao;
+	private static ITalentedPeopleMainProjectDao talentedPeopleMainProjectDao;
 	
 	private static IIncubationCenterDao incubationCenterDao;
 	
@@ -387,6 +396,27 @@ public class DaoFactory {
 			talentedPeopleDao = new TalentedPeopleDao();
 		}
 		return talentedPeopleDao;
+	}
+
+	public static ITalentedPeopleRdResultDao getTalentedPeopleRdResultDao() {
+		if (talentedPeopleRdResultDao == null) {
+			talentedPeopleRdResultDao = new TalentedPeopleRdResultDao();
+		}
+		return talentedPeopleRdResultDao;
+	}
+
+	public static ITalentedPeopleTransferCaseDao getTalentedPeopleTransferCaseDao() {
+		if (talentedPeopleTransferCaseDao == null) {
+			talentedPeopleTransferCaseDao = new TalentedPeopleTransferCaseDao();
+		}
+		return talentedPeopleTransferCaseDao;
+	}
+
+	public static ITalentedPeopleMainProjectDao getTalentedPeopleMainProjectDao() {
+		if (talentedPeopleMainProjectDao == null) {
+			talentedPeopleMainProjectDao = new TalentedPeopleMainProjectDao();
+		}
+		return talentedPeopleMainProjectDao;
 	}
 
 	public static IIncubationCenterDao getIncubationCenterDao() {

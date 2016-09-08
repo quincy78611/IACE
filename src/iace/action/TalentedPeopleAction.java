@@ -1,12 +1,16 @@
 package iace.action;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import core.util.PagedList;
+import iace.entity.option.BaseOption;
+import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionDomain;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 import iace.service.ServiceFactory;
+import iace.service.option.OptionCountryService;
 import iace.service.option.OptionDomainService;
 import iace.service.talentedPeople.TalentedPeopleService;
 
@@ -16,6 +20,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 
 	private TalentedPeopleService talentedPeopleService = ServiceFactory.getTalentedPeopleService();
 	private OptionDomainService optionDomainService = ServiceFactory.getOptionDomainService();
+	private OptionCountryService optionCountryService = ServiceFactory.getOptionCountryService();
 	
 	private TalentedPeopleSearchModel searchCondition = new TalentedPeopleSearchModel();
 	private PagedList<TalentedPeople> talentedPeoplePagedList;
@@ -24,6 +29,10 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private TalentedPeople talentedPeople;
 	
 	private List<OptionDomain> mainDomainList;
+	private List<OptionCountry> countryList;
+	private List<BaseOption> rdResultTypeList;
+	private List<BaseOption> yearList;
+	private List<BaseOption> monthList;
 	
 	public TalentedPeopleAction() {
 		super.setTitle("產學合作人才資料庫訪談內容");
@@ -186,8 +195,59 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		return mainDomainList;
 	}
 
-	public void setMainDomainList(List<OptionDomain> mainDomainList) {
-		this.mainDomainList = mainDomainList;
+	public List<OptionCountry> getCountryList() {
+		if (countryList == null) {
+			countryList = this.optionCountryService.listAll();
+		}
+		return countryList;
+	}
+
+	public List<BaseOption> getRdResultTypeList() {
+		if (rdResultTypeList == null) {
+			rdResultTypeList = new ArrayList<BaseOption>();
+			rdResultTypeList.add(new BaseOption("專利獲准", "專利獲准(請填5~8)"));
+			rdResultTypeList.add(new BaseOption("專利申請中", "專利申請中(請填5,7)"));
+			rdResultTypeList.add(new BaseOption("技術/KNOW-HOW ", "技術/KNOW-HOW "));
+			rdResultTypeList.add(new BaseOption("積體電路布局", "積體電路布局"));
+			rdResultTypeList.add(new BaseOption("軟體", "軟體"));
+			rdResultTypeList.add(new BaseOption("其他", "其他"));
+		}
+		return rdResultTypeList;
+	}
+
+	public List<BaseOption> getYearList() {
+		if (yearList == null) {
+			yearList = new ArrayList<BaseOption>();
+			yearList.add(new BaseOption("2010", "2010年"));
+			yearList.add(new BaseOption("2011", "2011年"));
+			yearList.add(new BaseOption("2012", "2012年"));
+			yearList.add(new BaseOption("2013", "2013年"));
+			yearList.add(new BaseOption("2014", "2014年"));
+			yearList.add(new BaseOption("2015", "2015年"));
+			yearList.add(new BaseOption("2016", "2016年"));
+			yearList.add(new BaseOption("2017", "2017年"));
+			yearList.add(new BaseOption("2018", "2018年"));
+		}		
+		return yearList;
+	}
+
+	public List<BaseOption> getMonthList() {
+		if (monthList == null) {
+			monthList = new ArrayList<BaseOption>();
+			monthList.add(new BaseOption("1", "1月"));
+			monthList.add(new BaseOption("2", "2月"));
+			monthList.add(new BaseOption("3", "3月"));
+			monthList.add(new BaseOption("4", "4月"));
+			monthList.add(new BaseOption("5", "5月"));
+			monthList.add(new BaseOption("6", "6月"));
+			monthList.add(new BaseOption("7", "7月"));
+			monthList.add(new BaseOption("8", "8月"));
+			monthList.add(new BaseOption("9", "9月"));
+			monthList.add(new BaseOption("10", "10月"));
+			monthList.add(new BaseOption("11", "11月"));
+			monthList.add(new BaseOption("12", "12月"));
+		}
+		return monthList;
 	}
 	
 	

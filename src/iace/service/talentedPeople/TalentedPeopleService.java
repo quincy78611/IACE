@@ -6,24 +6,48 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import core.util.PagedList;
+import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionGrbDomainDao;
 import iace.dao.talentedPeople.ITalentedPeopleDao;
+import iace.dao.talentedPeople.ITalentedPeopleMainProjectDao;
+import iace.dao.talentedPeople.ITalentedPeopleRdResultDao;
+import iace.dao.talentedPeople.ITalentedPeopleTransferCaseDao;
+import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.talentedPeople.TalentedPeople;
+import iace.entity.talentedPeople.TalentedPeopleMainProject;
+import iace.entity.talentedPeople.TalentedPeopleRdResult;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
+import iace.entity.talentedPeople.TalentedPeopleTransferCase;
 import iace.service.BaseIaceService;
 
 public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 
 	private ITalentedPeopleDao talentedPeopleDao;
+	private ITalentedPeopleRdResultDao talentedPeopleRdResultDao;
+	private ITalentedPeopleTransferCaseDao talentedPeopleTransferCaseDao;
+	private ITalentedPeopleMainProjectDao talentedPeopleMainProjectDao;
 	private IOptionGrbDomainDao optionGrbDomainDao;
+	private IOptionDao<OptionCountry> optionCountryDao;
 	
-	public TalentedPeopleService(ITalentedPeopleDao dao, IOptionGrbDomainDao optionGrbDomainDao) {
+	public TalentedPeopleService(
+			ITalentedPeopleDao dao, 
+			ITalentedPeopleRdResultDao talentedPeopleRdResultDao,
+			ITalentedPeopleTransferCaseDao talentedPeopleTransferCaseDao,
+			ITalentedPeopleMainProjectDao talentedPeopleMainProjectDao,
+			IOptionGrbDomainDao optionGrbDomainDao, 
+			IOptionDao<OptionCountry> optionCountryDao) {
 		super(dao);
 		this.talentedPeopleDao = dao;
+		this.talentedPeopleRdResultDao = talentedPeopleRdResultDao;
+		this.talentedPeopleTransferCaseDao = talentedPeopleTransferCaseDao;
+		this.talentedPeopleMainProjectDao = talentedPeopleMainProjectDao;
 		this.optionGrbDomainDao = optionGrbDomainDao;
+		this.optionCountryDao = optionCountryDao;
 	}
 
 	public PagedList<TalentedPeople> searchBy(TalentedPeopleSearchModel arg) {
@@ -41,7 +65,38 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 	public void update(TalentedPeople entity) throws IOException, SQLException {
 		setHeadShot(entity);
 		setDomain(entity);
-		super.update(entity);
+		
+		for (TalentedPeopleRdResult rdResult : entity.getRdResults()) {
+			rdResult.setTalentedPeople(entity);
+			OptionCountry oc = this.optionCountryDao.get(rdResult.getOptionCountry().getId());
+			rdResult.setOptionCountry(oc);
+			if (rdResult.getId() <= 0) {
+				rdResult.create();
+			} else {
+				rdResult.update();
+			}
+		}
+		for (TalentedPeopleTransferCase transferCase : entity.getTransferCases()) {
+			transferCase.setTalentedPeople(entity);
+			if (transferCase.getId() <= 0) {
+				transferCase.create();
+			} else {
+				transferCase.update();
+			}
+		}
+		for (TalentedPeopleMainProject mainProject : entity.getMainProjects()) {
+			mainProject.setTalentedPeople(entity);
+			if (mainProject.getId() <= 0) {
+				mainProject.create();
+			} else {
+				mainProject.update();
+			}
+		}
+
+		TalentedPeople entityO = this.talentedPeopleDao.get(entity.getId());
+		deleteChildFromDb(entity, entityO);
+		
+		this.talentedPeopleDao.update(entity);
 	}
 	
 	/**
@@ -67,6 +122,44 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 			domains.add(domain);
 		}
 		entity.setDomains(domains);
+	}
+	
+	private void deleteChildFromDb(TalentedPeople entity, TalentedPeople entityO) {
+		Set<Long> rdResultIdSet = new HashSet<Long>();
+		for (TalentedPeopleRdResult rdr : entity.getRdResults()) {
+			if (rdr.getId() > 0) {
+				rdResultIdSet.add(rdr.getId());
+			}
+		}
+		for (TalentedPeopleRdResult rdr : entityO.getRdResults()) {
+			if (rdResultIdSet.contains(rdr.getId()) == false) {
+				this.talentedPeopleRdResultDao.delete(rdr);
+			}
+		}
+		
+		Set<Long> transferCaseIdSet = new HashSet<Long>();
+		for (TalentedPeopleTransferCase tc : entity.getTransferCases()) {
+			if (tc.getId() > 0) {
+				transferCaseIdSet.add(tc.getId());
+			}
+		}
+		for (TalentedPeopleTransferCase tc : entityO.getTransferCases()) {
+			if (transferCaseIdSet.contains(tc.getId()) == false) {
+				this.talentedPeopleTransferCaseDao.delete(tc);
+			}
+		}
+		
+		Set<Long> mainProjectIdSet = new HashSet<Long>();
+		for (TalentedPeopleMainProject mp : entity.getMainProjects()) {
+			if (mp.getId() > 0) {
+				mainProjectIdSet.add(mp.getId());
+			}
+		}
+		for (TalentedPeopleMainProject mp : entityO.getMainProjects()) {
+			if (mainProjectIdSet.contains(mp.getId()) == false) {
+				this.talentedPeopleMainProjectDao.delete(mp);
+			}
+		}
 	}
 	
 }

@@ -50,6 +50,9 @@ import iace.entity.sys.SysLog;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
+import iace.entity.talentedPeople.TalentedPeopleMainProject;
+import iace.entity.talentedPeople.TalentedPeopleRdResult;
+import iace.entity.talentedPeople.TalentedPeopleTransferCase;
 
 
 public class HibernateSessionFactory {
@@ -197,6 +200,9 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(CoopExAttachFile.class);
    	
     	configuration.addAnnotatedClass(TalentedPeople.class);
+    	configuration.addAnnotatedClass(TalentedPeopleRdResult.class);
+    	configuration.addAnnotatedClass(TalentedPeopleTransferCase.class);
+    	configuration.addAnnotatedClass(TalentedPeopleMainProject.class);
     	
     	configuration.addAnnotatedClass(IncubationCenter.class);
     }

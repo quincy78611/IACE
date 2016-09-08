@@ -66,7 +66,7 @@
 .rightContent a:link, a:visited { color:#066b8f; text-decoration:none;}
 .rightContent a:hover, a:active { color:#890107; text-decoration:none;} 
 
-.rightContent div.subForm {background: #c1e0ff; padding: 15px;}
+.rightContent div.subForm { background: #c1e0ff; padding: 15px; margin-bottom:30px;}
 
 .rightContent div.bottom-btn-block { width: 80%; text-align: center; margin: 40px auto 40px auto; }
 

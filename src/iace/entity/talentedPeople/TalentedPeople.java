@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -50,6 +52,13 @@ public class TalentedPeople extends BaseEntity {
 	private transient File uploadheadShot;
 	private transient String uploadheadShotContentType;
 	private transient String uploadheadShotFileName;
+	
+	private List<TalentedPeopleRdResult> rdResults = new ArrayList<TalentedPeopleRdResult>();
+	private List<TalentedPeopleTransferCase> transferCases = new ArrayList<TalentedPeopleTransferCase>();
+	private List<TalentedPeopleMainProject> mainProjects = new ArrayList<TalentedPeopleMainProject>();
+	
+	private String rewardHistory;
+	private String otherExperience;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
@@ -267,6 +276,55 @@ public class TalentedPeople extends BaseEntity {
 	@Transient 
 	public boolean hasUploadFile() {
 		return this.uploadheadShot != null && this.uploadheadShotContentType != null && this.uploadheadShotFileName != null;
+	}
+	
+	
+	@OneToMany(mappedBy = "talentedPeople", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SUBSELECT)
+	public List<TalentedPeopleRdResult> getRdResults() {
+		return rdResults;
+	}
+
+	public void setRdResults(List<TalentedPeopleRdResult> rdResults) {
+		this.rdResults = rdResults;
+	}
+
+	@OneToMany(mappedBy = "talentedPeople", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SUBSELECT)
+	public List<TalentedPeopleTransferCase> getTransferCases() {
+		return transferCases;
+	}
+
+	public void setTransferCases(List<TalentedPeopleTransferCase> transferCases) {
+		this.transferCases = transferCases;
+	}
+
+	@OneToMany(mappedBy = "talentedPeople", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+	@Fetch(FetchMode.SUBSELECT)
+	public List<TalentedPeopleMainProject> getMainProjects() {
+		return mainProjects;
+	}
+
+	public void setMainProjects(List<TalentedPeopleMainProject> mainProjects) {
+		this.mainProjects = mainProjects;
+	}
+	
+	@Column(name = "REWARD_HISTORY")
+	public String getRewardHistory() {
+		return rewardHistory;
+	}
+
+	public void setRewardHistory(String rewardHistory) {
+		this.rewardHistory = rewardHistory;
+	}
+
+	@Column(name = "OTHER_EXP")
+	public String getOtherExperience() {
+		return otherExperience;
+	}
+
+	public void setOtherExperience(String otherExperience) {
+		this.otherExperience = otherExperience;
 	}
 
 	@Override

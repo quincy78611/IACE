@@ -23,6 +23,8 @@ table.table-talentedPeopleInfo { margin-bottom:15px; }
 table.table-talentedPeopleInfo tr:hover { background:none; }
 table.table-talentedPeopleInfo td { border:none; }
 table.table-talentedPeopleInfo td.headShot { width:20%; border:#e6eff5 1px solid; }
+
+table#table-domain { margin:0px; }
 </style>
 <meta name="funcPathText" content="編輯管理 > 刪除"/>
 </head>
@@ -83,7 +85,7 @@ table.table-talentedPeopleInfo td.headShot { width:20%; border:#e6eff5 1px solid
 		<ul>
 			<li class="all">
 				<b>領域</b>
-				<table>
+				<table id="table-domain">
 					<s:iterator value="mainDomainList" status="stat">
 						<tr>
 							<td>

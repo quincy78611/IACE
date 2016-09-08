@@ -43,6 +43,8 @@ table.table-talentedPeopleInfo tr:hover { background:none; }
 table.table-talentedPeopleInfo td { border:none; }
 table.table-talentedPeopleInfo td.headShot { width:20%; border:#e6eff5 1px solid }
 input[type=file][name="talentedPeople.uploadheadShot"] { display:none }
+
+table#table-domain { margin:0px; }
 </style>
 <meta name="funcPathText" content="新增"/>
 </head>
@@ -102,7 +104,7 @@ input[type=file][name="talentedPeople.uploadheadShot"] { display:none }
 		<ul>
 			<li class="all">
 				<b>領域</b>
-				<table>
+				<table id="table-domain">
 					<s:iterator value="mainDomainList" status="stat">
 						<tr>
 							<td>

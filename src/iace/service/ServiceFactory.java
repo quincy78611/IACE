@@ -359,7 +359,11 @@ public class ServiceFactory {
 		if (talentedPeopleService == null) {
 			talentedPeopleService = new TalentedPeopleService(
 					DaoFactory.getTalentedPeopleDao(),
-					DaoFactory.getOptionGrbDomainDao());
+					DaoFactory.getTalentedPeopleRdResultDao(),
+					DaoFactory.getTalentedPeopleTransferCaseDao(),
+					DaoFactory.getTalentedPeopleMainProjectDao(),
+					DaoFactory.getOptionGrbDomainDao(),
+					DaoFactory.getOptionCountryDao());
 		}
 		return talentedPeopleService;
 	}
