@@ -108,7 +108,7 @@
 		</ul>
 		<div class="clear"></div>
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">	
-			<s:submit class="btn btn-primary redBtn" value="儲存" />
+			<s:submit class="btn btn-primary redBtn" value="刪除" />
 			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>	
 		</div>
 	</s:form>

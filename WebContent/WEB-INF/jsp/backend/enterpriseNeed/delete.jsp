@@ -387,7 +387,7 @@
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 		<s:form action="deleteSubmit" method="post" validate="true" id="form-delete">
 			<s:hidden name="id"/>
-			<s:submit class="btn btn-primary redBtn" value="確定" />
+			<s:submit class="btn btn-primary redBtn" value="刪除" />
 			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</s:form>
 	</div>

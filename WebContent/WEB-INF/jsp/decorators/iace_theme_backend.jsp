@@ -147,7 +147,7 @@
 								<li><a href="<s:url value="/coopEx/create"/>">新增</a></li>
 							</ul>
 						</li>
-						<li><a href="#">人才庫</a>
+						<li><a href="#">產學人才資料</a>
 							<ul>
 								<li><a href="<s:url value="/talentedPeople/init"/>">編輯管理</a></li>
 								<li><a href="<s:url value="/talentedPeople/create"/>">新增</a></li>
