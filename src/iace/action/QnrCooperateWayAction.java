@@ -53,7 +53,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			List<OptionSchool> schools = this.schoolService.listAll();
 			
 			String currentUrl = ServletActionContext.getRequest().getRequestURL().toString();
-			String qnrUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnrPDPL";
+			String qnrUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnr";
 			
 			XSSFWorkbook wb = this.excelService.exportQnrLinksExcel(schools, qnrUrl);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -74,7 +74,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			List<OptionSchool> schools = this.schoolService.listUnfillQnrCooperateWay();
 			
 			String currentUrl = ServletActionContext.getRequest().getRequestURL().toString();
-			String qnrUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnrPDPL";
+			String qnrUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnr";
 			
 			XSSFWorkbook wb = this.excelService.exportQnrLinksExcel(schools, qnrUrl);
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -107,7 +107,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		}
 	}
 	
-	public String fillInQnrPDPL() {
+	public String fillInQnr() {
 		try {
 			this.schoolId = Long.valueOf(AESEncrypter.decrypt(AESEncrypter.KEY, this.encryptSchoolId));	
 			return SUCCESS;
@@ -115,14 +115,6 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
-	}
-	
-	public void validateFillInQnrPDPLSubmit() {
-		validateApplicantData();
-	}
-	
-	public String fillInQnrPDPLSubmit() {
-		return SUCCESS;
 	}
 	
 	public void validateFillInQnrSubmit() {

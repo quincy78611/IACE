@@ -8,13 +8,6 @@
 	font-size: 1.15em;
 }
 
-.top-desc-old {
-	background-color: #056690;
-	color: white;
-	padding: 20px;
-	border: 1px solid
-}
-
 table.table-qnrCooperateWay th {
 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1a5cb2+0,3081dd+100 */
 	background: #1a5cb2; /* Old browsers */
@@ -48,6 +41,16 @@ table.table-qnrCooperateWay td {
 	position: relative;
 }
 
+.PDPL-detail-desc {
+	padding: 15px;
+	margin-bottom: 23px;
+	border: 1px solid transparent;
+	border-radius: 3px;
+	background-color: #EEEEEE;
+	border-color: #505050;
+	color: #000000;
+}
+
 .applicant-data {
 	overflow-y: auto;
 	padding: 15px;
@@ -56,4 +59,3 @@ table.table-qnrCooperateWay td {
 	border-color: #000000;
 	font-size: 1.15em;
 }
-.applicant-data ul li b { font-size: 1em }

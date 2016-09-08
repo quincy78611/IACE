@@ -17,7 +17,7 @@
 	<ul>
 		<li class="all">
 			<label style="font-size:16px">範例問卷連結</label><br>
-			<s:url value="fillInQnrPDPL" var="fillInQnrPart0To3UrlTag" escapeAmp="false">
+			<s:url value="fillInQnr" var="fillInQnrPart0To3UrlTag" escapeAmp="false">
 				<s:param name="encryptSchoolId" value="encryptSchoolId" />
 			</s:url>					
 			<a href="<s:property value="fillInQnrPart0To3UrlTag" />" class="qnr-link"></a>

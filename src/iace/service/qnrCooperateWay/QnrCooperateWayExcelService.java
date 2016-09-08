@@ -180,18 +180,17 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			row.createCell(++c).setCellValue(qnr.getQ3_12());
 			row.createCell(++c).setCellValue(qnr.getQ3_13());
 			row.createCell(++c).setCellValue(qnr.getQ3_14());
-			row.createCell(++c).setCellValue(qnr.getQ4_1());
-			row.createCell(++c).setCellValue(qnr.getQ4_2());
-			row.createCell(++c).setCellValue(qnr.getQ4_3());
-			row.createCell(++c).setCellValue(qnr.getQ4_4());
-			row.createCell(++c).setCellValue(qnr.getQ4_5());
-			row.createCell(++c).setCellValue(qnr.getQ4_6());
-			row.createCell(++c).setCellValue(qnr.getQ4_7());
-			row.createCell(++c).setCellValue(qnr.getQ4_8());
-			row.createCell(++c).setCellValue(qnr.getQ4_9());
 			
+			row.createCell(++c).setCellValue(qnr.getQ4_1() == null ? "" : qnr.getQ4_1().toString());
+			row.createCell(++c).setCellValue(qnr.getQ4_2() == null ? "" : qnr.getQ4_2().toString());
+			row.createCell(++c).setCellValue(qnr.getQ4_3() == null ? "" : qnr.getQ4_3().toString());
+			row.createCell(++c).setCellValue(qnr.getQ4_4() == null ? "" : qnr.getQ4_4().toString());
+			row.createCell(++c).setCellValue(qnr.getQ4_5() == null ? "" : qnr.getQ4_5().toString());
+			row.createCell(++c).setCellValue(qnr.getQ4_6() == null ? "" : qnr.getQ4_6().toString());
+			row.createCell(++c).setCellValue(qnr.getQ4_7() == null ? "" : qnr.getQ4_7().toString());
+			row.createCell(++c).setCellValue(qnr.getQ4_8() == null ? "" : qnr.getQ4_8().toString());
+			row.createCell(++c).setCellValue(qnr.getQ4_9() == null ? "" : qnr.getQ4_9().toString());
 		}
-		
 		
 		for (int i=0; i<=c; i++) {
 			sheet.autoSizeColumn(i);

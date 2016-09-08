@@ -290,11 +290,7 @@
 				<param name="bufferSize">1024</param>
 			</result>	
 		</action>
-		<action name="fillInQnrPDPL" class="iace.action.QnrCooperateWayAction" method="fillInQnrPDPL">
-			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayPDPL.jsp</result>
-		</action>
-		<action name="fillInQnrPDPLSubmit" class="iace.action.QnrCooperateWayAction" method="fillInQnrPDPLSubmit">
-			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayPDPL.jsp</result>
+		<action name="fillInQnr" class="iace.action.QnrCooperateWayAction" method="fillInQnr">
 			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
 		</action>
 		<action name="fillInQnrSubmit" class="iace.action.QnrCooperateWayAction" method="fillInQnrSubmit">
