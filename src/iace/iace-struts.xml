@@ -40,7 +40,29 @@
 		</action>
 		<action name="deleteTechnologySubmit" class="iace.action.ResearchPlanAction" method="deleteTechnologySubmit">
 			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>
-		</action>	
+		</action>
+		<action name="batchImport" class="iace.action.ResearchPlanAction" method="batchImport">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+		    <result name="success">/WEB-INF/jsp/backend/researchPlan/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.ResearchPlanAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/researchPlan/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/researchPlan/batchImport.jsp</result>
+		</action>		
+		<action name="downloadBatchSample" class="iace.action.ResearchPlanAction" method="downloadBatchSample">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>		
 	</package>
 	
 	<package name="Patent" namespace="/patent" extends="struts-default, default">
@@ -101,7 +123,29 @@
 				<param name="contentDisposition">attachment;filename="${reportFileName}"</param>
 				<param name="bufferSize">1024</param>
 			</result>	
+		</action>
+		<action name="batchImport" class="iace.action.PatentAction" method="batchImport">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+		    <result name="success">/WEB-INF/jsp/backend/patent/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.PatentAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/patent/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/patent/batchImport.jsp</result>
 		</action>		
+		<action name="downloadBatchSample" class="iace.action.PatentAction" method="downloadBatchSample">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">sampleFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>	
+		</action>			
 	</package>
 	
 	<package name="consulting" namespace="/consulting" extends="struts-default, default">
@@ -142,50 +186,7 @@
 			<result name="success">/WEB-INF/jsp/backend/consulting/index.jsp</result>
 		</action>		
 	</package>
-	
-	<package name="batchImport" namespace="/batchImport" extends="struts-default, default">
-		<default-interceptor-ref name="iaceBackEnd"/>
-		<action name="init" class="iace.action.BatchImportAction">
-			<result>/WEB-INF/jsp/backend/batchImport/index.jsp</result>
-		</action>
-		<action name="batchImportResearchPlan" class="iace.action.BatchImportAction" method="batchImportResearchPlan">
-			<interceptor-ref name="iaceBackEnd"/>
-		    <interceptor-ref name="fileUpload">                
-<!--                 <param name="allowedTypes"> -->
-<!--                 	application/ms-excel, -->
-<!--                 	application/vnd.ms-excel, -->
-<!--                 	application/vnd.openxmlformats-officedocument.spreadsheetml.sheet -->
-<!--                 </param> -->
-            </interceptor-ref> 
-            <interceptor-ref name="defaultStack"></interceptor-ref>
-		    
-		    <result name="success">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
-		    <result name="input">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
-		</action>
-		<action name="downloadResearchPlanBatchSample" class="iace.action.BatchImportAction" method="downloadResearchPlanBatchSample">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">sampleFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>	
-		</action>
-		<action name="batchImportPatent" class="iace.action.BatchImportAction" method="batchImportPatent">
-			<interceptor-ref name="iaceBackEnd"/>
-		    <interceptor-ref name="fileUpload"/>                
-		    
-		    <result name="success">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
-		    <result name="input">/WEB-INF/jsp/backend/batchImport/index.jsp</result>
-		</action>
-		<action name="downloadPatentBatchSample" class="iace.action.BatchImportAction" method="downloadPatentBatchSample">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">sampleFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>	
-		</action>		
-	</package>
+
 	
 	<package name="qnrTemplate" namespace="/qnrTemplate" extends="struts-default,json-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>

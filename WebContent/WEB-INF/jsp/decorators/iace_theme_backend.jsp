@@ -119,14 +119,14 @@
 						<li><a href="#">研發成果</a>
 							<ul>
 								<li><a href="<s:url value="/researchPlan/init"/>">編輯管理</a></li>
-								<li><a href="<s:url value="/batchImport/init"/>">批次匯入</a></li>
+								<li><a href="<s:url value="/researchPlan/batchImport"/>">批次匯入</a></li>
 							</ul>
 						</li>
 						<li><a href="#">專利資料</a>
 							<ul>
 								<li><a href="<s:url value="/patent/init"/>">編輯管理</a></li>
 								<li><a href="<s:url value="/patent/create"/>">新增</a></li>
-								<li><a href="<s:url value="/batchImport/init"/>">批次匯入</a></li>
+								<li><a href="<s:url value="/patent/batchImport"/>">批次匯入</a></li>
 							</ul>
 						</li>
 						<li><a href="#">諮詢服務表</a>

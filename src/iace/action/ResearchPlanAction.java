@@ -1,8 +1,15 @@
 package iace.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
 
 import core.util.PagedList;
 import iace.entity.option.OptionGrbDomain;
@@ -13,6 +20,7 @@ import iace.entity.researchPlan.Technology;
 import iace.service.ServiceFactory;
 import iace.service.option.OptionGrbDomainService;
 import iace.service.option.OptionTrlService;
+import iace.service.researchPlan.ResearchPlanExcelService;
 import iace.service.researchPlan.ResearchPlanService;
 import iace.service.researchPlan.TechnologyService;
 
@@ -21,6 +29,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 	private static final long serialVersionUID = 1798627207055671857L;
 	
 	private ResearchPlanService researchPlanService = ServiceFactory.getResearchPlanService();
+	private ResearchPlanExcelService researchPlanExcelService = ServiceFactory.getResearchPlanExcelService();
 	private TechnologyService technologyService = ServiceFactory.getTechnologyService();
 	private OptionGrbDomainService optionGrbDomainService = ServiceFactory.getOptionGrbDomainService();
 	private OptionTrlService optionTrlService = ServiceFactory.getOptionTrlService();
@@ -37,6 +46,13 @@ public class ResearchPlanAction extends BaseIaceAction {
 	private Technology technology;
 	
 	private Map<String, Object> ajaxResult;
+	
+	private File uploadFile;
+	private String uploadFileContentType;
+	private String uploadFileFileName;
+	
+	private String downloadFileName;
+	private InputStream sampleFileInputStream;
 	
 	public ResearchPlanAction() {
 		super.setTitle("研發成果");
@@ -261,6 +277,46 @@ public class ResearchPlanAction extends BaseIaceAction {
 		}
 	}
 	
+	public String batchImport() {
+		return SUCCESS;
+	}
+	
+	public String batchImportSubmit() {
+		try {
+			List<ResearchPlan> entities = this.researchPlanExcelService.excelToResearchPlans(this.uploadFile);
+			List<String> errMsgs = this.researchPlanService.createAll(entities);
+			if (errMsgs.size() > 0) {
+				super.addActionError("----- 匯入檔案中含有下列錯誤，批次匯入失敗，請修正後重新上傳 -----");
+				for (String errMsg : errMsgs) {
+					super.addActionError(errMsg);
+				}
+				return INPUT;
+			} else {
+				super.addActionMessage("成功新增"+entities.size()+"筆研究計畫資料");
+				return SUCCESS;
+			}
+		} catch (Exception e) {
+			log.error("", e);
+			super.addActionError(e.getMessage());
+			return INPUT;
+		}
+	}
+	
+	public String downloadBatchSample() {
+		try {
+			ServletContext context = ServletActionContext.getServletContext();
+			this.downloadFileName = "技術資料匯入_sample.xlsx";
+			String filePath = context.getRealPath("/files/"+this.downloadFileName);
+			log.debug(filePath);
+			sampleFileInputStream = new FileInputStream(new File(filePath));
+			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
+			return SUCCESS;
+		} catch (Exception e) {
+			log.error("", e);
+			return ERROR;
+		}
+	}
+	
 	//==========================================================================
 
 	public ResearchPlanSearchModel getSearchCondition() {
@@ -325,6 +381,38 @@ public class ResearchPlanAction extends BaseIaceAction {
 
 	public void setAjaxResult(Map<String, Object> ajaxResult) {
 		this.ajaxResult = ajaxResult;
+	}
+
+	public File getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(File uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+	public String getUploadFileContentType() {
+		return uploadFileContentType;
+	}
+
+	public void setUploadFileContentType(String uploadFileContentType) {
+		this.uploadFileContentType = uploadFileContentType;
+	}
+
+	public String getUploadFileFileName() {
+		return uploadFileFileName;
+	}
+
+	public void setUploadFileFileName(String uploadFileFileName) {
+		this.uploadFileFileName = uploadFileFileName;
+	}
+
+	public String getDownloadFileName() {
+		return downloadFileName;
+	}
+
+	public InputStream getSampleFileInputStream() {
+		return sampleFileInputStream;
 	}
 	
 	
