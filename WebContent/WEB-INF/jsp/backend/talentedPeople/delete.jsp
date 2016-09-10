@@ -125,9 +125,12 @@ table#table-domain { margin:0px; }
 	<form action="index" method="post" id="form-backToIndex">
 		<s:hidden name="searchCondition.name"/>
 		<s:hidden name="searchCondition.gender"/>
-		<s:hidden name="searchCondition.expYear"/>
-		<s:hidden name="searchCondition.tel"/>
-		<s:hidden name="searchCondition.email"/>
+		<s:hidden name="searchCondition.expYearS"/>
+		<s:hidden name="searchCondition.expYearE"/>
+		<s:hidden name="searchCondition.workOrg"/>
+		<s:hidden name="searchCondition.job"/>
+		<s:hidden name="searchCondition.specialty"/>
+		<s:hidden name="searchCondition.grbDomainIdList"/>
 		<s:hidden name="searchCondition.pageIndex"/>
 		<s:hidden name="searchCondition.pageSize"/>
 	</form>

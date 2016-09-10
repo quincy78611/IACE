@@ -8,6 +8,7 @@
 	$(document).ready(function () {			
 		paggingSetting();
 		funcBtnSetting();
+		dropDownBoxSetting();
 	});
 </script>
 <script>
@@ -100,10 +101,38 @@
 		$("#btn-reset").click(function(){
 			$("input.form-control:text").val("");
 			$("select").prop('selectedIndex', 0);
+			$("input[type=checkbox]").prop("checked", false);
 		});
 	}
 </script>
-<meta name="funcPathText" content="編輯管理 "/>
+<script>
+	function dropDownBoxSetting() {
+		$(".dropDownBox").mouseleave(function(){
+	    	$(this).css("display","none")
+	        expanded = false;
+	    });
+	}
+
+	var expanded = false;
+    function showDropDownBox() {
+    	if (!expanded) {
+    		$(".dropDownBox").css("display","block")
+            expanded = true;
+        } else {
+        	$(".dropDownBox").css("display","none")
+            expanded = false;
+        }
+    }
+</script>
+<style>
+.selectBox { position: relative; width: 100%; }
+.overSelect { position: absolute; left: 0; right: 13px; top: 0; bottom: 0; }
+.dropDownBox { width:30%; background-color:rgba(255, 255, 255, 1.0) ; display:none; border:#e6eff5 1px solid; position:absolute; }
+.dropDownBox label { display: block; font-size: 0.7em; }
+.dropDownBox label:hover { background-color: #1e90ff; color:#ffffff; }
+.dropDownBox li { margin:0; padding:0;}
+</style>
+<meta name="funcPathText" content="編輯管理 " />
 </head>
 <body>
 	<s:form action="index" method="post" validate="true" >
@@ -112,21 +141,48 @@
 				<li class="quarter">
 					<s:textfield placeholder="姓名" name="searchCondition.name" maxlength="100" />
 				</li>
-				<li class="eighth">
+				<li class="quarter">
 					<s:select name="searchCondition.gender" list="#{ '男':'男', '女':'女' }" headerKey="" headerValue="選擇性別"/>
 				</li>
-				<li class="eighth">
-					<s:textfield placeholder="產學經驗(年)" name="searchCondition.expYear" maxlength="3" />
+				<li class="quarter">
+					<s:textfield placeholder="產學經驗(起)" name="searchCondition.expYearS" maxlength="3" />
 				</li>
 				<li class="quarter">
-					<s:textfield placeholder="電話" name="searchCondition.tel" maxlength="20" />
+					<s:textfield placeholder="產學經驗(迄)" name="searchCondition.expYearE" maxlength="3" />
+				</li>				
+				<li class="quarter">
+					<s:textfield placeholder="現職單位" name="searchCondition.workOrg" maxlength="100" />
 				</li>
+				<li class="quarter">
+					<div class="multiselect">
+				        <div class="selectBox" onclick="showDropDownBox()">
+				            <select><option>選擇領域</option></select>
+				            <div class="overSelect"></div>
+				        </div>
+				        <div class="dropDownBox">							
+							<ul>
+								<s:iterator value="mainDomainList" status="stat">
+									<li class="all"><b><s:property value="name"/></b></li>
+									<s:iterator value="subDomainList" status="stat">
+									<li class="third">
+										<s:checkbox id="%{'chkbox_'+id}" label="%{name}" name="searchCondition.grbDomainIdList" value="%{searchCondition.grbDomainIdList.contains(id)}" fieldValue="%{id}"/>  
+									</li>
+									</s:iterator>
+								</s:iterator>										
+							</ul>
+				        </div>
+				    </div>
+				</li>
+				<li class="quarter">
+					<s:textfield placeholder="合作專長" name="searchCondition.specialty" maxlength="1000" />
+				</li>				
 				<li class="quarter">
 					<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
 					<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
 				</li>
 			</ul>
 		</div>
+		<div class="clear"></div>
 
 		<div class="page">
 			<s:set var="pgList" value="talentedPeoplePagedList"/>
@@ -170,13 +226,14 @@
 		<div class="">
 			<table>
 				<tr>
-					<th nowrap width="2%">No.</th>
-					<th nowrap width="10%">照片</th>
-					<th nowrap width="10%">姓名</th>
+					<th nowrap width="3%">No.</th>
+<!-- 					<th nowrap width="10%">照片</th> -->
+					<th nowrap width="15%">姓名</th>
 					<th nowrap width="3%">性別</th>
-					<th nowrap width="5%">產學經驗</th>
+					<th nowrap width="">現職單位</th>
+					<th nowrap width="">現職職位</th>
 					<th nowrap width="">合作專長</th>
-					<th nowrap width="5%">功能</th>
+					<th nowrap width="8%">功能</th>
 				</tr>
 				<s:if test="talentedPeoplePagedList != null">
 					<s:iterator value="talentedPeoplePagedList.list" status="stat">
@@ -185,19 +242,19 @@
 								<s:property value="%{talentedPeoplePagedList.itemStart + #stat.count -1}" />
 								<%-- <s:property value="id" /> --%>
 							</td>
+<!-- 							<td> -->
+<%-- 								<img src="data:image;base64,<s:property value="base64HeadShot"/>" style="max-width:100px; max-height:100px;" /> --%>
+<!-- 							</td> -->
 							<td>
-								<img src="data:image;base64,<s:property value="base64HeadShot"/>" style="max-width:100px; max-height:100px;" />
-							</td>						
-							<td>
-								<s:property value="nameCh" />
-								<span style="color:red;"><s:property value="nameEn" /></span>
+								<span style="font-weight:bold;">
+									<s:property value="nameCh" />
+								</span>
+								<br>
+								<s:property value="nameEn" />
 							</td>
 							<td><s:property value="gender" /></td>
-							<td>
-								<s:if test="expYear != null">
-									<s:property value="expYear" />年
-								</s:if>	
-							</td>
+							<td><s:property value="workOrg" /></td>
+							<td><s:property value="job" /></td>
 							<td><s:property value="specialty" /></td>
 														
 							<td class="col-md-1">
@@ -206,21 +263,21 @@
 									<s:param name="id" value="id" />
 								</s:url>
 								<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-view" value="檢視" />	
+								<input type="button" class="btn-func btn-view" value="檢視" />	
 									
 								<!-- 編輯 -->
 								<s:url value="update.action" var="updateUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
 								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />	
+								<input type="button" class="btn-func btn-edit" value="編輯" />	
 									
 								<!-- 刪除 -->	
 								<s:url value="delete.action" var="deleteUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
 								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-del" value="刪除" />	
+								<input type="button" class="btn-func btn-del" value="刪除" />	
 							</td>
 						</tr>
 					</s:iterator>

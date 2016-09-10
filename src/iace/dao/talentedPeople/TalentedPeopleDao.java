@@ -11,6 +11,7 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 
 import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
@@ -54,7 +55,9 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(TalentedPeople.class);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.setProjection(Projections.rowCount());
+//			criteria.setProjection(Projections.rowCount());
+			criteria.setProjection(Projections.countDistinct("id")); // when using rowCount() and there are more than one child entities, then it will return the number of child entities instead of only count main entity
+
 			Object count = criteria.uniqueResult();
 			return (long) count;
 		} catch (Exception e) {
@@ -74,16 +77,31 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 		if (StringUtils.isNotBlank(arg.getGender())) {
 			criteria.add(Restrictions.eq("gender", arg.getGender()));
 		}
-		if (arg.getExpYear() != null) {
-			criteria.add(Restrictions.eq("expYear", arg.getExpYear()));
-		}		
-		if (StringUtils.isNotBlank(arg.getTel())) {
-			criteria.add(Restrictions.like("tel", arg.getTel(), MatchMode.START));
+		if (arg.getExpYearS() != null) {
+			criteria.add(Restrictions.ge("expYear", arg.getExpYearS()));
 		}
-		if (StringUtils.isNotBlank(arg.getEmail())) {
-			criteria.add(Restrictions.like("email", arg.getEmail(), MatchMode.START));
-		}		
+		if (arg.getExpYearE() != null) {
+			criteria.add(Restrictions.le("expYear", arg.getExpYearE()));
+		}
+		if (StringUtils.isNotBlank(arg.getWorkOrg())) {
+			criteria.add(Restrictions.like("workOrg", arg.getWorkOrg(), MatchMode.ANYWHERE));
+		}
+		if (StringUtils.isNotBlank(arg.getJob())) {
+			criteria.add(Restrictions.like("job", arg.getJob(), MatchMode.ANYWHERE));
+		}
+		if (StringUtils.isNotBlank(arg.getSpecialty())) {
+			criteria.add(Restrictions.like("specialty", arg.getSpecialty(), MatchMode.ANYWHERE));
+		}
+		
+		if (arg.getGrbDomainIdList() != null && arg.getGrbDomainIdList().size() > 0) {
+			Criteria subCriteria = criteria.createCriteria("domains", JoinType.INNER_JOIN);
+			if (arg.getGrbDomainIdList() != null) {
+				subCriteria.add(Restrictions.in("id", arg.getGrbDomainIdList()));
+			}
+		}
+		
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY); // IMPORTANT: without this line, it might return duplicate entities when main entity(ResearchPlan) has more than one child entity(Technology)
 	}
 
 	@Override

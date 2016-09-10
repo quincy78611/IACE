@@ -76,7 +76,11 @@ public class HibernateSessionFactory {
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
             		.applySettings(configuration.getProperties()).build();
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-        } catch (Exception e) {  
+            if (sessionFactory == null) {
+            	throw new NullPointerException("sessionFactory is null!");
+            }
+        } catch (Exception e) {
+        	e.printStackTrace();
             System.err.println("%%%% Error Creating SessionFactory %%%%"); 
         }  
     }
