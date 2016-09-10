@@ -64,7 +64,7 @@
 			</li>			
 			<li class="all">
 				<b>內容</b>
-				<s:textarea name="coopEx.content" rows="10" readonly="true"/>
+				<s:textarea name="coopEx.content" rows="10" disabled="true"/>
 			</li>				
 		</ul>
 		<br>
@@ -88,7 +88,7 @@
 								<s:property value="fileName"/>
 							</li>
 							<li class="all">
-								<s:textarea name="fileDesc" placeholder="無檔案說明" readonly="true"/>
+								<s:textarea name="fileDesc" placeholder="無檔案說明" disabled="true"/>
 							</li>
 						</ul>
 					</td>
@@ -123,7 +123,7 @@
 								<s:property value="fileName"/>
 							</li>
 							<li class="all">
-								<s:textarea name="fileDesc" placeholder="無檔案說明" readonly="true"/>
+								<s:textarea name="fileDesc" placeholder="無檔案說明" disabled="true"/>
 							</li>
 						</ul>
 					</td>
@@ -153,7 +153,7 @@
 								</a>
 							</li>
 							<li class="all">
-								<s:textarea name="fileDesc" placeholder="無檔案說明" readonly="true"/>
+								<s:textarea name="fileDesc" placeholder="無檔案說明" disabled="true"/>
 							</li>
 						</ul>
 					</td>
