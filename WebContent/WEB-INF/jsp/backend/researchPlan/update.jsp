@@ -229,7 +229,7 @@
 				</li>			
 			</ul>
 			
-			<s:submit cssClass="redBtn" value="儲存" id="createTechnologySubmitButton"/>
+			<s:submit cssClass="redBtn" value="送出" id="createTechnologySubmitButton"/>
 			<input type="button" class="grayBtn btn-cancel" value="取消"/>
 		</s:form>
 	</div>

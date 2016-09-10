@@ -395,7 +395,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 		
 		<div class="clear"></div>
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-			<s:submit cssClass="redBtn" value="送出" />
+			<s:submit cssClass="redBtn" value="儲存" />
 			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</div>		
 	</s:form>	

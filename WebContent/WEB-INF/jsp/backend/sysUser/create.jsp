@@ -33,7 +33,7 @@
 		
 		<div class="clear"></div>
 		
-		<s:submit cssClass="btn btn-default redBtn" value="儲存" />	
+		<s:submit cssClass="btn btn-default redBtn" value="送出" />
 		<input type="button" class="grayBtn" value="回上一頁" onclick="window.location.href='<s:url value="index"/>'" />
 	</s:form>
 </body>

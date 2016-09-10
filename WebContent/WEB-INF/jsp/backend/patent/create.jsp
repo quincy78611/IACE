@@ -114,7 +114,7 @@
 		</ul>
 		<div class="clear"></div>
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-			<s:submit cssClass="redBtn" value="儲存" />	
+			<s:submit cssClass="redBtn" value="送出" />	
 		</div>		
 	</s:form>
 	

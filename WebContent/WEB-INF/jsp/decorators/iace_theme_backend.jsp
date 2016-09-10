@@ -154,7 +154,7 @@
 								<li><a href="<s:url value="/talentedPeople/batchImport"/>">批次匯入</a></li>
 							</ul>
 						</li>
-						<li><a href="#">機構</a>
+						<li><a href="#">育成中心</a>
 							<ul>
 								<li><a href="<s:url value="/incubationCenter/init"/>">編輯管理</a></li>
 								<s:if test="#session.sysUser.sysRole.name == '系統開發人員'">
@@ -165,7 +165,7 @@
 						<li><a href="#">代碼管理</a>
 							<ul>
 						        <li><a href="<s:url value="/option/companyLocation/index"/>">公司地域別</a></li>
-						        <li><a href="<s:url value="/option/consult/index"/>">諮詢類型代</a></li>
+						        <li><a href="<s:url value="/option/consult/index"/>">諮詢類型</a></li>
 						        <li><a href="<s:url value="/option/cooperateMode/index"/>">合作模式</a></li>
 						    	<li><a href="<s:url value="/option/country/index"/>">專利國別</a></li>
 						        <li><a href="<s:url value="/option/grbDomain/index"/>">GRB領域別</a></li>

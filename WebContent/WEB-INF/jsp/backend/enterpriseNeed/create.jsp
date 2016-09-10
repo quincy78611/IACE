@@ -436,7 +436,7 @@
 		</table>		
 		
 		<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-			<input type="submit" value="儲存" class="redBtn"/>
+			<input type="submit" value="送出" class="redBtn"/>
 		</div>	
 	</s:form>	
 </body>
