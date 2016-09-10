@@ -68,11 +68,11 @@
 		<ul>
 			<li class="half">
 				<b>姓名</b>
-				<s:textfield name="consulting.name" class="form-control" />
+				<s:textfield name="consulting.name" maxlength="100"/>
 			</li>
 			<li class="half">
 				<b>單位名稱</b>
-				<s:textfield name="consulting.organization" class="form-control" />
+				<s:textfield name="consulting.organization" maxlength="500" />
 			</li>
 			<li class="half">
 				<b>單位類型</b>
@@ -80,7 +80,7 @@
 			</li>
 			<li class="half">
 				<b>單位類型(其他)</b>
-				<s:textfield name="consulting.orgTypeOther" disabled="true" class="form-control orgType" />
+				<s:textfield name="consulting.orgTypeOther" disabled="true" class="orgType" maxlength="500"/>
 			</li>
 			<li class="half">
 				<b>諮詢類型</b>
@@ -88,7 +88,7 @@
 			</li>
 			<li class="half">
 				<b>諮詢類型(其他)</b>
-				<s:textfield name="consulting.consultTypeOther" disabled="true" class="form-control consult" />
+				<s:textfield name="consulting.consultTypeOther" disabled="true" class="consult" maxlength="500"/>
 			</li>
 			<li class="half">
 				<b>產業/領域別</b>
@@ -96,19 +96,19 @@
 			</li>
 			<li class="half">
 				<b>產業/領域別(其他)</b>
-				<s:textfield name="consulting.industryOther" disabled="true" class="form-control industry" />
+				<s:textfield name="consulting.industryOther" disabled="true" class="industry" maxlength="500"/>
 			</li>
 			<li class="quarter">
 				<b>聯絡電話</b>
-				<s:textfield name="consulting.phone" class="form-control" />	
+				<s:textfield name="consulting.phone" maxlength="100" />	
 			</li>
 			<li class="half">
 				<b>E-MAIL</b>
-				<s:textfield name="consulting.email" class="form-control" />		
+				<s:textfield name="consulting.email" maxlength="100" />		
 			</li>
 			<li class="quarter">
 				<b>諮詢日期</b>
-				<s:textfield name="consulting.consultDate" cssClass="form-control calendarBox" >			
+				<s:textfield name="consulting.consultDate" cssClass="calendarBox" maxlength="10">			
 					<s:param name="value">
 						<s:date name="consulting.consultDate" format="yyyy/MM/dd" /> 
 					</s:param>
@@ -116,7 +116,7 @@
 			</li>
 			<li class="all">
 				<b>內容說明</b>
-				<s:textarea name="consulting.content" cssClass="form-control"/>
+				<s:textarea name="consulting.content" />
 			</li>		
 			<li class="all">
 				<s:checkbox label="同意【個人資料蒐集、處理及利用之告知暨同意條款】" name="consulting.approvalCheckBox"/>
