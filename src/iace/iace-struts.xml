@@ -141,11 +141,21 @@
 			
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">sampleFileInputStream</param>
+				<param name="inputName">downloadFileInputStream</param>
 				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
 				<param name="bufferSize">1024</param>
-			</result>	
-		</action>			
+			</result>
+		</action>
+		<action name="exportRawData" class="iace.action.PatentAction" method="exportRawData">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="consulting" namespace="/consulting" extends="struts-default, default">

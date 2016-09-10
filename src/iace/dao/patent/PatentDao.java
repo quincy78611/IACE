@@ -51,6 +51,24 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 	}
 	
 	@Override
+	public List<Patent> listAll(PatentSearchModel model) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Patent.class);
+			addCriteriaRestrictionsForSearch(model, criteria);
+			criteria.addOrder(Order.asc("id"));
+			
+			@SuppressWarnings("unchecked")
+			List<Patent> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Override
 	public PagedList<Patent> searchBy(PatentSearchModel model) {
 		long totalItemCount = queryTotalRecordsCount(model);
 		PagedList<Patent> results = new PagedList<Patent>(totalItemCount, model.getPageSize(), model.getPageIndex());

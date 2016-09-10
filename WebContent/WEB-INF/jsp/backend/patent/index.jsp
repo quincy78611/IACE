@@ -12,6 +12,13 @@
 </script>
 <script>
 	function funcBtnSetting() {
+		$(".btn-export").click(function(){
+			var url = '<s:url value="exportRawData.action" />';
+			$("form").attr('action', url);
+			$("form").submit();
+			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+		});
+		
 		$(".btn-view").click(function() {
 			var url = $(this).siblings(".detailUrl").val();
 			$("form").attr('action', url);
@@ -29,7 +36,7 @@
 			$("form").attr('action', url);
 			$("form").submit();
 			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
-		});		
+		});
 	}
 </script>
 <script>	
@@ -178,6 +185,9 @@
 			</ul>
 		</div>
 
+		<div style="float:right;">
+			<input type="button" class="btn-func btn-export" value="匯出" />	
+		</div>
 		<div class="">
 			<table>
 				<tr>
@@ -230,11 +240,11 @@
 								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
 								<input type="button" class="btn-info btn-func btn-del" value="刪除" />
 								
-								<!-- 報表 -->
+								<!-- 列印 -->
 								<s:url value="printReport.action" var="printReportUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
-								<input type="button" class="btn-info btn-func btn-print" value="報表" 
+								<input type="button" class="btn-info btn-func btn-print" value="列印" 
 									onclick="window.location.href='<s:property value="#printReportUrlTag"/>'"/>	
 							</td>
 						</tr>

@@ -20,11 +20,15 @@ import javax.servlet.ServletContext;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import org.hibernate.internal.SessionImpl;
 
 import core.dao.HibernateSessionFactory;
+import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.dao.patent.IPatentDao;
@@ -245,5 +249,67 @@ public class PatentService extends BaseIaceService<Patent> {
 		JasperRunManager.runReportToPdfStream(fis, os, parameters, conn);
 		return new ByteArrayInputStream(os.toByteArray());
 	}
+	
+	public XSSFWorkbook exportRawData(PatentSearchModel model) {
+		List<Patent> patentList = this.patentDao.listAll(model);
+		
+		XSSFWorkbook wb = new XSSFWorkbook();
+		XSSFSheet sheet = wb.createSheet();
+		int r = -1;
+		int c = -1;
+		XSSFRow row = null;
+		
+		{//title row
+			row = sheet.createRow(++r);
+			row.createCell(++c).setCellValue("名稱");
+			row.createCell(++c).setCellValue("專利權人");
+			row.createCell(++c).setCellValue("發明人");
+			row.createCell(++c).setCellValue("申請國別");
+			row.createCell(++c).setCellValue("申請號");
+			row.createCell(++c).setCellValue("申請日");
+			row.createCell(++c).setCellValue("公開號");
+			row.createCell(++c).setCellValue("公開日");
+			row.createCell(++c).setCellValue("公告號");
+			row.createCell(++c).setCellValue("公告日");
+			row.createCell(++c).setCellValue("專利類別");
+			row.createCell(++c).setCellValue("專利狀態");
+			row.createCell(++c).setCellValue("專利家族");
+			row.createCell(++c).setCellValue("國際分類號");
+			row.createCell(++c).setCellValue("專利技術領域");
+			row.createCell(++c).setCellValue("應用範圍/產業");
+			row.createCell(++c).setCellValue("摘要");
+		}
+		
+		// data part
+		for (Patent p : patentList) {
+			row = sheet.createRow(++r);
+			c = -1;
+			ExcelUtil.createNSetCellValue(row, ++c, p.getName());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getAssignee());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getInvertor());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getCountry().getCode());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getAppliactionNo());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getApplicationDate());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getOpenNo());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getOpenDate());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getPublicationNo());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getPublicationDate());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getCategory());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getPatentStatus());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getFamilyNo());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getIpc());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getTechField().getName());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getUsage());
+			ExcelUtil.createNSetCellValue(row, ++c, p.getTechAbstract());
+		}
+		
+		for (int i=0; i<=c; i++) {
+			sheet.autoSizeColumn(i);
+		}
+		sheet.createFreezePane(0, 1);
+		
+		return wb;
+	}
+	
 
 }
