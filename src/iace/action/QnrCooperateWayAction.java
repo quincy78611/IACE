@@ -1,7 +1,5 @@
 package iace.action;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.List;
 
@@ -9,6 +7,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 
 import core.util.AESEncrypter;
+import core.util.ExcelUtil;
 import iace.entity.option.OptionSchool;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
 import iace.service.ServiceFactory;
@@ -56,9 +55,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			String qnrUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnr";
 			
 			XSSFWorkbook wb = this.excelService.exportQnrLinksExcel(schools, qnrUrl);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			wb.write(baos);
-			this.qrnExcelFileInputStream = new ByteArrayInputStream(baos.toByteArray());
+			this.qrnExcelFileInputStream = ExcelUtil.workbookToInputStream(wb);
 			this.qnrExcelFileName = "問卷連結.xlsx";
 			this.qnrExcelFileName = new String(this.qnrExcelFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
 			
@@ -77,9 +74,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 			String qnrUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/")) + "/fillInQnr";
 			
 			XSSFWorkbook wb = this.excelService.exportQnrLinksExcel(schools, qnrUrl);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			wb.write(baos);
-			this.qrnExcelFileInputStream = new ByteArrayInputStream(baos.toByteArray());
+			this.qrnExcelFileInputStream = ExcelUtil.workbookToInputStream(wb);
 			this.qnrExcelFileName = "問卷連結.xlsx";
 			this.qnrExcelFileName = new String(this.qnrExcelFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
 			
@@ -94,9 +89,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		try {
 			List<QnrCooperateWay> qnrList = this.qnrCooperateWayService.listAll();
 			XSSFWorkbook wb = this.excelService.exportQnrResulotExcel(qnrList);
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			wb.write(baos);
-			this.qrnExcelFileInputStream = new ByteArrayInputStream(baos.toByteArray());
+			this.qrnExcelFileInputStream = ExcelUtil.workbookToInputStream(wb);
 			this.qnrExcelFileName = "前三部分問卷結果.xlsx";
 			this.qnrExcelFileName = new String(this.qnrExcelFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
 			
