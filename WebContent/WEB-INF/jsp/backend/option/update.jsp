@@ -33,7 +33,8 @@
 		<ul>
 			<li class="quarter">
 				<b>代碼</b>
-				<s:textfield name="option.code" placeholder="請輸入文數字" maxlength="10"/>
+				<s:hidden name="option.code"/>
+				<s:textfield name="option.code" placeholder="請輸入文數字" maxlength="10" disabled="true"/>
 			</li>
 			<li class="quarter">
 				<b>排序優先度 (將依數字小到大排序)</b>
