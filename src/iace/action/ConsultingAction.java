@@ -1,7 +1,11 @@
 package iace.action;
 
+import java.io.InputStream;
 import java.util.List;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.entity.consulting.Consulting;
 import iace.entity.consulting.ConsultingSearchModel;
@@ -32,6 +36,9 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	private long id;
 	private Consulting consulting;	
+	
+	private String downloadFileName;
+	private InputStream downloadFileInputStream;
 
 	public ConsultingAction() {
 		super.setTitle("諮詢服務表");
@@ -150,6 +157,19 @@ public class ConsultingAction extends BaseIaceAction {
 		//TODO
 	}
 	
+	public String exportRawData() {
+		try {
+			XSSFWorkbook wb = this.consultingService.exportRawData(searchCondition);
+			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
+			this.downloadFileName = "consulting_raw_data.xlsx";
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
 	//==========================================================================
 	
 	public long getId() {
@@ -199,6 +219,14 @@ public class ConsultingAction extends BaseIaceAction {
 
 	public void setSearchCondition(ConsultingSearchModel searchCondition) {
 		this.searchCondition = searchCondition;
+	}
+
+	public String getDownloadFileName() {
+		return downloadFileName;
+	}
+
+	public InputStream getDownloadFileInputStream() {
+		return downloadFileInputStream;
 	}
 	
 	

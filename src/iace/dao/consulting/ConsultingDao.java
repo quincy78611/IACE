@@ -73,6 +73,23 @@ public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultin
 		}
 	}
 	
+	@Override
+	public List<Consulting> listAll(ConsultingSearchModel model) {
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Consulting.class);
+			addCriteriaRestrictionsForSearch(model, criteria);		
+			
+			@SuppressWarnings("unchecked")
+			List<Consulting> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
 	private long queryTotalRecordsCount(String name, String organization) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
@@ -142,5 +159,6 @@ public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultin
 		
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
+
 
 }
