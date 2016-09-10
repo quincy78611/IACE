@@ -73,6 +73,14 @@ public class EnterpriseSituation extends BaseEntity {
 	public void setOptionHadTecSrc(OptionHadTecSrc optionHadTecSrc) {
 		this.optionHadTecSrc = optionHadTecSrc;
 	}
+	
+	@Transient
+	public String getHadTecSrc() {
+		if (this.optionHadTecSrc != null) {
+			return this.optionHadTecSrc.getName();
+		}
+		return null;
+	}
 
 	@Column(name = "HAD_TECH_SRC_RATION", precision=10, scale=2)
 	public double getHadTecSrcRation() {
@@ -174,6 +182,14 @@ public class EnterpriseSituation extends BaseEntity {
 
 	public void setOptionCooperateMode(OptionCooperateMode optionCooperateMode) {
 		this.optionCooperateMode = optionCooperateMode;
+	}
+	
+	@Transient
+	public String getCooperateMode() {
+		if (this.optionCooperateMode != null) {
+			return this.optionCooperateMode.getName();
+		}
+		return null;
 	}
 	
 	@Transient

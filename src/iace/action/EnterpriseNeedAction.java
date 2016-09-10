@@ -1,7 +1,11 @@
 package iace.action;
 
+import java.io.InputStream;
 import java.util.List;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
 import iace.entity.enterpriseNeed.EnterpriseNeedSearchModel;
@@ -35,6 +39,9 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	private EnterpriseInfo enterpriseInfo;
 	private EnterpriseNeedSearchModel searchCondition = new EnterpriseNeedSearchModel();
 	private PagedList<EnterpriseInfo> enterpriseInfoPagedList;
+	
+	private String downloadFileName;
+	private InputStream downloadFileInputStream;
 	
 	public EnterpriseNeedAction() {
 		super.setTitle("企業需求單");
@@ -138,6 +145,21 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 		double hadTecSrcRation = this.enterpriseInfo.getEnterpriseSituation().getHadTecSrcRation();
 		validateNumberRange(hadTecSrcRation, 1, 0, "enterpriseInfo.enterpriseSituation.hadTecSrcRation");
 	}
+	
+	public String exportRawData() {
+		try {
+			XSSFWorkbook wb = this.enterpriseInfoService.exportRawData(this.searchCondition);
+			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
+			this.downloadFileName = "raw_data.xlsx";
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}	
+	
+	//==========================================================================
 
 	public EnterpriseInfo getEnterpriseInfo() {
 		return enterpriseInfo;
@@ -197,6 +219,14 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getDownloadFileName() {
+		return downloadFileName;
+	}
+
+	public InputStream getDownloadFileInputStream() {
+		return downloadFileInputStream;
 	}
 	
 	

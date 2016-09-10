@@ -352,7 +352,17 @@
 		<action name="deleteSubmit" class="iace.action.EnterpriseNeedAction" method="deleteSubmit">
 			<result name="input">/WEB-INF/jsp/backend/enterpriseNeed/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/enterpriseNeed/index.jsp</result>
-		</action>	
+		</action>
+		<action name="exportRawData" class="iace.action.EnterpriseNeedAction" method="exportRawData">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>		
 	</package>
 	
 	<package name="CoopEx" namespace="/coopEx" extends="struts-default, default">

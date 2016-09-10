@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.Disjunction;
@@ -68,6 +69,27 @@ public class EnterpriseInfoDao extends BaseIaceDao<EnterpriseInfo> implements IE
 		}
 	}
 	
+	@Override
+	public List<EnterpriseInfo> listAllForExport(EnterpriseNeedSearchModel arg) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(EnterpriseInfo.class);
+			addCriteriaRestrictionsForSearch(arg, criteria);
+			criteria.addOrder(Order.asc("companyId"));			
+			criteria.setFetchMode("enterpriseRequireTech", FetchMode.JOIN);
+			criteria.setFetchMode("enterpriseSituation", FetchMode.JOIN);
+			criteria.setFetchMode("enterpriseAcademiaCoop", FetchMode.JOIN);
+			
+			@SuppressWarnings("unchecked")
+			List<EnterpriseInfo> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
 	private long queryTotalRecordsCount(EnterpriseNeedSearchModel arg) {
 		try {
 			Session session = HibernateSessionFactory.getSession();

@@ -11,6 +11,12 @@
 </script>
 <script>
 	function funcBtnSetting() {
+		$(".btn-export").click(function(){
+			var url = '<s:url value="exportRawData.action" />';
+			$("form").attr('action', url);
+			$("form").submit();
+			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+		});		
 		$(".btn-view").click(function() {
 			var url = $(this).siblings(".detailUrl").val();
 			$("form").attr('action', url);
@@ -132,6 +138,7 @@
 				</li>	
 			</ul>
 		</div>
+		<div class="clear"></div>
 		
 		<div class="page">
 			<s:set var="pgList" value="enterpriseInfoPagedList"/>
@@ -172,6 +179,9 @@
 			</ul>
 		</div>
 		
+		<div style="float:right;">
+			<input type="button" class="btn-func btn-export" value="匯出" />	
+		</div>
 		<div class="">
 			<table>
 				<tr>

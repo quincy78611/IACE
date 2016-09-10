@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import iace.entity.BaseEntity;
 import iace.entity.option.OptionDomain;
@@ -63,6 +64,14 @@ public class EnterpriseRequireTech extends BaseEntity {
 
 	public void setPhase1(OptionDomain phase1) {
 		this.phase1 = phase1;
+	}
+	
+	@Transient
+	public String getPhase1DomainName() {
+		if (this.phase1 != null) {
+			return this.phase1.getName();
+		}
+		return null;
 	}
 
 	@Column(name = "PHASE2", length = 1000)
