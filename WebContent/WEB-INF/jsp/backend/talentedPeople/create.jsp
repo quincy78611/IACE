@@ -52,6 +52,10 @@ table#table-domain { margin:0px; }
 	<s:form action="createSubmit" method="post" validate="true" enctype="multipart/form-data">
 		<table class="table-talentedPeopleInfo">
 			<tr>
+				<td><b style="font-size:20px; font-weight:bold;">基本資料</b></td>
+				<td><b style="font-size:20px; font-weight:bold;">照片</b></td>
+			</tr>		
+			<tr>
 				<td>
 					<ul>
 						<li class="quarter">

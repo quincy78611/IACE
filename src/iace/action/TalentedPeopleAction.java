@@ -164,7 +164,8 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	public void validateBeforeSubmit() {
 		super.validateNotBlankNLength(this.talentedPeople.getNameCh(), 100, "talentedPeople.nameCh");
 		super.validateNotBlankNLength(this.talentedPeople.getNameEn(), 100, "talentedPeople.nameEn");
-		super.validateNotBlankNLength(this.talentedPeople.getTel(), 20, "talentedPeople.tel");
+		super.validateNotBlankNLength(this.talentedPeople.getTel(), 100, "talentedPeople.tel");
+		super.validateNotBlankNLength(this.talentedPeople.getEmail(), 100, "talentedPeople.email");
 		super.validateEmail(this.talentedPeople.getEmail(), "talentedPeople.email");
 		super.validateTextMaxLength(this.talentedPeople.getWorkOrg(), 100, "talentedPeople.workOrg");
 		super.validateTextMaxLength(this.talentedPeople.getJob(), 100, "talentedPeople.job");
