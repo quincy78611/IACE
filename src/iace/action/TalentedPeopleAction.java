@@ -8,8 +8,10 @@ import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 
+import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.entity.BaseBatchImportResult;
 import iace.entity.option.BaseOption;
@@ -48,7 +50,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private BaseBatchImportResult<TalentedPeople> batchImportResult;
 
 	private String downloadFileName;
-	private InputStream sampleFileInputStream;
+	private InputStream downloadFileInputStream;
 	
 	public TalentedPeopleAction() {
 		super.setTitle("產學合作人才資料庫訪談內容");
@@ -193,11 +195,24 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			this.downloadFileName = "產學人才資料庫基本資料_批次匯入格式.xlsx";
 			String filePath = context.getRealPath("/files/" + this.downloadFileName);
 			log.debug(filePath);
-			sampleFileInputStream = new FileInputStream(new File(filePath));
+			downloadFileInputStream = new FileInputStream(new File(filePath));
 			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
+			return ERROR;
+		}
+	}
+	
+	public String exportRawData() {
+		try {
+			XSSFWorkbook wb = this.talentedPeopleService.exportRawData(this.searchCondition);
+			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
+			this.downloadFileName = "raw_data.xlsx";
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -334,8 +349,8 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		return downloadFileName;
 	}
 
-	public InputStream getSampleFileInputStream() {
-		return sampleFileInputStream;
+	public InputStream getDownloadFileInputStream() {
+		return downloadFileInputStream;
 	}
 	
 	

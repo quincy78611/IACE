@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionGrbDomainDao;
@@ -258,4 +260,54 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		return res;
 	}
 	
+	public XSSFWorkbook exportRawData(TalentedPeopleSearchModel arg) {
+		List<TalentedPeople> list = this.talentedPeopleDao.listAll(arg);
+		
+		XSSFWorkbook wb = new XSSFWorkbook();
+		XSSFSheet sheet = wb.createSheet();
+		int r = -1;
+		int c = -1;
+		XSSFRow row = null;
+		
+		{//title row
+			row = sheet.createRow(++r);
+			row.createCell(++c).setCellValue("中文姓名");
+			row.createCell(++c).setCellValue("英文姓名");
+			row.createCell(++c).setCellValue("性別");
+			row.createCell(++c).setCellValue("產學經驗(年)");
+			row.createCell(++c).setCellValue("領域別");
+			row.createCell(++c).setCellValue("次領域");
+			row.createCell(++c).setCellValue("聯絡電話");
+			row.createCell(++c).setCellValue("e-mail");
+			row.createCell(++c).setCellValue("現職單位");
+			row.createCell(++c).setCellValue("現職職位");
+			row.createCell(++c).setCellValue("網站連結");
+			row.createCell(++c).setCellValue("合作專長");
+		}
+		
+		// data part
+		for (TalentedPeople tp : list) {
+			row = sheet.createRow(++r);
+			c = -1;
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getNameCh());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getNameEn());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getGender());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getExpYear());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getMainDomainCodeString());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getSubDomainCodeString());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getTel());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getEmail());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getWorkOrg());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getJob());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getUrl());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getSpecialty());
+		}
+		
+		for (int i=0; i<=c; i++) {
+			sheet.autoSizeColumn(i);
+		}
+		sheet.createFreezePane(0, 1);
+		
+		return wb;
+	}
 }

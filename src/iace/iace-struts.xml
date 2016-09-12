@@ -484,11 +484,21 @@
 			
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">sampleFileInputStream</param>
+				<param name="inputName">downloadFileInputStream</param>
 				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
 				<param name="bufferSize">1024</param>
 			</result>	
-		</action>		
+		</action>
+		<action name="exportRawData" class="iace.action.TalentedPeopleAction" method="exportRawData">
+			<interceptor-ref name="iaceBackEnd"/>
+			
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="IncubationCenter" namespace="/incubationCenter" extends="struts-default, json-default, default">

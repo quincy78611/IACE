@@ -50,6 +50,27 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 		}
 	}
 	
+	public List<TalentedPeople> listAll(TalentedPeopleSearchModel arg) {
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(TalentedPeople.class);
+			addCriteriaRestrictionsForSearch(arg, criteria);		
+			
+			criteria.addOrder(Order.asc("id"));
+			
+			@SuppressWarnings("unchecked")
+			List<TalentedPeople> list = criteria.list();
+			for (TalentedPeople tp : list) {
+				Hibernate.initialize(tp.getDomains());
+			}
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
 	private long queryTotalRecordsCount(TalentedPeopleSearchModel arg) {
 		try {
 			Session session = HibernateSessionFactory.getSession();

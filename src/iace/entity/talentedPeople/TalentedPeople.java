@@ -219,6 +219,24 @@ public class TalentedPeople extends BaseEntity {
 	}
 	
 	@Transient
+	public String getMainDomainCodeString() {
+		StringBuilder sb = new StringBuilder();
+		for (OptionGrbDomain grb : this.domains) {
+			sb.append(grb.getMainDomain().getCode()).append(";");
+		}		
+		return sb.toString();
+	}
+	
+	@Transient
+	public String getSubDomainCodeString() {
+		StringBuilder sb = new StringBuilder();
+		for (OptionGrbDomain grb : this.domains) {
+			sb.append(grb.getCode()).append(";");
+		}		
+		return sb.toString();
+	}
+	
+	@Transient
 	public String getDomainsNameForSysLog() {
 		StringBuilder sb = new StringBuilder();
 		for (int i=0; i<this.domains.size(); i++) {
