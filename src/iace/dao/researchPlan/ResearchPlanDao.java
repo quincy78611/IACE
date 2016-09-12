@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
@@ -110,8 +111,31 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 			List<ResearchPlan> list = criteria.list();
 			results.setList(list);
 			
-			log.debug("result list count: "+list.size());
 			return results;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	@Override
+	public List<ResearchPlan> listAll(ResearchPlanSearchModel arg) {
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(ResearchPlan.class, "rp");
+			addCriteriaRestrictionsForSearch(arg, criteria);		
+			criteria.addOrder(Order.asc("id"));			
+			
+			@SuppressWarnings("unchecked")
+			List<ResearchPlan> list = criteria.list();
+			for (ResearchPlan rp : list) {
+				for (Technology t : rp.getTechnologies()) {
+					Hibernate.initialize(t.getOptionTrlList());
+				}
+			}
+			
+			return list;
 		} catch (Exception e) {
 			throw e;
 		} finally {

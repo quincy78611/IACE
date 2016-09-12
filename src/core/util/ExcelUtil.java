@@ -51,6 +51,14 @@ public class ExcelUtil {
 		return cell;
 	}
 	
+	public static XSSFCell createNSetCellValue(XSSFRow row, int columnIndex, Integer value) {
+		XSSFCell cell = row.createCell(columnIndex);
+		if (value != null) {
+			cell.setCellValue(value);
+		}
+		return cell;
+	}	
+	
 	public static XSSFCell createNSetCellValue(XSSFRow row, int columnIndex, String value) {
 		XSSFCell cell = row.createCell(columnIndex);
 		if (value != null) {

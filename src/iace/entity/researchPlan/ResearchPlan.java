@@ -213,6 +213,16 @@ public class ResearchPlan extends BaseEntity {
 		}
 		this.setGrbDomains(grbDomainList);
 	}
+	
+	@Transient
+	public String grbDomainCodeString() {
+		StringBuilder sb = new StringBuilder();
+		for (OptionGrbDomain grb : getGrbDomains()) {
+			sb.append(grb.getCode()).append(";");
+		}
+		
+		return sb.toString();
+	}
 
 	@Column(name = "KEYWORD", length = 2000)
 	public String getKeyword() {
@@ -231,6 +241,14 @@ public class ResearchPlan extends BaseEntity {
 
 	public void setTrl(OptionTrl trl) {
 		this.trl = trl;
+	}
+	
+	@Transient
+	public String getTrlCode() {
+		if (this.trl != null) {
+			return trl.getCode();
+		}
+		return null;
 	}
 	
 	public void setTrlCode(String code) {

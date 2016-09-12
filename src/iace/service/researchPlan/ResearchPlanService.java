@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.dao.researchPlan.IResearchPlanDao;
@@ -98,4 +103,72 @@ public class ResearchPlanService extends BaseIaceService<ResearchPlan> {
 		}
 	}
 
+	public XSSFWorkbook exportRawData(ResearchPlanSearchModel arg) {
+		List<ResearchPlan> list = this.researchPlanDao.listAll(arg);
+		
+		XSSFWorkbook wb = new XSSFWorkbook();
+		XSSFSheet sheet = wb.createSheet();
+		int r = -1;
+		int c = -1;
+		XSSFRow row = null;
+		
+		{//title row
+			row = sheet.createRow(++r);
+			row.createCell(++c).setCellValue("年度");
+			row.createCell(++c).setCellValue("計畫編號");
+			row.createCell(++c).setCellValue("計畫名稱");
+			row.createCell(++c).setCellValue("計畫主持人");
+			row.createCell(++c).setCellValue("研究領域");
+			row.createCell(++c).setCellValue("關鍵字");
+			row.createCell(++c).setCellValue("計畫發展階段");
+			row.createCell(++c).setCellValue("GRB計畫編號");
+			row.createCell(++c).setCellValue("成果報告ID");
+			row.createCell(++c).setCellValue("技術名稱");
+			row.createCell(++c).setCellValue("技術簡述");
+			row.createCell(++c).setCellValue("技術發展階段");
+			row.createCell(++c).setCellValue("技術發展階段說明");
+		}		
+		
+		// data part
+		for (ResearchPlan rp : list) {
+			if (rp.getTechnologies() == null || rp.getTechnologies().size() == 0) {
+				row = sheet.createRow(++r);
+				c = -1;
+				ExcelUtil.createNSetCellValue(row, ++c, rp.getYear());
+				ExcelUtil.createNSetCellValue(row, ++c, rp.getPlanNo());
+				ExcelUtil.createNSetCellValue(row, ++c, rp.getName());
+				ExcelUtil.createNSetCellValue(row, ++c, rp.getManager());
+				ExcelUtil.createNSetCellValue(row, ++c, rp.grbDomainCodeString());
+				ExcelUtil.createNSetCellValue(row, ++c, rp.getKeyword());
+				ExcelUtil.createNSetCellValue(row, ++c, rp.getTrlCode());
+				ExcelUtil.createNSetCellValue(row, ++c, rp.getProjkey());
+				ExcelUtil.createNSetCellValue(row, ++c, rp.getGrb05Id());
+			} else {
+				for (Technology t : rp.getTechnologies()) {
+					row = sheet.createRow(++r);
+					c = -1;
+					ExcelUtil.createNSetCellValue(row, ++c, rp.getYear());
+					ExcelUtil.createNSetCellValue(row, ++c, rp.getPlanNo());
+					ExcelUtil.createNSetCellValue(row, ++c, rp.getName());
+					ExcelUtil.createNSetCellValue(row, ++c, rp.getManager());
+					ExcelUtil.createNSetCellValue(row, ++c, rp.grbDomainCodeString());
+					ExcelUtil.createNSetCellValue(row, ++c, rp.getKeyword());
+					ExcelUtil.createNSetCellValue(row, ++c, rp.getTrlCode());
+					ExcelUtil.createNSetCellValue(row, ++c, rp.getProjkey());
+					ExcelUtil.createNSetCellValue(row, ++c, rp.getGrb05Id());
+					ExcelUtil.createNSetCellValue(row, ++c, t.getName());
+					ExcelUtil.createNSetCellValue(row, ++c, t.getDescriptoin());
+					ExcelUtil.createNSetCellValue(row, ++c, t.getOptionTrlCodesString());
+					ExcelUtil.createNSetCellValue(row, ++c, t.getTrlDesc());
+				}
+			}
+		}
+		
+		for (int i=0; i<=c; i++) {
+			sheet.autoSizeColumn(i);
+		}
+		sheet.createFreezePane(0, 1);
+		
+		return wb;
+	}
 }

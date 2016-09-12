@@ -9,8 +9,10 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 
+import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
@@ -52,7 +54,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 	private String uploadFileFileName;
 	
 	private String downloadFileName;
-	private InputStream sampleFileInputStream;
+	private InputStream downloadFileInputStream;
 	
 	public ResearchPlanAction() {
 		super.setTitle("研發成果");
@@ -308,11 +310,24 @@ public class ResearchPlanAction extends BaseIaceAction {
 			this.downloadFileName = "技術資料匯入_sample.xlsx";
 			String filePath = context.getRealPath("/files/"+this.downloadFileName);
 			log.debug(filePath);
-			sampleFileInputStream = new FileInputStream(new File(filePath));
+			downloadFileInputStream = new FileInputStream(new File(filePath));
 			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
+			return ERROR;
+		}
+	}
+	
+	public String exportRawData() {
+		try {
+			XSSFWorkbook wb = this.researchPlanService.exportRawData(this.searchCondition);
+			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
+			this.downloadFileName = "raw_data.xlsx";
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -411,8 +426,8 @@ public class ResearchPlanAction extends BaseIaceAction {
 		return downloadFileName;
 	}
 
-	public InputStream getSampleFileInputStream() {
-		return sampleFileInputStream;
+	public InputStream getDownloadFileInputStream() {
+		return downloadFileInputStream;
 	}
 	
 	
