@@ -7,7 +7,7 @@
 	</script>
 </head>
 <body>
-	<h3><s:property value="%{#session.sysUser.name + ' æ‚¨å¥½, æ­¡è¿Žç™»å…¥!'}"/></h3>
+	<h3><s:property value="%{#session.sysUser.name + ' ±z¦n, Åwªïµn¤J!'}"/></h3>
 <%-- 	<s:set var="nameSpace" value="%{'/researchPlan'}"/> --%>
 <%-- 	<s:set var="actioinName" value="%{'init'}"/> --%>
 <%-- 	<h2><s:property value="#nameSpace"/></h2> --%>

@@ -249,16 +249,22 @@
 			});
 
 			$("div#div-part4 .qnrList input[type=radio]").attr("disabled", true);
+			$("div#div-part4 .qnrList input[type=radio]").parents("li").hide();
 			if (q0_1[0] == true) {
 				$("div#div-part4 .qnrList input[type=radio]").removeAttr("disabled");
+				$("div#div-part4 .qnrList input[type=radio]").parents("li").show();
 			} 
 			if (q0_1[1] == true) {
 				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_6']").removeAttr("disabled");
 				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_7']").removeAttr("disabled");
 				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_8']").removeAttr("disabled");
+				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_6']").parents("li").show();
+				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_7']").parents("li").show();
+				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_8']").parents("li").show();
 			}
 			if (q0_1[2] == true) {
 				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_9']").removeAttr("disabled");
+				$("div#div-part4 .qnrList input[type=radio][name='qnrCoopereateWay.q4_9']").parents("li").show();
 			}
 		});
 	}
