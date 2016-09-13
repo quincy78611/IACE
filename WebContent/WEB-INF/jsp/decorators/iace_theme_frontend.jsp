@@ -12,11 +12,21 @@
 	
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/frontend/layout.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/alert.css"/>" />	
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
+	
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/rightContentElement.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/btn.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/pageBtnList.css"/>" />
+	
 	
 	<script type="text/javascript" src="<s:url value="/scripts/jquery-1.10.2.min.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.validate.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/frontend/backtotop.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/frontend/menu.js"/>"></script>
+	<script type="text/javascript" src="<s:url value="/scripts/calendarBox.js"/>"></script>
+	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
+	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			setInterval(function () {
@@ -36,12 +46,18 @@
 				</a>
 		    </div>
 	        <div id="login">
-				<s:form namespace="/login" action="loginSubmit" method="post" validate="true" >
-					<input type="text" name="sysUser.account" autocomplete="off" placeholder="帳號"/>
-					<input type="password" name="sysUser.password" autocomplete="off" placeholder="密碼"/>
-					<input type="submit" value="登入" class="btnRed" />
-<!-- 					<input type="submit" value="忘記密碼" class="btnGray" /> -->
-				</s:form>
+	        	<s:if test="#session.sysUser == null">
+					<s:form namespace="/login" action="loginSubmit" method="post" validate="true" >
+						<input type="text" name="sysUser.account" autocomplete="off" placeholder="帳號"/>
+						<input type="password" name="sysUser.password" autocomplete="off" placeholder="密碼"/>
+						<input type="submit" value="登入" class="btnB" />
+<!-- 						<input type="submit" value="忘記密碼" class="btnGray" /> -->
+					</s:form>
+				</s:if>
+				<s:else>
+	 	    		<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
+	 	    		<a href="<s:url value="/login/logout"/>" class="btnB">登出</a>
+	 	    	</s:else>				
 	        </div>
 	        <div class="clear"></div>
 	        <div id="link">
@@ -56,16 +72,19 @@
 	    </div>	
 	</header>
 	<article>
-		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
-		<div id="div-top-message">
-			<s:if test="hasActionMessages()">
-				<s:actionmessage />
-			</s:if>
-			<s:if test="hasActionErrors()">
-				<s:actionerror />
-			</s:if>			
-		</div>
-		<decorator:body />
+		<div class="rightContent">
+    		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
+			<div id="div-top-message">
+				<s:if test="hasActionMessages()">
+					<s:actionmessage />
+				</s:if>
+				<s:if test="hasActionErrors()">
+					<s:actionerror />
+				</s:if>
+			</div>
+			<decorator:body />
+    	</div>
+    	<div class="clear"></div>
 	</article>
 	<footer>
 		<div id="footerZone">

@@ -53,7 +53,9 @@
 <body>
 	<header>
 		<div class="LOGO">
-			<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
+			<a href="<s:url value="/home/init"/>">
+				<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
+			</a>	
 		</div>
  	    <div class="Link">
  	    	<s:if test="#session.sysUser == null">

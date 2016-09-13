@@ -75,7 +75,6 @@ public class ResearchPlanAction extends BaseIaceAction {
 		}
 	}
 	
-	@Deprecated
 	public String showDetail() {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);

@@ -69,10 +69,14 @@ header #con { width:1024px; margin: 0 auto;}
 header #LOGO { margin: 32px 0 0 0; float:left;}
 header #login { float:right; margin:80px 0 0 0; text-align:right;}
 header #login input { border:#e8ecef 1px solid; padding: 6px; color:#acb2b6; margin-left:13px; font-size:1.12em; font-family: "Microsoft JhengHei", Arial; width:25%;}
-header #login input.btnRed[type=submit] { font-size:15px; color:#fff; padding:9px 15px; background:#234f92; margin-left:13px; display:inline-block; cursor:pointer; width:15%; border:#234f92 1px solid;}
-header #login input.btnRed[type=submit]:hover { background:#650815; border:#650815 1px solid;}
+header #login input.btnB[type=submit] { font-size:15px; color:#fff; padding:9px 15px; background:#234f92; margin-left:13px; display:inline-block; cursor:pointer; width:15%; border:#234f92 1px solid;}
+header #login input.btnB[type=submit]:hover { background:#650815; border:#650815 1px solid;}
 header #login input.btnGray[type=submit] { font-size:15px; color:#fff; padding:9px 15px; background:#777; margin-left:13px; display:inline-block; cursor:pointer; width:15%; border:#777 1px solid;}
 header #login input.btnGray[type=submit]:hover { background:#650815; border:#650815 1px solid;}
+header #login a.btnB { font-size:0.93em; color:#fff; padding:8px 15px; background:#234f92; margin-left:13px;}
+header #login a.btnB:hover { font-size:0.93em; color:#fff; padding:8px 15px; background:#650815; margin-left:13px;}
+header #login a.btnGray { font-size:0.93em; color:#fff; padding:8px 15px; background:#777; margin-left:13px;}
+header #login a.btnGray:hover { font-size:0.93em; color:#fff; padding:8px 15px; background:#650815; margin-left:13px;}
 
 
 /* -- 主選單 -- */
@@ -95,7 +99,7 @@ h3.case { background:url(../../images/frontend/home_item03.png) no-repeat left b
 a.more { background: url(../../images/frontend/icon_more.png) no-repeat center top; width:26px; height:26px; display:inline-block; float:right;}
 a.more:hover { background: url(../../images/frontend/icon_more.png) no-repeat center bottom; width:26px; height:26px; display:inline-block; float:right;}
 
-
+.rightContent { width:1024px; margin: -20px auto 15px auto;}
 #item01 { width:1024px; margin: -20px auto 15px auto;}
 #item01 a.headline { color:#c5ced9;}
 #item01 a.headline:hover { color:#fff;}
@@ -197,10 +201,10 @@ h4:hover { display:block; width:69px; height:69px; background: url(../../images/
 .submenu select { border: #d9d9d9 1px solid; font-size:0.93em; color:# 333; margin: 0 20px 10px 7px; padding:2px 5px;}
 
 /*--PAGE LIST--*/
-.page { font-size:15px; color:#CCC; height:35px; margin-bottom:40px;}
-.page ul { float:right;}
-.page li { margin:0 2px; padding:5px 10px; display:inline-block; float:left;}
-.page a.nowClick li { background: #09C; color:#FFF; text-align:center; padding:5px 10px;}
+/* .page { font-size:15px; color:#CCC; height:35px; margin-bottom:40px;} */
+/* .page ul { float:right;} */
+/* .page li { margin:0 2px; padding:5px 10px; display:inline-block; float:left;} */
+/* .page a.nowClick li { background: #09C; color:#FFF; text-align:center; padding:5px 10px;} */
 
 /* -- 滑動頁籤 -- */
 .abgne_tab { margin:0 0 20px 0; position:relative;}
