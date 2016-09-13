@@ -8,5 +8,9 @@
     <decorator name="qnr-theme" page="/WEB-INF/jsp/decorators/iace_theme_qnr.jsp">
         <pattern>/WEB-INF/jsp/qnr/*</pattern>
         <pattern>/WEB-INF/jsp/error.jsp</pattern>
-    </decorator>    
+    </decorator> 
+    
+    <decorator name="frontend-theme" page="/WEB-INF/jsp/decorators/iace_theme_frontend.jsp">
+      	<pattern>/WEB-INF/jsp/frontend/*</pattern>
+    </decorator> 
 </decorators>

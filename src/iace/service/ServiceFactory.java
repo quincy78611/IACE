@@ -269,7 +269,9 @@ public class ServiceFactory {
 	
 	public static TechnologyService getTechnologyService() {
 		if (technologyService == null) {
-			technologyService = new TechnologyService(DaoFactory.getTechnologyDao());
+			technologyService = new TechnologyService(
+					DaoFactory.getTechnologyDao(),
+					DaoFactory.getOptionGrbDomainDao());
 		}
 		return technologyService;
 	}

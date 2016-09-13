@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+	
+	<package name="Home" namespace="/home" extends="struts-default, default">
+		<action name="init" class="iace.action.HomeAction" method="init">
+			<result>/WEB-INF/jsp/frontend/home.jsp</result>
+		</action>
+	</package>
+	
+	<package name="ResearchPlan" namespace="/f/researchPlan" extends="struts-default, default">
+		<action name="init" class="iace.action.ResearchPlanAction" method="init">
+			<result>/WEB-INF/jsp/frontend/researchPlan/index.jsp</result>			
+		</action>	
+		<action name="index" class="iace.action.ResearchPlanAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend/researchPlan/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/researchPlan/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.PatentAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend/patent/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/patent/detail.jsp</result>
+		</action>
+	</package>
+	
+	<package name="Patent" namespace="/f/patent" extends="struts-default, default">
+		<action name="init" class="iace.action.PatentAction" method="init">
+			<result>/WEB-INF/jsp/frontend/patent/index.jsp</result>
+		</action>	
+		<action name="index" class="iace.action.PatentAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend/patent/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/patent/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.PatentAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend/patent/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/patent/detail.jsp</result>
+			<result name="error">/WEB-INF/jsp/frontend/patent/index.jsp</result>		
+		</action>	
+	</package>
+	
+	<package name="consulting" namespace="/f/consulting" extends="struts-default, default">
+		<action name="init" class="iace.action.ConsultingAction" method="init">
+			<result>/WEB-INF/jsp/frontend/consulting/index.jsp</result>
+		</action>	
+		<action name="index" class="iace.action.ConsultingAction" method="index">
+			<result name="input">/WEB-INF/jsp/frontend/consulting/index.jsp</result>
+			<result name="success">/WEB-INF/jsp/frontend/consulting/index.jsp</result>			
+		</action>
+		<action name="showDetail" class="iace.action.ConsultingAction" method="showDetail">
+			<result name="input">/WEB-INF/jsp/frontend/consulting/detail.jsp</result>			
+			<result name="success">/WEB-INF/jsp/frontend/consulting/detail.jsp</result>
+			<result name="error">/WEB-INF/jsp/frontend/consulting/index.jsp</result>			
+		</action>	
+	</package>
+	
+	<package name="CoopEx" namespace="/f/coopEx" extends="struts-default, default">
+		<action name="init" class="iace.action.CoopExAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend/coopEx/index.jsp</result>	
+		</action>
+		<action name="index" class="iace.action.CoopExAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend/coopEx/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/coopEx/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.CoopExAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend/coopEx/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/coopEx/index.jsp</result>
+		</action>
+	</package>
+	
+	<package name="TalentedPeople" namespace="/f/talentedPeople" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.TalentedPeopleAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend/talentedPeople/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.TalentedPeopleAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend/talentedPeople/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/talentedPeople/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.TalentedPeopleAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend/talentedPeople/detail.jsp</result>
+		</action>
+	</package>
+	
+	<package name="IncubationCenter" namespace="/f/incubationCenter" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.IncubationCenterAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend/incubationCenter/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.IncubationCenterAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend/incubationCenter/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/incubationCenter/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.IncubationCenterAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend/incubationCenter/detail.jsp</result>
+		</action>
+	</package>		
+</struts>

@@ -416,4 +416,17 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 			return null;
 		}
 	}
+	
+	public List<CoopEx> sampleForHomePage() {
+		List<CoopEx> list = this.coopExDao.sampleForHomePage();
+		for (CoopEx entity : list) {
+			// load only first image
+			if (entity.getImgs() != null && entity.getImgs().size() > 0) {
+				File f = new File(this.coopExampleFolder, entity.getImgs().get(0).getFilePath());
+				byte[] imgData = loadImg(f);
+				entity.getImgs().get(0).setByteImg(imgData);
+			}
+		}
+		return list;
+	}
 }

@@ -1,5 +1,6 @@
 package iace.dao.coopExample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -156,4 +157,58 @@ public class CoopExDao extends BaseIaceDao<CoopEx> implements ICoopExDao {
 		
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY); // IMPORTANT: without this line, it might return duplicate entities when main entity(ResearchPlan) has more than one child entity(Technology)
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CoopEx> sampleForHomePage() {
+		try {
+			List<CoopEx> resList = new ArrayList<CoopEx>();
+			Session session = HibernateSessionFactory.getSession();
+			
+			{
+				Criteria criteria = session.createCriteria(CoopEx.class);
+				criteria.add(Restrictions.eq("type", "商品化"));
+				criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+				criteria.addOrder(Order.asc("id"));
+				criteria.setMaxResults(2);
+				List<CoopEx> list = criteria.list();
+				resList.addAll(list);
+			}
+
+			{
+				Criteria criteria = session.createCriteria(CoopEx.class);
+				criteria.add(Restrictions.eq("type", "專利推廣"));
+				criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+				criteria.addOrder(Order.asc("id"));
+				criteria.setMaxResults(2);
+				List<CoopEx> list = criteria.list();
+				resList.addAll(list);
+			}
+			
+			{
+				Criteria criteria = session.createCriteria(CoopEx.class);
+				criteria.add(Restrictions.eq("type", "新創事業"));
+				criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+				criteria.addOrder(Order.asc("id"));
+				criteria.setMaxResults(1);
+				List<CoopEx> list = criteria.list();
+				resList.addAll(list);
+			}
+			
+			for (CoopEx c : resList) {
+				Hibernate.initialize(c);
+				Hibernate.initialize(c.getImgs());
+//				Hibernate.initialize(c.getVideos());
+//				Hibernate.initialize(c.getAttachFiles());
+			}
+			
+			return resList;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	
 }
