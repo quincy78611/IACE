@@ -56,6 +56,8 @@
 .rightContent table th.text-align-center,
 .rightContent table td.text-align-center { text-align:center; }
 
+.frontend table th { background: #a0c7d5; }
+
 /* -------------------------------------------------------------------------- */
 
 .rightContent b { color:#5b92b9; font-weight:bold; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;}
@@ -68,7 +70,8 @@
 
 .rightContent div.subForm { background: #c1e0ff; padding: 15px; margin-bottom:30px;}
 
-.rightContent div.bottom-btn-block { width: 80%; text-align: center; margin: 40px auto 40px auto; }
+.rightContent div.search-btn-block { width: 100%; text-align: center; margin: 20px auto 30px auto; }
+.rightContent div.bottom-btn-block { width: 100%; text-align: center; margin: 40px auto 40px auto; }
 
 .rightContent textarea { width:100% }
 

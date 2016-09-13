@@ -119,12 +119,13 @@ a.more:hover { background: url(../../images/frontend/icon_more.png) no-repeat ce
 #item03 { width:100%; background:#f5f0f2; padding: 20px 0 0 0;}
 #item03 ul { margin: 30px 0 0 0;}
 #item03 li { float:left; width:180px; height:210px; margin-right: 20px; font-size:0.93em; line-height:22px; overflow:hidden;}
-#item03 li img { margin-bottom:5px;}
+#item03 li img { width:180px; height:auto;}
+#item03 li .caseimg { width:180px; height:100px; overflow:hidden; margin-bottom:5px;}
 
 .con { width:1024px; margin: 0 auto;}
 
-.itemTxt { background: rgba(24,56,97,0.8); font-size:1.5em; line-height:32px; position:absolute; left:0; bottom:26px; width:100%; padding:15px 25px; border-bottom-right-radius:25px;}
-.itemTxt-S { font-size:1em; margin:0; line-height:22px;}
+.itemTxt { background: rgba(24,56,97,0.8); font-size:1.5em; line-height:32px; position:absolute; left:0; bottom:26px; width:100%; padding:15px 25px; border-bottom-right-radius:25px; overflow : hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;}
+.itemTxt-S { font-size:1em; margin:0; line-height:22px; overflow : hidden; text-overflow : ellipsis; white-space : nowrap; width:100%;}
 .itemTxt02 { background: rgba(130,120,120,0.85) url(../../images/frontend/icon_ArrowBG.png) no-repeat right center;; font-size:1em; line-height:25px; position:absolute; left:0; bottom:14px; width:100%; padding:10px 15px; border-bottom-right-radius:25px;}
 
 

@@ -23,6 +23,7 @@
 <meta name="funcPathText" content="編輯管理  > 編輯"/>
 </head>
 <body>
+<div class="rightContent frontend">
 	<div id="div-researchPlan">
 		<h2 class="itemTitle Down">研究計畫資料</h2>
 		<ul>
@@ -32,22 +33,22 @@
 					<s:property value="researchPlan.name" />
 				</div>
 			</li>
-			<li class="quarter">
-				<b>計畫編號</b>
-				<div>
-					<s:property value="researchPlan.planNo" />
-				</div>				
-			</li>
 			<li class="eighth">
 				<b>計畫主持人</b>
 				<div>
 					<s:property value="researchPlan.manager" />
-				</div>				
+				</div>
 			</li>
 			<li class="eighth">
 				<b>計畫年度</b>
 				<div>
 					<s:property value="researchPlan.year" />
+				</div>
+			</li>
+			<li class="half">
+				<b>計畫編號</b>
+				<div>
+					<s:property value="researchPlan.planNo" />
 				</div>
 			</li>
 			<li class="quarter">
@@ -56,17 +57,17 @@
 					<s:property value="researchPlan.projkey" />
 				</div>
 			</li>
-			<li class="half">
+			<li class="quarter">
 				<b>研究領域</b>
 				<div>
 					<s:if test="researchPlan.grbDomains != null">
 						<s:iterator value="researchPlan.grbDomains" status="stat">
-							<s:property value="showString"/>&nbsp;&nbsp;&nbsp;
+							<s:property value="name"/>&nbsp;&nbsp;&nbsp;
 						</s:iterator>
 					</s:if>	
-				</div>					
+				</div>
 			</li>
-			<li class="all">
+			<li class="">
 				<b>計畫關鍵詞</b>
 				<div>
 					<s:property value="researchPlan.keyword" />
@@ -77,7 +78,7 @@
 	<div class="clear"><hr></div>		
 	<div id="div-technologhList">
 		<h2 class="itemTitle Down">研發成果列表</h2>
-		<table id="rndResultsTable">
+		<table id="rndResultsTable" class="">
 			<thead>
 				<tr>
 					<th nowrap width="2%">No.</th>
@@ -95,11 +96,11 @@
 						</tr>
 					</s:iterator>
 				</s:if>
-			</tbody>					
+			</tbody>
 		</table>
 	</div>
 	<div class="clear"></div>
-	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
+	<div class="bottom-btn-block">
 		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 	</div>	
 	<form action="index" method="post" id="form-backToIndex">
@@ -117,6 +118,6 @@
 	</form>
 		
 	<div class="clear"></div>
-
+</div>
 </body>
 </html>

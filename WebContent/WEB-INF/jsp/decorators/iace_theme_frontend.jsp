@@ -72,7 +72,7 @@
 	    </div>	
 	</header>
 	<article>
-		<div class="rightContent">
+		<div class="">
     		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
 			<div id="div-top-message">
 				<s:if test="hasActionMessages()">

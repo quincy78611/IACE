@@ -78,13 +78,13 @@
 			$("form").submit();
 		});
 		$(".select-pageSize").val($("#pageSize").val());
-					
+		
 		// 注意: 在此頁面的搜尋按鈕記得要加上id
-	    $("#btn-search").click(function(){
-	        $("#pageIndex").val(0);
-	        return true;
-	    });
-	 	// 注意: 在此頁面的重置按鈕記得要加上id
+		$("#btn-search").click(function(){
+			$("#pageIndex").val(0);
+			return true;
+		});
+		// 注意: 在此頁面的重置按鈕記得要加上id
 		$("#btn-reset").click(function(){
 			$("input.form-control:text").val("");
 			$("select").prop('selectedIndex', 0);
@@ -94,14 +94,12 @@
 <meta name="funcPathText" content="編輯管理"/>
 </head>
 <body>
+<div class="rightContent frontend">
 	<s:form action="index" method="post" validate="true" >
 		<div class="">
 			<ul>
 				<li class="third">
 					<s:textfield placeholder="計畫名稱" name="searchCondition.planName" maxlength="4000" cssClass="form-control" />
-				</li>
-				<li class="third">
-					<s:textfield placeholder="計畫編號" name="searchCondition.planNo" maxlength="100" cssClass="form-control" />
 				</li>
 				<li class="third">
 					<s:textfield placeholder="計畫年度" name="searchCondition.year" maxlength="4" cssClass="form-control" />
@@ -113,16 +111,16 @@
 					<s:textfield placeholder="計畫主持人" name="searchCondition.manager" maxlength="100" cssClass="form-control" />
 				</li>
 				<li class="third">
-					<s:select name="searchCondition.grbDomainId" list="optionGrbDomainList" listKey="id" listValue="%{code +'-'+ name}" headerKey="-1" headerValue="全部研究領域"/>
+					<s:select name="searchCondition.grbDomainId" list="optionGrbDomainList" listKey="id" listValue="%{name}" headerKey="-1" headerValue="全部研究領域"/>
 				</li>
 				<li class="third">
 					<s:textfield placeholder="技術名稱" name="searchCondition.technologyName" maxlength="4000" cssClass="form-control" />
 				</li>
-				<li class="third">
-					<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
-					<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
-				</li>	
 			</ul>
+		</div>
+		<div class="search-btn-block">
+			<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
+			<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
 		</div>
 		<div class="clear"></div>
 		
@@ -133,7 +131,7 @@
 			
 			<ul class="pagination">
 				<s:if test="#pgList != null && #pgCount > 0">
-					<li><input type="submit" value="First" class="btn-first-page" /></li>
+					<li><input type="submit" value="第一頁" class="btn-first-page" /></li>
 					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
 					<s:if test="#pgIndex >= 5">
 						<li>......</li>
@@ -147,7 +145,7 @@
 						<li>......</li>
 					</s:if>
 					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
-					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
+					<li class="next"><input type="submit" value="最末頁" class="btn-last-page" /></li>
 				</s:if>
 				<li>
 					<p>共 <s:property value="#pgList.totatlItemCount"/>筆資料</p>
@@ -165,18 +163,14 @@
 			</ul>
 		</div>
 		
-		<div style="float:right;">
-			<input type="button" class="btn-func btn-export" value="匯出" />	
-		</div>		
 		<div>
 			<table>
 				<tr>
 					<th nowrap width="3%">No.</th>
 					<th nowrap width="3%">年度</th>
-					<th nowrap width="20%">計畫編號</th>
 					<th nowrap width="">計畫名稱</th>
 					<th nowrap width="5%">主持人</th>
-					<th nowrap width="10%">研究領域</th>
+					<th nowrap width="">研究領域</th>
 					<th nowrap width="5%">成果報告</th>
 				</tr>
 				<s:if test="researchPlanPagedList != null">
@@ -185,9 +179,8 @@
 							<td>
 								<s:property value="%{researchPlanPagedList.itemStart + #stat.count -1}" />
 								<%-- <s:property value="id" /> --%>
-							</td>						
+							</td>
 							<td><s:property value="year" /></td>
-							<td><s:property value="planNo" /></td>
 							<td>
 								<s:url value="/f/researchPlan/showDetail" var="detailUrlTag" escapeAmp="false">
 									<s:param name="id" value="id" />
@@ -206,12 +199,12 @@
 							</td>
 							<td title="<s:property value="grbDomainsTitle"/>">
 								<s:iterator value="grbDomains" status="stat">
-									<p><s:property value="name" />;</p>
+									<s:property value="name" />;
 								</s:iterator>
 							</td>
 							<td>
 								<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/search/planDetail2?id=	'+grb05Id}"/>" target="_blank">連結</a>
-							</td>															
+							</td>
 						</tr>
 					</s:iterator>
 				</s:if>	
@@ -228,7 +221,7 @@
 			
 			<ul class="pagination">
 				<s:if test="#pgList != null && #pgCount > 0">
-					<li><input type="submit" value="First" class="btn-first-page" /></li>
+					<li><input type="submit" value="第一頁" class="btn-first-page" /></li>
 					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
 					<s:if test="#pgIndex >= 5">
 						<li>......</li>
@@ -242,7 +235,7 @@
 						<li>......</li>
 					</s:if>
 					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
-					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
+					<li class="next"><input type="submit" value="最末頁" class="btn-last-page" /></li>
 				</s:if>
 				<li>
 					<p>共 <s:property value="#pgList.totatlItemCount"/>筆資料</p>
@@ -260,6 +253,7 @@
 			</ul>
 		</div>
 	</s:form>
+</div>	
 </body>
 </html>
 
