@@ -19,6 +19,10 @@
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/pageBtnList.css"/>" />
 	
+	<style>
+		.rightContent { width:1024px; margin: -20px auto 15px auto; }
+		.frontend table th { background: #a0c7d5; }
+	</style>
 	
 	<script type="text/javascript" src="<s:url value="/scripts/jquery-1.10.2.min.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.validate.js"/>"></script>
@@ -30,8 +34,8 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			setInterval(function () {
-                $("#div-top-message").hide();
-            }, 5000);
+				$("#div-top-message").hide();
+			}, 5000);
 		});
 	</script>
 	
@@ -40,40 +44,40 @@
 <body>
 	<header>
 		<div id="con">
-		    <div id="LOGO">
-		    	<a href="<s:url value="/home/init"/>">
+			<div id="LOGO">
+				<a href="<s:url value="/home/init"/>">
 					<img src="<s:url value="/images/frontend/LOGO.png"/>" >
 				</a>
-		    </div>
-	        <div id="login">
-	        	<s:if test="#session.sysUser == null">
+			</div>
+			<div id="login">
+				<s:if test="#session.sysUser == null">
 					<s:form namespace="/login" action="loginSubmit" method="post" validate="true" >
 						<input type="text" name="sysUser.account" autocomplete="off" placeholder="帳號"/>
 						<input type="password" name="sysUser.password" autocomplete="off" placeholder="密碼"/>
-						<input type="submit" value="登入" class="btnB" />
+						<input type="submit" value="登入" class="btnRed" />
 <!-- 						<input type="submit" value="忘記密碼" class="btnGray" /> -->
 					</s:form>
 				</s:if>
 				<s:else>
-	 	    		<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
-	 	    		<a href="<s:url value="/login/logout"/>" class="btnB">登出</a>
-	 	    	</s:else>				
-	        </div>
-	        <div class="clear"></div>
-	        <div id="link">
-	        	<a href="<s:url value="/home/init"/>">首頁</a>│
-	        	<a>關於I-ACE</a>│
-	        	<a>聯絡我們</a>
-	        </div>
-	        <div class="clear"></div>
-	        <s:if test="%{title != null && title != ''}">
-	        	<h2><s:property value="title" /></h2>
-   			</s:if>
-	    </div>	
+					<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
+					<a href="<s:url value="/login/logout"/>" class="btnB">登出</a>
+				</s:else>
+			</div>
+			<div class="clear"></div>
+			<div id="link">
+				<a href="<s:url value="/home/init"/>">首頁</a>│
+				<a>關於I-ACE</a>│
+				<a>聯絡我們</a>
+			</div>
+			<div class="clear"></div>
+			<s:if test="%{title != null && title != ''}">
+				<h1><s:property value="title" /></h1>
+			</s:if>
+		</div>
 	</header>
 	<article>
 		<div class="">
-    		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
+			<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
 			<div id="div-top-message">
 				<s:if test="hasActionMessages()">
 					<s:actionmessage />
@@ -83,14 +87,14 @@
 				</s:if>
 			</div>
 			<decorator:body />
-    	</div>
-    	<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
 	</article>
 	<footer>
 		<div id="footerZone">
 			<div id="LOGO"><img src="<s:url value="/images/frontend/LOGO-S.png"/>" ></div>
-		    <div id="qrcode"><img src="<s:url value="/images/frontend/qrCode.gif"/>" ></div>
-		    <div id="con">版權所有©2016科技部產學及園區業務司<br>Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs<br>本網站設計支援IE、Firefox及Chrome，網頁設計 最佳瀏覽解析度為1024x768以上</div>
+			<div id="qrcode"><img src="<s:url value="/images/frontend/qrCode.gif"/>" ></div>
+			<div id="con">版權所有©2016科技部產學及園區業務司<br>Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs<br>本網站設計支援IE、Firefox及Chrome，網頁設計 最佳瀏覽解析度為1024x768以上</div>
 			<div id="twca">
 				<div id="twcaseal" class="ssl-logo MEDIUM">
 					<img src="<s:url value="/images/TWCA-SSL-LOGO-MEDIUM.gif"/>" >
@@ -100,8 +104,8 @@
 				</script>
 				<script type="text/javascript" src="//ssllogo.twca.com.tw/twcaseal_v3.js"charset="utf-8"></script> 
 			</div>
-	    </div>
-	    <div class="clear"></div>	
+		</div>
+		<div class="clear"></div>
 	</footer>
 </body>
 </html>

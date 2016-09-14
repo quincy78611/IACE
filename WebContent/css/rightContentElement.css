@@ -56,8 +56,6 @@
 .rightContent table th.text-align-center,
 .rightContent table td.text-align-center { text-align:center; }
 
-.frontend table th { background: #a0c7d5; }
-
 /* -------------------------------------------------------------------------- */
 
 .rightContent b { color:#5b92b9; font-weight:bold; font-size:14px; display:inline-block; margin-right:4px; white-space:nowrap;}
