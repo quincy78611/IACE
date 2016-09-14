@@ -5,7 +5,7 @@
 <head>
 <script type="text/javascript">		
 	$(document).ready(function () {
-		funcBtnSetting();
+// 		funcBtnSetting();
 		paggingSetting();
 		tabClickSetting();
 	});
@@ -149,7 +149,13 @@
 							<img src="data:image;base64,<s:property value="firstBase64Img"/>" />
 						</div>					
 						<div class="lisTitle">
-							<a href="" ><s:property value="projName"/></a>
+							<s:url value="/f/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
+								<s:param name="id" value="id" />
+							</s:url>
+							<s:hidden value="%{#detailUrlTag}" class="detail-url" disabled="true"/>
+							<a href="#" class="a-showDetail">
+								<s:property value="title"/>
+							</a>
 						</div>
 						<div class="listInfo">
 							研發團隊：<s:property value="rdTeam"/><br>輔導團隊：<s:property value="assisTeam"/>
