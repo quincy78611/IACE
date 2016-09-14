@@ -299,7 +299,7 @@
 			<h2 class="itemTitle Down">基本資料</h2>
 			<ul>
 				<li class="all">
-					1. 請問您目前任職單位職稱為：
+					1. 請問您目前任職單位職稱為(可複選)：
 					<s:checkboxlist name="qnrCoopereateWay.q0_1" list="#{'1':'產學合作業務一級主管 (研究發展處研發長, 技術合作處技合長, 產學合作處產學長或產學合作中心單位主管)', '2':'技轉中心單位主管', '3':'育成中心單位主管'}" cssClass="horizontalList"/>
 				</li>
 				<li class="all">
@@ -839,7 +839,7 @@
 				</li>
 				<li class="all">
 					3.	請問貴校獲得政府 (科技部、經濟部、農委會等各部會)補助之產學合作計畫經費年度總額約為：
-					<s:radio name="qnrCoopereateWay.q4_3" list="#{'1':'1,000萬元以下', '2':'1,000-5,000萬元', '3':'5,000萬-1億元', '4':'1-2億元', '5':'2億元以上'}" cssClass="horizontalList"/>
+					<s:radio name="qnrCoopereateWay.q4_3" list="#{'1':'1,000萬元以下', '2':'1,001-5,000萬元', '3':'5,001萬-1億元', '4':'1億元以上-2億元', '5':'2億元以上'}" cssClass="horizontalList"/>
 				</li>
 				<li class="all">
 					4.	請問貴校2015年度受企業委託之研究計畫(不含政府補助計畫)簽約總件數：
@@ -847,7 +847,7 @@
 				</li>				
 				<li class="all">
 					5.	請問貴校2015年度受企業委託之研究計畫(不含政府補助計畫)簽約總經費：
-					<s:radio name="qnrCoopereateWay.q4_5" list="#{'1':'500萬元以下', '2':'500-1,000萬元', '3':'1,000-5,000萬元', '4':'5,000萬-1億元', '5':'1億元以上'}" cssClass="horizontalList"/>
+					<s:radio name="qnrCoopereateWay.q4_5" list="#{'1':'500萬元以下', '2':'501-1,000萬元', '3':'1,001-5,000萬元', '4':'5,001萬-1億元', '5':'1億元以上'}" cssClass="horizontalList"/>
 				</li>				
 				<li class="all">
 					6.	請問貴校2015年度獲證專利總件數(含政府補助、學校自主申請之專利案件)：
@@ -859,7 +859,7 @@
 				</li>				
 				<li class="all">
 					8.	請問貴校2015年度技術移轉合約授權收入總額(含政府補助計畫、學校自主簽訂之產學合作計畫)：
-					<s:radio name="qnrCoopereateWay.q4_8" list="#{'1':'1,000萬元以下', '2':'1,000-5,000萬元', '3':'5,000萬-1億元', '4':'1-1.5億元', '5':'1.5億元以上'}" cssClass="horizontalList"/>
+					<s:radio name="qnrCoopereateWay.q4_8" list="#{'1':'1,000萬元以下', '2':'1,001-5,000萬元', '3':'5,001萬-1億元', '4':'1億元以上-1.5億元', '5':'1.5億元以上'}" cssClass="horizontalList"/>
 				</li>
 				<li class="all">
 					9.	請問貴校創新育成中心進駐企業中，屬於校內師生創業的比例約為：
