@@ -75,6 +75,14 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 	
 	public PagedList<CoopEx> searchBy(CoopExSearchModel arg) {
 		PagedList<CoopEx> list = this.coopExDao.searchBy(arg);
+		for (CoopEx entity : list.getList()) {
+			// load only first image
+			if (entity.getImgs() != null && entity.getImgs().size() > 0) {
+				File f = new File(this.coopExampleFolder, entity.getImgs().get(0).getFilePath());
+				byte[] imgData = loadImg(f);
+				entity.getImgs().get(0).setByteImg(imgData);
+			}
+		}
 		return list;
 	}
 

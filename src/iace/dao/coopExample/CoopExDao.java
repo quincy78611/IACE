@@ -111,6 +111,10 @@ public class CoopExDao extends BaseIaceDao<CoopEx> implements ICoopExDao {
 			
 			@SuppressWarnings("unchecked")
 			List<CoopEx> list = criteria.list();
+			for (CoopEx c : list) {
+				Hibernate.initialize(c);
+				Hibernate.initialize(c.getImgs());
+			}
 			results.setList(list);
 			return results;
 		} catch (Exception e) {

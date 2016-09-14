@@ -91,7 +91,6 @@
 		});
 	}
 </script>
-<meta name="funcPathText" content="編輯管理"/>
 </head>
 <body>
 <div class="rightContent frontend">

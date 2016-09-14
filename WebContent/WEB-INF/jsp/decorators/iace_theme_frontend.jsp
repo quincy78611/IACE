@@ -22,6 +22,10 @@
 	<style>
 		.rightContent { width:1024px; margin: -20px auto 15px auto; }
 		.frontend table th { background: #a0c7d5; }
+		
+		.loginBlock { float:right; margin:80px 0 0 0; text-align:right; }	
+		.loginBlock input[type="text"],
+		.loginBlock input[type="password"] { width:25%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.91em; font-family: "Microsoft JhengHei", Arial;}	
 	</style>
 	
 	<script type="text/javascript" src="<s:url value="/scripts/jquery-1.10.2.min.js"/>"></script>
@@ -49,18 +53,18 @@
 					<img src="<s:url value="/images/frontend/LOGO.png"/>" >
 				</a>
 			</div>
-			<div id="login">
+			<div class="loginBlock">
 				<s:if test="#session.sysUser == null">
 					<s:form namespace="/login" action="loginSubmit" method="post" validate="true" >
 						<input type="text" name="sysUser.account" autocomplete="off" placeholder="帳號"/>
 						<input type="password" name="sysUser.password" autocomplete="off" placeholder="密碼"/>
-						<input type="submit" value="登入" class="btnRed" />
-<!-- 						<input type="submit" value="忘記密碼" class="btnGray" /> -->
+						<input type="submit" value="登入" class="mainBlueBtn" />
 					</s:form>
 				</s:if>
 				<s:else>
 					<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
-					<a href="<s:url value="/login/logout"/>" class="btnB">登出</a>
+					<input type="button" value="登出" class="mainBlueBtn" 
+						onclick="window.location.href='<s:url value="/login/logout"/>'"/>	
 				</s:else>
 			</div>
 			<div class="clear"></div>

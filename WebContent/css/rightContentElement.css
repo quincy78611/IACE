@@ -69,7 +69,9 @@
 .rightContent div.subForm { background: #c1e0ff; padding: 15px; margin-bottom:30px;}
 
 .rightContent div.search-btn-block { width: 100%; text-align: center; margin: 20px auto 30px auto; }
+.rightContent div.search-btn-block input { margin-right:1%; }
 .rightContent div.bottom-btn-block { width: 100%; text-align: center; margin: 40px auto 40px auto; }
+.rightContent div.bottom-btn-block input { margin-right:1%; }
 
 .rightContent textarea { width:100% }
 
