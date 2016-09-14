@@ -93,7 +93,17 @@ public class SysUser extends BaseEntity {
 			SysFunction action = auth.getSysFunction();
 			if (auth.getEnable() && StringUtils.equals(action.getNamespace(), namespace)) {
 				return true;
-			}			
+			}
+		}
+		return false;
+	}
+	
+	public boolean hasNamespaceStartWith(String namespace) {
+		for (SysAuth auth : this.sysRole.getAuthList()) {
+			SysFunction action = auth.getSysFunction();
+			if (auth.getEnable() && StringUtils.startsWith(action.getNamespace(), namespace)) {
+				return true;
+			}
 		}
 		return false;
 	}

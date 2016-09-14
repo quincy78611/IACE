@@ -502,6 +502,8 @@
 	</package>
 	
 	<package name="IncubationCenter" namespace="/incubationCenter" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		
 		<action name="init" class="iace.action.IncubationCenterAction" method="init">
 			<result name="success">/WEB-INF/jsp/backend/incubationCenter/index.jsp</result>
 		</action>
@@ -513,20 +515,15 @@
 			<result name="success">/WEB-INF/jsp/backend/incubationCenter/detail.jsp</result>
 		</action>		
 		<action name="batchImport" class="iace.action.IncubationCenterAction" method="batchImport">
-			<interceptor-ref name="iaceBackEnd"/>
-			
 		    <result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
 		</action>
 		<action name="batchImportSubmit" class="iace.action.IncubationCenterAction" method="batchImportSubmit">
-			<interceptor-ref name="iaceBackEnd"/>
 		    <interceptor-ref name="fileUpload"/>
 		    
 		    <result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
 		    <result name="input">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
 		</action>		
 		<action name="downloadBatchSample" class="iace.action.IncubationCenterAction" method="downloadBatchSample">
-			<interceptor-ref name="iaceBackEnd"/>
-			
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">sampleFileInputStream</param>
