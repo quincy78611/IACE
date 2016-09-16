@@ -17,7 +17,7 @@
 <style>
 .table-files tr, th, td { border:solid 1px; }
 .table-files td li { margin-bottom:1px; }
-.storypageCon textarea { resize:none; border:none; background-color:#ffffff; }
+textarea[disabled] { width:100%; resize:none; border:none; background-color:#ffffff; }
 </style>
 </head>
 <body>
@@ -32,7 +32,7 @@
         </div>
         <div class="storypageCon">
 <%--         	<s:property value="coopEx.content"/> --%>
-        	<s:textarea name="coopEx.content" disabled="true" class="AutoHeight" style="width:100%;"/>
+        	<s:textarea name="coopEx.content" disabled="true" class="AutoHeight" />
         </div>
         <div class="storypagePic">
         	<ul>
