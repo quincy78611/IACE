@@ -291,6 +291,8 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			yearList.add(new BaseOption("2016", "2016年"));
 			yearList.add(new BaseOption("2017", "2017年"));
 			yearList.add(new BaseOption("2018", "2018年"));
+			yearList.add(new BaseOption("2019", "2019年"));
+			yearList.add(new BaseOption("2020", "2020年"));
 		}		
 		return yearList;
 	}
