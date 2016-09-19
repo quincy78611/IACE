@@ -1,17 +1,24 @@
 package iace.service.talentedPeople;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import javax.servlet.ServletContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
@@ -19,7 +26,11 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.Session;
+import org.hibernate.internal.SessionImpl;
 
+import core.dao.HibernateSessionFactory;
 import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
@@ -37,6 +48,8 @@ import iace.entity.talentedPeople.TalentedPeopleRdResult;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 import iace.entity.talentedPeople.TalentedPeopleTransferCase;
 import iace.service.BaseIaceService;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 
@@ -309,5 +322,28 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		sheet.createFreezePane(0, 1);
 		
 		return wb;
+	}
+	
+	public InputStream printReport(long id) throws JRException, IOException {
+		// inputStream
+		ServletContext context = ServletActionContext.getServletContext();
+		String reportSource = context.getRealPath("/report/jasper/talentedPeople/talentedPeople.jasper");
+		FileInputStream fis = new FileInputStream(reportSource);
+		
+		// outputStream
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		
+		// parameters
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("TALENTED_PEOPLE_ID", id);
+		
+		// session
+		Session session = HibernateSessionFactory.getSession();
+		SessionImpl sessionImpl = (SessionImpl) session; 
+		Connection conn = sessionImpl.connection();
+		
+		// run
+		JasperRunManager.runReportToPdfStream(fis, os, parameters, conn);
+		return new ByteArrayInputStream(os.toByteArray());
 	}
 }

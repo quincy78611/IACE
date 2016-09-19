@@ -28,7 +28,7 @@ public class TalentedPeopleRdResult extends BaseEntity {
 	private String type;
 	private String inventer;
 	private String owner;
-	private String applicationNo;
+//	private String applicationNo;
 	private String patentNo;
 	private OptionCountry optionCountry;
 	private Date patentPeriodStart;
@@ -94,14 +94,14 @@ public class TalentedPeopleRdResult extends BaseEntity {
 		this.owner = owner;
 	}
 
-	@Column(name = "APPLICATION_NO", length = 100)
-	public String getApplicationNo() {
-		return applicationNo;
-	}
-
-	public void setApplicationNo(String applicationNo) {
-		this.applicationNo = applicationNo;
-	}
+//	@Column(name = "APPLICATION_NO", length = 100)
+//	public String getApplicationNo() {
+//		return applicationNo;
+//	}
+//
+//	public void setApplicationNo(String applicationNo) {
+//		this.applicationNo = applicationNo;
+//	}
 
 	@Column(name = "PATENT_NO", length = 100)
 	public String getPatentNo() {

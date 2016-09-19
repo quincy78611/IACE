@@ -52,6 +52,9 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private String downloadFileName;
 	private InputStream downloadFileInputStream;
 	
+	private String reportFileName;
+	private InputStream reportInputStream;
+	
 	public TalentedPeopleAction() {
 		super.setTitle("產學合作人才資料庫訪談內容");
 	}
@@ -201,6 +204,17 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return SUCCESS;
 		} catch (Exception e) {
 			log.error("", e);
+			return ERROR;
+		}
+	}
+	
+	public String printReport() {
+		try {
+			this.reportInputStream = this.talentedPeopleService.printReport(this.id);
+			this.reportFileName = "print.pdf";
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -355,7 +369,13 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	public InputStream getDownloadFileInputStream() {
 		return downloadFileInputStream;
 	}
-	
-	
+
+	public String getReportFileName() {
+		return reportFileName;
+	}
+
+	public InputStream getReportInputStream() {
+		return reportInputStream;
+	}
 	
 }

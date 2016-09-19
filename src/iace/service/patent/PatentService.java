@@ -230,7 +230,7 @@ public class PatentService extends BaseIaceService<Patent> {
 	public InputStream printReport(long id) throws JRException, IOException {
 		// inputStream
 		ServletContext context = ServletActionContext.getServletContext();
-		String reportSource = context.getRealPath("/report/jasper/patent.jasper");
+		String reportSource = context.getRealPath("/report/jasper/patent/patent.jasper");
 		FileInputStream fis = new FileInputStream(reportSource);
 		
 		// outputStream
