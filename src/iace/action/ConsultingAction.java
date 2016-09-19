@@ -39,6 +39,9 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	private String downloadFileName;
 	private InputStream downloadFileInputStream;
+	
+	private String reportFileName;
+	private InputStream reportInputStream;
 
 	public ConsultingAction() {
 		super.setTitle("諮詢服務表");
@@ -170,6 +173,17 @@ public class ConsultingAction extends BaseIaceAction {
 		}
 	}
 	
+	public String printReport() {
+		try {
+			this.reportInputStream = this.consultingService.printReport(this.id);
+			this.reportFileName = "print.pdf";
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
 	//==========================================================================
 	
 	public long getId() {
@@ -227,6 +241,14 @@ public class ConsultingAction extends BaseIaceAction {
 
 	public InputStream getDownloadFileInputStream() {
 		return downloadFileInputStream;
+	}
+
+	public String getReportFileName() {
+		return reportFileName;
+	}
+
+	public InputStream getReportInputStream() {
+		return reportInputStream;
 	}
 	
 	

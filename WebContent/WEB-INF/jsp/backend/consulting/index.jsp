@@ -194,7 +194,7 @@
 						<th nowrap width="">諮詢類型</th>
 						<th nowrap width="">產業/領域別</th>
 						<th nowrap width="">諮詢日期</th>
-						<th nowrap width="24%">功能</th>
+						<th nowrap width="31%">功能</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -232,7 +232,14 @@
 										<s:param name="id" value="id" />
 									</s:url>
 									<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-									<input type="button" class="btn-info btn-func btn-del" value="刪除" />	
+									<input type="button" class="btn-info btn-func btn-del" value="刪除" />
+									
+									<!-- 列印 -->
+									<s:url value="printReport.action" var="printReportUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<input type="button" class="btn-info btn-func btn-print" value="列印" 
+										onclick="window.location.href='<s:property value="#printReportUrlTag"/>'"/>									
 								</td>
 							</tr>
 						</s:iterator>
