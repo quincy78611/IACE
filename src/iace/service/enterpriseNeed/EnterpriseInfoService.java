@@ -286,6 +286,7 @@ public class EnterpriseInfoService extends BaseIaceService<EnterpriseInfo> {
 		// parameters
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("enterpriseNeedId", id);
+		parameters.put("SUBREPORT_DIR", context.getRealPath("/report/jasper/enterpriseNeed/"));
 		
 		// session
 		Session session = HibernateSessionFactory.getSession();

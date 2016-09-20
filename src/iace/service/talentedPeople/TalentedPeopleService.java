@@ -336,6 +336,7 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		// parameters
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("TALENTED_PEOPLE_ID", id);
+		parameters.put("SUBREPORT_DIR", context.getRealPath("/report/jasper/talentedPeople/"));
 		
 		// session
 		Session session = HibernateSessionFactory.getSession();
