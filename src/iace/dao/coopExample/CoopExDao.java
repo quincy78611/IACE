@@ -154,7 +154,7 @@ public class CoopExDao extends BaseIaceDao<CoopEx> implements ICoopExDao {
 		if (StringUtils.isNotBlank(arg.getRdTeam())) {
 			criteria.add(Restrictions.like("rdTeam", arg.getRdTeam(), MatchMode.ANYWHERE).ignoreCase());
 		}
-		if (StringUtils.isNotBlank(arg.getProjName())) {
+		if (StringUtils.isNotBlank(arg.getAssisTeam())) {
 			criteria.add(Restrictions.like("assisTeam", arg.getAssisTeam(), MatchMode.ANYWHERE).ignoreCase());
 		}
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));

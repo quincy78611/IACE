@@ -116,8 +116,12 @@
 			<ul>
 				<s:iterator value="coopExList" status="stat">
 					<li style="margin-right:20px;">
-						<s:url value="/f/coopEx/showDetail" var="urlTag">
-							<s:param name="id" value="%{id}" />
+<%-- 						<s:url value="/f/coopEx/showDetail" var="urlTag"> --%>
+<%-- 							<s:param name="id" value="%{id}" /> --%>
+<%-- 						</s:url> --%>
+						<s:url value="/f/coopEx/index" var="urlTag" escapeAmp="false">
+							<s:param name="searchCondition.projName" value="%{projName}" />
+							<s:param name="searchCondition.type" value="%{type}" />
 						</s:url> 
 						<a href="<s:property value="#urlTag" />">
 							<div class="caseimg">

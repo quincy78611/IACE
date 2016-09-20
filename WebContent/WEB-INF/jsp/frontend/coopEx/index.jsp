@@ -5,7 +5,7 @@
 <head>
 <script type="text/javascript">		
 	$(document).ready(function () {
-// 		funcBtnSetting();
+// 		funcBtnSetting(); //要先暫時關閉
 		paggingSetting();
 		tabClickSetting();
 	});
@@ -103,6 +103,8 @@
 		
 		var currentType = $("input[name='searchCondition.type']").val();
 		if (currentType == null || currentType == "") {
+			var type = $('ul.tabs li').eq(0).html();
+			$("input[name='searchCondition.type']").val(type);
 			$('ul.tabs li').eq(0).addClass('active').siblings('.active').removeClass('active');
 		} else {
 			$("ul.tabs li:contains("+currentType+")").addClass('active').siblings('.active').removeClass('active');
