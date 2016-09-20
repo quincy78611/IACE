@@ -1,14 +1,27 @@
 package iace.service.enterpriseNeed;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.ServletContext;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.Session;
+import org.hibernate.internal.SessionImpl;
 
+import core.dao.HibernateSessionFactory;
 import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.dao.enterpriseNeed.IEnterpriseInfoDao;
@@ -23,6 +36,8 @@ import iace.entity.option.OptionCooperateMode;
 import iace.entity.option.OptionDomain;
 import iace.entity.option.OptionHadTecSrc;
 import iace.service.BaseIaceService;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 public class EnterpriseInfoService extends BaseIaceService<EnterpriseInfo> {
 
@@ -257,5 +272,28 @@ public class EnterpriseInfoService extends BaseIaceService<EnterpriseInfo> {
 		sheet.createFreezePane(0, 1);
 		
 		return wb;
+	}
+	
+	public InputStream printReport(long id) throws JRException, IOException {
+		// inputStream
+		ServletContext context = ServletActionContext.getServletContext();
+		String reportSource = context.getRealPath("/report/jasper/enterpriseNeed/enterpriseNeed.jasper");
+		FileInputStream fis = new FileInputStream(reportSource);
+		
+		// outputStream
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		
+		// parameters
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		parameters.put("enterpriseNeedId", id);
+		
+		// session
+		Session session = HibernateSessionFactory.getSession();
+		SessionImpl sessionImpl = (SessionImpl) session; 
+		Connection conn = sessionImpl.connection();
+		
+		// run
+		JasperRunManager.runReportToPdfStream(fis, os, parameters, conn);
+		return new ByteArrayInputStream(os.toByteArray());
 	}
 }

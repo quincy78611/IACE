@@ -192,7 +192,7 @@
 					<th nowrap width="8%">負責人</th>
 					<th nowrap width="8%">受訪人</th>
 					<th nowrap width="8%">訪談日期</th>
-					<th nowrap width="23%">功能</th>
+					<th nowrap width="31%">功能</th>
 				</tr>
 				<s:if test="enterpriseInfoPagedList != null">
 					<s:iterator value="enterpriseInfoPagedList.list" status="stat">
@@ -228,6 +228,13 @@
 								</s:url>
 								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
 								<input type="button" class="btn-info btn-func btn-del" value="刪除" />
+								
+								<!-- 列印 -->
+								<s:url value="printReport.action" var="printReportUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<input type="button" class="btn-info btn-func btn-print" value="列印" 
+									onclick="window.location.href='<s:property value="#printReportUrlTag"/>'"/>
 							</td>
 						</tr>
 					</s:iterator>

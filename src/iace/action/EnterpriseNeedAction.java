@@ -43,6 +43,9 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	private String downloadFileName;
 	private InputStream downloadFileInputStream;
 	
+	private String reportFileName;
+	private InputStream reportInputStream;
+	
 	public EnterpriseNeedAction() {
 		super.setTitle("企業需求單");
 	}
@@ -157,7 +160,18 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
-	}	
+	}
+	
+	public String printReport() {
+		try {
+			this.reportInputStream = this.enterpriseInfoService.printReport(this.id);
+			this.reportFileName = "print.pdf";
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
 	
 	//==========================================================================
 
@@ -227,6 +241,14 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 
 	public InputStream getDownloadFileInputStream() {
 		return downloadFileInputStream;
+	}
+
+	public String getReportFileName() {
+		return reportFileName;
+	}
+
+	public InputStream getReportInputStream() {
+		return reportInputStream;
 	}
 	
 	
