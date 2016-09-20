@@ -177,9 +177,9 @@
 			<table>
 				<tr>
 					<th nowrap width="2%">No.</th>
-					<th nowrap width="">屬性</th>
 					<th nowrap width="">學校名稱</th>
 					<th nowrap width="">單位名稱</th>
+					<th nowrap width="">屬性</th>
 					<th nowrap width="5%">功能</th>
 				</tr>
 				<s:if test="incubationCenterPagedList != null">
@@ -189,11 +189,11 @@
 								<s:property value="%{incubationCenterPagedList.itemStart + #stat.count -1}" />
 								<%-- <s:property value="id" /> --%>
 							</td>						
+							<td><s:property value="schoolNameCh" /></td>
+							<td><s:property value="orgNameCh" /></td>
 							<td class="attribute">
 								<s:property value="attribute" />
 							</td>
-							<td><s:property value="schoolNameCh" /></td>
-							<td><s:property value="orgNameCh" /></td>
 							
 							<td class="col-md-1">
 								<!-- 檢視 -->

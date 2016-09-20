@@ -167,9 +167,9 @@
 			<table>
 				<tr>
 					<th nowrap width="2%">No.</th>
-					<th nowrap width="">屬性</th>
 					<th nowrap width="">學校名稱</th>
 					<th nowrap width="">單位名稱</th>
+					<th nowrap width="">屬性</th>
 				</tr>
 				<s:if test="incubationCenterPagedList != null">
 					<s:iterator value="incubationCenterPagedList.list" status="stat">
@@ -178,9 +178,6 @@
 								<s:property value="%{incubationCenterPagedList.itemStart + #stat.count -1}" />
 								<%-- <s:property value="id" /> --%>
 							</td>						
-							<td class="attribute">
-								<s:property value="attribute" />
-							</td>
 							<s:url value="/f/incubationCenter/showDetail" var="detailUrlTag" escapeAmp="false">
 								<s:param name="id" value="id" />
 							</s:url>
@@ -194,6 +191,9 @@
 								<a href="#" class="a-showDetail">
 									<s:property value="orgNameCh" />
 								</a>
+							</td>
+							<td class="attribute">
+								<s:property value="attribute" />
 							</td>
 						</tr>
 					</s:iterator>
