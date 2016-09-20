@@ -101,7 +101,13 @@
 	</div>
 	<div class="clear"></div>
 	<div class="bottom-btn-block">
-		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
+		<s:if test="fromHomePage">
+			<input type="button" class="grayBtn" value="研發成果查詢" 
+				onclick="window.location.href='<s:url value="/f/researchPlan/init"/>'"/>
+		</s:if>
+		<s:else>
+			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
+		</s:else>
 	</div>	
 	<form action="index" method="post" id="form-backToIndex">
 		<s:hidden name="searchCondition.planName"/>

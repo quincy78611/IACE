@@ -41,6 +41,8 @@ public class ResearchPlanAction extends BaseIaceAction {
 	private List<OptionTrl> optionTrlList;	
 	private PagedList<ResearchPlan> researchPlanPagedList;
 	
+	private Boolean fromHomePage;
+	
 	private long id;
 	private ResearchPlan researchPlan;	
 	
@@ -427,6 +429,14 @@ public class ResearchPlanAction extends BaseIaceAction {
 
 	public InputStream getDownloadFileInputStream() {
 		return downloadFileInputStream;
+	}
+
+	public Boolean getFromHomePage() {
+		return fromHomePage;
+	}
+
+	public void setFromHomePage(Boolean fromHomePage) {
+		this.fromHomePage = fromHomePage;
 	}
 	
 	

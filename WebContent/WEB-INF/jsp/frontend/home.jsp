@@ -16,8 +16,9 @@
 		</h3>
 		<div class="item01-L">
 			<s:if test="technologyList != null && technologyList.size() > 0">
-				<s:url value="/f/researchPlan/showDetail" var="urlTag">
+				<s:url value="/f/researchPlan/showDetail" var="urlTag" escapeAmp="false">
 					<s:param name="id" value="%{technologyList[0].researchPlan.id}" />
+					<s:param name="fromHomePage" value="true"/>
 				</s:url>
 				<a href="<s:property value="#urlTag" />" class="headline"> 
 					<img src="<s:url value="/images/frontend/home_Pic-01.jpg"/>"> 
@@ -29,8 +30,9 @@
 		</div>
 		<div class="item01-S">
 			<s:if test="technologyList != null && technologyList.size() > 1">
-				<s:url value="/f/researchPlan/showDetail" var="urlTag">
+				<s:url value="/f/researchPlan/showDetail" var="urlTag" escapeAmp="false">
 					<s:param name="id" value="%{technologyList[1].researchPlan.id}" />
+					<s:param name="fromHomePage" value="true"/>
 				</s:url>
 				<a href="<s:property value="#urlTag" />"> 
 					<img src="<s:url value="/images/frontend/home_Pic-02.jpg"/>">
@@ -42,8 +44,9 @@
 		</div>
 		<div class="item01-S">
 			<s:if test="technologyList != null && technologyList.size() > 2">
-				<s:url value="/f/researchPlan/showDetail" var="urlTag">
+				<s:url value="/f/researchPlan/showDetail" var="urlTag" escapeAmp="false">
 					<s:param name="id" value="%{technologyList[2].researchPlan.id}" />
+					<s:param name="fromHomePage" value="true"/>
 				</s:url>
 				<a href="<s:property value="#urlTag" />"> 
 					<img src="<s:url value="/images/frontend/home_Pic-03.jpg"/>">
