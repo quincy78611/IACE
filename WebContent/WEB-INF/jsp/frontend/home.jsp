@@ -78,7 +78,7 @@
 			</div>
 			<div class="clear"></div>
 			<div class="item02-S">
-				<a href="<s:url value="/f/consulting/init"/>"> 
+				<a href="<s:url value="/f/consulting/create"/>"> 
 					<label class="itemTxt02">諮詢服務</label> 
 					<img src="<s:url value="/images/frontend/home_Pic-07.jpg"/>">
 				</a>

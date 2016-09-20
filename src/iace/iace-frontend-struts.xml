@@ -41,16 +41,16 @@
 	</package>
 	
 	<package name="f.consulting" namespace="/f/consulting" extends="struts-default, default">
-		<action name="init" class="iace.action.ConsultingAction" method="init">
-			<result>/WEB-INF/jsp/frontend/consulting/index.jsp</result>
-		</action>	
-		<action name="index" class="iace.action.ConsultingAction" method="index">
-			<result name="input">/WEB-INF/jsp/frontend/consulting/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/frontend/consulting/index.jsp</result>			
+		<action name="create" class="iace.action.ConsultingAction" method="create">
+			<result name="success">/WEB-INF/jsp/frontend/consulting/create.jsp</result>	
 		</action>
-		<action name="showDetail" class="iace.action.ConsultingAction" method="showDetail">
-			<result name="success">/WEB-INF/jsp/frontend/consulting/detail.jsp</result>
-		</action>	
+		<action name="createSubmit" class="iace.action.ConsultingAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/frontend/consulting/create.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">init</param>
+				<param name="namespace">/home</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="f.CoopEx" namespace="/f/coopEx" extends="struts-default, default">
