@@ -79,30 +79,11 @@ table#table-domain { margin:0px; }
 	<ul>
 		<li class="all">
 			<b>領域</b>
-			<table id="table-domain">
-				<s:iterator value="mainDomainList" status="stat">
-					<tr>
-						<td>
-							<span style="font-weight:bold;"><s:property value="name"/></span>
-							<div class="horizontalList">
-								<s:iterator value="subDomainList" status="stat2">
-									<div class="checkbox">
-										<input type="checkbox" disabled="disabled"
-											name="talentedPeople.domainsId" 
-											id="<s:property value="%{'chkbox_'+id}" />"
-											value="<s:property value="%{id}" />"
-											<s:property value="%{talentedPeople.domainsId.contains(id) ? 'checked' : ''}"/>
-										/>										
-										<label for="<s:property value="%{'chkbox_'+id}" />">
-											<s:property value="name"/>
-										</label>
-									</div>
-								</s:iterator>
-							</div>
-						<td>
-					<tr>
+			<div class="border-text">
+				<s:iterator value="talentedPeople.domains" status="stat">
+					<s:property value="%{name + '; '}"/>
 				</s:iterator>
-			</table>				
+			</div>
 		</li>
 		<li class="all">
 			<b>合作專長</b>
