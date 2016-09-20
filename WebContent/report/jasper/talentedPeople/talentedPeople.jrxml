@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="talented_people" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c047ea03-decc-451e-9630-b59b08bca93a">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="144"/>
+	<property name="ireport.y" value="865"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -439,11 +439,11 @@
 				<textElement>
 					<font fontName="標楷體" size="14" isBold="true" isItalic="true" isUnderline="true"/>
 				</textElement>
-				<text><![CDATA[主要產學合作計畫案例]]></text>
+				<text><![CDATA[產學獲獎事蹟]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="24" width="555" height="20" isPrintWhenDetailOverflows="true" uuid="d7da96f7-8d23-4562-aba4-5c74960da528"/>
-				<textFieldExpression><![CDATA[""+$F{REWARD_HISTORY}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{REWARD_HISTORY}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement positionType="Float" x="0" y="56" width="146" height="24" forecolor="#999999" backcolor="#000000" uuid="6747f9bc-1783-4ac3-a4ff-fa865f07d003"/>
