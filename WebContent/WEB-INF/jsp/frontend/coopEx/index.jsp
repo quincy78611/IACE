@@ -81,11 +81,11 @@
 		$(".select-pageSize").val($("#pageSize").val());
 					
 		// 注意: 在此頁面的搜尋按鈕記得要加上id
-	    $("#btn-search").click(function(){
-	        $("#pageIndex").val(0);
-	        return true;
-	    });
-	 	// 注意: 在此頁面的重置按鈕記得要加上id
+		$("#btn-search").click(function(){
+			$("#pageIndex").val(0);
+			return true;
+		});
+		// 注意: 在此頁面的重置按鈕記得要加上id
 		$("#btn-reset").click(function(){
 			$("input.form-control:text").val("");
 			$("select").prop('selectedIndex', 0);
@@ -98,6 +98,7 @@
 			var type = $(this).html();
 			$("input[name='searchCondition.type']").val(type);
 			$(this).addClass('active').siblings('.active').removeClass('active');
+			$("#btn-reset").trigger("click");
 			$("form").submit();
 		});
 		
@@ -170,9 +171,9 @@
 			</s:if>	
 		</ul>
 		
-		<div class="page">
+		<div class="page" hidden="true">
 			<s:hidden id="pageIndex" name="searchCondition.pageIndex" />
-			<s:hidden id="pageSize" name="searchCondition.pageSize" />
+			<s:hidden id="pageSize" name="searchCondition.pageSize" value="1000"/>
 						
 			<s:set var="pgList" value="coopExPagedList"/>
 			<s:set var="pgIndex" value="searchCondition.pageIndex"/>
