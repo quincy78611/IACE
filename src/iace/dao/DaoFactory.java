@@ -20,6 +20,8 @@ import iace.dao.enterpriseNeed.IEnterpriseRequireTechDao;
 import iace.dao.enterpriseNeed.IEnterpriseSituationDao;
 import iace.dao.incubationCenter.IIncubationCenterDao;
 import iace.dao.incubationCenter.IncubationCenterDao;
+import iace.dao.literature.ILiteratureDao;
+import iace.dao.literature.LiteratureDao;
 import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionGrbDomainDao;
 import iace.dao.option.IOptionSchoolDao;
@@ -137,6 +139,8 @@ public class DaoFactory {
 	private static ITalentedPeopleMainProjectDao talentedPeopleMainProjectDao;
 	
 	private static IIncubationCenterDao incubationCenterDao;
+	
+	private static ILiteratureDao literatureDao;
 	
 	public static ISysFunctionDao getSysFunctionDao() {
 		if (sysFunctionDao == null) {
@@ -424,6 +428,13 @@ public class DaoFactory {
 			incubationCenterDao = new IncubationCenterDao();
 		}
 		return incubationCenterDao;
+	}
+
+	public static ILiteratureDao getLiteratureDao() {
+		if (literatureDao == null) {
+			literatureDao = new LiteratureDao();
+		}
+		return literatureDao;
 	}
 	
 	

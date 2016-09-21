@@ -120,6 +120,7 @@
 						<s:include value="./iace_backend_menu/menu-coopEx.jsp" />
 						<s:include value="./iace_backend_menu/menu-talentedPeople.jsp" />
 						<s:include value="./iace_backend_menu/menu-incubationCenter.jsp" />
+						<s:include value="./iace_backend_menu/menu-literature.jsp" />
 						<s:include value="./iace_backend_menu/menu-option.jsp" />
 						<s:include value="./iace_backend_menu/menu-sys.jsp" />
 					</ul>

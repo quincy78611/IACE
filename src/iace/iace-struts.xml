@@ -542,6 +542,7 @@
 		    <result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
 		</action>
 		<action name="batchImportSubmit" class="iace.action.IncubationCenterAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
 		    <interceptor-ref name="fileUpload"/>
 		    
 		    <result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
@@ -556,4 +557,20 @@
 			</result>	
 		</action>
 	</package>	
+	
+	<package name="Literature" namespace="/literature" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		
+		<action name="batchImport" class="iace.action.LiteratureAction" method="batchImport">
+		    <result name="success">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
+		</action>
+		<action name="batchImportSubmit" class="iace.action.LiteratureAction" method="batchImportSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
+		</action>		
+	</package>	
+	
 </struts>

@@ -21,6 +21,7 @@ import iace.entity.enterpriseNeed.EnterpriseInfo;
 import iace.entity.enterpriseNeed.EnterpriseRequireTech;
 import iace.entity.enterpriseNeed.EnterpriseSituation;
 import iace.entity.incubationCenter.IncubationCenter;
+import iace.entity.literature.Literature;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
@@ -209,5 +210,7 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(TalentedPeopleMainProject.class);
     	
     	configuration.addAnnotatedClass(IncubationCenter.class);
+    	
+    	configuration.addAnnotatedClass(Literature.class);
     }
 }

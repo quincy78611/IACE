@@ -7,6 +7,7 @@ import iace.service.coopExample.CoopExService;
 import iace.service.coopExample.CoopExVideoService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
 import iace.service.incubationCenter.IncubationCenterService;
+import iace.service.literature.LiteratureService;
 import iace.service.option.OptionCompanyLocationService;
 import iace.service.option.OptionConsultService;
 import iace.service.option.OptionCooperateModeService;
@@ -89,6 +90,8 @@ public class ServiceFactory {
 	private static TalentedPeopleService talentedPeopleService;
 	
 	private static IncubationCenterService incubationCenterService;
+	
+	private static LiteratureService literatureService;
 	
 	public static SysFunctionService getSysFunctionService() {
 		if (sysFunctionService == null) {
@@ -375,6 +378,13 @@ public class ServiceFactory {
 			incubationCenterService = new IncubationCenterService(DaoFactory.getIncubationCenterDao());
 		}
 		return incubationCenterService;
+	}
+
+	public static LiteratureService getLiteratureService() {
+		if (literatureService == null) {
+			literatureService = new LiteratureService(DaoFactory.getLiteratureDao());
+		}
+		return literatureService;
 	}
 	
 	
