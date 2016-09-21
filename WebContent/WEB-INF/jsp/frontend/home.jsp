@@ -87,13 +87,19 @@
 				</a>
 			</div>
 			<div class="item02-S">
-				<a href=""> 
+				<s:url value="/f/policy/init" var="urlTag" escapeAmp="false">
+					<s:param name="searchCondition.category" value="%{'法規政策'}" />
+				</s:url> 				
+				<a href='<s:property value="#urlTag" />'> 
 					<label class="itemTxt02">法規政策</label> 
 					<img src="<s:url value="/images/frontend/home_Pic-08.jpg"/>">
 				</a>
 			</div>
 			<div class="item02-S">
-				<a href=""> 
+				<s:url value="/f/literature/init" var="urlTag" escapeAmp="false">
+					<s:param name="searchCondition.category" value="%{'文獻'}" />
+				</s:url> 				
+				<a href='<s:property value="#urlTag" />'> 
 					<label class="itemTxt02">文獻</label> 
 					<img src="<s:url value="/images/frontend/home_Pic-09.jpg"/>">
 				</a>

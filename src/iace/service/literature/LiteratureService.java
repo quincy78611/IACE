@@ -45,7 +45,7 @@ public class LiteratureService extends BaseIaceService<Literature> {
 				try {
 					Literature entity = null;
 
-					// ID
+					// OID
 					cell = row.getCell(++c);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
 					long oid = Long.valueOf(cell.getStringCellValue().trim());
@@ -120,7 +120,14 @@ public class LiteratureService extends BaseIaceService<Literature> {
 					// 出版年
 					cell = row.getCell(++c);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
-					entity.setPublishYear(cell.getStringCellValue().trim());
+					String publishYear = cell.getStringCellValue().trim();
+					if (publishYear.length() != 4) { // 民國年
+						long year = Long.valueOf(publishYear);
+						entity.setPublishYear(year+1911);
+					} else { // 西元年
+						long year = Long.valueOf(publishYear);
+						entity.setPublishYear(year);
+					}
 
 					// 指導教授
 					cell = row.getCell(++c);

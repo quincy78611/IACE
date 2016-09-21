@@ -3,10 +3,13 @@ package iace.dao.literature;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -92,8 +95,38 @@ public class LiteratureDao extends BaseIaceDao<Literature> implements ILiteratur
 
 	private void addCriteriaRestrictionsForSearch(LiteratureSearchModel arg, Criteria criteria) {	
 		// TODO
-		
-		
+		if (StringUtils.equals(arg.getCategory(), "法規政策")) {
+			if (StringUtils.isNotBlank(arg.getSearchText())) {
+				Disjunction or = Restrictions.disjunction();
+				or.add(Restrictions.like("titleC", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());
+				or.add(Restrictions.like("titleF", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				criteria.add(or);
+			}
+		} else if (StringUtils.equals(arg.getCategory(), "文獻")) {
+			if (StringUtils.isNotBlank(arg.getSearchText())) {
+				Disjunction or = Restrictions.disjunction();
+				or.add(Restrictions.like("titleC", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());
+				or.add(Restrictions.like("titleF", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("authorC", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());
+				or.add(Restrictions.like("authorF", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("org", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("keywordC", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("keywordF", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("summary", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("summaryF", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("advisor", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("department", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("graduateSchoolC", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				or.add(Restrictions.like("journalName", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());			
+				criteria.add(or);
+			}
+			if (StringUtils.isNotBlank(arg.getLanguage())) {
+				criteria.add(Restrictions.eq("language", arg.getLanguage()));
+			}
+			if (arg.getPublishYear() != null) {
+				criteria.add(Restrictions.eq("publishYear", arg.getPublishYear()));
+			}
+		}
 		
 		criteria.add(Restrictions.eq("category", arg.getCategory()));
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));

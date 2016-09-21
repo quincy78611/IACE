@@ -30,12 +30,12 @@ public class Literature extends BaseEntity {
 	private String summaryF; // 原始外文摘要
 	private String linkUrl; // 連結網址
 	private String pagination; // 卷期頁碼(頁數)
-	private String publishYear; // 出版年
-	private String advisor; // 出版年
+	private Long publishYear; // 出版年
+	private String advisor; // 指導教授
 	private String publicationDate; // 論文出版年月
 	private String degree; // 學位
 	private String department; // 系所
-	private String graduateSchoolC; // 系所別
+	private String graduateSchoolC; // 畢業學校中文校名
 	private String journalName; // 期刊名稱
 	private String source; // 資料來源
 	private String codeIndustryId; // 領域分類
@@ -171,12 +171,12 @@ public class Literature extends BaseEntity {
 		this.pagination = pagination;
 	}
 
-	@Column(name = "PUBLISH_YEAR", length = 100)
-	public String getPublishYear() {
+	@Column(name = "PUBLISH_YEAR", length = 4)
+	public Long getPublishYear() {
 		return publishYear;
 	}
 
-	public void setPublishYear(String publishYear) {
+	public void setPublishYear(Long publishYear) {
 		this.publishYear = publishYear;
 	}
 

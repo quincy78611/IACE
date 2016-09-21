@@ -98,5 +98,32 @@
 		<action name="showDetail" class="iace.action.IncubationCenterAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend/incubationCenter/detail.jsp</result>
 		</action>
-	</package>		
+	</package>
+	
+	<package name="f.Literature" namespace="/f/literature" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.LiteratureAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend/literature/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.LiteratureAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend/literature/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/literature/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.LiteratureAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend/literature/detail.jsp</result>
+		</action>
+	</package>
+	
+	<package name="f.Policy" namespace="/f/policy" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.LiteratureAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend/policy/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.LiteratureAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend/policy/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend/policy/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.LiteratureAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend/policy/detail.jsp</result>
+		</action>
+	</package>	
+	
 </struts>
