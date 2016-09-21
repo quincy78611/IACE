@@ -56,7 +56,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private InputStream reportInputStream;
 	
 	public TalentedPeopleAction() {
-		super.setTitle("產學合作人才資料庫訪談內容");
+		super.setTitle("產學合作人才資料");
 	}
 
 	public String init() {
