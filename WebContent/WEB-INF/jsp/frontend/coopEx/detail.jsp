@@ -5,13 +5,13 @@
 <head>
 <script>
 	$(document).ready(function() {
-		$("#btn-back").click(function(){				
+		$("#btn-back").click(function(){
 			$("#form-backToIndex").submit();
 		});
 		
-		$("textarea.AutoHeight").css("overflow","hidden").bind("keydown keyup", function(){  
-	    	$(this).height($(this).prop("scrollHeight")+"px");  
-	    }).keydown();
+		$("textarea.AutoHeight").css("overflow","hidden").bind("keydown keyup", function(){
+		$(this).height($(this).prop("scrollHeight")+"px");
+	}).keydown();
 	});
 </script>
 <style>
@@ -29,39 +29,38 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 			研發團隊：<s:property value="coopEx.rdTeam"/>
 			<br>
 			輔導團隊：<s:property value="coopEx.assisTeam"/>
-        </div>
-        <div class="storypageCon">
-<%--         	<s:property value="coopEx.content"/> --%>
-        	<s:textarea name="coopEx.content" disabled="true" class="AutoHeight" />
-        </div>
-        <div class="storypagePic">
-        	<ul>
-        		<s:iterator value="coopEx.imgs" status="stat">
-        			<li>
-        				<div class="item01-S">
-        					<img src="data:image;base64,<s:property value="base64Img"/>">
-        					<div class="itemTxt-S"><s:property value="fileDesc"/></div>
-        				</div>
-        			</li>
-        		</s:iterator>
-        		<s:iterator value="coopEx.videos" status="stat">
-        			<li>
-        				<div class="item01-S">
-        					<s:url value="downloadVideo.action" var="downloadVideoUrl">
+		</div>
+		<div class="storypageCon">
+			<s:textarea name="coopEx.content" disabled="true" class="AutoHeight" />
+		</div>
+		<div class="storypagePic">
+			<ul>
+				<s:iterator value="coopEx.imgs" status="stat">
+					<li>
+						<div class="item01-S">
+							<img src="data:image;base64,<s:property value="%{getBase64Thumbnail(500, 500)}"/>">
+							<div class="itemTxt-S"><s:property value="fileDesc"/></div>
+						</div>
+					</li>
+				</s:iterator>
+				<s:iterator value="coopEx.videos" status="stat">
+					<li>
+						<div class="item01-S">
+							<s:url value="downloadVideo.action" var="downloadVideoUrl">
 								<s:param name="videoId" value="id" />
-							</s:url>					
+							</s:url>
 							<video 
 								src="<s:property value="downloadVideoUrl" />" 
 								controls="controls" preload="none"
 								style="width:295px; height:150px;"
 								>
 							</video>
-        					<div class="itemTxt-S"><s:property value="fileDesc"/></div>
-        				</div>
-        			</li>
-        		</s:iterator>
-        	</ul>
-        </div>
+							<div class="itemTxt-S"><s:property value="fileDesc"/></div>
+						</div>
+					</li>
+				</s:iterator>
+			</ul>
+		</div>
 	</div>
 	<div class="clear"></div>	
 

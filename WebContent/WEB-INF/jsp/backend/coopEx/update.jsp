@@ -229,7 +229,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 					<s:hidden class="fileContentType" name="%{'coopEx.imgs['+#stat.index+'].fileContentType'}"/>
 					<s:hidden class="fileName" name="%{'coopEx.imgs['+#stat.index+'].fileName'}"/>
 					<td width="15%">
-						<img src="data:image;base64,<s:property value="base64Img"/>" style="max-width:120px; max-height:120px;" />
+						<img src="data:image;base64,<s:property value="%{getBase64Thumbnail(240, 240)}"/>" style="max-width:120px; max-height:120px;" />
 					</td>
 					<td>
 						<ul>

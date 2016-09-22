@@ -432,6 +432,14 @@
 			<result name="input">/WEB-INF/jsp/backend/coopEx/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/coopEx/index.jsp</result>
 		</action>
+		<action name="downloadImage" class="iace.action.CoopExAction" method="downloadImage">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
 		<action name="downloadVideo" class="iace.action.CoopExAction" method="downloadVideo">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>

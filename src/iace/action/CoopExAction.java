@@ -5,10 +5,12 @@ import java.io.InputStream;
 import core.util.PagedList;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.coopExample.CoopExAttachFile;
+import iace.entity.coopExample.CoopExImg;
 import iace.entity.coopExample.CoopExSearchModel;
 import iace.entity.coopExample.CoopExVideo;
 import iace.service.ServiceFactory;
 import iace.service.coopExample.CoopExAttachFileService;
+import iace.service.coopExample.CoopExImgService;
 import iace.service.coopExample.CoopExService;
 import iace.service.coopExample.CoopExVideoService;
 
@@ -17,6 +19,7 @@ public class CoopExAction extends BaseIaceAction {
 	private static final long serialVersionUID = -1853598489369057497L;
 	
 	private CoopExService coopExService = ServiceFactory.getCoopExService();
+	private CoopExImgService coopExImgService = ServiceFactory.getCoopExImgService();
 	private CoopExVideoService coopExVideoService = ServiceFactory.getCoopExVideoService();
 	private CoopExAttachFileService coopExAttachFileService = ServiceFactory.getCoopExAttachFileService();
 	
@@ -26,6 +29,7 @@ public class CoopExAction extends BaseIaceAction {
 	private long id; 
 	private CoopEx coopEx;
 	
+	private long imgId;
 	private long videoId;
 	private long attachFileId;
 	private String downloadFileName;
@@ -139,6 +143,20 @@ public class CoopExAction extends BaseIaceAction {
 		}
 	}
 	
+	public String downloadImage() {
+		try {
+			CoopExImg entity = this.coopExImgService.get(this.imgId); 
+			this.downloadFileInputStream = this.coopExImgService.getImageIS(entity);
+			this.downloadFileName = entity.getFileName();
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+
 	public String downloadVideo() {
 		try {
 			CoopExVideo entity = this.coopExVideoService.get(this.videoId); 
@@ -217,6 +235,14 @@ public class CoopExAction extends BaseIaceAction {
 
 	public void setDownloadFileInputStream(InputStream downloadFileInputStream) {
 		this.downloadFileInputStream = downloadFileInputStream;
+	}
+
+	public long getImgId() {
+		return imgId;
+	}
+
+	public void setImgId(long imgId) {
+		this.imgId = imgId;
 	}
 
 	public long getVideoId() {

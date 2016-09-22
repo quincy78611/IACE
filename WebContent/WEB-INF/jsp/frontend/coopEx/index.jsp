@@ -5,7 +5,7 @@
 <head>
 <script type="text/javascript">		
 	$(document).ready(function () {
-// 		funcBtnSetting(); //要先暫時關閉
+		//funcBtnSetting(); //要先暫時關閉
 		paggingSetting();
 		tabClickSetting();
 	});
@@ -149,7 +149,7 @@
 				<s:iterator value="coopExPagedList.list" status="stat">
 					<li class="all">
 						<div class="list-S">
-							<img src="data:image;base64,<s:property value="firstBase64Img"/>" />
+							<img src="data:image;base64,<s:property value="%{imgs[0].getBase64Thumbnail(500, 500)}"/>" />
 						</div>					
 						<div class="lisTitle">
 							<s:url value="/f/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">

@@ -3,6 +3,7 @@ package iace.service;
 import iace.dao.DaoFactory;
 import iace.service.consulting.ConsultingService;
 import iace.service.coopExample.CoopExAttachFileService;
+import iace.service.coopExample.CoopExImgService;
 import iace.service.coopExample.CoopExService;
 import iace.service.coopExample.CoopExVideoService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
@@ -84,6 +85,7 @@ public class ServiceFactory {
 	private static QnrCooperateWayExcelService qnrCooperateWayExcelService;
 	
 	private static CoopExService coopExService;
+	private static CoopExImgService coopExImgService;
 	private static CoopExVideoService coopExVideoService;
 	private static CoopExAttachFileService coopExAttachFileService;
 	
@@ -344,6 +346,13 @@ public class ServiceFactory {
 					DaoFactory.getCoopExAttachFileDao());
 		}
 		return coopExService;
+	}
+	
+	public static CoopExImgService getCoopExImgService() {
+		if (coopExImgService == null) {
+			coopExImgService = new CoopExImgService(DaoFactory.getCoopExImgDao());
+		}
+		return coopExImgService;
 	}
 
 	public static CoopExVideoService getCoopExVideoService() {

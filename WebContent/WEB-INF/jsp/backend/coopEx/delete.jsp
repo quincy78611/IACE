@@ -80,12 +80,17 @@
 				<s:iterator value="coopEx.imgs" status="stat">
 				<tr>
 					<td width="15%">
-						<img src="data:image;base64,<s:property value="base64Img"/>" style="max-width:120px; max-height:120px;" />
+						<img src="data:image;base64,<s:property value="%{getBase64Thumbnail(240, 240)}"/>" style="max-width:120px; max-height:120px;" />
 					</td>
 					<td>
 						<ul>
 							<li>
-								<s:property value="fileName"/>
+								<s:url value="downloadImage.action" var="downloadImageUrl">
+									<s:param name="imgId" value="id" />
+								</s:url>
+								<a href="<s:property value="downloadImageUrl" />" >
+									<s:property value="fileName"/>
+								</a>
 							</li>
 							<li class="all">
 								<s:textarea name="fileDesc" placeholder="無檔案說明" disabled="true"/>
