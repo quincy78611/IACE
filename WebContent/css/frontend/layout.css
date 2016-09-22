@@ -87,7 +87,7 @@ article .btnZone input.btnGray[type=submit]:hover { background:#650815; border:#
 #link { float:left; font-size:1em; color:#a9b8c9; margin: 25px 0 0 0; letter-spacing:1px;}
 #link a { color:#fff; display:inline-block; color:#e0e7ef; margin:0 8px;}
 #link a:hover { color:#fff;}
-#number { float:right; font-size:0.75em; color:#fff; margin: 25px 0 0 0;}
+#number { float:right; font-size:0.75em; color:#fff; margin: 25px 0 0 0; display:inline-block; line-height:20.8px; vertical-align:middle; }
 
 /* -- 行動版選單 -- */
 #mobileMenu { display:none;}

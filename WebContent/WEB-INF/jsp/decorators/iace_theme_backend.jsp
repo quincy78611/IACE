@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/menu.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/vmenuModule.js"/>"></script>
+	<script type="text/javascript" src="<s:url value="/scripts/GoogleAnalytics.js"/>"></script>
 	
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_backend.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/rightContentElement.css"/>" />
