@@ -96,7 +96,7 @@
 	<footer>
 		<div id="footerZone">
 			<div id="LOGO"><img src="<s:url value="/images/frontend/LOGO-S.png"/>" ></div>
-			<div id="qrcode"><img src="<s:url value="/images/frontend/qrCode.gif"/>" ></div>
+			<div id="qrcode"><img src="<s:url value="/images/frontend/qrCode.jpg"/>" ></div>
 			<div id="con">版權所有©2016科技部產學及園區業務司<br>Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs<br>本網站設計支援IE、Firefox及Chrome，網頁設計 最佳瀏覽解析度為1024x768以上</div>
 			<div id="twca">
 				<div id="twcaseal" class="ssl-logo MEDIUM">
