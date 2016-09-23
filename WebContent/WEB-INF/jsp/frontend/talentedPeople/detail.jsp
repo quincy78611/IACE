@@ -5,18 +5,38 @@
 <head>
 <script>
 	$(document).ready(function() {
+		btnUnfoldRdResultSetting();
+		
 		$("#btn-back").click(function(){				
 			$("#form-backToIndex").submit();
-		});		
+		});	
 	});
+</script>
+<script>
+	function btnUnfoldRdResultSetting() {
+		$(".btn-unfold-rd-result").click(function(){
+			var rowIndex = $('#table-rdResult tr').index($(this).parents('tr'));
+			if ($(this).val() == "展開") {
+				$('#table-rdResult tr').eq(rowIndex+1).show();
+				$('#table-rdResult tr').eq(rowIndex+2).show();
+				$('#table-rdResult tr').eq(rowIndex+3).show();
+				$(this).val("收起");
+			} else {
+				$('#table-rdResult tr').eq(rowIndex+1).hide();
+				$('#table-rdResult tr').eq(rowIndex+2).hide();
+				$('#table-rdResult tr').eq(rowIndex+3).hide();
+				$(this).val("展開");
+			}
+		});
+	}
 </script>
 <style>
 table.table-talentedPeopleInfo { margin-bottom:15px; }
 table.table-talentedPeopleInfo tr:hover { background:none; }
 table.table-talentedPeopleInfo td { border:none; }
 table.table-talentedPeopleInfo td.headShot { width:20%; border:#e6eff5 1px solid; }
-
 table#table-domain { margin:0px; }
+textarea[disabled] { width:100%; resize:none; border:none; background-color:#ffffff; }
 </style>
 <meta name="funcPathText" content="編輯管理 > 檢視"/>
 </head>
@@ -64,9 +84,11 @@ table#table-domain { margin:0px; }
 					</li>
 					<li class="all">
 						<b>網站連結</b>
-						<a href="<s:property value="talentedPeople.url"/>">
-							<s:property value="talentedPeople.url"/>
-						</a>
+						<div class="border-text">
+							<a href="<s:property value="talentedPeople.url"/>">
+								<s:property value="talentedPeople.url"/>
+							</a>
+						</div>
 					</li>					
 				</ul>					
 			</td>
@@ -83,11 +105,110 @@ table#table-domain { margin:0px; }
 				<s:iterator value="talentedPeople.domains" status="stat">
 					<s:property value="%{name + '; '}"/>
 				</s:iterator>
-			</div>
+			</div>				
 		</li>
 		<li class="all">
 			<b>合作專長</b>
 			<div class="border-text"><s:property value="talentedPeople.specialty"/>&nbsp;</div>
+		</li>
+	</ul>
+	
+	<b>重要研發成果(包含:專利,技術,IC佈局, 軟體…..)</b> 
+	<table id="table-rdResult" >
+		<tr>
+			<th>研發成果名稱</th>
+			<th>型式</th>
+			<th>國別</th>
+			<th></th>
+		</tr>
+		<s:iterator value="talentedPeople.rdResults" status="stat">
+			<tr style="border-top:#000000 1px solid;">
+				<td><s:property value="name"/></td>
+				<td><s:property value="type"/></td>
+				<td><s:property value="optionCountry.name"/></td>
+				<td><input type="button" value="展開" class="btn-func btn-view btn-unfold-rd-result"/></td>
+			</tr>
+			<tr style="display:none;">
+				<td>
+					<b>專利期間</b>
+					<s:property value="%{patentPeriodStart + ' ~ ' + patentPeriodEnd}" />
+				</td>
+				<td>
+					<b>專利號/申請號</b>
+					<s:property value="patentNo"/>
+				</td>
+				<td>
+					<b>發明人</b>
+					<s:property value="inventer"/>
+				</td>
+				<td>
+					<b>所有權人</b>
+					<s:property value="owner"/>
+				</td>
+			</tr>
+			<tr style="display:none;">
+				<td colspan="4" title="<s:property value="patentAbstract"/>">
+					<b>摘要</b>
+					<s:textarea name="patentAbstract" disabled="true"/>
+				</td>
+			</tr>
+			<tr style="display:none;">
+				<td colspan="4" title="<s:property value="usage"/>">
+					<b>應用產業/範圍</b>
+					<s:property value="usage"/>
+				</td>
+			</tr>
+		</s:iterator>
+	</table>
+	
+	<b>成果移轉及授權案例</b>
+	<table id="table-transferCase">
+		<tr>
+			<th width="">應用領域</th>
+			<th width="">對象廠商或機構</th>
+			<th width="">授權期間或讓受/技轉時間</th>
+		</tr>
+		<s:iterator value="talentedPeople.transferCases" status="stat">
+			<tr>
+				<td><s:property value="applyField" /></td>
+				<td><s:property value="targetOrg" /></td>
+				<td>
+					<s:set var="start" value="%{yearStart+'年'+monthStart+'月'}"/>
+					<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
+					<s:property value="%{#start+(#end != null ? ' ~ '+#end : '')}" />
+				</td>
+			</tr>
+		</s:iterator>	
+	</table>
+	
+	<b>主要產學合作計畫案例</b>
+	<table id="table-mainProject">
+		<tr>
+			<th width="">合作計畫或合約名稱</th>
+			<th width="">合作廠商名稱</th>
+			<th width="">合作有效期間</th>
+		</tr>
+		<s:iterator value="talentedPeople.mainProjects" status="stat">
+			<tr>
+				<td><s:property value="name" /></td>
+				<td><s:property value="coopComName" /></td>
+				<td>
+					<s:set var="start" value="%{yearStart+'年'+monthStart+'月'}"/>
+					<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
+					<s:property value="%{#start+' ~ '+#end}" />
+				</td>
+			</tr>
+		</s:iterator>
+	</table>
+	
+	<ul>
+		<li class="all">
+			<b>產學獲獎事蹟</b>
+			<s:textarea name="talentedPeople.rewardHistory" disabled="true" />
+		</li>
+		<li class="all">
+			<b>其他產業相關經驗 (如:任職過業界或法人, 或擔任過業界或法人顧問……等對產學合作有助益的經驗)</b>
+			<s:textarea name="talentedPeople.otherExperience" disabled="true" />
 		</li>
 	</ul>
 	
@@ -104,7 +225,9 @@ table#table-domain { margin:0px; }
 		<s:hidden name="searchCondition.workOrg"/>
 		<s:hidden name="searchCondition.job"/>
 		<s:hidden name="searchCondition.specialty"/>
-		<s:hidden name="searchCondition.grbDomainIdList"/>
+		<s:iterator value="searchCondition.grbDomainIdList" status="stat">
+			<input type="hidden" name="searchCondition.grbDomainIdList" value="<s:property/>"/>
+		</s:iterator>
 		<s:hidden name="searchCondition.pageIndex"/>
 		<s:hidden name="searchCondition.pageSize"/>
 	</form>

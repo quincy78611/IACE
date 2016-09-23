@@ -10,8 +10,8 @@
 		});
 		
 		$("textarea.AutoHeight").css("overflow","hidden").bind("keydown keyup", function(){
-		$(this).height($(this).prop("scrollHeight")+"px");
-	}).keydown();
+			$(this).height($(this).prop("scrollHeight")+"px");
+		}).keydown();
 	});
 </script>
 <style>

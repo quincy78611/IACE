@@ -665,7 +665,9 @@ tr.hidden-sample-tr { display:none; }
 		<s:hidden name="searchCondition.workOrg"/>
 		<s:hidden name="searchCondition.job"/>
 		<s:hidden name="searchCondition.specialty"/>
-		<s:hidden name="searchCondition.grbDomainIdList"/>
+		<s:iterator value="searchCondition.grbDomainIdList" status="stat">
+			<input type="hidden" name="searchCondition.grbDomainIdList" value="<s:property/>"/>
+		</s:iterator>
 		<s:hidden name="searchCondition.pageIndex"/>
 		<s:hidden name="searchCondition.pageSize"/>
 	</form>
