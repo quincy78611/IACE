@@ -45,7 +45,7 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			cell.setCellValue(school.getName());
 			
 			cell = row.createCell(++c);
-			cell.setCellValue(qnrUrl+"?encryptSchoolId="+school.getEncryptedId());
+			cell.setCellValue(qnrUrl+"?encryptSchoolId="+school.getUrlEncodeId());
 		}
 		
 		for (int i=0; i<=c; i++) {

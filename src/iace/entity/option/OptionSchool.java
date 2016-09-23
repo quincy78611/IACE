@@ -1,5 +1,8 @@
 package iace.entity.option;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -14,10 +17,21 @@ public class OptionSchool extends BaseOption {
 	
 	private String encryptedId;
 
+	@Deprecated
 	@Transient
 	public String getEncryptedId() {
 		this.encryptedId = AESEncrypter.encrypt(AESEncrypter.KEY, String.valueOf(super.getId()));
 		return encryptedId;
+	}
+	
+	@Transient
+	public String getUrlEncodeId() {
+		try {
+			String encryptedId = AESEncrypter.encrypt(AESEncrypter.KEY, String.valueOf(super.getId()));
+			return URLEncoder.encode(encryptedId, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			return null;
+		}
 	}
 
 }

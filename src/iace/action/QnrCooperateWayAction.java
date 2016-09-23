@@ -1,6 +1,7 @@
 package iace.action;
 
 import java.io.InputStream;
+import java.net.URLDecoder;
 import java.util.List;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -38,7 +39,7 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	public String index() {
 		try {
 			OptionSchool school = this.schoolService.getByCode("TEST");
-			this.encryptSchoolId = AESEncrypter.encrypt(AESEncrypter.KEY, String.valueOf(school.getId()));
+			this.encryptSchoolId = school.getUrlEncodeId();
 			
 			return SUCCESS;
 		} catch (Exception e) {
@@ -102,7 +103,9 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 	
 	public String fillInQnr() {
 		try {
-			this.schoolId = Long.valueOf(AESEncrypter.decrypt(AESEncrypter.KEY, this.encryptSchoolId));	
+			String decryptUrlId = URLDecoder.decode(this.encryptSchoolId, "UTF-8");
+			decryptUrlId = decryptUrlId.replace(" ", "+");// after decode, "+" will become white-space, so need to change it back to "+"
+			this.schoolId = Long.valueOf(AESEncrypter.decrypt(AESEncrypter.KEY, decryptUrlId));	
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

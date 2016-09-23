@@ -1,7 +1,5 @@
 package core.util;
 
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.security.SecureRandom;
 
 import javax.crypto.Cipher;
@@ -31,7 +29,7 @@ public class AESEncrypter {
 			cipher.init(Cipher.ENCRYPT_MODE, skeySpec);
 			byte[] encrypt = cipher.doFinal(plainText.getBytes());
 			String encrypted = new BASE64Encoder().encodeBuffer(encrypt);
-			return URLEncoder.encode(encrypted, "UTF-8");
+			return encrypted;
 		} catch (Exception e) {
 			log.error("", e);
 			return null;
@@ -40,8 +38,7 @@ public class AESEncrypter {
 	
 	public static String decrypt(String key, String cipherText) {
 		try {
-			String urlDecodedData=URLDecoder.decode(cipherText, "UTF-8");
-			byte[] b = new BASE64Decoder().decodeBuffer(urlDecodedData);
+			byte[] b = new BASE64Decoder().decodeBuffer(cipherText);
 			KeyGenerator kgen2 = KeyGenerator.getInstance("AES");
 			kgen2.init(128, new SecureRandom(key.getBytes()));
 			SecretKey skey2 = kgen2.generateKey();
@@ -62,9 +59,7 @@ public class AESEncrypter {
 		
 		String encryptText = encrypt(KEY, text);
 		String decryptText = decrypt(KEY, encryptText);
-		System.out.println(encryptText);
-		System.out.println(decryptText);
-		
-		
+		System.out.println("["+encryptText+"]");
+		System.out.println("["+decryptText+"]");
 	}
 }
