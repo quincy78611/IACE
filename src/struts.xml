@@ -53,7 +53,7 @@
 
 	<include file="iace/iace-sys-struts.xml" />
 	<include file="iace/iace-option-struts.xml" />
-	<include file="iace/iace-struts.xml" />
+	<include file="iace/iace-backend-struts.xml" />
 	<include file="iace/iace-frontend-struts.xml"/>
 	<!-- Add packages here -->
 
