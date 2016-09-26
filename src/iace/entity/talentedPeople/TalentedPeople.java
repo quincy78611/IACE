@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -28,6 +29,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 import core.util.AESEncrypter;
 import iace.entity.BaseEntity;
 import iace.entity.option.OptionGrbDomain;
+import iace.entity.sys.SysUser;
 
 @Entity
 @Table(name = "TALENTED_PEOPLE")
@@ -59,6 +61,8 @@ public class TalentedPeople extends BaseEntity {
 	
 	private String rewardHistory;
 	private String otherExperience;
+	
+	private SysUser sysUser;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
@@ -350,6 +354,16 @@ public class TalentedPeople extends BaseEntity {
 
 	public void setOtherExperience(String otherExperience) {
 		this.otherExperience = otherExperience;
+	}
+	
+	@ManyToOne
+	@JoinColumn(name="SYS_USER_ID", referencedColumnName= "ID")
+	public SysUser getSysUser() {
+		return sysUser;
+	}
+
+	public void setSysUser(SysUser sysUser) {
+		this.sysUser = sysUser;
 	}
 
 	@Override

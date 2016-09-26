@@ -17,11 +17,13 @@ import iace.entity.BaseBatchImportResult;
 import iace.entity.option.BaseOption;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionDomain;
+import iace.entity.sys.SysRole;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 import iace.service.ServiceFactory;
 import iace.service.option.OptionCountryService;
 import iace.service.option.OptionDomainService;
+import iace.service.sys.SysRoleService;
 import iace.service.talentedPeople.TalentedPeopleService;
 
 public class TalentedPeopleAction extends BaseIaceAction {
@@ -31,11 +33,13 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private TalentedPeopleService talentedPeopleService = ServiceFactory.getTalentedPeopleService();
 	private OptionDomainService optionDomainService = ServiceFactory.getOptionDomainService();
 	private OptionCountryService optionCountryService = ServiceFactory.getOptionCountryService();
+	private SysRoleService sysRoleService = ServiceFactory.getSysRoleService();
 	
 	private TalentedPeopleSearchModel searchCondition = new TalentedPeopleSearchModel();
 	private PagedList<TalentedPeople> talentedPeoplePagedList;
 	
 	private long id;
+	private long sysRoleId;
 	private TalentedPeople talentedPeople;
 	
 	private List<OptionDomain> mainDomainList;
@@ -43,6 +47,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private List<BaseOption> rdResultTypeList;
 	private List<BaseOption> yearList;
 	private List<BaseOption> monthList;
+	private List<SysRole> sysRoleList;
 	
 	private File uploadFile;
 	private String uploadFileContentType;
@@ -182,7 +187,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 
 	public String batchImportSubmit() {
 		try {
-			this.batchImportResult = this.talentedPeopleService.batchImport(this.uploadFile);
+			this.batchImportResult = this.talentedPeopleService.batchImport(this.uploadFile, this.sysRoleId);
 			if (this.batchImportResult.getErrMsgs().size() > 0) {
 				this.addActionError("部分或全部匯入資料有誤，請看下方錯誤列表");
 			}
@@ -377,5 +382,21 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	public InputStream getReportInputStream() {
 		return reportInputStream;
 	}
+
+	public long getSysRoleId() {
+		return sysRoleId;
+	}
+
+	public void setSysRoleId(long sysRoleId) {
+		this.sysRoleId = sysRoleId;
+	}
+
+	public List<SysRole> getSysRoleList() {
+		if (sysRoleList == null) {
+			sysRoleList = this.sysRoleService.listAll();
+		}
+		return sysRoleList;
+	}
+	
 	
 }

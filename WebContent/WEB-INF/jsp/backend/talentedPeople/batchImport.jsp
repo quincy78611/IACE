@@ -26,6 +26,11 @@
 			<h2 class="itemTitle Down">批次匯入</h2>
 			<ul>
 				<li class="half">
+					<b>角色 (所選擇的角色將套用到本次匯入的所有人才)</b>
+					<s:select name="sysRoleId" list="sysRoleList" listKey="id" listValue="+name"/>
+				</li>
+				<div class="clear"></div>
+				<li class="half">
 					<input type="text" id="file_display" class="form-control" readonly="readonly"/>
 				</li>
 				<li class="quarter">
@@ -36,7 +41,7 @@
 				<li class="eighth">
 					<input type="submit" value="匯入" class="btn btn-info redBtn" />
 				</li>
-				<li class="eighth">						
+				<li class="eighth">
 					<input type="button" class="btn btn-default grayBtn" value="下載範例" 
 						onclick="window.location.href='<s:url value="downloadBatchSample"/>'"/>	
 				</li>

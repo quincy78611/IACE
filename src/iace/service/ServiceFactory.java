@@ -377,7 +377,9 @@ public class ServiceFactory {
 					DaoFactory.getTalentedPeopleTransferCaseDao(),
 					DaoFactory.getTalentedPeopleMainProjectDao(),
 					DaoFactory.getOptionGrbDomainDao(),
-					DaoFactory.getOptionCountryDao());
+					DaoFactory.getOptionCountryDao(),
+					DaoFactory.getSysUserDao(),
+					DaoFactory.getSysRoleDao());
 		}
 		return talentedPeopleService;
 	}

@@ -77,34 +77,43 @@ public class SysUser extends BaseEntity {
 	}
 
 	public boolean hasAuth(String namespace, String actionName) {
-		for (SysAuth auth : this.sysRole.getAuthList()) {
-			SysFunction action = auth.getSysFunction();
-			if (auth.getEnable() &&
-				StringUtils.equals(action.getNamespace(), namespace) && 
-				action.hasActionName(actionName)) {
-				return true;
+		if (this.sysRole != null) {
+			for (SysAuth auth : this.sysRole.getAuthList()) {
+				SysFunction action = auth.getSysFunction();
+				if (auth.getEnable() &&
+					StringUtils.equals(action.getNamespace(), namespace) && 
+					action.hasActionName(actionName)) {
+					return true;
+				}
 			}
 		}
+
 		return false;
 	}
 
 	public boolean hasNamespace(String namespace) {
-		for (SysAuth auth : this.sysRole.getAuthList()) {
-			SysFunction action = auth.getSysFunction();
-			if (auth.getEnable() && StringUtils.equals(action.getNamespace(), namespace)) {
-				return true;
+		if (this.sysRole != null) {
+			for (SysAuth auth : this.sysRole.getAuthList()) {
+				SysFunction action = auth.getSysFunction();
+				if (auth.getEnable() && StringUtils.equals(action.getNamespace(), namespace)) {
+					return true;
+				}
 			}
 		}
+
 		return false;
 	}
 	
 	public boolean hasNamespaceStartWith(String namespace) {
-		for (SysAuth auth : this.sysRole.getAuthList()) {
-			SysFunction action = auth.getSysFunction();
-			if (auth.getEnable() && StringUtils.startsWith(action.getNamespace(), namespace)) {
-				return true;
+		if (this.sysRole != null) {
+			for (SysAuth auth : this.sysRole.getAuthList()) {
+				SysFunction action = auth.getSysFunction();
+				if (auth.getEnable() && StringUtils.startsWith(action.getNamespace(), namespace)) {
+					return true;
+				}
 			}
 		}
+
 		return false;
 	}
 
@@ -113,7 +122,7 @@ public class SysUser extends BaseEntity {
 		String s = 
 			"帳號: {"+this.account+"}, "+
 			"名稱: {"+this.name+"}, "+
-			"腳色: {"+this.sysRole.getName()+"}";
+			"腳色: {"+this.sysRole == null ? "" : this.sysRole.getName()+"}";
 		return s;
 	}
 	

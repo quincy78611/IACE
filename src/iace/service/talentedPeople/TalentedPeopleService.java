@@ -22,6 +22,7 @@ import javax.servlet.ServletContext;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -35,6 +36,8 @@ import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionGrbDomainDao;
+import iace.dao.sys.ISysRoleDao;
+import iace.dao.sys.ISysUserDao;
 import iace.dao.talentedPeople.ITalentedPeopleDao;
 import iace.dao.talentedPeople.ITalentedPeopleMainProjectDao;
 import iace.dao.talentedPeople.ITalentedPeopleRdResultDao;
@@ -42,6 +45,8 @@ import iace.dao.talentedPeople.ITalentedPeopleTransferCaseDao;
 import iace.entity.BaseBatchImportResult;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionGrbDomain;
+import iace.entity.sys.SysRole;
+import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.entity.talentedPeople.TalentedPeopleMainProject;
 import iace.entity.talentedPeople.TalentedPeopleRdResult;
@@ -59,6 +64,8 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 	private ITalentedPeopleMainProjectDao talentedPeopleMainProjectDao;
 	private IOptionGrbDomainDao optionGrbDomainDao;
 	private IOptionDao<OptionCountry> optionCountryDao;
+	private ISysUserDao sysUserDao;
+	private ISysRoleDao sysRoleDao;
 	
 	public TalentedPeopleService(
 			ITalentedPeopleDao dao, 
@@ -66,7 +73,9 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 			ITalentedPeopleTransferCaseDao talentedPeopleTransferCaseDao,
 			ITalentedPeopleMainProjectDao talentedPeopleMainProjectDao,
 			IOptionGrbDomainDao optionGrbDomainDao, 
-			IOptionDao<OptionCountry> optionCountryDao) {
+			IOptionDao<OptionCountry> optionCountryDao,
+			ISysUserDao sysUserDao,
+			ISysRoleDao sysRoleDao) {
 		super(dao);
 		this.talentedPeopleDao = dao;
 		this.talentedPeopleRdResultDao = talentedPeopleRdResultDao;
@@ -74,6 +83,8 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		this.talentedPeopleMainProjectDao = talentedPeopleMainProjectDao;
 		this.optionGrbDomainDao = optionGrbDomainDao;
 		this.optionCountryDao = optionCountryDao;
+		this.sysUserDao = sysUserDao;
+		this.sysRoleDao = sysRoleDao;
 	}
 
 	public PagedList<TalentedPeople> searchBy(TalentedPeopleSearchModel arg) {
@@ -188,7 +199,9 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		}
 	}
 	
-	public BaseBatchImportResult<TalentedPeople> batchImport(File file) throws IOException {
+	public BaseBatchImportResult<TalentedPeople> batchImport(File file, long sysRoleId) throws IOException {
+		SysRole role = this.sysRoleDao.get(sysRoleId); 
+		
 		BaseBatchImportResult<TalentedPeople> res = new BaseBatchImportResult<TalentedPeople>();
 		Map<String, OptionGrbDomain> grbDomainMap = this.optionGrbDomainDao.mapAll();
 		
@@ -257,6 +270,25 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 					cell = row.getCell(++c);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
 					entity.setSpecialty(cell.getStringCellValue().trim());
+					
+					SysUser user = new SysUser();
+					user.setSysRole(role);
+					user.setName(entity.getNameCh());
+					
+					cell = row.getCell(++c, Row.CREATE_NULL_AS_BLANK);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					user.setAccount(cell.getStringCellValue().trim());
+					
+					cell = row.getCell(++c, Row.CREATE_NULL_AS_BLANK);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					user.setPassword(cell.getStringCellValue().trim());
+					
+					if (StringUtils.isNotBlank(user.getName()) && 
+						StringUtils.isNotBlank(user.getAccount()) &&
+						StringUtils.isNotBlank(user.getPassword())) {
+						this.sysUserDao.create(user);
+						entity.setSysUser(user);
+					}
 					
 					this.dao.create(entity);
 					res.addRecordToInsertList(entity);
