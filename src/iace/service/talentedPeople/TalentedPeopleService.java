@@ -87,6 +87,10 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		this.sysRoleDao = sysRoleDao;
 	}
 
+	public TalentedPeople get(SysUser user) {
+		return this.talentedPeopleDao.get(user);
+	}
+	
 	public PagedList<TalentedPeople> searchBy(TalentedPeopleSearchModel arg) {
 		return talentedPeopleDao.searchBy(arg);
 	}

@@ -268,7 +268,8 @@ tr.hidden-sample-tr { display:none; }
 <meta name="funcPathText" content="編輯管理  > 編輯"/>
 </head>
 <body>
-	<s:form action="updateSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-update">
+<div class="rightContent frontend">
+	<s:form action="selfUpdateSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-update">
 		<div>
 			<s:hidden name="talentedPeople.id" />
 			<s:hidden name="talentedPeople.isValid" />
@@ -672,6 +673,6 @@ tr.hidden-sample-tr { display:none; }
 		<s:hidden name="searchCondition.pageIndex"/>
 		<s:hidden name="searchCondition.pageSize"/>
 	</form>
-	
+</div>	
 </body>
 </html>

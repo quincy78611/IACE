@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators>
-    <decorator name="basic-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend.jsp">
+    <decorator name="backend-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend.jsp">
     	<pattern>/WEB-INF/jsp/backend/*</pattern>
     	<pattern>/WEB-INF/jsp/login.jsp</pattern>
     </decorator>
+
+    <decorator name="frontend-theme" page="/WEB-INF/jsp/decorators/iace_theme_frontend.jsp">
+      	<pattern>/WEB-INF/jsp/frontend/*</pattern>
+    </decorator> 
     
     <decorator name="qnr-theme" page="/WEB-INF/jsp/decorators/iace_theme_qnr.jsp">
         <pattern>/WEB-INF/jsp/qnr/*</pattern>
         <pattern>/WEB-INF/jsp/error.jsp</pattern>
     </decorator> 
-    
-    <decorator name="frontend-theme" page="/WEB-INF/jsp/decorators/iace_theme_frontend.jsp">
-      	<pattern>/WEB-INF/jsp/frontend/*</pattern>
-    </decorator> 
+
 </decorators>

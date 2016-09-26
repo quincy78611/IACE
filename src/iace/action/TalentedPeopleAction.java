@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.exception.JDBCConnectionException;
 
 import core.util.ExcelUtil;
 import core.util.PagedList;
@@ -18,12 +19,15 @@ import iace.entity.option.BaseOption;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionDomain;
 import iace.entity.sys.SysRole;
+import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
+import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
 import iace.service.option.OptionCountryService;
 import iace.service.option.OptionDomainService;
 import iace.service.sys.SysRoleService;
+import iace.service.sys.SysUserService;
 import iace.service.talentedPeople.TalentedPeopleService;
 
 public class TalentedPeopleAction extends BaseIaceAction {
@@ -33,22 +37,24 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private TalentedPeopleService talentedPeopleService = ServiceFactory.getTalentedPeopleService();
 	private OptionDomainService optionDomainService = ServiceFactory.getOptionDomainService();
 	private OptionCountryService optionCountryService = ServiceFactory.getOptionCountryService();
+	private SysUserService sysUserService = ServiceFactory.getSysUserService();
 	private SysRoleService sysRoleService = ServiceFactory.getSysRoleService();
-	
+
 	private TalentedPeopleSearchModel searchCondition = new TalentedPeopleSearchModel();
 	private PagedList<TalentedPeople> talentedPeoplePagedList;
-	
+
 	private long id;
 	private long sysRoleId;
 	private TalentedPeople talentedPeople;
-	
+	private SysUser sysUser;
+
 	private List<OptionDomain> mainDomainList;
 	private List<OptionCountry> countryList;
 	private List<BaseOption> rdResultTypeList;
 	private List<BaseOption> yearList;
 	private List<BaseOption> monthList;
 	private List<SysRole> sysRoleList;
-	
+
 	private File uploadFile;
 	private String uploadFileContentType;
 	private String uploadFileFileName;
@@ -56,10 +62,10 @@ public class TalentedPeopleAction extends BaseIaceAction {
 
 	private String downloadFileName;
 	private InputStream downloadFileInputStream;
-	
+
 	private String reportFileName;
 	private InputStream reportInputStream;
-	
+
 	public TalentedPeopleAction() {
 		super.setTitle("產學合作人才資料");
 	}
@@ -67,18 +73,18 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	public String init() {
 		return SUCCESS;
 	}
-	
+
 	public String index() {
 		try {
 			this.talentedPeoplePagedList = this.talentedPeopleService.searchBy(this.searchCondition);
-			
+
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
-	
+
 	public String showDetail() {
 		try {
 			this.talentedPeople = this.talentedPeopleService.get(this.id);
@@ -92,19 +98,19 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String create() {
 		return SUCCESS;
 	}
-	
+
 	public void validateCreateSubmit() {
 		validateBeforeSubmit();
 	}
-	
+
 	public String createSubmit() {
 		try {
 			this.talentedPeopleService.create(this.talentedPeople, super.getSysLog(), super.getCurrentSysUser());
-			
+
 			super.addActionMessage("CREATE SUCCESS");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -112,7 +118,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String update() {
 		try {
 			this.talentedPeople = this.talentedPeopleService.get(this.id);
@@ -126,15 +132,17 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public void validateUpdateSubmit() {
 		validateBeforeSubmit();
 	}
-	
+
 	public String updateSubmit() {
 		try {
+			this.sysUser = this.sysUserService.get(this.talentedPeople.getSysUser().getId());
+			this.talentedPeople.setSysUser(this.sysUser);
 			this.talentedPeopleService.update(this.talentedPeople, super.getSysLog(), super.getCurrentSysUser());
-			
+
 			super.addActionMessage("UPDATE SUCCESS");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -142,7 +150,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String delete() {
 		try {
 			this.talentedPeople = this.talentedPeopleService.get(this.id);
@@ -156,11 +164,11 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String deleteSubmit() {
 		try {
 			this.talentedPeopleService.delete(this.id, super.getSysLog());
-			
+
 			super.addActionMessage("DELETE SUCCESS");
 			return index();
 		} catch (Exception e) {
@@ -168,7 +176,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public void validateBeforeSubmit() {
 		super.validateNotBlankNLength(this.talentedPeople.getNameCh(), 100, "talentedPeople.nameCh");
 		super.validateNotBlankNLength(this.talentedPeople.getNameEn(), 100, "talentedPeople.nameEn");
@@ -180,7 +188,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		super.validateTextMaxLength(this.talentedPeople.getUrl(), 1000, "talentedPeople.url");
 		super.validateTextMaxLength(this.talentedPeople.getSpecialty(), 1000, "talentedPeople.specialty");
 	}
-	
+
 	public String batchImport() {
 		return SUCCESS;
 	}
@@ -197,7 +205,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String downloadBatchSample() {
 		try {
 			ServletContext context = ServletActionContext.getServletContext();
@@ -212,7 +220,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String printReport() {
 		try {
 			this.reportInputStream = this.talentedPeopleService.printReport(this.id);
@@ -223,20 +231,65 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String exportRawData() {
 		try {
 			XSSFWorkbook wb = this.talentedPeopleService.exportRawData(this.searchCondition);
 			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
 			this.downloadFileName = "raw_data.xlsx";
-			
+
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
+
+	public String login() {
+		return SUCCESS;
+	}
+
+	public String loginSubmit() {
+		try {
+			if (this.sysUserService.loginCheck(this.sysUser.getAccount(), this.sysUser.getPassword())) {
+				this.sysUser = this.sysUserService.getBy(this.sysUser.getAccount(), this.sysUser.getPassword());
+				super.session.put(SessionInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
+
+				// sysLog
+				super.getSysLog().setSysUser(sysUser);
+				super.getSysLog().setEnableLog(true);
+
+				this.talentedPeople = this.talentedPeopleService.get(this.sysUser);
+				if (this.talentedPeople == null) {
+					super.addActionError("此帳號不是產學人才");
+					this.session.clear();
+					return INPUT;
+				}
+
+				return SUCCESS;
+			} else {
+				super.addActionError("帳號或密碼錯誤!");
+				return INPUT;
+			}
+		} catch (JDBCConnectionException e) {
+			log.error("資料庫連線錯誤，請重新嘗試!", e);
+			super.addActionError("資料庫連線錯誤，請重新嘗試!");
+			return INPUT;
+		} catch (Exception e) {
+			log.error("", e);
+			super.addActionError(e.getMessage());
+			return ERROR;
+		}
+	}
 	
+	public String selfUpdateSubmit() {
+		if (super.getCurrentSysUser().getId() != this.talentedPeople.getSysUser().getId()) {
+			super.addActionError("您只能維護自己的產學人才資料");
+			return ERROR;
+		}
+		return updateSubmit();
+	}
+
 	// =========================================================================
 
 	public TalentedPeopleSearchModel getSearchCondition() {
@@ -312,7 +365,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			yearList.add(new BaseOption("2018", "2018年"));
 			yearList.add(new BaseOption("2019", "2019年"));
 			yearList.add(new BaseOption("2020", "2020年"));
-		}		
+		}
 		return yearList;
 	}
 
@@ -397,6 +450,15 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		}
 		return sysRoleList;
 	}
+
+
+	public SysUser getSysUser() {
+		return sysUser;
+	}
 	
-	
+
+	public void setSysUser(SysUser sysUser) {
+		this.sysUser = sysUser;
+	}
+
 }

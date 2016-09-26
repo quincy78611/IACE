@@ -24,12 +24,16 @@
 	<div class="subForm">
 		<s:form action="batchImportSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-batchImport">
 			<h2 class="itemTitle Down">批次匯入</h2>
+			
 			<ul>
 				<li class="half">
 					<b>角色 (所選擇的角色將套用到本次匯入的所有人才)</b>
 					<s:select name="sysRoleId" list="sysRoleList" listKey="id" listValue="+name"/>
 				</li>
-				<div class="clear"></div>
+			</ul>
+			<div class="clear"></div>
+			
+			<ul>
 				<li class="half">
 					<input type="text" id="file_display" class="form-control" readonly="readonly"/>
 				</li>

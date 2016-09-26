@@ -17,6 +17,7 @@ import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
+import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 
@@ -131,6 +132,27 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 		try {
 			Criteria criteria = session.createCriteria(TalentedPeople.class);
 			criteria.add(Restrictions.eq("id", id));
+			TalentedPeople res = (TalentedPeople) criteria.uniqueResult();
+			Hibernate.initialize(res.getDomains());
+			Hibernate.initialize(res.getRdResults());
+			Hibernate.initialize(res.getTransferCases());
+			Hibernate.initialize(res.getMainProjects());
+			
+			return res;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Override
+	public TalentedPeople get(SysUser user) {
+		Session session = HibernateSessionFactory.getSession();
+		try {
+			Criteria criteria = session.createCriteria(TalentedPeople.class);
+			criteria.createAlias("sysUser", "user");
+			criteria.add(Restrictions.eq("user.id", user.getId()));
 			TalentedPeople res = (TalentedPeople) criteria.uniqueResult();
 			Hibernate.initialize(res.getDomains());
 			Hibernate.initialize(res.getRdResults());
