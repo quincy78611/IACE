@@ -123,7 +123,8 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			row.createCell(++c).setCellValue("Q4_7");
 			row.createCell(++c).setCellValue("Q4_8");
 			row.createCell(++c).setCellValue("Q4_9");
-			
+			row.createCell(++c).setCellValue("上課意願");
+			row.createCell(++c).setCellValue("其他");
 
 		}//title row END		
 		
@@ -190,6 +191,9 @@ public class QnrCooperateWayExcelService extends BaseExcelService {
 			row.createCell(++c).setCellValue(qnr.getQ4_7() == null ? "" : qnr.getQ4_7().toString());
 			row.createCell(++c).setCellValue(qnr.getQ4_8() == null ? "" : qnr.getQ4_8().toString());
 			row.createCell(++c).setCellValue(qnr.getQ4_9() == null ? "" : qnr.getQ4_9().toString());
+			
+			row.createCell(++c).setCellValue(qnr.getAttendCourseWill() == null ? "" : qnr.getAttendCourseWill().toString());
+			row.createCell(++c).setCellValue(qnr.getAttendCourseDesc());
 		}
 		
 		for (int i=0; i<=c; i++) {
