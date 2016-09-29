@@ -55,9 +55,6 @@
 				</a>
 			</div>
 			<div class="loginBlock">
-				<div>
-			
-				</div>			
 				<s:if test="#session.sysUser == null">
 					<s:form namespace="/login" action="loginSubmit" method="post" validate="true" >
 						<input type="text" name="sysUser.account" autocomplete="off" placeholder="帳號"/>

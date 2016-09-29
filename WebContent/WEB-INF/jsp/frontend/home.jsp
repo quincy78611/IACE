@@ -121,7 +121,7 @@
 			</h3>
 			<ul>
 				<s:iterator value="coopExList" status="stat">
-					<li style="margin-right:20px;">
+					<li>
 <%-- 						<s:url value="/f/coopEx/showDetail" var="urlTag"> --%>
 <%-- 							<s:param name="id" value="%{id}" /> --%>
 <%-- 						</s:url> --%>
