@@ -64,26 +64,26 @@
 			<div class="item02-L">
 				<a href="<s:url value="/f/researchPlan/init"/>"> 
 					<label class="itemTxt02">研發成果查詢</label> 
-					<img src="<s:url value="/images/frontend/home_Pic-04.jpg"/>">
+					<img src="<s:url value="/images/home_Pic-04.jpg"/>">
 				</a>
 			</div>
 			<div class="item02-L">
 				<a href="<s:url value="/f/patent/init"/>"> 
 					<label class="itemTxt02">專利資料查詢</label> 
-					<img src="<s:url value="/images/frontend/home_Pic-05.jpg"/>">
+					<img src="<s:url value="/images/home_Pic-05.jpg"/>">
 				</a>
 			</div>
 			<div class="item02-L" style="margin-right: 0;">
 				<a href="<s:url value="/f/talentedPeople/init"/>"> 
 					<label class="itemTxt02">產學人才查詢</label> 
-					<img src="<s:url value="/images/frontend/home_Pic-06.jpg"/>">
+					<img src="<s:url value="/images/home_Pic-06.jpg"/>">
 				</a>
 			</div>
 			<div class="clear"></div>
 			<div class="item02-S">
 				<a href="<s:url value="/f/consulting/create"/>"> 
 					<label class="itemTxt02">諮詢服務</label> 
-					<img src="<s:url value="/images/frontend/home_Pic-07.jpg"/>">
+					<img src="<s:url value="/images/home_Pic-07.jpg"/>">
 				</a>
 			</div>
 			<div class="item02-S">
@@ -92,7 +92,7 @@
 				</s:url> 				
 				<a href='<s:property value="#urlTag" />'> 
 					<label class="itemTxt02">法規政策</label> 
-					<img src="<s:url value="/images/frontend/home_Pic-08.jpg"/>">
+					<img src="<s:url value="/images/home_Pic-08.jpg"/>">
 				</a>
 			</div>
 			<div class="item02-S">
@@ -101,13 +101,13 @@
 				</s:url> 				
 				<a href='<s:property value="#urlTag" />'> 
 					<label class="itemTxt02">文獻</label> 
-					<img src="<s:url value="/images/frontend/home_Pic-09.jpg"/>">
+					<img src="<s:url value="/images/home_Pic-09.jpg"/>">
 				</a>
 			</div>
 			<div class="item02-S" style="margin-right: 0;">
 				<a href="<s:url value="/f/incubationCenter/init"/>"> 
 					<label class="itemTxt02">育成中心</label> 
-					<img src="<s:url value="/images/frontend/home_Pic-10.jpg"/>">
+					<img src="<s:url value="/images/home_Pic-10.jpg"/>">
 				</a>
 			</div>
 			<div class="clear"></div>

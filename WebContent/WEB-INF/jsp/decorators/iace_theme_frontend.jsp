@@ -51,7 +51,7 @@
 		<div id="con">
 			<div id="LOGO">
 				<a href="<s:url value="/home/init"/>">
-					<img src="<s:url value="/images/frontend/LOGO.png"/>" >
+					<img src="<s:url value="/images/LOGO.png"/>" >
 				</a>
 			</div>
 			<div class="loginBlock">
@@ -99,8 +99,8 @@
 	</article>
 	<footer>
 		<div id="footerZone">
-			<div id="LOGO"><img src="<s:url value="/images/frontend/LOGO-S.png"/>" ></div>
-			<div id="qrcode"><img src="<s:url value="/images/frontend/qrCode.jpg"/>" ></div>
+			<div id="LOGO"><img src="<s:url value="/images/LOGO-S.png"/>" ></div>
+			<div id="qrcode"><img src="<s:url value="/images/qrCode.jpg"/>" ></div>
 			<div id="con">
 				版權所有©2016科技部產學及園區業務司<br>
 				Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs<br>
