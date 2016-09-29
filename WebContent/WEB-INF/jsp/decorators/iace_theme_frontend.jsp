@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>科技部iACE鏈結產學媒合平台</title>
 	
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/frontend/layout.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_frontend.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/alert.css"/>" />	
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquery.datetimepicker.css"/>" />
 	

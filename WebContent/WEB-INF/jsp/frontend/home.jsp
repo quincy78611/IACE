@@ -22,9 +22,9 @@
 				</s:url>
 				<a href="<s:property value="#urlTag" />" class="headline"> 
 					<img src="data:image;base64,<s:property value="%{technologyList[0].getResearchPlan().getGrbDomains().get(0).getBase64Img()}"/>">
-					<label class="itemTxt"> 
+					<div class="itemTxt"> 
 						<s:property	value="technologyList[0].name" />
-					</label>
+					</div>
 				</a>
 			</s:if>
 		</div>
