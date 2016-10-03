@@ -3,19 +3,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="<s:url value="/scripts/talentedPeople/headshotFuncSetting.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/scripts/talentedPeople/tableFuncSetting.js"/>"></script>
 <script>
 $(document).ready(function() {
-	fileBrowseSetting();
-	addSearchConditionHiddenToForm();
-	
-	rdResultSetting();
-	
-	addMoreTransferCaseBtnSetting();
-	bindTransferCaseDeleteBtn();
-	
-	addMoreMainProjectBtnSetting();
-	bindMainProjectDeleteBtn();
-	
+	addSearchConditionHiddenToForm();	
 	$("#btn-back").click(function(){				
 		$("#form-backToIndex").submit();
 	});
@@ -27,228 +19,6 @@ $(document).ready(function() {
 			$("#form-update").append($(this).clone());
 		});
 	}
-</script>
-<script>
-function fileBrowseSetting() {
-	$(".btn-fake-browse").click(function(){
-		$(this).parents(".headShot").find("input[type=file]").trigger("click");
-	});
-	
-	$("input[type=file]").change(function() {
-		readURL(this); // display subnail
-	});
-	
-	$("input[type=button].cancelSelectFile").click(function(){
-		$(this).parents(".headShot").find("input[type=file]").val("");
-		$(this).parents(".headShot").find("input[name='talentedPeople.base64HeadShot']").val("");
-		$(this).parents(".headShot").find("img").attr('src', '');
-	});
-}
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-
-        reader.onload = function (e) {
-        	$(input).parents(".headShot").find("img").attr('src', e.target.result);
-        }
-
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-</script>
-<script>
-function rdResultSetting() {
-	bindEditRdResultRowBtn();
-	bindDeleteRdResultRowBtn();
-	$("#rdResultForm").hide();
-	$("#rdResultForm .btn-addConfirm").hide();
-	$("#rdResultForm .btn-editConfirm").hide();	
-	
-	$("input[type=button]#add-rdResult").click(function(){
-		$("#form-update").hide();
-		resetRdResultForm();
-		$("#rdResultForm").show();
-		$("#rdResultForm .btn-addConfirm").show();
-		$("#rdResultForm .btn-editConfirm").hide();
-		$('html,body').animate({scrollTop:$('#rdResultForm').offset().top},500);
-	});
-	
-	$("#rdResultForm .btn-addConfirm").click(function() {
-		var newTr = $("#table-rdResult").find("tr.hidden-sample-tr").clone();
-		setValueToRdResultRow(newTr);
-		newTr.removeClass("hidden-sample-tr");
-		$("#table-rdResult").find("tbody").append(newTr);
-		bindEditRdResultRowBtn();
-		bindDeleteRdResultRowBtn();
-		resetNameForRdResult();
-		$('#rdResultForm .btn-cancel').trigger("click");
-	});
-	
-	$("#rdResultForm .btn-editConfirm").click(function(){
-		var index = $("#rdResultForm .rdResultRowIndex").val();
-		var editTr = $("#table-rdResult tbody tr").eq(index);
-		setValueToRdResultRow(editTr);
-		resetNameForRdResult();
-		$('#rdResultForm .btn-cancel').trigger("click");
-	});
-	
-	$('#rdResultForm .btn-cancel').click(function() {
-		resetRdResultForm();
-		$("#rdResultForm").hide();
-		$("#rdResultForm .btn-addConfirm").hide();
-		$("#rdResultForm .btn-editConfirm").hide();
-		$("#form-update").show();
-		$('html,body').animate({scrollTop:$('#add-rdResult').offset().top},300);
-	});
-
-}
-function resetRdResultForm() {
-	$("#rdResultForm input[type=text]").val("");
-	$("#rdResultForm textarea").val("");
-	$("#rdResultForm select").prop('selectedIndex', 0);
-}
-function bindEditRdResultRowBtn() {
-	$("#table-rdResult input[type=button].btn-edit").click(function() {
-		$("#form-update").hide();
-		$("#rdResultForm").show();
-		$("#rdResultForm .btn-addConfirm").hide();
-		$("#rdResultForm .btn-editConfirm").show();
-		$('html,body').animate({scrollTop:$('#rdResultForm').offset().top},300);
-		
-		var tr = $(this).parents("tr");
-		setValueToRdResultForm(tr);
-	});		
-}
-function bindDeleteRdResultRowBtn() {
-	$("#table-rdResult input[type=button].btn-del").click(function(){
-		$(this).parents("tr").remove();
-		resetNameForRdResult();
-	});
-}
-function setValueToRdResultForm( tr ) {
-	var rowIndex = $("#table-rdResult tbody tr").index(tr);
-	$("#rdResultForm .rdResultRowIndex").val(rowIndex);
-	$("#rdResultForm .name").val(tr.find(".name").val());
-	$("#rdResultForm .type").val(tr.find(".type").val());
-	$("#rdResultForm .inventer").val(tr.find(".inventer").val());
-	$("#rdResultForm .owner").val(tr.find(".owner").val());
-	$("#rdResultForm .applicationNo").val(tr.find(".applicationNo").val());
-	$("#rdResultForm .patentNo").val(tr.find(".patentNo").val());
-	$("#rdResultForm .country").val(tr.find(".country").val());
-	$("#rdResultForm .patentPeriodStart").val(tr.find(".patentPeriodStart").val());
-	$("#rdResultForm .patentPeriodEnd").val(tr.find(".patentPeriodEnd").val());
-	$("#rdResultForm .patentAbstract").val(tr.find(".patentAbstract").val());
-	$("#rdResultForm .usage").val(tr.find(".usage").val());
-}
-function setValueToRdResultRow( tr ) {
-	tr.find(".name").val($("#rdResultForm .name").val());
-	tr.find("td.td-name").html($("#rdResultForm .name").val());
-	tr.find(".type").val($("#rdResultForm .type").val());
-	tr.find("td.td-type").html($("#rdResultForm .type").val());	
-	tr.find(".inventer").val($("#rdResultForm .inventer").val());
-	tr.find(".owner").val($("#rdResultForm .owner").val());
-	tr.find(".patentNo").val($("#rdResultForm .patentNo").val());
-	tr.find(".country").val($("#rdResultForm .country").val());
-	tr.find(".patentPeriodStart").val($("#rdResultForm .patentPeriodStart").val());
-	tr.find(".patentPeriodEnd").val($("#rdResultForm .patentPeriodEnd").val());
-	tr.find(".patentAbstract").val($("#rdResultForm .patentAbstract").val());
-	tr.find(".usage").val($("#rdResultForm .usage").val());
-}
-function resetNameForRdResult() {
-	$("#table-rdResult > tbody > tr").each(function( index ){
-		var tr = $("#table-rdResult > tbody > tr").eq(index);
-		tr.find(".id").attr("name", "talentedPeople.rdResults["+index+"].id");
-		tr.find(".isValid").attr("name", "talentedPeople.rdResults["+index+"].isValid");
-		tr.find(".createTime").attr("name", "talentedPeople.rdResults["+index+"].createTime");
-		tr.find(".createUser").attr("name", "talentedPeople.rdResults["+index+"].createUser");
-		tr.find(".updateTime").attr("name", "talentedPeople.rdResults["+index+"].updateTime");
-		tr.find(".updateUser").attr("name", "talentedPeople.rdResults["+index+"].updateUser");
-		tr.find(".ver").attr("name", "talentedPeople.rdResults["+index+"].ver");
-		tr.find(".name").attr("name", "talentedPeople.rdResults["+index+"].name");
-		tr.find(".type").attr("name", "talentedPeople.rdResults["+index+"].type");
-		tr.find(".inventer").attr("name", "talentedPeople.rdResults["+index+"].inventer");
-		tr.find(".owner").attr("name", "talentedPeople.rdResults["+index+"].owner");
-		tr.find(".patentNo").attr("name", "talentedPeople.rdResults["+index+"].patentNo");
-		tr.find(".country").attr("name", "talentedPeople.rdResults["+index+"].optionCountry.id");
-		tr.find(".patentPeriodStart").attr("name", "talentedPeople.rdResults["+index+"].patentPeriodStart");
-		tr.find(".patentPeriodEnd").attr("name", "talentedPeople.rdResults["+index+"].patentPeriodEnd");
-		tr.find(".patentAbstract").attr("name", "talentedPeople.rdResults["+index+"].patentAbstract");
-		tr.find(".usage").attr("name", "talentedPeople.rdResults["+index+"].usage");
-	});
-}
-</script>
-<script>
-function addMoreTransferCaseBtnSetting() {
-	$("input[type=button]#add-transferCases").click(function(){
-		var newTr = $("#table-transferCase").find("tr.hidden-sample-tr").clone();
-		newTr.removeClass("hidden-sample-tr");
-		$("#table-transferCase").find("tbody").append(newTr);
-		resetNameForTransferCase();
-		bindTransferCaseDeleteBtn();
-	});
-}
-function bindTransferCaseDeleteBtn() {
-	$("#table-transferCase input[type=button].btn-del").click(function(){
-		$(this).parents("tr").remove();
-		resetNameForTransferCase();
-	});	
-}
-function resetNameForTransferCase() {
-	$("#table-transferCase > tbody > tr").each(function( index ){
-		var tr = $("#table-transferCase > tbody > tr").eq(index);
-		
-		tr.find(".id").attr("name", "talentedPeople.transferCases["+index+"].id");
-		tr.find(".isValid").attr("name", "talentedPeople.transferCases["+index+"].isValid");
-		tr.find(".createTime").attr("name", "talentedPeople.transferCases["+index+"].createTime");
-		tr.find(".createUser").attr("name", "talentedPeople.transferCases["+index+"].createUser");
-		tr.find(".updateTime").attr("name", "talentedPeople.transferCases["+index+"].updateTime");
-		tr.find(".updateUser").attr("name", "talentedPeople.transferCases["+index+"].updateUser");
-		tr.find(".ver").attr("name", "talentedPeople.transferCases["+index+"].ver");
-		tr.find(".applyField").attr("name", "talentedPeople.transferCases["+index+"].applyField");
-		tr.find(".targetOrg").attr("name", "talentedPeople.transferCases["+index+"].targetOrg");
-		tr.find(".yearStart").attr("name", "talentedPeople.transferCases["+index+"].yearStart");
-		tr.find(".monthStart").attr("name", "talentedPeople.transferCases["+index+"].monthStart");
-		tr.find(".yearEnd").attr("name", "talentedPeople.transferCases["+index+"].yearEnd");
-		tr.find(".monthEnd").attr("name", "talentedPeople.transferCases["+index+"].monthEnd");
-	});
-}
-</script>
-<script>
-function addMoreMainProjectBtnSetting() {
-	$("input[type=button]#add-mainProject").click(function(){
-		var newTr = $("#table-mainProject").find("tr.hidden-sample-tr").clone();
-		newTr.removeClass("hidden-sample-tr");
-		$("#table-mainProject").find("tbody").append(newTr);
-		resetNameForMainProject();
-		bindMainProjectDeleteBtn();
-	});
-}
-function bindMainProjectDeleteBtn() {
-	$("#table-mainProject input[type=button].btn-del").click(function(){
-		$(this).parents("tr").remove();
-		resetNameForMainProject();
-	});	
-}
-function resetNameForMainProject() {
-	$("#table-mainProject > tbody > tr").each(function( index ){
-		var tr = $("#table-mainProject > tbody > tr").eq(index);
-		
-		tr.find(".id").attr("name", "talentedPeople.mainProjects["+index+"].id");
-		tr.find(".isValid").attr("name", "talentedPeople.mainProjects["+index+"].isValid");
-		tr.find(".createTime").attr("name", "talentedPeople.mainProjects["+index+"].createTime");
-		tr.find(".createUser").attr("name", "talentedPeople.mainProjects["+index+"].createUser");
-		tr.find(".updateTime").attr("name", "talentedPeople.mainProjects["+index+"].updateTime");
-		tr.find(".updateUser").attr("name", "talentedPeople.mainProjects["+index+"].updateUser");
-		tr.find(".ver").attr("name", "talentedPeople.mainProjects["+index+"].ver");
-		tr.find(".name").attr("name", "talentedPeople.mainProjects["+index+"].name");
-		tr.find(".coopComName").attr("name", "talentedPeople.mainProjects["+index+"].coopComName");
-		tr.find(".yearStart").attr("name", "talentedPeople.mainProjects["+index+"].yearStart");
-		tr.find(".monthStart").attr("name", "talentedPeople.mainProjects["+index+"].monthStart");
-		tr.find(".yearEnd").attr("name", "talentedPeople.mainProjects["+index+"].yearEnd");
-		tr.find(".monthEnd").attr("name", "talentedPeople.mainProjects["+index+"].monthEnd");
-	});
-}
 </script>
 <style>
 table.table-talentedPeopleInfo { margin-bottom:15px; }
@@ -340,7 +110,7 @@ tr.hidden-sample-tr { display:none; }
 	
 		<ul>
 			<li class="all">
-				<b>領域</b>
+				<b>領域(可複選)</b>
 				
 				<table id="table-domain">
 					<s:iterator value="mainDomainList" status="stat">
@@ -382,33 +152,27 @@ tr.hidden-sample-tr { display:none; }
 				<tr>
 					<th>研發成果名稱</th>
 					<th>型式</th>
+					<th>資料更新日期</th>
 					<th width="16%"></th>
 				</tr>
 				<tr class="hidden-sample-tr">
-					<s:hidden class="id" name="%{'talentedPeople.rdResults['+#stat.index+'].id'}" value="0"/>
-					<s:hidden class="isValid" name="%{'talentedPeople.rdResults['+#stat.index+'].isValid'}"/>
-					<s:hidden class="createTime" name="%{'talentedPeople.rdResults['+#stat.index+'].createTime'}"/>
-					<s:hidden class="createUser" name="%{'talentedPeople.rdResults['+#stat.index+'].createUser'}"/>
-					<s:hidden class="updateTime" name="%{'talentedPeople.rdResults['+#stat.index+'].updateTime'}"/>
-					<s:hidden class="updateUser" name="%{'talentedPeople.rdResults['+#stat.index+'].updateUser'}"/>
-					<s:hidden class="ver" name="%{'talentedPeople.rdResults['+#stat.index+'].ver'}"/>
-					<s:hidden class="name" name="%{'talentedPeople.rdResults['+#stat.index+'].name'}"/>
-					<s:hidden class="type" name="%{'talentedPeople.rdResults['+#stat.index+'].type'}"/>
-					<s:hidden class="inventer" name="%{'talentedPeople.rdResults['+#stat.index+'].inventer'}"/>
-					<s:hidden class="owner" name="%{'talentedPeople.rdResults['+#stat.index+'].owner'}"/>
-					<s:hidden class="patentNo" name="%{'talentedPeople.rdResults['+#stat.index+'].patentNo'}"/>
-					<s:hidden class="country" name="%{'talentedPeople.rdResults['+#stat.index+'].optionCountry.id'}"/>
-					<s:hidden class="patentPeriodStart" name="%{'talentedPeople.rdResults['+#stat.index+'].patentPeriodStart'}"/>
-					<s:hidden class="patentPeriodEnd" name="%{'talentedPeople.rdResults['+#stat.index+'].patentPeriodEnd'}"/>
-					<s:hidden class="patentAbstract" name="%{'talentedPeople.rdResults['+#stat.index+'].patentAbstract'}"/>
-					<s:hidden class="usage" name="%{'talentedPeople.rdResults['+#stat.index+'].usage'}"/>
+					<s:hidden class="id" value="0"/>
+					<s:hidden class="name" />
+					<s:hidden class="type" />
+					<s:hidden class="inventer" />
+					<s:hidden class="owner" />
+					<s:hidden class="patentNo" />
+					<s:hidden class="country" />
+					<s:hidden class="patentPeriodStart" />
+					<s:hidden class="patentPeriodEnd" />
+					<s:hidden class="patentAbstract" />
+					<s:hidden class="usage" />
+					<s:hidden class="updateDate" />
+					<s:hidden class="priority" />
 
-					<td class="td-name">
-						<s:property value="name"/>
-					</td>
-					<td class="td-type">
-						<s:property value="type"/>
-					</td>
+					<td class="td-name"></td>
+					<td class="td-type"></td>
+					<td class="td-updateDate"></td>
 					<td>
 						<input type="button" class="btn-func btn-edit" value="編輯" />
 						<input type="button" class="btn-func btn-del" value="刪除" />						
@@ -435,12 +199,17 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="patentPeriodEnd" name="%{'talentedPeople.rdResults['+#stat.index+'].patentPeriodEnd'}"/>
 					<s:hidden class="patentAbstract" name="%{'talentedPeople.rdResults['+#stat.index+'].patentAbstract'}"/>
 					<s:hidden class="usage" name="%{'talentedPeople.rdResults['+#stat.index+'].usage'}"/>
+					<s:hidden class="updateDate" name="%{'talentedPeople.rdResults['+#stat.index+'].updateDate'}"/>
+					<s:hidden class="priority" name="%{'talentedPeople.rdResults['+#stat.index+'].priority'}"/>
 				
 					<td class="td-name">
 						<s:property value="name"/>
 					</td>
 					<td class="td-type">
 						<s:property value="type"/>
+					</td>
+					<td class="td-updateDate">
+						<s:property value="updateDate"/>
 					</td>
 					<td>
 						<input type="button" class="btn-func btn-edit" value="編輯" />
@@ -460,28 +229,29 @@ tr.hidden-sample-tr { display:none; }
 		<table id="table-transferCase">
 			<thead>
 				<tr>
-					<th width="30%">應用領域</th>
-					<th width="30%">對象廠商或機構</th>
+					<th width="">應用領域</th>
+					<th width="">對象廠商或機構</th>
 					<th width="">時間(授權期間或讓受/技轉時間)</th>
-					<th width="5%"></th>
+					<th>資料更新日期</th>
+					<th width="16%"></th>
 				</tr>
 				<tr class="hidden-sample-tr">
-					<s:hidden class="id" value="0"/>
-					
+					<s:hidden class="id" value="0" />
+					<s:hidden class="applyField" />
+					<s:hidden class="targetOrg" />
+					<s:hidden class="yearStart" />
+					<s:hidden class="monthStart" />
+					<s:hidden class="yearEnd" />
+					<s:hidden class="monthEnd" />
+					<s:hidden class="updateDate" />
+					<s:hidden class="priority" />
+										
+					<td class="td-applyField"></td>
+					<td class="td-targetOrg"></td>
+					<td class="td-time"></td>
+					<td class="td-updateDate"></td>
 					<td>
-						<s:textfield class="applyField" maxlength="500"/>
-					</td>
-					<td>
-						<s:textfield class="targetOrg" maxlength="500"/>
-					</td>
-					<td>
-						<s:select class="yearStart" list="yearList" listKey="code" listValue="name"/>
-						<s:select class="monthStart" list="monthList" listKey="code" listValue="name"/>
-						<div>~</div>
-						<s:select class="yearEnd" list="yearList" listKey="code" listValue="name" headerKey="" headerValue=""/>
-						<s:select class="monthEnd" list="monthList" listKey="code" listValue="name" headerKey="" headerValue=""/>
-					</td>
-					<td>
+						<input type="button" class="btn-func btn-edit" value="編輯" />
 						<input type="button" class="btn-func btn-del" value="刪除" />
 					</td>					
 				</tr>
@@ -496,21 +266,31 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="updateTime" name="%{'talentedPeople.transferCases['+#stat.index+'].updateTime'}"/>
 					<s:hidden class="updateUser" name="%{'talentedPeople.transferCases['+#stat.index+'].updateUser'}"/>
 					<s:hidden class="ver" name="%{'talentedPeople.transferCases['+#stat.index+'].ver'}"/>
+					<s:hidden class="applyField" name="%{'talentedPeople.transferCases['+#stat.index+'].applyField'}"/>
+					<s:hidden class="targetOrg" name="%{'talentedPeople.transferCases['+#stat.index+'].targetOrg'}"/>
+					<s:hidden class="yearStart" name="%{'talentedPeople.transferCases['+#stat.index+'].yearStart'}"/>
+					<s:hidden class="monthStart" name="%{'talentedPeople.transferCases['+#stat.index+'].monthStart'}"/>
+					<s:hidden class="yearEnd" name="%{'talentedPeople.transferCases['+#stat.index+'].yearEnd'}"/>
+					<s:hidden class="monthEnd" name="%{'talentedPeople.transferCases['+#stat.index+'].monthEnd'}"/>
+					<s:hidden class="updateDate" name="%{'talentedPeople.transferCases['+#stat.index+'].updateDate'}"/>
+					<s:hidden class="priority" name="%{'talentedPeople.transferCases['+#stat.index+'].priority'}"/>
 				
-					<td>
-						<s:textfield class="applyField" name="%{'talentedPeople.transferCases['+#stat.index+'].applyField'}" maxlength="500"/>
+					<td class="td-applyField">
+						<s:property value="applyField"/>
+					</td>
+					<td class="td-targetOrg">
+						<s:property value="targetOrg"/>
+					</td>
+					<td class="td-time">
+						<s:set var="start" value="%{yearStart+'年'+monthStart+'月'}"/>
+						<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
+						<s:property value="%{#start+(#end != null ? ' ~ '+#end : '')}" />
+					</td>
+					<td class="td-updateDate">
+						<s:property value="updateDate"/>
 					</td>
 					<td>
-						<s:textfield class="targetOrg" name="%{'talentedPeople.transferCases['+#stat.index+'].targetOrg'}" maxlength="500"/>
-					</td>
-					<td>
-						<s:select class="yearStart" name="%{'talentedPeople.transferCases['+#stat.index+'].yearStart'}" list="yearList" listKey="code" listValue="name" />
-						<s:select class="monthStart" name="%{'talentedPeople.transferCases['+#stat.index+'].monthStart'}" list="monthList" listKey="code" listValue="name" />
-						<div>~</div>
-						<s:select class="yearEnd" name="%{'talentedPeople.transferCases['+#stat.index+'].yearEnd'}" list="yearList" listKey="code" listValue="name" headerKey="" headerValue=""/>
-						<s:select class="monthEnd" name="%{'talentedPeople.transferCases['+#stat.index+'].monthEnd'}" list="monthList" listKey="code" listValue="name" headerKey="" headerValue=""/>
-					</td>
-					<td>
+						<input type="button" class="btn-func btn-edit" value="編輯" />
 						<input type="button" class="btn-func btn-del" value="刪除" />
 					</td>
 				</tr>
@@ -525,28 +305,29 @@ tr.hidden-sample-tr { display:none; }
 		<table id="table-mainProject">
 			<thead>
 				<tr>
-					<th width="30%">合作計畫或合約名稱</th>
-					<th width="30%">合作廠商名稱</th>
+					<th width="">合作計畫或合約名稱</th>
+					<th width="">合作廠商名稱</th>
 					<th width="">合作有效期間</th>
-					<th width="5%"></th>
+					<th>資料更新日期</th>
+					<th width="16%"></th>
 				</tr>
 				<tr class="hidden-sample-tr">
 					<s:hidden class="id" value="0"/>
+					<s:hidden class="name" />
+					<s:hidden class="coopComName" />
+					<s:hidden class="yearStart" />
+					<s:hidden class="monthStart" />
+					<s:hidden class="yearEnd" />
+					<s:hidden class="monthEnd" />
+					<s:hidden class="updateDate" />
+					<s:hidden class="priority" />
 				
+					<td class="td-name"></td>
+					<td class="td-coopComName"></td>
+					<td class="td-time"></td>
+					<td class="td-updateDate"></td>
 					<td>
-						<s:textfield class="name" maxlength="500"/>
-					</td>
-					<td>
-						<s:textfield class="coopComName" maxlength="500"/>
-					</td>
-					<td>
-						<s:select class="yearStart" list="yearList" listKey="code" listValue="name" />
-						<s:select class="monthStart" list="monthList" listKey="code" listValue="name" />
-						<div>~</div>
-						<s:select class="yearEnd" list="yearList" listKey="code" listValue="name" />
-						<s:select class="monthEnd" list="monthList" listKey="code" listValue="name" />
-					</td>
-					<td>
+						<input type="button" class="btn-func btn-edit" value="編輯" />
 						<input type="button" class="btn-func btn-del" value="刪除" />
 					</td>				
 				</tr>
@@ -561,21 +342,31 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="updateTime" name="%{'talentedPeople.mainProjects['+#stat.index+'].updateTime'}"/>
 					<s:hidden class="updateUser" name="%{'talentedPeople.mainProjects['+#stat.index+'].updateUser'}"/>
 					<s:hidden class="ver" name="%{'talentedPeople.mainProjects['+#stat.index+'].ver'}"/>
+					<s:hidden class="name" name="%{'talentedPeople.mainProjects['+#stat.index+'].name'}"/>
+					<s:hidden class="coopComName" name="%{'talentedPeople.mainProjects['+#stat.index+'].coopComName'}"/>
+					<s:hidden class="yearStart" name="%{'talentedPeople.mainProjects['+#stat.index+'].yearStart'}"/>
+					<s:hidden class="monthStart" name="%{'talentedPeople.mainProjects['+#stat.index+'].monthStart'}"/>
+					<s:hidden class="yearEnd" name="%{'talentedPeople.mainProjects['+#stat.index+'].yearEnd'}"/>
+					<s:hidden class="monthEnd" name="%{'talentedPeople.mainProjects['+#stat.index+'].monthEnd'}"/>
+					<s:hidden class="updateDate" name="%{'talentedPeople.mainProjects['+#stat.index+'].updateDate'}"/>
+					<s:hidden class="priority" name="%{'talentedPeople.mainProjects['+#stat.index+'].priority'}"/>
 					
-					<td>
-						<s:textfield class="name" name="%{'talentedPeople.mainProjects['+#stat.index+'].name'}" maxlength="500"/>
+					<td class="td-name">
+						<s:property value="name"/>
+					</td>
+					<td class="td-coopComName">
+						<s:property value="coopComName"/>
+					</td>
+					<td class="td-name">
+						<s:set var="start" value="%{yearStart+'年'+monthStart+'月'}"/>
+						<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
+						<s:property value="%{#start+(#end != null ? ' ~ '+#end : '')}" />
+					</td>
+					<td class="td-updateDate">
+						<s:property value="updateDate"/>
 					</td>
 					<td>
-						<s:textfield class="coopComName" name="%{'talentedPeople.mainProjects['+#stat.index+'].coopComName'}" maxlength="500"/>
-					</td>
-					<td>
-						<s:select class="yearStart" name="%{'talentedPeople.mainProjects['+#stat.index+'].yearStart'}" list="yearList" listKey="code" listValue="name" />
-						<s:select class="monthStart" name="%{'talentedPeople.mainProjects['+#stat.index+'].monthStart'}" list="monthList" listKey="code" listValue="name" />
-						<div>~</div>
-						<s:select class="yearEnd" name="%{'talentedPeople.mainProjects['+#stat.index+'].yearEnd'}" list="yearList" listKey="code" listValue="name" />
-						<s:select class="monthEnd" name="%{'talentedPeople.mainProjects['+#stat.index+'].monthEnd'}" list="monthList" listKey="code" listValue="name" />
-					</td>
-					<td>
+						<input type="button" class="btn-func btn-edit" value="編輯" />
 						<input type="button" class="btn-func btn-del" value="刪除" />
 					</td>									
 				</tr>
@@ -605,6 +396,8 @@ tr.hidden-sample-tr { display:none; }
 		</div>		
 	</s:form>
 	
+<!-- ======================================================================= -->
+
 	<form id="rdResultForm">
 		<div class="subForm">
 			<s:hidden class="rdResultRowIndex"/>
@@ -643,35 +436,141 @@ tr.hidden-sample-tr { display:none; }
 					<input type="text" class="patentPeriodEnd calendarBox" maxlength="10" placeholder="格式範例:2016/12/30"/>				
 				</li>
 				<li class="all">
-					<b>8.摘要</b>
+					<b>8.摘要(請說明成果重點與特色)</b>
 					<s:textarea class="patentAbstract" rows="3"/>
 				</li>
 				<li class="all">
-					<b>9.應用產業/範圍</b>
+					<b>9.應用產業/範圍(請說明成果可應用於何領域或產品)</b>
 					<input type="text" class="usage" maxlength="1000"/>
+				</li>
+				<li class="half">
+					<b>排序優先度 (將依數字小到大排序)</b>
+					<input type="text" class="priority" maxlength="19"/>
+				</li>
+				<li class="half">
+					<b>資料更新日期</b>
+					<input type="text" class="updateDate" disabled="disabled"/>
 				</li>
 			</ul>
 			
-			<input type="button" class="redBtn btn-addConfirm" value="確定新增"/>
-			<input type="button" class="redBtn btn-editConfirm" value="確定變更"/>
-			<input type="button" class="grayBtn btn-cancel" value="取消"/>
+			<div class="clear"></div>
+			<div class="">
+				<input type="button" class="redBtn btn-addConfirm" value="確定新增"/>
+				<input type="button" class="redBtn btn-editConfirm" value="確定變更"/>
+				<input type="button" class="grayBtn btn-cancel" value="取消"/>
+			</div>
 		</div>
 	</form>
+	
+<!-- ======================================================================= -->
 
-	<form action="index" method="post" id="form-backToIndex">
-		<s:hidden name="searchCondition.name"/>
-		<s:hidden name="searchCondition.gender"/>
-		<s:hidden name="searchCondition.expYearS"/>
-		<s:hidden name="searchCondition.expYearE"/>
-		<s:hidden name="searchCondition.workOrg"/>
-		<s:hidden name="searchCondition.job"/>
-		<s:hidden name="searchCondition.specialty"/>
-		<s:iterator value="searchCondition.grbDomainIdList" status="stat">
-			<input type="hidden" name="searchCondition.grbDomainIdList" value="<s:property/>"/>
-		</s:iterator>
-		<s:hidden name="searchCondition.pageIndex"/>
-		<s:hidden name="searchCondition.pageSize"/>
+	<form id="transferCaseForm">
+		<div class="subForm">
+			<s:hidden class="transferCaseRowIndex"/>
+			<h2 class="itemTitle">成果移轉及授權案例</h2>
+		
+			<ul>
+				<li class="half">
+					<b>應用領域</b>
+					<input type="text" class="applyField" maxlength="500"/>
+				</li>
+				<li class="half">
+					<b>對象廠商或機構</b>
+					<input type="text" class="targetOrg" maxlength="500"/>
+				</li>
+				<li class="half">
+					<b>時間(授權期間或讓受/技轉時間)</b>
+					<div>
+						<div style="width:24%; float:left;">
+							<s:select class="yearStart" list="yearList" listKey="code" listValue="name" />
+						</div>
+						<div style="width:24%; float:left;">
+							<s:select class="monthStart" list="monthList" listKey="code" listValue="name" />
+						</div>
+						<div style="float:left;">~</div>
+						<div style="width:24%; float:left;">
+							<s:select class="yearEnd" list="yearList" listKey="code" listValue="name" headerKey="" headerValue=""/>
+						</div>
+						<div style="width:24%; float:left;">	
+							<s:select class="monthEnd" list="monthList" listKey="code" listValue="name" headerKey="" headerValue=""/>
+						</div>	
+					</div>
+				</li>
+				<li class="quarter">
+					<b>排序優先度 (將依數字小到大排序)</b>
+					<input type="text" class="priority" maxlength="19"/>
+				</li>
+				<li class="quarter">
+					<b>資料更新日期</b>
+					<input type="text" class="updateDate" disabled="disabled"/>
+				</li>					
+			</ul>
+		
+			<div class="clear"></div>
+			<div class="">
+				<input type="button" class="redBtn btn-addConfirm" value="確定新增"/>
+				<input type="button" class="redBtn btn-editConfirm" value="確定變更"/>
+				<input type="button" class="grayBtn btn-cancel" value="取消"/>
+			</div>
+		</div>	
 	</form>
+	
+<!-- ======================================================================= -->
+
+	<form id="mainProjectForm">
+		<div class="subForm">
+			<s:hidden class="mainProjectRowIndex"/>
+			<h2 class="itemTitle">主要產學合作計畫案例</h2>
+		
+			<ul>
+				<li class="half">
+					<b>合作計畫或合約名稱</b>
+					<input type="text" class="name" maxlength="500"/>
+				</li>
+				<li class="half">
+					<b>合作廠商名稱</b>
+					<input type="text" class="coopComName" maxlength="500"/>
+				</li>
+				<li class="half">
+					<b>合作有效期間</b>
+					<div>
+						<div style="width:24%; float:left;">
+							<s:select class="yearStart" list="yearList" listKey="code" listValue="name" />
+						</div>
+						<div style="width:24%; float:left;">
+							<s:select class="monthStart" list="monthList" listKey="code" listValue="name" />
+						</div>
+						<div style="float:left;">~</div>
+						<div style="width:24%; float:left;">
+							<s:select class="yearEnd" list="yearList" listKey="code" listValue="name" />
+						</div>
+						<div style="width:24%; float:left;">	
+							<s:select class="monthEnd" list="monthList" listKey="code" listValue="name" />
+						</div>	
+					</div>
+				</li>
+				<li class="quarter">
+					<b>排序優先度 (將依數字小到大排序)</b>
+					<input type="text" class="priority" maxlength="19"/>
+				</li>
+				<li class="quarter">
+					<b>資料更新日期</b>
+					<input type="text" class="updateDate" disabled="disabled"/>
+				</li>				
+			</ul>
+		
+			<div class="clear"></div>
+			<div class="">
+				<input type="button" class="redBtn btn-addConfirm" value="確定新增"/>
+				<input type="button" class="redBtn btn-editConfirm" value="確定變更"/>
+				<input type="button" class="grayBtn btn-cancel" value="取消"/>
+			</div>
+		</div>	
+	</form>
+
+<!-- ======================================================================= -->
+
+	<s:include value="./form-backToIndex.jsp" />
 	
 </body>
 </html>

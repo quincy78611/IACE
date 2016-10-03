@@ -17,16 +17,18 @@
 		$(".btn-unfold-rd-result").click(function(){
 			var rowIndex = $('#table-rdResult tr').index($(this).parents('tr'));
 			if ($(this).val() == "展開") {
-				$('#table-rdResult tr').eq(rowIndex+1).show();
-				$('#table-rdResult tr').eq(rowIndex+2).show();
-				$('#table-rdResult tr').eq(rowIndex+3).show();
+// 				$('#table-rdResult tr').eq(rowIndex).find("td").css("visibility","hidden");
+// 				$('#table-rdResult tr').eq(rowIndex).find(".btn-unfold-rd-result").parents("td").css("visibility","visible");;
 				$(this).val("收起");
 			} else {
-				$('#table-rdResult tr').eq(rowIndex+1).hide();
-				$('#table-rdResult tr').eq(rowIndex+2).hide();
-				$('#table-rdResult tr').eq(rowIndex+3).hide();
+// 				$('#table-rdResult tr').eq(rowIndex).find("td").css("visibility","visible");
 				$(this).val("展開");
 			}
+			
+			$('#table-rdResult tr').eq(rowIndex+1).toggle();
+			$('#table-rdResult tr').eq(rowIndex+2).toggle();
+			$('#table-rdResult tr').eq(rowIndex+3).toggle();
+			$('#table-rdResult tr').eq(rowIndex+4).toggle();
 		});
 	}
 </script>
@@ -118,17 +120,35 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 		<tr>
 			<th>研發成果名稱</th>
 			<th>型式</th>
-			<th>國別</th>
+			<th>資料更新日期</th>
 			<th></th>
 		</tr>
 		<s:iterator value="talentedPeople.rdResults" status="stat">
-			<tr style="border-top:#000000 1px solid;">
+			<tr>
 				<td><s:property value="name"/></td>
 				<td><s:property value="type"/></td>
-				<td><s:property value="optionCountry.name"/></td>
+				<td><s:property value="updateDate"/></td>
 				<td><input type="button" value="展開" class="btn-func btn-view btn-unfold-rd-result"/></td>
 			</tr>
-			<tr style="display:none;">
+			<tr style="display:none; background:#E4EBF0">
+				<td>
+					<b>研發成果名稱</b>
+					<s:property value="name"/>
+				</td>
+				<td>
+					<b>型式</b>
+					<s:property value="type"/>
+				</td>
+				<td>
+					<b>資料更新日期</b>
+					<s:property value="updateDate"/>
+				</td>
+				<td>
+					<b>國別</b>
+					<s:property value="optionCountry.name"/>
+				</td>
+			</tr>
+			<tr style="display:none; background:#E4EBF0">
 				<td>
 					<b>專利期間</b>
 					<s:property value="%{patentPeriodStart + ' ~ ' + patentPeriodEnd}" />
@@ -146,18 +166,19 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 					<s:property value="owner"/>
 				</td>
 			</tr>
-			<tr style="display:none;">
+			<tr style="display:none; background:#E4EBF0">
 				<td colspan="4" title="<s:property value="patentAbstract"/>">
 					<b>摘要</b>
 					<s:textarea name="patentAbstract" disabled="true"/>
 				</td>
 			</tr>
-			<tr style="display:none;">
+			<tr style="display:none; background:#E4EBF0">
 				<td colspan="4" title="<s:property value="usage"/>">
 					<b>應用產業/範圍</b>
 					<s:property value="usage"/>
 				</td>
 			</tr>
+
 		</s:iterator>
 	</table>
 	
@@ -167,6 +188,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 			<th width="">應用領域</th>
 			<th width="">對象廠商或機構</th>
 			<th width="">授權期間或讓受/技轉時間</th>
+			<th>資料更新日期</th>
 		</tr>
 		<s:iterator value="talentedPeople.transferCases" status="stat">
 			<tr>
@@ -177,6 +199,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 					<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
 					<s:property value="%{#start+(#end != null ? ' ~ '+#end : '')}" />
 				</td>
+				<td><s:property value="updateDate" /></td>
 			</tr>
 		</s:iterator>	
 	</table>
@@ -187,6 +210,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 			<th width="">合作計畫或合約名稱</th>
 			<th width="">合作廠商名稱</th>
 			<th width="">合作有效期間</th>
+			<th>資料更新日期</th>
 		</tr>
 		<s:iterator value="talentedPeople.mainProjects" status="stat">
 			<tr>
@@ -197,6 +221,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 					<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
 					<s:property value="%{#start+' ~ '+#end}" />
 				</td>
+				<td><s:property value="updateDate" /></td>
 			</tr>
 		</s:iterator>
 	</table>

@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -310,6 +311,7 @@ public class TalentedPeople extends BaseEntity {
 	
 	@OneToMany(mappedBy = "talentedPeople", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SUBSELECT)
+	@OrderBy("PRIORITY ASC, ID ASC")
 	public List<TalentedPeopleRdResult> getRdResults() {
 		return rdResults;
 	}
@@ -320,6 +322,7 @@ public class TalentedPeople extends BaseEntity {
 
 	@OneToMany(mappedBy = "talentedPeople", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SUBSELECT)
+	@OrderBy("PRIORITY ASC, ID ASC")
 	public List<TalentedPeopleTransferCase> getTransferCases() {
 		return transferCases;
 	}
@@ -330,6 +333,7 @@ public class TalentedPeople extends BaseEntity {
 
 	@OneToMany(mappedBy = "talentedPeople", cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SUBSELECT)
+	@OrderBy("PRIORITY ASC, ID ASC")
 	public List<TalentedPeopleMainProject> getMainProjects() {
 		return mainProjects;
 	}

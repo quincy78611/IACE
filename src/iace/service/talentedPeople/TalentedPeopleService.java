@@ -106,6 +106,7 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 	public void update(TalentedPeople entity) throws IOException, SQLException {
 		setHeadShot(entity);
 		setDomain(entity);
+		setSysUser(entity);
 		
 		for (TalentedPeopleRdResult rdResult : entity.getRdResults()) {
 			rdResult.setTalentedPeople(entity);
@@ -163,6 +164,16 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 			domains.add(domain);
 		}
 		entity.setDomains(domains);
+	}
+	
+	private void setSysUser(TalentedPeople entity) {
+		SysUser user = entity.getSysUser();
+		if (user != null && user.getId() > 0) {
+			user = this.sysUserDao.get(entity.getSysUser().getId());
+			entity.setSysUser(user);
+		} else {
+			entity.setSysUser(null);
+		}
 	}
 	
 	private void deleteChildFromDb(TalentedPeople entity, TalentedPeople entityO) {
@@ -292,6 +303,8 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 						StringUtils.isNotBlank(user.getPassword())) {
 						this.sysUserDao.create(user);
 						entity.setSysUser(user);
+					} else {
+						throw new IllegalArgumentException("帳號密碼為必填欄位!");
 					}
 					
 					this.dao.create(entity);

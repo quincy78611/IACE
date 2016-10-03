@@ -1,5 +1,7 @@
 package iace.entity.talentedPeople;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,6 +29,8 @@ public class TalentedPeopleMainProject extends BaseEntity {
 	private int monthStart;
 	private int yearEnd;
 	private int monthEnd;
+	private Date updateDate;
+	private Float priority;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
@@ -104,4 +108,21 @@ public class TalentedPeopleMainProject extends BaseEntity {
 		this.monthEnd = monthEnd;
 	}
 
+	@Column(name = "UPDATE_DATE")
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	@Column(name = "PRIORITY")
+	public Float getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Float priority) {
+		this.priority = priority;
+	}
 }

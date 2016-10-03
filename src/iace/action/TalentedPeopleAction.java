@@ -139,10 +139,9 @@ public class TalentedPeopleAction extends BaseIaceAction {
 
 	public String updateSubmit() {
 		try {
-			this.sysUser = this.sysUserService.get(this.talentedPeople.getSysUser().getId());
-			this.talentedPeople.setSysUser(this.sysUser);
 			this.talentedPeopleService.update(this.talentedPeople, super.getSysLog(), super.getCurrentSysUser());
-
+			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeople.getId());
+			
 			super.addActionMessage("UPDATE SUCCESS");
 			return SUCCESS;
 		} catch (Exception e) {

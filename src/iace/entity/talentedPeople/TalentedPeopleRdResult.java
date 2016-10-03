@@ -35,6 +35,9 @@ public class TalentedPeopleRdResult extends BaseEntity {
 	private Date patentPeriodEnd;
 	private String patentAbstract;
 	private String usage;
+	private Date updateDate;
+	private Float priority;
+	
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
@@ -158,4 +161,23 @@ public class TalentedPeopleRdResult extends BaseEntity {
 		this.usage = usage;
 	}
 
+	@Column(name = "UPDATE_DATE")
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	@Column(name = "PRIORITY")
+	public Float getPriority() {
+		return priority;
+	}
+
+	public void setPriority(Float priority) {
+		this.priority = priority;
+	}
+
+	
 }
