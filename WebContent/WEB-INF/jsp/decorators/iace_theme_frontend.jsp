@@ -54,6 +54,23 @@
 					<img src="<s:url value="/images/LOGO.png"/>" >
 				</a>
 			</div>
+			<div class="peopleCount">
+				<div>瀏覽人數:</div>
+				<div id="tc-b64b054876"></div>
+				<script type="text/javascript">
+					var _tcq = _tcq || [];
+					_tcq.push([ 'widget', 'visits' ]);
+					_tcq.push([ 'init', 'b64b054876' ]);
+					(function(d, s) {
+						var e = d.createElement(s);
+						e.type = 'text/javascript';
+						e.async = true;
+						e.src = ('https:' == document.location.protocol ? 'https': 'http') + '://s.tcimg.com/w/v3/trendcounter.js';
+						var f = d.getElementsByTagName(s)[0];
+						f.parentNode.insertBefore(e, f);
+					})(document, 'script');
+				</script>			
+			</div>
 			<div class="loginBlock">
 				<s:if test="#session.sysUser == null">
 					<s:form namespace="/login" action="loginSubmit" method="post" validate="true" >
@@ -102,23 +119,6 @@
 				版權所有©2016科技部產學及園區業務司<br>
 				Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs<br>
 				本網站設計支援IE、Firefox及Chrome，網頁設計 最佳瀏覽解析度為1024x768以上<br>
-				<div>
-					<div style="float:left;">瀏覽人數:</div>
-					<div id="tc-b64b054876" style="float:left;"></div>
-					<script type="text/javascript">
-						var _tcq = _tcq || [];
-						_tcq.push([ 'widget', 'visits' ]);
-						_tcq.push([ 'init', 'b64b054876' ]);
-						(function(d, s) {
-							var e = d.createElement(s);
-							e.type = 'text/javascript';
-							e.async = true;
-							e.src = ('https:' == document.location.protocol ? 'https': 'http') + '://s.tcimg.com/w/v3/trendcounter.js';
-							var f = d.getElementsByTagName(s)[0];
-							f.parentNode.insertBefore(e, f);
-						})(document, 'script');
-					</script>				
-				</div>
 			</div>
 			<div id="twca">
 				<div id="twcaseal" class="ssl-logo MEDIUM">
