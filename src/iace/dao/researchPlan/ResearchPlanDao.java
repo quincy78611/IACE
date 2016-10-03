@@ -168,8 +168,11 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		if (StringUtils.isNotBlank(arg.getPlanName())) {
 			criteria.add(Restrictions.like("name", arg.getPlanName(), MatchMode.ANYWHERE).ignoreCase());
 		}			
-		if (arg.getYear() != null) {
-			criteria.add(Restrictions.eq("year", arg.getYear()));
+		if (arg.getYearStart() != null) {
+			criteria.add(Restrictions.ge("year", arg.getYearStart()));
+		}
+		if (arg.getYearEnd() != null) {
+			criteria.add(Restrictions.le("year", arg.getYearEnd()));
 		}
 		if (arg.getGrbDomainId() != null && arg.getGrbDomainId() > 0) {	
 			Criterion[] rests = new Criterion[6];
@@ -209,5 +212,25 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY); // IMPORTANT: without this line, it might return duplicate entities when main entity(ResearchPlan) has more than one child entity(Technology)
 	}
+
+	@Override
+	public List<Integer> getYearList() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(ResearchPlan.class);
+			criteria.setProjection(Projections.property("year"));
+			criteria.setProjection(Projections.distinct(Projections.property("year")));
+			criteria.addOrder(Order.asc("year"));
+			@SuppressWarnings("unchecked")
+			List<Integer> yearList = criteria.list();
+			return yearList;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	
 
 }

@@ -171,4 +171,8 @@ public class ResearchPlanService extends BaseIaceService<ResearchPlan> {
 		
 		return wb;
 	}
+	
+	public List<Integer> getYearList() {
+		return this.researchPlanDao.getYearList();
+	}
 }

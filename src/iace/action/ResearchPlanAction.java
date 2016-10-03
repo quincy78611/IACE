@@ -14,6 +14,7 @@ import org.apache.struts2.ServletActionContext;
 
 import core.util.ExcelUtil;
 import core.util.PagedList;
+import iace.entity.option.BaseOption;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
 import iace.entity.researchPlan.ResearchPlan;
@@ -38,7 +39,8 @@ public class ResearchPlanAction extends BaseIaceAction {
 	
 	private ResearchPlanSearchModel searchCondition = new ResearchPlanSearchModel();
 	private List<OptionGrbDomain> optionGrbDomainList;
-	private List<OptionTrl> optionTrlList;	
+	private List<OptionTrl> optionTrlList;
+	private List<BaseOption> yearList;
 	private PagedList<ResearchPlan> researchPlanPagedList;
 	
 	private Boolean fromHomePage;
@@ -437,6 +439,18 @@ public class ResearchPlanAction extends BaseIaceAction {
 
 	public void setFromHomePage(Boolean fromHomePage) {
 		this.fromHomePage = fromHomePage;
+	}
+
+	public List<BaseOption> getYearList() {
+		if (this.yearList == null) {
+			this.yearList = new ArrayList<BaseOption>();
+			List<Integer> yearList = this.researchPlanService.getYearList();
+			for (int year : yearList) {
+				String strYear = String.valueOf(year);
+				this.yearList.add(new BaseOption(strYear, strYear+"年"));
+			}
+		}
+		return this.yearList;
 	}
 	
 	

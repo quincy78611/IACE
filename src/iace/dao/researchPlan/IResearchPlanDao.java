@@ -16,4 +16,6 @@ public interface IResearchPlanDao extends IBaseIaceDao<ResearchPlan> {
 	public boolean planNoExist(String planNo);
 	
 	public ResearchPlan getByPlanNo(String planNo);
+	
+	public List<Integer> getYearList();
 }

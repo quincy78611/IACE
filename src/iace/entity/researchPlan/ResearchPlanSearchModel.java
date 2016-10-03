@@ -6,7 +6,8 @@ public class ResearchPlanSearchModel extends BaseSearchModel {
 
 	private String planName;
 	private String planNo;
-	private Integer year;
+	private Integer yearStart;
+	private Integer yearEnd;
 	private String keyword;
 	private Long trlId;
 	private String manager;
@@ -30,12 +31,20 @@ public class ResearchPlanSearchModel extends BaseSearchModel {
 		this.planNo = planNo;
 	}
 
-	public Integer getYear() {
-		return year;
+	public Integer getYearStart() {
+		return yearStart;
 	}
 
-	public void setYear(Integer year) {
-		this.year = year;
+	public void setYearStart(Integer yearStart) {
+		this.yearStart = yearStart;
+	}
+
+	public Integer getYearEnd() {
+		return yearEnd;
+	}
+
+	public void setYearEnd(Integer yearEnd) {
+		this.yearEnd = yearEnd;
 	}
 
 	public String getKeyword() {

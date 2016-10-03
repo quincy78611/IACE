@@ -109,7 +109,12 @@
 					<s:textfield placeholder="計畫編號" name="searchCondition.planNo" maxlength="100" cssClass="form-control" />
 				</li>
 				<li class="third">
-					<s:textfield placeholder="計畫年度" name="searchCondition.year" maxlength="4" cssClass="form-control" />
+					<div style="float:left; width:50%;">
+						<s:select name="searchCondition.yearStart" list="yearList" listKey="code" listValue="name" headerKey="" headerValue="計畫年度(起)"/>
+					</div>
+					<div style="float:right; width:50%;">
+						<s:select name="searchCondition.yearEnd" list="yearList" listKey="code" listValue="name" headerKey="" headerValue="計畫年度(訖)"/>
+					</div>
 				</li>
 				<li class="third">
 					<s:textfield placeholder="計畫關鍵詞" name="searchCondition.keyword" maxlength="4000" cssClass="form-control" />
