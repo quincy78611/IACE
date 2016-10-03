@@ -127,7 +127,7 @@
 					<s:textfield placeholder="申請日(起)" name="searchCondition.applicationDateS" maxlength="10" cssClass="calendarBox" />
 				</li>
 				<li class="quarter">
-					<s:textfield placeholder="申請號日(迄)" name="searchCondition.applicationDateE" maxlength="10" cssClass="calendarBox" />
+					<s:textfield placeholder="申請日(迄)" name="searchCondition.applicationDateE" maxlength="10" cssClass="calendarBox" />
 				</li>
 				<li class="quarter">
 					<s:textfield placeholder="申請號" name="searchCondition.appliactionNo" maxlength="100" />
