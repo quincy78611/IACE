@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <script type="text/javascript">
-	$(document).ready(function () {			
+	$(document).ready(function () {
 		paggingSetting();
 		funcBtnSetting();
 		dropDownBoxSetting();
@@ -82,36 +82,54 @@
 		$(".select-pageSize").val($("#pageSize").val());
 					
 		// 注意: 在此頁面的搜尋按鈕記得要加上id
-	    $("#btn-search").click(function(){
-	        $("#pageIndex").val(0);
-	        return true;
-	    });
+		$("#btn-search").click(function(){
+			$("#pageIndex").val(0);
+			return true;
+		});
 	 	// 注意: 在此頁面的重置按鈕記得要加上id
 		$("#btn-reset").click(function(){
 			$("input.form-control:text").val("");
 			$("select").prop('selectedIndex', 0);
 			$("input[type=checkbox]").prop("checked", false);
+			displaySelectedGrbDomains();
 		});
 	}
 </script>
 <script>
 	function dropDownBoxSetting() {
 		$(".dropDownBox").mouseleave(function(){
-	    	$(this).css("display","none")
-	        expanded = false;
-	    });
+			$(this).css("display","none")
+			toggleDropDownBox();
+		});
+		displaySelectedGrbDomains();
 	}
 
 	var expanded = false;
-    function showDropDownBox() {
-    	if (!expanded) {
-    		$(".dropDownBox").css("display","block")
-            expanded = true;
-        } else {
-        	$(".dropDownBox").css("display","none")
-            expanded = false;
-        }
-    }
+	function toggleDropDownBox() {
+		if (!expanded) {
+			$(".dropDownBox").css("display","block")
+			expanded = true;
+		} else {
+			$(".dropDownBox").css("display","none")
+			expanded = false;
+			displaySelectedGrbDomains();
+		}
+	}
+	
+	function displaySelectedGrbDomains() {
+		var selectedGrbDomains = "";
+		$("[name='searchCondition.grbDomainIdList']:checked").each(function(index){
+			selectedGrbDomains += $(this).parents("li.third").find(".grbDomainName").val()+"; \r\n";
+		});
+		var selectCount = $("[name='searchCondition.grbDomainIdList']:checked").length;
+		if (selectCount > 0) {
+			$(".selectBox select option").html(selectedGrbDomains);
+			$(".selectBox").attr("title", selectedGrbDomains);
+		} else {
+			$(".selectBox select option").html("選擇領域");
+			$(".selectBox").removeAttr("title");
+		}
+	}
 </script>
 <style>
 .selectBox { position: relative; width: 100%; }
@@ -145,23 +163,25 @@
 				</li>
 				<li class="quarter">
 					<div class="multiselect">
-				        <div class="selectBox" onclick="showDropDownBox()">
-				            <select><option>選擇領域</option></select>
-				            <div class="overSelect"></div>
-				        </div>
-				        <div class="dropDownBox">							
+						<div class="selectBox" onclick="toggleDropDownBox()">
+							<select><option>選擇領域</option></select>
+							<div class="overSelect"></div>
+						</div>
+						<div class="dropDownBox">
 							<ul>
 								<s:iterator value="mainDomainList" status="stat">
 									<li class="all"><b><s:property value="name"/></b></li>
+									
 									<s:iterator value="subDomainList" status="stat">
 									<li class="third">
 										<s:checkbox id="%{'chkbox_'+id}" label="%{name}" name="searchCondition.grbDomainIdList" value="%{searchCondition.grbDomainIdList.contains(id)}" fieldValue="%{id}"/>  
+										<input type="hidden" class="grbDomainName" value="<s:property value="name"/>" />
 									</li>
 									</s:iterator>
 								</s:iterator>										
 							</ul>
-				        </div>
-				    </div>
+						</div>
+					</div>
 				</li>
 				<li class="quarter">
 					<s:textfield placeholder="合作專長" name="searchCondition.specialty" maxlength="1000" />
