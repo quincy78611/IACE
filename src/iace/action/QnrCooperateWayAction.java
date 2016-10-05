@@ -4,8 +4,10 @@ import java.io.InputStream;
 import java.net.URLDecoder;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.exception.JDBCConnectionException;
 
 import core.util.AESEncrypter;
 import core.util.ExcelUtil;
@@ -121,9 +123,31 @@ public class QnrCooperateWayAction extends BaseIaceAction {
 		try {
 			OptionSchool school = this.schoolService.get(this.schoolId);
 			this.qnrCoopereateWay.setSchool(school);
-			this.qnrCooperateWayService.create(this.qnrCoopereateWay);
+			for (int i=0; i<3; i++) {
+				try {
+					this.qnrCooperateWayService.create(this.qnrCoopereateWay);
+					break;
+				} catch (JDBCConnectionException e) {
+					if (StringUtils.contains(e.getMessage(), "Unable to release JDBC Connection")) {
+						log.warn("", e);
+						Thread.sleep(1000);
+						continue;
+					} else {
+						throw e;
+					}
+				}
+			}
 			
-			return SUCCESS;
+			return SUCCESS;	
+		} catch (JDBCConnectionException e) {
+			if (StringUtils.contains(e.getMessage(), "Unable to release JDBC Connection")) {
+				String msg = "因為停滯時間過長，造成系統連結中斷，填答內容無法寫入資料庫。煩請點選信件中之[問卷連結]並重新填答問卷。造成不便，敬請見諒！";
+				super.addActionError(msg);
+				return ERROR;
+			} else {
+				super.showExceptionToPage(e);
+				return ERROR;
+			}
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return ERROR;
