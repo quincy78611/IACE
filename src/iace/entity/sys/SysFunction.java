@@ -52,7 +52,7 @@ public class SysFunction extends BaseEntity {
 	}
 
 	public void setNamespace(String namespace) {
-		this.namespace = namespace;
+		this.namespace = StringUtils.trim(namespace);
 	}
 
 	@Column(name = "ACTION_NAME1")
@@ -61,7 +61,7 @@ public class SysFunction extends BaseEntity {
 	}
 
 	public void setActionName1(String actionName) {
-		this.actionName1 = actionName;
+		this.actionName1 = StringUtils.trim(actionName);
 	}
 
 	@Column(name = "ACTION_NAME2")
@@ -70,7 +70,7 @@ public class SysFunction extends BaseEntity {
 	}
 
 	public void setActionName2(String actionName2) {
-		this.actionName2 = actionName2;
+		this.actionName2 = StringUtils.trim(actionName2);
 	}
 
 	@Column(name = "ACTION_NAME3")
@@ -79,7 +79,7 @@ public class SysFunction extends BaseEntity {
 	}
 
 	public void setActionName3(String actionName3) {
-		this.actionName3 = actionName3;
+		this.actionName3 = StringUtils.trim(actionName3);
 	}
 
 	public boolean hasActionName(String actionName) {

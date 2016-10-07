@@ -35,7 +35,7 @@
 					<s:param name="fromHomePage" value="true"/>
 				</s:url>
 				<a href="<s:property value="#urlTag" />"> 
-					<img src="data:image;base64,<s:property value="%{technologyList[1].getResearchPlan().getGrbDomains().get(0).getBase64Thumbnail(295,150)}"/>">
+					<img src="data:image;base64,<s:property value="%{technologyList[1].getResearchPlan().getGrbDomains().get(0).getBase64Img()}"/>">
 					<div class="itemTxt-S">
 						<s:property value="technologyList[1].name" />
 					</div>
@@ -49,7 +49,7 @@
 					<s:param name="fromHomePage" value="true"/>
 				</s:url>
 				<a href="<s:property value="#urlTag" />"> 
-					<img src="data:image;base64,<s:property value="%{technologyList[2].getResearchPlan().getGrbDomains().get(0).getBase64Thumbnail(295,150)}"/>">
+					<img src="data:image;base64,<s:property value="%{technologyList[2].getResearchPlan().getGrbDomains().get(0).getBase64Img()}"/>">
 					<div class="itemTxt-S">
 						<s:property value="technologyList[2].name" />
 					</div>
