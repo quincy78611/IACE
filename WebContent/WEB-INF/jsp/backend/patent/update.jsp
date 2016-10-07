@@ -126,10 +126,9 @@
 					<a href="<s:url value="%{patent.patentPictureLink}"/>" target="_blank">
 						<img id="patent_img" src="data:image;base64,<s:property value="patent.base64PatentPicture"/>" style="max-width:400px; max-height:400px;">
 					</a>
-					<span class="btn-file">
-						上傳圖檔
-		                <input class="upload" name="uploadPatentImg" type="file" onchange = "readURL(this);">
-					</span>
+					<br>
+					<input type="button" value="上傳圖檔" class="btn blueBtn" onclick="$('.upload').trigger('click')"/>
+					<input class="upload" name="uploadPatentImg" type="file" onchange="readURL(this);" style="display:none;">
 				</div>
 			</li>
 			<li class="half">

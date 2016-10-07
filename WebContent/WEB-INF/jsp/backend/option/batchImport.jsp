@@ -35,9 +35,8 @@
 					<input type="text" id="file_display" class="form-control" readonly="readonly"/>
 				</li>
 				<li class="quarter">
-					<span class="btn btn-default btn-file"> 選擇批次匯入檔案 
-						<input type="file" id="btn_file" name="uploadFile" class="btn-file" accept=".xlsx">
-					</span>
+					<input type="button" value="選擇批次匯入檔案 " class="btn blueBtn" onclick="$('#btn_file').trigger('click')"/>
+					<input type="file" id="btn_file" class="btn-file" name="uploadFile" accept=".xlsx" style="display:none;">
 				</li>
 				<li class="eighth">
 					<input type="submit" value="匯入" class="btn btn-info redBtn" />
