@@ -18,6 +18,13 @@
 			<result name="success">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
 			<result name="input">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
 		</action>
+		<action name="create" class="iace.action.ResearchPlanAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.ResearchPlanAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/researchPlan/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>
+		</action>
 		<action name="update" class="iace.action.ResearchPlanAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/researchPlan/index.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/researchPlan/update.jsp</result>		

@@ -8,6 +8,9 @@
 			<s:if test='%{#session.sysUser.hasAuth("/researchPlan", "init")}'>
 				<li><a href="<s:url value="/researchPlan/init"/>">編輯管理</a></li>
 			</s:if>
+			<s:if test='%{#session.sysUser.hasAuth("/researchPlan", "create")}'>
+				<li><a href="<s:url value="/researchPlan/create"/>">新增計畫</a></li>
+			</s:if>
 			<s:if test='%{#session.sysUser.hasAuth("/researchPlan", "batchImport")}'>
 				<li><a href="<s:url value="/researchPlan/batchImport"/>">批次匯入</a></li>
 			</s:if>	

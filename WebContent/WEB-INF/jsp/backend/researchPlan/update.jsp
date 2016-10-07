@@ -98,6 +98,12 @@
 					<s:property value="researchPlan.projkey" />
 				</div>
 			</li>
+			<li class="quarter">
+				<b>成果報告ID</b>
+				<div>
+					<s:property value="researchPlan.grb05Id" />
+				</div>
+			</li>
 			<li class="half">
 				<b>計畫發展階段</b>
 				<div>
@@ -192,7 +198,8 @@
 	<form action="index" method="post" id="form-backToIndex">
 		<s:hidden name="searchCondition.planName"/>
 		<s:hidden name="searchCondition.planNo"/>
-		<s:hidden name="searchCondition.year"/>
+		<s:hidden name="searchCondition.yearStart"/>
+		<s:hidden name="searchCondition.yearEnd"/>
 		<s:hidden name="searchCondition.keyword"/>
 		<s:hidden name="searchCondition.trlId"/>
 		<s:hidden name="searchCondition.manager"/>

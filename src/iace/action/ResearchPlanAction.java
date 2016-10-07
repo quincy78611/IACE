@@ -94,16 +94,19 @@ public class ResearchPlanAction extends BaseIaceAction {
 		}		
 	}
 	
-	@Deprecated
 	public String create() {
 		return SUCCESS;
 	}
 	
-	@Deprecated
+	public void validateCreateSubmit() {
+		//TODO
+	}
+	
 	public String createSubmit() {
 		try {
 			this.researchPlanService.create(this.researchPlan);
 			this.id = this.researchPlan.getId();
+			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
