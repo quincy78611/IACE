@@ -306,6 +306,7 @@ function setValueToMainProjectRow(tr) {
 function resetRdResultNameAttr() {
 	$("#table-rdResult > tbody > tr").each(function( index ){
 		var tr = $("#table-rdResult > tbody > tr").eq(index);
+		tr.find(".td-No").html(index+1);
 		tr.find(".id").attr("name", "talentedPeople.rdResults["+index+"].id");
 		tr.find(".isValid").attr("name", "talentedPeople.rdResults["+index+"].isValid");
 		tr.find(".createTime").attr("name", "talentedPeople.rdResults["+index+"].createTime");
@@ -329,7 +330,8 @@ function resetRdResultNameAttr() {
 }
 function resetTransferCaseNameAttr() {
 	$("#table-transferCase > tbody > tr").each(function( index ){
-		var tr = $("#table-transferCase > tbody > tr").eq(index);		
+		var tr = $("#table-transferCase > tbody > tr").eq(index);
+		tr.find(".td-No").html(index+1);
 		tr.find(".id").attr("name", "talentedPeople.transferCases["+index+"].id");
 		tr.find(".isValid").attr("name", "talentedPeople.transferCases["+index+"].isValid");
 		tr.find(".createTime").attr("name", "talentedPeople.transferCases["+index+"].createTime");
@@ -349,7 +351,8 @@ function resetTransferCaseNameAttr() {
 }
 function resetMainProjectNameAttr() {
 	$("#table-mainProject > tbody > tr").each(function( index ){
-		var tr = $("#table-mainProject > tbody > tr").eq(index);		
+		var tr = $("#table-mainProject > tbody > tr").eq(index);
+		tr.find(".td-No").html(index+1);
 		tr.find(".id").attr("name", "talentedPeople.mainProjects["+index+"].id");
 		tr.find(".isValid").attr("name", "talentedPeople.mainProjects["+index+"].isValid");
 		tr.find(".createTime").attr("name", "talentedPeople.mainProjects["+index+"].createTime");

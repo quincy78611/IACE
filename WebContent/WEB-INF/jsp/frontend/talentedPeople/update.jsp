@@ -151,6 +151,7 @@ tr.hidden-sample-tr { display:none; }
 		<table id="table-rdResult">
 			<thead>
 				<tr>
+					<th width="3%">No.</th>
 					<th>研發成果名稱</th>
 					<th>型式</th>
 					<th>資料更新日期</th>
@@ -171,6 +172,7 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="updateDate" />
 					<s:hidden class="priority" />
 
+					<td class="td-No"></td>
 					<td class="td-name"></td>
 					<td class="td-type"></td>
 					<td class="td-updateDate"></td>
@@ -202,7 +204,10 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="usage" name="%{'talentedPeople.rdResults['+#stat.index+'].usage'}"/>
 					<s:hidden class="updateDate" name="%{'talentedPeople.rdResults['+#stat.index+'].updateDate'}"/>
 					<s:hidden class="priority" name="%{'talentedPeople.rdResults['+#stat.index+'].priority'}"/>
-				
+					
+					<td class="td-No">
+						<s:property value="%{#stat.index+1}" />
+					</td>
 					<td class="td-name">
 						<s:property value="name"/>
 					</td>
@@ -230,6 +235,7 @@ tr.hidden-sample-tr { display:none; }
 		<table id="table-transferCase">
 			<thead>
 				<tr>
+					<th width="3%">No.</th>
 					<th width="">應用領域</th>
 					<th width="">對象廠商或機構</th>
 					<th width="">時間(授權期間或讓受/技轉時間)</th>
@@ -246,7 +252,8 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="monthEnd" />
 					<s:hidden class="updateDate" />
 					<s:hidden class="priority" />
-										
+								
+					<td class="td-No">No.</td>
 					<td class="td-applyField"></td>
 					<td class="td-targetOrg"></td>
 					<td class="td-time"></td>
@@ -276,6 +283,9 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="updateDate" name="%{'talentedPeople.transferCases['+#stat.index+'].updateDate'}"/>
 					<s:hidden class="priority" name="%{'talentedPeople.transferCases['+#stat.index+'].priority'}"/>
 				
+					<td class="td-No">
+						<s:property value="%{#stat.index+1}" />
+					</td>
 					<td class="td-applyField">
 						<s:property value="applyField"/>
 					</td>
@@ -306,6 +316,7 @@ tr.hidden-sample-tr { display:none; }
 		<table id="table-mainProject">
 			<thead>
 				<tr>
+					<th width="3%">No.</th>
 					<th width="">合作計畫或合約名稱</th>
 					<th width="">合作廠商名稱</th>
 					<th width="">合作有效期間</th>
@@ -323,6 +334,7 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="updateDate" />
 					<s:hidden class="priority" />
 				
+					<td class="td-No"></td>
 					<td class="td-name"></td>
 					<td class="td-coopComName"></td>
 					<td class="td-time"></td>
@@ -352,6 +364,9 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="updateDate" name="%{'talentedPeople.mainProjects['+#stat.index+'].updateDate'}"/>
 					<s:hidden class="priority" name="%{'talentedPeople.mainProjects['+#stat.index+'].priority'}"/>
 					
+					<td class="td-No">
+						<s:property value="%{#stat.index+1}" />
+					</td>
 					<td class="td-name">
 						<s:property value="name"/>
 					</td>
