@@ -5,7 +5,7 @@
 <html>
 <head>
 <script type="text/javascript">
-	$(document).ready(function () {			
+	$(document).ready(function () {
 		paggingSetting();
 		funcBtnSetting();
 		dropDownBoxSetting();
@@ -97,7 +97,7 @@
 			$("form").submit();
 		});
 		$(".select-pageSize").val($("#pageSize").val());
-					
+		
 		// 注意: 在此頁面的搜尋按鈕記得要加上id
 		$("#btn-search").click(function(){
 			$("#pageIndex").val(0);
@@ -136,7 +136,7 @@
 		var selectedGrbDomains = "";
 		$("[name='searchCondition.grbDomainIdList']:checked").each(function(index){
 			selectedGrbDomains += $(this).parents("li.third").find(".grbDomainName").val()+"; \r\n";
-	});
+		});
 		var selectCount = $("[name='searchCondition.grbDomainIdList']:checked").length;
 		if (selectCount > 0) {
 			$(".selectBox select option").html(selectedGrbDomains);
@@ -172,7 +172,7 @@
 				</li>
 				<li class="quarter">
 					<s:textfield placeholder="產學經驗(迄)" name="searchCondition.expYearE" maxlength="3" />
-				</li>				
+				</li>
 				<li class="quarter">
 					<s:textfield placeholder="現職單位" name="searchCondition.workOrg" maxlength="100" />
 				</li>
@@ -193,14 +193,14 @@
 										<input type="hidden" class="grbDomainName" value="<s:property value="name"/>" />
 									</li>
 									</s:iterator>
-								</s:iterator>										
+								</s:iterator>
 							</ul>
 						</div>
 					</div>
 				</li>
 				<li class="quarter">
 					<s:textfield placeholder="合作專長" name="searchCondition.specialty" maxlength="1000" />
-				</li>				
+				</li>
 				<li class="quarter">
 					<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
 					<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
@@ -215,7 +215,7 @@
 			<s:set var="pgCount" value="#pgList.pageCount"/>
 			
 			<ul class="pagination">
-				<s:if test="#pgList != null && #pgCount > 0">					
+				<s:if test="#pgList != null && #pgCount > 0">
 					<li><input type="submit" value="First" class="btn-first-page" /></li>
 					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
 					<s:if test="#pgIndex >= 5">
@@ -230,7 +230,7 @@
 						<li>......</li>
 					</s:if>
 					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
-					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>					
+					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
 				</s:if>
 				<li>
 					<p>共 <s:property value="#pgList.totatlItemCount"/> 筆資料</p>
@@ -244,12 +244,12 @@
 						<option value="20">20</option>
 						<option value="50">50</option>
 					</select>
-				</li>				
+				</li>
 			</ul>
 		</div>
 
 		<div style="float:right;">
-			<input type="button" class="btn-func btn-export" value="匯出" />	
+			<input type="button" class="btn-func btn-export" value="匯出" />
 		</div>
 		<div class="">
 			<table>
@@ -284,35 +284,35 @@
 							<td><s:property value="workOrg" /></td>
 							<td><s:property value="job" /></td>
 							<td><s:property value="specialty" /></td>
-														
+							
 							<td class="col-md-1">
 								<!-- 檢視 -->
 								<s:url value="showDetail.action" var="detailUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
 								<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
-								<input type="button" class="btn-func btn-view" value="檢視" />	
-									
+								<input type="button" class="btn-func btn-view" value="檢視" />
+								
 								<!-- 編輯 -->
 								<s:url value="update.action" var="updateUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
 								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
-								<input type="button" class="btn-func btn-edit" value="編輯" />	
-									
-								<!-- 刪除 -->	
+								<input type="button" class="btn-func btn-edit" value="編輯" />
+								
+								<!-- 刪除 -->
 								<s:url value="delete.action" var="deleteUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
 								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-								<input type="button" class="btn-func btn-del" value="刪除" />	
+								<input type="button" class="btn-func btn-del" value="刪除" />
 								
 								<!-- 列印 -->
 								<s:url value="printReport.action" var="printReportUrlTag">
 									<s:param name="id" value="id" />
 								</s:url>
 								<input type="button" class="btn-info btn-func btn-print" value="列印" 
-									onclick="window.location.href='<s:property value="#printReportUrlTag"/>'"/>	
+									onclick="window.location.href='<s:property value="#printReportUrlTag"/>'"/>
 							</td>
 						</tr>
 					</s:iterator>
@@ -323,13 +323,13 @@
 		<div class="page">
 			<s:hidden id="pageIndex" name="searchCondition.pageIndex" />
 			<s:hidden id="pageSize" name="searchCondition.pageSize" />
-						
+			
 			<s:set var="pgList" value="talentedPeoplePagedList"/>
 			<s:set var="pgIndex" value="searchCondition.pageIndex"/>
 			<s:set var="pgCount" value="#pgList.pageCount"/>
 			
 			<ul class="pagination">
-				<s:if test="#pgList != null && #pgCount > 0">					
+				<s:if test="#pgList != null && #pgCount > 0">
 					<li><input type="submit" value="First" class="btn-first-page" /></li>
 					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
 					<s:if test="#pgIndex >= 5">
@@ -344,7 +344,7 @@
 						<li>......</li>
 					</s:if>
 					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
-					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>					
+					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
 				</s:if>
 				<li>
 					<p>共 <s:property value="#pgList.totatlItemCount"/> 筆資料</p>
@@ -358,9 +358,9 @@
 						<option value="20">20</option>
 						<option value="50">50</option>
 					</select>
-				</li>				
+				</li>
 			</ul>
-		</div>		
+		</div>
 	</s:form>
 </body>
 </html>
