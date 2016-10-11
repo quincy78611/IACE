@@ -360,7 +360,9 @@ public class ResearchPlanAction extends BaseIaceAction {
 	}
 
 	public List<OptionTrl> getOptionTrlList() {
-		this.optionTrlList = this.optionTrlService.listAll();
+		if (this.optionTrlList == null) {
+			this.optionTrlList = this.optionTrlService.listAll();
+		}
 		return optionTrlList;
 	}
 
