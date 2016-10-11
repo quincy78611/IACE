@@ -55,7 +55,7 @@
 				</a>
 			</div>
 			<div class="peopleCount">
-				<div>瀏覽人數:</div>
+				<div>瀏覽人數 :</div>
 				<div id="tc-b64b054876"></div>
 				<script type="text/javascript">
 					var _tcq = _tcq || [];
