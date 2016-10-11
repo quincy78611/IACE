@@ -25,22 +25,22 @@
 .rightContent li.quarter { width:24%; margin-right:1%;}
 .rightContent li.eighth { width:11.5%; margin-right:1%;}
 
-.rightContent select { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.80em; font-family:"微軟正黑體";}
-.rightContent input[type=date],
-.rightContent input[type=datetime],
-.rightContent input[type=email],
-.rightContent input[type=month],
-.rightContent input[type=week],
-.rightContent input[type=number],
-.rightContent input[type=range],
-.rightContent input[type=search],
-.rightContent input[type=tel],
-.rightContent input[type=text],
-.rightContent input[type=password],
-.rightContent textarea { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.91em; font-family:"微軟正黑體";}
-.rightContent input[type=checkbox],
-.rightContent input[type=radio] { margin-right:8px; }
-.rightContent div.border-text { width:100%; border:#e6eff5 1px solid; padding: 5px 5px; font-size:0.91em; font-family:"微軟正黑體"; color:black; background: #FFFFFF; }
+.rightContent li select { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.80em; font-family:"微軟正黑體";}
+.rightContent li input[type=date],
+.rightContent li input[type=datetime],
+.rightContent li input[type=email],
+.rightContent li input[type=month],
+.rightContent li input[type=week],
+.rightContent li input[type=number],
+.rightContent li input[type=range],
+.rightContent li input[type=search],
+.rightContent li input[type=tel],
+.rightContent li input[type=text],
+.rightContent li input[type=password],
+.rightContent li textarea { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.91em; font-family:"微軟正黑體";}
+.rightContent li input[type=checkbox],
+.rightContent li input[type=radio] { margin-right:8px; }
+.rightContent li div.border-text { width:100%; border:#e6eff5 1px solid; padding: 5px 5px; font-size:0.91em; font-family:"微軟正黑體"; color:black; background: #FFFFFF; }
 
 /* -------------------------------------------------------------------------- */
 
