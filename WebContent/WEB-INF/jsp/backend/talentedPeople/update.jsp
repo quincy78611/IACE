@@ -434,6 +434,7 @@ tr.hidden-sample-tr { display:none; }
 					<b>4.所有權人</b>
 					<input type="text" class="owner" maxlength="100"/>
 				</li>
+				<li class="clear"></li>
 				<li class="quarter">
 					<b>5.專利號(申請中請填申請號)</b>
 					<input type="text" class="patentNo" maxlength="100"/>
@@ -450,6 +451,7 @@ tr.hidden-sample-tr { display:none; }
 					<b>7.專利期間(迄)</b>
 					<input type="text" class="patentPeriodEnd calendarBox" maxlength="10" placeholder="格式範例:2016/12/30"/>				
 				</li>
+				<li class="clear"></li>
 				<li class="all">
 					<b>8.摘要(請說明成果重點與特色)</b>
 					<s:textarea class="patentAbstract" rows="3"/>

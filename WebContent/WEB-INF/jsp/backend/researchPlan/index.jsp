@@ -102,6 +102,7 @@
 	<s:form action="index" method="post" validate="true" >
 		<div class="">
 			<ul>
+				<li class="clear"></li>
 				<li class="third">
 					<s:textfield placeholder="計畫名稱" name="searchCondition.planName" maxlength="4000" cssClass="form-control" />
 				</li>
@@ -116,6 +117,7 @@
 						<s:select name="searchCondition.yearEnd" list="yearList" listKey="code" listValue="name" headerKey="" headerValue="計畫年度(訖)"/>
 					</div>
 				</li>
+				<li class="clear"></li>
 				<li class="third">
 					<s:textfield placeholder="計畫關鍵詞" name="searchCondition.keyword" maxlength="4000" cssClass="form-control" />
 				</li>
@@ -125,6 +127,7 @@
 				<li class="third">
 					<s:textfield placeholder="計畫主持人" name="searchCondition.manager" maxlength="100" cssClass="form-control" />
 				</li>
+				<li class="clear"></li>
 				<li class="third">
 					<s:select name="searchCondition.grbDomainId" list="optionGrbDomainList" listKey="id" listValue="%{code +'-'+ name}" headerKey="-1" headerValue="全部研究領域"/>
 				</li>
@@ -133,14 +136,14 @@
 				</li>
 				<li class="third">
 					<s:select name="searchCondition.technologyTrlId" list="optionTrlList" listKey="id" listValue="%{code +'-'+ name}" headerKey="-1" headerValue="全部技術發展階段"/>
-				</li>				
-				<li class="third">
-					<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
-					<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
-				</li>	
+				</li>
 			</ul>
 		</div>
 		<div class="clear"></div>
+		<div class="search-btn-block">
+			<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
+			<input type="button" value="清除" class="grayBtn" id="btn-reset"/>
+		</div>
 		
 		<div class="page">
 			<s:set var="pgList" value="researchPlanPagedList"/>
