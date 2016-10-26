@@ -59,6 +59,8 @@ function transferCaseSetting() {
 	$("input[type=button]#add-transferCases").click(function(){
 		$("#form-update").hide();
 		resetSubForm($("#transferCaseForm"));
+		$("#transferCaseForm").find(".yearStart").val("2010");
+		$("#transferCaseForm").find(".yearEnd").val("2010");
 		$("#transferCaseForm").show();
 		$("#transferCaseForm .btn-addConfirm").show();
 		$("#transferCaseForm .btn-editConfirm").hide();
@@ -103,6 +105,8 @@ function mainProjectSetting() {
 	$("input[type=button]#add-mainProject").click(function(){
 		$("#form-update").hide();
 		resetSubForm($("#mainProjectForm"));
+		$("#mainProjectForm").find(".yearStart").val("2010");
+		$("#mainProjectForm").find(".yearEnd").val("2010");
 		$("#mainProjectForm").show();
 		$("#mainProjectForm .btn-addConfirm").show();
 		$("#mainProjectForm .btn-editConfirm").hide();

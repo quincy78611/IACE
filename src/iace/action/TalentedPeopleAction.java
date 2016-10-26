@@ -353,17 +353,9 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	public List<BaseOption> getYearList() {
 		if (yearList == null) {
 			yearList = new ArrayList<BaseOption>();
-			yearList.add(new BaseOption("2010", "2010年"));
-			yearList.add(new BaseOption("2011", "2011年"));
-			yearList.add(new BaseOption("2012", "2012年"));
-			yearList.add(new BaseOption("2013", "2013年"));
-			yearList.add(new BaseOption("2014", "2014年"));
-			yearList.add(new BaseOption("2015", "2015年"));
-			yearList.add(new BaseOption("2016", "2016年"));
-			yearList.add(new BaseOption("2017", "2017年"));
-			yearList.add(new BaseOption("2018", "2018年"));
-			yearList.add(new BaseOption("2019", "2019年"));
-			yearList.add(new BaseOption("2020", "2020年"));
+			for (int i=1990; i<2020; i++) {
+				yearList.add(new BaseOption(i+"", i+"年"));
+			}
 		}
 		return yearList;
 	}
