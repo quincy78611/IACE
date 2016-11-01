@@ -17,6 +17,9 @@
 			<s:if test='%{#session.sysUser.hasAuth("/sysFunction", "init")}'>	
 				<li><a href="<s:url value="/sysFunction/init"/>">系統功能 </a></li>
 			</s:if>
+			<s:if test='#session.sysUser.sysRole.name == "系統開發人員"'>
+				<li><a href="<s:url value="/lucene/init"/>">Lucene全文檢索</a></li>
+			</s:if>
 		</ul>
 	</li>
 </s:if>

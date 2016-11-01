@@ -124,7 +124,8 @@ public class CoopExDao extends BaseIaceDao<CoopEx> implements ICoopExDao {
 		}
 	}
 	
-	private long queryTotalRecordsCount(CoopExSearchModel arg) {
+	@Override
+	public long queryTotalRecordsCount(CoopExSearchModel arg) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(CoopEx.class);			

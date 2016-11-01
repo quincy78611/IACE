@@ -72,7 +72,8 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 		}
 	}
 	
-	private long queryTotalRecordsCount(TalentedPeopleSearchModel arg) {
+	@Override
+	public long queryTotalRecordsCount(TalentedPeopleSearchModel arg) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(TalentedPeople.class);
@@ -148,23 +149,7 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 
 	@Override
 	public TalentedPeople get(SysUser user) {
-		Session session = HibernateSessionFactory.getSession();
-		try {
-			Criteria criteria = session.createCriteria(TalentedPeople.class);
-			criteria.createAlias("sysUser", "user");
-			criteria.add(Restrictions.eq("user.id", user.getId()));
-			TalentedPeople res = (TalentedPeople) criteria.uniqueResult();
-			Hibernate.initialize(res.getDomains());
-			Hibernate.initialize(res.getRdResults());
-			Hibernate.initialize(res.getTransferCases());
-			Hibernate.initialize(res.getMainProjects());
-			
-			return res;
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			HibernateSessionFactory.closeSession();
-		}
+		return get(user.getId());
 	}
 
 	

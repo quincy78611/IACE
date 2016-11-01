@@ -8,4 +8,6 @@ import iace.entity.incubationCenter.IncubationCenterSearchModel;
 public interface IIncubationCenterDao extends IBaseIaceDao<IncubationCenter> {
 
 	public PagedList<IncubationCenter> searchBy(IncubationCenterSearchModel arg);
+
+	public long queryTotalRecordsCount(IncubationCenterSearchModel arg);
 }

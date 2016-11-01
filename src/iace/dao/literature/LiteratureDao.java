@@ -78,7 +78,8 @@ public class LiteratureDao extends BaseIaceDao<Literature> implements ILiteratur
 		}
 	}
 	
-	private long queryTotalRecordsCount(LiteratureSearchModel arg){
+	@Override
+	public long queryTotalRecordsCount(LiteratureSearchModel arg){
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Literature.class);

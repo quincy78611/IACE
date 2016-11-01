@@ -24,11 +24,12 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 import iace.entity.option.OptionTrl;
 
 @Entity
 @Table(name = "TECHNOLOGY")
-public class Technology extends BaseEntity {
+public class Technology extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = 1695680251829946337L;
 
@@ -151,6 +152,11 @@ public class Technology extends BaseEntity {
 				"技術發展階段說明: {"+this.trlDesc+"}, \r\n";
 				
 		return s;
+	}
+
+	@Override
+	public String toLunceneContent() {
+		return this.name + " " + this.descriptoin;
 	}
 
 	

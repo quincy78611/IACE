@@ -92,7 +92,8 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		}
 	}
 	
-	private long queryTotalRecordsCount(PatentSearchModel model) {
+	@Override
+	public long queryTotalRecordsCount(PatentSearchModel model) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Patent.class);

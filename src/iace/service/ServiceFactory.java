@@ -9,6 +9,7 @@ import iace.service.coopExample.CoopExVideoService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
 import iace.service.incubationCenter.IncubationCenterService;
 import iace.service.literature.LiteratureService;
+import iace.service.lucene.IndexInitService;
 import iace.service.option.OptionCompanyLocationService;
 import iace.service.option.OptionConsultService;
 import iace.service.option.OptionCooperateModeService;
@@ -43,6 +44,7 @@ import iace.service.talentedPeople.TalentedPeopleService;
 
 
 public class ServiceFactory {
+	private static IndexInitService indexInitService;
 	
 	private static SysFunctionService sysFunctionService;
 	private static SysRoleService sysRoleService;
@@ -94,6 +96,20 @@ public class ServiceFactory {
 	private static IncubationCenterService incubationCenterService;
 	
 	private static LiteratureService literatureService;
+	
+	public static IndexInitService getIndexInitService() {
+		if (indexInitService == null) {
+			indexInitService = new IndexInitService(
+					DaoFactory.getResearchPlanDao(), 
+					DaoFactory.getTechnologyDao(),
+					DaoFactory.getPatentDao(),
+					DaoFactory.getTalentedPeopleDao(),
+					DaoFactory.getCoopExDao(),
+					DaoFactory.getLiteratureDao(),
+					DaoFactory.getIncubationCenterDao());
+		}
+		return indexInitService;
+	}
 	
 	public static SysFunctionService getSysFunctionService() {
 		if (sysFunctionService == null) {

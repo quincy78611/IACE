@@ -18,4 +18,6 @@ public interface IResearchPlanDao extends IBaseIaceDao<ResearchPlan> {
 	public ResearchPlan getByPlanNo(String planNo);
 	
 	public List<Integer> getYearList();
+
+	public long queryTotalRecordsCount(ResearchPlanSearchModel arg);
 }

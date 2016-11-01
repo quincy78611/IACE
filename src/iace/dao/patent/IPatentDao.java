@@ -25,6 +25,9 @@ public interface IPatentDao extends IBaseIaceDao<Patent> {
 	public List<Patent> listAll(PatentSearchModel model);
 	
 	public PagedList<Patent> searchBy(PatentSearchModel model);
+
+	public long queryTotalRecordsCount(PatentSearchModel model);
 	
 	public void createAll(List<Patent> entities);
+
 }

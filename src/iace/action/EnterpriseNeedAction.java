@@ -84,7 +84,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.enterpriseInfoService.create(this.enterpriseInfo, super.getSysLog(), super.getCurrentSysUser());
+			this.enterpriseInfoService.create(this.enterpriseInfo, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -110,7 +110,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.enterpriseInfoService.update(this.enterpriseInfo, super.getSysLog(), super.getCurrentSysUser());
+			this.enterpriseInfoService.update(this.enterpriseInfo, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -132,7 +132,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 	
 	public String deleteSubmit() {
 		try {
-			this.enterpriseInfoService.delete(this.id, super.getSysLog());
+			this.enterpriseInfoService.delete(this.id, false, super.getSysLog());
 			super.addActionMessage("DELETE SUCCESS!");
 			
 			this.enterpriseInfoPagedList = this.enterpriseInfoService.searchBy(searchCondition);

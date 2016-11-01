@@ -42,5 +42,8 @@
 		<Logger name="core.service.BaseService" level="debug" />
 		<Logger name="iace.service.BaseExcelService" level="debug" />
 		<Logger name="core.dao.BaseDao" level="debug" />
+		<Logger name="lucene.integrationSearch.IndexInitService" level="debug" />
+		<Logger name="lucene.Test" level="debug" />
+		<Logger name="lucene.integrationSearch.Test" level="debug" />
 	</Loggers>
 </Configuration>

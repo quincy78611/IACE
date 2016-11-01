@@ -5,13 +5,16 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 
 import core.dao.HibernateSessionFactory;
+import core.util.PagedList;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
+import iace.entity.BaseSearchModel;
 import iace.entity.researchPlan.Technology;
 
 public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnologyDao {
@@ -64,7 +67,49 @@ public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnolog
 			HibernateSessionFactory.closeSession();
 		}
 	}
+
+	@Override
+	public PagedList<Technology> searchBy(BaseSearchModel arg) {
+		long totalItemCount = queryTotalRecordsCount();	
+		PagedList<Technology> results = new PagedList<Technology>(totalItemCount, arg.getPageSize(), arg.getPageIndex());
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Technology.class);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
+			
+			criteria.addOrder(Order.asc("id"));			
+			criteria.setFirstResult(results.getItemStart()-1);
+			criteria.setMaxResults(arg.getPageSize());
+			
+			@SuppressWarnings("unchecked")
+			List<Technology> list = criteria.list();
+			results.setList(list);
+			
+			return results;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 	
-	
+	@Override
+	public long queryTotalRecordsCount() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Technology.class);			
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			
+//			criteria.setProjection(Projections.rowCount());
+			criteria.setProjection(Projections.countDistinct("id")); // when using rowCount() and there are more than one child entities, then it will return the number of child entities instead of only count main entity
+			
+			Object count = criteria.uniqueResult();
+			return (long) count;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 
 }

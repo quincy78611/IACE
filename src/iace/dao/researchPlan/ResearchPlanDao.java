@@ -143,7 +143,8 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 		}
 	}
 
-	private long queryTotalRecordsCount(ResearchPlanSearchModel arg) {
+	@Override
+	public long queryTotalRecordsCount(ResearchPlanSearchModel arg) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(ResearchPlan.class, "rp");			

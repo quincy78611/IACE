@@ -59,7 +59,8 @@ public class IncubationCenterDao extends BaseIaceDao<IncubationCenter> implement
 		}
 	}
 	
-	private long queryTotalRecordsCount(IncubationCenterSearchModel arg){
+	@Override
+	public long queryTotalRecordsCount(IncubationCenterSearchModel arg){
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(IncubationCenter.class);

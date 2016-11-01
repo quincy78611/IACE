@@ -9,10 +9,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 
 @Entity
 @Table(name = "LITERATURE")
-public class Literature extends BaseEntity {
+public class Literature extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = -1303534577833074323L;
 
@@ -268,6 +269,14 @@ public class Literature extends BaseEntity {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+
+	@Override
+	public String toLunceneContent() {
+		String str = this.titleC + " " + this.titleF + " " + this.authorC + " " + 
+				this.authorF  + " " + this.keywordC  + " " + this.keywordF  + " " +
+				this.summary  + " " + this.summaryF  + " " + this.journalName;
+		return str;
 	}
 
 }

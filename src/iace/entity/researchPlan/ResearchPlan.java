@@ -21,12 +21,13 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.option.OptionTrl;
 
 @Entity
 @Table(name = "RESEARCH_PLAN")
-public class ResearchPlan extends BaseEntity {
+public class ResearchPlan extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = 6137186068641120935L;
 
@@ -353,6 +354,18 @@ public class ResearchPlan extends BaseEntity {
 		sb.append("計畫關鍵詞: {"+this.keyword+"}, \r\n");
 		
 		return sb.toString();
+	}
+
+	@Override
+	public String toLunceneContent() {
+		String content = 
+				this.name + " " +
+				this.planNo + " " +
+				this.manager + " " +
+				this.keyword + " " +
+				this.projkey + " " +
+				this.grb05Id;
+		return content;
 	}
 
 	

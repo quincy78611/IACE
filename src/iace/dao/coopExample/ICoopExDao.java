@@ -15,4 +15,6 @@ public interface ICoopExDao extends IBaseIaceDao<CoopEx> {
 	
 	public List<CoopEx> sampleForHomePage();
 
+	public long queryTotalRecordsCount(CoopExSearchModel arg);
+
 }

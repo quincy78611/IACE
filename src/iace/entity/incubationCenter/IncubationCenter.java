@@ -9,10 +9,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 
 @Entity
 @Table(name = "INCUBATION_CENTER")
-public class IncubationCenter extends BaseEntity {
+public class IncubationCenter extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = -6291783231741808243L;
 
@@ -168,6 +169,13 @@ public class IncubationCenter extends BaseEntity {
 
 	public void setOrgHistory(String orgHistory) {
 		this.orgHistory = orgHistory;
+	}
+
+	@Override
+	public String toLunceneContent() {
+		String str = this.schoolNameCh + " " + this.schoolNameEn + " " +
+				this.orgNameCh  + " " + this.orgNameEn;
+		return str;
 	}
 
 }

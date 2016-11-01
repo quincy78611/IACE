@@ -104,7 +104,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.researchPlanService.create(this.researchPlan);
+			this.researchPlanService.create(this.researchPlan, super.getCurrentSysUser(), true, super.getSysLog());
 			this.id = this.researchPlan.getId();
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("CREATE SUCCESS!");
@@ -217,7 +217,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.technology.setResearchPlan(this.researchPlan);
-			this.technologyService.create(this.technology, super.getSysLog(), super.getCurrentSysUser());
+			this.technologyService.create(this.technology, super.getCurrentSysUser(), true, super.getSysLog());
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("CREATE SUCCESS!");
@@ -258,7 +258,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.technology.setResearchPlan(this.researchPlan);
-			this.technologyService.update(this.technology, super.getSysLog(), super.getCurrentSysUser());
+			this.technologyService.update(this.technology, super.getCurrentSysUser(), true, super.getSysLog());
 			
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
@@ -273,7 +273,7 @@ public class ResearchPlanAction extends BaseIaceAction {
 	
 	public String deleteTechnologySubmit() {
 		try {
-			this.technologyService.delete(this.technologyId, super.getSysLog());
+			this.technologyService.delete(this.technologyId, true, super.getSysLog());
 			// 成功後重新抓取研究計畫資料
 			this.researchPlan = this.researchPlanService.get(this.id);
 			this.addActionMessage("DELETE SUCCESS!");

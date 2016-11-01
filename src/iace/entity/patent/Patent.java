@@ -23,12 +23,13 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import core.util.ValidateUtil;
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionTrl;
 
 @Entity
 @Table(name = "PATENT")
-public class Patent extends BaseEntity {
+public class Patent extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = -148218196320736494L;
 
@@ -384,6 +385,20 @@ public class Patent extends BaseEntity {
 				"技術發展階段: {"+(this.trl == null ? null : this.trl.toSysLog())+"}, \r\n"+
 				"技術發展階段說明: {"+this.trlDesc+"}";
 		return s;
+	}
+
+	@Override
+	public String toLunceneContent() {
+		String content = 
+				this.name + " " + 
+				this.appliactionNo + " " +
+				this.openNo + " " +
+				this.publicationNo + " " + 
+				this.familyNo + " " +
+				this.ipc + " " +
+				this.techAbstract + " " +
+				this.usage;
+		return content;
 	}
 
 

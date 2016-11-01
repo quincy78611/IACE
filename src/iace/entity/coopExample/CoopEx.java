@@ -18,10 +18,11 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 
 @Entity
 @Table(name = "COOP_EXAMPLE")
-public class CoopEx extends BaseEntity {
+public class CoopEx extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = 6103079547676237969L;
 
@@ -191,6 +192,12 @@ public class CoopEx extends BaseEntity {
 		sb.append("內容: {"+this.content+"}, \r\n");
 		
 		return sb.toString();
+	}
+
+	@Override
+	public String toLunceneContent() {
+		String str = this.title + " " + this.projName + this.content; 
+		return str;
 	}	
 	
 	

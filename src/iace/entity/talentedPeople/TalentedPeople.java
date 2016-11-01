@@ -29,12 +29,13 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import core.util.AESEncrypter;
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.sys.SysUser;
 
 @Entity
 @Table(name = "TALENTED_PEOPLE")
-public class TalentedPeople extends BaseEntity {
+public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = -769195556580032302L;
 
@@ -387,6 +388,12 @@ public class TalentedPeople extends BaseEntity {
 		sb.append("合作專長: {"+this.specialty+"}, \r\n");
 		
 		return sb.toString();
+	}
+
+	@Override
+	public String toLunceneContent() {
+		String content = this.nameCh + " " + this.nameEn  + " " + this.specialty;
+		return content;
 	}
 	
 	

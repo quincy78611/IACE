@@ -108,7 +108,7 @@ public class PatentAction extends BaseIaceAction {
 		try {
 			setUploadFileToEntity();
 
-			this.patentService.create(this.patent, super.getSysLog(), super.getCurrentSysUser());
+			this.patentService.create(this.patent, super.getCurrentSysUser(), true, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -140,7 +140,7 @@ public class PatentAction extends BaseIaceAction {
 	public String updateSubmit() {
 		try {
 			setUploadFileToEntity();
-			this.patentService.update(this.patent, super.getSysLog(), super.getCurrentSysUser());
+			this.patentService.update(this.patent, super.getCurrentSysUser(), true, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			
 			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
@@ -169,7 +169,7 @@ public class PatentAction extends BaseIaceAction {
 
 	public String deleteSubmit() {
 		try {
-			this.patentService.delete(this.id, super.getSysLog());
+			this.patentService.delete(this.id, true, super.getSysLog());
 			this.addActionMessage("DELETE SUCCESS!");
 			
 			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
