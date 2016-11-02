@@ -1,11 +1,16 @@
 package iace.service.lucene;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.store.Directory;
 
 import core.util.PagedList;
@@ -31,9 +36,11 @@ import iace.entity.researchPlan.Technology;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 import lucene.integrationSearch.IntegrationIndexer;
+import lucene.integrationSearch.IntegrationSearchModel;
+import lucene.integrationSearch.IntegrationSearchResult;
 
-public class IndexInitService {
-	protected static Logger log = LogManager.getLogger(IndexInitService.class);
+public class LuceneIndexService {
+	protected static Logger log = LogManager.getLogger(LuceneIndexService.class);
 
 	private IResearchPlanDao researchPlanDao;
 	private ITechnologyDao technologyDao;
@@ -45,7 +52,7 @@ public class IndexInitService {
 
 	private String luceneIndexFolder;
 
-	public IndexInitService(
+	public LuceneIndexService(
 			IResearchPlanDao researchPlanDao, 
 			ITechnologyDao technologyDao, 
 			IPatentDao patentDao, 
@@ -77,7 +84,7 @@ public class IndexInitService {
 			IndexWriter writer = IntegrationIndexer.createIndexWriter(indexDirectory);
 			try {
 				writer.deleteAll(); writer.commit();
-				createResearchPlanIndex(writer);
+//				createResearchPlanIndex(writer);
 				createTechnologyIndex(writer);
 				createPatentIndex(writer);
 				createTalentedPeopleIndex(writer);
@@ -159,14 +166,30 @@ public class IndexInitService {
 	}
 	
 	private void createLiteratureIndex(IndexWriter writer) throws IOException {
-		LiteratureSearchModel arg = new LiteratureSearchModel();
-		long totalRecordCount = this.literautureDao.queryTotalRecordsCount(arg);
-		int pageCount = (int) Math.ceil(totalRecordCount / (double) arg.getPageSize());
-		for (int i = 0; i < pageCount; i++) {
-			arg.setPageIndex(i);
-			PagedList<Literature> pagedList = this.literautureDao.searchBy(arg);
-			for (Literature entity : pagedList.getList()) {
-				IntegrationIndexer.addDoc(writer, entity.getId(), entity.getClass(), entity.toLunceneContent());
+		{
+			LiteratureSearchModel arg = new LiteratureSearchModel();
+			arg.setCategory("文獻");
+			long totalRecordCount = this.literautureDao.queryTotalRecordsCount(arg);
+			int pageCount = (int) Math.ceil(totalRecordCount / (double) arg.getPageSize());
+			for (int i = 0; i < pageCount; i++) {
+				arg.setPageIndex(i);
+				PagedList<Literature> pagedList = this.literautureDao.searchBy(arg);
+				for (Literature entity : pagedList.getList()) {
+					IntegrationIndexer.addDoc(writer, entity.getId(), entity.getClass(), entity.toLunceneContent());
+				}
+			}
+		}
+		{
+			LiteratureSearchModel arg = new LiteratureSearchModel();
+			arg.setCategory("法規政策");
+			long totalRecordCount = this.literautureDao.queryTotalRecordsCount(arg);
+			int pageCount = (int) Math.ceil(totalRecordCount / (double) arg.getPageSize());
+			for (int i = 0; i < pageCount; i++) {
+				arg.setPageIndex(i);
+				PagedList<Literature> pagedList = this.literautureDao.searchBy(arg);
+				for (Literature entity : pagedList.getList()) {
+					IntegrationIndexer.addDoc(writer, entity.getId(), entity.getClass(), entity.toLunceneContent());
+				}
 			}
 		}
 	}
@@ -184,4 +207,47 @@ public class IndexInitService {
 		}
 	}
 
+	public PagedList<IntegrationSearchResult> integrationSearch(IntegrationSearchModel arg) throws IOException, ParseException {
+		Directory indexDirectory = IntegrationIndexer.openDirectory(luceneIndexFolder);
+		IndexReader reader = IntegrationIndexer.createIndexReader(indexDirectory);
+		try {
+			PagedList<Document> docs = IntegrationIndexer.searchBy(reader, arg); 
+			List<IntegrationSearchResult> list = new ArrayList<IntegrationSearchResult>();
+			for (Document doc : docs.getList()) {
+				String className = doc.get(IntegrationIndexer.FIELD_CLASS_NAME);
+				long id = Long.valueOf(doc.get(IntegrationIndexer.FIELD_ID));
+				log.debug(className + "\t" + id);
+				
+				IntegrationSearchResult r = new IntegrationSearchResult();
+				r.setType(className);
+				if (ResearchPlan.class.getName().equals(className)) {
+					r.setResearchPlan(this.researchPlanDao.get(id));
+				} else if (Technology.class.getName().equals(className)) {
+					r.setTechnology(this.technologyDao.get(id));
+				} else if (Patent.class.getName().equals(className)) {
+					r.setPatent(this.patentDao.get(id));
+				} else if (TalentedPeople.class.getName().equals(className)) {
+					r.setTalentedPeople(this.talentedPeopleDao.get(id));
+				} else if (CoopEx.class.getName().equals(className)) {
+					r.setCoopEx(this.coopExDao.get(id));
+				} else if (Literature.class.getName().equals(className)) {
+					r.setLiterature(this.literautureDao.get(id));
+				} else if (IncubationCenter.class.getName().equals(className)) {
+					r.setIncubationCenter(this.incubationCenterDao.get(id));
+				} else {
+					throw new IllegalArgumentException("No such type!");
+				}				
+				list.add(r);
+			}
+			
+			PagedList<IntegrationSearchResult> resultList = 
+					new PagedList<IntegrationSearchResult>(list, docs.getTotatlItemCount(), arg.getPageSize(), arg.getPageIndex());
+			return resultList;			
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			reader.close();
+			indexDirectory.close();
+		}
+	}
 }

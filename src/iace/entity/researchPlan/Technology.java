@@ -156,7 +156,14 @@ public class Technology extends BaseEntity implements IntegrationSearch {
 
 	@Override
 	public String toLunceneContent() {
-		return this.name + " " + this.descriptoin;
+		String str = this.researchPlan.getName() + " " +
+				this.researchPlan.getPlanNo() + " " +
+				this.researchPlan.getKeyword() + " " +
+				this.researchPlan.getProjkey() + " " +
+				this.researchPlan.getGrb05Id() + " " +
+				this.name + " " +
+				this.descriptoin;
+		return str;
 	}
 
 	

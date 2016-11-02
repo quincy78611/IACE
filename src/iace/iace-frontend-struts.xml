@@ -145,4 +145,12 @@
 		</action>
 	</package>	
 	
+	<package name="f.Lucene" namespace="/f/lucene" extends="struts-default, json-default, default">
+		<action name="integrationSearchInit" class="iace.action.LuceneAction" method="integrationSearchInit">
+			<result>/WEB-INF/jsp/frontend/lucene/integrationSearch.jsp</result>
+		</action>	
+		<action name="integrationSearch" class="iace.action.LuceneAction" method="integrationSearch">
+			<result name="success">/WEB-INF/jsp/frontend/lucene/integrationSearch.jsp</result>
+		</action>
+	</package>
 </struts>

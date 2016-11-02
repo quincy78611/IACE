@@ -26,6 +26,8 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
+import core.util.PagedList;
+
 public class IntegrationIndexer {
 	public final static Object lock = new Object();
 	public final static String FIELD_ID = "id";
@@ -86,15 +88,7 @@ public class IntegrationIndexer {
 	}
 
 	public static List<Document> search(IndexReader reader, IntegrationSearchModel arg) throws ParseException, IOException {
-		String queryStr = IntegrationIndexer.FIELD_CONTENT + ":(" + arg.getSearchText() + ")";
-		if (StringUtils.isNotBlank(arg.getSearchText())) {
-			queryStr += " AND " + IntegrationIndexer.FIELD_CLASS_NAME + ":" + arg.getClassName();
-		}
-
-		String[] queryFields = { IntegrationIndexer.FIELD_CLASS_NAME, IntegrationIndexer.FIELD_CONTENT };
-		MultiFieldQueryParser parser = new MultiFieldQueryParser(queryFields, IntegrationIndexer.ANALYZER);
-		parser.setDefaultOperator(QueryParser.Operator.OR);
-		Query query = parser.parse(queryStr);
+		Query query = createSearchQuery(arg);
 		IndexSearcher searcher = new IndexSearcher(reader);
 		int topN = arg.getPageSize() * (arg.getPageIndex() + 1);
 		TopDocs docs = searcher.search(query, topN);
@@ -108,6 +102,53 @@ public class IntegrationIndexer {
 		}
 		
 		return resultList;
+	}
+	
+	public static PagedList<Document> searchBy(IndexReader reader, IntegrationSearchModel arg) throws ParseException, IOException {
+		Query query = createSearchQuery(arg);
+		
+		// 1. get totalItemCount
+		long totalItemCount = queryTotalRecordsCount(reader, query);
+		PagedList<Document> resultPagedList = new PagedList<Document>(totalItemCount, arg.getPageSize(), arg.getPageIndex());
+		
+		// 2. get result list		
+		IndexSearcher searcher = new IndexSearcher(reader);
+		int topN = arg.getPageSize() * (arg.getPageIndex() + 1);		
+		TopDocs docs = searcher.search(query, topN);
+		ScoreDoc[] scoreDocs = docs.scoreDocs;		
+		List<Document> resultList = new ArrayList<Document>();
+		for (int i=arg.getPageSize() * arg.getPageIndex(); i < scoreDocs.length; i++) {
+			int docId = scoreDocs[i].doc;
+			Document d = searcher.doc(docId);
+			resultList.add(d);			
+		}
+		resultPagedList.setList(resultList);
+		
+		return resultPagedList;
+	}
+	
+	public static long queryTotalRecordsCount(IndexReader reader, Query query) throws ParseException, IOException {
+		IndexSearcher searcher = new IndexSearcher(reader);
+		int docCount = searcher.count(query);
+		return docCount;
+	}
+	
+	public static long queryTotalRecordsCount(IndexReader reader, IntegrationSearchModel arg) throws ParseException, IOException {
+		Query query = createSearchQuery(arg);
+		return queryTotalRecordsCount(reader, query);		
+	}
+	
+	private static Query createSearchQuery(IntegrationSearchModel arg) throws ParseException {
+		String queryStr = IntegrationIndexer.FIELD_CONTENT + ":(" + arg.getSearchText() + ")";
+		if (StringUtils.isNotBlank(arg.getClassName())) {
+			queryStr += " AND " + IntegrationIndexer.FIELD_CLASS_NAME + ":" + arg.getClassName();
+		}
+
+		String[] queryFields = { IntegrationIndexer.FIELD_CLASS_NAME, IntegrationIndexer.FIELD_CONTENT };
+		MultiFieldQueryParser parser = new MultiFieldQueryParser(queryFields, IntegrationIndexer.ANALYZER);
+		parser.setDefaultOperator(QueryParser.Operator.OR);
+		Query query = parser.parse(queryStr);
+		return query;
 	}
 	
 	public static int existCount(IndexReader reader, long id, String className) throws ParseException, IOException {

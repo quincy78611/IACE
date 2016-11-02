@@ -278,5 +278,11 @@ public class Literature extends BaseEntity implements IntegrationSearch {
 				this.summary  + " " + this.summaryF  + " " + this.journalName;
 		return str;
 	}
+	
+	public static void main(String[] args) {
+		Literature l = new Literature();
+		l.setTitleC("專科以上學校產學合作實施辦法 ");
+		System.out.println(l.toLunceneContent());
+	}
 
 }
