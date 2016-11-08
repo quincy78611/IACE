@@ -11,6 +11,10 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
+import iace.entity.about.About;
+import iace.entity.activity.Activity;
+import iace.entity.activity.ActivityAttach;
+import iace.entity.activity.ActivityVideo;
 import iace.entity.consulting.Consulting;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.coopExample.CoopExAttachFile;
@@ -20,8 +24,13 @@ import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
 import iace.entity.enterpriseNeed.EnterpriseRequireTech;
 import iace.entity.enterpriseNeed.EnterpriseSituation;
+import iace.entity.faq.Faq;
+import iace.entity.homeScrollingText.HomeScrollingText;
 import iace.entity.incubationCenter.IncubationCenter;
+import iace.entity.industryNews.IndustryNews;
 import iace.entity.literature.Literature;
+import iace.entity.news.News;
+import iace.entity.news.NewsAttach;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
@@ -212,5 +221,16 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(IncubationCenter.class);
     	
     	configuration.addAnnotatedClass(Literature.class);
+    	
+    	configuration.addAnnotatedClass(About.class);
+    	configuration.addAnnotatedClass(Activity.class);
+    	configuration.addAnnotatedClass(ActivityAttach.class);
+    	configuration.addAnnotatedClass(ActivityVideo.class);
+    	configuration.addAnnotatedClass(Faq.class);
+    	configuration.addAnnotatedClass(HomeScrollingText.class);
+    	configuration.addAnnotatedClass(IndustryNews.class);
+    	configuration.addAnnotatedClass(News.class);
+    	configuration.addAnnotatedClass(NewsAttach.class); 	
+    	
     }
 }
