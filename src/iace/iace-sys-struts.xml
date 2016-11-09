@@ -124,4 +124,22 @@
 			<result name="success">/WEB-INF/jsp/backend/sysLog/detail.jsp</result>
 		</action>
 	</package>
+	
+		<package name="Lucene" namespace="/lucene" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.LuceneAction" method="init">
+			<interceptor-ref name="iaceSession"/>
+			<interceptor-ref name="iaceBackendlogin"/>
+			<interceptor-ref name="defaultStack" />
+			
+			<result name="success">/WEB-INF/jsp/backend/lecene/init.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/home/index.jsp</result>
+		</action>
+		<action name="rebuildIndex" class="iace.action.LuceneAction" method="rebuildIndex">
+			<interceptor-ref name="iaceSession"/>
+			<interceptor-ref name="iaceBackendlogin"/>
+			<interceptor-ref name="defaultStack" />
+			
+			<result name="success">/WEB-INF/jsp/backend/lecene/init.jsp</result>
+		</action>
+	</package>
 </struts>
