@@ -11,8 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.apache.commons.lang3.StringUtils;
-
 import iace.entity.BaseEntity;
 
 @Entity
@@ -78,14 +76,7 @@ public class SysUser extends BaseEntity {
 
 	public boolean hasAuth(String namespace, String actionName) {
 		if (this.sysRole != null) {
-			for (SysAuth auth : this.sysRole.getAuthList()) {
-				SysFunction action = auth.getSysFunction();
-				if (auth.getEnable() &&
-					StringUtils.equals(action.getNamespace(), namespace) && 
-					action.hasActionName(actionName)) {
-					return true;
-				}
-			}
+			return this.sysRole.getSysAuth().hasAuth(namespace, actionName);
 		}
 
 		return false;
@@ -93,12 +84,7 @@ public class SysUser extends BaseEntity {
 
 	public boolean hasNamespace(String namespace) {
 		if (this.sysRole != null) {
-			for (SysAuth auth : this.sysRole.getAuthList()) {
-				SysFunction action = auth.getSysFunction();
-				if (auth.getEnable() && StringUtils.equals(action.getNamespace(), namespace)) {
-					return true;
-				}
-			}
+			return this.sysRole.getSysAuth().hasEnableNamespace(namespace);
 		}
 
 		return false;
@@ -106,12 +92,7 @@ public class SysUser extends BaseEntity {
 	
 	public boolean hasNamespaceStartWith(String namespace) {
 		if (this.sysRole != null) {
-			for (SysAuth auth : this.sysRole.getAuthList()) {
-				SysFunction action = auth.getSysFunction();
-				if (auth.getEnable() && StringUtils.startsWith(action.getNamespace(), namespace)) {
-					return true;
-				}
-			}
+			return this.sysRole.getSysAuth().hasEnableNamespaceStartWith(namespace);
 		}
 
 		return false;

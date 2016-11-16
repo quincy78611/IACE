@@ -25,7 +25,6 @@ public class SysRoleDao extends BaseIaceDao<SysRole> implements ISysRoleDao {
 			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			SysRole role = (SysRole) criteria.uniqueResult();
 			Hibernate.initialize(role);
-			Hibernate.initialize(role.getAuthList());
 			
 			return role;
 		} catch (Exception e) {

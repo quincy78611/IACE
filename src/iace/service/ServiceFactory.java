@@ -36,7 +36,6 @@ import iace.service.questionnaire.QnrTemplateService;
 import iace.service.researchPlan.ResearchPlanExcelService;
 import iace.service.researchPlan.ResearchPlanService;
 import iace.service.researchPlan.TechnologyService;
-import iace.service.sys.SysFunctionService;
 import iace.service.sys.SysLogService;
 import iace.service.sys.SysRoleService;
 import iace.service.sys.SysUserService;
@@ -46,7 +45,6 @@ import iace.service.talentedPeople.TalentedPeopleService;
 public class ServiceFactory {
 	private static LuceneIndexService luceneIndexService;
 	
-	private static SysFunctionService sysFunctionService;
 	private static SysRoleService sysRoleService;
 	private static SysUserService sysUserService;
 	private static SysLogService sysLogService;
@@ -111,18 +109,9 @@ public class ServiceFactory {
 		return luceneIndexService;
 	}
 	
-	public static SysFunctionService getSysFunctionService() {
-		if (sysFunctionService == null) {
-			sysFunctionService = new SysFunctionService(DaoFactory.getSysFunctionDao());
-		}
-		return sysFunctionService;
-	}
-	
 	public static SysRoleService getSysRoleService() {
 		if (sysRoleService == null) {
-			sysRoleService = new SysRoleService(
-					DaoFactory.getSysRoleDao(), 
-					DaoFactory.getSysFunctionDao());
+			sysRoleService = new SysRoleService(DaoFactory.getSysRoleDao());
 		}
 		return sysRoleService;
 	}

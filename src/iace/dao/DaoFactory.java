@@ -54,11 +54,9 @@ import iace.dao.researchPlan.IResearchPlanDao;
 import iace.dao.researchPlan.ITechnologyDao;
 import iace.dao.researchPlan.ResearchPlanDao;
 import iace.dao.researchPlan.TechnologyDao;
-import iace.dao.sys.ISysFunctionDao;
 import iace.dao.sys.ISysLogDao;
 import iace.dao.sys.ISysRoleDao;
 import iace.dao.sys.ISysUserDao;
-import iace.dao.sys.SysFunctionDao;
 import iace.dao.sys.SysLogDao;
 import iace.dao.sys.SysRoleDao;
 import iace.dao.sys.SysUserDao;
@@ -88,7 +86,6 @@ import iace.entity.option.OptionTrl;
 
 public class DaoFactory {
 	
-	private static ISysFunctionDao sysFunctionDao;
 	private static ISysRoleDao sysRoleDao;
 	private static ISysUserDao sysUserDao;
 	private static ISysLogDao sysLogDao;
@@ -141,13 +138,6 @@ public class DaoFactory {
 	private static IIncubationCenterDao incubationCenterDao;
 	
 	private static ILiteratureDao literatureDao;
-	
-	public static ISysFunctionDao getSysFunctionDao() {
-		if (sysFunctionDao == null) {
-			sysFunctionDao = new SysFunctionDao();
-		}
-		return sysFunctionDao;
-	}
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {

@@ -27,7 +27,6 @@ public class SysUserDao extends BaseIaceDao<SysUser> implements ISysUserDao {
 			SysUser user = (SysUser) criteria.uniqueResult();
 			Hibernate.initialize(user);
 			Hibernate.initialize(user.getSysRole());
-			Hibernate.initialize(user.getSysRole().getAuthList());
 			
 			return user;
 		} catch (Exception e) {
@@ -51,7 +50,6 @@ public class SysUserDao extends BaseIaceDao<SysUser> implements ISysUserDao {
 			if (user != null) {
 				Hibernate.initialize(user);
 				Hibernate.initialize(user.getSysRole());
-				Hibernate.initialize(user.getSysRole().getAuthList());				
 			}
 			
 			return user;

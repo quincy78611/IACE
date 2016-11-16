@@ -54,8 +54,6 @@ import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.Technology;
-import iace.entity.sys.SysAuth;
-import iace.entity.sys.SysFunction;
 import iace.entity.sys.SysLog;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
@@ -204,8 +202,6 @@ public class HibernateSessionFactory {
     	
     	configuration.addAnnotatedClass(SysUser.class);
     	configuration.addAnnotatedClass(SysRole.class);
-    	configuration.addAnnotatedClass(SysAuth.class);
-    	configuration.addAnnotatedClass(SysFunction.class);
     	configuration.addAnnotatedClass(SysLog.class);
     	
     	configuration.addAnnotatedClass(CoopEx.class);

@@ -8,32 +8,6 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="true" />
 	
-	<package name="sysFunction" namespace="/sysFunction" extends="struts-default, default">
-		<default-interceptor-ref name="iaceBackEnd"/>
-		<action name="init" class="iace.action.SysFunctionAction" method="init">
-			<result>/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
-		</action>	
-		<action name="index" class="iace.action.SysFunctionAction" method="index">
-			<result name="input">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>			
-		</action>
-		<action name="create" class="iace.action.SysFunctionAction" method="create">
-			<result name="success">/WEB-INF/jsp/backend/sysFunction/create.jsp</result>	
-		</action>
-		<action name="createSubmit" class="iace.action.SysFunctionAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/backend/sysFunction/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
-		</action>
-		<action name="update" class="iace.action.SysFunctionAction" method="update">
-			<result name="input">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend/sysFunction/update.jsp</result>		
-		</action>
-		<action name="updateSubmit" class="iace.action.SysFunctionAction" method="updateSubmit">		
-			<result name="input">/WEB-INF/jsp/backend/sysFunction/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend/sysFunction/index.jsp</result>
-		</action>		
-	</package>
-	
 	<package name="sysRole" namespace="/sysRole" extends="struts-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.SysRoleAction" method="init">
