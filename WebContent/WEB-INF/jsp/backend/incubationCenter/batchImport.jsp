@@ -41,6 +41,7 @@
 				</li>
 			</ul>
 		</s:form>
+		<b>!!! 注意 : 此匯入不會做任何已存在重複資料的檢查，一律進行新增 !!!</b>
 	</div>
 	
 	<s:if test="batchImportResult != null">
