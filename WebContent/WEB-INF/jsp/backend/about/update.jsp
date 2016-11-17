@@ -53,7 +53,7 @@ $(document).ready(function() {
 		<ul>						
 			<li class="all">
 				<b>標題</b>
-				<s:textfield name="about.title" maxlength="100"/>
+				<s:textfield name="about.title" maxlength="200"/>
 			</li>
 			<li class="all">
 				<b>內容</b>
@@ -66,7 +66,7 @@ $(document).ready(function() {
 		<ul class="common-meta-fields">
 			<li class="all">
 				<b>Meta Title</b>
-				<s:textfield name="about.metaTitle" />
+				<s:textfield name="about.metaTitle" maxlength="200"/>
 			</li>
 			<li class="all">
 				<b>Meta Description</b>
@@ -83,11 +83,11 @@ $(document).ready(function() {
 		<ul class="common-linkiac-fields">
 			<li class="quarter">
 				<b>瀏覽次數</b>
-				<s:textfield name="about.clickNum" type="number" value="0"/>
+				<s:textfield name="about.clickNum" type="number" min="0"/>
 			</li>
 			<li class="quarter">
 				<b>排序(數字愈大排愈前面)</b>
-				<s:textfield name="about.sort" type="number" value="0"/>
+				<s:textfield name="about.sort" type="number"/>
 			</li>
 			<li class="quarter">
 				<b>顯示狀態</b>
