@@ -1,6 +1,8 @@
 package iace.entity.faq;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,13 +11,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import iace.entity.BaseLinkiacEntity;
+import iace.entity.option.BaseOption;
 
 @Entity
 @Table(name = "FAQ")
 public class Faq extends BaseLinkiacEntity {
 	private static final long serialVersionUID = -6496449791248146520L;
+	
+	private static List<BaseOption> categoryList = new ArrayList<BaseOption>();
+	static {
+		categoryList.add(new BaseOption("運用法人鏈結產學合作計畫", "運用法人鏈結產學合作計畫"));
+		categoryList.add(new BaseOption("智財實務專業人才培訓", "智財實務專業人才培訓"));
+		categoryList.add(new BaseOption("產學媒合服務團", "產學媒合服務團"));
+	}
 	
 	private long id;
 	private String category;
@@ -79,5 +90,10 @@ public class Faq extends BaseLinkiacEntity {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	@Transient
+	public static List<BaseOption> getCategoryList() {
+		return categoryList;
 	}
 }

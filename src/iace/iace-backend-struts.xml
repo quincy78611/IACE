@@ -622,4 +622,39 @@
 			<result name="success">/WEB-INF/jsp/backend/about/index.jsp</result>
 		</action>
 	</package>
+	
+	<package name="Faq" namespace="/faq" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.FaqAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/faq/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.FaqAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/faq/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/faq/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.FaqAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/faq/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.FaqAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/faq/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.FaqAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/faq/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/faq/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.FaqAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/faq/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.FaqAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/faq/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/faq/detail.jsp</result>
+		</action>
+		<action name="delete" class="iace.action.FaqAction" method="delete">
+			<result name="success">/WEB-INF/jsp/backend/faq/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.FaqAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/faq/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/faq/index.jsp</result>
+		</action>
+	</package>
 </struts>

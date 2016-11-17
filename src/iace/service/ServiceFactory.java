@@ -8,6 +8,7 @@ import iace.service.coopExample.CoopExImgService;
 import iace.service.coopExample.CoopExService;
 import iace.service.coopExample.CoopExVideoService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
+import iace.service.faq.FaqService;
 import iace.service.incubationCenter.IncubationCenterService;
 import iace.service.literature.LiteratureService;
 import iace.service.lucene.LuceneIndexService;
@@ -97,6 +98,8 @@ public class ServiceFactory {
 	private static LiteratureService literatureService;
 	
 	private static AboutService aboutService;
+	
+	private static FaqService faqService;
 	
 	// =========================================================================
 	
@@ -414,6 +417,12 @@ public class ServiceFactory {
 		}
 		return aboutService;
 	}
-	
+
+	public static FaqService getFaqService() {
+		if (faqService == null) {
+			faqService = new FaqService(DaoFactory.getFaqDao());
+		}
+		return faqService;
+	}
 	
 }

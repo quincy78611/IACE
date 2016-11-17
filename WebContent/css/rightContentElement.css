@@ -40,7 +40,7 @@
 .rightContent li textarea { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.91em; font-family:"微軟正黑體";}
 .rightContent li input[type=checkbox],
 .rightContent li input[type=radio] { margin-right:8px; }
-.rightContent li div.border-text { width:100%; border:#e6eff5 1px solid; padding: 5px 5px; font-size:0.91em; font-family:"微軟正黑體"; color:black; background: #FFFFFF; }
+.rightContent li div.border-text { min-height:37.6px; width:100%; border:#e6eff5 1px solid; padding: 5px 5px; font-size:0.91em; font-family:"微軟正黑體"; color:black; background: #FFFFFF; }
 
 /* -------------------------------------------------------------------------- */
 

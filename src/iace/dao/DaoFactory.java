@@ -20,6 +20,8 @@ import iace.dao.enterpriseNeed.IEnterpriseAcademiaCoopDao;
 import iace.dao.enterpriseNeed.IEnterpriseInfoDao;
 import iace.dao.enterpriseNeed.IEnterpriseRequireTechDao;
 import iace.dao.enterpriseNeed.IEnterpriseSituationDao;
+import iace.dao.faq.FaqDao;
+import iace.dao.faq.IFaqDao;
 import iace.dao.incubationCenter.IIncubationCenterDao;
 import iace.dao.incubationCenter.IncubationCenterDao;
 import iace.dao.literature.ILiteratureDao;
@@ -142,6 +144,8 @@ public class DaoFactory {
 	private static ILiteratureDao literatureDao;
 	
 	private static IAboutDao aboutDao;
+	
+	private static IFaqDao faqDao; 
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -436,6 +440,13 @@ public class DaoFactory {
 			aboutDao = new AboutDao();
 		}
 		return aboutDao;
+	}
+
+	public static IFaqDao getFaqDao() {
+		if (faqDao == null) {
+			faqDao = new FaqDao();
+		}
+		return faqDao;
 	}
 	
 	
