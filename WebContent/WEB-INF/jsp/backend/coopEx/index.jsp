@@ -211,25 +211,31 @@
 						</td>
 						<td>
 							<!-- 檢視 -->
-							<s:url value="showDetail.action" var="detailUrlTag">
-								<s:param name="id" value="id" />
-							</s:url>
-							<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
-							<input type="button" class="btn-info btn-func btn-view" value="檢視" />	
-								
+							<s:if test='%{#session.sysUser.hasAuth(namespace, "showDetail")}'>
+								<s:url value="showDetail.action" var="detailUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-view" value="檢視" />
+							</s:if>
+							
 							<!-- 編輯 -->
-							<s:url value="update.action" var="updateUrlTag">
-								<s:param name="id" value="id" />
-							</s:url>
-							<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
-							<input type="button" class="btn-info btn-func btn-edit" value="編輯" />	
-								
-							<!-- 刪除 -->	
-							<s:url value="delete.action" var="deleteUrlTag">
-								<s:param name="id" value="id" />
-							</s:url>
-							<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-							<input type="button" class="btn-info btn-func btn-del" value="刪除" />	
+							<s:if test='%{#session.sysUser.hasAuth(namespace, "update")}'>
+								<s:url value="update.action" var="updateUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />
+							</s:if>
+							
+							<!-- 刪除 -->
+							<s:if test='%{#session.sysUser.hasAuth(namespace, "delete")}'>
+								<s:url value="delete.action" var="deleteUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-del" value="刪除" />
+							</s:if>
 						</td>
 					</tr>
 				</s:iterator>

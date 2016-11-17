@@ -195,13 +195,15 @@
 								<s:property value="attribute" />
 							</td>
 							
-							<td class="col-md-1">
+							<td>
 								<!-- 檢視 -->
-								<s:url value="showDetail.action" var="detailUrlTag">
-									<s:param name="id" value="id" />
-								</s:url>
-								<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-view" value="檢視" />	
+								<s:if test='%{#session.sysUser.hasAuth(namespace, "showDetail")}'>
+									<s:url value="showDetail.action" var="detailUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
+									<input type="button" class="btn-info btn-func btn-view" value="檢視" />
+								</s:if>	
 							</td>
 						</tr>
 					</s:iterator>

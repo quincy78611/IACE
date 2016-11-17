@@ -28,12 +28,14 @@
 				<td><s:property value="account" /></td>
 				<td><s:property value="name" /></td>
 				<td><s:property value="sysRole.name" /></td>
-				<td class="col-md-2">
-					<s:url value="update.action" var="updateUrlTag">
-						<s:param name="id" value="id" />
-					</s:url>
-					<input type="button" class="btn-func btn-edit" value="編輯" 
-						onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+				<td>
+					<s:if test='%{#session.sysUser.hasAuth(namespace, "update")}'>
+						<s:url value="update.action" var="updateUrlTag">
+							<s:param name="id" value="id" />
+						</s:url>
+						<input type="button" class="btn-func btn-edit" value="編輯" 
+							onclick="window.location.href='<s:property value="#updateUrlTag" />'" />
+					</s:if>
 				</td>
 			</tr>
 		</s:iterator>

@@ -129,12 +129,14 @@ table tr td.name { font-weight:bold; color:#000000; }
 				<input type="submit" value="查詢" class="btn btn-primary redBtn" id="btn-search"/>
 				<input type="button" value="清除" class="btn btn-warning grayBtn" id="btn-reset"/>
 			</li>
-			<li>
-				<s:url value="create.action" var="createUrlTag" />
-				<s:hidden value="%{#createUrlTag}" class="createUrl" disabled="true"/>
-				<input type="button" class="blueBtn btn-create" value="新增代碼"  />
-			</li>
-			<s:if test="#session.sysUser.sysRole.name == '系統開發人員'">
+			<s:if test='%{#session.sysUser.hasAuth(namespace, "create")}'>
+				<li>
+					<s:url value="create.action" var="createUrlTag" />
+					<s:hidden value="%{#createUrlTag}" class="createUrl" disabled="true"/>
+					<input type="button" class="blueBtn btn-create" value="新增代碼"  />
+				</li>
+			</s:if>
+			<s:if test='%{#session.sysUser.hasAuth(namespace, "batchImport")}'>
 				<li>
 					<input type="button" class="blueBtn" value="批次匯入" 
 						onclick="window.location.href='<s:url value="batchImport" />'" />
@@ -202,17 +204,22 @@ table tr td.name { font-weight:bold; color:#000000; }
 						<td class="name"><s:property value="name" /></td>
 						<td>
 							<!-- 編輯 -->
-							<s:url value="update.action" var="updateUrlTag">
-								<s:param name="id" value="id" />
-							</s:url>
-							<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
-							<input type="button" class="btn-info btn-func btn-edit" value="編輯" />
-								
-							<s:url value="deleteSubmit.action" var="deleteUrlTag">
-								<s:param name="id" value="id" />
-							</s:url>
-							<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-							<input type="button" class="btn-func btn-del" value="刪除" />								
+							<s:if test='%{#session.sysUser.hasAuth(namespace, "update")}'>
+								<s:url value="update.action" var="updateUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />
+							</s:if>
+							
+							<!-- 刪除 -->	
+							<s:if test='%{#session.sysUser.hasAuth(namespace, "deleteSubmit")}'>
+								<s:url value="deleteSubmit.action" var="deleteUrlTag">
+									<s:param name="id" value="id" />
+								</s:url>
+								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+								<input type="button" class="btn-func btn-del" value="刪除" />	
+							</s:if>
 						</td>
 					</tr>
 				</s:iterator>

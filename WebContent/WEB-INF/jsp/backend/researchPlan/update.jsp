@@ -164,20 +164,24 @@
 							<td><s:property value="trlDesc"/></td>
 							<td>							
 								<!-- 編輯 -->
-								<s:url value="updateTechnology.action" var="updateUrlTag" escapeAmp="false">
-									<s:param name="id" value="researchPlan.id" />
-									<s:param name="TechnologyId" value="id" />
-								</s:url>
-								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />		
-							
+								<s:if test='%{#session.sysUser.hasAuth(namespace, "updateTechnology")}'>
+									<s:url value="updateTechnology.action" var="updateUrlTag" escapeAmp="false">
+										<s:param name="id" value="researchPlan.id" />
+										<s:param name="TechnologyId" value="id" />
+									</s:url>
+									<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+									<input type="button" class="btn-info btn-func btn-edit" value="編輯" />		
+								</s:if>
+								
 								<!-- 刪除 -->
-								<s:url value="deleteTechnologySubmit.action" var="deleteUrlTag" escapeAmp="false">
-									<s:param name="id" value="researchPlan.id" />
-									<s:param name="TechnologyId" value="id" />
-								</s:url>
-								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-								<input type="button" class="btn-func btn-del" value="刪除" />	
+								<s:if test='%{#session.sysUser.hasAuth(namespace, "deleteTechnologySubmit")}'>
+									<s:url value="deleteTechnologySubmit.action" var="deleteUrlTag" escapeAmp="false">
+										<s:param name="id" value="researchPlan.id" />
+										<s:param name="TechnologyId" value="id" />
+									</s:url>
+									<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+									<input type="button" class="btn-func btn-del" value="刪除" />	
+								</s:if>	
 							</td>
 						</tr>
 					</s:iterator>
@@ -187,11 +191,13 @@
 	</div>
 	<div class="clear"></div>
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
-		<s:url value="createTechnology.action" var="createUrlTag" escapeAmp="false">
-			<s:param name="id" value="researchPlan.id" />
-		</s:url>
-		<s:hidden value="%{#createUrlTag}" class="createUrl" disabled="true"/>
-		<input type="button" class="redBtn" value="+ 新增研發成果" id="btn-createTechnology"/>
+		<s:if test='%{#session.sysUser.hasAuth(namespace, "createTechnology")}'>
+			<s:url value="createTechnology.action" var="createUrlTag" escapeAmp="false">
+				<s:param name="id" value="researchPlan.id" />
+			</s:url>
+			<s:hidden value="%{#createUrlTag}" class="createUrl" disabled="true"/>
+			<input type="button" class="redBtn" value="+ 新增研發成果" id="btn-createTechnology"/>
+		</s:if>
 		
 		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 	</div>	

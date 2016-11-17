@@ -180,7 +180,9 @@
 		</div>
 		
 		<div style="float:right;">
-			<input type="button" class="btn-func btn-export" value="匯出" />	
+			<s:if test='%{#session.sysUser.hasAuth(namespace, "exportRawData")}'>
+				<input type="button" class="btn-func btn-export" value="匯出" />
+			</s:if>
 		</div>
 		<div class="">
 			<table>
@@ -192,7 +194,7 @@
 					<th nowrap width="8%">負責人</th>
 					<th nowrap width="8%">受訪人</th>
 					<th nowrap width="8%">訪談日期</th>
-					<th nowrap width="31%">功能</th>
+					<th nowrap width="">功能</th>
 				</tr>
 				<s:if test="enterpriseInfoPagedList != null">
 					<s:iterator value="enterpriseInfoPagedList.list" status="stat">
@@ -207,34 +209,42 @@
 							<td><s:property value="personInChargeName" /></td>
 							<td><s:property value="intervieweeName" /></td>	
 							<td><s:property value="enterpriseRequireTech.interviewDate" /></td>														
-							<td>							
+							<td>
 								<!-- 檢視 -->
-								<s:url value="showDetail.action" var="detailUrlTag">
-									<s:param name="id" value="id" />
-								</s:url>
-								<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-view" value="檢視" />	
-									
+								<s:if test='%{#session.sysUser.hasAuth(namespace, "showDetail")}'>
+									<s:url value="showDetail.action" var="detailUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
+									<input type="button" class="btn-info btn-func btn-view" value="檢視" />	
+								</s:if>
+								
 								<!-- 編輯 -->
-								<s:url value="update.action" var="updateUrlTag">
-									<s:param name="id" value="id" />
-								</s:url>
-								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />	
-									
+								<s:if test='%{#session.sysUser.hasAuth(namespace, "update")}'>
+									<s:url value="update.action" var="updateUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+									<input type="button" class="btn-info btn-func btn-edit" value="編輯" />
+								</s:if>
+								
 								<!-- 刪除 -->	
-								<s:url value="delete.action" var="deleteUrlTag">
-									<s:param name="id" value="id" />
-								</s:url>
-								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-del" value="刪除" />
+								<s:if test='%{#session.sysUser.hasAuth(namespace, "delete")}'>
+									<s:url value="delete.action" var="deleteUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+									<input type="button" class="btn-info btn-func btn-del" value="刪除" />
+								</s:if>
 								
 								<!-- 列印 -->
-								<s:url value="printReport.action" var="printReportUrlTag">
-									<s:param name="id" value="id" />
-								</s:url>
-								<input type="button" class="btn-info btn-func btn-print" value="列印" 
-									onclick="window.location.href='<s:property value="#printReportUrlTag"/>'"/>
+								<s:if test='%{#session.sysUser.hasAuth(namespace, "printReport")}'>
+									<s:url value="printReport.action" var="printReportUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<input type="button" class="btn-info btn-func btn-print" value="列印" 
+										onclick="window.location.href='<s:property value="#printReportUrlTag"/>'"/>
+								</s:if>
 							</td>
 						</tr>
 					</s:iterator>

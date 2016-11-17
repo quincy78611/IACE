@@ -185,8 +185,10 @@
 		</div>
 		
 		<div style="float:right;">
-			<input type="button" class="btn-func btn-export" value="匯出" />	
-		</div>		
+			<s:if test='%{#session.sysUser.hasAuth(namespace, "exportRawData")}'>
+				<input type="button" class="btn-func btn-export" value="匯出" />
+			</s:if>
+		</div>
 		<div>
 			<table>
 				<tr>
@@ -227,14 +229,16 @@
 							</td>
 							<td>
 								<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/search/planDetail2?id=	'+grb05Id}"/>" target="_blank">連結</a>
-							</td>															
-							<td>							
-								<s:url value="update.action" var="updateUrlTag" escapeAmp="false">
-									<s:param name="id" value="id" />
-								</s:url>
-								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
-								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />
-								
+							</td>
+							<td>
+								<!-- 編輯 -->
+								<s:if test='%{#session.sysUser.hasAuth(namespace, "update")}'>
+									<s:url value="update.action" var="updateUrlTag" escapeAmp="false">
+										<s:param name="id" value="id" />
+									</s:url>
+									<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+									<input type="button" class="btn-info btn-func btn-edit" value="編輯" />
+								</s:if>
 							</td>
 						</tr>
 					</s:iterator>

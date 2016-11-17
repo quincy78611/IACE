@@ -171,8 +171,8 @@
 					<tr>
 						<th nowrap width="3%">No.</th>
 						<th nowrap width="">標題</th>
-						<th nowrap width="10%">瀏覽次數</th>
-						<th nowrap width="24%">功能</th>
+						<th nowrap width="7%">瀏覽次數</th>
+						<th nowrap width="">功能</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -186,27 +186,33 @@
 								<td><s:property value="title" /></td>
 								<td><s:property value="clickNum" /></td>
 								
-								<td class="col-md-1">
+								<td>
 									<!-- 檢視 -->
-									<s:url value="showDetail.action" var="detailUrlTag">
-										<s:param name="id" value="id" />
-									</s:url>
-									<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
-									<input type="button" class="btn-info btn-func btn-view" value="檢視" />
-																	
+									<s:if test='%{#session.sysUser.hasAuth("namespace", "showDetail")}'>
+										<s:url value="showDetail.action" var="detailUrlTag">
+											<s:param name="id" value="id" />
+										</s:url>
+										<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
+										<input type="button" class="btn-info btn-func btn-view" value="檢視" />
+									</s:if>	
+									
 									<!-- 編輯 -->
-									<s:url value="update.action" var="updateUrlTag">
-										<s:param name="id" value="id" />
-									</s:url>
-									<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
-									<input type="button" class="btn-info btn-func btn-edit" value="編輯" />	
-										
-									<!-- 刪除 -->	
-									<s:url value="delete.action" var="deleteUrlTag">
-										<s:param name="id" value="id" />
-									</s:url>
-									<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
-									<input type="button" class="btn-info btn-func btn-del" value="刪除" />
+									<s:if test='%{#session.sysUser.hasAuth("namespace", "update")}'>
+										<s:url value="update.action" var="updateUrlTag">
+											<s:param name="id" value="id" />
+										</s:url>
+										<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+										<input type="button" class="btn-info btn-func btn-edit" value="編輯" />	
+									</s:if>
+									
+									<!-- 刪除 -->
+									<s:if test='%{#session.sysUser.hasAuth("namespace", "delete")}'>
+										<s:url value="delete.action" var="deleteUrlTag">
+											<s:param name="id" value="id" />
+										</s:url>
+										<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+										<input type="button" class="btn-info btn-func btn-del" value="刪除" />
+									</s:if>
 								</td>
 							</tr>
 						</s:iterator>

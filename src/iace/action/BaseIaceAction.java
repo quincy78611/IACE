@@ -3,6 +3,7 @@ package iace.action;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import core.action.BaseAction;
@@ -124,4 +125,22 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 	public SysUser getCurrentSysUser() {
 		return (SysUser) this.session.get(SessionInterceptor.SESSION_KEY_SYS_USER);
 	}
+
+	public String getNamespace() {
+		try {
+			return ServletActionContext.getActionMapping().getNamespace();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public String getActionName() {
+		try {
+			return ServletActionContext.getActionMapping().getName();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	
 }
