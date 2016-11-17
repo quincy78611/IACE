@@ -228,8 +228,12 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 	public String getMainDomainCodeString() {
 		StringBuilder sb = new StringBuilder();
 		for (OptionGrbDomain grb : this.domains) {
-			sb.append(grb.getMainDomain().getCode()).append(";");
-		}		
+			try {
+				sb.append(grb.getMainDomain().getCode()).append(";");
+			} catch(NullPointerException e) {
+				sb.append("null").append(";");
+			}
+		}
 		return sb.toString();
 	}
 	
