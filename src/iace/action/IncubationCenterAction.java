@@ -95,7 +95,7 @@ public class IncubationCenterAction extends BaseIaceAction {
 			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}

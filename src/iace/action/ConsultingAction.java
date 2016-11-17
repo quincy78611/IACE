@@ -56,8 +56,7 @@ public class ConsultingAction extends BaseIaceAction {
 			this.consultingPagedList = this.consultingService.searchBy(searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return INPUT;
 		}
 	}
@@ -71,8 +70,7 @@ public class ConsultingAction extends BaseIaceAction {
 			}
 			return SUCCESS;			
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return INPUT;
 		}	
 	}
@@ -91,8 +89,7 @@ public class ConsultingAction extends BaseIaceAction {
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return INPUT;
 		}
 	}
@@ -107,8 +104,7 @@ public class ConsultingAction extends BaseIaceAction {
 			
 			return SUCCESS;
 		} catch(Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return INPUT;
 		}
 	}
@@ -123,8 +119,7 @@ public class ConsultingAction extends BaseIaceAction {
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return INPUT;
 		}
 	}
@@ -138,8 +133,7 @@ public class ConsultingAction extends BaseIaceAction {
 			}
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -150,8 +144,7 @@ public class ConsultingAction extends BaseIaceAction {
 			this.addActionMessage("DELETE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}

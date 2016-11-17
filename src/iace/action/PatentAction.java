@@ -79,8 +79,7 @@ public class PatentAction extends BaseIaceAction {
 			
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return SUCCESS;
 		}
 	}
@@ -90,8 +89,7 @@ public class PatentAction extends BaseIaceAction {
 			this.patent = this.patentService.get(this.id);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -112,8 +110,7 @@ public class PatentAction extends BaseIaceAction {
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return INPUT;
 		}
 	}
@@ -127,8 +124,7 @@ public class PatentAction extends BaseIaceAction {
 			}
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -146,8 +142,7 @@ public class PatentAction extends BaseIaceAction {
 			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return INPUT;
 		}
 	}
@@ -161,8 +156,7 @@ public class PatentAction extends BaseIaceAction {
 			}
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -175,8 +169,7 @@ public class PatentAction extends BaseIaceAction {
 			this.patentPagedList = this.patentService.searchBy(this.searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -291,8 +284,7 @@ public class PatentAction extends BaseIaceAction {
 				return SUCCESS;
 			}
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return INPUT;
 		}
 	}
@@ -307,7 +299,7 @@ public class PatentAction extends BaseIaceAction {
 			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}	
 	}

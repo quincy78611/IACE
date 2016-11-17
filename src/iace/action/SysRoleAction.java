@@ -31,8 +31,7 @@ public class SysRoleAction extends BaseIaceAction {
 			this.sysRoleList = this.sysRoleService.listAll();
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -43,8 +42,7 @@ public class SysRoleAction extends BaseIaceAction {
 
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -55,8 +53,7 @@ public class SysRoleAction extends BaseIaceAction {
 			this.addActionMessage("CREATE SUCCESS!");
 			return index();
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -70,8 +67,7 @@ public class SysRoleAction extends BaseIaceAction {
 			}
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -82,8 +78,7 @@ public class SysRoleAction extends BaseIaceAction {
 			this.addActionMessage("UPDATE SUCCESS!");
 			return index();
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}

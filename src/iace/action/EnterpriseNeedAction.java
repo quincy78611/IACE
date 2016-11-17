@@ -59,7 +59,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 			this.enterpriseInfoPagedList = this.enterpriseInfoService.searchBy(searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -69,7 +69,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 			this.enterpriseInfo = this.enterpriseInfoService.get(this.id);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -88,8 +88,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -99,7 +98,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 			this.enterpriseInfo = this.enterpriseInfoService.get(this.id);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -114,8 +113,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -125,7 +123,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 			this.enterpriseInfo = this.enterpriseInfoService.get(this.id);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -138,7 +136,7 @@ public class EnterpriseNeedAction extends BaseIaceAction {
 			this.enterpriseInfoPagedList = this.enterpriseInfoService.searchBy(searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}

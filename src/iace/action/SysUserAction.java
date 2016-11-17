@@ -37,8 +37,7 @@ public class SysUserAction extends BaseIaceAction {
 			this.sysUserList = this.sysUserService.listAll();
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -47,8 +46,7 @@ public class SysUserAction extends BaseIaceAction {
 		try {
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -60,8 +58,7 @@ public class SysUserAction extends BaseIaceAction {
 			this.sysUserService.create(this.sysUser);
 			return index();
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -75,8 +72,7 @@ public class SysUserAction extends BaseIaceAction {
 			}
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -89,8 +85,7 @@ public class SysUserAction extends BaseIaceAction {
 			this.addActionMessage("UPDATE SUCCESS!");
 			return index();
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -121,8 +116,7 @@ public class SysUserAction extends BaseIaceAction {
 			super.addActionError("資料庫連線錯誤，請重新嘗試!");
 			return INPUT;
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -137,8 +131,7 @@ public class SysUserAction extends BaseIaceAction {
 			this.session.clear();
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;			
 		}
 	}

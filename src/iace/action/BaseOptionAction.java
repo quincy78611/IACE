@@ -45,8 +45,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 			this.optionPagedList = this.optionService.searchBy(this.searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -73,8 +72,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 			this.optionService.create(this.option);
 			rtnStr = SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			rtnStr = ERROR;
 		}
 		this.index();
@@ -86,8 +84,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 			this.option = this.optionService.get(this.id);
 			return INPUT;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
@@ -103,8 +100,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 			this.optionService.update(this.option);
 			rtnStr = SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			rtnStr = INPUT;
 		}
 		this.index();
@@ -117,8 +113,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 			this.optionService.delete(this.id);
 			rtnStr = SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
-			this.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			rtnStr = ERROR;
 		}
 		this.index();
@@ -152,7 +147,7 @@ public class BaseOptionAction<OptionEntity extends BaseOption> extends BaseIaceA
 			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
 			return SUCCESS;
 		} catch (Exception e) {
-			log.error("", e);
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
