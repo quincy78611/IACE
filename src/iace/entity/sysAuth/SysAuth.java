@@ -8,6 +8,7 @@ import java.util.Properties;
 import com.google.gson.Gson;
 
 import iace.entity.sysAuth.sysApplication.SysApp;
+import iace.entity.sysAuth.sysApplication.SysAppAbout;
 import iace.entity.sysAuth.sysApplication.SysAppConsulting;
 import iace.entity.sysAuth.sysApplication.SysAppCoopEx;
 import iace.entity.sysAuth.sysApplication.SysAppEnterpriseNeed;
@@ -26,6 +27,7 @@ public class SysAuth {
 	private transient boolean enableAuth = true;
 	
 	private SysAppOptionManage optionManage = new SysAppOptionManage();
+	
 	private SysAppQnrCoopWay qnrCoopWay = new SysAppQnrCoopWay();
 	private SysAppResearchPlan researchPlan = new SysAppResearchPlan();
 	private SysAppPatent patent = new SysAppPatent();
@@ -35,9 +37,12 @@ public class SysAuth {
 	private SysAppTalentedPeople talentedPeople = new SysAppTalentedPeople();
 	private SysAppIncubationCenter incubationCenter = new SysAppIncubationCenter();
 	private SysAppLiterature literature = new SysAppLiterature();
+	
 	private SysAppSysLog sysLog = new SysAppSysLog();
 	private SysAppSysUser sysUser = new SysAppSysUser();
 	private SysAppSysRole sysRole = new SysAppSysRole();
+	
+	private SysAppAbout about = new SysAppAbout();
 	
 	public SysAuth() {
 		Properties prop = new Properties();
@@ -66,6 +71,7 @@ public class SysAuth {
 		sysApps.add(this.sysLog);
 		sysApps.add(this.sysUser);
 		sysApps.add(this.sysRole);
+		sysApps.add(this.about);
 		return sysApps;
 	}
 
@@ -166,4 +172,14 @@ public class SysAuth {
 	public SysAppSysRole getSysRole() {
 		return sysRole;
 	}
+
+	public boolean isEnableAuth() {
+		return enableAuth;
+	}
+
+	public SysAppAbout getAbout() {
+		return about;
+	}
+	
+	
 }

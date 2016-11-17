@@ -586,5 +586,40 @@
 		    <result name="success">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
 		    <result name="input">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
 		</action>		
-	</package>	
+	</package>
+	
+	<package name="About" namespace="/about" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.AboutAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/about/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.AboutAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/about/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/about/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.AboutAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/about/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.AboutAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/about/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.AboutAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/about/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/about/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.AboutAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/about/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.AboutAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/about/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/about/detail.jsp</result>
+		</action>
+		<action name="delete" class="iace.action.AboutAction" method="delete">
+			<result name="success">/WEB-INF/jsp/backend/about/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.AboutAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/about/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/about/index.jsp</result>
+		</action>
+	</package>
 </struts>

@@ -275,8 +275,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			super.addActionError("資料庫連線錯誤，請重新嘗試!");
 			return INPUT;
 		} catch (Exception e) {
-			log.error("", e);
-			super.addActionError(e.getMessage());
+			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}

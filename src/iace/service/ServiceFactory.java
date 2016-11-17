@@ -1,6 +1,7 @@
 package iace.service;
 
 import iace.dao.DaoFactory;
+import iace.service.about.AboutService;
 import iace.service.consulting.ConsultingService;
 import iace.service.coopExample.CoopExAttachFileService;
 import iace.service.coopExample.CoopExImgService;
@@ -94,6 +95,10 @@ public class ServiceFactory {
 	private static IncubationCenterService incubationCenterService;
 	
 	private static LiteratureService literatureService;
+	
+	private static AboutService aboutService;
+	
+	// =========================================================================
 	
 	public static LuceneIndexService getLuceneIndexService() {
 		if (luceneIndexService == null) {
@@ -401,6 +406,13 @@ public class ServiceFactory {
 			literatureService = new LiteratureService(DaoFactory.getLiteratureDao());
 		}
 		return literatureService;
+	}
+
+	public static AboutService getAboutService() {
+		if (aboutService == null) {
+			aboutService = new AboutService(DaoFactory.getAboutDao());
+		}
+		return aboutService;
 	}
 	
 	

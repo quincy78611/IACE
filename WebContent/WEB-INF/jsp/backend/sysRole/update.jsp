@@ -154,6 +154,15 @@
 					<s:checkbox label="%{sysRole.sysAuth.sysRole.opUpdate.displayName}" name="sysRole.sysAuth.sysRole.opUpdate.auth" fieldValue="true"/>
 				</td>
 			</tr>
+			<tr>
+				<td><b><s:property value="sysRole.sysAuth.about.displayName"/></b></td>
+				<td class="horizontalList">
+					<s:checkbox label="%{sysRole.sysAuth.about.opView.displayName}" name="sysRole.sysAuth.about.opView.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.about.opCreate.displayName}" name="sysRole.sysAuth.about.opCreate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.about.opUpdate.displayName}" name="sysRole.sysAuth.about.opUpdate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.about.opDelete.displayName}" name="sysRole.sysAuth.about.opDelete.auth" fieldValue="true"/>
+				</td>
+			</tr>			
 		</table>
 		
 		<div class="clear"></div>

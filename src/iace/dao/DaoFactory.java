@@ -1,5 +1,7 @@
 package iace.dao;
 
+import iace.dao.about.AboutDao;
+import iace.dao.about.IAboutDao;
 import iace.dao.consulting.ConsultingDao;
 import iace.dao.consulting.IConsultingDao;
 import iace.dao.coopExample.CoopExAttachFileDao;
@@ -138,6 +140,8 @@ public class DaoFactory {
 	private static IIncubationCenterDao incubationCenterDao;
 	
 	private static ILiteratureDao literatureDao;
+	
+	private static IAboutDao aboutDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -425,6 +429,13 @@ public class DaoFactory {
 			literatureDao = new LiteratureDao();
 		}
 		return literatureDao;
+	}
+
+	public static IAboutDao getAboutDao() {
+		if (aboutDao == null) {
+			aboutDao = new AboutDao();
+		}
+		return aboutDao;
 	}
 	
 	
