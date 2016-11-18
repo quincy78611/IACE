@@ -31,7 +31,6 @@ import iace.entity.literature.LiteratureSearchModel;
 import iace.entity.patent.Patent;
 import iace.entity.patent.PatentSearchModel;
 import iace.entity.researchPlan.ResearchPlan;
-import iace.entity.researchPlan.ResearchPlanSearchModel;
 import iace.entity.researchPlan.Technology;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
@@ -84,7 +83,6 @@ public class LuceneIndexService {
 			IndexWriter writer = IntegrationIndexer.createIndexWriter(indexDirectory);
 			try {
 				writer.deleteAll(); writer.commit();
-//				createResearchPlanIndex(writer);
 				createTechnologyIndex(writer);
 				createPatentIndex(writer);
 				createTalentedPeopleIndex(writer);
@@ -96,19 +94,6 @@ public class LuceneIndexService {
 			} finally {
 				writer.close();
 				indexDirectory.close();
-			}
-		}
-	}
-
-	private void createResearchPlanIndex(IndexWriter writer) throws IOException {
-		ResearchPlanSearchModel arg = new ResearchPlanSearchModel();
-		long totalRecordCount = this.researchPlanDao.queryTotalRecordsCount(arg);
-		int pageCount = (int) Math.ceil(totalRecordCount / (double) arg.getPageSize());
-		for (int i = 0; i < pageCount; i++) {
-			arg.setPageIndex(i);
-			PagedList<ResearchPlan> pagedList = this.researchPlanDao.searchBy(arg);
-			for (ResearchPlan entity : pagedList.getList()) {
-				IntegrationIndexer.addDoc(writer, entity.getId(), entity.getClass(), entity.toLunceneContent());
 			}
 		}
 	}
