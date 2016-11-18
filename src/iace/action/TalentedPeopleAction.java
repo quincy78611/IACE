@@ -100,14 +100,17 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		}
 	}
 
+	@Deprecated
 	public String create() {
 		return SUCCESS;
 	}
 
+	@Deprecated
 	public void validateCreateSubmit() {
 		validateBeforeSubmit();
 	}
 
+	@Deprecated
 	public String createSubmit() {
 		try {
 			this.talentedPeopleService.create(this.talentedPeople, super.getCurrentSysUser(), true, super.getSysLog());
