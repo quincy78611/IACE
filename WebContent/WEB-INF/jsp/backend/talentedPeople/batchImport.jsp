@@ -50,21 +50,25 @@
 				</li>
 			</ul>
 		</s:form>
+		<b>!!! 注意 : 此匯入不會更新任何已存在的資料，只會新增資料，新增時只會依據帳號是否已存在來判斷是否唯一。 !!!</b>
 	</div>
 	
 	<s:if test="batchImportResult != null">
 		<div class="batch-import">
 			<h2 class="">批次匯入結果</h2>	
 			
+<!-- 			<table> -->
+<%-- 				<s:if test="batchImportResult.insertList != null "> --%>
+<%-- 					<tr><th>新增列表   (共<s:property value="batchImportResult.insertList.size()"/>筆)</th></tr> --%>
+<%-- 					<s:iterator value="batchImportResult.insertList" status="stat"> --%>
+<!-- 						<tr> -->
+<%-- 							<td><s:property value="%{nameCh+' '+nameEn+' -> '+specialty}"/></td> --%>
+<!-- 						</tr> -->
+<%-- 					</s:iterator> --%>
+<%-- 				</s:if> --%>
+<!-- 			</table> -->
 			<table>
-				<s:if test="batchImportResult.insertList != null ">
-					<tr><th>新增列表   (共<s:property value="batchImportResult.insertList.size()"/>筆)</th></tr>
-					<s:iterator value="batchImportResult.insertList" status="stat">
-						<tr>
-							<td><s:property value="%{nameCh+' '+nameEn+' -> '+specialty}"/></td>
-						</tr>
-					</s:iterator>
-				</s:if>
+				<tr><th>已新增<s:property value="batchImportResult.insertList.size()"/>筆資料</th></tr>
 			</table>
 			<table>
 				<tr><th>錯誤訊息列表 (共<s:property value="batchImportResult.errMsgs.size()"/>筆)</th></tr>

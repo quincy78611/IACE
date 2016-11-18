@@ -1,13 +1,17 @@
 package iace.dao.option;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 
 import core.dao.HibernateSessionFactory;
 import iace.entity.BaseEntity;
@@ -114,27 +118,32 @@ public class OptionGrbDomainDao extends BaseOptionDao<OptionGrbDomain> implement
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OptionGrbDomain> listForTalentedPeople() {
-		List<Criterion> criterionList = new ArrayList<Criterion>();
-		criterionList.add(Restrictions.isNotNull("mainDomain"));	
-		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
-		List<Order> orderList = new ArrayList<Order>();
-		orderList.add(Order.asc("mainDomain.priority"));
-		orderList.add(Order.asc("mainDomain.code"));
-		orderList.add(Order.asc("priority"));
-		orderList.add(Order.asc("code"));
-		return (List<OptionGrbDomain>) super.listAll(optionEntityClass, orderList, criterionList);
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(OptionGrbDomain.class);
+			criteria.createAlias("mainDomain", "mainDomain",  JoinType.LEFT_OUTER_JOIN);
+			criteria.add(Restrictions.isNotNull("mainDomain"));
+			
+			criteria.addOrder(Order.asc("mainDomain.priority"));
+			criteria.addOrder(Order.asc("mainDomain.code"));
+			criteria.addOrder(Order.asc("priority"));
+			criteria.addOrder(Order.asc("code"));
+			
+			List<OptionGrbDomain> entityList = criteria.list();
+			return entityList;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<OptionGrbDomain> listForTalentedPeople(long optionDomainId) {
-		List<Criterion> criterionList = new ArrayList<Criterion>();
-		criterionList.add(Restrictions.eq("mainDomain.id", optionDomainId));	
-		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
-		List<Order> orderList = new ArrayList<Order>();
-		orderList.add(Order.asc("priority"));
-		orderList.add(Order.asc("code"));
-		return (List<OptionGrbDomain>) super.listAll(optionEntityClass, orderList, criterionList);
+	public Map<String, OptionGrbDomain> mapForTalentedPeople() {
+		List<OptionGrbDomain> list = listForTalentedPeople();
+		Map<String, OptionGrbDomain> map = new LinkedHashMap<String, OptionGrbDomain>();
+		list.forEach(v -> map.put(v.getCode(), v));
+		return map;
 	}
 	
 	

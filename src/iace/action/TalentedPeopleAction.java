@@ -195,8 +195,11 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	public String batchImportSubmit() {
 		try {
 			this.batchImportResult = this.talentedPeopleService.batchImport(this.uploadFile, this.sysRoleId);
+			if (this.batchImportResult.getInsertList().size() > 0) {
+				this.addActionMessage("已成功匯入"+this.batchImportResult.getInsertList().size()+"筆資料");
+			}
 			if (this.batchImportResult.getErrMsgs().size() > 0) {
-				this.addActionError("部分或全部匯入資料有誤，請看下方錯誤列表");
+				this.addActionError("匯入資料有誤，請看下方錯誤列表");
 			}
 			return SUCCESS;
 		} catch (Exception e) {

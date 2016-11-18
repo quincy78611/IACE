@@ -218,7 +218,7 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		SysRole role = this.sysRoleDao.get(sysRoleId); 
 		
 		BaseBatchImportResult<TalentedPeople> res = new BaseBatchImportResult<TalentedPeople>();
-		Map<String, OptionGrbDomain> grbDomainMap = this.optionGrbDomainDao.mapAll();
+		Map<String, OptionGrbDomain> grbDomainMap = this.optionGrbDomainDao.mapForTalentedPeople();
 		
 		try (FileInputStream fis = new FileInputStream(file);){
 			XSSFWorkbook wb = new XSSFWorkbook(fis);
@@ -249,16 +249,18 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 						entity.setExpYear(Integer.valueOf(expYearStr));
 					}
 					
-					
-					cell = row.getCell(++c); // 領域別 不用紀錄
-					
+					++c; // 領域別 不用紀錄
 					cell = row.getCell(++c);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
 					String domainCodesStr = cell.getStringCellValue().trim().replace(";", "；");
 					String[] domainCodes = StringUtils.split(domainCodesStr, "；");
 					if (domainCodes.length > 0) {
 						for (String code : domainCodes) {
-							entity.addDomain(grbDomainMap.get(code));
+							if (grbDomainMap.containsKey(code) == false) {
+								throw new IllegalArgumentException("[次領域代碼:"+code+"]不存在 或 此代碼不包含於人才次領域代碼表中!");
+							} else {
+								entity.addDomain(grbDomainMap.get(code));
+							}
 						}
 					}
 					
@@ -286,33 +288,30 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 					cell.setCellType(Cell.CELL_TYPE_STRING);
 					entity.setSpecialty(cell.getStringCellValue().trim());
 					
+					// Check and set SysUser
 					SysUser user = new SysUser();
 					user.setSysRole(role);
 					user.setName(entity.getNameCh());
-					
 					cell = row.getCell(++c, Row.CREATE_NULL_AS_BLANK);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
 					user.setAccount(cell.getStringCellValue().trim());
-					
 					cell = row.getCell(++c, Row.CREATE_NULL_AS_BLANK);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
 					user.setPassword(cell.getStringCellValue().trim());
-					
-					if (StringUtils.isNotBlank(user.getName()) && 
-						StringUtils.isNotBlank(user.getAccount()) &&
-						StringUtils.isNotBlank(user.getPassword())) {
+					if (StringUtils.isBlank(user.getName()) || StringUtils.isBlank(user.getAccount()) || StringUtils.isBlank(user.getPassword())) {
+						throw new IllegalArgumentException("姓名、帳號、密碼為必填欄位!");
+					} else if (this.sysUserDao.isAccountExist(user.getAccount())) {
+						throw new IllegalArgumentException("帳號已存在!");
+					} else {
 						this.sysUserDao.create(user);
 						entity.setSysUser(user);
-					} else {
-						throw new IllegalArgumentException("帳號密碼為必填欄位!");
 					}
 					
 					this.dao.create(entity);
 					res.addRecordToInsertList(entity);
 				} catch (Exception e) {
-					String msg = String.format("第 %d 列第 %d 欄資料有問題! %s", r+1, c+1, e.getMessage());
+					String msg = String.format("%d列%d欄 → %s", r+1, c+1, e.getMessage());
 					res.addErrMsg(msg);
-					log.error(msg, e);					
 				}
 			}
 		} catch (IOException e) {

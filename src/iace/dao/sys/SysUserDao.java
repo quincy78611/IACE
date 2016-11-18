@@ -36,8 +36,6 @@ public class SysUserDao extends BaseIaceDao<SysUser> implements ISysUserDao {
 		}	
 	}
 	
-	
-
 	@Override
 	public SysUser getBy(String account, String password) {
 		try {
@@ -70,7 +68,24 @@ public class SysUserDao extends BaseIaceDao<SysUser> implements ISysUserDao {
 			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			criteria.setProjection(Projections.rowCount());
 			Long count = (Long) criteria.uniqueResult();
-			return count == 1;
+			return count > 0;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}	
+	}
+
+	@Override
+	public boolean isAccountExist(String account) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(SysUser.class);
+			criteria.add(Restrictions.eq("account", account));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			criteria.setProjection(Projections.rowCount());
+			Long count = (Long) criteria.uniqueResult();
+			return count > 0;
 		} catch (Exception e) {
 			throw e;
 		} finally {
