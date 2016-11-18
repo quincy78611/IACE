@@ -57,7 +57,6 @@ public class AboutAction extends BaseIaceAction {
 		try {
 			this.aboutService.create(this.about, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
-			index();
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

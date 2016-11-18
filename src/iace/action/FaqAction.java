@@ -62,7 +62,6 @@ public class FaqAction extends BaseIaceAction {
 		try {
 			this.faqService.create(this.faq, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
-			index();
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -126,7 +125,8 @@ public class FaqAction extends BaseIaceAction {
 	}
 	
 	private void validateBeforeSubmit() {
-		//TODO
+		super.validateNotBlankNLength(this.faq.getTitle(), 200, "faq.title");
+		super.validateNotBlankNLength(this.faq.getMetaTitle(), 200, "faq.metaTitle");
 	}
 	
 	//==========================================================================
