@@ -1,5 +1,8 @@
 package iace.entity.incubationCenter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,12 +13,21 @@ import javax.persistence.Table;
 
 import iace.entity.BaseEntity;
 import iace.entity.IntegrationSearch;
+import iace.entity.option.BaseOption;
 
 @Entity
 @Table(name = "INCUBATION_CENTER")
 public class IncubationCenter extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = -6291783231741808243L;
+	
+	private static List<BaseOption> attributeList = new ArrayList<BaseOption>();
+	static {
+		attributeList.add(new BaseOption("01", "國立大專院校"));
+		attributeList.add(new BaseOption("02", "私立大專院校"));
+		attributeList.add(new BaseOption("03", "政府"));
+		attributeList.add(new BaseOption("04", "法人"));
+	}
 
 	private long id;
 	private String seqNo;
@@ -177,5 +189,11 @@ public class IncubationCenter extends BaseEntity implements IntegrationSearch {
 				this.orgNameCh  + " " + this.orgNameEn;
 		return str;
 	}
+
+	public static List<BaseOption> getAttributeList() {
+		return attributeList;
+	}
+	
+	
 
 }

@@ -53,7 +53,12 @@ public class IncubationCenterService extends BaseIaceService<IncubationCenter> {
 					
 					cell = row.getCell(++c);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
-					entity.setAttribute(cell.getStringCellValue().trim());
+					String attribute = cell.getStringCellValue().trim();
+					if (IncubationCenter.getAttributeList().contains(attribute)) {
+						entity.setAttribute(attribute);
+					} else {
+						throw new IllegalArgumentException("不存在的屬性代碼("+attribute+")");
+					}
 					
 					cell = row.getCell(++c);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -102,7 +107,7 @@ public class IncubationCenterService extends BaseIaceService<IncubationCenter> {
 					this.dao.create(entity);
 					res.addRecordToInsertList(entity);
 				} catch (Exception e) {
-					String msg = String.format("第 %d 列第 %d 欄資料有問題! %s", r+1, c+1, e.getMessage());
+					String msg = String.format("%d列%d欄 → %s", r+1, c+1, e.getMessage());
 					res.addErrMsg(msg);
 					log.error(msg, e);
 				}

@@ -3,7 +3,6 @@ package iace.action;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -38,7 +37,7 @@ public class IncubationCenterAction extends BaseIaceAction {
 	private String downloadFileName;
 	private InputStream sampleFileInputStream;
 	
-	private List<BaseOption> attributeList;
+	private List<BaseOption> attributeList = IncubationCenter.getAttributeList();
 
 	public IncubationCenterAction() {
 		super.setTitle("育成中心");
@@ -183,13 +182,6 @@ public class IncubationCenterAction extends BaseIaceAction {
 	}
 
 	public List<BaseOption> getAttributeList() {
-		if (attributeList == null) {
-			attributeList = new ArrayList<BaseOption>();
-			attributeList.add(new BaseOption("01", "國立大專院校"));
-			attributeList.add(new BaseOption("02", "私立大專院校"));
-			attributeList.add(new BaseOption("03", "政府"));
-			attributeList.add(new BaseOption("04", "法人"));
-		}
 		return attributeList;
 	}
 
