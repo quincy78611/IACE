@@ -1,6 +1,8 @@
 package iace.entity.talentedPeople;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import iace.entity.BaseEntity;
+import iace.entity.option.BaseOption;
 import iace.entity.option.OptionCountry;
 
 @Entity
@@ -21,6 +24,16 @@ import iace.entity.option.OptionCountry;
 public class TalentedPeopleRdResult extends BaseEntity {
 
 	private static final long serialVersionUID = 7404017170622750603L;
+	
+	private static List<BaseOption> typeList = new ArrayList<BaseOption>();
+	static {
+		typeList.add(new BaseOption("專利獲准", "專利獲准(請填5~8)"));
+		typeList.add(new BaseOption("專利申請中", "專利申請中(請填5,7)"));
+		typeList.add(new BaseOption("技術/KNOW-HOW ", "技術/KNOW-HOW "));
+		typeList.add(new BaseOption("積體電路布局", "積體電路布局"));
+		typeList.add(new BaseOption("軟體", "軟體"));
+		typeList.add(new BaseOption("其他", "其他"));
+	}
 
 	private long id;
 	private TalentedPeople talentedPeople;
@@ -177,6 +190,10 @@ public class TalentedPeopleRdResult extends BaseEntity {
 
 	public void setPriority(Float priority) {
 		this.priority = priority;
+	}
+
+	public static List<BaseOption> getTypeList() {
+		return typeList;
 	}
 
 	

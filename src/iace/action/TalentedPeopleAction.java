@@ -21,6 +21,7 @@ import iace.entity.option.OptionDomain;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
+import iace.entity.talentedPeople.TalentedPeopleRdResult;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
@@ -50,7 +51,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 
 	private List<OptionDomain> mainDomainList;
 	private List<OptionCountry> countryList;
-	private List<BaseOption> rdResultTypeList;
+	private List<BaseOption> rdResultTypeList = TalentedPeopleRdResult.getTypeList();
 	private List<BaseOption> yearList;
 	private List<BaseOption> monthList;
 	private List<SysRole> sysRoleList;
@@ -340,15 +341,6 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	}
 
 	public List<BaseOption> getRdResultTypeList() {
-		if (rdResultTypeList == null) {
-			rdResultTypeList = new ArrayList<BaseOption>();
-			rdResultTypeList.add(new BaseOption("專利獲准", "專利獲准(請填5~8)"));
-			rdResultTypeList.add(new BaseOption("專利申請中", "專利申請中(請填5,7)"));
-			rdResultTypeList.add(new BaseOption("技術/KNOW-HOW ", "技術/KNOW-HOW "));
-			rdResultTypeList.add(new BaseOption("積體電路布局", "積體電路布局"));
-			rdResultTypeList.add(new BaseOption("軟體", "軟體"));
-			rdResultTypeList.add(new BaseOption("其他", "其他"));
-		}
 		return rdResultTypeList;
 	}
 
