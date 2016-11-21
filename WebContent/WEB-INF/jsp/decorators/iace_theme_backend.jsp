@@ -124,6 +124,7 @@
 						<s:include value="./iace_backend_menu/menu-literature.jsp" />
 						<s:include value="./iace_backend_menu/menu-about.jsp" />
 						<s:include value="./iace_backend_menu/menu-faq.jsp" />
+						<s:include value="./iace_backend_menu/menu-news.jsp" />
 						<s:include value="./iace_backend_menu/menu-option.jsp" />
 						<s:include value="./iace_backend_menu/menu-sys.jsp" />
 					</ul>

@@ -26,6 +26,10 @@ import iace.dao.incubationCenter.IIncubationCenterDao;
 import iace.dao.incubationCenter.IncubationCenterDao;
 import iace.dao.literature.ILiteratureDao;
 import iace.dao.literature.LiteratureDao;
+import iace.dao.news.INewsAttachDao;
+import iace.dao.news.INewsDao;
+import iace.dao.news.NewsAttachDao;
+import iace.dao.news.NewsDao;
 import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionGrbDomainDao;
 import iace.dao.option.IOptionSchoolDao;
@@ -145,7 +149,10 @@ public class DaoFactory {
 	
 	private static IAboutDao aboutDao;
 	
-	private static IFaqDao faqDao; 
+	private static IFaqDao faqDao;
+	
+	private static INewsDao newsDao;
+	private static INewsAttachDao newsAttachDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -447,6 +454,20 @@ public class DaoFactory {
 			faqDao = new FaqDao();
 		}
 		return faqDao;
+	}
+
+	public static INewsDao getNewsDao() {
+		if (newsDao == null) {
+			newsDao = new NewsDao();
+		}
+		return newsDao;
+	}
+
+	public static INewsAttachDao getNewsAttachDao() {
+		if (newsAttachDao == null) {
+			newsAttachDao = new NewsAttachDao();
+		}
+		return newsAttachDao;
 	}
 	
 	

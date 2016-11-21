@@ -657,4 +657,47 @@
 			<result name="success">/WEB-INF/jsp/backend/faq/index.jsp</result>
 		</action>
 	</package>
+	
+	<package name="News" namespace="/news" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.NewsAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/news/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.NewsAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/news/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/news/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.NewsAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/news/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.NewsAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/news/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.NewsAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/news/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/news/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.NewsAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/news/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.NewsAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/news/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/news/detail.jsp</result>
+		</action>
+		<action name="delete" class="iace.action.NewsAction" method="delete">
+			<result name="success">/WEB-INF/jsp/backend/news/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.NewsAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/news/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/news/index.jsp</result>
+		</action>
+		<action name="downloadAttach" class="iace.action.NewsAction" method="downloadAttach">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
 </struts>

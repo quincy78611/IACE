@@ -19,15 +19,21 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import iace.entity.BaseLinkiacEntity;
+import iace.entity.option.BaseOption;
 
 @Entity
 @Table(name = "NEWS")
 public class News extends BaseLinkiacEntity {
-
 	private static final long serialVersionUID = 8273447145316025013L;
+	
+	private static List<BaseOption> categoryList = new ArrayList<BaseOption>();
+	static {
+		categoryList.add(new BaseOption("一般公告", "一般公告"));
+		categoryList.add(new BaseOption("新聞稿", "新聞稿"));
+	}
 
 	private long id;
-	private String category; // 一般公告, 新聞稿
+	private String category;
 	private String title;
 	private String source;
 	private Date postDate;
@@ -102,6 +108,10 @@ public class News extends BaseLinkiacEntity {
 		this.attachs = attachs;
 	}
 
+	public static List<BaseOption> getCategoryList() {
+		return categoryList;
+	}
 
+	
 	
 }

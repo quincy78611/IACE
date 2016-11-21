@@ -1,10 +1,14 @@
 package iace.entity;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -22,15 +26,23 @@ import javax.persistence.Transient;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.DiscriminatorOptions;
 
+import iace.entity.option.BaseOption;
+
 
 @Entity
-@Table(name = "FILE")
+@Table(name = "DB_FILE")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_DISCRIMINATOR", discriminatorType = DiscriminatorType.STRING)
 @DiscriminatorOptions(force=true)
 public abstract class DbFile extends BaseEntity {
 	private static final long serialVersionUID = -4858468713348065564L;
 
+	private static List<BaseOption> fileTypeList = new ArrayList<BaseOption>();
+	static {
+		fileTypeList.add(new BaseOption("0", "檔案"));
+		fileTypeList.add(new BaseOption("1", "圖片"));
+	}
+	
 	private long id;
 
 	private transient String fileFolder;
@@ -83,6 +95,14 @@ public abstract class DbFile extends BaseEntity {
 	public void setFileContent(byte[] fileContent) {
 		this.fileContent = fileContent;
 	}
+	
+	@Transient
+	public InputStream getFileContentInputStream() throws IOException {	
+		if (this.fileContent == null) 
+			return null;
+		else 
+			return new ByteArrayInputStream(this.fileContent);
+	}
 
 	@Transient
 	public File getUpload() {
@@ -129,7 +149,12 @@ public abstract class DbFile extends BaseEntity {
 		this.fileTitle = fileTitle;
 	}
 
+	public static List<BaseOption> getFileTypeList() {
+		return fileTypeList;
+	}
+
 	// =========================================================================
+
 
 	public boolean hasUpload() {
 		return this.upload != null && this.uploadContentType != null && this.uploadFileName != null;
@@ -142,7 +167,7 @@ public abstract class DbFile extends BaseEntity {
 
 	@Transient
 	public boolean isSaveInDb() {
-		return !isSaveInDisk();
+		return StringUtils.isBlank(this.fileSubPath) ;
 	}
 
 	public void saveUploadFile() throws IOException {
@@ -151,10 +176,10 @@ public abstract class DbFile extends BaseEntity {
 				Path p = Paths.get(this.upload.getAbsolutePath());
 				this.fileContent = Files.readAllBytes(p);
 			} else {
-				if (StringUtils.isNotBlank(this.fileFolder)) {
-					this.upload.renameTo(new File(this.fileFolder, this.fileSubPath));
-				} else {
+				if (StringUtils.isBlank(this.fileFolder)) {
 					throw new IOException("Must set [fileFolder] value before calling this method!");
+				} else {
+					this.upload.renameTo(new File(this.fileFolder, this.fileSubPath));
 				}
 			}
 		} else {
@@ -177,6 +202,6 @@ public abstract class DbFile extends BaseEntity {
 		}
 	}
 
-	// =========================================================================
 
+	
 }
