@@ -98,10 +98,11 @@ public abstract class DbFile extends BaseEntity {
 	
 	@Transient
 	public InputStream getFileContentInputStream() throws IOException {	
-		if (this.fileContent == null) 
-			return null;
-		else 
+		if (this.fileContent == null) {
+			throw new NullPointerException("檔案不存在或是檔案內容已遺失");
+		} else {
 			return new ByteArrayInputStream(this.fileContent);
+		}
 	}
 
 	@Transient
@@ -195,9 +196,13 @@ public abstract class DbFile extends BaseEntity {
 				throw new IOException("Must set [fileFolder] value before calling this method!");
 			} else {
 				File f = new File(this.fileFolder, this.fileSubPath);
-				Path p = Paths.get(f.getAbsolutePath());
-				this.fileContent = Files.readAllBytes(p);
-				return this.fileContent;
+				if (f.exists()) {
+					Path p = Paths.get(f.getAbsolutePath());
+					this.fileContent = Files.readAllBytes(p);
+					return this.fileContent;
+				} else {
+					return null;
+				}
 			}
 		}
 	}
