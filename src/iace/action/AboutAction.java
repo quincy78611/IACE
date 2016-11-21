@@ -121,7 +121,7 @@ public class AboutAction extends BaseIaceAction {
 	
 	private void validateBeforeSubmit() {
 		super.validateNotBlankNLength(this.about.getTitle(), 200, "about.title");
-		super.validateNotBlankNLength(this.about.getMetaTitle(), 200, "about.metaTitle");
+		super.validateTextMaxLength(this.about.getMetaTitle(), 200, "about.metaTitle");
 	}
 
 	public AboutSearchModel getSearchCondition() {

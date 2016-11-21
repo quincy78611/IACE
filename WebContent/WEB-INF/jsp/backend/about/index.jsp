@@ -188,7 +188,7 @@
 								
 								<td>
 									<!-- 檢視 -->
-									<s:if test='%{#session.sysUser.hasAuth("namespace", "showDetail")}'>
+									<s:if test='%{#session.sysUser.hasAuth(namespace, "showDetail")}'>
 										<s:url value="showDetail.action" var="detailUrlTag">
 											<s:param name="id" value="id" />
 										</s:url>
@@ -197,7 +197,7 @@
 									</s:if>	
 									
 									<!-- 編輯 -->
-									<s:if test='%{#session.sysUser.hasAuth("namespace", "update")}'>
+									<s:if test='%{#session.sysUser.hasAuth(namespace, "update")}'>
 										<s:url value="update.action" var="updateUrlTag">
 											<s:param name="id" value="id" />
 										</s:url>
@@ -206,7 +206,7 @@
 									</s:if>
 									
 									<!-- 刪除 -->
-									<s:if test='%{#session.sysUser.hasAuth("namespace", "delete")}'>
+									<s:if test='%{#session.sysUser.hasAuth(namespace, "delete")}'>
 										<s:url value="delete.action" var="deleteUrlTag">
 											<s:param name="id" value="id" />
 										</s:url>

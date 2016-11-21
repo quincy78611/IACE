@@ -126,7 +126,7 @@ public class FaqAction extends BaseIaceAction {
 	
 	private void validateBeforeSubmit() {
 		super.validateNotBlankNLength(this.faq.getTitle(), 200, "faq.title");
-		super.validateNotBlankNLength(this.faq.getMetaTitle(), 200, "faq.metaTitle");
+		super.validateTextMaxLength(this.faq.getMetaTitle(), 200, "about.metaTitle");
 	}
 	
 	//==========================================================================
