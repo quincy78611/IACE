@@ -1,15 +1,11 @@
 package iace.service.news;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Properties;
 import java.util.Set;
-import java.util.UUID;
 
 import core.util.PagedList;
 import iace.dao.news.INewsDao;
@@ -20,24 +16,12 @@ import iace.service.BaseIaceService;
 import iace.service.ServiceFactory;
 
 public class NewsService extends BaseIaceService<News> {
-	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-	
 	private NewsAttachService newsAttachService = ServiceFactory.getNewsAttachService();
 	private INewsDao newsDao;
-	
-	private String newsAttachFolder;
 	
 	public NewsService(INewsDao dao) {
 		super(dao);
 		this.newsDao = dao;
-		
-		Properties prop = new Properties();
-		try {
-			prop.load(this.getClass().getClassLoader().getResourceAsStream("configs/iace.properties"));
-			this.newsAttachFolder = prop.getProperty("newsAttachFolder");
-		} catch (IOException e) {
-			log.fatal("", e);			
-		}
 	}
 
 	public PagedList<News> searchBy(NewsSearchModel arg) {
@@ -48,7 +32,7 @@ public class NewsService extends BaseIaceService<News> {
 	public News get(Long id) {
 		News entity = this.newsDao.get(id);
 		for (NewsAttach attach : entity.getAttachs()) {
-			attach.setFileFolder(this.newsAttachFolder);
+			attach.setFileFolder(this.newsAttachService.getNewsAttachFolder());
 			try {
 				attach.loadFileContentFromDisk();
 			} catch (Exception e) {
@@ -64,25 +48,20 @@ public class NewsService extends BaseIaceService<News> {
 		List<NewsAttach> attachList = new ArrayList<NewsAttach>();
 		for (NewsAttach attach : entity.getAttachs()) {
 			if (attach.hasUpload()) {
+				attach.setNews(entity);
 				attachList.add(attach);
 			}
 		}
-		entity.setAttachs(attachList);
-		entity.getAttachs().forEach(e -> e.setNews(entity));
 		
-		// save attach files
-		for (int i=0; i<entity.getAttachs().size(); i++) {
-			NewsAttach attach = entity.getAttachs().get(i);
-			attach.setFileFolder(this.newsAttachFolder);
-			String time = sdf.format(System.currentTimeMillis());
-			String fileName = "news" + "_"+time+"_" + UUID.randomUUID().toString() + "_" + attach.getUploadFileName();
-			attach.setFileSubPath(fileName);
-			attach.saveUploadFile();
-			attach.create();
-		}
-		
+		// create news data to DB
+		entity.setAttachs(null);
 		super.create(entity);
 		
+		// save attach files and create attach data to DB
+		for (NewsAttach attach : attachList) {
+			this.newsAttachService.create(attach);
+		}
+		entity.setAttachs(attachList);
 	}
 
 	@Override
@@ -91,11 +70,25 @@ public class NewsService extends BaseIaceService<News> {
 		List<NewsAttach> attachList = new ArrayList<NewsAttach>();
 		for (NewsAttach attach : entity.getAttachs()) {
 			if (attach.hasUpload() || attach.getId() > 0) {
+				attach.setNews(entity);
 				attachList.add(attach);  // keep new upload files or old files  
 			}
 		}
 		entity.setAttachs(attachList);
-		entity.getAttachs().forEach(e -> e.setNews(entity));
+		
+		// create new upload files
+		for (NewsAttach attach : entity.getAttachs()) {
+			if (attach.getId() <= 0) {
+				this.newsAttachService.create(attach);
+			}
+		}
+		
+		// update old attach files
+		for (NewsAttach attach : entity.getAttachs()) {
+			if (attach.getId() > 0) {
+				this.newsAttachService.update(attach);
+			}
+		}
 		
 		// delete file which is not in current attaches anymore
 		Set<Long> currentAttachIdSet = new HashSet<Long>();
@@ -104,45 +97,6 @@ public class NewsService extends BaseIaceService<News> {
 		for (NewsAttach attach : newsO.getAttachs()) {
 			if(currentAttachIdSet.contains(attach.getId()) == false) {
 				this.newsAttachService.delete(attach);
-			}
-		}
-		
-		// set attach files data
-		for (NewsAttach attach : entity.getAttachs()) {
-			if (attach.getId() > 0) { // origin file
-				NewsAttach attachO = this.newsAttachService.get(attach.getId());
-				attach.setIsValid(attachO.getIsValid());
-				attach.setCreateTime(attachO.getCreateTime());
-				attach.setCreateUser(attachO.getCreateUser());
-				attach.setUpdateTime(attachO.getUpdateTime());
-				attach.setUpdateUser(attachO.getUpdateUser());
-				attach.setVer(attachO.getVer());
-				
-				if (attach.hasUpload() == false) {
-					attach.setFileSubPath(attachO.getFileSubPath());
-					attach.setUploadContentType(attachO.getUploadContentType());
-					attach.setUploadFileName(attachO.getUploadFileName());
-				}
-				attach.update();
-			} else { // new file
-				attach.create();
-			}
-		}
-		
-		// save upload attach files
-		for (NewsAttach attach : entity.getAttachs()) {
-			if (attach.hasUpload()) {
-				if (attach.getId() > 0) {
-					NewsAttach attachO = this.newsAttachService.get(attach.getId());
-					File f = new File(this.newsAttachFolder, attachO.getFileSubPath());
-					f.delete(); //delete old file from disk
-				}
-				
-				attach.setFileFolder(this.newsAttachFolder);
-				String time = sdf.format(System.currentTimeMillis());
-				String fileName = "news" + "_"+time+"_" + UUID.randomUUID().toString() + "_" + attach.getUploadFileName();
-				attach.setFileSubPath(fileName);
-				attach.saveUploadFile();
 			}
 		}
 		
@@ -163,6 +117,4 @@ public class NewsService extends BaseIaceService<News> {
 		News entity = this.newsDao.get(id);
 		delete(entity);
 	}
-	
-	
 }

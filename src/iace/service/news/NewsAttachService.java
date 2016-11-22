@@ -47,28 +47,30 @@ public class NewsAttachService extends BaseIaceService<NewsAttach> {
 	@Override
 	public void create(NewsAttach entity) throws IOException, SQLException {
 		if (entity.hasUpload()) {
-			entity.setFileFolder(this.newsAttachFolder);
-			String time = sdf.format(System.currentTimeMillis());
-			String fileName = "news" + "_"+time+"_" + UUID.randomUUID().toString() + "_" + entity.getUploadFileName();
-			entity.setFileSubPath(fileName);
-			entity.saveUploadFile();
+			saveFile(entity);
 		}
 		super.create(entity);
 	}
 
-	@Deprecated
 	@Override
 	public void update(NewsAttach entity) throws IOException, SQLException {
+		NewsAttach entityO = this.dao.get(entity.getId());
+		entity.setIsValid(entityO.getIsValid());
+		entity.setCreateTime(entityO.getCreateTime());
+		entity.setCreateUser(entityO.getCreateUser());
+		entity.setUpdateTime(entityO.getUpdateTime());
+		entity.setUpdateUser(entityO.getUpdateUser());
+		entity.setVer(entityO.getVer());
+		
 		if (entity.hasUpload()) {
-			NewsAttach entityO = this.dao.get(entity.getId());
 			File f = new File(this.newsAttachFolder, entityO.getFileSubPath());
 			f.delete();
 			
-			entity.setFileFolder(this.newsAttachFolder);
-			String time = sdf.format(System.currentTimeMillis());
-			String fileName = "news" + "_"+time+"_" + UUID.randomUUID().toString() + "_" + entity.getUploadFileName();
-			entity.setFileSubPath(fileName);
-			entity.saveUploadFile();
+			saveFile(entity);
+		} else {
+			entity.setFileSubPath(entityO.getFileSubPath());
+			entity.setUploadContentType(entityO.getUploadContentType());
+			entity.setUploadFileName(entityO.getUploadFileName());
 		}
 		super.update(entity);
 	}
@@ -84,6 +86,18 @@ public class NewsAttachService extends BaseIaceService<NewsAttach> {
 	public void delete(Long id) throws IOException, SQLException {
 		NewsAttach entity = this.dao.get(id);
 		delete(entity);
+	}
+	
+	private void saveFile(NewsAttach attach) throws IOException {
+		attach.setFileFolder(this.newsAttachFolder);
+		String time = sdf.format(System.currentTimeMillis());
+		String fileName = "news" + "_"+time+"_" + UUID.randomUUID().toString() + "_" + attach.getUploadFileName();
+		attach.setFileSubPath(fileName);
+		attach.saveUploadFile();
+	}
+
+	public String getNewsAttachFolder() {
+		return newsAttachFolder;
 	}
 	
 	
