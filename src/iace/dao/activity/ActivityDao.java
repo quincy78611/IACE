@@ -102,8 +102,8 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			try {
 				Date dateS = new Date( sdf.parse(arg.getYear().toString()).getTime() );
 				Date dateE = new Date( sdf.parse(String.valueOf(arg.getYear()+1)).getTime() );
-				criteria.add(Restrictions.ge("postDate", dateS));
-				criteria.add(Restrictions.lt("postDate", dateE));
+				criteria.add(Restrictions.ge("createTime", dateS));
+				criteria.add(Restrictions.lt("createTime", dateE));
 			} catch (ParseException e) {
 				log.warn("", e);
 			}

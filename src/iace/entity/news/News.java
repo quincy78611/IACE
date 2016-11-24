@@ -1,6 +1,5 @@
 package iace.entity.news;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +35,6 @@ public class News extends BaseLinkiacEntity {
 	private String category;
 	private String title;
 	private String source;
-	private Date postDate;
 	private String content;
 	
 	private List<NewsAttach> attachs = new ArrayList<NewsAttach>();
@@ -78,15 +76,6 @@ public class News extends BaseLinkiacEntity {
 
 	public void setSource(String source) {
 		this.source = source;
-	}
-
-	@Column(name = "POST_DATE")
-	public Date getPostDate() {
-		return postDate;
-	}
-
-	public void setPostDate(Date postDate) {
-		this.postDate = postDate;
 	}
 
 	@Column(name = "CONTENT")

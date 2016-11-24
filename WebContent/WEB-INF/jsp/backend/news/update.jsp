@@ -115,7 +115,7 @@ table.table-files .label-fileName { min-height:35px; padding: 0px 5px; }
 				<b>標題</b>
 				<s:textfield name="news.title" maxlength="200"/>
 			</li>
-			<li class="all">
+			<li class="half">
 				<b>來源</b>
 				<s:textfield name="news.source" maxlength="200"/>
 			</li>
@@ -123,14 +123,6 @@ table.table-files .label-fileName { min-height:35px; padding: 0px 5px; }
 				<b>分類</b>
 				<s:select name="news.category" list="categoryList" listKey="code" listValue="name" />
 			</li>
-			<li class="half">
-				<b>發佈日期</b>
-				<s:textfield name="news.postDate" cssClass="calendarBox" autocomplete="off" placeholder="yyyy/MM/dd">			
-					<s:param name="value">
-						<s:date name="news.postDate" format="yyyy/MM/dd" /> 
-					</s:param>
-				</s:textfield>				
-			</li>			
 			<li class="all">
 				<b>內容</b>
 				<s:textarea name="news.content" />

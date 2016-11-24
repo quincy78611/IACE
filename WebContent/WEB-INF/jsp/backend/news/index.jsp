@@ -186,7 +186,7 @@
 								<td>
 									<s:property value="%{newsPagedList.itemStart + #stat.count -1}" />
 								</td>
-								<td><s:date name="postDate" format="yyyy/M/d"/></td>
+								<td><s:date name="createTime" format="yyyy/M/d"/></td>
 								<td><s:property value="category" /></td>	
 								<td><s:property value="title" /></td>
 								<td><s:property value="clickNum" /></td>

@@ -41,7 +41,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 				<s:property value="news.title"/>
 			</div>
 		</li>
-		<li class="all">
+		<li class="half">
 			<b>來源</b>
 			<div class="border-text">
 				<s:property value="news.source"/>
@@ -53,12 +53,6 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 				<s:property value="news.category"/>
 			</div>
 		</li>
-		<li class="half">
-			<b>發佈日期</b>
-			<div class="border-text">
-				<s:property value="news.postDate"/>
-			</div>			
-		</li>		
 		<li class="all">
 			<b>內容</b>
 			<s:textarea name="news.content"/>	
