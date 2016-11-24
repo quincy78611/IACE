@@ -2,6 +2,12 @@ package iace.dao;
 
 import iace.dao.about.AboutDao;
 import iace.dao.about.IAboutDao;
+import iace.dao.activity.ActivityAttachDao;
+import iace.dao.activity.ActivityDao;
+import iace.dao.activity.ActivityVideoDao;
+import iace.dao.activity.IActivityAttachDao;
+import iace.dao.activity.IActivityDao;
+import iace.dao.activity.IActivityVideoDao;
 import iace.dao.consulting.ConsultingDao;
 import iace.dao.consulting.IConsultingDao;
 import iace.dao.coopExample.CoopExAttachFileDao;
@@ -153,6 +159,10 @@ public class DaoFactory {
 	
 	private static INewsDao newsDao;
 	private static INewsAttachDao newsAttachDao;
+	
+	private static IActivityDao activityDao;
+	private static IActivityAttachDao activityAttachDao;
+	private static IActivityVideoDao activityVideoDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -468,6 +478,27 @@ public class DaoFactory {
 			newsAttachDao = new NewsAttachDao();
 		}
 		return newsAttachDao;
+	}
+
+	public static IActivityDao getActivityDao() {
+		if (activityDao == null) {
+			activityDao = new ActivityDao();
+		}
+		return activityDao;
+	}
+
+	public static IActivityAttachDao getActivityAttachDao() {
+		if (activityAttachDao == null) {
+			activityAttachDao = new ActivityAttachDao();
+		}
+		return activityAttachDao;
+	}
+
+	public static IActivityVideoDao getActivityVideoDao() {
+		if (activityVideoDao == null) {
+			activityVideoDao = new ActivityVideoDao();
+		}
+		return activityVideoDao;
 	}
 	
 	

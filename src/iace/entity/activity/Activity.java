@@ -19,15 +19,25 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import iace.entity.BaseLinkiacEntity;
+import iace.entity.option.BaseOption;
 
 @Entity
 @Table(name = "ACTIVITY")
 public class Activity extends BaseLinkiacEntity {
-
 	private static final long serialVersionUID = -6881036457895017672L;
 	
+	private static List<BaseOption> categoryList = new ArrayList<BaseOption>();
+	static {
+		categoryList.add(new BaseOption("成果發表", "成果發表"));
+		categoryList.add(new BaseOption("計畫宣導", "計畫宣導"));
+		categoryList.add(new BaseOption("媒合會", "媒合會"));
+		categoryList.add(new BaseOption("人培課程", "人培課程"));
+		categoryList.add(new BaseOption("計畫研習", "計畫研習"));
+		categoryList.add(new BaseOption("外部活動", "外部活動"));
+	}
+	
 	private long id;
-	private String category; //成果發表, 計畫宣導, 媒合會, 人培課程, 計畫研習, 外部活動
+	private String category;
 	private String title;
 	private String source;
 	private Date postDate;
@@ -193,5 +203,8 @@ public class Activity extends BaseLinkiacEntity {
 		this.videoList = videoList;
 	}
 
-	
+	public static List<BaseOption> getCategoryList() {
+		return categoryList;
+	}
+
 }

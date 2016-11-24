@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 
 import iace.entity.sysAuth.sysApplication.SysApp;
 import iace.entity.sysAuth.sysApplication.SysAppAbout;
+import iace.entity.sysAuth.sysApplication.SysAppActivity;
 import iace.entity.sysAuth.sysApplication.SysAppConsulting;
 import iace.entity.sysAuth.sysApplication.SysAppCoopEx;
 import iace.entity.sysAuth.sysApplication.SysAppEnterpriseNeed;
@@ -47,6 +48,7 @@ public class SysAuth {
 	private SysAppAbout about = new SysAppAbout();
 	private SysAppFaq faq = new SysAppFaq();
 	private SysAppNews news = new SysAppNews();
+	private SysAppActivity activity = new SysAppActivity();
 	
 	public SysAuth() {
 		Properties prop = new Properties();
@@ -78,6 +80,7 @@ public class SysAuth {
 		sysApps.add(this.about);
 		sysApps.add(this.faq);
 		sysApps.add(this.news);
+		sysApps.add(this.activity);
 		return sysApps;
 	}
 
@@ -194,6 +197,8 @@ public class SysAuth {
 	public SysAppNews getNews() {
 		return news;
 	}
-	
-	
+
+	public SysAppActivity getActivity() {
+		return activity;
+	}
 }

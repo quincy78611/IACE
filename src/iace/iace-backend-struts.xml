@@ -4,10 +4,6 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
-	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
-	<constant name="struts.devMode" value="true" />
-	
 	<package name="ResearchPlan" namespace="/researchPlan" extends="struts-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 			
@@ -692,6 +688,49 @@
 			<result name="success">/WEB-INF/jsp/backend/news/index.jsp</result>
 		</action>
 		<action name="downloadAttach" class="iace.action.NewsAction" method="downloadAttach">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
+	
+	<package name="Activity" namespace="/activity" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.ActivityAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/activity/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.ActivityAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/activity/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/activity/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.ActivityAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/activity/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.ActivityAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/activity/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.ActivityAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/activity/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/activity/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.ActivityAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/activity/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.ActivityAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/activity/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/activity/detail.jsp</result>
+		</action>
+		<action name="delete" class="iace.action.ActivityAction" method="delete">
+			<result name="success">/WEB-INF/jsp/backend/activity/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.ActivityAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/activity/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/activity/index.jsp</result>
+		</action>
+		<action name="downloadAttach" class="iace.action.ActivityAction" method="downloadAttach">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">downloadFileInputStream</param>

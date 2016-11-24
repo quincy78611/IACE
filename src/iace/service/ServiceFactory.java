@@ -2,6 +2,8 @@ package iace.service;
 
 import iace.dao.DaoFactory;
 import iace.service.about.AboutService;
+import iace.service.activity.ActivityAttachService;
+import iace.service.activity.ActivityService;
 import iace.service.consulting.ConsultingService;
 import iace.service.coopExample.CoopExAttachFileService;
 import iace.service.coopExample.CoopExImgService;
@@ -105,6 +107,9 @@ public class ServiceFactory {
 	
 	private static NewsService newsService;
 	private static NewsAttachService newsAttachService;
+	
+	private static ActivityService activityService;
+	private static ActivityAttachService activityAttachService;
 	
 	// =========================================================================
 	
@@ -442,6 +447,22 @@ public class ServiceFactory {
 			newsAttachService = new NewsAttachService(DaoFactory.getNewsAttachDao());
 		}
 		return newsAttachService;
+	}
+
+	public static ActivityService getActivityService() {
+		if (activityService == null) {
+			activityService = new ActivityService(
+					DaoFactory.getActivityDao(),
+					DaoFactory.getActivityVideoDao());
+		}
+		return activityService;
+	}
+	
+	public static ActivityAttachService getActivityAttachService() {
+		if (activityAttachService == null) {
+			activityAttachService = new ActivityAttachService(DaoFactory.getActivityAttachDao());
+		}
+		return activityAttachService;
 	}
 	
 	

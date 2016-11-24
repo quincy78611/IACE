@@ -4,10 +4,6 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
-	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
-	<constant name="struts.devMode" value="true" />
-	
 	<package name="Home" namespace="/home" extends="struts-default, default">
 		<action name="init" class="iace.action.HomeAction" method="init">
 			<result>/WEB-INF/jsp/frontend/home.jsp</result>

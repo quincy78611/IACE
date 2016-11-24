@@ -4,10 +4,6 @@
 	"http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
-	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
-	<constant name="struts.devMode" value="true" />
-	
 	<package name="sysRole" namespace="/sysRole" extends="struts-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.SysRoleAction" method="init">

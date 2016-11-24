@@ -27,12 +27,12 @@
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/pageBtnList.css"/>" />
 
-    <s:if test="%{title != null && title != ''}">
-   		<title><s:property value="title" /></title>
-   	</s:if>
-   	<s:else>
-   		<title><decorator:title default="Welcome!" /></title>
-   	</s:else>
+	<s:if test="%{title != null && title != ''}">
+		<title><s:property value="title" /></title>
+	</s:if>
+	<s:else>
+		<title><decorator:title default="Welcome!" /></title>
+	</s:else>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -43,9 +43,9 @@
 			});
 			
 			setInterval(function () {
-                /* $("#div-top-message").attr("hidden", "hidden"); */
-                $("#div-top-message").hide();
-            }, 5000);
+				/* $("#div-top-message").attr("hidden", "hidden"); */
+				$("#div-top-message").hide();
+			}, 5000);
 		});
 	</script>
 
@@ -58,31 +58,31 @@
 				<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
 			</a>	
 		</div>
- 	    <div class="Link">
- 	    	<s:if test="#session.sysUser == null">
- 	    		<a href="<s:url value="/login/login"/>" class="login">登入</a>
- 	    	</s:if>
- 	    	<s:else>
- 	    		<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
- 	    		<a href="<s:url value="/login/logout"/>" class="login">登出</a>
- 	    	</s:else>
-	    </div>
+		<div class="Link">
+			<s:if test="#session.sysUser == null">
+				<a href="<s:url value="/login/login"/>" class="login">登入</a>
+			</s:if>
+			<s:else>
+				<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
+				<a href="<s:url value="/login/logout"/>" class="login">登出</a>
+			</s:else>
+		</div>
 	</header>
 	<article>
 		<div class="pageTitle">
-   			<s:if test="%{title != null && title != ''}">
-   				<h1 class="funcTitle">
-   					<s:property value="title" /> > <decorator:getProperty property="meta.funcPathText"/>
-   				</h1>
-   			</s:if>
-   			<h4 class="funcPath">
-   				
-   			</h4>
+			<s:if test="%{title != null && title != ''}">
+				<h1 class="funcTitle">
+					<s:property value="title" /> > <decorator:getProperty property="meta.funcPathText"/>
+				</h1>
+			</s:if>
+			<h4 class="funcPath">
+				
+			</h4>
 		</div>
-    	<div class="leftMenu">
-    		<div class="u-vmenu">
-    			<s:if test="#session.sysUser != null">
-	    			<ul>
+		<div class="leftMenu">
+			<div class="u-vmenu">
+				<s:if test="#session.sysUser != null">
+					<ul>
 						<li hidden="hidden"><a href="#">問卷調查模板</a>
 							<ul>
 								<li><a href="<s:url value="/qnrTemplate/init"/>">編輯管理</a></li>
@@ -113,7 +113,7 @@
 <%-- 								</s:iterator> --%>
 <!-- 							</ul> -->
 <!-- 						</li> -->
-	    				<s:include value="./iace_backend_menu/menu-qnrCooperateWay.jsp" />
+						<s:include value="./iace_backend_menu/menu-qnrCooperateWay.jsp" />
 						<s:include value="./iace_backend_menu/menu-researchPlan.jsp" />
 						<s:include value="./iace_backend_menu/menu-patent.jsp" />
 						<s:include value="./iace_backend_menu/menu-consulting.jsp" />
@@ -125,15 +125,16 @@
 						<s:include value="./iace_backend_menu/menu-about.jsp" />
 						<s:include value="./iace_backend_menu/menu-faq.jsp" />
 						<s:include value="./iace_backend_menu/menu-news.jsp" />
+						<s:include value="./iace_backend_menu/menu-activity.jsp" />
 						<s:include value="./iace_backend_menu/menu-option.jsp" />
 						<s:include value="./iace_backend_menu/menu-sys.jsp" />
 					</ul>
 				</s:if>
-    		</div>
+			</div>
 
-    	</div>
-    	<div class="rightContent">
-    		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
+		</div>
+		<div class="rightContent">
+			<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
 			<div id="div-top-message">
 				<s:if test="hasActionMessages()">
 					<s:actionmessage />
@@ -143,8 +144,8 @@
 				</s:if>
 			</div>
 			<decorator:body />
-    	</div>
-    	<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
 	</article>
 	<footer>
 		<div class="con">
