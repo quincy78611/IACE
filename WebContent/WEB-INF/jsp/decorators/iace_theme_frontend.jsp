@@ -89,8 +89,7 @@
 			<div id="link">
 				<a href="<s:url value="/home/init"/>">首頁</a>│
 				<a>關於I-ACE</a>│
-				<a>聯絡我們</a>│
-				<a href="<s:url value="/f/lucene/integrationSearchInit"/>">全站搜索</a>
+				<a>聯絡我們</a>
 			</div>
 			<div class="clear"></div>
 			<s:if test="%{title != null && title != ''}">
