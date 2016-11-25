@@ -22,8 +22,13 @@
 .rightContent li.all { width:99%; margin-right:1%;}
 .rightContent li.half { width:49%; margin-right:1%;}
 .rightContent li.third { width:32%; margin-right:1%;}
+.rightContent li.twoThird { width: 65%; margin-right:1%;}
 .rightContent li.quarter { width:24%; margin-right:1%;}
+.rightContent li.threeFourth { width:74; margin-right:1%;}
 .rightContent li.eighth { width:11.5%; margin-right:1%;}
+.rightContent li.threeEighth { width:36.5%; margin-right:1%;}
+.rightContent li.fiveEighth { width:61.5%; margin-right:1%;}
+.rightContent li.sevenEighth { width:86.5%; margin-right:1%;}
 
 .rightContent li select { width:100%; border:#e6eff5 1px solid; padding: 7px 5px; font-size:0.80em; font-family:"·L³n¥¿¶ÂÅé";}
 .rightContent li input[type=date],

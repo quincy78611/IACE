@@ -32,6 +32,8 @@ import iace.dao.incubationCenter.IIncubationCenterDao;
 import iace.dao.incubationCenter.IncubationCenterDao;
 import iace.dao.literature.ILiteratureDao;
 import iace.dao.literature.LiteratureDao;
+import iace.dao.member.IMemberDao;
+import iace.dao.member.MemberDao;
 import iace.dao.news.INewsAttachDao;
 import iace.dao.news.INewsDao;
 import iace.dao.news.NewsAttachDao;
@@ -163,6 +165,8 @@ public class DaoFactory {
 	private static IActivityDao activityDao;
 	private static IActivityAttachDao activityAttachDao;
 	private static IActivityVideoDao activityVideoDao;
+	
+	private static IMemberDao memberDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -499,6 +503,13 @@ public class DaoFactory {
 			activityVideoDao = new ActivityVideoDao();
 		}
 		return activityVideoDao;
+	}
+
+	public static IMemberDao getMemberDao() {
+		if (memberDao == null) {
+			memberDao = new MemberDao();
+		}
+		return memberDao;
 	}
 	
 	

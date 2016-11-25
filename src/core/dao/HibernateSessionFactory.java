@@ -29,6 +29,7 @@ import iace.entity.homeScrollingText.HomeScrollingText;
 import iace.entity.incubationCenter.IncubationCenter;
 import iace.entity.industryNews.IndustryNews;
 import iace.entity.literature.Literature;
+import iace.entity.member.Member;
 import iace.entity.news.News;
 import iace.entity.news.NewsAttach;
 import iace.entity.option.OptionCompanyLocation;
@@ -228,5 +229,6 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(News.class);
     	configuration.addAnnotatedClass(NewsAttach.class); 	
     	
+    	configuration.addAnnotatedClass(Member.class);
     }
 }

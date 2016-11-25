@@ -14,6 +14,7 @@ import iace.service.faq.FaqService;
 import iace.service.incubationCenter.IncubationCenterService;
 import iace.service.literature.LiteratureService;
 import iace.service.lucene.LuceneIndexService;
+import iace.service.member.MemberService;
 import iace.service.news.NewsAttachService;
 import iace.service.news.NewsService;
 import iace.service.option.OptionCompanyLocationService;
@@ -110,6 +111,8 @@ public class ServiceFactory {
 	
 	private static ActivityService activityService;
 	private static ActivityAttachService activityAttachService;
+	
+	private static MemberService memberService;
 	
 	// =========================================================================
 	
@@ -465,5 +468,13 @@ public class ServiceFactory {
 		return activityAttachService;
 	}
 	
-	
+	public static MemberService getMemberService() {
+		if (memberService == null) {
+			memberService = new MemberService(
+					DaoFactory.getMemberDao(), 
+					DaoFactory.getOptionIndustryDao(), 
+					DaoFactory.getOptionDomainDao());
+		}
+		return memberService;
+	}
 }

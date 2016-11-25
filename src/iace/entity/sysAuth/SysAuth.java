@@ -16,6 +16,7 @@ import iace.entity.sysAuth.sysApplication.SysAppEnterpriseNeed;
 import iace.entity.sysAuth.sysApplication.SysAppFaq;
 import iace.entity.sysAuth.sysApplication.SysAppIncubationCenter;
 import iace.entity.sysAuth.sysApplication.SysAppLiterature;
+import iace.entity.sysAuth.sysApplication.SysAppMember;
 import iace.entity.sysAuth.sysApplication.SysAppNews;
 import iace.entity.sysAuth.sysApplication.SysAppOptionManage;
 import iace.entity.sysAuth.sysApplication.SysAppPatent;
@@ -50,6 +51,8 @@ public class SysAuth {
 	private SysAppNews news = new SysAppNews();
 	private SysAppActivity activity = new SysAppActivity();
 	
+	private SysAppMember member = new SysAppMember();
+	
 	public SysAuth() {
 		Properties prop = new Properties();
 		try {
@@ -81,6 +84,7 @@ public class SysAuth {
 		sysApps.add(this.faq);
 		sysApps.add(this.news);
 		sysApps.add(this.activity);
+		sysApps.add(this.member);
 		return sysApps;
 	}
 
@@ -201,4 +205,10 @@ public class SysAuth {
 	public SysAppActivity getActivity() {
 		return activity;
 	}
+
+	public SysAppMember getMember() {
+		return member;
+	}
+	
+	
 }
