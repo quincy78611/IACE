@@ -99,7 +99,7 @@ public class ActivityAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.activityService.update(this.activity);
+			this.activityService.update(this.activity, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {

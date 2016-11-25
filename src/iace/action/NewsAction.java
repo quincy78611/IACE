@@ -99,7 +99,7 @@ public class NewsAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.newsService.update(this.news);
+			this.newsService.update(this.news, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {

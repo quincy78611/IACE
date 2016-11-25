@@ -89,7 +89,7 @@ public class FaqAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.faqService.update(this.faq);
+			this.faqService.update(this.faq, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
