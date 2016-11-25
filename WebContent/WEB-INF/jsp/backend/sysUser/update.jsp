@@ -27,7 +27,7 @@
 			</li>
 			<li class="half">
 				<b>密碼</b>
-				<s:password name="sysUser.password" autocomplete="off"/>
+				<s:password name="sysUser.password" autocomplete="off" showPassword="true"/>
 			</li>			
 			<li class="half">
 				<b>使用者姓名</b>
