@@ -187,6 +187,14 @@
 					<s:checkbox label="%{sysRole.sysAuth.member.opDelete.displayName}" name="sysRole.sysAuth.member.opDelete.auth" fieldValue="true"/>
 				</td>
 			</tr>
+			<tr>
+				<td><b><s:property value="sysRole.sysAuth.contactUs.displayName"/></b></td>
+				<td class="horizontalList">
+					<s:checkbox label="%{sysRole.sysAuth.contactUs.opView.displayName}" name="sysRole.sysAuth.contactUs.opView.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.contactUs.opCreate.displayName}" name="sysRole.sysAuth.contactUs.opCreate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.contactUs.opUpdate.displayName}" name="sysRole.sysAuth.contactUs.opUpdate.auth" fieldValue="true"/>
+				</td>
+			</tr>			
 		</table>
 
 		

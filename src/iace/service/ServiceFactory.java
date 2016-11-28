@@ -9,6 +9,7 @@ import iace.service.coopExample.CoopExAttachFileService;
 import iace.service.coopExample.CoopExImgService;
 import iace.service.coopExample.CoopExService;
 import iace.service.coopExample.CoopExVideoService;
+import iace.service.customerService.ContactUsService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
 import iace.service.faq.FaqService;
 import iace.service.incubationCenter.IncubationCenterService;
@@ -113,6 +114,8 @@ public class ServiceFactory {
 	private static ActivityAttachService activityAttachService;
 	
 	private static MemberService memberService;
+	
+	private static ContactUsService contactUsService;
 	
 	// =========================================================================
 	
@@ -477,4 +480,13 @@ public class ServiceFactory {
 		}
 		return memberService;
 	}
+
+	public static ContactUsService getContactUsService() {
+		if (contactUsService == null) {
+			contactUsService = new ContactUsService(DaoFactory.getContactUsDao());
+		}
+		return contactUsService;
+	}
+	
+	
 }

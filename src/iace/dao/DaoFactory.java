@@ -18,6 +18,8 @@ import iace.dao.coopExample.ICoopExAttachFileDao;
 import iace.dao.coopExample.ICoopExDao;
 import iace.dao.coopExample.ICoopExImgDao;
 import iace.dao.coopExample.ICoopExVideoDao;
+import iace.dao.customerService.ContactUsDao;
+import iace.dao.customerService.IContactUsDao;
 import iace.dao.enterpriseNeed.EnterpriseAcademiaCoopDao;
 import iace.dao.enterpriseNeed.EnterpriseInfoDao;
 import iace.dao.enterpriseNeed.EnterpriseRequireTechDao;
@@ -167,6 +169,8 @@ public class DaoFactory {
 	private static IActivityVideoDao activityVideoDao;
 	
 	private static IMemberDao memberDao;
+	
+	private static IContactUsDao contactUsDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -510,6 +514,13 @@ public class DaoFactory {
 			memberDao = new MemberDao();
 		}
 		return memberDao;
+	}
+
+	public static IContactUsDao getContactUsDao() {
+		if (contactUsDao == null) {
+			contactUsDao = new ContactUsDao();
+		}
+		return contactUsDao;
 	}
 	
 	

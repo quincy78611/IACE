@@ -773,4 +773,27 @@
 			<result name="success">/WEB-INF/jsp/backend/member/index.jsp</result>
 		</action>
 	</package>
+	<package name="ContactUs" namespace="/contactUs" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.ContactUsAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/contactUs/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.ContactUsAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/contactUs/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/contactUs/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.ContactUsAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/contactUs/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.ContactUsAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/contactUs/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.ContactUsAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/contactUs/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/contactUs/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.ContactUsAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/contactUs/index.jsp</result>
+		</action>
+	</package>
 </struts>
