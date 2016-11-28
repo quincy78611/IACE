@@ -41,6 +41,7 @@
 <!-- 				</li> -->
 			</ul>
 		</s:form>
+		<b>!!! 注意 : 會依據匯入資料的ID欄位來辨識資料為新增或更新，或該ID已存在於現有資料庫則更新該筆資料否則新增 !!!</b>
 	</div>
 	
 	<s:if test="batchImportResult != null">
