@@ -28,7 +28,7 @@ import iace.entity.enterpriseNeed.EnterpriseSituation;
 import iace.entity.faq.Faq;
 import iace.entity.homeScrollingText.HomeScrollingText;
 import iace.entity.incubationCenter.IncubationCenter;
-import iace.entity.industryNews.IndustryNews;
+import iace.entity.industryInfo.IndustryInfo;
 import iace.entity.literature.Literature;
 import iace.entity.member.Member;
 import iace.entity.news.News;
@@ -226,7 +226,7 @@ public class HibernateSessionFactory {
     	configuration.addAnnotatedClass(ActivityVideo.class);
     	configuration.addAnnotatedClass(Faq.class);
     	configuration.addAnnotatedClass(HomeScrollingText.class);
-    	configuration.addAnnotatedClass(IndustryNews.class);
+    	configuration.addAnnotatedClass(IndustryInfo.class);
     	configuration.addAnnotatedClass(News.class);
     	configuration.addAnnotatedClass(NewsAttach.class); 	
     	

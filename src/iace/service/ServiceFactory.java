@@ -13,6 +13,7 @@ import iace.service.customerService.ContactUsService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
 import iace.service.faq.FaqService;
 import iace.service.incubationCenter.IncubationCenterService;
+import iace.service.industryInfo.IndustryInfoService;
 import iace.service.literature.LiteratureService;
 import iace.service.lucene.LuceneIndexService;
 import iace.service.member.MemberService;
@@ -116,6 +117,8 @@ public class ServiceFactory {
 	private static MemberService memberService;
 	
 	private static ContactUsService contactUsService;
+	
+	private static IndustryInfoService industryInfoService; 
 	
 	// =========================================================================
 	
@@ -486,6 +489,13 @@ public class ServiceFactory {
 			contactUsService = new ContactUsService(DaoFactory.getContactUsDao());
 		}
 		return contactUsService;
+	}
+
+	public static IndustryInfoService getIndustryInfoService() {
+		if (industryInfoService == null) {
+			industryInfoService = new IndustryInfoService(DaoFactory.getIndustryInfoDao());
+		}
+		return industryInfoService;
 	}
 	
 	

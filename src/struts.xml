@@ -31,7 +31,7 @@
 		<default-action-ref name="index" />
 	
 		<global-results>
-			<result name="error">/WEB-INF/jsp/error.jsp</result>
+<!-- 			<result name="error">/WEB-INF/jsp/error.jsp</result> -->
 <!-- 			<result name="login" type="redirectAction"> -->
 <!-- 				<param name="namespace">/login</param> -->
 <!-- 				<param name="actionName">login</param> -->

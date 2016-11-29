@@ -1,6 +1,8 @@
-package iace.entity.industryNews;
+package iace.entity.industryInfo;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,12 +12,18 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import iace.entity.BaseLinkiacEntity;
+import iace.entity.BaseEntity;
+import iace.entity.option.BaseOption;
 
 @Entity
-@Table(name = "INDUSTRY_NEWS")
-public class IndustryNews extends BaseLinkiacEntity {
+@Table(name = "INDUSTRY_INFO")
+public class IndustryInfo extends BaseEntity {
 	private static final long serialVersionUID = -4348180685333981591L;
+	private static List<BaseOption> categoryList = new ArrayList<BaseOption>();
+	static {
+		categoryList.add(new BaseOption("產業新聞", "產業新聞"));
+		categoryList.add(new BaseOption("產業評析", "產業評析"));
+	}
 	
 	private long id;
 	private String category; // 產業新聞, 產業評析
@@ -26,8 +34,8 @@ public class IndustryNews extends BaseLinkiacEntity {
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_NEWS_ID")
-	@SequenceGenerator(name = "SEQ_NEWS_ID", sequenceName = "SEQ_NEWS_ID", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_INDUSTRY_INFO_ID")
+	@SequenceGenerator(name = "SEQ_INDUSTRY_INFO_ID", sequenceName = "SEQ_INDUSTRY_INFO_ID", allocationSize = 1, initialValue = 1)
 	public long getId() {
 		return id;
 	}
@@ -81,4 +89,9 @@ public class IndustryNews extends BaseLinkiacEntity {
 		this.postDate = postDate;
 	}
 
+	public static List<BaseOption> getCategoryList() {
+		return categoryList;
+	}
+
+	 
 }

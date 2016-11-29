@@ -32,6 +32,8 @@ import iace.dao.faq.FaqDao;
 import iace.dao.faq.IFaqDao;
 import iace.dao.incubationCenter.IIncubationCenterDao;
 import iace.dao.incubationCenter.IncubationCenterDao;
+import iace.dao.industryInfo.IIndustryInfoDao;
+import iace.dao.industryInfo.IndustryInfoDao;
 import iace.dao.literature.ILiteratureDao;
 import iace.dao.literature.LiteratureDao;
 import iace.dao.member.IMemberDao;
@@ -171,6 +173,8 @@ public class DaoFactory {
 	private static IMemberDao memberDao;
 	
 	private static IContactUsDao contactUsDao;
+	
+	private static IIndustryInfoDao industryInfoDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -521,6 +525,13 @@ public class DaoFactory {
 			contactUsDao = new ContactUsDao();
 		}
 		return contactUsDao;
+	}
+
+	public static IIndustryInfoDao getIndustryInfoDao() {
+		if (industryInfoDao == null) {
+			industryInfoDao = new IndustryInfoDao();
+		}
+		return industryInfoDao;
 	}
 	
 	
