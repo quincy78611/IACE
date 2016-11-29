@@ -185,26 +185,26 @@ tr.hidden-sample-tr { display:none; }
 			<tbody>
 				<s:iterator value="talentedPeople.rdResults" status="stat">
 				<tr>
-					<s:hidden class="id" name="%{'talentedPeople.rdResults['+#stat.index+'].id'}"/>
-					<s:hidden class="isValid" name="%{'talentedPeople.rdResults['+#stat.index+'].isValid'}"/>
-					<s:hidden class="createTime" name="%{'talentedPeople.rdResults['+#stat.index+'].createTime'}"/>
-					<s:hidden class="createUser" name="%{'talentedPeople.rdResults['+#stat.index+'].createUser'}"/>
-					<s:hidden class="updateTime" name="%{'talentedPeople.rdResults['+#stat.index+'].updateTime'}"/>
-					<s:hidden class="updateUser" name="%{'talentedPeople.rdResults['+#stat.index+'].updateUser'}"/>
-					<s:hidden class="ver" name="%{'talentedPeople.rdResults['+#stat.index+'].ver'}"/>
-					<s:hidden class="name" name="%{'talentedPeople.rdResults['+#stat.index+'].name'}"/>
-					<s:hidden class="type" name="%{'talentedPeople.rdResults['+#stat.index+'].type'}"/>
-					<s:hidden class="inventer" name="%{'talentedPeople.rdResults['+#stat.index+'].inventer'}"/>
-					<s:hidden class="owner" name="%{'talentedPeople.rdResults['+#stat.index+'].owner'}"/>
-					<s:hidden class="patentNo" name="%{'talentedPeople.rdResults['+#stat.index+'].patentNo'}"/>
-					<s:hidden class="country" name="%{'talentedPeople.rdResults['+#stat.index+'].optionCountry.id'}"/>
-					<s:hidden class="patentPeriodStart" name="%{'talentedPeople.rdResults['+#stat.index+'].patentPeriodStart'}"/>
-					<s:hidden class="patentPeriodEnd" name="%{'talentedPeople.rdResults['+#stat.index+'].patentPeriodEnd'}"/>
-					<s:hidden class="patentAbstract" name="%{'talentedPeople.rdResults['+#stat.index+'].patentAbstract'}"/>
-					<s:hidden class="usage" name="%{'talentedPeople.rdResults['+#stat.index+'].usage'}"/>
-					<s:hidden class="updateDate" name="%{'talentedPeople.rdResults['+#stat.index+'].updateDate'}"/>
-					<s:hidden class="priority" name="%{'talentedPeople.rdResults['+#stat.index+'].priority'}"/>
-					
+					<s:hidden class="id" value="%{id}"/>
+					<s:hidden class="isValid" value="%{isValid}"/>
+					<s:hidden class="createTime" value="%{createTime}"/>
+					<s:hidden class="createUser" value="%{createUser}"/>
+					<s:hidden class="updateTime" value="%{updateTime}"/>
+					<s:hidden class="updateUser" value="%{updateUser}"/>
+					<s:hidden class="ver" value="%{ver}"/>
+					<s:hidden class="name" value="%{name}"/>
+					<s:hidden class="type" value="%{type}"/>
+					<s:hidden class="inventer" value="%{inventer}"/>
+					<s:hidden class="owner" value="%{owner}"/>
+					<s:hidden class="patentNo" value="%{patentNo}"/>
+					<s:hidden class="country" value="%{optionCountry.id}"/>
+					<s:hidden class="patentPeriodStart" value="%{patentPeriodStart}"/>
+					<s:hidden class="patentPeriodEnd" value="%{patentPeriodEnd}"/>
+					<s:hidden class="patentAbstract" value="%{patentAbstract}"/>
+					<s:hidden class="usage" value="%{usage}"/>
+					<s:hidden class="updateDate" value="%{updateDate}"/>
+					<s:hidden class="priority" value="%{priority}"/>
+				
 					<td class="td-No">
 						<s:property value="%{#stat.index+1}" />
 					</td>
@@ -252,7 +252,7 @@ tr.hidden-sample-tr { display:none; }
 					<s:hidden class="monthEnd" />
 					<s:hidden class="updateDate" />
 					<s:hidden class="priority" />
-								
+					
 					<td class="td-No">No.</td>
 					<td class="td-applyField"></td>
 					<td class="td-targetOrg"></td>
@@ -267,21 +267,21 @@ tr.hidden-sample-tr { display:none; }
 			<tbody>
 				<s:iterator value="talentedPeople.transferCases" status="stat">
 				<tr>
-					<s:hidden class="id" name="%{'talentedPeople.transferCases['+#stat.index+'].id'}"/>
-					<s:hidden class="isValid" name="%{'talentedPeople.transferCases['+#stat.index+'].isValid'}"/>
-					<s:hidden class="createTime" name="%{'talentedPeople.transferCases['+#stat.index+'].createTime'}"/>
-					<s:hidden class="createUser" name="%{'talentedPeople.transferCases['+#stat.index+'].createUser'}"/>
-					<s:hidden class="updateTime" name="%{'talentedPeople.transferCases['+#stat.index+'].updateTime'}"/>
-					<s:hidden class="updateUser" name="%{'talentedPeople.transferCases['+#stat.index+'].updateUser'}"/>
-					<s:hidden class="ver" name="%{'talentedPeople.transferCases['+#stat.index+'].ver'}"/>
-					<s:hidden class="applyField" name="%{'talentedPeople.transferCases['+#stat.index+'].applyField'}"/>
-					<s:hidden class="targetOrg" name="%{'talentedPeople.transferCases['+#stat.index+'].targetOrg'}"/>
-					<s:hidden class="yearStart" name="%{'talentedPeople.transferCases['+#stat.index+'].yearStart'}"/>
-					<s:hidden class="monthStart" name="%{'talentedPeople.transferCases['+#stat.index+'].monthStart'}"/>
-					<s:hidden class="yearEnd" name="%{'talentedPeople.transferCases['+#stat.index+'].yearEnd'}"/>
-					<s:hidden class="monthEnd" name="%{'talentedPeople.transferCases['+#stat.index+'].monthEnd'}"/>
-					<s:hidden class="updateDate" name="%{'talentedPeople.transferCases['+#stat.index+'].updateDate'}"/>
-					<s:hidden class="priority" name="%{'talentedPeople.transferCases['+#stat.index+'].priority'}"/>
+					<s:hidden class="id" value="%{id}"/>
+					<s:hidden class="isValid" value="%{isValid}"/>
+					<s:hidden class="createTime" value="%{createTime}"/>
+					<s:hidden class="createUser" value="%{createUser}"/>
+					<s:hidden class="updateTime" value="%{updateTime}"/>
+					<s:hidden class="updateUser" value="%{updateUser}"/>
+					<s:hidden class="ver" value="%{ver}"/>
+					<s:hidden class="applyField" value="%{applyField}"/>
+					<s:hidden class="targetOrg" value="%{targetOrg}"/>
+					<s:hidden class="yearStart" value="%{yearStart}"/>
+					<s:hidden class="monthStart" value="%{monthStart}"/>
+					<s:hidden class="yearEnd" value="%{yearEnd}"/>
+					<s:hidden class="monthEnd" value="%{monthEnd}"/>
+					<s:hidden class="updateDate" value="%{updateDate}"/>
+					<s:hidden class="priority" value="%{priority}"/>
 				
 					<td class="td-No">
 						<s:property value="%{#stat.index+1}" />
@@ -435,6 +435,7 @@ tr.hidden-sample-tr { display:none; }
 					<b>4.所有權人</b>
 					<input type="text" class="owner" maxlength="100"/>
 				</li>
+				<li class="all clear"></li>
 				<li class="quarter">
 					<b>5.專利號(申請中請填申請號)</b>
 					<input type="text" class="patentNo" maxlength="100"/>
@@ -451,6 +452,7 @@ tr.hidden-sample-tr { display:none; }
 					<b>7.專利期間(迄)</b>
 					<input type="text" class="patentPeriodEnd calendarBox" maxlength="10" placeholder="格式範例:2016/12/30"/>				
 				</li>
+				<li class="all clear"></li>
 				<li class="all">
 					<b>8.摘要(請說明成果重點與特色)</b>
 					<s:textarea class="patentAbstract" rows="3"/>

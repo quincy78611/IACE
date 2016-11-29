@@ -2,6 +2,10 @@ $(document).ready(function() {
 	rdResultSetting();
 	transferCaseSetting();
 	mainProjectSetting();
+	
+	resetRdResultNameAttr();
+	resetTransferCaseNameAttr();
+	resetMainProjectNameAttr();
 });
 
 //==============================================================================
