@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import core.util.PagedList;
+import iace.dao.ClickNumCounterDao;
 import iace.entity.DbFile;
 import iace.entity.activity.Activity;
 import iace.entity.activity.ActivityAttach;
@@ -52,6 +53,7 @@ public class ActivityAction extends BaseIaceAction {
 	
 	public String showDetail() {
 		try {
+			new ClickNumCounterDao().increaseClickNum(this.id, Activity.class);
 			this.activity = this.activityService.get(this.id);
 			return SUCCESS;
 		} catch (Exception e) {

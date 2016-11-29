@@ -85,7 +85,7 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 		}
 		return list;
 	}
-
+	
 	@Override
 	public CoopEx get(Long id) {
 		CoopEx entity = this.dao.get(id);

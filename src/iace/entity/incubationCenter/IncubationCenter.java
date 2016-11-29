@@ -45,6 +45,8 @@ public class IncubationCenter extends BaseEntity implements IntegrationSearch {
 	private String url;
 	private String orgHistory;
 
+	private int clickNum;
+
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_INCUBATION_CENTER_ID")
@@ -181,6 +183,15 @@ public class IncubationCenter extends BaseEntity implements IntegrationSearch {
 
 	public void setOrgHistory(String orgHistory) {
 		this.orgHistory = orgHistory;
+	}
+	
+	@Column(name = "CLICK_NUM")
+	public int getClickNum() {
+		return clickNum;
+	}
+
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
 	}
 
 	@Override

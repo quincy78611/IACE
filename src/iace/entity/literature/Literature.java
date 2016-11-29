@@ -43,6 +43,8 @@ public class Literature extends BaseEntity implements IntegrationSearch {
 	private String country; // 探討國別
 	private String category; // 資料分類(文獻/法規政策)
 
+	private int clickNum;
+
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_LITERATURE_ID")
@@ -269,6 +271,15 @@ public class Literature extends BaseEntity implements IntegrationSearch {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	
+	@Column(name = "CLICK_NUM")
+	public int getClickNum() {
+		return clickNum;
+	}
+
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
 	}
 
 	@Override

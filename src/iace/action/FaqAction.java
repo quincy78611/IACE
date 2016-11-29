@@ -3,6 +3,7 @@ package iace.action;
 import java.util.List;
 
 import core.util.PagedList;
+import iace.dao.ClickNumCounterDao;
 import iace.entity.faq.Faq;
 import iace.entity.faq.FaqSearchModel;
 import iace.entity.option.BaseOption;
@@ -42,6 +43,7 @@ public class FaqAction extends BaseIaceAction {
 	
 	public String showDetail() {
 		try {
+			new ClickNumCounterDao().increaseClickNum(this.id, Faq.class);
 			this.faq = this.faqService.get(this.id);
 			return SUCCESS;
 		} catch (Exception e) {

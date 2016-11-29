@@ -1,6 +1,7 @@
 package iace.action;
 
 import core.util.PagedList;
+import iace.dao.ClickNumCounterDao;
 import iace.entity.about.About;
 import iace.entity.about.AboutSearchModel;
 import iace.service.ServiceFactory;
@@ -37,6 +38,7 @@ public class AboutAction extends BaseIaceAction {
 	
 	public String showDetail() {
 		try {
+			new ClickNumCounterDao().increaseClickNum(this.id, About.class);
 			this.about = this.aboutService.get(this.id);
 			return SUCCESS;
 		} catch (Exception e) {

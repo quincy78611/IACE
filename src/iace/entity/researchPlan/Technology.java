@@ -40,6 +40,8 @@ public class Technology extends BaseEntity implements IntegrationSearch {
 	private List<OptionTrl> optionTrlList = new ArrayList<OptionTrl>();
 	private String trlDesc;
 
+	private int clickNum;
+
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_TECHNOLOGY_ID")
@@ -141,6 +143,15 @@ public class Technology extends BaseEntity implements IntegrationSearch {
 		this.trlDesc = trlDesc;
 	}
 
+	@Column(name = "CLICK_NUM")
+	public int getClickNum() {
+		return clickNum;
+	}
+
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
+	}
+	
 	@Override
 	public String toSysLog() {
 		String s = 

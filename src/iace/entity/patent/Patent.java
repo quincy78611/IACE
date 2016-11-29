@@ -57,6 +57,8 @@ public class Patent extends BaseEntity implements IntegrationSearch {
 	private String usage;
 	private OptionTrl trl;
 	private String trlDesc;
+
+	private int clickNum;
 	
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -319,6 +321,15 @@ public class Patent extends BaseEntity implements IntegrationSearch {
 
 	public void setTrlDesc(String trlDesc) {
 		this.trlDesc = trlDesc;
+	}
+	
+	@Column(name = "CLICK_NUM")
+	public int getClickNum() {
+		return clickNum;
+	}
+
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
 	}
 	
 	public List<String> validate() {

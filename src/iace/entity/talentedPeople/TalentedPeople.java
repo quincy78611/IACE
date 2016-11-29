@@ -66,6 +66,8 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 	
 	private SysUser sysUser;
 
+	private int clickNum;
+
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_TALENTED_PEOPLE_ID")
@@ -373,6 +375,15 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 
 	public void setSysUser(SysUser sysUser) {
 		this.sysUser = sysUser;
+	}
+	
+	@Column(name = "CLICK_NUM")
+	public int getClickNum() {
+		return clickNum;
+	}
+
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
 	}
 
 	@Override

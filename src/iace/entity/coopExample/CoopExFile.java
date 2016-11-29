@@ -30,6 +30,8 @@ public class CoopExFile extends BaseEntity {
 	private transient File upload;
 	private transient String uploadContentType;
 	private transient String uploadFileName;
+
+	private int clickNum;
 	
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
@@ -119,5 +121,14 @@ public class CoopExFile extends BaseEntity {
 	@Transient 
 	public boolean hasUploadFile() {
 		return this.upload != null && this.uploadContentType != null && this.uploadFileName != null;
+	}
+	
+	@Column(name = "CLICK_NUM")
+	public int getClickNum() {
+		return clickNum;
+	}
+
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
 	}
 }

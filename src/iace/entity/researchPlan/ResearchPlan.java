@@ -51,6 +51,8 @@ public class ResearchPlan extends BaseEntity implements IntegrationSearch {
 	
 	private List<Technology> technologies = new ArrayList<Technology>();
 
+	private int clickNum;
+
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_RESEARCH_PLAN_ID")
@@ -299,6 +301,15 @@ public class ResearchPlan extends BaseEntity implements IntegrationSearch {
 		}		
 		this.technologies.addAll(technologies);
 	} 
+	
+	@Column(name = "CLICK_NUM")
+	public int getClickNum() {
+		return clickNum;
+	}
+
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
+	}
 
 	@Override
 	public void create() {

@@ -3,6 +3,7 @@ package iace.action;
 import java.io.InputStream;
 
 import core.util.PagedList;
+import iace.dao.ClickNumCounterDao;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.coopExample.CoopExAttachFile;
 import iace.entity.coopExample.CoopExImg;
@@ -55,6 +56,7 @@ public class CoopExAction extends BaseIaceAction {
 	
 	public String showDetail() {
 		try {
+			new ClickNumCounterDao().increaseClickNum(this.id, CoopEx.class);
 			this.coopEx = this.coopExService.get(this.id);
 			if (this.coopEx == null) {
 				super.addActionError("找不到資料!");
@@ -145,6 +147,7 @@ public class CoopExAction extends BaseIaceAction {
 	
 	public String downloadImage() {
 		try {
+			new ClickNumCounterDao().increaseClickNum(this.imgId, CoopExImg.class);
 			CoopExImg entity = this.coopExImgService.get(this.imgId); 
 			this.downloadFileInputStream = this.coopExImgService.getImageIS(entity);
 			this.downloadFileName = entity.getFileName();
@@ -159,6 +162,7 @@ public class CoopExAction extends BaseIaceAction {
 
 	public String downloadVideo() {
 		try {
+			new ClickNumCounterDao().increaseClickNum(this.videoId, CoopExVideo.class);
 			CoopExVideo entity = this.coopExVideoService.get(this.videoId); 
 			this.downloadFileInputStream = this.coopExVideoService.getVideoIS(entity);
 			this.downloadFileName = entity.getFileName();
@@ -172,6 +176,7 @@ public class CoopExAction extends BaseIaceAction {
 	
 	public String downloadAttach() {
 		try {
+			new ClickNumCounterDao().increaseClickNum(this.attachFileId, CoopExAttachFile.class);
 			CoopExAttachFile entity = this.coopExAttachFileService.get(this.attachFileId); 
 			this.downloadFileInputStream = this.coopExAttachFileService.getAttachFileIS(entity);
 			this.downloadFileName = entity.getFileName();

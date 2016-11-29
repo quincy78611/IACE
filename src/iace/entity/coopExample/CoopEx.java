@@ -38,6 +38,8 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 	private List<CoopExVideo> videos = new ArrayList<CoopExVideo>();
 	private List<CoopExAttachFile> attachFiles = new ArrayList<CoopExAttachFile>();
 
+	private int clickNum;
+
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_COOP_EX_ID")
@@ -141,6 +143,15 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 
 	public void setAttachFiles(List<CoopExAttachFile> attachFiles) {
 		this.attachFiles = attachFiles;
+	}
+	
+	@Column(name = "CLICK_NUM")
+	public int getClickNum() {
+		return clickNum;
+	}
+
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
 	}
 
 	//==========================================================================

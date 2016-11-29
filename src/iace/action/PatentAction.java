@@ -19,6 +19,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 import core.util.ExcelUtil;
 import core.util.PagedList;
+import iace.dao.ClickNumCounterDao;
 import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionTrl;
 import iace.entity.patent.Patent;
@@ -86,6 +87,7 @@ public class PatentAction extends BaseIaceAction {
 
 	public String showDetail() {
 		try {
+			new ClickNumCounterDao().increaseClickNum(this.id, Patent.class);
 			this.patent = this.patentService.get(this.id);
 			return SUCCESS;
 		} catch (Exception e) {

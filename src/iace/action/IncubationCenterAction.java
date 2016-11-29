@@ -10,6 +10,7 @@ import javax.servlet.ServletContext;
 import org.apache.struts2.ServletActionContext;
 
 import core.util.PagedList;
+import iace.dao.ClickNumCounterDao;
 import iace.entity.BaseBatchImportResult;
 import iace.entity.incubationCenter.IncubationCenter;
 import iace.entity.incubationCenter.IncubationCenterSearchModel;
@@ -59,6 +60,7 @@ public class IncubationCenterAction extends BaseIaceAction {
 	
 	public String showDetail() {
 		try {
+			new ClickNumCounterDao().increaseClickNum(this.id, IncubationCenter.class);
 			this.incubationCenter = this.incubationCenterService.get(this.id);
 			return SUCCESS;
 		} catch (Exception e) {
