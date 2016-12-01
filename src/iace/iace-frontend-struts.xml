@@ -83,22 +83,22 @@
 		</action>
 		
 		<action name="login" class="iace.action.TalentedPeopleAction" method="login">
-			<result>/WEB-INF/jsp/frontend/talentedPeople/login.jsp</result>
+			<result>/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
 		</action>
 		<action name="loginSubmit" class="iace.action.TalentedPeopleAction" method="loginSubmit">
 			<interceptor-ref name="iaceSysLog"/>
 			<interceptor-ref name="defaultStack"/>
 
-			<result name="input">/WEB-INF/jsp/frontend/talentedPeople/login.jsp</result>
-			<result name="success">/WEB-INF/jsp/frontend/talentedPeople/update.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
 		</action>
 		<action name="selfUpdateSubmit" class="iace.action.TalentedPeopleAction" method="selfUpdateSubmit">
 			<interceptor-ref name="iaceSession"/>
 			<interceptor-ref name="iaceBackendlogin"/>
 			<interceptor-ref name="defaultStack"/>
 		
-			<result name="input">/WEB-INF/jsp/frontend/talentedPeople/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/frontend/talentedPeople/detail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/detail.jsp</result>
 		</action>
 	</package>
 	

@@ -38,7 +38,6 @@ tr.hidden-sample-tr { display:none; }
 <meta name="funcPathText" content="編輯管理  > 編輯"/>
 </head>
 <body>
-<div class="rightContent frontend">
 	<s:form action="selfUpdateSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-update">
 		<div>
 			<s:hidden name="talentedPeople.id" />
@@ -613,7 +612,7 @@ tr.hidden-sample-tr { display:none; }
 			</div>
 		</div>	
 	</form>
-</div>
+
 <!-- ======================================================================= -->
 
 	<s:include value="./form-backToIndex.jsp" />

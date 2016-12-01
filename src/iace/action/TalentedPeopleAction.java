@@ -294,6 +294,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			super.addActionError("您只能維護自己的產學人才資料");
 			return ERROR;
 		}
+		this.searchCondition.setName(this.talentedPeople.getNameCh());
 		return updateSubmit();
 	}
 
