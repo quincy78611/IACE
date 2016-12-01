@@ -333,11 +333,11 @@
 			</result>	
 		</action>
 		<action name="fillInQnr" class="iace.action.QnrCooperateWayAction" method="fillInQnr">
-			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/qnrCooperateWay/qnrCooperateWay.jsp</result>
 		</action>
 		<action name="fillInQnrSubmit" class="iace.action.QnrCooperateWayAction" method="fillInQnrSubmit">
-			<result name="input">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWay.jsp</result>
-			<result name="success">/WEB-INF/jsp/qnr/qnrCooperateWay/qnrCooperateWayFinish.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend_noMenu/qnrCooperateWay/qnrCooperateWay.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/qnrCooperateWay/qnrCooperateWayFinish.jsp</result>
 		</action>				
 	</package>
 	
