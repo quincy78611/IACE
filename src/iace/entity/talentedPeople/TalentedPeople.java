@@ -24,6 +24,7 @@ import javax.persistence.Transient;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Type;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
@@ -67,6 +68,14 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 	private SysUser sysUser;
 
 	private int clickNum;
+	
+	private Boolean isPublicTel;
+	private Boolean isPublicEmail;
+	private Boolean isPublicRdResult;
+	private Boolean isPublicTransferCase;
+	private Boolean isPublicMainProject;
+	private Boolean isPublicRewardHistory;
+	private Boolean isPublicOtherExperience;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
@@ -384,6 +393,76 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 
 	public void setClickNum(int clickNum) {
 		this.clickNum = clickNum;
+	}
+	
+	@Column(name = "IS_PUBLIC_TEL")
+	@Type(type="true_false")
+	public Boolean getIsPublicTel() {
+		return isPublicTel;
+	}
+
+	public void setIsPublicTel(Boolean isPublicTel) {
+		this.isPublicTel = isPublicTel;
+	}
+
+	@Column(name = "IS_PUBLIC_EMAIL")
+	@Type(type="true_false")
+	public Boolean getIsPublicEmail() {
+		return isPublicEmail;
+	}
+
+	public void setIsPublicEmail(Boolean isPublicEmail) {
+		this.isPublicEmail = isPublicEmail;
+	}
+
+	@Column(name = "IS_PUBLIC_RD_RESULT")
+	@Type(type="true_false")
+	public Boolean getIsPublicRdResult() {
+		return isPublicRdResult;
+	}
+
+	public void setIsPublicRdResult(Boolean isPublicRdResult) {
+		this.isPublicRdResult = isPublicRdResult;
+	}
+
+	@Column(name = "IS_PUBLIC_TRANSFER_CASE")
+	@Type(type="true_false")
+	public Boolean getIsPublicTransferCase() {
+		return isPublicTransferCase;
+	}
+
+	public void setIsPublicTransferCase(Boolean isPublicTransferCase) {
+		this.isPublicTransferCase = isPublicTransferCase;
+	}
+
+	@Column(name = "IS_PUBLIC_MAIN_PROJECT")
+	@Type(type="true_false")
+	public Boolean getIsPublicMainProject() {
+		return isPublicMainProject;
+	}
+
+	public void setIsPublicMainProject(Boolean isPublicMainProject) {
+		this.isPublicMainProject = isPublicMainProject;
+	}
+
+	@Column(name = "IS_PUBLIC_REWARD_HISTORY")
+	@Type(type="true_false")
+	public Boolean getIsPublicRewardHistory() {
+		return isPublicRewardHistory;
+	}
+
+	public void setIsPublicRewardHistory(Boolean isPublicRewardHistory) {
+		this.isPublicRewardHistory = isPublicRewardHistory;
+	}
+
+	@Column(name = "IS_PUBLIC_OTHER_EXP")
+	@Type(type="true_false")
+	public Boolean getIsPublicOtherExperience() {
+		return isPublicOtherExperience;
+	}
+
+	public void setIsPublicOtherExperience(Boolean isPublicOtherExperience) {
+		this.isPublicOtherExperience = isPublicOtherExperience;
 	}
 
 	@Override

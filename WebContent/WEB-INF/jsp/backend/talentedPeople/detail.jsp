@@ -69,10 +69,18 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 					</li>
 					<li class="half">
 						<b>連絡電話</b>
+						<label>
+							<input type="checkbox" name="talentedPeople.isPublicTel" value="true" disabled="disabled" 
+								<s:property value="%{talentedPeople.isPublicTel ? 'checked' : ''}"/> />公開
+						</label>
 						<div class="border-text"><s:property value="talentedPeople.tel"/>&nbsp;</div>
 					</li>
 					<li class="half">
 						<b>e-mail</b>
+						<label>
+							<input type="checkbox" name="talentedPeople.isPublicEmail" value="true" disabled="disabled"
+								<s:property value="%{talentedPeople.isPublicEmail ? 'checked' : ''}"/> />公開
+						</label>
 						<div class="border-text"><s:property value="talentedPeople.email"/>&nbsp;</div>
 					</li>
 					<li class="half">
@@ -115,6 +123,10 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 	</ul>
 	
 	<b>重要研發成果(包含:專利,技術,IC佈局, 軟體…..)</b> 
+	<label>
+		<input type="checkbox" name="talentedPeople.isPublicRdResult" value="true" disabled="disabled"
+			<s:property value="%{talentedPeople.isPublicRdResult ? 'checked' : ''}"/> />公開
+	</label>
 	<table id="table-rdResult" >
 		<tr>
 			<th>研發成果名稱</th>
@@ -182,6 +194,10 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 	</table>
 	
 	<b>成果移轉及授權案例</b>
+	<label>
+		<input type="checkbox" name="talentedPeople.isPublicTransferCase" value="true" disabled="disabled"
+			<s:property value="%{talentedPeople.isPublicTransferCase ? 'checked' : ''}"/> />公開
+	</label>
 	<table id="table-transferCase">
 		<tr>
 			<th width="">應用領域</th>
@@ -204,6 +220,10 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 	</table>
 	
 	<b>主要產學合作計畫案例</b>
+	<label>
+		<input type="checkbox" name="talentedPeople.isPublicMainProject" value="true" disabled="disabled"
+			<s:property value="%{talentedPeople.isPublicMainProject ? 'checked' : ''}"/> />公開
+	</label>
 	<table id="table-mainProject">
 		<tr>
 			<th width="">合作計畫或合約名稱</th>
@@ -228,10 +248,18 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 	<ul>
 		<li class="all">
 			<b>產學獲獎事蹟</b>
+			<label>
+				<input type="checkbox" name="talentedPeople.isPublicRewardHistory" value="true" disabled="disabled"
+					<s:property value="%{talentedPeople.isPublicRewardHistory ? 'checked' : ''}"/> />公開
+			</label>
 			<s:textarea name="talentedPeople.rewardHistory" disabled="true" />
 		</li>
 		<li class="all">
 			<b>其他產業相關經驗 (如:任職過業界或法人, 或擔任過業界或法人顧問……等對產學合作有助益的經驗)</b>
+			<label>
+				<input type="checkbox" name="talentedPeople.isPublicOtherExperience" value="true" disabled="disabled"
+					<s:property value="%{talentedPeople.isPublicOtherExperience ? 'checked' : ''}"/> />公開
+			</label>
 			<s:textarea name="talentedPeople.otherExperience" disabled="true" />
 		</li>
 	</ul>

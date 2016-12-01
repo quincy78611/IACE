@@ -76,10 +76,18 @@ tr.hidden-sample-tr { display:none; }
 						</li>
 						<li class="half">
 							<b>連絡電話</b>
+							<label>
+								<input type="checkbox" name="talentedPeople.isPublicTel" value="true" 
+									<s:property value="%{talentedPeople.isPublicTel ? 'checked' : ''}"/> />公開
+							</label>
 							<s:textfield name="talentedPeople.tel" maxlength="20"/>
 						</li>
 						<li class="half">
 							<b>e-mail</b>
+							<label>
+								<input type="checkbox" name="talentedPeople.isPublicEmail" value="true" 
+									<s:property value="%{talentedPeople.isPublicEmail ? 'checked' : ''}"/> />公開
+							</label>
 							<s:textfield name="talentedPeople.email" maxlength="100"/>
 						</li>
 						<li class="half">
@@ -147,6 +155,10 @@ tr.hidden-sample-tr { display:none; }
 		
 		<b>重要研發成果(包含:專利,技術,IC佈局, 軟體…..)</b> 
 		<input type="button" id="add-rdResult" value="+"/>
+		<label>
+			<input type="checkbox" name="talentedPeople.isPublicRdResult" value="true" 
+				<s:property value="%{talentedPeople.isPublicRdResult ? 'checked' : ''}"/> />公開
+		</label>
 		<table id="table-rdResult">
 			<thead>
 				<tr>
@@ -231,6 +243,10 @@ tr.hidden-sample-tr { display:none; }
 		
 		<b>成果移轉及授權案例</b>
 		<input type="button" id="add-transferCases" value="+"/>
+		<label>
+			<input type="checkbox" name="talentedPeople.isPublicTransferCase" value="true" 
+				<s:property value="%{talentedPeople.isPublicTransferCase ? 'checked' : ''}"/> />公開
+		</label>
 		<table id="table-transferCase">
 			<thead>
 				<tr>
@@ -312,6 +328,10 @@ tr.hidden-sample-tr { display:none; }
 		
 		<b>主要產學合作計畫案例</b>
 		<input type="button" id="add-mainProject" value="+"/>
+		<label>
+			<input type="checkbox" name="talentedPeople.isPublicMainProject" value="true" 
+				<s:property value="%{talentedPeople.isPublicMainProject ? 'checked' : ''}"/> />公開
+		</label>
 		<table id="table-mainProject">
 			<thead>
 				<tr>
@@ -394,10 +414,18 @@ tr.hidden-sample-tr { display:none; }
 		<ul>
 			<li class="all">
 				<b>產學獲獎事蹟</b>
+				<label>
+					<input type="checkbox" name="talentedPeople.isPublicRewardHistory" value="true" 
+						<s:property value="%{talentedPeople.isPublicRewardHistory ? 'checked' : ''}"/> />公開
+				</label>
 				<s:textarea name="talentedPeople.rewardHistory" rows="5" />
 			</li>
 			<li class="all">
 				<b>其他產業相關經驗 (如:任職過業界或法人, 或擔任過業界或法人顧問……等對產學合作有助益的經驗)</b>
+				<label>
+					<input type="checkbox" name="talentedPeople.isPublicOtherExperience" value="true" 
+						<s:property value="%{talentedPeople.isPublicOtherExperience ? 'checked' : ''}"/> />公開
+				</label>
 				<s:textarea name="talentedPeople.otherExperience" rows="5" />
 			</li>
 		</ul>
