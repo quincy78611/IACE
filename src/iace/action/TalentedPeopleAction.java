@@ -22,6 +22,7 @@ import iace.entity.option.OptionDomain;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
+import iace.entity.talentedPeople.TalentedPeoplePDPL;
 import iace.entity.talentedPeople.TalentedPeopleRdResult;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 import iace.interceptor.SessionInterceptor;
@@ -30,6 +31,7 @@ import iace.service.option.OptionCountryService;
 import iace.service.option.OptionDomainService;
 import iace.service.sys.SysRoleService;
 import iace.service.sys.SysUserService;
+import iace.service.talentedPeople.TalentedPeoplePDPLService;
 import iace.service.talentedPeople.TalentedPeopleService;
 
 public class TalentedPeopleAction extends BaseIaceAction {
@@ -37,6 +39,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private static final long serialVersionUID = 570851154374907844L;
 
 	private TalentedPeopleService talentedPeopleService = ServiceFactory.getTalentedPeopleService();
+	private TalentedPeoplePDPLService talentedPeoplePDPLService = ServiceFactory.getTalentedPeoplePDPLService();
 	private OptionDomainService optionDomainService = ServiceFactory.getOptionDomainService();
 	private OptionCountryService optionCountryService = ServiceFactory.getOptionCountryService();
 	private SysUserService sysUserService = ServiceFactory.getSysUserService();
@@ -48,6 +51,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private long id;
 	private long sysRoleId;
 	private TalentedPeople talentedPeople;
+	private TalentedPeoplePDPL talentedPeoplePDPL;
 	private SysUser sysUser;
 
 	private List<OptionDomain> mainDomainList;
@@ -253,6 +257,50 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		}
 	}
 
+	public String PDPL() {
+		try {
+			this.talentedPeoplePDPL = this.talentedPeoplePDPLService.getByTalentedPeopleID(this.id);
+			if (this.talentedPeoplePDPL == null) {
+				this.talentedPeople = this.talentedPeopleService.get(this.id);
+				if (this.talentedPeople == null) {
+					super.addActionError("找不到資料!");
+					return ERROR;
+				}
+				this.talentedPeoplePDPL = new TalentedPeoplePDPL();
+				this.talentedPeoplePDPL.setTalentedPeople(this.talentedPeople);
+				this.talentedPeoplePDPLService.create(this.talentedPeoplePDPL);
+				return SUCCESS; //TO pdpl.jsp
+			} else {
+				if (this.talentedPeoplePDPL.getAgreePDPL()) {
+					return LOGIN; // skip pdpl.jsp and redirect to login.jsp
+				}
+				return SUCCESS; //TO pdpl.jsp
+			}
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String PDPLSubmit() {
+		try {
+			boolean agreePDPL = this.talentedPeoplePDPL.getAgreePDPL();
+			this.talentedPeoplePDPL = this.talentedPeoplePDPLService.get(this.talentedPeoplePDPL.getId());
+			this.talentedPeoplePDPL.setAgreePDPL(agreePDPL);
+			this.talentedPeoplePDPL.setIp(ServletActionContext.getRequest().getRemoteAddr());
+			this.talentedPeoplePDPLService.update(this.talentedPeoplePDPL);
+
+			if (this.talentedPeoplePDPL.getAgreePDPL()) {
+				return LOGIN;
+			} else {
+				return "close";
+			}
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+
 	public String login() {
 		return SUCCESS;
 	}
@@ -442,14 +490,22 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		return sysRoleList;
 	}
 
-
 	public SysUser getSysUser() {
 		return sysUser;
 	}
-	
 
 	public void setSysUser(SysUser sysUser) {
 		this.sysUser = sysUser;
 	}
+
+	public TalentedPeoplePDPL getTalentedPeoplePDPL() {
+		return talentedPeoplePDPL;
+	}
+
+	public void setTalentedPeoplePDPL(TalentedPeoplePDPL talentedPeoplePDPL) {
+		this.talentedPeoplePDPL = talentedPeoplePDPL;
+	}
+	
+	
 
 }

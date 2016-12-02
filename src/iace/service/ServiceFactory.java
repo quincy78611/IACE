@@ -48,6 +48,7 @@ import iace.service.researchPlan.TechnologyService;
 import iace.service.sys.SysLogService;
 import iace.service.sys.SysRoleService;
 import iace.service.sys.SysUserService;
+import iace.service.talentedPeople.TalentedPeoplePDPLService;
 import iace.service.talentedPeople.TalentedPeopleService;
 
 
@@ -99,6 +100,7 @@ public class ServiceFactory {
 	private static CoopExAttachFileService coopExAttachFileService;
 	
 	private static TalentedPeopleService talentedPeopleService;
+	private static TalentedPeoplePDPLService talentedPeoplePDPLService;
 	
 	private static IncubationCenterService incubationCenterService;
 	
@@ -414,6 +416,13 @@ public class ServiceFactory {
 					DaoFactory.getSysRoleDao());
 		}
 		return talentedPeopleService;
+	}
+	
+	public static TalentedPeoplePDPLService getTalentedPeoplePDPLService() {
+		if (talentedPeoplePDPLService == null) {
+			talentedPeoplePDPLService = new TalentedPeoplePDPLService(DaoFactory.getTalentedPeoplePDPLDao());
+		}
+		return talentedPeoplePDPLService;
 	}
 
 	public static IncubationCenterService getIncubationCenterService() {

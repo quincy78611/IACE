@@ -82,10 +82,12 @@ import iace.dao.sys.SysRoleDao;
 import iace.dao.sys.SysUserDao;
 import iace.dao.talentedPeople.ITalentedPeopleDao;
 import iace.dao.talentedPeople.ITalentedPeopleMainProjectDao;
+import iace.dao.talentedPeople.ITalentedPeoplePDPLDao;
 import iace.dao.talentedPeople.ITalentedPeopleRdResultDao;
 import iace.dao.talentedPeople.ITalentedPeopleTransferCaseDao;
 import iace.dao.talentedPeople.TalentedPeopleDao;
 import iace.dao.talentedPeople.TalentedPeopleMainProjectDao;
+import iace.dao.talentedPeople.TalentedPeoplePDPLDao;
 import iace.dao.talentedPeople.TalentedPeopleRdResultDao;
 import iace.dao.talentedPeople.TalentedPeopleTransferCaseDao;
 import iace.dao.techField.ITechFieldDao;
@@ -154,6 +156,7 @@ public class DaoFactory {
 	private static ITalentedPeopleRdResultDao talentedPeopleRdResultDao;
 	private static ITalentedPeopleTransferCaseDao talentedPeopleTransferCaseDao;
 	private static ITalentedPeopleMainProjectDao talentedPeopleMainProjectDao;
+	private static ITalentedPeoplePDPLDao talentedPeoplePDPLDao;
 	
 	private static IIncubationCenterDao incubationCenterDao;
 	
@@ -449,6 +452,13 @@ public class DaoFactory {
 		}
 		return talentedPeopleMainProjectDao;
 	}
+	
+	public static ITalentedPeoplePDPLDao getTalentedPeoplePDPLDao() {
+		if (talentedPeoplePDPLDao == null) {
+			talentedPeoplePDPLDao = new TalentedPeoplePDPLDao();
+		}
+		return talentedPeoplePDPLDao;
+	}
 
 	public static IIncubationCenterDao getIncubationCenterDao() {
 		if (incubationCenterDao == null) {
@@ -533,6 +543,5 @@ public class DaoFactory {
 		}
 		return industryInfoDao;
 	}
-	
-	
+
 }

@@ -82,6 +82,18 @@
 			<result name="success">/WEB-INF/jsp/frontend/talentedPeople/detail.jsp</result>
 		</action>
 		
+		
+		<action name="PDPL" class="iace.action.TalentedPeopleAction" method="PDPL">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/pdpl.jsp</result>
+			<result name="login">/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
+		</action>
+		<action name="PDPLSubmit" class="iace.action.TalentedPeopleAction" method="PDPLSubmit">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
+			<result name="close" type="redirectAction">
+				<param name="namespace">/home</param>
+				<param name="actionName">init</param>
+			</result>
+		</action>		
 		<action name="login" class="iace.action.TalentedPeopleAction" method="login">
 			<result>/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
 		</action>
