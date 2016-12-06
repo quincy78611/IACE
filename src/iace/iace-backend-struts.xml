@@ -495,8 +495,6 @@
 			<result name="success">/WEB-INF/jsp/backend/talentedPeople/index.jsp</result>
 		</action>
 		<action name="batchImport" class="iace.action.TalentedPeopleAction" method="batchImport">
-			<interceptor-ref name="iaceBackEnd"/>
-			
 		    <result name="success">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
 		</action>
 		<action name="batchImportSubmit" class="iace.action.TalentedPeopleAction" method="batchImportSubmit">
@@ -507,8 +505,6 @@
 		    <result name="input">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
 		</action>		
 		<action name="downloadBatchSample" class="iace.action.TalentedPeopleAction" method="downloadBatchSample">
-			<interceptor-ref name="iaceBackEnd"/>
-			
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">downloadFileInputStream</param>
@@ -517,8 +513,6 @@
 			</result>	
 		</action>
 		<action name="exportRawData" class="iace.action.TalentedPeopleAction" method="exportRawData">
-			<interceptor-ref name="iaceBackEnd"/>
-			
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">downloadFileInputStream</param>
@@ -533,7 +527,34 @@
 				<param name="contentDisposition">attachment;filename="${reportFileName}"</param>
 				<param name="bufferSize">1024</param>
 			</result>	
-		</action>		
+		</action>
+		<action name="exportEmail" class="iace.action.TalentedPeopleAction" method="exportEmail">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/exportEmail.jsp</result>
+		</action>
+		<action name="exportAllEmail" class="iace.action.TalentedPeopleAction" method="exportAllEmail">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="exportNotAgreePDPLYetEmail" class="iace.action.TalentedPeopleAction" method="exportNotAgreePDPLYetEmail">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="exportPDPLList" class="iace.action.TalentedPeopleAction" method="exportPDPLList">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="IncubationCenter" namespace="/incubationCenter" extends="struts-default, json-default, default">
@@ -773,6 +794,7 @@
 			<result name="success">/WEB-INF/jsp/backend/member/index.jsp</result>
 		</action>
 	</package>
+	
 	<package name="ContactUs" namespace="/contactUs" extends="struts-default, json-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.ContactUsAction" method="init">
@@ -796,4 +818,20 @@
 			<result name="success">/WEB-INF/jsp/backend/contactUs/index.jsp</result>
 		</action>
 	</package>
+	
+	<package name="BatchSendEmail" namespace="/batchSendEmail" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		
+		<action name="sendEmail" class="iace.action.BatchSendEmailAction" method="sendEmail">
+		    <result name="success">/WEB-INF/jsp/backend/batchSendEmail/sendEmail.jsp</result>
+		</action>
+		<action name="sendEmailSubmit" class="iace.action.BatchSendEmailAction" method="sendEmailSubmit">
+			<interceptor-ref name="iaceBackEnd"/>
+		    <interceptor-ref name="fileUpload"/>
+		    
+		    <result name="success">/WEB-INF/jsp/backend/batchSendEmail/sendEmail.jsp</result>
+		    <result name="input">/WEB-INF/jsp/backend/batchSendEmail/sendEmail.jsp</result>
+		</action>
+	</package>
+	
 </struts>

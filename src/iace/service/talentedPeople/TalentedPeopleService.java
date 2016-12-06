@@ -34,6 +34,7 @@ import org.hibernate.internal.SessionImpl;
 import core.dao.HibernateSessionFactory;
 import core.util.ExcelUtil;
 import core.util.PagedList;
+import core.util.Validator;
 import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionGrbDomainDao;
 import iace.dao.sys.ISysRoleDao;
@@ -268,9 +269,19 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 					cell.setCellType(Cell.CELL_TYPE_STRING);
 					entity.setTel(cell.getStringCellValue().trim());
 					
+					// Email
 					cell = row.getCell(++c);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
-					entity.setEmail(cell.getStringCellValue().trim());
+					String emails = cell.getStringCellValue().trim().replace(";", "；");
+					StringBuilder sb = new StringBuilder();
+					for (String email : emails.split("；")) {
+						if (Validator.isValidEmail(email.trim())) {
+							sb.append(email+"；");
+						} else {
+							throw new IllegalArgumentException("非法的Email格式");
+						}
+					}
+					entity.setEmail(sb.toString().substring(0, sb.length()-1));
 					
 					cell = row.getCell(++c);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
@@ -395,4 +406,66 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		JasperRunManager.runReportToPdfStream(fis, os, parameters, conn);
 		return new ByteArrayInputStream(os.toByteArray());
 	}
+	
+	public XSSFWorkbook exportAllEmailList() {
+		List<TalentedPeople> tpList = this.talentedPeopleDao.listAllWithSysUser();
+		return exportEmailList(tpList);
+	}
+	
+	public XSSFWorkbook exportNotAgreePDPLYetEmailList() {
+		List<TalentedPeople> tpList = this.talentedPeopleDao.listNotAgreePDPLYet();
+		return exportEmailList(tpList);
+	}
+
+	private XSSFWorkbook exportEmailList(List<TalentedPeople> tpList) {
+		// get url
+		String currentUrl = ServletActionContext.getRequest().getRequestURL().toString();
+		String[] urlSplit = currentUrl.split("/");
+		StringBuilder sb = new StringBuilder();
+		for (int i=0; i<urlSplit.length-2;i++) {
+			sb.append(urlSplit[i]).append("/");
+		}
+		sb.append("f/talentedPeople/PDPL");
+		String url = sb.toString();
+		
+		
+		XSSFWorkbook wb = new XSSFWorkbook();
+		XSSFSheet sheet = wb.createSheet();
+		int r = -1;
+		int c = -1;
+		XSSFRow row = null;
+		
+		//title row
+		{
+			row = sheet.createRow(++r);
+			row.createCell(++c).setCellValue("Email");
+			row.createCell(++c).setCellValue("%NAME_CH%");
+			row.createCell(++c).setCellValue("%ID%");
+			row.createCell(++c).setCellValue("%PW%");
+			row.createCell(++c).setCellValue("%URL%");
+		}
+		
+		// data part
+		for (TalentedPeople tp : tpList) {
+			row = sheet.createRow(++r);
+			c = -1;
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getEmail().split("；")[0].trim());
+			ExcelUtil.createNSetCellValue(row, ++c, tp.getNameCh());
+			if (tp.getSysUser() != null) {
+				ExcelUtil.createNSetCellValue(row, ++c, tp.getSysUser().getAccount());
+				ExcelUtil.createNSetCellValue(row, ++c, tp.getSysUser().getPassword());
+			} else {
+				c += 2;
+			}
+			ExcelUtil.createNSetCellValue(row, ++c, url+"?id="+tp.getId());
+		}
+		
+		for (int i=0; i<=c; i++) {
+			sheet.autoSizeColumn(i);
+		}
+		sheet.createFreezePane(0, 1);
+		
+		return wb;
+	}
+
 }

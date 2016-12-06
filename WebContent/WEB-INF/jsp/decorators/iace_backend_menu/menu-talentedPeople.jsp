@@ -7,10 +7,13 @@
 		<ul>
 			<s:if test='%{#session.sysUser.hasAuth("/talentedPeople", "init")}'>
 				<li><a href="<s:url value="/talentedPeople/init"/>">編輯管理</a></li>
-			</s:if>	
+			</s:if>
 <%-- 			<li><a href="<s:url value="/talentedPeople/create"/>">新增</a></li> --%>
 			<s:if test='%{#session.sysUser.hasAuth("/talentedPeople", "batchImport")}'>
 				<li><a href="<s:url value="/talentedPeople/batchImport"/>">批次匯入</a></li>
+			</s:if>
+			<s:if test='%{#session.sysUser.hasAuth("/talentedPeople", "exportEmail")}'>
+				<li><a href="<s:url value="/talentedPeople/exportEmail"/>">匯出郵件列表</a></li>
 			</s:if>
 		</ul>
 	</li>

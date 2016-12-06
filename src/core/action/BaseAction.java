@@ -99,7 +99,7 @@ public abstract class BaseAction extends ActionSupport {
 	}
 
 	protected boolean validateEmail(CharSequence testValue, String fieldName) {
-		return validateEmail(testValue, fieldName, "必須是email格式");
+		return validateEmail(testValue, fieldName, "必須是有效的email格式");
 	}
 	
 	protected boolean validateTWPID(CharSequence testValue, String fieldName, String errMsg) {

@@ -14,6 +14,10 @@ public interface ITalentedPeopleDao extends IBaseIaceDao<TalentedPeople> {
 	
 	public List<TalentedPeople> listAll(TalentedPeopleSearchModel arg);
 	
+	public List<TalentedPeople> listAllWithSysUser();
+	
+	public List<TalentedPeople> listNotAgreePDPLYet();
+	
 	public TalentedPeople get(SysUser user);
 
 	public long queryTotalRecordsCount(TalentedPeopleSearchModel arg);

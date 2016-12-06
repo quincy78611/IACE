@@ -257,6 +257,49 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		}
 	}
 
+	public String exportEmail() {
+		return SUCCESS;
+	}
+
+	public String exportAllEmail() {
+		try {
+			XSSFWorkbook wb = this.talentedPeopleService.exportAllEmailList();
+			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
+			this.downloadFileName = "emailList.xlsx";
+
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+
+	public String exportNotAgreePDPLYetEmail() {
+		try {
+			XSSFWorkbook wb = this.talentedPeopleService.exportNotAgreePDPLYetEmailList();
+			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
+			this.downloadFileName = "emailList.xlsx";
+
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String exportPDPLList() {
+		try {
+			XSSFWorkbook wb = this.talentedPeoplePDPLService.exportList();
+			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
+			this.downloadFileName = "PDPL_List.xlsx";
+
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+
 	public String PDPL() {
 		try {
 			this.talentedPeoplePDPL = this.talentedPeoplePDPLService.getByTalentedPeopleID(this.id);
@@ -269,12 +312,13 @@ public class TalentedPeopleAction extends BaseIaceAction {
 				this.talentedPeoplePDPL = new TalentedPeoplePDPL();
 				this.talentedPeoplePDPL.setTalentedPeople(this.talentedPeople);
 				this.talentedPeoplePDPLService.create(this.talentedPeoplePDPL);
-				return SUCCESS; //TO pdpl.jsp
+				return SUCCESS; // TO pdpl.jsp
 			} else {
-				if (this.talentedPeoplePDPL.getAgreePDPL()) {
+				if (this.talentedPeoplePDPL.getAgreePDPL() == null || this.talentedPeoplePDPL.getAgreePDPL() == false) {
+					return SUCCESS; // TO pdpl.jsp
+				} else {
 					return LOGIN; // skip pdpl.jsp and redirect to login.jsp
 				}
-				return SUCCESS; //TO pdpl.jsp
 			}
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

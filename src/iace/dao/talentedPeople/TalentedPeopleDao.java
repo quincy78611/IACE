@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Hibernate;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
@@ -19,6 +21,7 @@ import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
 import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
+import iace.entity.talentedPeople.TalentedPeoplePDPL;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 
 public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements ITalentedPeopleDao {
@@ -72,6 +75,47 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 		}
 	}
 	
+	@Override
+	public List<TalentedPeople> listAllWithSysUser() {
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(TalentedPeople.class);
+			criteria.setFetchMode("sysUser", FetchMode.JOIN);
+			criteria.addOrder(Order.asc("id"));
+			
+			@SuppressWarnings("unchecked")
+			List<TalentedPeople> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	@Override
+	public List<TalentedPeople> listNotAgreePDPLYet() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			String hql = "FROM "+super.entityClass.getName() + " tp " 
+					+ " LEFT JOIN FETCH tp.sysUser "
+					+ " WHERE tp.id NOT IN "
+					+ " ( SELECT pdpl.talentedPeople.id "
+					+ "   FROM " + TalentedPeoplePDPL.class.getName() + " pdpl " 
+					+ "   WHERE pdpl.agreePDPL != null )" 
+					+ " ORDER BY tp.id ";
+			Query query = session.createQuery(hql);
+			@SuppressWarnings("unchecked")
+			List<TalentedPeople> list = query.list();
+
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
 	@Override
 	public long queryTotalRecordsCount(TalentedPeopleSearchModel arg) {
 		try {

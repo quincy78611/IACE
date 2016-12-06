@@ -10,6 +10,7 @@ import com.google.gson.Gson;
 import iace.entity.sysAuth.sysApplication.SysApp;
 import iace.entity.sysAuth.sysApplication.SysAppAbout;
 import iace.entity.sysAuth.sysApplication.SysAppActivity;
+import iace.entity.sysAuth.sysApplication.SysAppBatchSendEmail;
 import iace.entity.sysAuth.sysApplication.SysAppConsulting;
 import iace.entity.sysAuth.sysApplication.SysAppContactUs;
 import iace.entity.sysAuth.sysApplication.SysAppCoopEx;
@@ -54,7 +55,9 @@ public class SysAuth {
 	
 	private SysAppMember member = new SysAppMember();
 	
-	private SysAppContactUs contactUs =  new SysAppContactUs(); 
+	private SysAppContactUs contactUs =  new SysAppContactUs();
+	
+	private SysAppBatchSendEmail batchSendEmail = new SysAppBatchSendEmail();
 	
 	public SysAuth() {
 		Properties prop = new Properties();
@@ -89,6 +92,7 @@ public class SysAuth {
 		sysApps.add(this.activity);
 		sysApps.add(this.member);
 		sysApps.add(this.contactUs);
+		sysApps.add(this.batchSendEmail);
 		return sysApps;
 	}
 
@@ -217,5 +221,10 @@ public class SysAuth {
 	public SysAppContactUs getContactUs() {
 		return contactUs;
 	}
+
+	public SysAppBatchSendEmail getBatchSendEmail() {
+		return batchSendEmail;
+	}
+	
 	
 }

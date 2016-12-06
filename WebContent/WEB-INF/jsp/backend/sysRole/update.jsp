@@ -103,6 +103,7 @@
 					<s:checkbox label="%{sysRole.sysAuth.talentedPeople.opUpdate.displayName}" name="sysRole.sysAuth.talentedPeople.opUpdate.auth" fieldValue="true"/>
 					<s:checkbox label="%{sysRole.sysAuth.talentedPeople.opDelete.displayName}" name="sysRole.sysAuth.talentedPeople.opDelete.auth" fieldValue="true"/>
 					<s:checkbox label="%{sysRole.sysAuth.talentedPeople.opBatchImport.displayName}" name="sysRole.sysAuth.talentedPeople.opBatchImport.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.talentedPeople.opExportEmail.displayName}" name="sysRole.sysAuth.talentedPeople.opExportEmail.auth" fieldValue="true"/>
 				</td>
 			</tr>
 			<tr>
@@ -202,7 +203,13 @@
 					<s:checkbox label="%{sysRole.sysAuth.contactUs.opCreate.displayName}" name="sysRole.sysAuth.contactUs.opCreate.auth" fieldValue="true"/>
 					<s:checkbox label="%{sysRole.sysAuth.contactUs.opUpdate.displayName}" name="sysRole.sysAuth.contactUs.opUpdate.auth" fieldValue="true"/>
 				</td>
-			</tr>			
+			</tr>
+			<tr>
+				<td><b><s:property value="sysRole.sysAuth.batchSendEmail.displayName"/></b></td>
+				<td class="horizontalList">
+					<s:checkbox label="%{sysRole.sysAuth.batchSendEmail.opBatchSendEmail.displayName}" name="sysRole.sysAuth.batchSendEmail.opBatchSendEmail.auth" fieldValue="true"/>
+				</td>
+			</tr>
 		</table>
 		
 		<div class="clear"></div>

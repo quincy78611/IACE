@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -36,9 +37,14 @@ public class ExcelUtil {
 	}
 	
 	public static XSSFCell createNSetCellValue(XSSFRow row, int columnIndex, Date value) {
+		return createNSetCellValue(row, columnIndex, value, "yyyy/MM/dd HH:mm:ss");
+	}
+	
+	public static XSSFCell createNSetCellValue(XSSFRow row, int columnIndex, Date value, String format) {
 		XSSFCell cell = row.createCell(columnIndex);
 		if (value != null) {
-			cell.setCellValue(value);
+			SimpleDateFormat sdf = new SimpleDateFormat(format);
+			cell.setCellValue(sdf.format(value));
 		}
 		return cell;
 	}
@@ -52,6 +58,14 @@ public class ExcelUtil {
 	}
 	
 	public static XSSFCell createNSetCellValue(XSSFRow row, int columnIndex, Integer value) {
+		XSSFCell cell = row.createCell(columnIndex);
+		if (value != null) {
+			cell.setCellValue(value);
+		}
+		return cell;
+	}
+	
+	public static XSSFCell createNSetCellValue(XSSFRow row, int columnIndex, Long value) {
 		XSSFCell cell = row.createCell(columnIndex);
 		if (value != null) {
 			cell.setCellValue(value);
