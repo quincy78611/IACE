@@ -125,7 +125,7 @@
 					<img src="<s:url value="/images/TWCA-SSL-LOGO-MEDIUM.gif"/>" >
 				</div>
 				<script type="text/javascript" charset="utf-8" >
-					var twca_cn="iace.stpi.narl.org.tw";
+					var twca_cn="iace.org.tw";
 				</script>
 				<script type="text/javascript" src="//ssllogo.twca.com.tw/twcaseal_v3.js"charset="utf-8"></script> 
 			</div>
