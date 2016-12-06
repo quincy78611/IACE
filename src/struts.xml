@@ -52,10 +52,10 @@
 		</action>
 	</package>
 
-	<include file="iace/iace-sys-struts.xml" />
-	<include file="iace/iace-option-struts.xml" />
-	<include file="iace/iace-backend-struts.xml" />
-	<include file="iace/iace-frontend-struts.xml"/>
+	<include file="configs/iace-sys-struts.xml" />
+	<include file="configs/iace-option-struts.xml" />
+	<include file="configs/iace-backend-struts.xml" />
+	<include file="configs/iace-frontend-struts.xml"/>
 	<!-- Add packages here -->
 
 </struts>
