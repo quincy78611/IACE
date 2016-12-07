@@ -22,7 +22,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -79,23 +78,23 @@ public class BatchSendEmailAction extends BaseIaceAction {
 				XSSFRow row;
 				XSSFCell cell;
 				
-				// read title row to get replace keyword
+				// read title row to get keyword
 				{
 					row = sheet.getRow(0);
-					for (int c = 0; c < row.getPhysicalNumberOfCells(); c++) {
+					for (int c = 0; c < row.getLastCellNum(); c++) {
 						cell = row.getCell(c);
-						cell.setCellType(Cell.CELL_TYPE_STRING);
-						String keyword = cell.getStringCellValue().trim();
-						if (StringUtils.isNotBlank(keyword)) {
-							keywordList.add(keyword);
+						if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK) {
+							cell.setCellType(Cell.CELL_TYPE_STRING);
+							keywordList.add(cell.getStringCellValue().trim());
 						} else {
-							keywordList.add(null);
+							keywordList.add("");
 						}
 					}
 				}
 				
 				// read all data row
-				for (int r = 1, c = -1; r <= sheet.getLastRowNum(); r++) {
+				for (int r = 1; r <= sheet.getLastRowNum(); r++) {
+					int c = -1;
 					row = sheet.getRow(r);
 					Map<String, String> rowData = new HashMap<String, String>();
 					try {
@@ -108,14 +107,19 @@ public class BatchSendEmailAction extends BaseIaceAction {
 							rowData.put(keywordList.get(c), email);
 						}
 						
-						while (c+1 < row.getPhysicalNumberOfCells()) {
+						while (c+1 < keywordList.size()) {
 							cell = row.getCell(++c);
-							cell.setCellType(Cell.CELL_TYPE_STRING);
-							rowData.put(keywordList.get(c), cell.getStringCellValue().trim());
+							if (cell != null && cell.getCellType() != Cell.CELL_TYPE_BLANK) {
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								rowData.put(keywordList.get(c), cell.getStringCellValue().trim());
+							} else {
+								rowData.put(keywordList.get(c), "");
+							}
 						}
 						
 						excelDatas.add(rowData);
 					} catch (Exception e) {
+						log.warn("", e);
 						String msg = String.format("%d列%d欄 → %s", r+1, c+1, e.getMessage());
 						errMsgs.add(msg);
 					} 
@@ -125,7 +129,6 @@ public class BatchSendEmailAction extends BaseIaceAction {
 			}
 			
 			if (this.errMsgs == null || this.errMsgs.size() == 0) {
-				this.errMsgs = null;
 				batchSendEmail(keywordList, excelDatas);
 				super.addActionMessage("批次寄送郵件完成");
 			} else {
@@ -158,8 +161,7 @@ public class BatchSendEmailAction extends BaseIaceAction {
 				for (int i=0; i<keywordList.size(); i++) {
 					String keyword = keywordList.get(i);
 					if (keyword.startsWith("%") && keyword.endsWith("%")) {
-						String value = rowData.get(keyword);
-						content = content.replace(keyword, value);
+						content = content.replace(keyword, rowData.get(keyword));
 					}
 				}
 				messageBodyPart.setContent(content, "text/html; charset=utf-8");
@@ -168,9 +170,8 @@ public class BatchSendEmailAction extends BaseIaceAction {
 			
 			// add attaches 
 			for (int i = 0; i< this.attaches.size(); i++) {
-				File attach = this.attaches.get(i);
 				MimeBodyPart messageBodyPart = new MimeBodyPart();
-				DataSource source = new FileDataSource(attach);
+				DataSource source = new FileDataSource(this.attaches.get(i));
 				messageBodyPart.setDataHandler(new DataHandler(source));
 				messageBodyPart.setFileName(this.attachesFileName.get(i));
 				multipart.addBodyPart(messageBodyPart);
