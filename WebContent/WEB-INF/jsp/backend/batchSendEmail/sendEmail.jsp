@@ -35,20 +35,24 @@
 	<s:form action="sendEmailSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-batchImport">
 		<ul>
 			<li class="all">
-				<b>收件者列表檔案</b>
+				<b>收件者列表檔案*</b>
 				<s:file name="uploadFile" accept=".xlsx"/>
 				<span style="font-size:0.7em;">P.S. 第一欄必須為收件者Email，後面欄位為要用來替換模板參數的資料</span>
 			</li>
-			<li class="all">
-				<b>發件人Email</b>
+			<li class="half">
+				<b>發件人姓名</b>
+				<s:textfield name="emailSenderName"/>
+			</li>			
+			<li class="half">
+				<b>發件人Email*</b>
 				<s:textfield name="emailFrom"/>
 			</li>
 			<li class="all">
-				<b>信件主旨</b>
+				<b>信件主旨*</b>
 				<s:textfield name="emailSubject"/>
 			</li>				
 			<li class="all">
-				<b>信件內文模板</b><br>
+				<b>信件內文模板*</b><br>
 				<span style="font-size:0.7em;">P.S. 寄發信件時將會用匯入的收件者列表Excel檔的標題列當作關鍵字並以相對應資料替換內文模板中的參數</span><br>
 				<span style="font-size:0.7em;">P.S. 參數請用%符號包夾，例如%Name%</span>
 				<s:textarea name="emailContentTemplate"/>

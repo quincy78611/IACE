@@ -37,7 +37,7 @@ public class BatchSendEmailAction extends BaseIaceAction {
 	private String uploadFileContentType;
 	private String uploadFileFileName;
 	
-	private String emailFrom, emailSubject, emailContentTemplate;
+	private String emailSenderName, emailFrom, emailSubject, emailContentTemplate;
 	
 	private List<File> attaches = new ArrayList<File>();
 	private List<String> attachesContentType = new ArrayList<String>();
@@ -148,7 +148,7 @@ public class BatchSendEmailAction extends BaseIaceAction {
 
 		for (Map<String, String> rowData : datas) {
 			Message msg = new MimeMessage(session); // 取得一Mime的Message
-			msg.setFrom(new InternetAddress(this.emailFrom));
+			msg.setFrom(new InternetAddress(this.emailFrom, this.emailSenderName));
 			InternetAddress[] address = { new InternetAddress(rowData.get(keywordList.get(0))) };
 			msg.setRecipients(Message.RecipientType.TO, address);
 			msg.setSubject(this.emailSubject);
@@ -206,6 +206,14 @@ public class BatchSendEmailAction extends BaseIaceAction {
 
 	public void setUploadFileFileName(String uploadFileFileName) {
 		this.uploadFileFileName = uploadFileFileName;
+	}
+
+	public String getEmailSenderName() {
+		return emailSenderName;
+	}
+
+	public void setEmailSenderName(String emailSenderName) {
+		this.emailSenderName = emailSenderName;
 	}
 
 	public String getEmailFrom() {
