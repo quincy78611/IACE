@@ -24,13 +24,11 @@
                         <tbody>
                         	<s:iterator value="technologyList" status="stat">
 	                            <tr>
-	                                <td class="date_02"><s:date name="createTime" format="yyyy/MM/dd"/></td>
 	                                <td><a href="#" class="list_link_02"><s:property value="%{researchPlan.planNo + ' ' + name}"/></a></td>
 	                            </tr>                       	
                         	</s:iterator>
                         	<s:iterator value="patentList" status="stat">
  	                            <tr>
-	                                <td class="date_02"><s:date name="openDate" format="yyyy/MM/dd"/></td>
 	                                <td><a href="#" class="list_link_02"><s:property value="%{openNo + ' ' + name}"/></a></td>
 	                            </tr>                        	
                         	</s:iterator>
