@@ -25,7 +25,7 @@
 				onclick="window.location.href='<s:url value="exportNotAgreePDPLYetEmail"/>'"/>
 		</li>
 		<li class="all">
-			<label style="font-size:16px">個資收集法同意情況列表</label>
+			<label style="font-size:16px">個資收集法同意/不同意情況列表</label>
 			<input type="button" class="btn btn-default grayBtn" value="下載" 
 				onclick="window.location.href='<s:url value="exportPDPLList"/>'"/>
 		</li>		
