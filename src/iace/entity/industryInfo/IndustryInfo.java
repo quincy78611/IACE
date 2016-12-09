@@ -21,7 +21,7 @@ public class IndustryInfo extends BaseEntity {
 	private static final long serialVersionUID = -4348180685333981591L;
 	private static List<BaseOption> categoryList = new ArrayList<BaseOption>();
 	static {
-		categoryList.add(new BaseOption("產業新聞", "產業新聞"));
+		categoryList.add(new BaseOption("產學新聞", "產學新聞"));
 		categoryList.add(new BaseOption("產業評析", "產業評析"));
 	}
 	

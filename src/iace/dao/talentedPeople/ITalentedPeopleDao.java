@@ -21,4 +21,6 @@ public interface ITalentedPeopleDao extends IBaseIaceDao<TalentedPeople> {
 	public TalentedPeople get(SysUser user);
 
 	public long queryTotalRecordsCount(TalentedPeopleSearchModel arg);
+	
+	public List<Long> getAllIdUnderDomain(Long mainDomainId);
 }

@@ -61,6 +61,10 @@ public class TechnologyService extends BaseIaceService<Technology> {
 		return tecList;
 	}
 	
+	public List<Technology> sampleForHomePageV2() {
+		return this.technologyDao.sampleForHomePage();
+	}
+	
 	private byte[] loadImg(File f) {
 		try {
 			byte[] data = Files.readAllBytes(Paths.get(f.getAbsolutePath()));

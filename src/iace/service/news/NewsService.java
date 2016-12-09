@@ -24,6 +24,10 @@ public class NewsService extends BaseIaceService<News> {
 		this.newsDao = dao;
 	}
 
+	public List<News> sampleForHomePage() {
+		return this.newsDao.sampleForHomePage();
+	}
+	
 	public PagedList<News> searchBy(NewsSearchModel arg) {
 		return this.newsDao.searchBy(arg);
 	}

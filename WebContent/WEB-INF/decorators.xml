@@ -15,5 +15,7 @@
       	<pattern>/WEB-INF/jsp/frontend/*</pattern>
     </decorator> 
  
-
+    <decorator name="frontend-v2-theme" page="/WEB-INF/jsp/decorators/iace_theme_frontend_v2/iace_theme_frontend_v2.jsp">
+      	<pattern>/WEB-INF/jsp/frontend_v2/*</pattern>
+    </decorator>
 </decorators>

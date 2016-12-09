@@ -56,6 +56,7 @@
 	<include file="configs/iace-option-struts.xml" />
 	<include file="configs/iace-backend-struts.xml" />
 	<include file="configs/iace-frontend-struts.xml"/>
+	<include file="configs/iace-frontend-v2-struts.xml"/>
 	<!-- Add packages here -->
 
 </struts>

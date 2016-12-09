@@ -112,4 +112,25 @@ public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnolog
 		}
 	}
 
+	@Override
+	public List<Technology> sampleForHomePage() {
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Technology.class);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			criteria.createAlias("researchPlan", "rp");
+			
+			criteria.addOrder(Order.desc("rp.year"));
+			criteria.setMaxResults(2);
+			
+			@SuppressWarnings("unchecked")
+			List<Technology> list = criteria.list();
+			
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 }

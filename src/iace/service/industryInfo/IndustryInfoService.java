@@ -1,5 +1,7 @@
 package iace.service.industryInfo;
 
+import java.util.List;
+
 import core.util.PagedList;
 import iace.dao.industryInfo.IIndustryInfoDao;
 import iace.entity.industryInfo.IndustryInfo;
@@ -18,4 +20,7 @@ public class IndustryInfoService extends BaseIaceService<IndustryInfo> {
 		return this.dao.searchBy(arg);
 	}
 
+	public List<IndustryInfo> sampleForHomePage(String category) {
+		return this.dao.sampleForHomePage(category);
+	}
 }

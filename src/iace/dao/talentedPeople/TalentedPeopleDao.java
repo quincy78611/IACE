@@ -214,5 +214,23 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 		}
 	}
 
-	
+	@Override
+	public List<Long> getAllIdUnderDomain(Long mainDomainId) {
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(TalentedPeople.class);
+			criteria.createAlias("domains", "grb");
+			criteria.createAlias("grb.mainDomain", "mainDomain");
+			criteria.add(Restrictions.eq("mainDomain.id", mainDomainId));
+			criteria.setProjection(Projections.property("id"));
+			
+			@SuppressWarnings("unchecked")
+			List<Long> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 }

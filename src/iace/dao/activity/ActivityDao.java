@@ -110,4 +110,24 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 		}
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
+
+	@Override
+	public List<Activity> sampleForHomePage() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.addOrder(Order.desc("sort"));
+			criteria.setMaxResults(5);
+			
+			@SuppressWarnings("unchecked")
+			List<Activity> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	
 }

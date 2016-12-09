@@ -13,5 +13,5 @@ public interface ILiteratureDao extends IBaseIaceDao<Literature> {
 	public List<Long> listAllOid();
 	public PagedList<Literature> searchBy(LiteratureSearchModel arg);
 	public long queryTotalRecordsCount(LiteratureSearchModel arg);
-	
+	public List<Literature> sampleForHomePage(String category);
 }

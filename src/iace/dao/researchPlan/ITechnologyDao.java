@@ -13,4 +13,6 @@ public interface ITechnologyDao extends IBaseIaceDao<Technology> {
 	public PagedList<Technology> searchBy(BaseSearchModel arg);
 	
 	public long queryTotalRecordsCount();
+	
+	public List<Technology> sampleForHomePage();
 }

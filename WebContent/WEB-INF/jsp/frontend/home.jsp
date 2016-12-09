@@ -120,7 +120,7 @@
 				<a href="<s:url value="/f/coopEx/init"/>" class="more"></a>
 			</h3>
 			<ul>
-				<s:iterator value="coopExList" status="stat">
+				<s:iterator value="coopExList" status="stat" begin="0" end="4">
 					<li>
 <%-- 						<s:url value="/f/coopEx/showDetail" var="urlTag"> --%>
 <%-- 							<s:param name="id" value="%{id}" /> --%>

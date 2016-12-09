@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import javax.servlet.ServletContext;
@@ -96,6 +97,35 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		return talentedPeopleDao.searchBy(arg);
 	}
 
+	public List<TalentedPeople> sampleForHomePage() {
+		// 1. get main domain id
+		List<OptionGrbDomain> grbList = this.optionGrbDomainDao.listForTalentedPeople();
+		Set<Long> mainDomainIdSet = new HashSet<Long>();
+		for (OptionGrbDomain grb : grbList) {
+			mainDomainIdSet.add(grb.getMainDomain().getId());
+		}
+		
+		// 2. randomly pick a non-repeat talentedPeople id for each main domain
+		Set<Long> tpIdSet = new HashSet<Long>();
+		for (Long mainDomainId : mainDomainIdSet) {
+			List<Long> talentedPeopleId = this.talentedPeopleDao.getAllIdUnderDomain(mainDomainId);
+			Random ran = new Random();
+			long tpId;
+			do {
+				tpId = talentedPeopleId.get(ran.nextInt(talentedPeopleId.size()));
+			} while (tpIdSet.contains(tpId));
+			tpIdSet.add(tpId);
+		}
+		
+		// 3. get talentedPeople by id set
+		List<TalentedPeople> tpList = new ArrayList<TalentedPeople>();
+		for (Long id : tpIdSet) {
+			tpList.add(get(id));
+		}
+		
+		return tpList;
+	}
+	
 	@Override
 	public void create(TalentedPeople entity) throws IOException, SQLException {
 		setHeadShot(entity);

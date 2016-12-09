@@ -70,4 +70,25 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
 
+	@Override
+	public List<IndustryInfo> sampleForHomePage(String category) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("category", category));
+			criteria.addOrder(Order.desc("ver"));
+			criteria.setMaxResults(5);
+			
+			@SuppressWarnings("unchecked")
+			List<IndustryInfo> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	
+
 }

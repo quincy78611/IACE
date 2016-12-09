@@ -30,6 +30,10 @@ public class LiteratureService extends BaseIaceService<Literature> {
 	public PagedList<Literature> searchBy(LiteratureSearchModel arg) {
 		return this.dao.searchBy(arg);
 	}
+	
+	public List<Literature> sampleForHomePage(String category) {
+		return this.dao.sampleForHomePage(category);
+	}
 
 	public BaseBatchImportResult<Literature> batchImport(File file) throws IOException {
 		BaseBatchImportResult<Literature> res = new BaseBatchImportResult<Literature>();

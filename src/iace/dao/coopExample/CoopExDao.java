@@ -195,7 +195,7 @@ public class CoopExDao extends BaseIaceDao<CoopEx> implements ICoopExDao {
 				criteria.add(Restrictions.eq("type", "新創事業"));
 				criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 				criteria.addOrder(Order.asc("id"));
-				criteria.setMaxResults(1);
+				criteria.setMaxResults(2);
 				List<CoopEx> list = criteria.list();
 				resList.addAll(list);
 			}
