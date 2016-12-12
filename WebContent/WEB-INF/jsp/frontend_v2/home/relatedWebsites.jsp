@@ -12,24 +12,76 @@
             <div><img src="<s:url value="/images/frontend-v2/line_index.jpg"/>" class="img-responsive" alt=""/></div>
         </div>
     </div>
-    <div class="row">
-    	<div class="col-sm-2 col-xs-6 bottom10 text-center">
-        	<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-81.gif"/>" class="img-thumbnail" alt=""/></a>
-        </div>
-        <div class="col-sm-2 col-xs-6 bottom10 text-center">
-        	<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-82.gif"/>" class="img-thumbnail" alt=""/></a>
-        </div>
-        <div class="col-sm-2 col-xs-6 bottom10 text-center">
-        	<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-86.gif"/>" class="img-thumbnail" alt=""/></a>
-        </div>
-        <div class="col-sm-2 col-xs-6 bottom10 text-center">
-        	<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-88.gif"/>" class="img-thumbnail" alt=""/></a>
-        </div>
-        <div class="col-sm-2 col-xs-6 bottom10 text-center">
-        	<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-89.gif"/>" class="img-thumbnail" alt=""/></a>
-        </div>
-        <div class="col-sm-2 col-xs-6 bottom10 text-center">
-        	<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-90.gif"/>" class="img-thumbnail" alt=""/></a>
-        </div>
-    </div>
+    
+	<div id="carousel2" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner" role="listbox">
+			<div class="item active">
+				<div class="row">
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-81.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-82.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-86.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-88.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-89.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-90.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+				</div>
+			</div>
+			<div class="item" >
+				<div class="row">
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-81.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-82.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-86.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-88.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-89.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-90.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+				</div>
+			</div>
+			<div class="item">
+				<div class="row">
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-81.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-82.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-C-86.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-88.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-89.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+					<div class="col-sm-2 col-xs-6 bottom10 text-center">
+						<a href="#"><img src="<s:url value="/images/frontend-v2/index-banner-D-90.gif"/>" class="img-thumbnail" alt=""/></a>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>    
 </div>

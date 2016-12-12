@@ -14,7 +14,7 @@
         </div>
         <div class="clear-fix"></div>
         <div id="menu_dropdown">
-            <ul style="background-color:#F8F8F8;">
+            <ul style="background-color:#F8F8F8; margin-bottom:0;">
                 <li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">活動/人培<span class="caret"></span></a> 
                     <ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
                         <li><a href="#" class="menu_link_mobile">成果發表</a></li>
@@ -61,6 +61,31 @@
                     </ul>
                 </li>
             </ul>
+			<!-- Blue menu 手機版 -->
+            <div style="background-color:#1fb5da; box-shadow:5px 5px 12px -1px rgba(20%,20%,40%,0.5);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF; border-right:1px solid #FFF;">
+                            <a href="#" class="blue_menu_link"><i class="fa fa-home right5" aria-hidden="true"></i>首頁</a>
+                        </div>
+                        <div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF;">
+                            <a href="#" class="blue_menu_link"><i class="fa fa-pencil right5" aria-hidden="true"></i>產學合作計畫</a>
+                        </div>
+                        <div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF; border-right:1px solid #FFF;">
+                            <a href="#" class="blue_menu_link"><i class="fa fa-phone right5" aria-hidden="true"></i>我要諮詢</a>
+                        </div>
+                        <div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF;">
+                            <a href="#" class="blue_menu_link"><i class="fa fa-book right5" aria-hidden="true"></i>常問集</a>
+                        </div>
+                        <div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF; border-right:1px solid #FFF;">
+                            <a href="#" class="blue_menu_link"><i class="fa fa-user-circle-o right5" aria-hidden="true"></i>會員中心</a>
+                        </div>
+                        <div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF;">
+                            <a href="#" class="blue_menu_link"><i class="fa fa-envelope-open right5" aria-hidden="true"></i>電子報</a>
+                        </div>
+                    </div>
+                </div>
+            </div>            
         </div>
         <!-- /.navbar-collapse --> 
     </div>

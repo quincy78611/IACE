@@ -17,13 +17,13 @@
             </div>
             <div>
                 <table class="table">
-                    <tbody>
+                    <tbody>                   
                     	<s:iterator value="newsList" status="stat">
 	                        <tr>
-	                            <td><span class="label label-info"><s:property value="category"/></span></td>
+	                            <td><h4><span class="label label-info"><s:property value="category"/></span></h4></td>
 	                            <td class="date_01"><s:date name="createTime" format="yyyy/MM/dd"/></td>
 	                            <td><a href="#" class="list_link_01"><s:property value="title"/></a></td>
-	                        </tr>                   		
+	                        </tr>
                     	</s:iterator>
                     </tbody>
                 </table>
@@ -45,7 +45,7 @@
                     <tbody>
                     	<s:iterator value="activityList" status="stat">
 	                        <tr>
-	                            <td><span class="label label-info"><s:property value="category"/></span></td>
+	                            <td><h4><span class="label label-info"><s:property value="category"/></span></h4></td>
 	                            <td class="date_01"><s:date name="createTime" format="yyyy/MM/dd"/></td>
 	                            <td><a href="#" class="list_link_01"><s:property value="title"/></a></td>
 	                        </tr>                   	

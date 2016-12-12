@@ -7,6 +7,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.apache.commons.lang3.StringUtils;
 
 import iace.entity.BaseEntity;
 import iace.entity.IntegrationSearch;
@@ -64,6 +67,21 @@ public class Literature extends BaseEntity implements IntegrationSearch {
 
 	public void setOid(long oid) {
 		this.oid = oid;
+	}
+	
+	@Transient
+	public String getTitle() {
+		StringBuilder sb = new StringBuilder();
+		if (StringUtils.isNotBlank(this.getTitleC())) {
+			sb.append(this.getTitleC());
+		}
+		if (StringUtils.isNotBlank(this.getTitleC()) && StringUtils.isNotBlank(this.getTitleF())) {
+			sb.append(" ");
+		}
+		if (StringUtils.isNotBlank(this.getTitleF())) {
+			sb.append(this.getTitleF());
+		}
+		return sb.toString();
 	}
 
 	@Column(name = "TITLE_C", length = 500)

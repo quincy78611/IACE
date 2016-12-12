@@ -52,7 +52,7 @@
 
 
 <!-- 產業評析 -->
-<div style="background-image:url('<s:url value="/images/frontend-v2/banner_index_05.jpg"/>'); background-size:cover; padding-bottom:30px;">
+<div class="report_01">
     <div class="container">
         <div class="row">
             <div class="col-sm-offset-6 col-sm-6 col-xs-12 top50">

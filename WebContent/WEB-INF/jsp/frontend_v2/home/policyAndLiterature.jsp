@@ -22,26 +22,18 @@
                                 <td width="20%" style="border:none;" class="small_title_01"><strong>出版年分</strong></td>
                                 <td style="border:none;" class="small_title_01"><strong>標題</strong></td>
                             </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Sun tracking method and sun tacking system</a></td>
-                            </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Multi-mode multi-parallelism data exchange ...</a></td>
-                            </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Sun tracking method and sun tacking system</a></td>
-                            </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Multi-mode multi-parallelism data exchange ...</a></td>
-                            </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Sun tracking method and sun tacking system</a></td>
-                            </tr>
+                            <s:iterator value="policyList" status="stat">
+	                            <tr>
+	                                <td class="date_01 table_border"><s:property value="publishYear"/></td>
+	                                <td class="table_border">
+	                                	<div class="truncate" title="<s:property value="title"/>">
+	                                		<a href="#" class="list_link_01">
+	                                			<s:property value="title"/>
+	                                		</a>
+	                                	</div>
+	                                </td>
+	                            </tr>                            
+                            </s:iterator>
                         </tbody>
                     </table>
                 </div>
@@ -62,26 +54,18 @@
                                 <td width="20%" style="border:none;" class="small_title_01"><strong>出版年分</strong></td>
                                 <td style="border:none;" class="small_title_01"><strong>標題</strong></td>
                             </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Sun tracking method and sun tacking system</a></td>
-                            </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Multi-mode multi-parallelism data exchange ...</a></td>
-                            </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Sun tracking method and sun tacking system</a></td>
-                            </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Multi-mode multi-parallelism data exchange ...</a></td>
-                            </tr>
-                            <tr>
-                                <td class="date_01 table_border">2016/10/20</td>
-                                <td class="table_border"><a href="#" class="list_link_01">Sun tracking method and sun tacking system</a></td>
-                            </tr>
+                            <s:iterator value="literatureList" status="stat">
+	                            <tr>
+	                                <td class="date_01 table_border"><s:property value="publishYear"/></td>
+	                                <td class="table_border">
+	                                	<div class="truncate" title="<s:property value="title"/>">
+	                                		<a href="#" class="list_link_01">
+	                                			<s:property value="title"/>
+	                                		</a>
+	                                	</div>
+	                                </td>
+	                            </tr>                            
+                            </s:iterator>
                         </tbody>
                     </table>
                 </div>
