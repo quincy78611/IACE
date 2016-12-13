@@ -1,8 +1,11 @@
 package lucene.integrationSearch;
 
+import iace.entity.activity.Activity;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.incubationCenter.IncubationCenter;
+import iace.entity.industryInfo.IndustryInfo;
 import iace.entity.literature.Literature;
+import iace.entity.news.News;
 import iace.entity.patent.Patent;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.Technology;
@@ -19,6 +22,9 @@ public class IntegrationSearchResult {
 	private CoopEx coopEx;
 	private Literature literature;
 	private IncubationCenter incubationCenter;
+	private Activity activity;
+	private IndustryInfo industryInfo;
+	private News news;
 
 	public String getType() {
 		return type;
@@ -82,6 +88,30 @@ public class IntegrationSearchResult {
 
 	public void setIncubationCenter(IncubationCenter incubationCenter) {
 		this.incubationCenter = incubationCenter;
+	}
+
+	public Activity getActivity() {
+		return activity;
+	}
+
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
+
+	public IndustryInfo getIndustryInfo() {
+		return industryInfo;
+	}
+
+	public void setIndustryInfo(IndustryInfo industryInfo) {
+		this.industryInfo = industryInfo;
+	}
+
+	public News getNews() {
+		return news;
+	}
+
+	public void setNews(News news) {
+		this.news = news;
 	}
 
 }

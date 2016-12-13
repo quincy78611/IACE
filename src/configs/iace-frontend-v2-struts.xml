@@ -10,5 +10,13 @@
 		</action>
 	</package>
 	
-
+	<package name="IntegrationSearch" namespace="/f2/integrationSearch" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.LuceneAction" method="integrationSearchInit">
+			<result>/WEB-INF/jsp/frontend_v2/integrationSearch/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.LuceneAction" method="integrationSearch">
+			<result name="success">/WEB-INF/jsp/frontend_v2/integrationSearch/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend_v2/integrationSearch/index.jsp</result>
+		</action>
+	</package>
 </struts>

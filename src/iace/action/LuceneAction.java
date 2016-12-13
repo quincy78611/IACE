@@ -66,6 +66,10 @@ public class LuceneAction extends BaseIaceAction {
 		return SUCCESS;
 	}
 	
+	public void validateIntegrationSearch() {
+		super.validateNotBlank(this.searchCondition.getSearchText(), "searchCondition.searchText");
+	}
+	
 	public String integrationSearch() {
 		try {
 			this.pagedList = this.luceneIndexService.integrationSearch(this.searchCondition);
@@ -96,11 +100,12 @@ public class LuceneAction extends BaseIaceAction {
 	public List<BaseOption> getClassList() {
 		List<BaseOption> list = new ArrayList<BaseOption>();
 		list.add(new BaseOption(Technology.class.getName(), "研發成果"));
-		list.add(new BaseOption(Patent.class.getName(), "專利"));
+		list.add(new BaseOption(Patent.class.getName(), "專利資料"));
 		list.add(new BaseOption(TalentedPeople.class.getName(), "產學人才"));
 		list.add(new BaseOption(CoopEx.class.getName(), "合作案例"));
 		list.add(new BaseOption(Literature.class.getName(), "法規/文獻"));
 		list.add(new BaseOption(IncubationCenter.class.getName(), "育成中心"));
+		list.add(new BaseOption("OTHER", "其他"));
 		return list;
 	}
 }

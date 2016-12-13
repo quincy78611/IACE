@@ -10,8 +10,12 @@
             <div>
                 <div class="large_title_01">
                 	<i class="fa fa-file-text-o" aria-hidden="true" style="font-size:18px; margin-right:5px;"></i>公告訊息
-                    <div class="pull-right"><a href="#"><img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/></a></div>
-                </div>
+					<div class="pull-right">
+						<a href="<s:url value="/f2/integrationSearch/init"/>">
+							<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/>
+						</a>
+					</div>
+				</div>
                 <div class="line_blue">&nbsp;</div>
                 <div class="line_gray1px"></div>
             </div>
@@ -22,7 +26,11 @@
 	                        <tr>
 	                            <td><h4><span class="label label-info"><s:property value="category"/></span></h4></td>
 	                            <td class="date_01"><s:date name="createTime" format="yyyy/MM/dd"/></td>
-	                            <td><a href="#" class="list_link_01"><s:property value="title"/></a></td>
+	                            <td>
+	                            	<div class="truncate" title="<s:property value="title"/>">
+	                            		<a href="#" class="list_link_01"><s:property value="title"/></a>
+	                            	</div>
+	                            </td>
 	                        </tr>
                     	</s:iterator>
                     </tbody>
@@ -35,7 +43,11 @@
             <div>
                 <div class="large_title_01">
                 	<i class="fa fa-calendar-check-o" aria-hidden="true" style="font-size:18px; margin-right:5px;"></i>活動人培
-                    <div class="pull-right"><a href="#"><img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/></a></div>
+					<div class="pull-right">
+						<a href="<s:url value="/f2/integrationSearch/init"/>">
+							<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/>
+						</a>
+					</div> 
                 </div>
                 <div class="line_blue">&nbsp;</div>
                 <div class="line_gray1px"></div>

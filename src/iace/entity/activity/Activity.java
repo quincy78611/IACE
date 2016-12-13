@@ -18,11 +18,12 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import iace.entity.BaseLinkiacEntity;
+import iace.entity.IntegrationSearch;
 import iace.entity.option.BaseOption;
 
 @Entity
 @Table(name = "ACTIVITY")
-public class Activity extends BaseLinkiacEntity {
+public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 	private static final long serialVersionUID = -6881036457895017672L;
 	
 	private static List<BaseOption> categoryList = new ArrayList<BaseOption>();
@@ -194,6 +195,12 @@ public class Activity extends BaseLinkiacEntity {
 
 	public static List<BaseOption> getCategoryList() {
 		return categoryList;
+	}
+
+	@Override
+	public String toLunceneContent() {
+		String str = this.title + " " + this.category + " " + this.source ;
+		return str;
 	}
 
 }

@@ -10,7 +10,11 @@
                 <div>
                     <div class="large_title_01">
                         <i class="fa fa-university" aria-hidden="true" style="font-size:18px; margin-right:5px;"></i>法規政策
-                        <div class="pull-right"><a href="#"><img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/></a></div>
+	 					<div class="pull-right">
+							<a href="<s:url value="/f2/integrationSearch/init"/>">
+								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/>
+							</a>
+						</div>                
                     </div>
                     <div class="line_blue">&nbsp;</div>
                     <div class="line_gray1px_02"></div>
@@ -42,7 +46,11 @@
                 <div>
                     <div class="large_title_01">
                         <i class="fa fa-book" aria-hidden="true" style="font-size:18px; margin-right:5px;"></i>文獻
-                        <div class="pull-right"><a href="#"><img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/></a></div>
+						<div class="pull-right">
+							<a href="<s:url value="/f2/integrationSearch/init"/>">
+								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/>
+							</a>
+						</div>                
                     </div>
                     <div class="line_blue">&nbsp;</div>
                     <div class="line_gray1px_02"></div>

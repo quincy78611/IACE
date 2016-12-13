@@ -10,7 +10,11 @@
                 <div>
                     <div class="large_title_02">
                         <i class="fa fa-globe" aria-hidden="true" style="font-size:18px; margin-right:5px;"></i>產學新聞
-                        <div class="pull-right"><a href="#"><img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/></a></div>
+						<div class="pull-right">
+							<a href="<s:url value="/f2/integrationSearch/init"/>">
+								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/>
+							</a>
+						</div>
                     </div>
                     <div class="line_blue">&nbsp;</div>
                     <div class="line_gray1px"></div>
@@ -23,8 +27,8 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td width="20%" style="border:none;" class="date_02">2016/10/20</td>
-                                <td style="border:none;"><a href="#" class="list_link_02">TMTS育人才 深耕產學合作</a></td>
+                                <td class="date_02">2016/10/20</td>
+                                <td><a href="#" class="list_link_02">TMTS育人才 深耕產學合作</a></td>
                             </tr>
                             <tr>
                                 <td class="date_02">2016/10/20</td>
@@ -59,7 +63,11 @@
                 <div>
                     <div class="large_title_01">
                         <i class="fa fa-pie-chart" aria-hidden="true" style="font-size:18px; margin-right:5px;"></i>產業評析
-                        <div class="pull-right"><a href="#"><img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/></a></div>
+						<div class="pull-right">
+							<a href="<s:url value="/f2/integrationSearch/init"/>">
+								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30"/>
+							</a>
+						</div>
                     </div>
                     <div class="line_blue">&nbsp;</div>
                     <div class="line_gray1px"></div>
@@ -72,8 +80,8 @@
                     <table class="table">
                         <tbody>
                             <tr>
-                                <td width="20%" style="border:none;" class="date_01">2016/10/20</td>
-                                <td style="border:none;"><a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險</a></td>
+                                <td class="date_01">2016/10/20</td>
+                                <td><a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險</a></td>
                             </tr>
                             <tr>
                                 <td class="date_01">2016/10/20</td>

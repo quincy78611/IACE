@@ -13,11 +13,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 import iace.entity.option.BaseOption;
 
 @Entity
 @Table(name = "INDUSTRY_INFO")
-public class IndustryInfo extends BaseEntity {
+public class IndustryInfo extends BaseEntity implements IntegrationSearch {
 	private static final long serialVersionUID = -4348180685333981591L;
 	private static List<BaseOption> categoryList = new ArrayList<BaseOption>();
 	static {
@@ -93,5 +94,10 @@ public class IndustryInfo extends BaseEntity {
 		return categoryList;
 	}
 
-	 
+	@Override
+	public String toLunceneContent() {
+		String str = this.title + " " + this.category + " " + this.source ;
+		return str;
+	}
+
 }
