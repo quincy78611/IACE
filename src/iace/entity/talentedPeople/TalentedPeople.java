@@ -69,13 +69,13 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 
 	private int clickNum;
 	
-	private Boolean isPublicTel;
-	private Boolean isPublicEmail;
-	private Boolean isPublicRdResult;
-	private Boolean isPublicTransferCase;
-	private Boolean isPublicMainProject;
-	private Boolean isPublicRewardHistory;
-	private Boolean isPublicOtherExperience;
+	private Boolean isPublicTel = true;
+	private Boolean isPublicEmail = true;
+	private Boolean isPublicRdResult = true;
+	private Boolean isPublicTransferCase = true;
+	private Boolean isPublicMainProject = true;
+	private Boolean isPublicRewardHistory = true;
+	private Boolean isPublicOtherExperience = true;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
