@@ -104,12 +104,7 @@ div#abgne_marquee ul {
 				</div>
 
 				<div style="float: left;" id="dv_marquee">
-					<div class="marquee content_01">
-						2016/11/30(三) - 活動人培 - 「生技矽谷與智慧醫療」技術研討會1
-						&nbsp;&nbsp;&nbsp; 
-						2016/11/30(三) - 活動人培 - 「生技矽谷與智慧醫療」技術研討會2
-						&nbsp;
-					</div>
+					<div class="marquee content_01">2016/11/30(三) - 活動人培 - 「生技矽谷與智慧醫療」技術研討會1 &nbsp;&nbsp;&nbsp; 2016/11/30(三) - 活動人培 - 「生技矽谷與智慧醫療」技術研討會2 &nbsp;</div>
 				</div>
 				<div style="float: left; margin-left: 5px;">
 					<div class="content_01">

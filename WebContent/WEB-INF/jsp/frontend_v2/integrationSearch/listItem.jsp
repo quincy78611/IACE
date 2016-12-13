@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 
 <div class="row">
 	<div class="col-sm-12 col-xs-12">
@@ -167,7 +167,7 @@
 	</div>
 	<div class="col-sm-12 col-xs-12">
 		<div class="well well-sm">
-			<table class="table content_03" style="margin-bottom: 0;" border="0">
+			<table class="table content_03" style="margin-bottom: 0;">
 				<tbody>
 					<tr>
 						<td width="10%" style="border: none;"><h4>
@@ -192,7 +192,7 @@
 	</div>
 	<div class="col-sm-12 col-xs-12">
 		<div class="well well-sm">
-			<table class="table content_03" style="margin-bottom: 0;" border="0">
+			<table class="table content_03" style="margin-bottom: 0;">
 				<tbody>
 					<tr>
 						<td width="10%" style="border: none;"><h4>
@@ -217,7 +217,7 @@
 	</div>
 	<div class="col-sm-12 col-xs-12">
 		<div class="well well-sm">
-			<table class="table content_03" style="margin-bottom: 0;" border="0">
+			<table class="table content_03" style="margin-bottom: 0;">
 				<tbody>
 					<tr>
 						<td width="10%" style="border: none;"><h4>
@@ -252,7 +252,7 @@
 	</div>
 	<div class="col-sm-12 col-xs-12">
 		<div class="well well-sm">
-			<table class="table content_03" style="margin-bottom: 0;" border="0">
+			<table class="table content_03" style="margin-bottom: 0;">
 				<tbody>
 					<tr>
 						<td width="10%" style="border: none;"><h4>
