@@ -78,7 +78,6 @@ public class LuceneAction extends BaseIaceAction {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
-		
 	}
 
 	public IntegrationSearchModel getSearchCondition() {

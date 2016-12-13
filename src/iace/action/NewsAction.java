@@ -72,7 +72,7 @@ public class NewsAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.newsService.create(this.news, super.getCurrentSysUser(), false, super.getSysLog());
+			this.newsService.create(this.news, super.getCurrentSysUser(), true, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -101,7 +101,7 @@ public class NewsAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.newsService.update(this.news, super.getCurrentSysUser(), false, super.getSysLog());
+			this.newsService.update(this.news, super.getCurrentSysUser(), true, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -126,7 +126,7 @@ public class NewsAction extends BaseIaceAction {
 	
 	public String deleteSubmit() {
 		try {
-			this.newsService.delete(this.id, false, super.getSysLog());
+			this.newsService.delete(this.id, true, super.getSysLog());
 			super.addActionMessage("DELETE SUCCESS");
 			index();
 			return SUCCESS;

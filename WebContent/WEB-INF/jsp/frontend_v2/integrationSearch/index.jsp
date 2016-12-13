@@ -71,6 +71,18 @@
 					<s:if test='literature != null'>
 						<s:include value="./ListItem_policyAndLiterature.jsp" />
 					</s:if>
+					<!-- 活動/人培 -->
+					<s:if test='activity != null'>
+						<s:include value="./listItem_activity.jsp" />
+					</s:if>
+					<!-- 產業情報 -->
+					<s:if test='industryInfo != null'>
+						<s:include value="./listItem_industryInfo.jsp" />
+					</s:if>
+					<!-- 產業情報 -->
+					<s:if test='news != null'>
+						<s:include value="./listItem_news.jsp" />
+					</s:if>
 				</s:iterator>
 			</div>
 		</div>

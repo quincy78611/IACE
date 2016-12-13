@@ -9,9 +9,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.document.Field.Store;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
@@ -27,6 +27,15 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 
 import core.util.PagedList;
+import iace.entity.activity.Activity;
+import iace.entity.coopExample.CoopEx;
+import iace.entity.incubationCenter.IncubationCenter;
+import iace.entity.industryInfo.IndustryInfo;
+import iace.entity.literature.Literature;
+import iace.entity.news.News;
+import iace.entity.patent.Patent;
+import iace.entity.researchPlan.Technology;
+import iace.entity.talentedPeople.TalentedPeople;
 
 public class IntegrationIndexer {
 	public final static Object lock = new Object();
@@ -98,29 +107,30 @@ public class IntegrationIndexer {
 		for (int i=arg.getPageSize() * arg.getPageIndex(); i < scoreDocs.length; i++) {
 			int docId = scoreDocs[i].doc;
 			Document d = searcher.doc(docId);
-			resultList.add(d);			
+			resultList.add(d);
 		}
 		
 		return resultList;
 	}
 	
 	public static PagedList<Document> searchBy(IndexReader reader, IntegrationSearchModel arg) throws ParseException, IOException {
+		// 1. create Query
 		Query query = createSearchQuery(arg);
 		
-		// 1. get totalItemCount
+		// 2. get totalItemCount
 		long totalItemCount = queryTotalRecordsCount(reader, query);
 		PagedList<Document> resultPagedList = new PagedList<Document>(totalItemCount, arg.getPageSize(), arg.getPageIndex());
 		
-		// 2. get result list		
+		// 3. get result list
 		IndexSearcher searcher = new IndexSearcher(reader);
-		int topN = arg.getPageSize() * (arg.getPageIndex() + 1);		
+		int topN = arg.getPageSize() * (arg.getPageIndex() + 1);
 		TopDocs docs = searcher.search(query, topN);
-		ScoreDoc[] scoreDocs = docs.scoreDocs;		
+		ScoreDoc[] scoreDocs = docs.scoreDocs;
 		List<Document> resultList = new ArrayList<Document>();
 		for (int i=arg.getPageSize() * arg.getPageIndex(); i < scoreDocs.length; i++) {
 			int docId = scoreDocs[i].doc;
 			Document d = searcher.doc(docId);
-			resultList.add(d);			
+			resultList.add(d);
 		}
 		resultPagedList.setList(resultList);
 		
@@ -135,13 +145,26 @@ public class IntegrationIndexer {
 	
 	public static long queryTotalRecordsCount(IndexReader reader, IntegrationSearchModel arg) throws ParseException, IOException {
 		Query query = createSearchQuery(arg);
-		return queryTotalRecordsCount(reader, query);		
+		return queryTotalRecordsCount(reader, query);
 	}
 	
 	private static Query createSearchQuery(IntegrationSearchModel arg) throws ParseException {
 		String queryStr = IntegrationIndexer.FIELD_CONTENT + ":(" + arg.getSearchText() + ")";
 		if (StringUtils.isNotBlank(arg.getClassName())) {
-			queryStr += " AND " + IntegrationIndexer.FIELD_CLASS_NAME + ":" + arg.getClassName();
+			if (arg.getClassName().equals(Technology.class.getName()) || 
+				arg.getClassName().equals(Patent.class.getName()) ||
+				arg.getClassName().equals(TalentedPeople.class.getName()) ||
+				arg.getClassName().equals(CoopEx.class.getName()) ||
+				arg.getClassName().equals(Literature.class.getName()) ||
+				arg.getClassName().equals(IncubationCenter.class.getName())) 
+			{
+				queryStr += " AND " + IntegrationIndexer.FIELD_CLASS_NAME + ":" + arg.getClassName();
+			} else {
+				queryStr += " AND ( "
+						+ IntegrationIndexer.FIELD_CLASS_NAME + ":" + Activity.class.getName() + " OR "
+						+ IntegrationIndexer.FIELD_CLASS_NAME + ":" + IndustryInfo.class.getName() + " OR "
+						+ IntegrationIndexer.FIELD_CLASS_NAME + ":" + News.class.getName() + ") ";
+			}
 		}
 
 		String[] queryFields = { IntegrationIndexer.FIELD_CLASS_NAME, IntegrationIndexer.FIELD_CONTENT };

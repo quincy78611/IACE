@@ -72,7 +72,7 @@ public class ActivityAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.activityService.create(this.activity, super.getCurrentSysUser(), false, super.getSysLog());
+			this.activityService.create(this.activity, super.getCurrentSysUser(), true, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -101,7 +101,7 @@ public class ActivityAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.activityService.update(this.activity, super.getCurrentSysUser(), false, super.getSysLog());
+			this.activityService.update(this.activity, super.getCurrentSysUser(), true, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -126,7 +126,7 @@ public class ActivityAction extends BaseIaceAction {
 	
 	public String deleteSubmit() {
 		try {
-			this.activityService.delete(this.id, false, super.getSysLog());
+			this.activityService.delete(this.id, true, super.getSysLog());
 			super.addActionMessage("DELETE SUCCESS");
 			index();
 			return SUCCESS;
