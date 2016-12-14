@@ -178,6 +178,9 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 		entity.setVideos(videos);
 		entity.setAttachFiles(attachFiles);
 		
+		// produce and save thumbnail
+		produceAndSaveThumbnail(entity);
+		
 		// save image files
 		for (int i=0; i<entity.getImgs().size(); i++) {
 			CoopExImg img = entity.getImgs().get(i);
@@ -310,6 +313,10 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 		}
 	}
 	
+	private void produceAndSaveThumbnail(CoopEx entity) {
+		//TODO
+	}
+	
 	private void setDataAndSaveImgForCoopExImg(CoopEx entity, CoopExImg img, int i) {
 		String fileExtension = FilenameUtils.getExtension(img.getUploadFileName());
 		String time = sdf.format(System.currentTimeMillis());
@@ -428,7 +435,9 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 	public List<CoopEx> sampleForHomePage() {
 		List<CoopEx> list = this.coopExDao.sampleForHomePage();
 		for (CoopEx entity : list) {
-			// load only first image
+			// TODO load thumbnail
+			
+			// load only first image TODO: cancel this part
 			if (entity.getImgs() != null && entity.getImgs().size() > 0) {
 				File f = new File(this.coopExampleFolder, entity.getImgs().get(0).getFilePath());
 				byte[] imgData = loadImg(f);

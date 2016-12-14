@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -34,6 +35,8 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 	private String rdTeam;
 	private String assisTeam;
 	private String content;
+	
+	private CoopExImg thumbnail;
 	private List<CoopExImg> imgs = new ArrayList<CoopExImg>();
 	private List<CoopExVideo> videos = new ArrayList<CoopExVideo>();
 	private List<CoopExAttachFile> attachFiles = new ArrayList<CoopExAttachFile>();
@@ -113,6 +116,15 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	@Transient
+	public CoopExImg getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(CoopExImg thumbnail) {
+		this.thumbnail = thumbnail;
 	}
 
 	@OneToMany(mappedBy="coopEx", cascade={CascadeType.ALL}, fetch = FetchType.LAZY)
