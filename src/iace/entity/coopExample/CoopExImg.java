@@ -38,7 +38,7 @@ public class CoopExImg extends CoopExFile {
 	@Transient
 	public String getBase64Thumbnail(int width, int height) throws IOException {
 		if (this.byteImg != null) {
-			return Base64.encode(ThumbnailUtil.resize(this.byteImg, width, height, true));
+			return Base64.encode(ThumbnailUtil.resize(this.byteImg, width, height, true, 1f));
 		}
 		return null;
 	}

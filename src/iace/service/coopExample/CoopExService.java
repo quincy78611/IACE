@@ -1,7 +1,9 @@
 package iace.service.coopExample;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -16,6 +18,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import core.util.PagedList;
+import core.util.ThumbnailUtil;
 import iace.dao.coopExample.ICoopExAttachFileDao;
 import iace.dao.coopExample.ICoopExDao;
 import iace.dao.coopExample.ICoopExImgDao;
@@ -97,6 +100,10 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 	@Override
 	public void create(CoopEx entity) throws IOException, SQLException {
 		saveFile(entity);
+		
+		// produce and save thumbnail
+		produceAndSaveThumbnail(entity);
+		
 		super.create(entity);
 		
 		// reload images
@@ -115,6 +122,9 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 		// 2. don't need those files which have been changed
 		deleteFile(entityO);
 		
+		// produce and save thumbnail
+		produceAndSaveThumbnail(entity);
+		
 		// if projName changed, remove old folder;
 		if (StringUtils.equals(entity.getProjName(), entityO.getProjName()) == false) {
 			File oldDir = new File(this.coopExampleFolder, entityO.getProjName());
@@ -132,6 +142,7 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 	@Override
 	public void delete(CoopEx entity) throws IOException, SQLException {
 		deleteFile(entity);
+		getThumbnailFile(entity).delete();
 		File dir = new File(this.coopExampleFolder, entity.getProjName());
 		dir.delete();
 		super.delete(entity);
@@ -177,9 +188,6 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 		entity.setImgs(imgs);
 		entity.setVideos(videos);
 		entity.setAttachFiles(attachFiles);
-		
-		// produce and save thumbnail
-		produceAndSaveThumbnail(entity);
 		
 		// save image files
 		for (int i=0; i<entity.getImgs().size(); i++) {
@@ -313,8 +321,21 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 		}
 	}
 	
-	private void produceAndSaveThumbnail(CoopEx entity) {
-		//TODO
+	private File getThumbnailFile(CoopEx entity) {
+		File path = new File(entity.getProjName(), "thumbnail.jpg");
+		return new File(this.coopExampleFolder, path.getPath());
+	}
+	
+	private void produceAndSaveThumbnail(CoopEx entity) throws IOException {
+		if (entity.getImgs() != null && entity.getImgs().size() > 0) {
+			byte[] firstImg;
+			firstImg = loadImg(new File(this.coopExampleFolder, entity.getImgs().get(0).getFilePath()));
+			byte[] thumbnail = ThumbnailUtil.resize(firstImg, 720, 540, true);
+			OutputStream out = new FileOutputStream(getThumbnailFile(entity));
+			out.write(thumbnail);
+			out.flush();
+			out.close();
+		}
 	}
 	
 	private void setDataAndSaveImgForCoopExImg(CoopEx entity, CoopExImg img, int i) {
@@ -435,14 +456,7 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 	public List<CoopEx> sampleForHomePage() {
 		List<CoopEx> list = this.coopExDao.sampleForHomePage();
 		for (CoopEx entity : list) {
-			// TODO load thumbnail
-			
-			// load only first image TODO: cancel this part
-			if (entity.getImgs() != null && entity.getImgs().size() > 0) {
-				File f = new File(this.coopExampleFolder, entity.getImgs().get(0).getFilePath());
-				byte[] imgData = loadImg(f);
-				entity.getImgs().get(0).setByteImg(imgData);
-			}
+			entity.setThumbnail(loadImg(getThumbnailFile(entity)));
 		}
 		return list;
 	}

@@ -18,6 +18,8 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 import iace.entity.BaseEntity;
 import iace.entity.IntegrationSearch;
 
@@ -36,7 +38,7 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 	private String assisTeam;
 	private String content;
 	
-	private CoopExImg thumbnail;
+	private transient byte[] thumbnail;
 	private List<CoopExImg> imgs = new ArrayList<CoopExImg>();
 	private List<CoopExVideo> videos = new ArrayList<CoopExVideo>();
 	private List<CoopExAttachFile> attachFiles = new ArrayList<CoopExAttachFile>();
@@ -119,12 +121,20 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 	}
 	
 	@Transient
-	public CoopExImg getThumbnail() {
+	public byte[] getThumbnail() {
 		return thumbnail;
 	}
 
-	public void setThumbnail(CoopExImg thumbnail) {
+	public void setThumbnail(byte[] thumbnail) {
 		this.thumbnail = thumbnail;
+	}
+	
+	@Transient
+	public String getBase64Thumbnail() {
+		if (this.thumbnail != null) {
+			return Base64.encode(this.thumbnail);
+		}
+		return null;
 	}
 
 	@OneToMany(mappedBy="coopEx", cascade={CascadeType.ALL}, fetch = FetchType.LAZY)

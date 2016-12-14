@@ -131,7 +131,7 @@
 						</s:url> 
 						<a href="<s:property value="#urlTag" />">
 							<div class="caseimg">
-								<img src="data:image;base64,<s:property value="%{imgs[0].getBase64Thumbnail(400, 400)}"/>" />
+								<img src="data:image;base64,<s:property value="base64Thumbnail"/>" />
 							</div> 
 							<br> <s:property value="projName" />
 						</a>

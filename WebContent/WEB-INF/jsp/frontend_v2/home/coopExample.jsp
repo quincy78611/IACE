@@ -24,7 +24,7 @@
 		<s:iterator value="coopExList" status="stat">
 			<div class="col-sm-4 col-xs-12 top20">
 				<div>
-					<img src="data:image;base64,<s:property value="%{imgs[0].getBase64Thumbnail(720, 540)}"/>" class="img-responsive img_radius" alt="" />
+					<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive img_radius" alt="" />
 				</div>
 				<div class="text-center top10">
 					<a href="#" class="list_link_01"><s:property value="title" /></a>
