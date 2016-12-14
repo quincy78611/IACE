@@ -12,6 +12,8 @@
 	<s:include value="./banner.jsp" />
 
 	<s:form action="index" method="post" validate="true">
+		<s:hidden name="searchCondition.className"/>
+	
 		<!-- 分類 -->
 		<div class="container top50">
 			<div class="row">

@@ -10,7 +10,7 @@
 				<div class="large_title_01">
 					<i class="fa fa-handshake-o" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>產學合作案例
 					<div class="pull-right">
-						<a href="<s:url value="/f2/integrationSearch/init"/>"> 
+						<a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.coopExample.CoopEx"/>"> 
 							<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
 						</a>
 					</div>

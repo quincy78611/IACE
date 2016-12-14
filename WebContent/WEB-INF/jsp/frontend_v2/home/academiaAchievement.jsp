@@ -11,7 +11,9 @@
 					<div class="large_title_02">
 						<i class="fa fa-lightbulb-o" aria-hidden="true" style="font-size: 20px; margin-right: 10px;"></i>學界研發成果
 						<div class="pull-right">
-							<a href="#"><img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" /></a>
+							<a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.researchPlan.Technology"/>">
+								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
+							</a>
 						</div>
 					</div>
 					<div class="line_blue">&nbsp;</div>

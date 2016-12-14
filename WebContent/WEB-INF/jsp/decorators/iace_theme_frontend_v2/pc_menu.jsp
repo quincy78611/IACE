@@ -25,7 +25,11 @@
 <div class="container pc_menu">
     <div class="row">
         <div class="col-md-3 col-sm-3">
-        	<div><a href="index.html"><img src="<s:url value="/images/frontend-v2/logo.jpg"/>" alt="" style="max-height:100px;"/></a></div>
+        	<div>
+        		<a href="<s:url value="/f2/home/init"/>">
+        			<img src="<s:url value="/images/frontend-v2/logo.jpg"/>" alt="" style="max-height:100px;"/>
+        		</a>
+        	</div>
         </div>
         <div class="col-md-9 col-sm-9 text-right">
             <div class="input-group pull-right" style="width:300px; margin-top:15px;">
@@ -99,7 +103,9 @@
 	<div class="container">
     	<div class="row">
             <div class="col-sm-2">
-            	<a href="#" class="blue_menu_link"><i class="fa fa-home right5" aria-hidden="true"></i>首頁</a>
+            	<a href="<s:url value="/f2/home/init"/>" class="blue_menu_link">
+            		<i class="fa fa-home right5" aria-hidden="true"></i>首頁
+            	</a>
             </div>
             <div class="col-sm-2">
             	<a href="#" class="blue_menu_link"><i class="fa fa-pencil right5" aria-hidden="true"></i>產學合作計畫</a>

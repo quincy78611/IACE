@@ -5,7 +5,11 @@
 <!-- Menu 手機版 -->
 <nav class="mobile_menu" style="border:none; background-color:#FFF; width:100%; margin-bottom:0px;">
     <div class="container-fluid nopadding">
-        <div class="pull-left"><a href="index.html"><img src="<s:url value="/images/frontend-v2/logo.jpg"/>" alt="" style="height:60px; margin-left:10px;"/></a></div>
+        <div class="pull-left">
+        	<a href="<s:url value="/f2/home/init"/>">
+        		<img src="<s:url value="/images/frontend-v2/logo.jpg"/>" alt="" style="height:60px; margin-left:10px;"/>
+        	</a>
+        </div>
         <div class="pull-right" style="padding:15px 10px;">
         	<a href="#" onclick="$('#menu_dropdown').slideToggle('fast');"><i class="fa fa-bars fa-2x" style="color:#1fb5da;" aria-hidden="true"></i></a>
         </div>
@@ -66,7 +70,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF; border-right:1px solid #FFF;">
-                            <a href="#" class="blue_menu_link"><i class="fa fa-home right5" aria-hidden="true"></i>首頁</a>
+                            <a href="<s:url value="/f2/home/init"/>" class="blue_menu_link">
+                            	<i class="fa fa-home right5" aria-hidden="true"></i>首頁
+                            </a>
                         </div>
                         <div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF;">
                             <a href="#" class="blue_menu_link"><i class="fa fa-pencil right5" aria-hidden="true"></i>產學合作計畫</a>

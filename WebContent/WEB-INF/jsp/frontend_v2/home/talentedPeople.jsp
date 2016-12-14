@@ -11,7 +11,7 @@
 					<div class="large_title_02">
 						<i class="fa fa-users" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>產學人才
 						<div class="pull-right">
-							<a href="<s:url value="/f2/integrationSearch/init"/>">
+							<a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.talentedPeople.TalentedPeople"/>">
 								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
 							</a>
 						</div>
