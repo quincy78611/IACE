@@ -150,7 +150,7 @@ public class BatchSendEmailAction extends BaseIaceAction {
 			MimeMessage msg = new MimeMessage(session); // 取得一Mime的Message
 			msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
 			
-			msg.setFrom(new InternetAddress(this.emailFrom, this.emailSenderName));
+			msg.setFrom(new InternetAddress(this.emailFrom, this.emailSenderName, "UTF-8"));
 			InternetAddress[] address = { new InternetAddress(rowData.get(keywordList.get(0))) };
 			msg.setRecipients(Message.RecipientType.TO, address);
 			msg.setSubject(this.emailSubject, "utf-8");
