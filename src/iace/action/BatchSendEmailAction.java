@@ -147,11 +147,13 @@ public class BatchSendEmailAction extends BaseIaceAction {
 		javax.mail.Session session = javax.mail.Session.getDefaultInstance(props, null); // 取得與SMTP
 
 		for (Map<String, String> rowData : datas) {
-			Message msg = new MimeMessage(session); // 取得一Mime的Message
+			MimeMessage msg = new MimeMessage(session); // 取得一Mime的Message
+			msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
+			
 			msg.setFrom(new InternetAddress(this.emailFrom, this.emailSenderName));
 			InternetAddress[] address = { new InternetAddress(rowData.get(keywordList.get(0))) };
 			msg.setRecipients(Message.RecipientType.TO, address);
-			msg.setSubject(this.emailSubject);
+			msg.setSubject(this.emailSubject, "utf-8");
 			Multipart multipart = new MimeMultipart();
 
 			// set actual message
