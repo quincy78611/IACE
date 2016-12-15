@@ -435,7 +435,7 @@ tr.hidden-sample-tr { display:none; }
 		<div class="clear"></div>
 		<div class="bottom-btn-block">
 			<s:submit cssClass="redBtn" value="儲存" />
-			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
+<!-- 			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/> -->
 		</div>		
 	</s:form>
 	
@@ -615,7 +615,7 @@ tr.hidden-sample-tr { display:none; }
 
 <!-- ======================================================================= -->
 
-	<s:include value="./form-backToIndex.jsp" />
+<%-- 	<s:include value="./form-backToIndex.jsp" /> --%>
 	
 </body>
 </html>

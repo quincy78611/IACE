@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="<s:url value="/scripts/vmenuModule.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/GoogleAnalytics.js"/>"></script>
 	
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_qnr.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_backend_noMenu.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/rightContentElement.css"/>" />	
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/u-vmenu.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/alert.css"/>" />
@@ -26,19 +26,19 @@
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/jquerysctipttop.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/pageBtnList.css"/>" />
 	
-    <s:if test="%{title != null && title != ''}">
-   		<title><s:property value="title" /></title>
-   	</s:if>
-   	<s:else>
-   		<title><decorator:title default="Welcome!" /></title>
-   	</s:else>
+	<s:if test="%{title != null && title != ''}">
+		<title><s:property value="title" /></title>
+	</s:if>
+	<s:else>
+		<title><decorator:title default="Welcome!" /></title>
+	</s:else>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			setInterval(function () {
-                /* $("#div-top-message").attr("hidden", "hidden"); */
-                $("#div-top-message").hide();
-            }, 5000);
+				/* $("#div-top-message").attr("hidden", "hidden"); */
+				$("#div-top-message").hide();
+			}, 5000);
 		});
 	</script>
 
@@ -47,29 +47,31 @@
 <body>
 	<header>
 		<div class="LOGO">
-			<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
+			<a href="<s:url value="/home/init"/>">
+				<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
+			</a>
 		</div>
 	</header>
 	<article>
-		<div class="pageTitle">   		
-   			<s:if test="%{title != null && title != ''}">
-   				<h1><s:property value="title" /></h1>
-   			</s:if>   		 
+		<div class="pageTitle">
+			<s:if test="%{title != null && title != ''}">
+				<h1><s:property value="title" /></h1>
+				</s:if> 
 		</div>
- 
-    	<div class="rightContent">
-    		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
+
+		<div class="rightContent">
+			<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
 			<div id="div-top-message">
 				<s:if test="hasActionMessages()">
 					<s:actionmessage />
 				</s:if>
 				<s:if test="hasActionErrors()">
 					<s:actionerror />
-				</s:if>			
+				</s:if>
 			</div>
 			<decorator:body />
-    	</div>
-    	<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
 	</article>
 	<footer>
 		<div class="con">

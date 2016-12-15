@@ -10,6 +10,10 @@
     	<pattern>/WEB-INF/jsp/login.jsp</pattern>
         <pattern>/WEB-INF/jsp/error.jsp</pattern>
     </decorator>
+    
+    <decorator name="backend-noMenu-talentedPeople-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend_talentedPeople.jsp">
+    	<pattern>/WEB-INF/jsp/backend_noMenu/talentedPeople/*</pattern>
+    </decorator>
 	
     <decorator name="frontend-theme" page="/WEB-INF/jsp/decorators/iace_theme_frontend.jsp">
       	<pattern>/WEB-INF/jsp/frontend/*</pattern>

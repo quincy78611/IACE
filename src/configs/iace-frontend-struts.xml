@@ -104,13 +104,19 @@
 			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
 		</action>
+		<action name="logout" class="iace.action.SysUserAction" method="logout">
+			<interceptor-ref name="iaceSysLog"/>
+			<interceptor-ref name="defaultStack"/>
+			
+			<result>/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
+		</action>
 		<action name="selfUpdateSubmit" class="iace.action.TalentedPeopleAction" method="selfUpdateSubmit">
 			<interceptor-ref name="iaceSession"/>
 			<interceptor-ref name="iaceBackendlogin"/>
 			<interceptor-ref name="defaultStack"/>
 		
 			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/detail.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
 		</action>
 	</package>
 	
