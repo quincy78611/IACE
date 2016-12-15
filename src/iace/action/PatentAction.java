@@ -196,7 +196,7 @@ public class PatentAction extends BaseIaceAction {
 		super.validateNotBlankNLength(this.patent.getCategory(), 100, "patent.category");
 		super.validateNotBlankNLength(this.patent.getPatentStatus(), 500, "patent.patentStatus");
 		super.validateNotBlankNLength(this.patent.getFamilyNo(), 2000, "patent.familyNo");
-		super.validateNotBlankNLength(this.patent.getIpc(), 100, "patent.ipc");
+		super.validateNotBlankNLength(this.patent.getIpc(), 200, "patent.ipc");
 		super.validateNotBlank(this.patent.getTechAbstract(), "patent.techAbstract");
 //		super.validateNotBlankNLength(this.patent.getImportantPictureCode(), 100, "patent.importantPictureCode");
 		super.validateNotBlankNLength(this.patent.getTechField().getName(), 500, "patent.techField.name");

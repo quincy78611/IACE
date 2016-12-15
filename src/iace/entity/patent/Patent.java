@@ -209,7 +209,7 @@ public class Patent extends BaseEntity implements IntegrationSearch {
 		this.familyNo = familyNo;
 	}
 
-	@Column(name = "IPC", length = 100, nullable = false)
+	@Column(name = "IPC", length = 200, nullable = false)
 	public String getIpc() {
 		return ipc;
 	}
@@ -345,7 +345,7 @@ public class Patent extends BaseEntity implements IntegrationSearch {
 		ValidateUtil.notBlankNLength(this.category, 100, "專利類別", errMsgs);
 		ValidateUtil.notBlankNLength(this.patentStatus, 500, "專利狀態", errMsgs);
 		ValidateUtil.notBlankNLength(this.familyNo, 2000, "專利家族", errMsgs);
-		ValidateUtil.notBlankNLength(this.ipc, 100, "國際分類號", errMsgs);
+		ValidateUtil.notBlankNLength(this.ipc, 200, "國際分類號", errMsgs);
 		ValidateUtil.notBlank(this.techAbstract, "專利技術摘要", errMsgs);
 		ValidateUtil.notNull(this.importantPatentPicture, "重要圖式", errMsgs);
 		ValidateUtil.maxLength(this.importantPicturePath, 200, "重要圖式路徑", errMsgs);
