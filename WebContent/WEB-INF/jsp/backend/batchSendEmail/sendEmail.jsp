@@ -32,12 +32,22 @@
 </script>
 </head>
 <body>
+	<s:if test="errMsgs != null && errMsgs.size() > 0">
+		<table>
+			<tr><th>錯誤訊息列表</th></tr>
+			<s:iterator value="errMsgs" status="stat">
+				<tr><td><s:property/></td></tr>
+			</s:iterator>
+		</table>
+	</s:if>	
+	
 	<s:form action="sendEmailSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-batchImport">
 		<ul>
 			<li class="all">
 				<b>收件者列表檔案*</b>
 				<s:file name="uploadFile" accept=".xlsx"/>
-				<span style="font-size:0.7em;">P.S. 第一欄必須為收件者Email，後面欄位為要用來替換模板參數的資料</span>
+				<span style="font-size:0.7em;">P.S. 第一欄必須為收件者Email(欲於同一列寄送給多個對象，請在email之間用分號隔開，但勿含有空白)</span><br>
+				<span style="font-size:0.7em;">P.S. 後面欄位為要用來替換模板參數的資料</span>
 			</li>
 			<li class="half">
 				<b>發件人姓名</b>
@@ -79,15 +89,5 @@
 			onclick=" window.location.href = '<s:url value="/batchSendEmail/sendEmail"/>' " />
 		</div>	
 	</s:form>
-	
-	<s:if test="errMsgs != null && errMsgs.size() > 0">
-		<table>
-			<tr><th>錯誤訊息列表</th></tr>
-			<s:iterator value="errMsgs" status="stat">
-				<tr><td><s:property/></td></tr>
-			</s:iterator>
-		</table>
-	</s:if>
-
 </body>
 </html>

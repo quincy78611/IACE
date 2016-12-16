@@ -13,10 +13,8 @@ import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.mail.Message;
-import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
@@ -101,11 +99,14 @@ public class BatchSendEmailAction extends BaseIaceAction {
 						cell = row.getCell(++c);
 						cell.setCellType(Cell.CELL_TYPE_STRING);
 						String email = cell.getStringCellValue().trim();
-						if (Validator.isValidEmail(email) == false) {
-							throw new IllegalArgumentException("無效的Email格式");
-						} else {
-							rowData.put(keywordList.get(c), email);
+						email = email.replace("；", ";");
+						String[] emails = email.split(";");
+						for (String e : emails){
+							if (Validator.isValidEmail(e) == false) {
+								throw new IllegalArgumentException("無效的Email格式，請檢查是否含有[空白]、[特殊符號]、[非英數字元]");
+							}
 						}
+						rowData.put(keywordList.get(c), email);
 						
 						while (c+1 < keywordList.size()) {
 							cell = row.getCell(++c);
@@ -130,7 +131,7 @@ public class BatchSendEmailAction extends BaseIaceAction {
 			
 			if (this.errMsgs == null || this.errMsgs.size() == 0) {
 				batchSendEmail(keywordList, excelDatas);
-				super.addActionMessage("批次寄送郵件完成");
+				super.addActionMessage("批次寄送"+excelDatas.size()+"郵件完成");
 			} else {
 				super.addActionError("錯誤!請查閱下方錯誤訊息列表");
 			}
@@ -141,46 +142,66 @@ public class BatchSendEmailAction extends BaseIaceAction {
 		}
 	}
 	
-	private void batchSendEmail(List<String> keywordList, List<Map<String, String>> datas) throws AddressException, MessagingException, IOException {
+	private void batchSendEmail(List<String> keywordList, List<Map<String, String>> datas) throws Exception {
 		Properties props = new Properties();
 		props.load(this.getClass().getClassLoader().getResourceAsStream("configs/mail.smtp.properties"));
 		javax.mail.Session session = javax.mail.Session.getDefaultInstance(props, null); // 取得與SMTP
 
-		for (Map<String, String> rowData : datas) {
-			MimeMessage msg = new MimeMessage(session); // 取得一Mime的Message
-			msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
-			
-			msg.setFrom(new InternetAddress(this.emailFrom, this.emailSenderName, "UTF-8"));
-			InternetAddress[] address = { new InternetAddress(rowData.get(keywordList.get(0))) };
-			msg.setRecipients(Message.RecipientType.TO, address);
-			msg.setSubject(this.emailSubject, "utf-8");
-			Multipart multipart = new MimeMultipart();
-
-			// set actual message
-			{
-				MimeBodyPart messageBodyPart = new MimeBodyPart();
-				String content = this.emailContentTemplate;
-				for (int i=0; i<keywordList.size(); i++) {
-					String keyword = keywordList.get(i);
-					if (keyword.startsWith("%") && keyword.endsWith("%")) {
-						content = content.replace(keyword, rowData.get(keyword));
-					}
+		for (int email_index = 0; email_index<datas.size(); email_index++) {
+			try {
+				Map<String, String> rowData = datas.get(email_index);
+				MimeMessage msg = new MimeMessage(session); // 取得一Mime的Message
+				msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
+				
+				// set FROM
+				msg.setFrom(new InternetAddress(this.emailFrom, this.emailSenderName, "UTF-8"));
+				
+				// set TO
+				List<InternetAddress> addressList = new ArrayList<InternetAddress>();
+				for (String email : rowData.get(keywordList.get(0)).split(";")) {
+					addressList.add(new InternetAddress(email));
 				}
-				messageBodyPart.setContent(content, "text/html; charset=utf-8");
-				multipart.addBodyPart(messageBodyPart);
+				InternetAddress[] address = addressList.toArray(new InternetAddress[addressList.size()]);	
+				msg.setRecipients(Message.RecipientType.TO, address);
+				
+				// set Subject
+				msg.setSubject(this.emailSubject, "utf-8");
+				
+				// set content
+				{
+					Multipart multipart = new MimeMultipart();
+
+					// set actual message
+					{
+						MimeBodyPart messageBodyPart = new MimeBodyPart();
+						String content = this.emailContentTemplate;
+						for (int i=0; i<keywordList.size(); i++) {
+							String keyword = keywordList.get(i);
+							if (keyword.startsWith("%") && keyword.endsWith("%")) {
+								content = content.replace(keyword, rowData.get(keyword));
+							}
+						}
+						messageBodyPart.setContent(content, "text/html; charset=utf-8");
+						multipart.addBodyPart(messageBodyPart);
+					}
+					
+					// add attaches 
+					for (int i = 0; i< this.attaches.size(); i++) {
+						MimeBodyPart messageBodyPart = new MimeBodyPart();
+						DataSource source = new FileDataSource(this.attaches.get(i));
+						messageBodyPart.setDataHandler(new DataHandler(source));
+						messageBodyPart.setFileName(this.attachesFileName.get(i));
+						multipart.addBodyPart(messageBodyPart);
+					}
+					
+					msg.setContent(multipart);
+				}
+				
+				Transport.send(msg);
+			} catch (Exception e) {
+				String msg = "已發送"+(email_index)+"次郵件，但出現錯誤導致後續郵件沒有發送";
+				throw new Exception(msg, e);
 			}
-			
-			// add attaches 
-			for (int i = 0; i< this.attaches.size(); i++) {
-				MimeBodyPart messageBodyPart = new MimeBodyPart();
-				DataSource source = new FileDataSource(this.attaches.get(i));
-				messageBodyPart.setDataHandler(new DataHandler(source));
-				messageBodyPart.setFileName(this.attachesFileName.get(i));
-				multipart.addBodyPart(messageBodyPart);
-			}
-			
-			msg.setContent(multipart);					
-			Transport.send(msg);
 		}
 	}
 	
