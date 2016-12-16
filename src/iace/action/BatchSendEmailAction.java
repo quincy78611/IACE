@@ -103,7 +103,7 @@ public class BatchSendEmailAction extends BaseIaceAction {
 						String[] emails = email.split(";");
 						for (String e : emails){
 							if (Validator.isValidEmail(e) == false) {
-								throw new IllegalArgumentException("無效的Email格式，請檢查是否含有[空白]、[特殊符號]、[非英數字元]");
+								throw new IllegalArgumentException("必須是有效的Email格式，並請檢查是否含有[空白]、[特殊符號]、[非英數字元]");
 							}
 						}
 						rowData.put(keywordList.get(c), email);
