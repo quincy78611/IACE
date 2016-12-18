@@ -235,20 +235,15 @@ public class PatentAction extends BaseIaceAction {
 
 	private void setUploadFileToEntity() throws IOException {
 		if (StringUtils.isNotBlank(this.uploadPatentImgFileName)) {
-//			int index = this.uploadPatentImgFileName.lastIndexOf(".");
-//			String extension = this.uploadPatentImgFileName.substring(index + 1);
-//			this.patent.setImportantPatentPictureExtension(extension);
-
 			Path path = Paths.get(this.uploadPatentImg.getAbsolutePath());
 			byte[] data = Files.readAllBytes(path);
 			this.patent.setImportantPatentPicture(data);
+			this.patent.setImportantPicturePath(this.uploadPatentImgFileName);
 		} else {
 			if (this.patent.getId() != 0) {
 				Patent oldP = this.patentService.get(this.patent.getId());
-//				int index = oldP.getImportantPicturePath().lastIndexOf(".");
-//				this.patent.setImportantPatentPictureExtension(oldP.getImportantPicturePath().substring(index + 1));
-				
 				this.patent.setImportantPatentPicture(oldP.getImportantPatentPicture());
+				this.patent.setImportantPicturePath(oldP.getImportantPicturePath());
 			}
 		}
 	}

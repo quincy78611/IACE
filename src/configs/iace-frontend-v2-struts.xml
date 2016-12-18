@@ -38,4 +38,10 @@
 			<result name="success">/WEB-INF/jsp/frontend_v2/researchPlan/detail.jsp</result>
 		</action>
 	</package>
+	
+	<package name="f2-Patent" namespace="/f2/patent" extends="struts-default, json-default, default">
+		<action name="showDetail" class="iace.action.PatentAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend_v2/patent/detail.jsp</result>
+		</action>
+	</package>
 </struts>
