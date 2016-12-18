@@ -44,4 +44,10 @@
 			<result name="success">/WEB-INF/jsp/frontend_v2/patent/detail.jsp</result>
 		</action>
 	</package>
+	
+	<package name="f2-IncubationCenter" namespace="/f2/incubationCenter" extends="struts-default, json-default, default">
+		<action name="showDetail" class="iace.action.IncubationCenterAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend_v2/incubationCenter/detail.jsp</result>
+		</action>
+	</package>
 </struts>

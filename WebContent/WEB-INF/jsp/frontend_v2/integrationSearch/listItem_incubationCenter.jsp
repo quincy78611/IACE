@@ -12,7 +12,10 @@
 					</h4></td>
 					<td width="10%" style="border: none;" class="date_01">學校名稱</td>
 					<td style="border: none;">
-						<a href="#" class="list_link_01">
+						<s:url value="/f2/incubationCenter/showDetail" var="detailUrlTag" escapeAmp="false">
+							<s:param name="id" value="incubationCenter.id" />
+						</s:url>
+						<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank">
 							<s:property value="incubationCenter.schoolNameCh" />
 						</a>
 					</td>
