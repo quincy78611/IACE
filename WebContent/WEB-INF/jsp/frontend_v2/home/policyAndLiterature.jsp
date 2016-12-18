@@ -22,17 +22,12 @@
 				<div>
 					<table class="table">
 						<tbody>
-							<tr>
-								<td width="20%" style="border: none;" class="small_title_01"><strong>出版年分</strong></td>
-								<td style="border: none;" class="small_title_01"><strong>標題</strong></td>
-							</tr>
 							<s:iterator value="policyList" status="stat">
 								<tr>
-									<td class="date_01 table_border"><s:property value="publishYear" /></td>
-									<td class="table_border">
+									<td class="table_border_bottom_grey">
 										<div class="truncate" title="<s:property value="title"/>">
-											<a href="#" class="list_link_01"> <s:property value="title" />
-											</a>
+											<span class="date_01"><s:property value="publishYear"/></span>&nbsp;
+											<a href="#" class="list_link_01"><s:property value="title" /></a>
 										</div>
 									</td>
 								</tr>
@@ -57,17 +52,13 @@
 				<div>
 					<table class="table">
 						<tbody>
-							<tr>
-								<td width="20%" style="border: none;" class="small_title_01"><strong>出版年分</strong></td>
-								<td style="border: none;" class="small_title_01"><strong>標題</strong></td>
-							</tr>
 							<s:iterator value="literatureList" status="stat">
+
 								<tr>
-									<td class="date_01 table_border"><s:property value="publishYear" /></td>
-									<td class="table_border">
+									<td class="table_border_bottom_grey">
 										<div class="truncate" title="<s:property value="title"/>">
-											<a href="#" class="list_link_01"> <s:property value="title" />
-											</a>
+											<span class="date_01"><s:property value="publishYear" /></span>&nbsp;
+											<a href="#" class="list_link_01"><s:property value="title"/></a>
 										</div>
 									</td>
 								</tr>

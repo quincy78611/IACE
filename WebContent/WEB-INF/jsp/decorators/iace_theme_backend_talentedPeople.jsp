@@ -16,7 +16,7 @@
 	<script type="text/javascript" src="<s:url value="/scripts/vmenuModule.js"/>"></script>
 	<script type="text/javascript" src="<s:url value="/scripts/GoogleAnalytics.js"/>"></script>
 	
-	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_qnr.css"/>" />
+	<link rel="stylesheet" type="text/css" href="<s:url value="/css/layout_backend_noMenu.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/rightContentElement.css"/>" />	
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/u-vmenu.css"/>" />
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/alert.css"/>" />
@@ -47,8 +47,17 @@
 <body>
 	<header>
 		<div class="LOGO">
-			<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
+			<a href="<s:url value="/home/init"/>">
+				<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
+			</a>	
 		</div>
+		<div class="Link">
+			<s:if test="#session.sysUser != null">
+				<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
+				<a href="<s:url value="/f/talentedPeople/logout"/>" class="login">登出</a>
+				<a href="<s:url value="/login/logout"/>" class="login">回首頁</a>
+			</s:if>
+		</div>		
 	</header>
 	<article>
 		<div class="pageTitle">   		

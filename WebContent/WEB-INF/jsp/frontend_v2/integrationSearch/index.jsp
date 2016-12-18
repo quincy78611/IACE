@@ -5,6 +5,13 @@
 <head>
 <script type="text/javascript">
 	$(document).ready(function() {
+	 	// 注意: 在此頁面的重置按鈕記得要加上id
+		$("#btn-reset").click(function(){
+			$("input[type=text]").val("");
+			$("select").prop('selectedIndex', 0);
+		});
+	
+	
 	});
 </script>
 </head>
@@ -13,6 +20,7 @@
 
 	<s:form action="index" method="post" validate="true">
 		<s:hidden name="searchCondition.className"/>
+<%-- 		<s:textfield name="searchCondition.className"/> --%>
 	
 		<!-- 分類 -->
 		<div class="container top50">
@@ -20,25 +28,27 @@
 				<s:include value="./index_searchSubTitle.jsp" />
 			</div>
 			<div class="row">
-				<!-- 搜尋輸入區塊 -->
-				<div class="col-sm-12 col-xs-12">
-					<div class="well">
-						<div class="row">
-							<div class="col-sm-10 col-xs-9">
-								<s:textfield name="searchCondition.searchText" class="form-control" placeholder="搜尋" />
-							</div>
-							<div class="col-sm-2 col-xs-3">
-								<button type="submit" class="btn btn-primary">
-									<i class="fa fa-search-plus right5" aria-hidden="true"></i>搜尋
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
 				<!-- 手機版 -->
 				<s:include value="./mobile_menu.jsp" />
 				<!-- PC版 -->
 				<s:include value="./pc_menu.jsp" />
+			
+				<!-- 搜尋輸入區塊 -->
+		        <div class="col-sm-12 col-xs-12">
+		        	<div class="well">
+		                <form class="form-group">
+		                    <div class="row">
+		                        <div class="col-sm-8 col-xs-7">
+		                        	<s:textfield name="searchCondition.searchText" class="form-control" placeholder="搜尋" style="font-size:18px"/>
+		                        </div>
+		                        <div class="col-sm-4 col-xs-5">
+		                        	<button type="submit" class="btn btn-primary" id="btn-search"><i class="fa fa-search-plus right5" aria-hidden="true"></i><span style="font-size:18px">搜尋</span></button>&nbsp;
+									<button type="button" class="btn btn-default" id="btn-reset"><span style="font-size:18px">清除</span></button>
+		                        </div>
+		                    </div>
+		                </form>
+		            </div>
+		        </div>
 			</div>
 		</div>
 
@@ -87,6 +97,10 @@
 					</s:if>
 				</s:iterator>
 			</div>
+			<div class="row">
+				<s:include value="./pagination.jsp" />
+			</div>
 		</div>
 	</s:form>
+	<br>
 </body>

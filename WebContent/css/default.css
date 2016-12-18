@@ -97,6 +97,8 @@ box-shadow:5px 6px 12px -1px rgba(20%,20%,40%,0.5);}
 .table tr td { vertical-align:middle !important;}
 
 .table_border {	border-top: 1px solid #BBB !important;}
+.table_border_bottom_wh {	border-top:0 !important;border-bottom: 1px solid #fff !important;}
+.table_border_bottom_grey {	border-top:0 !important;border-bottom: 1px solid #bbb !important;}
 /* end */
 
 
@@ -139,10 +141,10 @@ box-shadow:5px 6px 12px -1px rgba(20%,20%,40%,0.5);}
 
 
 .search_icon { background-color:#1fb5da; padding:20px 5px 10px 5px; border-radius: 15px 0 15px 0;
-box-shadow:5px 6px 12px -1px rgba(20%,20%,40%,0.5);}
+box-shadow:5px 6px 12px -1px rgba(20%,20%,40%,0.5);cursor: pointer;}
 
 .search_icon_active { background-color:#337ab7; padding:20px 5px 10px 5px; border-radius: 15px 0 15px 0;
-box-shadow:5px 6px 12px -1px rgba(20%,20%,40%,0.5);}
+box-shadow:5px 6px 12px -1px rgba(20%,20%,40%,0.5);cursor: pointer;}
 
 
 .list-group-item.active, .list-group-item.active:hover, .list-group-item.active:focus {
@@ -231,7 +233,7 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 
 @media screen and (min-width: 1200px) {
 	.truncate {
-	  width: 400px;
+	  width: 520px;
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
@@ -239,7 +241,7 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 1199px) {
 	.truncate {
-	  width: 320px;
+	  width: 420px;
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
@@ -247,7 +249,7 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 992px) {
 	.truncate {
-	  width: 220px;
+	  width: 320px;
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
@@ -255,7 +257,7 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 767px) {
 	.truncate {
-	  width: 500px;
+	  width: 600px;
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
@@ -263,7 +265,7 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 640px) {
 	.truncate {
-	  width: 400px;
+	  width: 500px;
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
@@ -271,7 +273,7 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 560px) {
 	.truncate {
-	  width: 300px;
+	  width: 400px;
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
@@ -279,12 +281,151 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 460px) {
 	.truncate {
-	  width: 200px;
+	  width: 300px;
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
 	}
 }
 
+@media screen and (min-width: 1200px) {
+	.truncate2 {
+	  width: 430px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 1199px) {
+	.truncate2 {
+	  width: 330px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 992px) {
+	.truncate2 {
+	  width: 230px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 767px) {
+	.truncate2 {
+	  width: 510px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 640px) {
+	.truncate2 {
+	  width: 410px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 560px) {
+	.truncate2 {
+	  width: 310px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 460px) {
+	.truncate2 {
+	  width: 210px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
 
+/*page number*/
+.page_prev{
+	padding:6px 12px;border:1px solid #ccc;background:#fff;color:#23527c;border-top-left-radius: 4px;border-bottom-left-radius: 4px;
+}
+.page_prev:hover{
+	background:#eee;
+}
+.page_num{
+	margin-left:-1px;padding:6px 12px;border:1px solid #ccc;background:#fff;color:#23527c;;
+}
+.page_num:hover{
+	background:#eee;
+}
+.page_num_active{
+	padding:6px 12px;border:1px solid #337ab7;background:#337ab7;color:#fff;;
+}
+.page_next{
+	margin-left:-1px;padding:6px 12px;border:1px solid #ccc;background:#fff;color:#23527c;border-top-right-radius: 4px;border-bottom-right-radius: 4px;
+}
+.page_next:hover{
+	background:#eee;
+}
 /* end */
+
+/* 小安 */
+@media screen and (min-width: 1200px) {
+	.truncate2 {
+	  width: 430px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 1199px) {
+	.truncate2 {
+	  width: 330px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 992px) {
+	.truncate2 {
+	  width: 230px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 767px) {
+	.truncate2 {
+	  width: 510px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 640px) {
+	.truncate2 {
+	  width: 410px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 560px) {
+	.truncate2 {
+	  width: 310px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+@media screen and (max-width: 460px) {
+	.truncate2 {
+	  width: 210px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
+}
+
+.tag { font-size: 18px; color: #FFF; line-height:1.6em;}
+/* 小安 */

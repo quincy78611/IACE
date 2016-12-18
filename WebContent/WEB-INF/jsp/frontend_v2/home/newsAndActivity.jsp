@@ -23,17 +23,17 @@
 				<table class="table">
 					<tbody>
 						<s:iterator value="newsList" status="stat">
-							<tr>
-								<td><h4>
-									<span class="label label-info"><s:property value="category" /></span>
-								</h4></td>
-								<td class="date_01"><s:date name="createTime" format="yyyy/MM/dd" /></td>
-								<td>
-									<div class="truncate" title="<s:property value="title"/>">
-										<a href="#" class="list_link_01"><s:property value="title" /></a>
-									</div>
-								</td>
-							</tr>
+                        <tr>
+                            <td style="border:none;">
+                            	<h4><span class="label label-info"><s:property value="category" /></span></h4>
+                            </td>
+                            <td style="border:none;">
+                            	<div class="truncate2">
+                            		<span class="date_01"><s:date name="createTime" format="yyyy/MM/dd" /></span>&nbsp;
+                            		<a href="#" class="list_link_01"><s:property value="title" /></a>
+                            	</div>
+                            </td>
+                        </tr>						
 						</s:iterator>
 					</tbody>
 				</table>
@@ -59,11 +59,15 @@
 					<tbody>
 						<s:iterator value="activityList" status="stat">
 							<tr>
-								<td><h4>
-									<span class="label label-info"><s:property value="category" /></span>
-								</h4></td>
-								<td class="date_01"><s:date name="createTime" format="yyyy/MM/dd" /></td>
-								<td><a href="#" class="list_link_01"><s:property value="title" /></a></td>
+								<td width="15%" style="border:none;">
+									<h4><span class="label label-info"><s:property value="category"/></span></h4>
+								</td>
+								<td style="border:none;">
+									<div class="truncate2">
+										<span class="date_01"><s:date name="createTime" format="yyyy/MM/dd" /></span>&nbsp;
+										<a href="#" class="list_link_01"><s:property value="title" /></a>
+									</div>
+								</td>
 							</tr>
 						</s:iterator>
 					</tbody>

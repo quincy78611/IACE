@@ -27,25 +27,20 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<td class="date_02">2016/10/20</td>
-								<td><a href="#" class="list_link_02">TMTS育人才 深耕產學合作</a></td>
-							</tr>
-							<tr>
-								<td class="date_02">2016/10/20</td>
-								<td><a href="#" class="list_link_02">工具機智慧製造應用計畫 虎尾科大擔綱領頭羊</a></td>
-							</tr>
-							<tr>
-								<td class="date_02">2016/10/20</td>
-								<td><a href="#" class="list_link_02">TMTS育人才 深耕產學合作</a></td>
-							</tr>
-							<tr>
-								<td class="date_02">2016/10/20</td>
-								<td><a href="#" class="list_link_02">工具機智慧製造應用計畫 虎尾科大擔綱領頭羊</a></td>
-							</tr>
-							<tr>
-								<td class="date_02">2016/10/20</td>
-								<td><a href="#" class="list_link_02">TMTS育人才 深耕產學合作</a></td>
-							</tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">TMTS育人才深耕產學合作TMTS育人才深耕產學合作TMTS育人才深耕產學合作</a></div></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">工具機智慧製造應用計畫 虎尾科大擔綱領頭羊工具機智慧製造應用計畫END虎尾科大擔綱領頭羊工具機智慧製造應用計畫 虎尾科大擔綱領頭羊</a></div></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">TMTS育人才 深耕產學合作</a></div></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">工具機智慧製造應用計畫 虎尾科大擔綱領頭羊</a></div></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">TMTS育人才 深耕產學合作</a></div></td>
+                            </tr>
 						</tbody>
 					</table>
 				</div>
@@ -79,26 +74,21 @@
 				<div class="top10">
 					<table class="table">
 						<tbody>
-							<tr>
-								<td class="date_01">2016/10/20</td>
-								<td><a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險</a></td>
-							</tr>
-							<tr>
-								<td class="date_01">2016/10/20</td>
-								<td><a href="#" class="list_link_01">我國物聯網產業創新應用發展｜2016網際網路趨勢...</a></td>
-							</tr>
-							<tr>
-								<td class="date_01">2016/10/20</td>
-								<td><a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險</a></td>
-							</tr>
-							<tr>
-								<td class="date_01">2016/10/20</td>
-								<td><a href="#" class="list_link_01">我國物聯網產業創新應用發展｜2016網際網路趨勢...</a></td>
-							</tr>
-							<tr>
-								<td class="date_01">2016/10/20</td>
-								<td><a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險</a></td>
-							</tr>
+                            <tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險IEKTopics｜以物聯網技術 降低石化業管線風險IEKTopics｜以物聯網技術 降低石化業管線風險IEKTopics｜以物聯網技術 降低石化業管線風險</a></div></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">我國物聯網產業創新應用發展｜2016網際網路趨勢...</a></div></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險</a></div></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">我國物聯網產業創新應用發展｜2016網際網路趨勢...</a></div></td>
+                            </tr>
+                            <tr>
+                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險</a></div></td>
+                            </tr>
 						</tbody>
 					</table>
 				</div>

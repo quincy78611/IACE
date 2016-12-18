@@ -28,12 +28,22 @@
 						<tbody>
 							<s:iterator value="technologyList" status="stat">
 								<tr>
-									<td><a href="#" class="list_link_02"><s:property value="%{researchPlan.planNo + ' ' + name}" /></a></td>
+									<td style="border:none;">
+										<div class="truncate">
+											<span class="date_02"><s:property value="researchPlan.planNo"/></span>&nbsp;&nbsp;&nbsp;
+											<a href="#" class="list_link_02"><s:property value="name"/></a>
+										</div>
+									</td>
 								</tr>
 							</s:iterator>
 							<s:iterator value="patentList" status="stat">
 								<tr>
-									<td><a href="#" class="list_link_02"><s:property value="%{openNo + ' ' + name}" /></a></td>
+									<td style="border:none;">
+										<div class="truncate">
+											<span class="date_02"><s:property value="openNo"/></span>&nbsp;&nbsp;&nbsp;
+											<a href="#" class="list_link_02"><s:property value="name"/></a>
+										</div>
+									</td>									
 								</tr>
 							</s:iterator>
 						</tbody>

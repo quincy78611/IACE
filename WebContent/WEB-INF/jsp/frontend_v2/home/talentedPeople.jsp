@@ -26,14 +26,10 @@
 				<div class="top10">
 					<table class="table">
 						<tbody>
-							<tr>
-								<td width="20%" style="border: none;" class="small_title_02"><strong>姓名</strong></td>
-								<td style="border: none;" class="small_title_02"><strong>合作專長</strong></td>
-							</tr>
 							<s:iterator value="talentedPeopleList" status="stat">
 								<tr>
-									<td class="small_title_02"><s:property value="nameCh" /></td>
-									<td><a href="#" class="list_link_02"><s:property value="specialty" /></a></td>
+									<td class="small_title_02 table_border_bottom_wh"><s:property value="nameCh" /></td>
+									<td class="table_border_bottom_wh"><div class="truncate2"><a href="#" class="list_link_02"><s:property value="specialty" /></a></div></td>
 								</tr>
 							</s:iterator>
 						</tbody>
