@@ -44,9 +44,9 @@
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">學界研發成果<span class="caret"></span></a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
-						<li><a href="#" class="menu_link_mobile">學研成果精選</a></li>
-						<li><a href="#" class="menu_link_mobile">學界專利選輯</a></li>
-						<li><a href="#" class="menu_link_mobile">I-ACE搜尋平台</a></li>
+						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.researchPlan.Technology"/>" class="menu_link_mobile">學研成果</a></li>
+						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.patent.Patent"/>" class="menu_link_mobile">學界專利</a></li>
+						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.talentedPeople.TalentedPeople"/>" class="menu_link_mobile">產學人才</a></li>
 					</ul>
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">產業情報<span class="caret"></span></a> 
@@ -58,9 +58,9 @@
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">媒合專區<span class="caret"></span></a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
 						<li><a href="#" class="menu_link_mobile">產學媒合服務團簡介</a></li>
-						<li><a href="#" class="menu_link_mobile">法規政策</a></li>
-						<li><a href="#" class="menu_link_mobile">文獻</a></li>
-						<li><a href="#" class="menu_link_mobile">育成中心</a></li>
+						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>" class="menu_link_mobile">法規政策</a></li>
+						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>" class="menu_link_mobile">文獻</a></li>
+						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.incubationCenter.IncubationCenter"/>" class="menu_link_mobile">育成中心</a></li>
 						<li><a href="#" class="menu_link_mobile">問卷調查</a></li>
 					</ul>
 				</li>

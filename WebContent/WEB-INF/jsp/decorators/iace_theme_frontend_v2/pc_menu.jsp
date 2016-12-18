@@ -74,9 +74,9 @@
 					<li class="dropdown left15">
 					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu4">學界研發成果<span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
-							<li><a href="#">學研成果</a></li>
-							<li><a href="#">學界專利</a></li>
-							<li><a href="#">產學人才</a></li>
+							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.researchPlan.Technology"/>">學研成果</a></li>
+							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.patent.Patent"/>">學界專利</a></li>
+							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.talentedPeople.TalentedPeople"/>">產學人才</a></li>
 						</ul>
 					</li>
 					<li class="dropdown left15">
@@ -90,9 +90,9 @@
 					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu6">媒合專區<span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu6">
 							<li><a href="#">產學媒合服務團簡介</a></li>
-							<li><a href="#">法規政策</a></li>
-							<li><a href="#">文獻</a></li>
-							<li><a href="#">育成中心</a></li>
+							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>">法規政策</a></li>
+							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>">文獻</a></li>
+							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.incubationCenter.IncubationCenter"/>">育成中心</a></li>
 							<li><a href="#">問卷調查</a></li>
 						</ul>
 					</li>
