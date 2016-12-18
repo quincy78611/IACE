@@ -14,7 +14,7 @@
 			<a href="#" onclick="$('#menu_dropdown').slideToggle('fast');"><i class="fa fa-bars fa-2x" style="color:#1fb5da;" aria-hidden="true"></i></a>
 		</div>
 		<div class="pull-right" style="padding:15px 10px;">
-			<a href="#"><i class="fa fa-search fa-2x" style="color:#1fb5da;"></i></a>
+			<a href="<s:url value="/f2/integrationSearch/init"/>"><i class="fa fa-search fa-2x" style="color:#1fb5da;"></i></a>
 		</div>
 		<div class="clear-fix"></div>
 		<div id="menu_dropdown">
@@ -31,8 +31,8 @@
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公告訊息<span class="caret"></span></a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
-						<li><a href="#" class="menu_link_mobile">一般公告</a></li>
-						<li><a href="#" class="menu_link_mobile">新聞稿</a></li>
+						<li><a href="<s:url value="/f2/news/init?searchCondition.category=一般公告"/>" class="menu_link_mobile">一般公告</a></li>
+						<li><a href="<s:url value="/f2/news/init?searchCondition.category=新聞稿"/>" class="menu_link_mobile">新聞稿</a></li>
 					</ul>
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">產學合作案例<span class="caret"></span></a> 

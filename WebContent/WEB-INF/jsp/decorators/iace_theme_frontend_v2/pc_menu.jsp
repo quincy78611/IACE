@@ -32,14 +32,16 @@
 			</div>
 		</div>
 		<div class="col-md-9 col-sm-9 text-right">
-			<div class="input-group pull-right" style="width:300px; margin-top:15px;">
-				<input type="text" class="form-control" placeholder="Search">
-				<span class="input-group-btn">
-				<button class="btn btn-info" type="button" style="background-color:#1eb4da;">
-				<i class="fa fa-search" aria-hidden="true"></i>
-				</button>
-				</span>
-			</div>
+			<s:form namespace="/f2/integrationSearch" action="index" method="post" validate="true">
+				<div class="input-group pull-right" style="width:300px; margin-top:15px;">
+					<input type="text" name="searchCondition.searchText" class="form-control" placeholder="Search"> 
+					<span class="input-group-btn">
+						<button class="btn btn-info" type="submit" style="background-color: #1eb4da;">
+							<i class="fa fa-search" aria-hidden="true"></i>
+						</button>
+					</span>
+				</div>
+			</s:form>
 			<div class="clearfix"></div>
 			<div class="menu_list">
 				<ul class="list-inline">
@@ -57,8 +59,8 @@
 					<li class="dropdown left15">
 					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu2">公告訊息<span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-							<li><a href="#">一般公告</a></li>
-							<li><a href="#">新聞稿</a></li>
+							<li><a href="<s:url value="/f2/news/init?searchCondition.category=一般公告"/>">一般公告</a></li>
+							<li><a href="<s:url value="/f2/news/init?searchCondition.category=新聞稿"/>">新聞稿</a></li>
 						</ul>
 					</li>
 					<li class="dropdown left15">

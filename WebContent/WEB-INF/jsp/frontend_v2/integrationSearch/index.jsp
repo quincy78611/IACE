@@ -38,10 +38,10 @@
 		        	<div class="well">
 		                <form class="form-group">
 		                    <div class="row">
-		                        <div class="col-sm-8 col-xs-7">
+		                        <div class="col-sm-8 col-xs-12">
 		                        	<s:textfield name="searchCondition.searchText" class="form-control" placeholder="搜尋" style="font-size:18px"/>
 		                        </div>
-		                        <div class="col-sm-4 col-xs-5">
+		                        <div class="col-sm-4 col-xs-12">
 		                        	<button type="submit" class="btn btn-primary" id="btn-search"><i class="fa fa-search-plus right5" aria-hidden="true"></i><span style="font-size:18px">搜尋</span></button>&nbsp;
 									<button type="button" class="btn btn-default" id="btn-reset"><span style="font-size:18px">清除</span></button>
 		                        </div>
