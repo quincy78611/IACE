@@ -31,7 +31,11 @@
 									<td style="border:none;">
 										<div class="truncate">
 											<span class="date_02"><s:property value="researchPlan.planNo"/></span>&nbsp;&nbsp;&nbsp;
-											<a href="#" class="list_link_02"><s:property value="name"/></a>
+											
+											<s:url value="/f2/researchPlan/showDetail" var="detailUrlTag" escapeAmp="false">
+												<s:param name="id" value="researchPlan.id" />
+											</s:url>
+											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_02" target="_blank"><s:property value="name"/></a>
 										</div>
 									</td>
 								</tr>
@@ -43,7 +47,7 @@
 											<span class="date_02"><s:property value="openNo"/></span>&nbsp;&nbsp;&nbsp;
 											<a href="#" class="list_link_02"><s:property value="name"/></a>
 										</div>
-									</td>									
+									</td>
 								</tr>
 							</s:iterator>
 						</tbody>

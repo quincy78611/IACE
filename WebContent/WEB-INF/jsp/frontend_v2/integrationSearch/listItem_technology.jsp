@@ -12,7 +12,10 @@
 					</h4></td>
 					<td width="10%" style="border: none;" class="date_01">計畫名稱</td>
 					<td style="border: none;">
-						<a href="#" class="list_link_01">
+						<s:url value="/f2/researchPlan/showDetail" var="detailUrlTag" escapeAmp="false">
+							<s:param name="id" value="technology.researchPlan.id" />
+						</s:url>
+						<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank">
 							<s:property value="technology.researchPlan.name" />
 						</a>
 					</td>
