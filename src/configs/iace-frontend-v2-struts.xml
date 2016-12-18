@@ -9,7 +9,7 @@
 			<result>/WEB-INF/jsp/frontend_v2/home/home.jsp</result>
 		</action>
 	</package>
-	
+
 	<package name="IntegrationSearch" namespace="/f2/integrationSearch" extends="struts-default, json-default, default">
 		<action name="init" class="iace.action.LuceneAction" method="integrationSearchInit">
 			<result>/WEB-INF/jsp/frontend_v2/integrationSearch/index.jsp</result>
@@ -19,4 +19,19 @@
 			<result name="input">/WEB-INF/jsp/frontend_v2/integrationSearch/index.jsp</result>
 		</action>
 	</package>
+
+	<package name="f2-News" namespace="/f2/news" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.NewsAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend_v2/news/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.NewsAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend_v2/news/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend_v2/news/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.NewsAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend_v2/news/detail.jsp</result>
+		</action>
+	</package>
+
+
 </struts>

@@ -11,7 +11,7 @@
 				<div class="large_title_01">
 					<i class="fa fa-file-text-o" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>公告訊息
 					<div class="pull-right">
-						<a href="<s:url value="/f2/integrationSearch/init"/>"> 
+						<a href="<s:url value="/f2/news/init?searchCondition.category=一般公告"/>"> 
 							<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
 						</a>
 					</div>
@@ -23,17 +23,24 @@
 				<table class="table">
 					<tbody>
 						<s:iterator value="newsList" status="stat">
-                        <tr>
-                            <td style="border:none;">
-                            	<h4><span class="label label-info"><s:property value="category" /></span></h4>
-                            </td>
-                            <td style="border:none;">
-                            	<div class="truncate2">
-                            		<span class="date_01"><s:date name="createTime" format="yyyy/MM/dd" /></span>&nbsp;
-                            		<a href="#" class="list_link_01"><s:property value="title" /></a>
-                            	</div>
-                            </td>
-                        </tr>						
+						<tr>
+							<td style="border:none;">
+								<h4><span class="label label-info"><s:property value="category" /></span></h4>
+							</td>
+							<td style="border:none;">
+								<s:url value="/f2/news/showDetail" var="detailUrlTag" escapeAmp="false">
+									<s:param name="id" value="id" />
+									<s:param name="searchCondition.category" value="category" />
+								</s:url>
+							
+								<div class="truncate2">
+									<span class="date_01"><s:date name="createTime" format="yyyy/MM/dd" /></span>&nbsp;
+									<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01">
+										<s:property value="title" />
+									</a>
+								</div>
+							</td>
+						</tr>
 						</s:iterator>
 					</tbody>
 				</table>
