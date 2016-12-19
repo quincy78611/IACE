@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.hibernate.exception.JDBCConnectionException;
 
+import core.util.PagedList;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
+import iace.entity.sys.SysUserSearchModel;
 import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
 import iace.service.sys.SysRoleService;
@@ -17,7 +19,8 @@ public class SysUserAction extends BaseIaceAction {
 	private SysUserService sysUserService = ServiceFactory.getSysUserService();
 	private SysRoleService sysRoleService = ServiceFactory.getSysRoleService();
 
-	private List<SysUser> sysUserList;
+	private PagedList<SysUser> sysUserPagedList;
+	private SysUserSearchModel searchCondition = new SysUserSearchModel();
 
 	private long id;
 	private SysUser sysUser;
@@ -34,7 +37,7 @@ public class SysUserAction extends BaseIaceAction {
 
 	public String index() {
 		try {
-			this.sysUserList = this.sysUserService.listAll();
+			this.sysUserPagedList = this.sysUserService.searchBy(this.searchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -132,16 +135,8 @@ public class SysUserAction extends BaseIaceAction {
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
-			return ERROR;			
+			return ERROR;
 		}
-	}
-
-	public List<SysUser> getSysUserList() {
-		return sysUserList;
-	}
-
-	public void setSysUserList(List<SysUser> sysUserList) {
-		this.sysUserList = sysUserList;
 	}
 
 	public long getId() {
@@ -171,8 +166,16 @@ public class SysUserAction extends BaseIaceAction {
 		this.sysRoleList = sysRoleList;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public SysUserSearchModel getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(SysUserSearchModel searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public PagedList<SysUser> getSysUserPagedList() {
+		return sysUserPagedList;
 	}
 
 }
