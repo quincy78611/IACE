@@ -35,6 +35,7 @@ import org.hibernate.internal.SessionImpl;
 import core.dao.HibernateSessionFactory;
 import core.util.ExcelUtil;
 import core.util.PagedList;
+import core.util.ThumbnailUtil;
 import core.util.Validator;
 import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionGrbDomainDao;
@@ -181,6 +182,7 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 			if (entity.hasUploadFile()) {
 				Path p = Paths.get(entity.getUploadheadShot().getAbsolutePath());
 				byte[] data = Files.readAllBytes(p);
+				data = ThumbnailUtil.resize(data, 300, 400, true, 1f);
 				entity.setHeadShot(data);
 			}
 		} catch (IOException | NullPointerException e) {

@@ -102,7 +102,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 				</ul>					
 			</td>
 			<td class="headShot text-align-center">
-				<img src="data:image;base64,<s:property value="talentedPeople.base64HeadShot"/>" style="max-width:150px; max-height:200px;" />
+				<img src="data:image;base64,<s:property value="talentedPeople.base64HeadShot"/>" style="max-width:150px; max-height:200px;"/>
 			</td>				
 		</tr>
 	</table>
