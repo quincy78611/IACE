@@ -4,10 +4,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.exception.JDBCConnectionException;
@@ -388,6 +390,29 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		}
 		this.searchCondition.setName(this.talentedPeople.getNameCh());
 		return updateSubmit();
+	}
+	
+	public String batchResizeHeadshot() {
+		String sysRoleName = super.getCurrentSysUser().getSysRole().getName();
+		if (StringUtils.equals(sysRoleName, "系統開發人員") == false) {
+			super.addActionError("沒有權限");
+			return INPUT;
+		}
+		
+		try {
+			Date d1 = new Date();
+			this.talentedPeopleService.resizeAllHeadShot();
+			Date d2 = new Date();
+			long spendSec = (d2.getTime()-d1.getTime())/1000;
+			this.addActionMessage("處理完成! 用時"+spendSec+"秒.");
+			
+			this.setTitle("開發者專屬功能");
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;			
+		}
 	}
 
 	// =========================================================================

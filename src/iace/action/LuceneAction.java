@@ -31,16 +31,6 @@ public class LuceneAction extends BaseIaceAction {
 	public LuceneAction() {
 		super.setTitle("Lucene全文檢索");
 	}
-
-	public String init() {
-		String sysRoleName = super.getCurrentSysUser().getSysRole().getName();
-		if (StringUtils.equals(sysRoleName, "系統開發人員") == false) {
-			super.addActionError("沒有權限");
-			return INPUT;
-		}	
-		
-		return SUCCESS;
-	}
 	
 	public String rebuildIndex() {
 		String sysRoleName = super.getCurrentSysUser().getSysRole().getName();
@@ -55,6 +45,9 @@ public class LuceneAction extends BaseIaceAction {
 			Date d2 = new Date();
 			long spendSec = (d2.getTime()-d1.getTime())/1000;
 			this.addActionMessage("索引重建完成!用時"+spendSec+"秒.");
+			
+			this.setTitle("開發者專屬功能");
+			
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

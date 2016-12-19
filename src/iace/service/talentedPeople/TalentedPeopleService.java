@@ -500,4 +500,19 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 		return wb;
 	}
 
+	public void resizeAllHeadShot() {
+		List<TalentedPeople> list = this.talentedPeopleDao.listAll();
+		for (TalentedPeople tp : list) {
+			try {
+				byte[] img = tp.getHeadShot();
+				if (img != null) {
+					img = ThumbnailUtil.resize(img, 300, 400, true, 1f);
+					tp.setHeadShot(img);
+					this.talentedPeopleDao.update(tp);
+				}
+			} catch (IOException e) {
+				log.warn("", e);
+			}
+		}
+	}
 }

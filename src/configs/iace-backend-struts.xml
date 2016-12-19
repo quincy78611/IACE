@@ -47,14 +47,14 @@
 		<action name="batchImport" class="iace.action.ResearchPlanAction" method="batchImport">
 			<interceptor-ref name="iaceBackEnd"/>
 			
-		    <result name="success">/WEB-INF/jsp/backend/researchPlan/batchImport.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/batchImport.jsp</result>
 		</action>
 		<action name="batchImportSubmit" class="iace.action.ResearchPlanAction" method="batchImportSubmit">
 			<interceptor-ref name="iaceBackEnd"/>
-		    <interceptor-ref name="fileUpload"/>
-		    
-		    <result name="success">/WEB-INF/jsp/backend/researchPlan/batchImport.jsp</result>
-		    <result name="input">/WEB-INF/jsp/backend/researchPlan/batchImport.jsp</result>
+			<interceptor-ref name="fileUpload"/>
+			
+			<result name="success">/WEB-INF/jsp/backend/researchPlan/batchImport.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/researchPlan/batchImport.jsp</result>
 		</action>		
 		<action name="downloadBatchSample" class="iace.action.ResearchPlanAction" method="downloadBatchSample">
 			<interceptor-ref name="iaceBackEnd"/>
@@ -140,14 +140,14 @@
 		<action name="batchImport" class="iace.action.PatentAction" method="batchImport">
 			<interceptor-ref name="iaceBackEnd"/>
 			
-		    <result name="success">/WEB-INF/jsp/backend/patent/batchImport.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/patent/batchImport.jsp</result>
 		</action>
 		<action name="batchImportSubmit" class="iace.action.PatentAction" method="batchImportSubmit">
 			<interceptor-ref name="iaceBackEnd"/>
-		    <interceptor-ref name="fileUpload"/>
-		    
-		    <result name="success">/WEB-INF/jsp/backend/patent/batchImport.jsp</result>
-		    <result name="input">/WEB-INF/jsp/backend/patent/batchImport.jsp</result>
+			<interceptor-ref name="fileUpload"/>
+			
+			<result name="success">/WEB-INF/jsp/backend/patent/batchImport.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/patent/batchImport.jsp</result>
 		</action>		
 		<action name="downloadBatchSample" class="iace.action.PatentAction" method="downloadBatchSample">
 			<interceptor-ref name="iaceBackEnd"/>
@@ -228,7 +228,6 @@
 		</action>
 	</package>
 
-	
 	<package name="qnrTemplate" namespace="/qnrTemplate" extends="struts-default,json-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.QnrTemplateAction" method="init">
@@ -263,7 +262,7 @@
 		<action name="updateSubmit" class="iace.action.QnrTemplateAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/detail.jsp</result>
-		</action>		
+		</action>
 		<action name="delete" class="iace.action.QnrTemplateAction" method="delete">
 			<result name="success">/WEB-INF/jsp/backend/qnrTemplate/delete.jsp</result>
 			<result name="input">/WEB-INF/jsp/backend/qnrTemplate/index.jsp</result>	
@@ -274,8 +273,8 @@
 		</action>
 		<action name="isQnrHasDataAjax" class="iace.action.QnrTemplateAction" method="isQnrHasDataAjax">
 			<result type="json">
-                <param name="root">ajaxResult</param>
-            </result>
+				<param name="root">ajaxResult</param>
+			</result>
 		</action>
 	</package>
 	
@@ -283,7 +282,7 @@
 		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.QnrAction" method="init">
 			<result name="success">/WEB-INF/jsp/backend/qnr/index.jsp</result>	
-		</action>		
+		</action>
 		<action name="index" class="iace.action.QnrAction" method="index">
 			<result name="success">/WEB-INF/jsp/backend/qnr/index.jsp</result>
 			<result name="input">/WEB-INF/jsp/backend/qnr/index.jsp</result>	
@@ -338,7 +337,7 @@
 		<action name="fillInQnrSubmit" class="iace.action.QnrCooperateWayAction" method="fillInQnrSubmit">
 			<result name="input">/WEB-INF/jsp/backend_noMenu/qnrCooperateWay/qnrCooperateWay.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend_noMenu/qnrCooperateWay/qnrCooperateWayFinish.jsp</result>
-		</action>				
+		</action>
 	</package>
 	
 	<package name="EnterpriseNeed" namespace="/enterpriseNeed" extends="struts-default, json-default, default">
@@ -449,16 +448,16 @@
 				<param name="inputName">downloadFileInputStream</param>
 				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
 				<param name="bufferSize">1024</param>
-			</result>	
-		</action>		
+			</result>
+		</action>
 		<action name="downloadAttach" class="iace.action.CoopExAction" method="downloadAttach">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">downloadFileInputStream</param>
 				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
 				<param name="bufferSize">1024</param>
-			</result>	
-		</action>		
+			</result>
+		</action>
 	</package>
 	
 	<package name="TalentedPeople" namespace="/talentedPeople" extends="struts-default, json-default, default">
@@ -486,7 +485,7 @@
 		<action name="updateSubmit" class="iace.action.TalentedPeopleAction" method="updateSubmit">
 			<result name="input">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/talentedPeople/detail.jsp</result>
-		</action>		
+		</action>
 		<action name="delete" class="iace.action.TalentedPeopleAction" method="delete">
 			<result name="success">/WEB-INF/jsp/backend/talentedPeople/delete.jsp</result>
 		</action>
@@ -495,22 +494,22 @@
 			<result name="success">/WEB-INF/jsp/backend/talentedPeople/index.jsp</result>
 		</action>
 		<action name="batchImport" class="iace.action.TalentedPeopleAction" method="batchImport">
-		    <result name="success">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
 		</action>
 		<action name="batchImportSubmit" class="iace.action.TalentedPeopleAction" method="batchImportSubmit">
 			<interceptor-ref name="iaceBackEnd"/>
-		    <interceptor-ref name="fileUpload"/>
-		    
-		    <result name="success">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
-		    <result name="input">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
-		</action>		
+			<interceptor-ref name="fileUpload"/>
+			
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/batchImport.jsp</result>
+		</action>
 		<action name="downloadBatchSample" class="iace.action.TalentedPeopleAction" method="downloadBatchSample">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">downloadFileInputStream</param>
 				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
 				<param name="bufferSize">1024</param>
-			</result>	
+			</result>
 		</action>
 		<action name="exportRawData" class="iace.action.TalentedPeopleAction" method="exportRawData">
 			<result name="success" type="stream">
@@ -571,14 +570,14 @@
 			<result name="success">/WEB-INF/jsp/backend/incubationCenter/detail.jsp</result>
 		</action>		
 		<action name="batchImport" class="iace.action.IncubationCenterAction" method="batchImport">
-		    <result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
 		</action>
 		<action name="batchImportSubmit" class="iace.action.IncubationCenterAction" method="batchImportSubmit">
 			<interceptor-ref name="iaceBackEnd"/>
-		    <interceptor-ref name="fileUpload"/>
-		    
-		    <result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
-		    <result name="input">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
+			<interceptor-ref name="fileUpload"/>
+			
+			<result name="success">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/incubationCenter/batchImport.jsp</result>
 		</action>		
 		<action name="downloadBatchSample" class="iace.action.IncubationCenterAction" method="downloadBatchSample">
 			<result name="success" type="stream">
@@ -586,7 +585,7 @@
 				<param name="inputName">sampleFileInputStream</param>
 				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
 				<param name="bufferSize">1024</param>
-			</result>	
+			</result>
 		</action>
 	</package>	
 	
@@ -594,15 +593,15 @@
 		<default-interceptor-ref name="iaceBackEnd"/>
 		
 		<action name="batchImport" class="iace.action.LiteratureAction" method="batchImport">
-		    <result name="success">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
 		</action>
 		<action name="batchImportSubmit" class="iace.action.LiteratureAction" method="batchImportSubmit">
 			<interceptor-ref name="iaceBackEnd"/>
-		    <interceptor-ref name="fileUpload"/>
-		    
-		    <result name="success">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
-		    <result name="input">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
-		</action>		
+			<interceptor-ref name="fileUpload"/>
+			
+			<result name="success">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/literature/batchImport.jsp</result>
+		</action>
 	</package>
 	
 	<package name="About" namespace="/about" extends="struts-default, json-default, default">
@@ -760,6 +759,7 @@
 			</result>
 		</action>
 	</package>
+
 	<package name="Member" namespace="/member" extends="struts-default, json-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.MemberAction" method="init">
@@ -823,14 +823,14 @@
 		<default-interceptor-ref name="iaceBackEnd"/>
 		
 		<action name="sendEmail" class="iace.action.BatchSendEmailAction" method="sendEmail">
-		    <result name="success">/WEB-INF/jsp/backend/batchSendEmail/sendEmail.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/batchSendEmail/sendEmail.jsp</result>
 		</action>
 		<action name="sendEmailSubmit" class="iace.action.BatchSendEmailAction" method="sendEmailSubmit">
 			<interceptor-ref name="iaceBackEnd"/>
-		    <interceptor-ref name="fileUpload"/>
-		    
-		    <result name="success">/WEB-INF/jsp/backend/batchSendEmail/sendEmail.jsp</result>
-		    <result name="input">/WEB-INF/jsp/backend/batchSendEmail/sendEmail.jsp</result>
+			<interceptor-ref name="fileUpload"/>
+			
+			<result name="success">/WEB-INF/jsp/backend/batchSendEmail/sendEmail.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/batchSendEmail/sendEmail.jsp</result>
 		</action>
 	</package>
 	
