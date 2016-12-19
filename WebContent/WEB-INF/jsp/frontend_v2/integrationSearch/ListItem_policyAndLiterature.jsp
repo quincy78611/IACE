@@ -8,11 +8,21 @@
 			<tbody>
 				<tr>
 					<td width="10%" style="border: none;"><h4>
-						<span class="label label-purple">法規/文獻</span>
+						<span class="label label-purple"><s:property value="literature.category" /></span>
 					</h4></td>
 					<td width="10%" style="border: none;" class="date_01">題名</td>
 					<td style="border: none;">
-						<a href="#" class="list_link_01">
+						<s:if test="literature.category == '文獻'">
+							<s:url value="/f2/literature/showDetail" var="detailUrlTag" escapeAmp="false">
+								<s:param name="id" value="literature.id" />
+							</s:url>
+						</s:if>
+						<s:else>
+							<s:url value="/f2/policy/showDetail" var="detailUrlTag" escapeAmp="false">
+								<s:param name="id" value="literature.id" />
+							</s:url>
+						</s:else>
+						<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank">
 							<s:property value="literature.title" />
 						</a>
 					</td>

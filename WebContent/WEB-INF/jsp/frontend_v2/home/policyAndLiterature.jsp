@@ -27,7 +27,11 @@
 									<td class="table_border_bottom_grey">
 										<div class="truncate" title="<s:property value="title"/>">
 											<span class="date_01"><s:property value="publishYear"/></span>&nbsp;
-											<a href="#" class="list_link_01"><s:property value="title" /></a>
+											
+											<s:url value="/f2/policy/showDetail" var="detailUrlTag" escapeAmp="false">
+												<s:param name="id" value="id" />
+											</s:url>
+											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank"><s:property value="title" /></a>
 										</div>
 									</td>
 								</tr>
@@ -58,7 +62,11 @@
 									<td class="table_border_bottom_grey">
 										<div class="truncate" title="<s:property value="title"/>">
 											<span class="date_01"><s:property value="publishYear" /></span>&nbsp;
-											<a href="#" class="list_link_01"><s:property value="title"/></a>
+											
+											<s:url value="/f2/literature/showDetail" var="detailUrlTag" escapeAmp="false">
+												<s:param name="id" value="id" />
+											</s:url>
+											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank"><s:property value="title"/></a>
 										</div>
 									</td>
 								</tr>
