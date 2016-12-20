@@ -31,6 +31,14 @@
 		<action name="showDetail" class="iace.action.NewsAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/news/detail.jsp</result>
 		</action>
+		<action name="downloadAttach" class="iace.action.NewsAction" method="downloadAttach">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="f2-Activity" namespace="/f2/activity" extends="struts-default, json-default, default">

@@ -67,6 +67,41 @@
 				<div class="content_01 top10">
 					<s:property value="news.content" escapeHtml="false"/>
 				</div>
+				<div class="line_solid"></div>
+				<div class="content_04">
+					<span class="fa-stack fa-lg">
+						<i class="fa fa-square fa-stack-2x"></i>
+						<i class="fa fa-file-text fa-stack-1x fa-inverse"></i>
+					</span>
+					附件檔案：
+				</div>
+				<div class="top10">
+					<table class="table table-striped content_01">
+						<thead>
+							<tr>
+								<th>檔案名稱</th>
+								<th>檔案大小</th>
+								<th>更新日期</th>
+							</tr>
+						</thead>
+						<tbody>
+							<s:iterator value="news.attachs" status="stat">
+								<tr>
+									<s:url value="downloadAttach.action" var="downloadAttachUrl">
+										<s:param name="attachFileId" value="id" />
+									</s:url>
+									<td>
+										<a href="<s:property value="downloadAttachUrl" />">
+											<s:property value="uploadFileName"/>
+										</a>
+									</td>
+									<td><s:property value="%{fileContent.length/1024}"/>KB</td>
+									<td><s:date name="updateTime" format="yyyy/M/d"/></td>
+								</tr>
+							</s:iterator>
+						</tbody>
+					</table>
+				</div>
 				<div class="top20">
 					<button type="button" class="btn btn-default" id="btn-back">
 						<i class="fa fa-angle-double-left right5" aria-hidden="true"></i>回上一頁
