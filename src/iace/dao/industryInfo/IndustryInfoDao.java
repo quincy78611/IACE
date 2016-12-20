@@ -76,6 +76,7 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			criteria.add(Restrictions.eq("category", category));
+			criteria.add(Restrictions.eq("homeDisplayStatus", true));
 			criteria.addOrder(Order.desc("ver"));
 			criteria.setMaxResults(5);
 			

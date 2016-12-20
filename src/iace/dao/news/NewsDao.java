@@ -115,6 +115,7 @@ public class NewsDao extends BaseIaceDao<News> implements INewsDao {
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("homeDisplayStatus", true));
 			criteria.addOrder(Order.desc("ver"));
 			criteria.setMaxResults(5);
 			
