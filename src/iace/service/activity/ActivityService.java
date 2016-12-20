@@ -10,6 +10,7 @@ import java.util.Set;
 import core.util.PagedList;
 import iace.dao.activity.IActivityDao;
 import iace.dao.activity.IActivityVideoDao;
+import iace.entity.DbFile;
 import iace.entity.activity.Activity;
 import iace.entity.activity.ActivityAttach;
 import iace.entity.activity.ActivitySearchModel;
@@ -65,7 +66,7 @@ public class ActivityService extends BaseIaceService<Activity> {
 		}
 		
 		// create activity data to DB
-		entity.setAttachList(attachList);
+		entity.setAttachList(null); // remove it from list first, we will add them to DB by activityAttachService latter
 		super.create(entity);
 		
 		// save attach files and create attach data to DB
@@ -73,6 +74,19 @@ public class ActivityService extends BaseIaceService<Activity> {
 			this.activityAttachService.create(attach);
 		}
 		entity.setAttachList(attachList);
+		
+		// set activity thumbnail
+		if (entity.getAttachList() != null) {
+			for (ActivityAttach attach : entity.getAttachList()) {
+				if (attach.getFileType() == DbFile.FILE_TYPE_IMAGE) {
+					if (attach.getThumbnail() != null) {
+						entity.setThumbnail(attach.getThumbnail());
+						super.update(entity);
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	@Override
@@ -89,17 +103,17 @@ public class ActivityService extends BaseIaceService<Activity> {
 		}
 		entity.setAttachList(attachList);
 		
-		// create new upload files
-		for (ActivityAttach attach : entity.getAttachList()) {
-			if (attach.getId() <= 0) {
-				this.activityAttachService.create(attach);
-			}
-		}
-		
 		// update old attach files
 		for (ActivityAttach attach : entity.getAttachList()) {
 			if (attach.getId() > 0) {
 				this.activityAttachService.update(attach);
+			}
+		}
+		
+		// create new upload files
+		for (ActivityAttach attach : entity.getAttachList()) {
+			if (attach.getId() <= 0) {
+				this.activityAttachService.create(attach);
 			}
 		}
 		
@@ -129,6 +143,18 @@ public class ActivityService extends BaseIaceService<Activity> {
 		
 		// ------ 3. activity --------------------------------------------------
 		
+		// set activity thumbnail
+		if (entity.getAttachList() != null) {
+			for (ActivityAttach attach : entity.getAttachList()) {
+				if (attach.getFileType() == DbFile.FILE_TYPE_IMAGE) {
+					if (attach.getThumbnail() != null) {
+						entity.setThumbnail(attach.getThumbnail());
+						break;
+					}
+				}
+			}
+		}
+
 		super.update(entity);
 	}
 	

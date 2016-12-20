@@ -13,9 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import iace.entity.BaseLinkiacEntity;
 import iace.entity.IntegrationSearch;
@@ -32,8 +35,8 @@ public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 		categoryList.add(new BaseOption("計畫宣導", "計畫宣導"));
 		categoryList.add(new BaseOption("媒合會", "媒合會"));
 		categoryList.add(new BaseOption("人培課程", "人培課程"));
-		categoryList.add(new BaseOption("計畫研習", "計畫研習"));
 		categoryList.add(new BaseOption("外部活動", "外部活動"));
+		categoryList.add(new BaseOption("計畫研習", "計畫研習"));
 	}
 	
 	private long id;
@@ -52,6 +55,8 @@ public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 	
 	private List<ActivityAttach> attachList = new ArrayList<ActivityAttach>();
 	private List<ActivityVideo> videoList = new ArrayList<ActivityVideo>();
+	
+	private byte[] thumbnail;
 	
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
@@ -99,6 +104,12 @@ public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+	
+	@Transient
+	public String getContentWithoutHTML() {
+		String replace = this.content.replaceAll("\\<[^>]*>","");
+		return replace;
 	}
 
 	@Column(name = "ACT_DATE")
@@ -182,7 +193,7 @@ public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 	public void setAttachList(List<ActivityAttach> attachList) {
 		this.attachList = attachList;
 	}
-
+	
 	@OneToMany(mappedBy="activity", cascade={CascadeType.ALL}, fetch = FetchType.LAZY)
 	@Fetch(FetchMode.SUBSELECT)
 	public List<ActivityVideo> getVideoList() {
@@ -191,6 +202,20 @@ public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 
 	public void setVideoList(List<ActivityVideo> videoList) {
 		this.videoList = videoList;
+	}
+
+	@Column(name = "THUMBNAIL")
+	public byte[] getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(byte[] thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	@Transient
+	public String getBase64Thumbnail() {
+		return Base64.encode(this.thumbnail);
 	}
 
 	public static List<BaseOption> getCategoryList() {

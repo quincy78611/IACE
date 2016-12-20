@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.UUID;
 
+import core.util.ThumbnailUtil;
 import iace.dao.activity.IActivityAttachDao;
+import iace.entity.DbFile;
 import iace.entity.activity.ActivityAttach;
 import iace.service.BaseIaceService;
 
@@ -47,6 +49,7 @@ public class ActivityAttachService extends BaseIaceService<ActivityAttach> {
 	public void create(ActivityAttach entity) throws IOException, SQLException {
 		if (entity.hasUpload()) {
 			saveFile(entity);
+			produceThumbnail(entity);
 		}
 		super.create(entity);
 	}
@@ -66,10 +69,18 @@ public class ActivityAttachService extends BaseIaceService<ActivityAttach> {
 			f.delete();
 			
 			saveFile(entity);
+			produceThumbnail(entity);
 		} else {
 			entity.setFileSubPath(entityO.getFileSubPath());
 			entity.setUploadContentType(entityO.getUploadContentType());
 			entity.setUploadFileName(entityO.getUploadFileName());
+			if (entity.getFileType() == DbFile.FILE_TYPE_IMAGE) {
+				if (entity.getFileType() != entityO.getFileType()) {
+					produceThumbnail(entity);
+				} else {
+					entity.setThumbnail(entityO.getThumbnail());
+				}
+			}
 		}
 		super.update(entity);
 	}
@@ -93,6 +104,18 @@ public class ActivityAttachService extends BaseIaceService<ActivityAttach> {
 		String fileName = "activity" + "_"+time+"_" + UUID.randomUUID().toString() + "_" + attach.getUploadFileName();
 		attach.setFileSubPath(fileName);
 		attach.saveUploadFile();
+	}
+	
+	private void produceThumbnail(ActivityAttach attach) throws IOException {
+		if (attach.getFileType() == ActivityAttach.FILE_TYPE_IMAGE) {
+			attach.setFileFolder(this.activityAttachFolder);
+			attach.loadFileContentFromDisk();
+			byte[] thumbnail = ThumbnailUtil.resize(attach.getFileContent(), 400, 300, true, 1f);
+			attach.setThumbnail(thumbnail);
+			if (attach.isSaveInDisk()) {
+				attach.setFileContent(null);
+			}
+		}
 	}
 
 	public String getActivityAttachFolder() {

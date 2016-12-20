@@ -36,11 +36,14 @@ import iace.entity.option.BaseOption;
 @DiscriminatorOptions(force=true)
 public abstract class DbFile extends BaseEntity {
 	private static final long serialVersionUID = -4858468713348065564L;
+	
+	public static int FILE_TYPE_FILE = 0;
+	public static int FILE_TYPE_IMAGE = 1;
 
 	private static List<BaseOption> fileTypeList = new ArrayList<BaseOption>();
 	static {
-		fileTypeList.add(new BaseOption("0", "檔案"));
-		fileTypeList.add(new BaseOption("1", "圖片"));
+		fileTypeList.add(new BaseOption(FILE_TYPE_FILE+"", "檔案"));
+		fileTypeList.add(new BaseOption(FILE_TYPE_IMAGE+"", "圖片"));
 	}
 	
 	private long id;
@@ -54,6 +57,8 @@ public abstract class DbFile extends BaseEntity {
 	private transient File upload;
 	private String uploadContentType;
 	private String uploadFileName;
+	
+	private byte[] thumbnail;
 
 	// =========================================================================
 
@@ -149,6 +154,15 @@ public abstract class DbFile extends BaseEntity {
 	public void setFileTitle(String fileTitle) {
 		this.fileTitle = fileTitle;
 	}
+	
+	@Column(name = "THUMBNAIL")
+	public byte[] getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(byte[] thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 
 	public static List<BaseOption> getFileTypeList() {
 		return fileTypeList;
@@ -206,7 +220,5 @@ public abstract class DbFile extends BaseEntity {
 			}
 		}
 	}
-
-
 	
 }
