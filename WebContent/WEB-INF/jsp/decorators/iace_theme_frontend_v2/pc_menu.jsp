@@ -48,12 +48,12 @@
 					<li class="dropdown left15">
 					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu1">活動/人培<span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							<li><a href="#">成果發表</a></li>
-							<li><a href="#">計畫宣導</a></li>
-							<li><a href="#">媒合會</a></li>
-							<li><a href="#">人培課程</a></li>
-							<li><a href="#">外部活動</a></li>
-							<li><a href="#">計畫研習</a></li>
+							<li><a href="<s:url value="/f2/activity/init?searchCondition.category=成果發表"/>">成果發表</a></li>
+							<li><a href="<s:url value="/f2/activity/init?searchCondition.category=計畫宣導"/>">計畫宣導</a></li>
+							<li><a href="<s:url value="/f2/activity/init?searchCondition.category=媒合會"/>">媒合會</a></li>
+							<li><a href="<s:url value="/f2/activity/init?searchCondition.category=人培課程"/>">人培課程</a></li>
+							<li><a href="<s:url value="/f2/activity/init?searchCondition.category=外部活動"/>">外部活動</a></li>
+							<li><a href="<s:url value="/f2/activity/init?searchCondition.category=計畫研習"/>">計畫研習</a></li>
 						</ul>
 					</li>
 					<li class="dropdown left15">

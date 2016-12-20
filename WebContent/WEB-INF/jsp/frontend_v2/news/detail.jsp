@@ -15,7 +15,7 @@
 	<!-- Banner -->
 	<s:include value="./banner.jsp" />
 	
-		<!-- Main -->
+	<!-- Main -->
 	<div class="container top50">
 		<div class="row">
 			<div class="col-sm-12 col-xs-12">

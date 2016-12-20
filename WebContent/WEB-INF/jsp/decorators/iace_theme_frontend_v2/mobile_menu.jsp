@@ -21,12 +21,12 @@
 			<ul style="background-color:#F8F8F8; margin-bottom:0;">
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">活動/人培<span class="caret"></span></a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
-						<li><a href="#" class="menu_link_mobile">成果發表</a></li>
-						<li><a href="#" class="menu_link_mobile">計畫宣導</a></li>
-						<li><a href="#" class="menu_link_mobile">媒合會</a></li>
-						<li><a href="#" class="menu_link_mobile">人培課程</a></li>
-						<li><a href="#" class="menu_link_mobile">外部活動</a></li>
-						<li><a href="#" class="menu_link_mobile">計畫研習</a></li>
+						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=成果發表"/>" class="menu_link_mobile">成果發表</a></li>
+						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=計畫宣導"/>" class="menu_link_mobile">計畫宣導</a></li>
+						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=媒合會"/>" class="menu_link_mobile">媒合會</a></li>
+						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=人培課程"/>" class="menu_link_mobile">人培課程</a></li>
+						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=外部活動"/>" class="menu_link_mobile">外部活動</a></li>
+						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=計畫研習"/>" class="menu_link_mobile">計畫研習</a></li>
 					</ul>
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公告訊息<span class="caret"></span></a> 

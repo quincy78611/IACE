@@ -26,6 +26,8 @@ import javax.persistence.Transient;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.DiscriminatorOptions;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 import iace.entity.option.BaseOption;
 
 
@@ -162,6 +164,11 @@ public abstract class DbFile extends BaseEntity {
 
 	public void setThumbnail(byte[] thumbnail) {
 		this.thumbnail = thumbnail;
+	}
+	
+	@Transient
+	public String getBase64Thumbnail() {
+		return Base64.encode(this.thumbnail);
 	}
 
 	public static List<BaseOption> getFileTypeList() {
