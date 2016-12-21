@@ -73,14 +73,14 @@
 														<s:param name="searchCondition.year" value="searchCondition.year" />
 														<s:param name="searchCondition.pageIndex" value="searchCondition.pageIndex" />
 														<s:param name="searchCondition.pageSize" value="searchCondition.pageSize" />
-													</s:url>												
+													</s:url>
 													<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01">
 														<s:property value="projName"/>
 													</a>
 												</div>
 												<div class="date_01">研發團隊：<s:property value="rdTeam"/></div>
 												<div class="date_01">輔導團隊：<s:property value="assisTeam"/></div>
-												<div class="top10"><s:property value="contentWithoutHTML"/></div>
+												<div class="top10 truncate_list"><s:property value="contentWithoutHTML"/></div>
 											</td>
 										</tr>
 									</s:iterator>

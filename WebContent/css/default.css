@@ -175,6 +175,7 @@ box-shadow:5px 6px 12px -1px rgba(20%,20%,40%,0.5);cursor: pointer;}
 .large_title_01 { font-size:30px; color:#000; line-height:1.6em;}
 .large_title_02 { font-size:30px; color:#FFF; line-height:1.6em;}
 .large_title_03 { font-size:24px; color:#000; line-height:1.6em;}
+.large_title_04 { font-size:18px; color:#1fb5da; line-height:1.6em;}
 
 .small_title_01 { font-size:16px; color:#000; line-height:1.6em;}
 .small_title_02 { font-size:16px; color:#FFF; line-height:1.6em;}
@@ -238,6 +239,16 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  overflow: hidden;
 	  text-overflow: ellipsis;
 	}
+	.truncate_list {
+	  display: block; /* Fallback for non-webkit */
+	  display: -webkit-box;
+	  max-width: 520px;
+	  height: 60px; /* Fallback for non-webkit */
+	  -webkit-line-clamp: 3;
+	  -webkit-box-orient: vertical;
+	  overflow: hidden;
+	  text-overflow: ellipsis;	  
+	}
 }
 @media screen and (max-width: 1199px) {
 	.truncate {
@@ -245,6 +256,16 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
+	}
+	.truncate_list {
+	  display: block; /* Fallback for non-webkit */
+	  display: -webkit-box;
+	  max-width: 420px;
+	  height: 60px; /* Fallback for non-webkit */
+	  -webkit-line-clamp: 3;
+	  -webkit-box-orient: vertical;
+	  overflow: hidden;
+	  text-overflow: ellipsis;	 
 	}
 }
 @media screen and (max-width: 992px) {
@@ -254,6 +275,16 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  overflow: hidden;
 	  text-overflow: ellipsis;
 	}
+	.truncate_list {
+	  display: block; /* Fallback for non-webkit */
+	  display: -webkit-box;
+	  max-width: 320px;
+	  height: 60px; /* Fallback for non-webkit */
+	  -webkit-line-clamp: 3;
+	  -webkit-box-orient: vertical;
+	  overflow: hidden;
+	  text-overflow: ellipsis;	 
+	}
 }
 @media screen and (max-width: 767px) {
 	.truncate {
@@ -261,6 +292,16 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
+	}
+	.truncate_list {
+	  display: block; /* Fallback for non-webkit */
+	  display: -webkit-box;
+	  max-width: 600px;
+	  height: 60px; /* Fallback for non-webkit */
+	  -webkit-line-clamp: 3;
+	  -webkit-box-orient: vertical;
+	  overflow: hidden;
+	  text-overflow: ellipsis;	 
 	}
 }
 @media screen and (max-width: 640px) {
@@ -270,6 +311,16 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  overflow: hidden;
 	  text-overflow: ellipsis;
 	}
+	.truncate_list {
+	  display: block; /* Fallback for non-webkit */
+	  display: -webkit-box;
+	  max-width: 500px;
+	  height: 60px; /* Fallback for non-webkit */
+	  -webkit-line-clamp: 3;
+	  -webkit-box-orient: vertical;
+	  overflow: hidden;
+	  text-overflow: ellipsis;	 
+	}
 }
 @media screen and (max-width: 560px) {
 	.truncate {
@@ -277,6 +328,16 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  white-space: nowrap;
 	  overflow: hidden;
 	  text-overflow: ellipsis;
+	}
+	.truncate_list {
+	  display: block; /* Fallback for non-webkit */
+	  display: -webkit-box;
+	  max-width: 400px;
+	  height: 60px; /* Fallback for non-webkit */
+	  -webkit-line-clamp: 3;
+	  -webkit-box-orient: vertical;
+	  overflow: hidden;
+	  text-overflow: ellipsis;	 
 	}
 }
 @media screen and (max-width: 460px) {
@@ -286,62 +347,15 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  overflow: hidden;
 	  text-overflow: ellipsis;
 	}
-}
-
-@media screen and (min-width: 1200px) {
-	.truncate2 {
-	  width: 430px;
-	  white-space: nowrap;
+	.truncate_list {
+	  display: block; /* Fallback for non-webkit */
+	  display: -webkit-box;
+	  max-width: 300px;
+	  height: 60px; /* Fallback for non-webkit */
+	  -webkit-line-clamp: 3;
+	  -webkit-box-orient: vertical;
 	  overflow: hidden;
-	  text-overflow: ellipsis;
-	}
-}
-@media screen and (max-width: 1199px) {
-	.truncate2 {
-	  width: 330px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-	}
-}
-@media screen and (max-width: 992px) {
-	.truncate2 {
-	  width: 230px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-	}
-}
-@media screen and (max-width: 767px) {
-	.truncate2 {
-	  width: 510px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-	}
-}
-@media screen and (max-width: 640px) {
-	.truncate2 {
-	  width: 410px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-	}
-}
-@media screen and (max-width: 560px) {
-	.truncate2 {
-	  width: 310px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
-	}
-}
-@media screen and (max-width: 460px) {
-	.truncate2 {
-	  width: 210px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+	  text-overflow: ellipsis;	 
 	}
 }
 
