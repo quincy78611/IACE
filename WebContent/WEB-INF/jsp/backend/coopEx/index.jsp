@@ -120,7 +120,7 @@
 					<s:select name="searchCondition.year" list="#{'':'請選擇年度', '2014':'2014', '2015':'2015', '2016':'2016', '2017':'2017' }" />
 				</li>
 				<li class="quarter">
-					<s:select name="searchCondition.type" list="#{'':'請選擇類別', '商品化':'商品化', '專利推廣':'專利推廣', '新創事業':'新創事業'}" />
+					<s:select name="searchCondition.type" list="typeList" listKey="code" listValue="name" headerKey="" headerValue="--類別--"/>
 				</li>
 				<li class="half">
 					<s:textfield name="searchCondition.projName" placeholder="案名"/>

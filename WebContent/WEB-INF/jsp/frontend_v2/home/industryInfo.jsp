@@ -11,7 +11,7 @@
 					<div class="large_title_02">
 						<i class="fa fa-globe" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>產學新聞
 						<div class="pull-right">
-							<a href="<s:url value="/f2/integrationSearch/init"/>">
+							<a href="<s:url value="/f2/industryInfo/init?searchCondition.category=產學新聞"/>">
 								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
 							</a>
 						</div>
@@ -59,7 +59,7 @@
 					<div class="large_title_01">
 						<i class="fa fa-pie-chart" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>產業評析
 						<div class="pull-right">
-							<a href="<s:url value="/f2/integrationSearch/init"/>">
+							<a href="<s:url value="/f2/industryInfo/init?searchCondition.category=產業評析"/>">
 								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
 							</a>
 						</div>

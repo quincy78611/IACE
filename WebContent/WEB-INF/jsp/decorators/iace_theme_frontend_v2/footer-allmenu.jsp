@@ -8,27 +8,40 @@
 			<div class="col-sm-2 col-xs-6">
 				<div class="small_title_02">活動人培</div>
 				<ul class="small_title_02">
-					<li><a href="<s:url value="/f2/activity/init?searchCondition.category=成果發表"/>" class="list_link_04">成果發表</a></li>
-					<li><a href="<s:url value="/f2/activity/init?searchCondition.category=計畫宣導"/>" class="list_link_04">計畫宣導</a></li>
-					<li><a href="<s:url value="/f2/activity/init?searchCondition.category=媒合會"/>" class="list_link_04">媒合會</a></li>
-					<li><a href="<s:url value="/f2/activity/init?searchCondition.category=人培課程"/>" class="list_link_04">人培課程</a></li>
-					<li><a href="<s:url value="/f2/activity/init?searchCondition.category=外部活動"/>" class="list_link_04">外部活動</a></li>
-					<li><a href="<s:url value="/f2/activity/init?searchCondition.category=計畫研習"/>" class="list_link_04">計畫研習</a></li>
+					<s:iterator value="@iace.entity.activity.Activity@getCategoryList()" status="stat">
+						<li>
+							<s:url value="/f2/activity/init" var="urlTag" escapeAmp="false">
+								<s:param name="searchCondition.category" value="code" />
+							</s:url>
+							<a href="<s:property value="urlTag"/>" class="list_link_04"><s:property value="name"/></a>
+						</li>
+					</s:iterator>
 				</ul>
 			</div>
 			<div class="col-sm-2 col-xs-6">
 				<div class="small_title_02">公告訊息</div>
 				<ul class="small_title_02">
-					<li><a href="<s:url value="/f2/news/init?searchCondition.category=一般公告"/>" class="list_link_04">一般公告</a></li>
-					<li><a href="<s:url value="/f2/news/init?searchCondition.category=新聞稿"/>" class="list_link_04">新聞稿</a></li>
+					<s:iterator value="@iace.entity.news.News@getCategoryList()" status="stat">
+						<li>
+							<s:url value="/f2/news/init" var="urlTag" escapeAmp="false">
+								<s:param name="searchCondition.category" value="code" />
+							</s:url>
+							<a href="<s:property value="urlTag"/>" class="list_link_04"><s:property value="name"/></a>
+						</li>
+					</s:iterator>
 				</ul>
 			</div>
 			<div class="col-sm-2 col-xs-6">
 				<div class="small_title_02">產學合作案例</div>
 				<ul class="small_title_02">
-					<li><a href="#" class="list_link_04">商品化</a></li>
-					<li><a href="#" class="list_link_04">專利推廣</a></li>
-					<li><a href="#" class="list_link_04">新創事業</a></li>
+					<s:iterator value="@iace.entity.coopExample.CoopEx@getTypeList()" status="stat">
+						<li>
+							<s:url value="/f2/coopEx/init" var="urlTag" escapeAmp="false">
+								<s:param name="searchCondition.type" value="code" />
+							</s:url>
+							<a href="<s:property value="urlTag"/>" class="list_link_04"><s:property value="name"/></a>
+						</li>
+					</s:iterator>
 				</ul>
 			</div>
 			<div class="col-sm-2 col-xs-6">
@@ -42,8 +55,14 @@
 			<div class="col-sm-2 col-xs-6">
 				<div class="small_title_02">產業情報</div>
 				<ul class="small_title_02">
-					<li><a href="#" class="list_link_04">產業新聞</a></li>
-					<li><a href="#" class="list_link_04">產業評析</a></li>
+					<s:iterator value="@iace.entity.industryInfo.IndustryInfo@getCategoryList()" status="stat">
+						<li>
+							<s:url value="/f2/industryInfo/init" var="urlTag" escapeAmp="false">
+								<s:param name="searchCondition.category" value="code" />
+							</s:url>
+							<a href="<s:property value="urlTag"/>" class="list_link_04"><s:property value="name"/></a>
+						</li>
+					</s:iterator>
 				</ul>
 			</div>
 			<div class="col-sm-2 col-xs-6">

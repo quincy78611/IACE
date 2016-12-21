@@ -1,6 +1,7 @@
 package iace.action;
 
 import java.io.InputStream;
+import java.util.List;
 
 import core.util.PagedList;
 import iace.dao.ClickNumCounterDao;
@@ -9,6 +10,7 @@ import iace.entity.coopExample.CoopExAttachFile;
 import iace.entity.coopExample.CoopExImg;
 import iace.entity.coopExample.CoopExSearchModel;
 import iace.entity.coopExample.CoopExVideo;
+import iace.entity.option.BaseOption;
 import iace.service.ServiceFactory;
 import iace.service.coopExample.CoopExAttachFileService;
 import iace.service.coopExample.CoopExImgService;
@@ -27,7 +29,9 @@ public class CoopExAction extends BaseIaceAction {
 	private CoopExSearchModel searchCondition = new CoopExSearchModel();
 	private PagedList<CoopEx> coopExPagedList;
 	
-	private long id; 
+	private List<BaseOption> typeList = CoopEx.getTypeList();
+	
+	private long id;
 	private CoopEx coopEx;
 	
 	private long imgId;
@@ -272,6 +276,10 @@ public class CoopExAction extends BaseIaceAction {
 
 	public void setCoopExPagedList(PagedList<CoopEx> coopExPagedList) {
 		this.coopExPagedList = coopExPagedList;
+	}
+
+	public List<BaseOption> getTypeList() {
+		return typeList;
 	}
 	
 	

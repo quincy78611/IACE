@@ -21,25 +21,38 @@
 			<ul style="background-color:#F8F8F8; margin-bottom:0;">
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">活動/人培<span class="caret"></span></a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
-						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=成果發表"/>" class="menu_link_mobile">成果發表</a></li>
-						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=計畫宣導"/>" class="menu_link_mobile">計畫宣導</a></li>
-						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=媒合會"/>" class="menu_link_mobile">媒合會</a></li>
-						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=人培課程"/>" class="menu_link_mobile">人培課程</a></li>
-						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=外部活動"/>" class="menu_link_mobile">外部活動</a></li>
-						<li><a href="<s:url value="/f2/activity/init?searchCondition.category=計畫研習"/>" class="menu_link_mobile">計畫研習</a></li>
+						<s:iterator value="@iace.entity.activity.Activity@getCategoryList()" status="stat">
+							<li>
+								<s:url value="/f2/activity/init" var="urlTag" escapeAmp="false">
+									<s:param name="searchCondition.category" value="code" />
+								</s:url>
+								<a href="<s:property value="urlTag"/>" class="menu_link_mobile"><s:property value="name"/></a>
+							</li>
+						</s:iterator>
 					</ul>
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">公告訊息<span class="caret"></span></a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
-						<li><a href="<s:url value="/f2/news/init?searchCondition.category=一般公告"/>" class="menu_link_mobile">一般公告</a></li>
-						<li><a href="<s:url value="/f2/news/init?searchCondition.category=新聞稿"/>" class="menu_link_mobile">新聞稿</a></li>
+						<s:iterator value="@iace.entity.news.News@getCategoryList()" status="stat">
+							<li>
+								<s:url value="/f2/news/init" var="urlTag" escapeAmp="false">
+									<s:param name="searchCondition.category" value="code" />
+								</s:url>
+								<a href="<s:property value="urlTag"/>" class="menu_link_mobile"><s:property value="name"/></a>
+							</li>
+						</s:iterator>
 					</ul>
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">產學合作案例<span class="caret"></span></a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
-						<li><a href="#" class="menu_link_mobile">商品化</a></li>
-						<li><a href="#" class="menu_link_mobile">專利推廣</a></li>
-						<li><a href="#" class="menu_link_mobile">新創事業</a></li>
+						<s:iterator value="@iace.entity.coopExample.CoopEx@getTypeList()" status="stat">
+							<li>
+								<s:url value="/f2/coopEx/init" var="urlTag" escapeAmp="false">
+									<s:param name="searchCondition.type" value="code" />
+								</s:url>
+								<a href="<s:property value="urlTag"/>" class="menu_link_mobile"><s:property value="name"/></a>
+							</li>
+						</s:iterator>
 					</ul>
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">學界研發成果<span class="caret"></span></a> 
@@ -51,8 +64,14 @@
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">產業情報<span class="caret"></span></a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
-						<li><a href="#" class="menu_link_mobile">產業新聞</a></li>
-						<li><a href="#" class="menu_link_mobile">產業評析</a></li>
+						<s:iterator value="@iace.entity.industryInfo.IndustryInfo@getCategoryList()" status="stat">
+							<li>
+								<s:url value="/f2/industryInfo/init" var="urlTag" escapeAmp="false">
+									<s:param name="searchCondition.category" value="code" />
+								</s:url>
+								<a href="<s:property value="urlTag"/>" class="menu_link_mobile"><s:property value="name"/></a>
+							</li>
+						</s:iterator>
 					</ul>
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">媒合專區<span class="caret"></span></a> 

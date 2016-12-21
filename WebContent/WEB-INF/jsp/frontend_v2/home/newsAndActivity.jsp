@@ -11,7 +11,10 @@
 				<div class="large_title_01">
 					<i class="fa fa-file-text-o" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>公告訊息
 					<div class="pull-right">
-						<a href="<s:url value="/f2/news/init?searchCondition.category=一般公告"/>"> 
+						<s:url value="/f2/news/init" var="urlTag" escapeAmp="false">
+							<s:param name="searchCondition.category" value="@iace.entity.news.News@getCategoryList()[0].code" />
+						</s:url>
+						<a href="<s:property value="urlTag"/>"> 
 							<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
 						</a>
 					</div>
@@ -53,7 +56,10 @@
 				<div class="large_title_01">
 					<i class="fa fa-calendar-check-o" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>活動人培
 					<div class="pull-right">
-						<a href="<s:url value="/f2/activity/init?searchCondition.category=成果發表"/>">
+						<s:url value="/f2/activity/init" var="urlTag" escapeAmp="false">
+							<s:param name="searchCondition.category" value="@iace.entity.activity.Activity@getCategoryList()[0].code" />
+						</s:url>
+						<a href="<s:property value="urlTag"/>">
 							<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
 						</a>
 					</div>

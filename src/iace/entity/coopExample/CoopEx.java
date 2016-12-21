@@ -22,6 +22,7 @@ import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 import iace.entity.BaseEntity;
 import iace.entity.IntegrationSearch;
+import iace.entity.option.BaseOption;
 
 @Entity
 @Table(name = "COOP_EXAMPLE")
@@ -29,6 +30,13 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = 6103079547676237969L;
 
+	private static List<BaseOption> typeList = new ArrayList<BaseOption>();
+	static {
+		typeList.add(new BaseOption("商品化", "商品化"));
+		typeList.add(new BaseOption("專利推廣", "專利推廣"));
+		typeList.add(new BaseOption("新創事業", "新創事業"));
+	}
+	
 	private long id;
 	private Integer year;
 	private String type;
@@ -174,6 +182,10 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 
 	public void setClickNum(int clickNum) {
 		this.clickNum = clickNum;
+	}
+	
+	public static List<BaseOption> getTypeList() {
+		return typeList;
 	}
 
 	//==========================================================================

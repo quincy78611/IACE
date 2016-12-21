@@ -128,7 +128,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 			</li>
 			<li class="half">
 				<b>類別</b>
-				<s:select name="coopEx.type" list="#{'商品化':'商品化', '專利推廣':'專利推廣', '新創事業':'新創事業'}" />
+				<s:select name="coopEx.type" list="typeList" listKey="code" listValue="name" />
 			</li>
 			<li class="all">
 				<b>標題</b>
