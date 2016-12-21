@@ -93,6 +93,13 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 	public CoopEx get(Long id) {
 		CoopEx entity = this.dao.get(id);
 		loadAllEntityImg(entity);
+		// read & set attach file size
+		if (entity.getAttachFiles() != null && entity.getAttachFiles().size() > 0) {
+			for (CoopExAttachFile attach : entity.getAttachFiles()) {
+				File f =new File(this.coopExampleFolder, attach.getFilePath());
+				attach.setContentLength(f.length());
+			}
+		}
 		
 		return entity;
 	}

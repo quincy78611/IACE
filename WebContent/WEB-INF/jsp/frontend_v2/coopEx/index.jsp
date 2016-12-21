@@ -75,7 +75,7 @@
 														<s:param name="searchCondition.pageSize" value="searchCondition.pageSize" />
 													</s:url>
 													<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01">
-														<s:property value="projName"/>
+														<s:property value="title"/>
 													</a>
 												</div>
 												<div class="date_01">研發團隊：<s:property value="rdTeam"/></div>
