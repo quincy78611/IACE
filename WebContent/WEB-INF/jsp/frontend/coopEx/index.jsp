@@ -149,7 +149,7 @@
 				<s:iterator value="coopExPagedList.list" status="stat">
 					<li class="all">
 						<div class="list-S">
-							<img src="data:image;base64,<s:property value="%{imgs[0].getBase64Thumbnail(500, 500)}"/>" />
+							<img src="data:image;base64,<s:property value="base64Thumbnail"/>" />
 						</div>					
 						<div class="lisTitle">
 							<s:url value="/f/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
