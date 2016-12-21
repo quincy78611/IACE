@@ -61,6 +61,43 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="f2-CoopEx" namespace="/f2/coopEx" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.CoopExAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend_v2/coopEx/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.CoopExAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend_v2/coopEx/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend_v2/coopEx/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.CoopExAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend_v2/coopEx/detail.jsp</result>
+		</action>
+		<action name="downloadImage" class="iace.action.CoopExAction" method="downloadImage">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="downloadVideo" class="iace.action.CoopExAction" method="downloadVideo">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="downloadAttach" class="iace.action.CoopExAction" method="downloadAttach">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
 
 	<package name="f2-ResearchPlan" namespace="/f2/researchPlan" extends="struts-default, json-default, default">
 		<action name="showDetail" class="iace.action.ResearchPlanAction" method="showDetail">

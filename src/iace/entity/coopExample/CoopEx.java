@@ -129,6 +129,12 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 	}
 	
 	@Transient
+	public String getContentWithoutHTML() {
+		String replace = this.content.replaceAll("\\<[^>]*>","");
+		return replace;
+	}
+	
+	@Transient
 	public byte[] getThumbnail() {
 		return thumbnail;
 	}

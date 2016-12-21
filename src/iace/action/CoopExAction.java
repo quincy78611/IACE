@@ -45,7 +45,7 @@ public class CoopExAction extends BaseIaceAction {
 	}
 	
 	public String init() {
-		return SUCCESS;
+		return index();
 	}
 
 	public String index() {
