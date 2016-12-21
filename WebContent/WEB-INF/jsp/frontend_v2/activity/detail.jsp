@@ -11,6 +11,9 @@
 		});
 	});
 </script>
+<style>
+.videos iframe { width:100%; height:auto; }
+</style>
 </head>
 <body>
 	<!-- Banner -->
@@ -117,7 +120,7 @@
 							<div class="col-sm-4 col-xs-12" style="margin-top:15px;">
 								<s:url value="downloadAttach.action" var="downloadAttachUrl">
 									<s:param name="attachFileId" value="id" />
-								</s:url>							
+								</s:url>
 								<a href="<s:property value="downloadAttachUrl" />">
 									<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive img-thumbnail" />
 								</a>
@@ -128,12 +131,27 @@
 				</div>
 				<div class="line_solid"></div>
 				<div class="content_04">
+					<span class="fa-stack fa-lg"> 
+						<i class="fa fa-square fa-stack-2x"></i> 
+						<i class="fa fa-camera-retro fa-stack-1x fa-inverse"></i>
+					</span>
+					活動影片：
+				</div>
+				<div class="row videos">
+					<s:iterator value="activity.videoList" status="stat">
+						<div class="col-sm-4 col-xs-12" style="margin-top:15px">
+							<s:property value="videoUrl" escapeHtml="false"/>
+						</div>	
+					</s:iterator>
+				</div>
+				<div class="line_solid"></div>
+				<div class="content_04">
 					<span class="fa-stack fa-lg">
 						<i class="fa fa-square fa-stack-2x"></i>
 						<i class="fa fa-file-text fa-stack-1x fa-inverse"></i>
 					</span>
 					附件檔案：
-				</div>				
+				</div>
 				<div class="top10">
 					<table class="table table-striped content_01">
 						<thead>
@@ -150,7 +168,7 @@
 										<s:url value="downloadAttach.action" var="downloadAttachUrl">
 											<s:param name="attachFileId" value="id" />
 										</s:url>
-										<td>	
+										<td>
 											<a href="<s:property value="downloadAttachUrl" />">
 												<s:property value="uploadFileName"/>
 											</a>

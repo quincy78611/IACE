@@ -287,7 +287,7 @@ tr.hidden-sample-tr { display:none; }
 					<input type="text" class="title" maxlength="200"/>
 				</li>
 				<li class="all">
-					<b>活動影片(備註：視頻處可嵌入相關音影語法,寬度請設為：345px,高度請設為：200px)</b>
+					<b>活動影片(備註：視頻處可嵌入相關音影語法)</b>
 					<textarea class="videoUrl" maxlength="500">
 					
 					</textarea>
