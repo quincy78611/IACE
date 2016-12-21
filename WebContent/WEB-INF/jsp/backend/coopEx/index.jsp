@@ -123,7 +123,7 @@
 					<s:select name="searchCondition.type" list="typeList" listKey="code" listValue="name" headerKey="" headerValue="--類別--"/>
 				</li>
 				<li class="half">
-					<s:textfield name="searchCondition.projName" placeholder="案名"/>
+					<s:textfield name="searchCondition.searchText" placeholder="關鍵字"/>
 				</li>
 				<li class="half">
 					<s:textfield name="searchCondition.rdTeam" placeholder="研發團隊"/>

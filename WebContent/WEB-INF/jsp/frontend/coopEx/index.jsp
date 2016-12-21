@@ -128,7 +128,7 @@
 		<div class="">
 			<ul>
 				<li class="half">
-					<s:textfield name="searchCondition.projName" placeholder="關鍵字"/>
+					<s:textfield name="searchCondition.searchText" placeholder="關鍵字"/>
 				</li>
 				<li class="quarter">
 					<s:select name="searchCondition.year" list="#{'':'請選擇年度', '2014':'2014', '2015':'2015', '2016':'2016', '2017':'2017' }" />

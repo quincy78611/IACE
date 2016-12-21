@@ -8,6 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -143,14 +144,17 @@ public class CoopExDao extends BaseIaceDao<CoopEx> implements ICoopExDao {
 	}
 
 	private void addCriteriaRestrictionsForSearch(CoopExSearchModel arg, Criteria criteria) {
+		if (StringUtils.isNotBlank(arg.getSearchText())) {
+			Disjunction or = Restrictions.disjunction();
+			or.add(Restrictions.like("title", arg.getSearchText().trim(), MatchMode.ANYWHERE).ignoreCase());
+			or.add(Restrictions.like("projName", arg.getSearchText().trim(), MatchMode.ANYWHERE).ignoreCase());
+			criteria.add(or);
+		}
 		if (arg.getYear() != null) {
 			criteria.add(Restrictions.eq("year", arg.getYear()));
 		}
 		if (StringUtils.isNotBlank(arg.getType())) {
 			criteria.add(Restrictions.eq("type", arg.getType()));
-		}
-		if (StringUtils.isNotBlank(arg.getProjName())) {
-			criteria.add(Restrictions.like("projName", arg.getProjName(), MatchMode.ANYWHERE).ignoreCase());
 		}
 		if (StringUtils.isNotBlank(arg.getRdTeam())) {
 			criteria.add(Restrictions.like("rdTeam", arg.getRdTeam(), MatchMode.ANYWHERE).ignoreCase());

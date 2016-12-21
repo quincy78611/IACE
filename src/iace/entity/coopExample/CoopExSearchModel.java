@@ -4,11 +4,19 @@ import iace.entity.BaseSearchModel;
 
 public class CoopExSearchModel extends BaseSearchModel {
 
+	private String searchText;
 	private Integer year;
 	private String type;
-	private String projName;
 	private String rdTeam;
 	private String assisTeam;
+
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
 
 	public Integer getYear() {
 		return year;
@@ -24,14 +32,6 @@ public class CoopExSearchModel extends BaseSearchModel {
 
 	public void setType(String type) {
 		this.type = type;
-	}
-
-	public String getProjName() {
-		return projName;
-	}
-
-	public void setProjName(String projName) {
-		this.projName = projName;
 	}
 
 	public String getRdTeam() {

@@ -68,14 +68,6 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>		
 	</div>
 	
-	<form action="index" method="post" id="form-backToIndex">
-		<s:hidden name="searchCondition.year"/>
-		<s:hidden name="searchCondition.type"/>
-		<s:hidden name="searchCondition.projName"/>
-		<s:hidden name="searchCondition.rdTeam"/>
-		<s:hidden name="searchCondition.assisTeam"/>
-		<s:hidden name="searchCondition.pageIndex"/>
-		<s:hidden name="searchCondition.pageSize"/>
-	</form>	
+	<s:include value="./form-backToIndex.jsp" />
 </body>
 </html>
