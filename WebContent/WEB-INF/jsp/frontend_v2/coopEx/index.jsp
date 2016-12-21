@@ -68,8 +68,8 @@
 												<div>
 													<s:url value="/f2/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
 														<s:param name="id" value="id" />
-														<s:param name="searchCondition.projName" value="projName" />
-														<s:param name="searchCondition.type" value="type" />
+														<s:param name="searchCondition.projName" value="searchCondition.projName" />
+														<s:param name="searchCondition.type" value="searchCondition.type" />
 														<s:param name="searchCondition.year" value="searchCondition.year" />
 														<s:param name="searchCondition.pageIndex" value="searchCondition.pageIndex" />
 														<s:param name="searchCondition.pageSize" value="searchCondition.pageSize" />
