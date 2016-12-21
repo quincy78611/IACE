@@ -12,7 +12,11 @@
 					</h4></td>
 					<td width="10%" style="border: none;" class="date_01">標題</td>
 					<td style="border: none;">
-						<a href="#" class="list_link_01"> 
+						<s:url value="/f2/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
+							<s:param name="id" value="coopEx.id" />
+							<s:param name="searchCondition.type" value="coopEx.type" />
+						</s:url> 
+						<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank"> 
 							<s:property value="coopEx.title" />
 						</a>
 					</td>

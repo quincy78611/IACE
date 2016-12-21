@@ -104,7 +104,7 @@
 				</div>
 				<div class="top20">
 					<button type="button" class="btn btn-default" id="btn-back">
-						<i class="fa fa-angle-double-left right5" aria-hidden="true"></i>回上一頁
+						<i class="fa fa-angle-double-left right5" aria-hidden="true"></i>回列表
 					</button>
 				</div>
 				<s:include value="./form-backToIndex.jsp" />

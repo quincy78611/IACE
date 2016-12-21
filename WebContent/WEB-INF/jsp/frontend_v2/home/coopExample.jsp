@@ -30,7 +30,11 @@
 					<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive img_radius" alt="" />
 				</div>
 				<div class="text-center top10">
-					<a href="#" class="list_link_01"><s:property value="title" /></a>
+					<s:url value="/f2/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
+						<s:param name="id" value="id" />
+						<s:param name="searchCondition.type" value="type" />
+					</s:url> 
+					<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01"><s:property value="title" /></a>
 				</div>
 				<div class="text-center date_01">
 					<s:date name="createTime" format="yyyy/MM/dd" />
