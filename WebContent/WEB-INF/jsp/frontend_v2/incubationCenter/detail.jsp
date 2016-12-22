@@ -31,12 +31,10 @@
 					</ul>
 				</div>
 				<div class="pull-right">
+					<div class="list-inline text-right" style="margin-bottom: 0;">
+						<s:include value="../share-buttons.jsp" />
+					</div>
 					<ul class="list-inline text-right" style="margin-bottom: 0;">
-						<li class="nopadding"><span class="fa-stack fa-lg" style="color: #FFC642;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-share-alt fa-stack-1x fa-inverse"></i></span></li>
-						<li class="nopadding"><span class="fa-stack fa-lg" style="color: #074790;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></li>
-						<li class="nopadding"><span class="fa-stack fa-lg" style="color: #00B3F4;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></li>
-						<li class="nopadding"><span class="fa-stack fa-lg" style="color: #DD2137;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-pinterest-p fa-stack-1x fa-inverse"></i></span></li>
-						<li class="nopadding"><span class="fa-stack fa-lg" style="color: #EC4E20;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-google-plus fa-stack-1x fa-inverse"></i></span></li>
 						<li class="nopadding">
 							<button type="button" class="btn btn-default">
 								<i class="fa fa-minus-square right5" aria-hidden="true"></i>縮小
@@ -49,6 +47,7 @@
 						</li>
 					</ul>
 				</div>
+			
 				<div class="clearfix"></div>
 				<div class="well well-sm top10">
 					<table class="table content_03" style="margin-bottom: 0;">

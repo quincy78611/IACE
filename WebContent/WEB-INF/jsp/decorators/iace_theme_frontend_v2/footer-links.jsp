@@ -4,35 +4,43 @@
 
 <div class="footer_grey">
 	<div class="container">
-        <div class="row">
-        	<div class="col-sm-2 col-xs-6 text-center">
-           		<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_01.png"/>" alt="" height="55"/><a href="#" class="list_link_03">找技術</a></div>
-            </div>
-            <div class="col-sm-2 col-xs-6 text-center">
-           		<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_02.png"/>" alt="" height="55"/><a href="#" class="list_link_03">找活動</a></div>
-            </div>
-            <div class="col-sm-2 col-xs-6 text-center">
-           		<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_03.png"/>" alt="" height="55"/><a href="#" class="list_link_03">找課程</a></div>
-            </div>
-            <div class="col-sm-2 col-xs-6 text-center">
-           		<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_04.png"/>" alt="" height="55"/><a href="#" class="list_link_03">要諮詢</a></div>
-            </div>
-            <div class="col-sm-2 col-xs-6 text-center">
-           		<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_05.png"/>" alt="" height="55"/><a href="#" class="list_link_03">入會員</a></div>
-            </div>
-            <div class="col-sm-2 col-xs-6 text-center">
-           
-           		<div>
-           			<a href="#"><img src="<s:url value="/images/frontend-v2/icon_facebook.png"/>" alt="" height="40"/></a>
-                	&nbsp;
-                	<a href="#"><img src="<s:url value="/images/frontend-v2/icon_twitter.png"/>" alt="" height="40"/></a>
-                </div>
-                <div class="top5">
-                	<a href="#"><img src="<s:url value="/images/frontend-v2/icon_google.png"/>" alt="" height="40"/></a>
-                	&nbsp;
-                	<a href="#"><img src="<s:url value="/images/frontend-v2/icon_pinterest.png"/>" alt="" height="40"/></a>
-                </div>
-            </div>
-        </div>
-    </div>
+		<div class="row">
+			<div class="col-sm-2 col-xs-6 text-center">
+				<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_01.png"/>" alt="" height="55"/><a href="#" class="list_link_03">找技術</a></div>
+			</div>
+			<div class="col-sm-2 col-xs-6 text-center">
+				<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_02.png"/>" alt="" height="55"/><a href="#" class="list_link_03">找活動</a></div>
+			</div>
+			<div class="col-sm-2 col-xs-6 text-center">
+				<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_03.png"/>" alt="" height="55"/><a href="#" class="list_link_03">找課程</a></div>
+			</div>
+			<div class="col-sm-2 col-xs-6 text-center">
+				<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_04.png"/>" alt="" height="55"/><a href="#" class="list_link_03">要諮詢</a></div>
+			</div>
+			<div class="col-sm-2 col-xs-6 text-center">
+				<div style="margin:12px 0;"><img src="<s:url value="/images/frontend-v2/footer_icon_05.png"/>" alt="" height="55"/><a href="#" class="list_link_03">入會員</a></div>
+			</div>
+			<div class="col-sm-2 col-xs-6 text-center">
+				<s:url forceAddSchemeHostAndPort="true" includeParams="all" var="currentUrl" escapeAmp="false"/>
+				<div>
+					<a href="javascript: void(window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)) ));" target="_blank">
+						<img src="<s:url value="/images/frontend-v2/icon_facebook.png"/>" alt="" height="40"/>
+					</a>
+					&nbsp;
+					<a href="javascript: void(window.open('http://twitter.com/home/?status='.concat(encodeURIComponent(document.title)) .concat(' ') .concat(encodeURIComponent(location.href))));" target="_blank">
+						<img src="<s:url value="/images/frontend-v2/icon_twitter.png"/>" alt="" height="40"/>
+					</a>
+				</div>
+				<div class="top5">
+					<a href="javascript: void(window.open('https://plus.google.com/share?url='.concat(encodeURIComponent(location.href)) ));" target="_blank">
+						<img src="<s:url value="/images/frontend-v2/icon_google.png"/>" alt="" height="40"/>
+					</a>
+					&nbsp;
+					<a href="javascript: void(window.open('http://pinterest.com/pin/create/button/?url='.concat(encodeURIComponent(location.href)) ));" target="_blank">
+						<img src="<s:url value="/images/frontend-v2/icon_pinterest.png"/>" alt="" height="40"/>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -42,23 +42,9 @@
 				<div class="large_title_03"><s:property value="coopEx.title"/></div>
 				<div class="date_01">發佈日期：<s:date name="coopEx.createTime" format="yyyy/M/d" /></div>
 				<div class="content_01">
-					<ul class="list-inline text-right" style="margin-bottom:0;">
-						<li class="nopadding">
-							<span class="fa-stack fa-lg" style="color:#FFC642;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-share-alt fa-stack-1x fa-inverse"></i></span>
-						</li>
-						<li class="nopadding">
-							<span class="fa-stack fa-lg" style="color:#074790;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span>
-						</li>
-						<li class="nopadding">
-							<span class="fa-stack fa-lg" style="color:#00B3F4;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span>
-						</li>
-						<li class="nopadding">
-							<span class="fa-stack fa-lg" style="color:#DD2137;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-pinterest-p fa-stack-1x fa-inverse"></i></span>
-						</li>
-						<li class="nopadding">
-							<span class="fa-stack fa-lg" style="color:#EC4E20;"><i class="fa fa-square fa-stack-2x"></i><i class="fa fa-google-plus fa-stack-1x fa-inverse"></i></span>
-						</li>
-					</ul>
+					<div class="list-inline text-right" style="margin-bottom: 0;">
+						<s:include value="../share-buttons.jsp" />
+					</div>
 				</div>
 				<div class="line_solid"></div>			
 				<div class="top20">
