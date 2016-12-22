@@ -22,12 +22,12 @@ public class IndustryInfo extends BaseEntity implements IntegrationSearch {
 	private static final long serialVersionUID = -4348180685333981591L;
 	private static List<BaseOption> categoryList = new ArrayList<BaseOption>();
 	static {
-		categoryList.add(new BaseOption("產學新聞", "產學新聞"));
+		categoryList.add(new BaseOption("新聞雷達", "新聞雷達"));
 		categoryList.add(new BaseOption("產業評析", "產業評析"));
 	}
 	
 	private long id;
-	private String category; // 產業新聞, 產業評析
+	private String category; // 新聞雷達, 產業評析
 	private String title;
 	private String link;
 	private String source;

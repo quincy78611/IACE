@@ -20,7 +20,7 @@
 					</td>
 					<td width="10%" style="border: none;" class="date_01">主題</td>
 					<td style="border: none;">
-						<a href="#" class="list_link_01">
+						<a href="<s:property value="industryInfo.link"/>" class="list_link_01" target="_blank">
 							<s:property value="industryInfo.title"/>
 						</a>
 					</td>
@@ -34,7 +34,7 @@
 					<td>&nbsp;</td>
 					<td class="date_01">發布日期</td>
 					<td><s:date name="postDate" format="yyyy/M/d"/></td>
-				</tr>				
+				</tr>
 			</tbody>
 		</table>
 	</div>

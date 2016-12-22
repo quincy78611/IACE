@@ -9,7 +9,7 @@
 			<div class="col-sm-6 col-xs-12 top50">
 				<div>
 					<div class="large_title_02">
-						<i class="fa fa-globe" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>產學新聞
+						<i class="fa fa-globe" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>新聞雷達
 						<div class="pull-right">
 							<a href="<s:url value="/f2/industryInfo/init?searchCondition.category=產學新聞"/>">
 								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
@@ -26,21 +26,16 @@
 				<div class="top10">
 					<table class="table">
 						<tbody>
-							<tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">TMTS育人才深耕產學合作TMTS育人才深耕產學合作TMTS育人才深耕產學合作</a></div></td>
-                            </tr>
-                            <tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">工具機智慧製造應用計畫 虎尾科大擔綱領頭羊工具機智慧製造應用計畫END虎尾科大擔綱領頭羊工具機智慧製造應用計畫 虎尾科大擔綱領頭羊</a></div></td>
-                            </tr>
-                            <tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">TMTS育人才 深耕產學合作</a></div></td>
-                            </tr>
-                            <tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">工具機智慧製造應用計畫 虎尾科大擔綱領頭羊</a></div></td>
-                            </tr>
-                            <tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_02">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_02">TMTS育人才 深耕產學合作</a></div></td>
-                            </tr>
+							<s:iterator value="industryInfoList1" status="stat">
+								<tr>
+									<td style="border:none;">
+										<div class="truncate">
+											<span class="date_02"><s:property value="postDate"/></span>&nbsp;&nbsp;&nbsp;
+											<a href="<s:property value="link"/>" class="list_link_02" target="_blank"><s:property value="title"/></a>
+										</div>
+									</td>
+								</tr>
+							</s:iterator>
 						</tbody>
 					</table>
 				</div>
@@ -74,21 +69,16 @@
 				<div class="top10">
 					<table class="table">
 						<tbody>
-                            <tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險IEKTopics｜以物聯網技術 降低石化業管線風險IEKTopics｜以物聯網技術 降低石化業管線風險IEKTopics｜以物聯網技術 降低石化業管線風險</a></div></td>
-                            </tr>
-                            <tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">我國物聯網產業創新應用發展｜2016網際網路趨勢...</a></div></td>
-                            </tr>
-                            <tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險</a></div></td>
-                            </tr>
-                            <tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">我國物聯網產業創新應用發展｜2016網際網路趨勢...</a></div></td>
-                            </tr>
-                            <tr>
-                                <td style="border:none;"><div class="truncate"><span class="date_01">2016/10/20</span>&nbsp;&nbsp;&nbsp;<a href="#" class="list_link_01">IEKTopics｜以物聯網技術 降低石化業管線風險</a></div></td>
-                            </tr>
+							<s:iterator value="industryInfoList2" status="stat">
+								<tr>
+									<td style="border:none;">
+										<div class="truncate">
+											<span class="date_01"><s:property value="postDate"/></span>&nbsp;&nbsp;&nbsp;
+											<a href="<s:property value="link"/>" class="list_link_01" target="_blank"><s:property value="title"/></a>
+										</div>
+									</td>
+								</tr>
+							</s:iterator>
 						</tbody>
 					</table>
 				</div>

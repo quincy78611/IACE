@@ -62,6 +62,16 @@
 		</action>
 	</package>
 	
+	<package name="f2-IndustryInfo" namespace="/f2/industryInfo" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.IndustryInfoAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend_v2/industryInfo/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.IndustryInfoAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend_v2/industryInfo/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend_v2/industryInfo/index.jsp</result>
+		</action>
+	</package>
+	
 	<package name="f2-CoopEx" namespace="/f2/coopEx" extends="struts-default, json-default, default">
 		<action name="init" class="iace.action.CoopExAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/coopEx/index.jsp</result>
