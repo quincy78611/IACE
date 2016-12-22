@@ -29,7 +29,14 @@
 							<s:iterator value="talentedPeopleList" status="stat">
 								<tr>
 									<td class="small_title_02 table_border_bottom_wh"><s:property value="nameCh" /></td>
-									<td class="table_border_bottom_wh"><div class="truncate2"><a href="#" class="list_link_02"><s:property value="specialty" /></a></div></td>
+									<td class="table_border_bottom_wh">
+										<s:url value="/f2/talentedPeople/showDetail" var="detailUrlTag" escapeAmp="false">
+											<s:param name="id" value="id" />
+										</s:url>
+										<div class="truncate2">
+											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_02" target="_blank"><s:property value="specialty" /></a>
+										</div>
+									</td>
 								</tr>
 							</s:iterator>
 						</tbody>

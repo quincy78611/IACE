@@ -262,6 +262,13 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 				XSSFCell cell;
 				try {
 					TalentedPeople entity = new TalentedPeople();
+					entity.setIsPublicEmail(true);
+					entity.setIsPublicMainProject(true);
+					entity.setIsPublicOtherExperience(true);
+					entity.setIsPublicRdResult(true);
+					entity.setIsPublicRewardHistory(true);
+					entity.setIsPublicTel(true);
+					entity.setIsPublicTransferCase(true);
 					
 					cell = row.getCell(++c);
 					cell.setCellType(Cell.CELL_TYPE_STRING);
