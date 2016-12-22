@@ -26,8 +26,8 @@
 	<div class="row">
 		<s:iterator value="coopExList" status="stat">
 			<div class="col-sm-4 col-xs-12 top20">
-				<div>
-					<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive img_radius" alt="" />
+				<div class="center-cropped1 img_radius">
+					<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive" alt="" />
 				</div>
 				<div class="text-center top10">
 					<s:url value="/f2/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
