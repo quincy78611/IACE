@@ -80,6 +80,12 @@ public class Faq extends BaseLinkiacEntity {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	@Transient
+	public String getContentWithoutHTML() {
+		String replace = this.content.replaceAll("\\<[^>]*>","");
+		return replace;
+	}
 
 	@Transient
 	public static List<BaseOption> getCategoryList() {
