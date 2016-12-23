@@ -14,7 +14,7 @@
 </head>
 <body>
 	<!-- Banner -->
-<%-- 	<s:include value="./banner.jsp" /> --%>
+	<s:include value="./banner.jsp" />
 
 	<!-- Main -->
 	<div class="container top50">
