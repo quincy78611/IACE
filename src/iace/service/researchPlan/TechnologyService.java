@@ -52,10 +52,14 @@ public class TechnologyService extends BaseIaceService<Technology> {
 		// set grb domain image
 		for (Technology tec : tecList) {
 			ResearchPlan rp = tec.getResearchPlan();
-			OptionGrbDomain grb = rp.getGrbDomains().get(0);
-			File f = new File(this.grbDomainPicFolder, grb.getCode()+".jpg");
-			byte[] imgData = loadImg(f);
-			grb.setByteImg(imgData);
+			for (OptionGrbDomain grb : rp.getGrbDomains()) {
+				if (grb.getForResearchPlan() != null && grb.getForResearchPlan() == true ) {
+					File f = new File(this.grbDomainPicFolder, grb.getCode()+".jpg");
+					byte[] imgData = loadImg(f);
+					rp.setDomainImg(imgData);
+					break;
+				}
+			};
 		}
 		
 		return tecList;

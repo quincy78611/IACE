@@ -20,6 +20,8 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 import iace.entity.BaseEntity;
 import iace.entity.IntegrationSearch;
 import iace.entity.option.OptionGrbDomain;
@@ -52,6 +54,8 @@ public class ResearchPlan extends BaseEntity implements IntegrationSearch {
 	private List<Technology> technologies = new ArrayList<Technology>();
 
 	private int clickNum;
+	
+	private transient byte[] domainImg;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -309,6 +313,20 @@ public class ResearchPlan extends BaseEntity implements IntegrationSearch {
 
 	public void setClickNum(int clickNum) {
 		this.clickNum = clickNum;
+	}
+	
+	@Transient
+	public byte[] getDomainImg() {
+		return domainImg;
+	}
+
+	public void setDomainImg(byte[] domainImg) {
+		this.domainImg = domainImg;
+	}
+	
+	@Transient
+	public String getBase64DomainImg() {
+		return Base64.encode(this.domainImg);
 	}
 
 	@Override
