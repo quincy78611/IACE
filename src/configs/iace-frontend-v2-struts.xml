@@ -41,6 +41,15 @@
 		</action>
 	</package>
 	
+	<package name="f2-About" namespace="/f2/about" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.AboutAction" method="frontendShowDetailInit">
+			<result name="success">/WEB-INF/jsp/frontend_v2/about/detail.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.AboutAction" method="frontendShowDetail">
+			<result name="success">/WEB-INF/jsp/frontend_v2/about/detail.jsp</result>
+		</action>
+	</package>
+	
 	<package name="f2-Activity" namespace="/f2/activity" extends="struts-default, json-default, default">
 		<action name="init" class="iace.action.ActivityAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/activity/index.jsp</result>

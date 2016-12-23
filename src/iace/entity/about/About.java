@@ -13,9 +13,8 @@ import iace.entity.BaseLinkiacEntity;
 @Entity
 @Table(name = "ABOUT")
 public class About extends BaseLinkiacEntity {
-
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = 5281865450913772411L;
+	
 	private long id;
 	private String title;
 	private String content;

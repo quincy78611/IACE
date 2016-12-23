@@ -1,9 +1,13 @@
 package iace.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import core.util.PagedList;
 import iace.dao.ClickNumCounterDao;
 import iace.entity.about.About;
 import iace.entity.about.AboutSearchModel;
+import iace.entity.option.BaseOption;
 import iace.service.ServiceFactory;
 import iace.service.about.AboutService;
 
@@ -14,6 +18,8 @@ public class AboutAction extends BaseIaceAction {
 	
 	private AboutSearchModel searchCondition = new AboutSearchModel();
 	private PagedList<About> aboutPagedList;
+	
+	private List<BaseOption> aboutMenuList;
 	
 	private long id;
 	private About about;
@@ -40,6 +46,41 @@ public class AboutAction extends BaseIaceAction {
 		try {
 			new ClickNumCounterDao().increaseClickNum(this.id, About.class);
 			this.about = this.aboutService.get(this.id);
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String frontendShowDetailInit() {
+		try {
+			List<About> aboutList = this.aboutService.listAll();
+			this.aboutMenuList = new ArrayList<BaseOption>();
+			for (About about : aboutList) {
+				this.aboutMenuList.add(new BaseOption(about.getId()+"", about.getTitle()));
+			}
+			
+			this.about = aboutList.get(0);
+			
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String frontendShowDetail() {
+		try {
+			List<About> aboutList = this.aboutService.listAll();
+			this.aboutMenuList = new ArrayList<BaseOption>();
+			for (About about : aboutList) {
+				this.aboutMenuList.add(new BaseOption(about.getId()+"", about.getTitle()));
+				if (about.getId() == this.id) {
+					this.about = about;
+				}
+			}
+			
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -138,10 +179,6 @@ public class AboutAction extends BaseIaceAction {
 		return aboutPagedList;
 	}
 
-	public void setAboutPagedList(PagedList<About> aboutPagedList) {
-		this.aboutPagedList = aboutPagedList;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -156,6 +193,10 @@ public class AboutAction extends BaseIaceAction {
 
 	public void setAbout(About about) {
 		this.about = about;
+	}
+
+	public List<BaseOption> getAboutMenuList() {
+		return aboutMenuList;
 	}
 	
 	
