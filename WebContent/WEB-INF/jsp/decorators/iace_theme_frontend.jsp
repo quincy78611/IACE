@@ -114,7 +114,7 @@
 	<footer>
 		<div id="footerZone">
 			<div id="LOGO"><img src="<s:url value="/images/LOGO-S.png"/>" ></div>
-			<div id="qrcode"><img src="<s:url value="/images/qrCode.jpg"/>" ></div>
+			<div id="qrcode"><img src="<s:url value="/images/qrCode.jpg"/>" width="73" height="73"></div>
 			<div id="con">
 				版權所有©2016科技部產學及園區業務司<br>
 				Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs<br>
@@ -122,7 +122,7 @@
 			</div>
 			<div id="twca">
 				<div id="twcaseal" class="ssl-logo MEDIUM">
-					<img src="<s:url value="/images/TWCA-SSL-LOGO-MEDIUM.gif"/>" >
+					<img src="<s:url value="/images/TWCA-SSL-LOGO-MEDIUM.gif"/>">
 				</div>
 				<script type="text/javascript" charset="utf-8" >
 					var twca_cn="iace.org.tw";
