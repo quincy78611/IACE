@@ -36,7 +36,7 @@
 						<img src="<s:url value="/images/frontend-v2/icon_google.png"/>" alt="" height="40"/>
 					</a>
 					&nbsp;
-					<a href="javascript: void(window.open('http://pinterest.com/pin/create/button/?url='.concat(encodeURIComponent(location.href)) ));" target="_blank">
+					<a href="javascript: void(window.open('http://www.plurk.com/?qualifier=shares&status='.concat(encodeURIComponent(location.href)) ));" target="_blank">
 						<img src="<s:url value="/images/frontend-v2/icon_pinterest.png"/>" alt="" height="40"/>
 					</a>
 				</div>
