@@ -108,7 +108,7 @@
 					<li class="dropdown left15">
 					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu6">媒合專區<span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu6">
-							<li><a href="#">產學媒合服務團簡介</a></li>
+							<li><a href="<s:url value="/f2/matchIntro/init"/>">產學媒合服務團簡介</a></li>
 							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>">法規政策</a></li>
 							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>">文獻</a></li>
 							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.incubationCenter.IncubationCenter"/>">育成中心</a></li>

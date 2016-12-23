@@ -6,7 +6,7 @@ import javax.persistence.MappedSuperclass;
 import org.hibernate.annotations.Type;
 
 @MappedSuperclass
-public abstract class BaseLinkiacEntity extends BaseEntity {
+public abstract class BaseLinkiacEntity extends BaseEntity implements Comparable<BaseLinkiacEntity> {
 
 	private static final long serialVersionUID = 6365031563606445552L;
 
@@ -84,5 +84,11 @@ public abstract class BaseLinkiacEntity extends BaseEntity {
 	public void setClickNum(int clickNum) {
 		this.clickNum = clickNum;
 	}
+
+	@Override
+	public int compareTo(BaseLinkiacEntity o) {
+		return o.getSort() - this.sort;
+	}
+	
 	
 }

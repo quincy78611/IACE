@@ -1,6 +1,7 @@
 package iace.action;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import core.util.PagedList;
@@ -56,6 +57,7 @@ public class AboutAction extends BaseIaceAction {
 	public String frontendShowDetailInit() {
 		try {
 			List<About> aboutList = this.aboutService.listAll();
+			Collections.sort(aboutList);
 			this.aboutMenuList = new ArrayList<BaseOption>();
 			for (About about : aboutList) {
 				this.aboutMenuList.add(new BaseOption(about.getId()+"", about.getTitle()));
@@ -73,6 +75,7 @@ public class AboutAction extends BaseIaceAction {
 	public String frontendShowDetail() {
 		try {
 			List<About> aboutList = this.aboutService.listAll();
+			Collections.sort(aboutList);
 			this.aboutMenuList = new ArrayList<BaseOption>();
 			for (About about : aboutList) {
 				this.aboutMenuList.add(new BaseOption(about.getId()+"", about.getTitle()));
