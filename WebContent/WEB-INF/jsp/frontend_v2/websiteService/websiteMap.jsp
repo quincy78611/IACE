@@ -37,7 +37,7 @@
 				<div class="large_title_03">網站地圖</div>
 				<div class="content_01 top10">
 					<div class="row">
-						<div class="col-sm-3 col-xs-12">
+						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>活動/人培</th></tr>
 								<s:iterator value="@iace.entity.activity.Activity@getCategoryList()" status="stat">
@@ -52,7 +52,7 @@
 								</s:iterator>
 							</table>
 						</div>
-						<div class="col-sm-3 col-xs-12">
+						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>公告訊息</th></tr>
 								<s:iterator value="@iace.entity.news.News@getCategoryList()" status="stat">
@@ -67,7 +67,7 @@
 								</s:iterator>
 							</table>
 						</div>
-						<div class="col-sm-3 col-xs-12">
+						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>產學合作案例</th></tr>
 								<s:iterator value="@iace.entity.coopExample.CoopEx@getTypeList()" status="stat">
@@ -81,8 +81,8 @@
 									</tr>
 								</s:iterator>
 							</table>
-						</div>						
-						<div class="col-sm-3 col-xs-12">
+						</div>
+						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>學界研發成果</th></tr>
 								<tr><td><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.researchPlan.Technology"/>">學研成果</a></td></tr>
@@ -90,7 +90,9 @@
 								<tr><td><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.talentedPeople.TalentedPeople"/>">產學人才</a></td></tr>
 							</table>
 						</div>
-						<div class="col-sm-3 col-xs-12">
+					</div>
+					<div class="row">
+						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>產業情報</th></tr>
 								<s:iterator value="@iace.entity.industryInfo.IndustryInfo@getCategoryList()" status="stat">
@@ -99,13 +101,13 @@
 											<s:url value="/f2/industryInfo/init" var="urlTag" escapeAmp="false">
 												<s:param name="searchCondition.category" value="code" />
 											</s:url>
-											<a href="<s:property value="urlTag"/>"><s:property value="name"/></a>	
+											<a href="<s:property value="urlTag"/>"><s:property value="name"/></a>
 										</td>
 									</tr>
 								</s:iterator>
 							</table>
 						</div>
-						<div class="col-sm-3 col-xs-12">
+						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>媒合專區</th></tr>
 								<tr><td><a href="<s:url value="/f2/matchIntro/init"/>">產學媒合服務團簡介</a></td></tr>
@@ -114,12 +116,10 @@
 								<tr><td><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.incubationCenter.IncubationCenter"/>">育成中心</a></td></tr>
 								<tr><td><a href="#">問卷調查</a></td></tr>
 							</table>
-						</div>						
-						
-										
+						</div>
 					</div>
 				</div>
-			</div>	
+			</div>
 		</div>	
 	</div>
 </body>
