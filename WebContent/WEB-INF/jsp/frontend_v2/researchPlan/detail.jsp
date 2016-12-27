@@ -84,7 +84,7 @@
 							</tr>
 							<tr>
 								<td class="date_01">計畫發展階段</td>
-								<td><s:property value="%{researchPlan.trl.showString}" /></td>
+								<td><s:property value="%{researchPlan.trl.name}" /></td>
 							</tr>
 							<tr>
 								<td class="date_01">計畫關鍵詞</td>
@@ -123,7 +123,7 @@
 										<td class="date_01">技術發展階段</td>
 										<td>
 											<s:iterator value="optionTrlList" status="stat">
-												<p><s:property value="showString"/>;</p>
+												<p><s:property value="name"/>;</p>
 											</s:iterator>
 										</td>
 									</tr>
