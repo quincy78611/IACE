@@ -164,6 +164,9 @@
 		<action name="websiteMap">
 			<result name="success">/WEB-INF/jsp/frontend_v2/websiteService/websiteMap.jsp</result>
 		</action>
-	</package>	
+		<action name="contactUs">
+			<result name="success">/WEB-INF/jsp/frontend_v2/websiteService/contactUs.jsp</result>
+		</action>
+	</package>
 	
 </struts>

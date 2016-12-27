@@ -12,7 +12,7 @@
 	<li class="list-group-item">
 		<i class="fa fa-cube right10" aria-hidden="true"></i>客服信箱
 	</li>
-	<li class="list-group-item">
+	<li class="list-group-item" onclick="window.location.href='<s:url value="/f2/websiteService/contactUs"/>'">
 		<i class="fa fa-cube right10" aria-hidden="true"></i>聯絡電話
 	</li>
 	<li class="list-group-item">
