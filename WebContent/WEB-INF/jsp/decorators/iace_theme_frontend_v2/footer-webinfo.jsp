@@ -17,7 +17,7 @@
 			</div>
 			<div class="col-sm-5 col-xs-12 nopadding footer_content text-right">
 				<ul class="list-inline footer_content_02">
-					<li><a href="<s:url value="/f2/websiteService/websiteMap"/>" class="footer_link">網站地圖</a></li><li>│</li><li><a href="#" class="footer_link">客服信箱</a></li><li>│</li><li><a href="<s:url value="/f2/websiteService/contactUs"/>" class="footer_link">聯絡電話</a></li><li>│</li><li><a href="#" class="footer_link">隱私權宣告</a></li><li>│</li><li><a href="#" class="footer_link">版權宣告</a></li><li>│</li><li><a href="#" class="footer_link">圖片授權宣告</a></li>
+					<li><a href="<s:url value="/f2/websiteService/websiteMap"/>" class="footer_link">網站地圖</a></li><li>│</li><li><a href="#" class="footer_link">客服信箱</a></li><li>│</li><li><a href="<s:url value="/f2/websiteService/contactUs"/>" class="footer_link">聯絡電話</a></li><li>│</li><li><a href="<s:url value="/f2/websiteService/privacy"/>" class="footer_link">隱私權宣告</a></li><li>│</li><li><a href="<s:url value="/f2/websiteService/copyright"/>" class="footer_link">版權宣告</a></li><li>│</li><li><a href="#" class="footer_link">圖片授權宣告</a></li>
 				</ul>
 			</div>
 		</div>

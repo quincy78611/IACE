@@ -167,6 +167,12 @@
 		<action name="contactUs">
 			<result name="success">/WEB-INF/jsp/frontend_v2/websiteService/contactUs.jsp</result>
 		</action>
+		<action name="privacy">
+			<result name="success">/WEB-INF/jsp/frontend_v2/websiteService/privacy.jsp</result>
+		</action>
+		<action name="copyright">
+			<result name="success">/WEB-INF/jsp/frontend_v2/websiteService/copyright.jsp</result>
+		</action>
 	</package>
 	
 </struts>
