@@ -68,172 +68,172 @@ import iace.entity.talentedPeople.TalentedPeopleTransferCase;
 
 public class HibernateSessionFactory {
 
-    private static Configuration configuration = new Configuration();  
-	private static String CONFIG_FILE_LOCATION = "configs/hibernate.cfg.xml";  
+	private static Configuration configuration = new Configuration();
+	private static String CONFIG_FILE_LOCATION = "configs/hibernate.cfg.xml";
 	
-    private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();  
-	private static org.hibernate.SessionFactory sessionFactory;
+	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
+	private static SessionFactory sessionFactory;
 	
-    static {  
-    	rebuildSessionFactory();
-    } 
-    
-    public static void rebuildSessionFactory() {  
-        try {            
-            configuration.configure(CONFIG_FILE_LOCATION);
-//            configuration.configure();
-//            showHibernateConfig();
-            addEntityMapping();
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-            		.applySettings(configuration.getProperties()).build();
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            if (sessionFactory == null) {
-            	throw new NullPointerException("sessionFactory is null!");
-            }
-        } catch (Exception e) {
-        	e.printStackTrace();
-            System.err.println("%%%% Error Creating SessionFactory %%%%"); 
-        }  
-    }
-    
-    public static Session getSession() throws HibernateException {  
-        Session session = (Session) threadLocal.get();  
-  
-        if (session == null || !session.isOpen()) {  
-            if (sessionFactory == null) {  
-                rebuildSessionFactory();  
-            }  
-            session = (sessionFactory != null) ? sessionFactory.openSession() : null;  
-            threadLocal.set(session);  
-        }  
-  
-        return session;
-    } 
+	static {
+		rebuildSessionFactory();
+	} 
+	
+	public static void rebuildSessionFactory() {
+		try {
+			configuration.configure(CONFIG_FILE_LOCATION);
+//			configuration.configure();
+//			showHibernateConfig();
+			addEntityMapping();
+			ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+					.applySettings(configuration.getProperties()).build();
+			sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+			if (sessionFactory == null) {
+				throw new NullPointerException("sessionFactory is null!");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("%%%% Error Creating SessionFactory %%%%"); 
+		}
+	}
+	
+	public static Session getSession() throws HibernateException {
+		Session session = (Session) threadLocal.get();  
 
-    public static void closeSession() throws HibernateException {  
-        Session session = (Session) threadLocal.get();  
-        threadLocal.set(null);  
-  
-        if (session != null) {  
-            session.close();  
-        }  
-    }
-    
-    @Deprecated
-    public static SessionFactory getSessionFactory() {  
-        return sessionFactory;  
-    }    
- 
-    @Deprecated
-    public static Configuration getConfiguration() {  
-        return configuration;  
-    } 
-    
-    public static void showHibernateConfig() {
-    	Properties prop = configuration.getProperties();
-    	System.out.println("");
-    	System.out.println("==================================================");
-    	for (Entry<Object, Object> e : prop.entrySet()) {
+		if (session == null || !session.isOpen()) {
+			if (sessionFactory == null) {
+				rebuildSessionFactory();
+			}  
+			session = (sessionFactory != null) ? sessionFactory.openSession() : null;
+			threadLocal.set(session);
+		}
+
+		return session;
+	} 
+
+	public static void closeSession() throws HibernateException {
+		Session session = (Session) threadLocal.get();
+		threadLocal.set(null);
+
+		if (session != null) {
+			session.close();
+		}
+	}
+	
+	@Deprecated
+	public static SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}	
+
+	@Deprecated
+	public static Configuration getConfiguration() {
+		return configuration;
+	} 
+	
+	public static void showHibernateConfig() {
+		Properties prop = configuration.getProperties();
+		System.out.println("");
+		System.out.println("==================================================");
+		for (Entry<Object, Object> e : prop.entrySet()) {
 			String key = (String) e.getKey();
 			String value = (String) e.getValue();
 			System.out.println(key+":"+value);
 		}
-    	System.out.println("==================================================");
-    	System.out.println("");
-    }
-    
-    public static String getConnectionDriverClass() {
-    	Properties prop = configuration.getProperties();
-    	return prop.getProperty("hibernate.connection.driver_class");   	
-    }
-    
-    public static String getConnectionUrl() {
-    	Properties prop = configuration.getProperties();
-    	return prop.getProperty("hibernate.connection.url");
-    }
-    
-    public static String getConnectionUserName() {
-    	Properties prop = configuration.getProperties();
-    	return prop.getProperty("hibernate.connection.username");
-    }
-    
-    public static String getConnectionPassword() {
-    	Properties prop = configuration.getProperties();
-    	return prop.getProperty("hibernate.connection.password");
-    }
+		System.out.println("==================================================");
+		System.out.println("");
+	}
+	
+	public static String getConnectionDriverClass() {
+		Properties prop = configuration.getProperties();
+		return prop.getProperty("hibernate.connection.driver_class");
+	}
+	
+	public static String getConnectionUrl() {
+		Properties prop = configuration.getProperties();
+		return prop.getProperty("hibernate.connection.url");
+	}
+	
+	public static String getConnectionUserName() {
+		Properties prop = configuration.getProperties();
+		return prop.getProperty("hibernate.connection.username");
+	}
+	
+	public static String getConnectionPassword() {
+		Properties prop = configuration.getProperties();
+		return prop.getProperty("hibernate.connection.password");
+	}
 
-    public static String getDefaultSchema() {
-    	Properties prop = configuration.getProperties();
-    	return prop.getProperty("hibernate.default_schema");
-    }
-       
-    private static void addEntityMapping() {
-    	configuration.addAnnotatedClass(OptionCompanyLocation.class);
-    	configuration.addAnnotatedClass(OptionConsult.class);
-    	configuration.addAnnotatedClass(OptionCooperateMode.class);
-    	configuration.addAnnotatedClass(OptionCountry.class);
-    	configuration.addAnnotatedClass(OptionGrbDomain.class);
-    	configuration.addAnnotatedClass(OptionHadTecSrc.class);
-    	configuration.addAnnotatedClass(OptionHrst.class);
-    	configuration.addAnnotatedClass(OptionIndustry.class);
-    	configuration.addAnnotatedClass(OptionDomain.class);
-    	configuration.addAnnotatedClass(OptionOrganizationClass.class);
-    	configuration.addAnnotatedClass(OptionOrganizationType.class);
-    	configuration.addAnnotatedClass(OptionTrl.class);
-    	configuration.addAnnotatedClass(OptionSubject.class);
-    	configuration.addAnnotatedClass(OptionSchool.class);
-    	configuration.addAnnotatedClass(OptionSysNamespace.class);
-    	configuration.addAnnotatedClass(OptionSysAction.class);
-    	
-    	configuration.addAnnotatedClass(EnterpriseInfo.class);
-    	configuration.addAnnotatedClass(EnterpriseRequireTech.class);
-    	configuration.addAnnotatedClass(EnterpriseSituation.class);
-    	configuration.addAnnotatedClass(EnterpriseAcademiaCoop.class);
-    	
-    	configuration.addAnnotatedClass(Patent.class);
-    	configuration.addAnnotatedClass(TechField.class);
-    	
-    	configuration.addAnnotatedClass(ResearchPlan.class);
-    	configuration.addAnnotatedClass(Technology.class);
+	public static String getDefaultSchema() {
+		Properties prop = configuration.getProperties();
+		return prop.getProperty("hibernate.default_schema");
+	}
+	
+	private static void addEntityMapping() {
+		configuration.addAnnotatedClass(OptionCompanyLocation.class);
+		configuration.addAnnotatedClass(OptionConsult.class);
+		configuration.addAnnotatedClass(OptionCooperateMode.class);
+		configuration.addAnnotatedClass(OptionCountry.class);
+		configuration.addAnnotatedClass(OptionGrbDomain.class);
+		configuration.addAnnotatedClass(OptionHadTecSrc.class);
+		configuration.addAnnotatedClass(OptionHrst.class);
+		configuration.addAnnotatedClass(OptionIndustry.class);
+		configuration.addAnnotatedClass(OptionDomain.class);
+		configuration.addAnnotatedClass(OptionOrganizationClass.class);
+		configuration.addAnnotatedClass(OptionOrganizationType.class);
+		configuration.addAnnotatedClass(OptionTrl.class);
+		configuration.addAnnotatedClass(OptionSubject.class);
+		configuration.addAnnotatedClass(OptionSchool.class);
+		configuration.addAnnotatedClass(OptionSysNamespace.class);
+		configuration.addAnnotatedClass(OptionSysAction.class);
+		
+		configuration.addAnnotatedClass(EnterpriseInfo.class);
+		configuration.addAnnotatedClass(EnterpriseRequireTech.class);
+		configuration.addAnnotatedClass(EnterpriseSituation.class);
+		configuration.addAnnotatedClass(EnterpriseAcademiaCoop.class);
+		
+		configuration.addAnnotatedClass(Patent.class);
+		configuration.addAnnotatedClass(TechField.class);
+		
+		configuration.addAnnotatedClass(ResearchPlan.class);
+		configuration.addAnnotatedClass(Technology.class);
 
-    	configuration.addAnnotatedClass(Consulting.class);
-    	
-    	configuration.addAnnotatedClass(QnrTable.class);
-    	configuration.addAnnotatedClass(QnrTableColumn.class);
-    	
-    	configuration.addAnnotatedClass(QnrCooperateWay.class);
-    	
-    	configuration.addAnnotatedClass(SysUser.class);
-    	configuration.addAnnotatedClass(SysRole.class);
-    	configuration.addAnnotatedClass(SysLog.class);
-    	
-    	configuration.addAnnotatedClass(CoopEx.class);
-    	configuration.addAnnotatedClass(CoopExImg.class);
-    	configuration.addAnnotatedClass(CoopExVideo.class);
-    	configuration.addAnnotatedClass(CoopExAttachFile.class);
-   	
-    	configuration.addAnnotatedClass(TalentedPeople.class);
-    	configuration.addAnnotatedClass(TalentedPeopleRdResult.class);
-    	configuration.addAnnotatedClass(TalentedPeopleTransferCase.class);
-    	configuration.addAnnotatedClass(TalentedPeopleMainProject.class);
-    	configuration.addAnnotatedClass(TalentedPeoplePDPL.class);
-    	
-    	configuration.addAnnotatedClass(IncubationCenter.class);
-    	
-    	configuration.addAnnotatedClass(Literature.class);
-    	
-    	configuration.addAnnotatedClass(About.class);
-    	configuration.addAnnotatedClass(Activity.class);
-    	configuration.addAnnotatedClass(ActivityAttach.class);
-    	configuration.addAnnotatedClass(ActivityVideo.class);
-    	configuration.addAnnotatedClass(Faq.class);
-    	configuration.addAnnotatedClass(HomeScrollingText.class);
-    	configuration.addAnnotatedClass(IndustryInfo.class);
-    	configuration.addAnnotatedClass(News.class);
-    	configuration.addAnnotatedClass(NewsAttach.class); 	
-    	
-    	configuration.addAnnotatedClass(Member.class);
-    	
-    	configuration.addAnnotatedClass(ContactUs.class);
-    }
+		configuration.addAnnotatedClass(Consulting.class);
+		
+		configuration.addAnnotatedClass(QnrTable.class);
+		configuration.addAnnotatedClass(QnrTableColumn.class);
+		
+		configuration.addAnnotatedClass(QnrCooperateWay.class);
+		
+		configuration.addAnnotatedClass(SysUser.class);
+		configuration.addAnnotatedClass(SysRole.class);
+		configuration.addAnnotatedClass(SysLog.class);
+		
+		configuration.addAnnotatedClass(CoopEx.class);
+		configuration.addAnnotatedClass(CoopExImg.class);
+		configuration.addAnnotatedClass(CoopExVideo.class);
+		configuration.addAnnotatedClass(CoopExAttachFile.class);
+
+		configuration.addAnnotatedClass(TalentedPeople.class);
+		configuration.addAnnotatedClass(TalentedPeopleRdResult.class);
+		configuration.addAnnotatedClass(TalentedPeopleTransferCase.class);
+		configuration.addAnnotatedClass(TalentedPeopleMainProject.class);
+		configuration.addAnnotatedClass(TalentedPeoplePDPL.class);
+		
+		configuration.addAnnotatedClass(IncubationCenter.class);
+		
+		configuration.addAnnotatedClass(Literature.class);
+		
+		configuration.addAnnotatedClass(About.class);
+		configuration.addAnnotatedClass(Activity.class);
+		configuration.addAnnotatedClass(ActivityAttach.class);
+		configuration.addAnnotatedClass(ActivityVideo.class);
+		configuration.addAnnotatedClass(Faq.class);
+		configuration.addAnnotatedClass(HomeScrollingText.class);
+		configuration.addAnnotatedClass(IndustryInfo.class);
+		configuration.addAnnotatedClass(News.class);
+		configuration.addAnnotatedClass(NewsAttach.class);
+		
+		configuration.addAnnotatedClass(Member.class);
+		
+		configuration.addAnnotatedClass(ContactUs.class);
+	}
 }

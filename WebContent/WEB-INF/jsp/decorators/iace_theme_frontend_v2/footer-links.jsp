@@ -15,12 +15,20 @@
 			</div>
 			<div class="col-sm-2 col-xs-6 text-center">
 				<div style="margin: 12px 0;">
-					<img src="<s:url value="/images/frontend-v2/footer_icon_02.png"/>" alt="" height="55" /><a href="#" class="list_link_03">找活動</a>
+					<img src="<s:url value="/images/frontend-v2/footer_icon_02.png"/>" alt="" height="55" />
+					<s:url value="/f2/activity/init" var="urlTag" escapeAmp="false">
+						<s:param name="searchCondition.category" value="%{'外部活動'}" />
+					</s:url>	
+					<a href="<s:property value="urlTag"/>" class="list_link_03">找活動</a>
 				</div>
 			</div>
 			<div class="col-sm-2 col-xs-6 text-center">
 				<div style="margin: 12px 0;">
-					<img src="<s:url value="/images/frontend-v2/footer_icon_03.png"/>" alt="" height="55" /><a href="#" class="list_link_03">找課程</a>
+					<img src="<s:url value="/images/frontend-v2/footer_icon_03.png"/>" alt="" height="55" />
+					<s:url value="/f2/activity/init" var="urlTag" escapeAmp="false">
+						<s:param name="searchCondition.category" value="%{'人培課程'}" />
+					</s:url>
+					<a href="<s:property value="urlTag"/>" class="list_link_03">找課程</a>
 				</div>
 			</div>
 			<div class="col-sm-2 col-xs-6 text-center">
