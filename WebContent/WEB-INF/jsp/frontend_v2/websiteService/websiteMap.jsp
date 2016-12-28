@@ -117,6 +117,20 @@
 								<tr><td><a href="#">問卷調查</a></td></tr>
 							</table>
 						</div>
+						<div class="col-sm-3 col-xs-12 bottom20">
+							<table>
+								<tr><th>會員中心</th></tr>
+								<s:if test="#session.member == null">
+									<tr><td><a href="<s:url value="/f2/member/login"/>">會員登入</a></td></tr>
+									<tr><td><a href="<s:url value="/f2/member/register"/>">加入會員</a></td></tr>
+									<tr><td><a href="<s:url value="/f2/member/forgetPassword"/>">忘記密碼</a></td></tr>
+								</s:if>
+								<s:else>
+									<tr><td><a href="<s:url value="/f2/member/memberCenter"/>">會員中心</a></td></tr>
+									<tr><td><a href="<s:url value="/f2/member/logout"/>">會員登出</a></td></tr>
+								</s:else>	
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

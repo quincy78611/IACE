@@ -38,7 +38,7 @@
 			</div>
 			<div class="col-sm-2 col-xs-6 text-center">
 				<div style="margin: 12px 0;">
-					<img src="<s:url value="/images/frontend-v2/footer_icon_05.png"/>" alt="" height="55" /><a href="#" class="list_link_03">會員</a>
+					<img src="<s:url value="/images/frontend-v2/footer_icon_05.png"/>" alt="" height="55" /><a href="<s:url value="/f2/member/memberCenter"/>" class="list_link_03">會員</a>
 				</div>
 			</div>
 			<div class="col-sm-2 col-xs-6 text-center">

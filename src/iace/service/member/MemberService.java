@@ -29,6 +29,10 @@ public class MemberService extends BaseIaceService<Member> {
 		return this.memberDao.isAccountExist(account);
 	}
 	
+	public Member getByAccount(String account) {
+		return this.memberDao.getByAccount(account);
+	}
+	
 	public Member getBy(String account, String password) {
 		return this.memberDao.getBy(account, password);
 	}

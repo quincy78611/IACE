@@ -175,4 +175,34 @@
 		</action>
 	</package>
 	
+	<package name="f2-member" namespace="/f2/member" extends="struts-default, json-default, default">
+		<action name="memberCenter" class="iace.action.MemberAction" method="memberCenter">
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/memberCenter.jsp</result>
+			<result name="login">/WEB-INF/jsp/frontend_v2/member/login.jsp</result>
+		</action>
+		<action name="login">
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/login.jsp</result>
+		</action>
+		<action name="loginSubmit" class="iace.action.MemberAction" method="loginSubmit">
+			<result name="input">/WEB-INF/jsp/frontend_v2/member/login.jsp</result>
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/memberCenter.jsp</result>
+		</action>
+		<action name="logout" class="iace.action.MemberAction" method="logout">
+			<interceptor-ref name="iaceSysLog"/>
+			<interceptor-ref name="defaultStack"/>
+
+			<result type="redirectAction">
+				<param name="actionName">memberCenter</param>
+				<param name="namespace">/f2/member</param>
+			</result>
+		</action>
+		<action name="forgetPassword">
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/forgetPassword.jsp</result>
+		</action>
+		<action name="forgetPasswordSubmit" class="iace.action.MemberAction" method="forgetPasswordSubmit">
+			<result name="input">/WEB-INF/jsp/frontend_v2/member/forgetPassword.jsp</result>
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/forgetPassword.jsp</result>
+		</action>
+	</package>
+	
 </struts>

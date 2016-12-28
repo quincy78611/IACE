@@ -8,6 +8,8 @@ import iace.entity.member.MemberSearchModel;
 public interface IMemberDao extends IBaseIaceDao<Member> {
 	public boolean isAccountExist(String account);
 	
+	public Member getByAccount(String account);
+	
 	public Member getBy(String account, String password);
 	
 	public PagedList<Member> searchBy(MemberSearchModel arg);

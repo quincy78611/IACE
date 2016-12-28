@@ -32,9 +32,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		setInterval(function() {
-			$("#div-top-message").hide();
-		}, 5000);
+		
 	});
 </script>
 
@@ -47,14 +45,35 @@
 	<s:include value="./mobile_menu.jsp" />
 </header>
 <article>
-	<div id="div-top-message" class="rightContent">
-		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>				<s:if test="hasActionMessages()">
-			<s:actionmessage />
+	<div id="div-top-message" class="rightContent">	
+		<s:if test="actionMessages!=null && actionMessages.size > 0">
+			<script>
+				var actionMessages = '';
+				<s:iterator value="actionMessages" >
+					// Iterate the messages, and build the JS String
+					actionMessages += '<s:property />' + '\n';
+				</s:iterator>   
+				
+				$(document).ready(function() {
+					alert (actionMessages);
+				});
+			</script>
 		</s:if>
-		<s:if test="hasActionErrors()">
-			<s:actionerror />
+		<s:if test="actionErrors!=null && actionErrors.size > 0">
+			<script>
+				var actionErrors = '';
+				<s:iterator value="actionErrors" >
+					// Iterate the messages, and build the JS String
+					actionErrors += '<s:property />' + '\n';
+				</s:iterator>
+				
+				$(document).ready(function() {
+					alert(actionErrors);
+				});
+			</script>
 		</s:if>
 	</div>
+	<!-- body -->
 	<decorator:body />
 </article>
 <footer>

@@ -12,6 +12,7 @@ import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 
 public class SessionInterceptor extends AbstractInterceptor {
 	public static final String SESSION_KEY_SYS_USER = "sysUser";
+	public static final String SESSION_KEY_MEMBER = "member";
 
 	private static final long serialVersionUID = -8092505769826225725L;
 	protected static Logger log = LogManager.getLogger(AbstractInterceptor.class);

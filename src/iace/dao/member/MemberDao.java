@@ -40,8 +40,6 @@ public class MemberDao extends BaseIaceDao<Member> implements IMemberDao {
 			HibernateSessionFactory.closeSession();
 		}
 	}
-	
-	
 
 	@Override
 	public Member get(long id) {
@@ -51,6 +49,23 @@ public class MemberDao extends BaseIaceDao<Member> implements IMemberDao {
 			criteria.add(Restrictions.eq("id", id));
 			Member member = (Member) criteria.uniqueResult();
 			Hibernate.initialize(member.getOptIndustryList());
+			
+			return member;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	@Override
+	public Member getByAccount(String account) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("account", account));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			Member member = (Member) criteria.uniqueResult();
 			
 			return member;
 		} catch (Exception e) {
