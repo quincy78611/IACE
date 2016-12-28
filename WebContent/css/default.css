@@ -250,14 +250,14 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  text-overflow: ellipsis;	  
 	}
 	div.center-cropped1 {
-	position: relative;
-	width: 24vw;
-	height: 18vw;
-	max-width:100%;
-	max-height:270px;
-	text-align: center; /* ensures the image is always in the h-middle */
-	overflow: hidden; /* hide the cropped portion */
-	background-color:#000;
+		position: relative;
+		width: 24vw;
+		height: 18vw;
+		max-width: 100%;
+		max-height: 270px;
+		text-align: center; /* ensures the image is always in the h-middle */
+		overflow: hidden; /* hide the cropped portion */
+		background-color: #000;
 	}
 	div.center-cropped2 {
 	width: 100%; /* or whatever is required */
@@ -285,11 +285,14 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  text-overflow: ellipsis;	 
 	}
 	div.center-cropped1 {
-	width: 100%; /* or whatever is required */
-	max-height:220px;
-	text-align: center; /* ensures the image is always in the h-middle */
-	overflow: hidden; /* hide the cropped portion */
-	background-color:#ccc;
+		position: relative;
+		width: 24vw;
+		height: 18vw;
+		max-width: 100%;
+		max-height: 220px;
+		text-align: center; /* ensures the image is always in the h-middle */
+		overflow: hidden; /* hide the cropped portion */
+		background-color: #000;
 	}
 	div.center-cropped2 {
 	width: 100%; /* or whatever is required */
@@ -317,11 +320,14 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  text-overflow: ellipsis;	 
 	}
 	div.center-cropped1 {
-	width: 100%; /* or whatever is required */
+	position: relative;
+	width: 24vw;
+	height: 18vw;
+	max-width:100%;
 	max-height:167px;
 	text-align: center; /* ensures the image is always in the h-middle */
 	overflow: hidden; /* hide the cropped portion */
-	background-color:#ccc;
+	background-color:#000;
 	}
 	div.center-cropped2 {
 	width: 100%; /* or whatever is required */
@@ -349,11 +355,12 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  text-overflow: ellipsis;	 
 	}
 	div.center-cropped1 {
-	width: 100%; /* or whatever is required */
-	max-height:700px;
-	text-align: center; /* ensures the image is always in the h-middle */
-	overflow: hidden; /* hide the cropped portion */
-	background-color:#ccc;
+		width: 90vw; /* or whatever is required */
+		height: 60vw;
+		max-height: 700px;
+		text-align: center; /* ensures the image is always in the h-middle */
+		overflow: hidden; /* hide the cropped portion */
+		background-color: #000;
 	}
 	div.center-cropped2 {
 	width: 100%; /* or whatever is required */
