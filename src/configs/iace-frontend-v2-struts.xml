@@ -196,12 +196,29 @@
 				<param name="namespace">/f2/member</param>
 			</result>
 		</action>
+		<action name="registerPolicy">
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/register-Policy.jsp</result>
+		</action>
+		<action name="register" class="iace.action.MemberAction" method="register">
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/register-MemberData.jsp</result>
+		</action>
+		<action name="registerSubmit" class="iace.action.MemberAction" method="registerSubmit">
+			<result name="input">/WEB-INF/jsp/frontend_v2/member/register-MemberData.jsp</result>
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/memberCenter.jsp</result>
+		</action>
 		<action name="forgetPassword">
 			<result name="success">/WEB-INF/jsp/frontend_v2/member/forgetPassword.jsp</result>
 		</action>
 		<action name="forgetPasswordSubmit" class="iace.action.MemberAction" method="forgetPasswordSubmit">
 			<result name="input">/WEB-INF/jsp/frontend_v2/member/forgetPassword.jsp</result>
 			<result name="success">/WEB-INF/jsp/frontend_v2/member/forgetPassword.jsp</result>
+		</action>
+		<action name="selfUpdate" class="iace.action.MemberAction" method="selfUpdate">
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/update.jsp</result>
+		</action>
+		<action name="selfUpdateSubmit" class="iace.action.MemberAction" method="selfUpdateSubmit">
+			<result name="input">/WEB-INF/jsp/frontend_v2/member/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/frontend_v2/member/memberCenter.jsp</result>
 		</action>
 	</package>
 	

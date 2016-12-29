@@ -76,17 +76,38 @@ public class MemberAction extends BaseIaceAction {
 				super.addFieldError("member.account", "帳號已存在");
 			}
 		}
-		super.validateTextLength(this.member.getPassword(), 6, 20, "member.password");
-		if (super.validateNotBlank(this.member.getEmail(), "member.email")) {
-			super.validateEmail(this.member.getEmail(), "member.email");
-		}
-		super.validateNotBlankNLength(this.member.getName(), 50, "member.name");
+		validateBeforeSubmit();
 	}
 
 	public String createSubmit() {
 		try {
 			this.memberService.create(this.member);
 			super.addActionMessage("CREATE SUCCESS");
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String register() {
+		return SUCCESS;
+	}
+	
+	public void validateRegisterSubmit() {
+		if (super.validateNotBlankNLength(this.member.getAccount(), 50, "member.account")) {
+			if (this.memberService.isAccountExist(this.member.getAccount())) {
+				super.addFieldError("member.account", "帳號已存在");
+			}
+		}
+		validateBeforeSubmit();
+	}
+	
+	public String registerSubmit() {
+		try {
+			this.memberService.create(this.member);
+			super.session.put(SessionInterceptor.SESSION_KEY_MEMBER, this.member);
+			super.addActionMessage("註冊成功");
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -109,17 +130,43 @@ public class MemberAction extends BaseIaceAction {
 	}
 
 	public void validateUpdateSubmit() {
-		super.validateTextLength(this.member.getPassword(), 6, 20, "member.password");
-		if (super.validateNotBlank(this.member.getEmail(), "member.email")) {
-			super.validateEmail(this.member.getEmail(), "member.email");
-		}
-		super.validateNotBlankNLength(this.member.getName(), 50, "member.name");
+		validateBeforeSubmit();
 	}
 
 	public String updateSubmit() {
 		try {
 			this.memberService.update(this.member, super.getCurrentSysUser(), false, super.getSysLog());
 			super.addActionMessage("UPDATE SUCCESS");
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String selfUpdate() {
+		try {
+			this.member = (Member) super.session.get(SessionInterceptor.SESSION_KEY_MEMBER);
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public void validateSelfUpdateSubmit() {
+		Member member = (Member) super.session.get(SessionInterceptor.SESSION_KEY_MEMBER);
+		if (this.member.getId() != member.getId()) {
+			super.addFieldError("member.id", "無法修他人的資料");
+		}
+		validateBeforeSubmit();
+	}
+	
+	public String selfUpdateSubmit() {
+		try {
+			this.memberService.update(this.member, super.getCurrentSysUser(), false, super.getSysLog());
+			super.session.put(SessionInterceptor.SESSION_KEY_MEMBER, this.member);
+			super.addActionMessage("資料更新成功");
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -229,6 +276,19 @@ public class MemberAction extends BaseIaceAction {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
+	}
+	
+	public void validateBeforeSubmit() {
+		super.validateTextLength(this.member.getPassword(), 6, 20, "member.password");
+		if (super.validateNotBlank(this.member.getEmail(), "member.email")) {
+			super.validateEmail(this.member.getEmail(), "member.email");
+		}
+		super.validateNotBlankNLength(this.member.getName(), 50, "member.name");
+		super.validateNotBlankNLength(this.member.getOrg(), 50, "member.org");
+		super.validateNotBlank(this.member.getIndustry(), "member.industry", "請選擇");
+		super.validateNotBlank(this.member.getJobType(), "member.jobType", "請選擇");
+		super.validateNotBlankNLength(this.member.getAddress(), 500, "member.address");
+		super.validateNotBlankNLength(this.member.getTel(), 30, "member.tel");
 	}
 
 	// =========================================================================

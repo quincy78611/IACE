@@ -58,7 +58,7 @@
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">密碼</label>
 							<div class="col-sm-10">
-								<s:password name="member.password" class="form-control"/>
+								<s:password name="member.password" class="form-control" maxlength="20"/>
 							</div>
 						</div>
 						<div class="form-group">
