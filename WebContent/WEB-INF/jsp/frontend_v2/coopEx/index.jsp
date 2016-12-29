@@ -44,7 +44,7 @@
 								<s:select name="searchCondition.year" list="#{'':'--年份--', '2016':'2016', '2015':'2015', '2014':'2014', '2013':'2013'}" class="form-control" />
 							</div>
 							<div class="col-sm-6 col-xs-12">
-								<s:textfield placeholder="關鍵字" name="searchCondition.searchText" />
+								<s:textfield placeholder="關鍵字" name="searchCondition.searchText" class="form-control"/>
 							</div>
 							<div class="col-sm-3 col-xs-12">
 								<button type="submit" class="btn btn-primary" id="btn-search">
