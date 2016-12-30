@@ -100,7 +100,10 @@
 							<a href="#" class="blue_menu_link"><i class="fa fa-phone right5" aria-hidden="true"></i>我要諮詢</a>
 						</div>
 						<div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF;">
-							<a href="#" class="blue_menu_link"><i class="fa fa-book right5" aria-hidden="true"></i>常問集</a>
+							<s:url value="/f2/faq/init" var="urlTag" escapeAmp="false">
+								<s:param name="searchCondition.category" value="@iace.entity.faq.Faq@getCategoryList()[0].code" />
+							</s:url>
+							<a href="<s:property value="%{#urlTag}"/>" class="blue_menu_link"><i class="fa fa-book right5" aria-hidden="true"></i>常問集</a>
 						</div>
 						<div class="col-xs-6 text-center" style="padding:15px; border-bottom:1px solid #FFF; border-right:1px solid #FFF;">
 							<a href="<s:url value="/f2/member/memberCenter"/>" class="blue_menu_link"><i class="fa fa-user-circle-o right5" aria-hidden="true"></i>會員中心</a>

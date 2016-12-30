@@ -71,6 +71,15 @@
 		</action>
 	</package>
 	
+	<package name="f2-Faq" namespace="/f2/faq" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.FaqAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend_v2/faq/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.FaqAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend_v2/faq/index.jsp</result>
+		</action>
+	</package>
+	
 	<package name="f2-IndustryInfo" namespace="/f2/industryInfo" extends="struts-default, json-default, default">
 		<action name="init" class="iace.action.IndustryInfoAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/industryInfo/index.jsp</result>
