@@ -231,4 +231,13 @@
 		</action>
 	</package>
 	
+	<package name="f2-CustomerServiceMailbox" namespace="/f2/customerServiceMailbox" extends="struts-default, json-default, default">
+		<action name="create" class="iace.action.ContactUsAction" method="create">
+			<result>/WEB-INF/jsp/frontend_v2/customerServiceMailbox/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.ContactUsAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/frontend_v2/customerServiceMailbox/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/frontend_v2/customerServiceMailbox/detail.jsp</result>
+		</action>
+	</package>
 </struts>
