@@ -78,7 +78,7 @@
 												</div>
 												<div class="date_01">日期：<s:date name="createTime" format="yyyy/M/d" /></div>
 												<div class="date_01">地點：<s:property value="actAddress" /></div>
-												<div class="top10"><s:property value="contentWithoutHTML"/></div>
+												<div class="top10 truncate_list"><s:property value="contentWithoutHTML"/></div>
 											</td>
 										</tr>
 									</s:iterator>
