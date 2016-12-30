@@ -39,6 +39,11 @@
 						<button class="btn btn-info" type="submit" style="background-color: #1eb4da;">
 							<i class="fa fa-search" aria-hidden="true"></i>
 						</button>
+						<s:if test="#session.member!= null">
+							<button class="btn btn-warning" type="button" style="background-color: #ec971f; margin-left: 1px;" onclick="window.location.href='<s:url value="/f2/member/logout"/>';">
+								<i class="fa fa-sign-out" aria-hidden="true"></i>登出
+							</button>
+						</s:if>
 					</span>
 				</div>
 			</s:form>

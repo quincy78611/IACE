@@ -19,6 +19,13 @@
 		<div class="clear-fix"></div>
 		<div id="menu_dropdown">
 			<ul style="background-color:#F8F8F8; margin-bottom:0;">
+				<s:if test="#session.member!= null">
+					<li style="border-bottom:#DDD 1px solid" role="presentation" >
+						<a href="<s:url value="/f2/member/logout"/>" class="menu_link_mobile right5">
+							<i class="fa fa-sign-out" aria-hidden="true"></i> 登出
+						</a>                 
+	                </li>
+				</s:if>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown"> <a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">活動/人培<span class="caret"></span></a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
 						<s:iterator value="@iace.entity.activity.Activity@getCategoryList()" status="stat">
