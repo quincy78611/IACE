@@ -137,7 +137,7 @@
 				<a href="<s:url value="/f2/about/init"/>" class="blue_menu_link"><i class="fa fa-pencil right5" aria-hidden="true"></i>產學合作計畫</a>
 			</div>
 			<div class="col-sm-2 text-center">
-				<a href="#" class="blue_menu_link"><i class="fa fa-phone right5" aria-hidden="true"></i>我要諮詢</a>
+				<a href="<s:url value="/f2/consulting/create"/>" class="blue_menu_link"><i class="fa fa-phone right5" aria-hidden="true"></i>我要諮詢</a>
 			</div>
 			<div class="col-sm-2 text-center">
 				<s:url value="/f2/faq/init" var="urlTag" escapeAmp="false">

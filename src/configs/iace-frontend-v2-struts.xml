@@ -240,4 +240,14 @@
 			<result name="success">/WEB-INF/jsp/frontend_v2/customerServiceMailbox/detail.jsp</result>
 		</action>
 	</package>
+		
+	<package name="f2-consulting" namespace="/f2/consulting" extends="struts-default, json-default, default">
+		<action name="create" class="iace.action.ConsultingAction" method="create">
+			<result>/WEB-INF/jsp/frontend_v2/consulting/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.ConsultingAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/frontend_v2/consulting/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/frontend_v2/consulting/createFinish.jsp</result>
+		</action>
+	</package>
 </struts>

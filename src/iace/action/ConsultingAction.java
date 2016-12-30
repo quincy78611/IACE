@@ -150,7 +150,13 @@ public class ConsultingAction extends BaseIaceAction {
 	}
 	
 	private void validateBeforeSubmit() {
-		//TODO
+		super.validateNotBlankNLength(this.consulting.getName(), 100, "consulting.name");
+		super.validateNotBlankNLength(this.consulting.getOrganization(), 500, "consulting.organization");
+		super.validateNotBlankNLength(this.consulting.getPhone(), 100, "consulting.phone");
+		if (super.validateNotBlank(this.consulting.getEmail(), "consulting.email")) {
+			super.validateEmail(this.consulting.getEmail(), "consulting.email");
+		}
+		super.validateNotBlank(this.consulting.getContent(), "consulting.content");
 	}
 	
 	public String exportRawData() {

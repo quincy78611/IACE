@@ -33,7 +33,7 @@
 			</div>
 			<div class="col-sm-2 col-xs-6 text-center">
 				<div style="margin: 12px 0;">
-					<img src="<s:url value="/images/frontend-v2/footer_icon_04.png"/>" alt="" height="55" /><a href="#" class="list_link_03">要諮詢</a>
+					<img src="<s:url value="/images/frontend-v2/footer_icon_04.png"/>" alt="" height="55" /><a href="<s:url value="/f2/consulting/create"/>" class="list_link_03">要諮詢</a>
 				</div>
 			</div>
 			<div class="col-sm-2 col-xs-6 text-center">
