@@ -9,7 +9,7 @@
 	</ol>
 	<div class="carousel-inner" role="listbox">
 		<div class="item active">
-			<img src="<s:url value="/images/frontend-v2/banner_01.jpg"/>" alt="First slide image" class="center-block">
+			<img src="<s:url value="/images/frontend-v2/banner_06.jpg"/>" alt="First slide image" class="center-block">
 		</div>
 	</div>
 </div>
