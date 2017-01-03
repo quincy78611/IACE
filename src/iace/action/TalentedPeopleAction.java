@@ -121,7 +121,8 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	@Deprecated
 	public String createSubmit() {
 		try {
-			this.talentedPeopleService.create(this.talentedPeople, super.getCurrentSysUser(), true, super.getSysLog());
+			boolean isIndexing = this.talentedPeoplePDPLService.isIndexing(this.talentedPeople.getId());
+			this.talentedPeopleService.create(this.talentedPeople, super.getCurrentSysUser(), isIndexing, super.getSysLog());
 
 			super.addActionMessage("CREATE SUCCESS");
 			return SUCCESS;
@@ -151,7 +152,8 @@ public class TalentedPeopleAction extends BaseIaceAction {
 
 	public String updateSubmit() {
 		try {
-			this.talentedPeopleService.update(this.talentedPeople, super.getCurrentSysUser(), true, super.getSysLog());
+			boolean isIndexing = this.talentedPeoplePDPLService.isIndexing(this.talentedPeople.getId());
+			this.talentedPeopleService.update(this.talentedPeople, super.getCurrentSysUser(), isIndexing, super.getSysLog());
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeople.getId());
 			
 			super.addActionMessage("UPDATE SUCCESS");
@@ -178,7 +180,8 @@ public class TalentedPeopleAction extends BaseIaceAction {
 
 	public String deleteSubmit() {
 		try {
-			this.talentedPeopleService.delete(this.id, true, super.getSysLog());
+			boolean isIndexing = this.talentedPeoplePDPLService.isIndexing(this.talentedPeople.getId());
+			this.talentedPeopleService.delete(this.id, isIndexing, super.getSysLog());
 
 			super.addActionMessage("DELETE SUCCESS");
 			return index();

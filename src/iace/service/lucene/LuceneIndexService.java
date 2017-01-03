@@ -142,6 +142,7 @@ public class LuceneIndexService {
 	
 	private void createTalentedPeopleIndex(IndexWriter writer) throws IOException {
 		TalentedPeopleSearchModel arg = new TalentedPeopleSearchModel();
+		arg.setAgreePDPL(true);
 		long totalRecordCount = this.talentedPeopleDao.queryTotalRecordsCount(arg);
 		int pageCount = (int) Math.ceil(totalRecordCount / (double) arg.getPageSize());
 		for (int i = 0; i < pageCount; i++) {

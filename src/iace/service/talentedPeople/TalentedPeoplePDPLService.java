@@ -65,4 +65,13 @@ public class TalentedPeoplePDPLService extends BaseIaceService<TalentedPeoplePDP
 		
 		return wb;
 	}
+	
+	public boolean isIndexing(long talentedPeopleId) {
+		TalentedPeoplePDPL pdpl = this.getByTalentedPeopleID(talentedPeopleId);
+		if (pdpl == null || pdpl.getAgreePDPL() == false) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }

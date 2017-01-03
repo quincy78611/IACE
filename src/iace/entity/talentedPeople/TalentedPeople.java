@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -76,6 +77,8 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 	private Boolean isPublicMainProject;
 	private Boolean isPublicRewardHistory;
 	private Boolean isPublicOtherExperience;
+	
+	private TalentedPeoplePDPL pdpl;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
@@ -463,6 +466,15 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 
 	public void setIsPublicOtherExperience(Boolean isPublicOtherExperience) {
 		this.isPublicOtherExperience = isPublicOtherExperience;
+	}
+
+	@OneToOne(mappedBy="talentedPeople", cascade={CascadeType.ALL}, fetch = FetchType.LAZY)
+	public TalentedPeoplePDPL getPdpl() {
+		return pdpl;
+	}
+
+	public void setPdpl(TalentedPeoplePDPL pdpl) {
+		this.pdpl = pdpl;
 	}
 
 	@Override

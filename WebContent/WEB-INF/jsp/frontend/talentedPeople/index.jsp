@@ -144,6 +144,7 @@
 <body>
 <div class="rightContent frontend">
 	<s:form action="index" method="post" validate="true" >
+		<s:hidden name="searchCondition.agreePDPL" value="true"/>
 		<div>
 			<ul>
 				<li class="quarter">

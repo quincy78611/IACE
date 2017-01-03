@@ -15,6 +15,7 @@ public class TalentedPeopleSearchModel extends BaseSearchModel {
 	private String job;
 	private String specialty;
 	private List<Long> grbDomainIdList;
+	private Boolean agreePDPL;
 
 	public String getName() {
 		return name;
@@ -88,6 +89,12 @@ public class TalentedPeopleSearchModel extends BaseSearchModel {
 		}
 	}
 
-	
+	public Boolean getAgreePDPL() {
+		return agreePDPL;
+	}
+
+	public void setAgreePDPL(Boolean agreePDPL) {
+		this.agreePDPL = agreePDPL;
+	}
 
 }

@@ -167,6 +167,11 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 			}
 		}
 		
+		if (arg.getAgreePDPL() != null) {
+			criteria.createAlias("pdpl", "pdpl"); 
+			criteria.add(Restrictions.eq("pdpl.agreePDPL", arg.getAgreePDPL()));
+		}
+		
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY); // IMPORTANT: without this line, it might return duplicate entities when main entity(ResearchPlan) has more than one child entity(Technology)
 	}
