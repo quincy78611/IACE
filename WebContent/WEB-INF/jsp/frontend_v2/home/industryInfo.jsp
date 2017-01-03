@@ -11,7 +11,10 @@
 					<div class="large_title_02">
 						<i class="fa fa-globe" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>新聞雷達
 						<div class="pull-right">
-							<a href="<s:url value="/f2/industryInfo/init?searchCondition.category=產學新聞"/>">
+							<s:url value="/f2/industryInfo/init" var="urlTag" escapeAmp="false">
+								<s:param name="searchCondition.category" value="@iace.entity.industryInfo.IndustryInfo@getCategoryList()[0].code" />
+							</s:url>
+							<a href="<s:property value="%{#urlTag}"/>">
 								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
 							</a>
 						</div>
@@ -54,7 +57,10 @@
 					<div class="large_title_01">
 						<i class="fa fa-pie-chart" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>產業評析
 						<div class="pull-right">
-							<a href="<s:url value="/f2/industryInfo/init?searchCondition.category=產業評析"/>">
+							<s:url value="/f2/industryInfo/init" var="urlTag" escapeAmp="false">
+								<s:param name="searchCondition.category" value="@iace.entity.industryInfo.IndustryInfo@getCategoryList()[1].code" />
+							</s:url>
+							<a href="<s:property value="%{#urlTag}"/>">
 								<img src="<s:url value="/images/frontend-v2/more_blue.png"/>" alt="" height="30" />
 							</a>
 						</div>
@@ -74,7 +80,9 @@
 									<td style="border:none;">
 										<div class="truncate">
 											<span class="date_01"><s:property value="postDate"/></span>&nbsp;&nbsp;&nbsp;
-											<a href="<s:property value="link"/>" class="list_link_01" target="_blank"><s:property value="title"/></a>
+											<a href="<s:property value="link"/>" class="list_link_01" target="_blank">
+												<s:property value="title" escapeHtml="false"/>
+											</a>
 										</div>
 									</td>
 								</tr>
