@@ -5,6 +5,10 @@ import iace.entity.BaseSearchModel;
 public class IntegrationSearchModel extends BaseSearchModel {
 	private String className;
 	private String searchText;
+	
+	public IntegrationSearchModel() {
+		super.setPageSize(10);
+	}
 
 	public String getClassName() {
 		return className;

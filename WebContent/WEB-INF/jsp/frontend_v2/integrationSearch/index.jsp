@@ -10,8 +10,6 @@
 			$("input[type=text]").val("");
 			$("select").prop('selectedIndex', 0);
 		});
-	
-	
 	});
 </script>
 </head>
@@ -56,6 +54,9 @@
 		<div class="container">
 			<div class="row">
 				<s:include value="./index_resultSubTitle.jsp" />
+			</div>
+			<div class="row">
+				<s:include value="./pagination_top.jsp" />
 			</div>
 			<div class="row">
 				<s:iterator value="pagedList.list" status="stat">

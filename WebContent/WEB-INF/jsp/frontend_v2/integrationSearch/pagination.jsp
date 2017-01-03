@@ -51,11 +51,20 @@
 			}
 		});
 		
+		// 每頁筆數
+		$(".select-pageSize").change(function() {
+			var pageSize = $(this).find(":checked").val();
+			$("#pageSize").val(pageSize);
+			$("#pageIndex").val(0);
+			$(this).parents("form").submit();
+		});
+		$(".select-pageSize").val($("#pageSize").val());
+		
 		// 注意: 在此頁面的搜尋按鈕記得要加上id
-	    $("#btn-search").click(function(){
-	        $("#pageIndex").val(0);
-	        return true;
-	    });
+		$("#btn-search").click(function(){
+			$("#pageIndex").val(0);
+			return true;
+		});
 	});
 </script>
 		
@@ -77,10 +86,17 @@
 				begin="%{#pgIndex < 5 ? 0 : #pgIndex - 5 }"
 				end="%{#pgIndex > #pgCount - 6 ? #pgCount -1 : #pgIndex +5 }">
 				<input type="submit" value=<s:property/> class="btn-page page_num" />
-			</s:iterator>		
+			</s:iterator>
 		
 			<input type="submit" value=&raquo;	class="btn-next-page page_next" />
-			<input type="submit" value="Last" class="btn-last-page page_next" />				
+			<input type="submit" value="Last" class="btn-last-page page_next" />
+			
+			<label>&nbsp;&nbsp;&nbsp;共 <s:property value="#pgList.totatlItemCount"/> 筆資料&nbsp;&nbsp;&nbsp;</label>
+			<select class="select-pageSize">
+				<option value="10">每頁10筆</option>
+				<option value="20">每頁20筆</option>
+				<option value="50">每頁50筆</option>
+			</select>
 		</div>
 	</s:if>
 </div>
