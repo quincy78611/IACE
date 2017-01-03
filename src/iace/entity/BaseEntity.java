@@ -105,8 +105,12 @@ public abstract class BaseEntity implements Serializable {
 
 	public void create() {
 		Timestamp now = new Timestamp(System.currentTimeMillis());
-		this.createTime = now;
-		this.updateTime = now;
+		if (this.createTime == null) {
+			this.createTime = now;
+		}
+		if (this.updateTime == null) {
+			this.updateTime = now;
+		}
 		this.isValid = TRUE;
 	}
 	
