@@ -128,7 +128,36 @@
 								<s:else>
 									<tr><td><a href="<s:url value="/f2/member/memberCenter"/>">會員中心</a></td></tr>
 									<tr><td><a href="<s:url value="/f2/member/logout"/>">會員登出</a></td></tr>
-								</s:else>	
+								</s:else>
+							</table>
+						</div>
+						<div class="col-sm-3 col-xs-12 bottom20">
+							<table>
+								<tr><th>產學合作計畫</th></tr>
+								<tr><td><a href="<s:url value="/f2/about/init"/>">產學合作計畫</a></td></tr>
+							</table>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3 col-xs-12 bottom20">
+							<table>
+								<tr><th>我要諮詢</th></tr>
+								<tr><td><a href="<s:url value="/f2/consulting/create"/>">我要諮詢</a></td></tr>
+							</table>
+						</div>
+						<div class="col-sm-3 col-xs-12 bottom20">
+							<table>
+								<tr><th>常問集</th></tr>
+								<s:iterator value="@iace.entity.faq.Faq@getCategoryList()" status="stat">
+									<tr>
+										<td>
+											<s:url value="/f2/faq/init" var="urlTag" escapeAmp="false">
+												<s:param name="searchCondition.category" value="code" />
+											</s:url>
+											<a href="<s:property value="urlTag"/>"><s:property value="name"/></a>
+										</td>
+									</tr>
+								</s:iterator>
 							</table>
 						</div>
 					</div>
