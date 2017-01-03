@@ -52,7 +52,7 @@
 								<s:if test="industryInfoPagedList != null">
 									<s:iterator value="industryInfoPagedList.list" status="stat">
 										<tr>
-											<td class="date_01"><s:date name="createTime" format="yyyy/M/d"/></td>
+											<td class="date_01"><s:date name="postDate" format="yyyy/M/d"/></td>
 											<td>
 												<a href="<s:property value="link"/>" class="list_link_01" target="_blank">
 													<s:property value="title" escapeHtml="false"/>
