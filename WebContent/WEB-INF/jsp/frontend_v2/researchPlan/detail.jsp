@@ -92,7 +92,9 @@
 							</tr>
 							<tr>
 								<td class="date_01">成果報告</td>
-								<td><s:property value="researchPlan.grb05Id" /></td>
+								<td>
+									<a href="<s:url value="%{'http://grbsearch.stpi.narl.org.tw/search/planDetail2?id=	'+researchPlan.grb05Id}"/>" target="_blank">連結</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>
