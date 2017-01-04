@@ -149,7 +149,20 @@ public class IntegrationIndexer {
 	}
 	
 	private static Query createSearchQuery(IntegrationSearchModel arg) throws ParseException {
-		String queryStr = IntegrationIndexer.FIELD_CONTENT + ":(" + arg.getSearchText() + ")";
+		String[] searchTextSplit = arg.getSearchText().trim().split("\\s+");
+		String queryStr = IntegrationIndexer.FIELD_CONTENT + ":(";
+		for (String s : searchTextSplit) {
+			s = s.trim();
+			if (s.equalsIgnoreCase("AND")) {
+				queryStr += " AND ";
+			} else if (s.equalsIgnoreCase("OR")) {
+				queryStr += " OR ";
+			} else if (StringUtils.isNotBlank(s)){
+				queryStr += " \"" + s + "\" ";
+			}
+		}
+		queryStr += ")";
+		
 		if (StringUtils.isNotBlank(arg.getClassName())) {
 			if (arg.getClassName().equals(Technology.class.getName()) || 
 				arg.getClassName().equals(Patent.class.getName()) ||
