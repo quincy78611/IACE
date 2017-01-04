@@ -84,14 +84,18 @@
 				</div>
 				<div class="row">
 					<s:iterator value="coopEx.imgs" status="stat">
-						<div class="col-sm-4 col-xs-12" style="margin-top:15px;">
+						<div class="col-sm-4 col-xs-12" style="margin-top:15px;" title="<s:property value="fileDesc"/>">
 							<s:url value="downloadImage.action" var="downloadAttachUrl">
 								<s:param name="imgId" value="id" />
 							</s:url>
 							<a href="<s:property value="downloadAttachUrl" />">
-								<img src="data:image;base64,<s:property value="%{getBase64Thumbnail(400,300)}"/>" class="img-responsive img-thumbnail" />
+								<div class="center-cropped2 img_radius">
+									<img src="data:image;base64,<s:property value="%{getBase64Thumbnail(400,300)}"/>" class="img-responsive"/>
+								</div>
 							</a>
-							<div class="text-center"><s:property value="fileDesc"/></div>
+							<div class="text-center" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+								<s:property value="fileDesc"/>
+							</div>
 						</div>	
 					</s:iterator>
 				</div>
