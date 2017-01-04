@@ -60,6 +60,12 @@
 								<s:textfield name="member.name" class="form-control" />
 							</div>
 						</div>
+						<div class="form-group form-inline">
+							<label for="" class="col-sm-2 control-label">驗證碼</label>
+							<div class="col-sm-10">
+								<s:include value="/WEB-INF/jsp/captcha.jsp" />
+							</div>
+						</div>
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button type="submit" class="btn btn-primary">確定送出</button>

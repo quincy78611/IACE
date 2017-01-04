@@ -3,6 +3,7 @@ package iace.action;
 import java.io.InputStream;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import core.util.ExcelUtil;
@@ -12,6 +13,7 @@ import iace.entity.consulting.ConsultingSearchModel;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionOrganizationType;
+import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
 import iace.service.consulting.ConsultingService;
 import iace.service.option.OptionConsultService;
@@ -42,6 +44,8 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	private String reportFileName;
 	private InputStream reportInputStream;
+	
+	private String captchaCode;
 
 	public ConsultingAction() {
 		super.setTitle("諮詢服務表");
@@ -81,6 +85,16 @@ public class ConsultingAction extends BaseIaceAction {
 	
 	public void validateCreateSubmit() {
 		validateBeforeSubmit();
+		validateCaptcha();
+	}
+	
+	public void validateCaptcha() {
+		String correctCaptchaCode = (String)session.remove(SessionInterceptor.SESSION_KEY_CAPTCHA_CODE);
+		if (correctCaptchaCode != null) { //後台不需要驗證碼所以會是null，此時就不做檢查
+			if (StringUtils.equalsIgnoreCase(this.captchaCode, correctCaptchaCode) == false) {
+				super.addFieldError("captchaCode", "驗證碼錯誤");
+			}
+		}
 	}
 	
 	public String createSubmit() {
@@ -249,8 +263,13 @@ public class ConsultingAction extends BaseIaceAction {
 	public InputStream getReportInputStream() {
 		return reportInputStream;
 	}
-	
-	
-	
 
+	public String getCaptchaCode() {
+		return captchaCode;
+	}
+
+	public void setCaptchaCode(String captchaCode) {
+		this.captchaCode = captchaCode;
+	}
+	
 }

@@ -1,8 +1,11 @@
 package iace.action;
 
+import org.apache.commons.lang3.StringUtils;
+
 import core.util.PagedList;
 import iace.entity.customerService.ContactUs;
 import iace.entity.customerService.ContactUsSearchModel;
+import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
 import iace.service.customerService.ContactUsService;
 
@@ -17,6 +20,8 @@ public class ContactUsAction extends BaseIaceAction {
 	private long id;
 	private ContactUs contactUs;
 	private boolean beenHandled;
+	
+	private String captchaCode;
 	
 	public ContactUsAction() {
 		super.setTitle("客服信箱");
@@ -61,6 +66,17 @@ public class ContactUsAction extends BaseIaceAction {
 			super.validateEmail(this.contactUs.getEmail(), "contactUs.email");
 		}
 		super.validateNotBlank(this.contactUs.getMessage(), "contactUs.message");
+		
+		validateCaptcha();
+	}
+	
+	public void validateCaptcha() {
+		String correctCaptchaCode = (String)session.remove(SessionInterceptor.SESSION_KEY_CAPTCHA_CODE);
+		if (correctCaptchaCode != null) { //後台不需要驗證碼所以會是null，此時就不做檢查
+			if (StringUtils.equalsIgnoreCase(this.captchaCode, correctCaptchaCode) == false) {
+				super.addFieldError("captchaCode", "驗證碼錯誤");
+			}
+		}
 	}
 	
 	public String createSubmit() {
@@ -127,6 +143,13 @@ public class ContactUsAction extends BaseIaceAction {
 	public PagedList<ContactUs> getContactUsPagedList() {
 		return contactUsPagedList;
 	}
-	
+
+	public String getCaptchaCode() {
+		return captchaCode;
+	}
+
+	public void setCaptchaCode(String captchaCode) {
+		this.captchaCode = captchaCode;
+	}
 	
 }

@@ -8,6 +8,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.apache.commons.lang3.StringUtils;
+
 import core.util.PagedList;
 import iace.entity.member.Member;
 import iace.entity.member.MemberSearchModel;
@@ -33,6 +35,8 @@ public class MemberAction extends BaseIaceAction {
 	private List<OptionIndustry> optIndustryList;
 	private List<BaseOption> jobTypeList;
 	private List<OptionDomain> optDomainList;
+	
+	private String captchaCode;
 
 	public MemberAction() {
 		super.setTitle("會員");
@@ -101,6 +105,7 @@ public class MemberAction extends BaseIaceAction {
 			}
 		}
 		validateBeforeSubmit();
+		validateCaptcha();
 	}
 	
 	public String registerSubmit() {
@@ -240,38 +245,42 @@ public class MemberAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
+	
+	public void validateForgetPasswordSubmit() {
+		try {
+			this.member = this.memberService.getByAccount(this.member.getAccount());
+			if (this.member == null) {
+				super.addFieldError("member.account", "帳號不存在!");
+			} else if (member.getName().equals(this.member.getName()) == false) {
+				super.addFieldError("member.name", "姓名錯誤!");
+			}
+		} catch (Exception e) {
+			log.error("", e);
+		}
+		
+		validateCaptcha();
+	}
 
 	public String forgetPasswordSubmit() {
 		try {
-			Member member = this.memberService.getByAccount(this.member.getAccount());
-			if (member == null) {
-				super.addActionError("帳號不存在!");
-				return INPUT;
-			} else {
-				if (member.getName().equals(this.member.getName()) == false) {
-					super.addActionError("姓名錯誤!");
-					return INPUT;
-				} else {
-					Properties props = new Properties();
-					props.load(this.getClass().getClassLoader().getResourceAsStream("configs/mail.smtp.properties"));
-					javax.mail.Session session = javax.mail.Session.getDefaultInstance(props, null); // 取得與SMTP
+			Properties props = new Properties();
+			props.load(this.getClass().getClassLoader().getResourceAsStream("configs/mail.smtp.properties"));
+			javax.mail.Session session = javax.mail.Session.getDefaultInstance(props, null); // 取得與SMTP
 
-					MimeMessage msg = new MimeMessage(session); // 取得一Mime的Message
-					msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
-					// set FROM
-					msg.setFrom(new InternetAddress(props.getProperty("mail.default.from"), props.getProperty("mail.default.sender"), "UTF-8"));
-					// set TO
-					msg.addRecipient(Message.RecipientType.TO, new InternetAddress(member.getEmail()));
-					// Set Subject: header field
-					msg.setSubject("IACE會員密碼");
-					// Now set the actual message
-					msg.setText("您的密碼為 [" + member.getPassword() + "]");
+			MimeMessage msg = new MimeMessage(session); // 取得一Mime的Message
+			msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
+			// set FROM
+			msg.setFrom(new InternetAddress(props.getProperty("mail.default.from"), props.getProperty("mail.default.sender"), "UTF-8"));
+			// set TO
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(this.member.getEmail()));
+			// Set Subject: header field
+			msg.setSubject("IACE會員密碼");
+			// Now set the actual message
+			msg.setText("您的密碼為 [" + member.getPassword() + "]");
 
-					Transport.send(msg);
-					super.addActionMessage("信件已發送，請至您的信箱收取補發密碼");
-					return SUCCESS;
-				}
-			}
+			Transport.send(msg);
+			super.addActionMessage("信件已發送，請至您的信箱收取補發密碼");
+			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return ERROR;
@@ -290,6 +299,14 @@ public class MemberAction extends BaseIaceAction {
 		super.validateNotBlankNLength(this.member.getAddress(), 500, "member.address");
 		super.validateNotBlankNLength(this.member.getTel(), 30, "member.tel");
 	}
+	
+	public void validateCaptcha() {
+		String correctCaptchaCode = (String)session.remove(SessionInterceptor.SESSION_KEY_CAPTCHA_CODE);
+		if (StringUtils.equalsIgnoreCase(this.captchaCode, correctCaptchaCode) == false) {
+			super.addFieldError("captchaCode", "驗證碼錯誤");
+		}
+	}
+	
 
 	// =========================================================================
 
@@ -349,4 +366,13 @@ public class MemberAction extends BaseIaceAction {
 		return optDomainList;
 	}
 
+	public String getCaptchaCode() {
+		return captchaCode;
+	}
+
+	public void setCaptchaCode(String captchaCode) {
+		this.captchaCode = captchaCode;
+	}
+
+	
 }

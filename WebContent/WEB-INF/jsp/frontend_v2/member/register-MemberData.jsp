@@ -195,6 +195,16 @@
 								<s:textfield name="member.neededTec" maxlength="30" class="form-control"/>
 							</div>
 						</div>
+						<!-- 驗證 -->
+						<div class="line_gray1px bottom10 text-center large_title_04 top30">
+							<strong>驗證</strong> 
+						</div>
+						<div class="form-group form-inline">
+							<label for="" class="col-sm-3 control-label">驗證碼<span style="color:#F00;">*</span></label>
+							<div class="col-sm-9">
+								<s:include value="/WEB-INF/jsp/captcha.jsp" />
+							</div>
+						</div>
 						
 						<div class="line_gray1px bottom10 top30"></div>
 						<div class="form-group">

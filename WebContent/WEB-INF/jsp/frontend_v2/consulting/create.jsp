@@ -140,6 +140,12 @@
 								</div>
 							</div>
 						</div>
+						<div class="form-group form-inline">
+							<label for="" class="col-sm-2 control-label">驗證碼<span style="color: #F00;">*</span></label>
+							<div class="col-sm-10">
+								<s:include value="/WEB-INF/jsp/captcha.jsp" />
+							</div>
+						</div>
 						<div class="line_gray1px bottom10 top30"></div>
 						<div class="form-group">
 							<div class="col-sm-12 text-center">

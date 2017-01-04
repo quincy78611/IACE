@@ -120,4 +120,14 @@
 			<result name="success">/WEB-INF/jsp/backend/developerFunc/init.jsp</result>
 		</action>
 	</package>
+	
+	<package name="Captcha" namespace="/captcha" extends="struts-default">
+		<action name="generateCaptchaImage" class="iace.action.CaptchaAction" method="generateCaptchaImage">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
 </struts>
