@@ -105,7 +105,7 @@
 				</div>
 			</li>
 			<li class="half">
-				<b>計畫發展階段</b>
+				<b>產業化潛力</b>
 				<div>
 					<s:property value="%{researchPlan.trl.showString}" />
 				</div>					

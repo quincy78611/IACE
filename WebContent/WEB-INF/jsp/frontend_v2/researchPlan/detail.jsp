@@ -83,7 +83,7 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="date_01">計畫發展階段</td>
+								<td class="date_01">產業化潛力</td>
 								<td><s:property value="%{researchPlan.trl.name}" /></td>
 							</tr>
 							<tr>

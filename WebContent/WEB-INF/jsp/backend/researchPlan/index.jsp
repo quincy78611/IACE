@@ -198,7 +198,7 @@
 					<th nowrap width="">計畫名稱</th>
 					<th nowrap width="5%">主持人</th>
 					<th nowrap width="10%">研究領域</th>
-					<th nowrap width="15%">計畫發展階段</th>
+					<th nowrap width="15%">產業化潛力</th>
 					<th nowrap width="5%">成果報告</th>
 					<th nowrap width="5%">功能</th>
 				</tr>
