@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	addMoreAttach();
-	fileBrowseSetting();
 });
 
 function addMoreAttach() {	
@@ -8,32 +7,28 @@ function addMoreAttach() {
 		var newTr = $(this).parents("table").find("tr.hidden-sample-tr").clone();
 		newTr.removeClass("hidden-sample-tr");
 		$(this).parents("table").find("tbody").append(newTr);
-		fileBrowseSetting();
 		resetNameAttrForAttachTable();
 	});
 }
-function fileBrowseSetting() {
-	$(".btn-fake-browse").click(function(){
-		$(this).parents("tr").find("input[type=file]").trigger("click");
-	});
-	
-	$("input[type=file]").change(function() {
-		var fileName = $(this).get(0).files[0].name;
-		$(this).parents("tr").find(".label-fileName").html(fileName);
-		readURL(this);
-	});
-	
-	$("input[type=button].cancelSelectFile").click(function(){
-		var rowCount = $(this).parents("tbody").find("tr").length;
-		$(this).parents("tr").remove();
-		resetNameAttrForAttachTable();
-	});
+
+function fakeBrowseBtnOnclick(this_) {
+	$(this_).parents("tr").find("input[type=file]").trigger("click");
+}
+function deleteFileBtnOnclick(this_) {
+	var rowCount = $(this_).parents("tbody").find("tr").length;
+	$(this_).parents("tr").remove();
+	resetNameAttrForAttachTable();
+}
+function fileOnchange(this_) {
+	var fileName = $(this_).get(0).files[0].name;
+	$(this_).parents("tr").find(".label-fileName").html(fileName);
+	readURL(this_);
 }
 function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.readAsDataURL(input.files[0]);
-    }
+	if (input.files && input.files[0]) {
+		var reader = new FileReader();
+		reader.readAsDataURL(input.files[0]);
+	}
 }
 function resetNameAttrForAttachTable() {
 	$("#table-attach > tbody > tr").each(function( index ){

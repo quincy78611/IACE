@@ -118,9 +118,9 @@ tr.hidden-sample-tr { display:none; }
 				</tr>
 				<tr class="hidden-sample-tr">
 					<td>
-						<s:file type="file" class="upload" />
-						<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案"/>
-						<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
+						<s:file type="file" class="upload" onchange="fileOnchange(this)"/>
+						<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案" onclick="fakeBrowseBtnOnclick(this)"/>
+						<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" onclick="deleteFileBtnOnclick(this)"/>
 
 						<label class="label-fileName">
 							<span style="color:#AA3333;">(尚未選取檔案)</span>
@@ -140,9 +140,9 @@ tr.hidden-sample-tr { display:none; }
 						<s:hidden class="id" name="%{'activity.attachList['+#stat.index+'].id'}"/>
 						
 						<td>
-							<s:file type="file" name="%{'activity.attachList['+#stat.index+'].upload'}" class="upload" />
-							<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案"/>
-							<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
+							<s:file type="file" name="%{'activity.attachList['+#stat.index+'].upload'}" class="upload" onchange="fileOnchange(this)"/>
+							<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案" onclick="fakeBrowseBtnOnclick(this)"/>
+							<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" onclick="deleteFileBtnOnclick(this)"/>
 							
 							<label class="label-fileName">
 								<s:url value="downloadAttach.action" var="downloadAttachUrl">
