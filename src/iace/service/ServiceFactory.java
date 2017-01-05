@@ -42,6 +42,7 @@ import iace.service.qnrCooperateWay.QnrCooperateWayExcelService;
 import iace.service.qnrCooperateWay.QnrCooperateWayService;
 import iace.service.questionnaire.QnrService;
 import iace.service.questionnaire.QnrTemplateService;
+import iace.service.relatedWebsite.RelatedWebsiteService;
 import iace.service.researchPlan.ResearchPlanExcelService;
 import iace.service.researchPlan.ResearchPlanService;
 import iace.service.researchPlan.TechnologyService;
@@ -121,6 +122,8 @@ public class ServiceFactory {
 	private static ContactUsService contactUsService;
 	
 	private static IndustryInfoService industryInfoService; 
+	
+	private static RelatedWebsiteService relatedWebsiteService;
 	
 	// =========================================================================
 	
@@ -507,6 +510,13 @@ public class ServiceFactory {
 			industryInfoService = new IndustryInfoService(DaoFactory.getIndustryInfoDao());
 		}
 		return industryInfoService;
+	}
+
+	public static RelatedWebsiteService getRelatedWebsiteService() {
+		if (relatedWebsiteService == null) {
+			relatedWebsiteService = new RelatedWebsiteService(DaoFactory.getRelatedWebsiteDao());
+		}
+		return relatedWebsiteService;
 	}
 	
 	

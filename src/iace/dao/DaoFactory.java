@@ -70,6 +70,8 @@ import iace.dao.questionnaire.IQnrDao;
 import iace.dao.questionnaire.IQnrTemplateDao;
 import iace.dao.questionnaire.QnrDao;
 import iace.dao.questionnaire.QnrTemplateDao;
+import iace.dao.relatedWebsite.IRelatedWebsiteDao;
+import iace.dao.relatedWebsite.RelatedWebsiteDao;
 import iace.dao.researchPlan.IResearchPlanDao;
 import iace.dao.researchPlan.ITechnologyDao;
 import iace.dao.researchPlan.ResearchPlanDao;
@@ -178,6 +180,8 @@ public class DaoFactory {
 	private static IContactUsDao contactUsDao;
 	
 	private static IIndustryInfoDao industryInfoDao;
+	
+	private static IRelatedWebsiteDao relatedWebsiteDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -544,4 +548,12 @@ public class DaoFactory {
 		return industryInfoDao;
 	}
 
+	public static IRelatedWebsiteDao getRelatedWebsiteDao() {
+		if (relatedWebsiteDao == null) {
+			relatedWebsiteDao = new RelatedWebsiteDao();
+		}
+		return relatedWebsiteDao;
+	}
+
+	
 }

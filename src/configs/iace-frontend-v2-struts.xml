@@ -250,4 +250,15 @@
 			<result name="success">/WEB-INF/jsp/frontend_v2/consulting/createFinish.jsp</result>
 		</action>
 	</package>
+	
+		
+	<package name="RelatedWebsite" namespace="/relatedWebsite" extends="struts-default">
+		<action name="getImageByName" class="iace.action.RelatedWebsiteAction" method="getImageByName">
+			<result name="success" type="stream">
+				<param name="contentType">image/jpeg</param>
+				<param name="inputName">imageStream</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
 </struts>

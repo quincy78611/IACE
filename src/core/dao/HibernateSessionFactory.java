@@ -54,6 +54,7 @@ import iace.entity.patent.TechField;
 import iace.entity.qnrCooperateWay.QnrCooperateWay;
 import iace.entity.questionnaire.QnrTable;
 import iace.entity.questionnaire.QnrTableColumn;
+import iace.entity.relatedWebsite.RelatedWebsite;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.Technology;
 import iace.entity.sys.SysLog;
@@ -223,17 +224,24 @@ public class HibernateSessionFactory {
 		configuration.addAnnotatedClass(Literature.class);
 		
 		configuration.addAnnotatedClass(About.class);
+		
 		configuration.addAnnotatedClass(Activity.class);
 		configuration.addAnnotatedClass(ActivityAttach.class);
 		configuration.addAnnotatedClass(ActivityVideo.class);
+		
 		configuration.addAnnotatedClass(Faq.class);
+		
 		configuration.addAnnotatedClass(HomeScrollingText.class);
+		
 		configuration.addAnnotatedClass(IndustryInfo.class);
+		
 		configuration.addAnnotatedClass(News.class);
 		configuration.addAnnotatedClass(NewsAttach.class);
 		
 		configuration.addAnnotatedClass(Member.class);
 		
 		configuration.addAnnotatedClass(ContactUs.class);
+		
+		configuration.addAnnotatedClass(RelatedWebsite.class);
 	}
 }
