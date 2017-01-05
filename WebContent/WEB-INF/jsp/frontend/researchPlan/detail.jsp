@@ -57,7 +57,13 @@
 					<s:property value="researchPlan.projkey" />
 				</div>
 			</li>
-			<li class="quarter">
+			<li class="half">
+				<b>產業化潛力</b>
+				<div>
+					<s:property value="%{researchPlan.trl.showString}" />
+				</div>
+			</li>
+			<li class="half">
 				<b>研究領域</b>
 				<div>
 					<s:if test="researchPlan.grbDomains != null">
@@ -67,7 +73,7 @@
 					</s:if>	
 				</div>
 			</li>
-			<li class="">
+			<li class="all">
 				<b>計畫關鍵詞</b>
 				<div>
 					<s:property value="researchPlan.keyword" />

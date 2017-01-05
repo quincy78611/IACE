@@ -84,7 +84,7 @@
 							</tr>
 							<tr>
 								<td class="date_01">產業化潛力</td>
-								<td><s:property value="%{researchPlan.trl.name}" /></td>
+								<td><s:property value="%{researchPlan.trl.showString}" /></td>
 							</tr>
 							<tr>
 								<td class="date_01">計畫關鍵詞</td>
@@ -121,18 +121,18 @@
 										<td class="date_01">技術簡述</td>
 										<td><s:property value="descriptoin"/></td>
 									</tr>
-									<tr>
-										<td class="date_01">技術發展階段</td>
-										<td>
-											<s:iterator value="optionTrlList" status="stat">
-												<p><s:property value="name"/>;</p>
-											</s:iterator>
-										</td>
-									</tr>
-									<tr>
-										<td class="date_01">技術發展階段說明</td>
-										<td><s:property value="trlDesc"/></td>
-									</tr>
+<!-- 									<tr> -->
+<!-- 										<td class="date_01">技術發展階段</td> -->
+<!-- 										<td> -->
+<%-- 											<s:iterator value="optionTrlList" status="stat"> --%>
+<%-- 												<p><s:property value="name"/>;</p> --%>
+<%-- 											</s:iterator> --%>
+<!-- 										</td> -->
+<!-- 									</tr> -->
+<!-- 									<tr> -->
+<!-- 										<td class="date_01">技術發展階段說明</td> -->
+<%-- 										<td><s:property value="trlDesc"/></td> --%>
+<!-- 									</tr> -->
 								</s:iterator>
 							</s:if>		
 							
