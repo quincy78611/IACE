@@ -56,8 +56,7 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.desc("sort"));
-			criteria.addOrder(Order.asc("id"));
+			criteria.addOrder(Order.desc("createTime"));
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
@@ -117,7 +116,7 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			criteria.add(Restrictions.eq("homeDisplayStatus", true));
-			criteria.addOrder(Order.desc("sort"));
+			criteria.addOrder(Order.desc("createTime"));
 			criteria.setMaxResults(5);
 			
 			@SuppressWarnings("unchecked")

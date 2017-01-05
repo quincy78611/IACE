@@ -30,7 +30,7 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.asc("id"));
+			criteria.addOrder(Order.desc("postDate"));
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
