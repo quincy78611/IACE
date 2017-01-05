@@ -33,7 +33,7 @@
 								<tr>
 									<td style="border:none;">
 										<div class="truncate">
-											<span class="date_02"><s:property value="postDate"/></span>&nbsp;&nbsp;&nbsp;
+											<span class="date_02"><s:date name="postDate" format="yyyy/MM/dd" /></span>&nbsp;&nbsp;&nbsp;
 											<a href="<s:property value="link"/>" class="list_link_02" target="_blank"><s:property value="title"/></a>
 										</div>
 									</td>
@@ -79,7 +79,7 @@
 								<tr>
 									<td style="border:none;">
 										<div class="truncate">
-											<span class="date_01"><s:property value="postDate"/></span>&nbsp;&nbsp;&nbsp;
+											<span class="date_01"><s:date name="postDate" format="yyyy/MM/dd" /></span>&nbsp;&nbsp;&nbsp;
 											<a href="<s:property value="link"/>" class="list_link_01" target="_blank">
 												<s:property value="title" escapeHtml="false"/>
 											</a>
