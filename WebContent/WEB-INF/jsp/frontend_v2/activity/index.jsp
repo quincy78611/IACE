@@ -56,37 +56,37 @@
 						</div>
 					</div>
 					<div>
-						<table class="table" style="margin-bottom:0;">
-							<tbody>
-								<s:if test="activityPagedList != null">
-									<s:iterator value="activityPagedList.list" status="stat">
-										<tr>
-											<td width="30%" style="">
-												<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive img_radius" alt="" />
-											</td>
-											<td style="vertical-align: top !important;">
-												<div>
-													<s:url value="/f2/activity/showDetail" var="detailUrlTag" escapeAmp="false">
-														<s:param name="id" value="id" />
-														<s:param name="searchCondition.searchText" value="searchCondition.searchText" />
-														<s:param name="searchCondition.category" value="category" />
-														<s:param name="searchCondition.year" value="searchCondition.year" />
-														<s:param name="searchCondition.pageIndex" value="searchCondition.pageIndex" />
-														<s:param name="searchCondition.pageSize" value="searchCondition.pageSize" />
-													</s:url>
-													<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01"><s:property value="title" /></a>
-												</div>
-												<div class="date_01">日期：<s:date name="createTime" format="yyyy/M/d" /></div>
-												<div class="date_01">地點：<s:property value="actAddress" /></div>
-												<div class="top10 truncate_list"><s:property value="contentWithoutHTML"/></div>
-											</td>
-										</tr>
-									</s:iterator>
-								</s:if>
-							</tbody>
-						</table>
+						<s:if test="activityPagedList != null">
+							<s:iterator value="activityPagedList.list" status="stat">
+								<div class="row">
+									<div class="col-lg-3 col-md-4 col-sm-12 col-cs-12">
+										<div class="list-thumbnail img_radius">
+											<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive" alt=""/>
+										</div>
+									</div>
+									<div class="col-lg-9 col-md-8 col-sm-12 col-cs-12">
+										<div>
+											<s:url value="/f2/activity/showDetail" var="detailUrlTag" escapeAmp="false">
+												<s:param name="id" value="id" />
+												<s:param name="searchCondition.searchText" value="searchCondition.searchText" />
+												<s:param name="searchCondition.category" value="category" />
+												<s:param name="searchCondition.year" value="searchCondition.year" />
+												<s:param name="searchCondition.pageIndex" value="searchCondition.pageIndex" />
+												<s:param name="searchCondition.pageSize" value="searchCondition.pageSize" />
+											</s:url>
+											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" style="color:#1EB0FF;">
+												<s:property value="title" />
+											</a>
+										</div>
+										<div class="date_01">日期：<s:date name="createTime" format="yyyy/M/d" /></div>
+										<div class="date_01">地點：<s:property value="actAddress" /></div>
+										<div class="top10 truncate_list"><s:property value="contentWithoutHTML"/></div>
+									</div>
+								</div>
+								<div class="line_solid"></div>
+							</s:iterator>
+						</s:if>	
 					</div>
-					<div class="line_solid"></div>
 					<!-- 換頁 -->
 					<s:include value="./pagination.jsp" />
 				</s:form>
