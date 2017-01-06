@@ -59,44 +59,49 @@
 				<s:include value="./pagination_top.jsp" />
 			</div>
 			<div class="row">
-				<s:iterator value="pagedList.list" status="stat">
-					<!-- 研發成果 -->
-					<s:if test="technology != null">
-						<s:include value="./listItem_technology.jsp" />
-					</s:if>
-					<!-- 專利資料 -->
-					<s:if test="patent != null">
-						<s:include value="./listItem_patent.jsp" />
-					</s:if>
-					<!-- 合作案例 -->
-					<s:if test="coopEx != null">
-						<s:include value="./listItem_coopEx.jsp" />
-					</s:if>
-					<!-- 產學人才 -->
-					<s:if test="talentedPeople != null">
-						<s:include value="./listItem_talentedPeople.jsp" />
-					</s:if>
-					<!-- 育成中心 -->
-					<s:if test="incubationCenter != null">
-						<s:include value="./listItem_incubationCenter.jsp" />
-					</s:if>
-					<!-- 法規政策 -->
-					<s:if test='literature != null'>
-						<s:include value="./ListItem_policyAndLiterature.jsp" />
-					</s:if>
-					<!-- 活動/人培 -->
-					<s:if test='activity != null'>
-						<s:include value="./listItem_activity.jsp" />
-					</s:if>
-					<!-- 產業情報 -->
-					<s:if test='industryInfo != null'>
-						<s:include value="./listItem_industryInfo.jsp" />
-					</s:if>
-					<!-- 產業情報 -->
-					<s:if test='news != null'>
-						<s:include value="./listItem_news.jsp" />
-					</s:if>
-				</s:iterator>
+				<s:if test="pagedList == null || pagedList.list == null || pagedList.list.size == 0">
+					<label style="font-size:24px; color:#FF0033;">查無資料，請重新查詢!</label>
+				</s:if>
+				<s:else>
+					<s:iterator value="pagedList.list" status="stat">
+						<!-- 研發成果 -->
+						<s:if test="technology != null">
+							<s:include value="./listItem_technology.jsp" />
+						</s:if>
+						<!-- 專利資料 -->
+						<s:if test="patent != null">
+							<s:include value="./listItem_patent.jsp" />
+						</s:if>
+						<!-- 合作案例 -->
+						<s:if test="coopEx != null">
+							<s:include value="./listItem_coopEx.jsp" />
+						</s:if>
+						<!-- 產學人才 -->
+						<s:if test="talentedPeople != null">
+							<s:include value="./listItem_talentedPeople.jsp" />
+						</s:if>
+						<!-- 育成中心 -->
+						<s:if test="incubationCenter != null">
+							<s:include value="./listItem_incubationCenter.jsp" />
+						</s:if>
+						<!-- 法規政策 -->
+						<s:if test='literature != null'>
+							<s:include value="./ListItem_policyAndLiterature.jsp" />
+						</s:if>
+						<!-- 活動/人培 -->
+						<s:if test='activity != null'>
+							<s:include value="./listItem_activity.jsp" />
+						</s:if>
+						<!-- 產業情報 -->
+						<s:if test='industryInfo != null'>
+							<s:include value="./listItem_industryInfo.jsp" />
+						</s:if>
+						<!-- 產業情報 -->
+						<s:if test='news != null'>
+							<s:include value="./listItem_news.jsp" />
+						</s:if>
+					</s:iterator>
+				</s:else>
 			</div>
 			<div class="row">
 				<s:include value="./pagination.jsp" />
