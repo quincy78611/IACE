@@ -54,7 +54,7 @@
 					<a href="javascript: void(window.open('https://plus.google.com/share?url='.concat(encodeURIComponent(location.href)) ));" target="_blank"> <img
 						src="<s:url value="/images/frontend-v2/icon_google.png"/>" alt="" height="40" />
 					</a> &nbsp; <a href="javascript: void(window.open('http://www.plurk.com/?qualifier=shares&status='.concat(encodeURIComponent(location.href)) ));" target="_blank"> <img
-						src="<s:url value="/images/frontend-v2/icon_pinterest.png"/>" alt="" height="40" />
+						src="<s:url value="/images/frontend-v2/icon_plurk_02.png"/>" alt="" height="40" />
 					</a>
 				</div>
 			</div>
