@@ -214,11 +214,11 @@ table.table-files .label-fileName { min-height:35px; padding: 0px 5px; }
 			</li>
 			<li class="quarter">
 				<b>顯示狀態</b>
-				<s:radio name="news.displayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList" value="true"/>
+				<s:radio name="news.displayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList"/>
 			</li>
 			<li class="quarter">
 				<b>首頁顯示</b>
-				<s:radio name="news.homeDisplayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList" value="false"/>
+				<s:radio name="news.homeDisplayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList"/>
 			</li>			
 		</ul>		
 		<div class="clear"></div>

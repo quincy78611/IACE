@@ -99,11 +99,11 @@ $(document).ready(function() {
 			</li>
 			<li class="quarter">
 				<b>顯示狀態</b>
-				<s:radio name="faq.displayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList" value="true"/>
+				<s:radio name="faq.displayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList"/>
 			</li>
 			<li class="quarter">
 				<b>首頁顯示</b>
-				<s:radio name="faq.homeDisplayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList" value="false"/>
+				<s:radio name="faq.homeDisplayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList"/>
 			</li>			
 		</ul>		
 		<div class="clear"></div>
