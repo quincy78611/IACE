@@ -173,7 +173,7 @@
 					<tr>
 						<th nowrap width="3%">No.</th>
 						<th nowrap width="8%">發布日</th>
-						<th nowrap width="19%">分類</th>
+						<th nowrap width="">分類</th>
 						<th nowrap width="">標題</th>
 						<th nowrap width="7%">瀏覽次數</th>
 						<th nowrap width="">功能</th>
