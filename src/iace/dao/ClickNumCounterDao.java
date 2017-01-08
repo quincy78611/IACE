@@ -5,14 +5,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import core.dao.HibernateSessionFactory;
-import iace.entity.coopExample.CoopEx;
 
 public class ClickNumCounterDao {
 
 	public int increaseClickNum(long id, Class<?> cls) {
 		// check is class has field [clickNum]
 		try {
-			CoopEx.class.getDeclaredField("clickNum");
+			cls.getDeclaredField("clickNum");
 		} catch (NoSuchFieldException | SecurityException e) {
 			return 0;
 		}
