@@ -36,20 +36,20 @@
 					<td>
 						<s:if test="technology.researchPlan.grbDomains != null">
 							<s:iterator value="technology.researchPlan.grbDomains" status="stat">
-								<s:property value="showString" />&nbsp;&nbsp;&nbsp;
+								<s:property value="name" />&nbsp;&nbsp;&nbsp;
 							</s:iterator>
 						</s:if>
 					</td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-					<td class="date_01">技術名稱</td>
-					<td><s:property value="technology.name" /></td>
+					<td class="date_01">產業化潛力</td>
+					<td><s:property value="%{technology.researchPlan.trl.name}" /></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-					<td class="date_01">技術簡述</td>
-					<td><s:property value="technology.descriptoin" /></td>
+					<td class="date_01">技術名稱</td>
+					<td><s:property value="technology.name" /></td>
 				</tr>
 			</tbody>
 		</table>
