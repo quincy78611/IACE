@@ -28,7 +28,8 @@
 <script type="text/javascript" src="<s:url value="/scripts/calendarBox.js"/>"></script>
 <script type="text/javascript" src="<s:url value="/scripts/jquery.datetimepicker.full.js"/>"></script>
 
-
+<!-- highlight 工具 -->
+<script type="text/javascript" src="<s:url value="/scripts/jquery.highlight.js"/>"></script>
 
 <script type="text/javascript">
 	$(document).ready(function() {

@@ -10,8 +10,13 @@
 			$("input[type=text]").val("");
 			$("select").prop('selectedIndex', 0);
 		});
+	
+		$("#search-result-list").highlight('<s:property value="searchCondition.searchText"/>');
 	});
 </script>
+<style>
+.highlight {background-color: #FFFF00}
+</style>
 </head>
 <body>
 	<s:include value="./banner.jsp" />
@@ -58,7 +63,7 @@
 			<div class="row">
 				<s:include value="./pagination_top.jsp" />
 			</div>
-			<div class="row">
+			<div class="row" id="search-result-list">
 				<s:if test="pagedList == null || pagedList.list == null || pagedList.list.size == 0">
 					<label style="font-size:24px; color:#FF0033;">查無資料，請重新查詢!</label>
 				</s:if>
