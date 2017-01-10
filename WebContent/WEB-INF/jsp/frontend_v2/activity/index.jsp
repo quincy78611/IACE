@@ -61,7 +61,12 @@
 								<div class="row">
 									<div class="col-lg-3 col-md-4 col-sm-12 col-cs-12">
 										<div class="list-thumbnail img_radius">
-											<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive" alt=""/>
+											<s:if test="base64Thumbnail != null">
+												<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive" alt=""/>
+											</s:if>
+											<s:else>
+												<img src="<s:url value="/images/frontend-v2/noimage-2.gif"/>" class="img-responsive" alt=""/>
+											</s:else>
 										</div>
 									</div>
 									<div class="col-lg-9 col-md-8 col-sm-12 col-cs-12">
