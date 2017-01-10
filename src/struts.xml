@@ -46,7 +46,7 @@
 		<action name="index">
 			<!-- <result>/WEB-INF/jsp/backend/home/index.jsp</result> -->
 			<result type="redirectAction">
-				<param name="namespace">/home</param>
+				<param name="namespace">/f2/home</param>
 				<param name="actionName">init</param>
 			</result>
 		</action>
