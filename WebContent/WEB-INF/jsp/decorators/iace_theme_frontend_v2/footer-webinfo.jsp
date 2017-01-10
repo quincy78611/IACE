@@ -11,7 +11,24 @@
 					<div>版權所有©2015科技部產學及園區業務司</div>
 					<div>Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs</div>
 					<div>本網站設計 支援IE、Firefox及Chrome， 網頁設計最佳瀏覽解析度為1280x768以上</div>
-					<div>網站瀏覽人數：61774 - See more at: <a href="#" class="footer_link">http://www.link-iac.org.tw/cooperation#sthash.q0B6aJ1c.dpuf</a></div>
+					<div>
+						<table>
+							<tr><td>網站瀏覽人數：</td><td><div id="tc-b64b054876"></div></td></tr>
+						</table>
+						<script type="text/javascript">
+							var _tcq = _tcq || [];
+							_tcq.push([ 'widget', 'visits' ]);
+							_tcq.push([ 'init', 'b64b054876' ]);
+							(function(d, s) {
+								var e = d.createElement(s);
+								e.type = 'text/javascript';
+								e.async = true;
+								e.src = ('https:' == document.location.protocol ? 'https': 'http') + '://s.tcimg.com/w/v3/trendcounter.js';
+								var f = d.getElementsByTagName(s)[0];
+								f.parentNode.insertBefore(e, f);
+							})(document, 'script');
+						</script>
+					</div>
 				</div>
 				<div class="clearfix"></div>
 			</div>
