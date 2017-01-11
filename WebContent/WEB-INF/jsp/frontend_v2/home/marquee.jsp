@@ -127,8 +127,8 @@ div#abgne_marquee ul {
 						<div id="abgne_marquee">
 							<ul>
 								<li class="content_02">運用法人鏈結產業合作計畫成果發表會誠摯邀請您蒞臨指導</li>
-								<li class="content_02">運用法人鏈結產業合作計畫成果發表會誠摯邀請您蒞臨指導2</li>
-								<li class="content_02">運用法人鏈結產業合作計畫成果發表會誠摯邀請您蒞臨指導3</li>
+								<li class="content_02">日期：2017年01月17日下午1時30分至下午3時30分</li>
+								<li class="content_02">地點：台灣科技大學國際大樓一樓(IB101)與展覽會場A區 (106台北市大安區基隆路四段43號)</li>
 							</ul>
 						</div>
 					</li>
