@@ -32,6 +32,11 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 
 	@Override
 	public PagedList<TalentedPeople> searchBy(TalentedPeopleSearchModel arg) {
+		return searchBy(arg, false);
+	}
+	
+	@Override
+	public PagedList<TalentedPeople> searchBy(TalentedPeopleSearchModel arg, boolean allEager) {
 		long totalItemCount = queryTotalRecordsCount(arg);
 		PagedList<TalentedPeople> results = new PagedList<TalentedPeople>(totalItemCount, arg.getPageSize(), arg.getPageIndex());
 		try {	
@@ -45,6 +50,15 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 			
 			@SuppressWarnings("unchecked")
 			List<TalentedPeople> list = criteria.list();
+			if (allEager) {
+				for (TalentedPeople tp : list) {
+					Hibernate.initialize(tp.getDomains());
+					Hibernate.initialize(tp.getRdResults());
+					Hibernate.initialize(tp.getTransferCases());
+					Hibernate.initialize(tp.getMainProjects());
+				}
+			}
+
 			results.setList(list);
 			return results;
 		} catch (Exception e) {
@@ -53,7 +67,7 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 			HibernateSessionFactory.closeSession();
 		}
 	}
-	
+
 	public List<TalentedPeople> listAll(TalentedPeopleSearchModel arg) {
 		try {	
 			Session session = HibernateSessionFactory.getSession();

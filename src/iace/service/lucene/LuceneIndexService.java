@@ -147,7 +147,7 @@ public class LuceneIndexService {
 		int pageCount = (int) Math.ceil(totalRecordCount / (double) arg.getPageSize());
 		for (int i = 0; i < pageCount; i++) {
 			arg.setPageIndex(i);
-			PagedList<TalentedPeople> pagedList = this.talentedPeopleDao.searchBy(arg);
+			PagedList<TalentedPeople> pagedList = this.talentedPeopleDao.searchBy(arg, true);
 			for (TalentedPeople entity : pagedList.getList()) {
 				IntegrationIndexer.addDoc(writer, entity.getId(), entity.getClass(), entity.toLunceneContent());
 			}

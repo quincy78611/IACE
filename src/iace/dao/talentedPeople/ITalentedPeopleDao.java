@@ -12,6 +12,8 @@ public interface ITalentedPeopleDao extends IBaseIaceDao<TalentedPeople> {
 	
 	public PagedList<TalentedPeople> searchBy(TalentedPeopleSearchModel arg);
 	
+	public PagedList<TalentedPeople> searchBy(TalentedPeopleSearchModel arg, boolean allEager);
+	
 	public List<TalentedPeople> listAll(TalentedPeopleSearchModel arg);
 	
 	public List<TalentedPeople> listAllWithSysUser();
