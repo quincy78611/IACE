@@ -302,16 +302,12 @@ public class Literature extends BaseEntity implements IntegrationSearch {
 
 	@Override
 	public String toLunceneContent() {
-		String str = this.titleC + " " + this.titleF + " " + this.authorC + " " + 
-				this.authorF  + " " + this.keywordC  + " " + this.keywordF  + " " +
-				this.summary  + " " + this.summaryF  + " " + this.journalName;
+		String str = this.titleC + " " + this.titleF + " " + 
+				this.authorC + " " + this.authorF + " " +
+				this.org + " " + this.keywordC  + " " + this.keywordF  + " " +
+				this.summary + " " + this.summaryF + " " +
+				this.advisor + " " + this.graduateSchoolC + " " +  this.department + " " +
+				this.journalName + " " + this.source;
 		return str;
 	}
-	
-	public static void main(String[] args) {
-		Literature l = new Literature();
-		l.setTitleC("專科以上學校產學合作實施辦法 ");
-		System.out.println(l.toLunceneContent());
-	}
-
 }

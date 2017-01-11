@@ -247,7 +247,7 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 
 	@Override
 	public String toLunceneContent() {
-		String str = this.title + " " + this.projName + this.content; 
+		String str = this.title + " " + this.projName + " " + this.rdTeam + " " + this.assisTeam + " " + this.content; 
 		return str;
 	}	
 	

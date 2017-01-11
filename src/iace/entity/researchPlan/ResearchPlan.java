@@ -389,11 +389,8 @@ public class ResearchPlan extends BaseEntity implements IntegrationSearch {
 	public String toLunceneContent() {
 		String content = 
 				this.name + " " +
-				this.planNo + " " +
 				this.manager + " " +
-				this.keyword + " " +
-				this.projkey + " " +
-				this.grb05Id;
+				this.projkey;
 		return content;
 	}
 

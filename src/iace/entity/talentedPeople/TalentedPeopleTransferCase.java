@@ -14,10 +14,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 
 @Entity
 @Table(name = "TALENTED_PEOPLE_TRANSFER_CASE")
-public class TalentedPeopleTransferCase extends BaseEntity {
+public class TalentedPeopleTransferCase extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = 2349692596426033716L;
 	
@@ -125,5 +126,13 @@ public class TalentedPeopleTransferCase extends BaseEntity {
 	public void setPriority(Float priority) {
 		this.priority = priority;
 	}
+
+	@Override
+	public String toLunceneContent() {
+		String content = this.applyField + " " + this.targetOrg;
+		return content;
+	}
+	
+	
 
 }

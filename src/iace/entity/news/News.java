@@ -104,7 +104,7 @@ public class News extends BaseLinkiacEntity implements IntegrationSearch {
 
 	@Override
 	public String toLunceneContent() {
-		String str = this.title + " " + this.category + " " + this.source ;
+		String str = this.title + " " + this.source ;
 		return str;
 	}
 

@@ -498,8 +498,26 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 
 	@Override
 	public String toLunceneContent() {
-		String content = this.nameCh + " " + this.nameEn  + " " + this.specialty;
-		return content;
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.nameCh + " ");
+		sb.append(this.nameEn + " ");
+		sb.append(this.workOrg + " ");
+		sb.append(this.job + " ");
+		sb.append(this.getDomainsNameForSysLog() + " ");
+		sb.append(this.specialty + " ");
+		for (TalentedPeopleRdResult rdResult : this.getRdResults()) {
+			sb.append(rdResult.toLunceneContent() + " ");
+		}
+		for (TalentedPeopleTransferCase transferCase : this.getTransferCases()) {
+			sb.append(transferCase.toLunceneContent() + " ");
+		}
+		for (TalentedPeopleMainProject mainProject : this.getMainProjects()) {
+			sb.append(mainProject.toLunceneContent() + " ");
+		}
+		sb.append(this.rewardHistory + " ");
+		sb.append(this.otherExperience + " ");
+				
+		return sb.toString();
 	}
 	
 	

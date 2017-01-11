@@ -16,12 +16,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import iace.entity.BaseEntity;
+import iace.entity.IntegrationSearch;
 import iace.entity.option.BaseOption;
 import iace.entity.option.OptionCountry;
 
 @Entity
 @Table(name = "TALENTED_PEOPLE_RD_RESULT")
-public class TalentedPeopleRdResult extends BaseEntity {
+public class TalentedPeopleRdResult extends BaseEntity implements IntegrationSearch {
 
 	private static final long serialVersionUID = 7404017170622750603L;
 	
@@ -194,6 +195,17 @@ public class TalentedPeopleRdResult extends BaseEntity {
 
 	public static List<BaseOption> getTypeList() {
 		return typeList;
+	}
+
+	@Override
+	public String toLunceneContent() {
+		String content = 
+				this.name + " " + 
+				this.inventer + " " + 
+				this.owner + " " +
+				this.patentAbstract + " " +
+				this.usage;
+		return content;
 	}
 
 	

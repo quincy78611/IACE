@@ -197,7 +197,9 @@ public class IncubationCenter extends BaseEntity implements IntegrationSearch {
 	@Override
 	public String toLunceneContent() {
 		String str = this.schoolNameCh + " " + this.schoolNameEn + " " +
-				this.orgNameCh  + " " + this.orgNameEn;
+				this.orgNameCh + " " + this.orgNameEn + " " +
+				this.bossName + " " + this.bossTitle + " " + 
+				this.orgHistory;
 		return str;
 	}
 

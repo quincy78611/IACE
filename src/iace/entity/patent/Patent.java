@@ -402,13 +402,12 @@ public class Patent extends BaseEntity implements IntegrationSearch {
 	public String toLunceneContent() {
 		String content = 
 				this.name + " " + 
-				this.appliactionNo + " " +
-				this.openNo + " " +
-				this.publicationNo + " " + 
-				this.familyNo + " " +
-				this.ipc + " " +
+				this.assignee + " " + 
+				this.invertor + " " +	
+				this.techField.getName() + " " +
+				this.usage + " " +
 				this.techAbstract + " " +
-				this.usage;
+				this.trlDesc;
 		return content;
 	}
 

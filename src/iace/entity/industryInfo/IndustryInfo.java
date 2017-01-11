@@ -96,7 +96,7 @@ public class IndustryInfo extends BaseEntity implements IntegrationSearch {
 
 	@Override
 	public String toLunceneContent() {
-		String str = this.title + " " + this.source ;
+		String str = this.title;
 		return str;
 	}
 
