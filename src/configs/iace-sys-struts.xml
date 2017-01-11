@@ -71,11 +71,11 @@
 			<interceptor-ref name="iaceSysLog"/>
 			<interceptor-ref name="defaultStack"/>
 
-<!-- 			<result name="success">/WEB-INF/jsp/login.jsp</result> -->
-			<result type="redirectAction">
-	            <param name="actionName">init</param>
-	            <param name="namespace">/home</param>
-	        </result>
+			<result name="success">/WEB-INF/jsp/login.jsp</result>
+<!-- 			<result type="redirectAction"> -->
+<!-- 				<param name="actionName">init</param> -->
+<!-- 				<param name="namespace">/home</param> -->
+<!-- 			</result> -->
 		</action>	
 	</package>
 
