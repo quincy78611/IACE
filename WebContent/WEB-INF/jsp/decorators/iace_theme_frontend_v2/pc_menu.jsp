@@ -51,7 +51,9 @@
 			<div class="menu_list">
 				<ul class="list-inline">
 					<li class="dropdown left15">
-					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu1">活動/人培<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu1">
+							活動/人培<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							<s:iterator value="@iace.entity.activity.Activity@getCategoryList()" status="stat">
 								<li>
@@ -64,7 +66,9 @@
 						</ul>
 					</li>
 					<li class="dropdown left15">
-					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu2">公告訊息<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu2">
+							公告訊息<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
 							<s:iterator value="@iace.entity.news.News@getCategoryList()" status="stat">
 								<li>
@@ -77,7 +81,9 @@
 						</ul>
 					</li>
 					<li class="dropdown left15">
-					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu3">產學合作案例<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu3">
+							產學合作案例<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu3">
 							<s:iterator value="@iace.entity.coopExample.CoopEx@getTypeList()" status="stat">
 								<li>
@@ -90,7 +96,9 @@
 						</ul>
 					</li>
 					<li class="dropdown left15">
-					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu4">學界研發成果<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu4">
+							學界研發成果<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu4">
 							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.researchPlan.Technology"/>">學研成果</a></li>
 							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.patent.Patent"/>">學界專利</a></li>
@@ -98,7 +106,9 @@
 						</ul>
 					</li>
 					<li class="dropdown left15">
-					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu5">產業情報<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu5">
+							產業情報<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu5">
 							<s:iterator value="@iace.entity.industryInfo.IndustryInfo@getCategoryList()" status="stat">
 								<li>
@@ -111,7 +121,9 @@
 						</ul>
 					</li>
 					<li class="dropdown left15">
-					<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu6">媒合專區<span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu6">
+							媒合專區<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenu6">
 							<li><a href="<s:url value="/f2/matchIntro/init"/>">產學媒合服務團簡介</a></li>
 							<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>">法規政策</a></li>
@@ -134,22 +146,32 @@
 				</a>
 			</div>
 			<div class="col-sm-2">
-				<a href="<s:url value="/f2/about/init"/>" class="blue_menu_link"><i class="fa fa-pencil right5" aria-hidden="true"></i>產學合作計畫</a>
+				<a href="<s:url value="/f2/about/init"/>" class="blue_menu_link">
+					<i class="fa fa-pencil right5" aria-hidden="true"></i>產學合作計畫
+				</a>
 			</div>
 			<div class="col-sm-2 text-center">
-				<a href="<s:url value="/f2/consulting/create"/>" class="blue_menu_link"><i class="fa fa-phone right5" aria-hidden="true"></i>我要諮詢</a>
+				<a href="<s:url value="/f2/consulting/create"/>" class="blue_menu_link">
+					<i class="fa fa-phone right5" aria-hidden="true"></i>我要諮詢
+				</a>
 			</div>
 			<div class="col-sm-2 text-center">
 				<s:url value="/f2/faq/init" var="urlTag" escapeAmp="false">
 					<s:param name="searchCondition.category" value="@iace.entity.faq.Faq@getCategoryList()[0].code" />
 				</s:url>
-				<a href="<s:property value="%{#urlTag}"/>" class="blue_menu_link"><i class="fa fa-book right5" aria-hidden="true"></i>常問集</a>
+				<a href="<s:property value="%{#urlTag}"/>" class="blue_menu_link">
+					<i class="fa fa-book right5" aria-hidden="true"></i>常問集
+				</a>
 			</div>
 			<div class="col-sm-2 text-right">
-				<a href="<s:url value="/f2/member/memberCenter"/>" class="blue_menu_link"><i class="fa fa-user-circle-o right5" aria-hidden="true"></i>會員中心</a>
+				<a href="<s:url value="/f2/member/memberCenter"/>" class="blue_menu_link">
+					<i class="fa fa-user-circle-o right5" aria-hidden="true"></i>會員中心
+				</a>
 			</div>
 			<div class="col-sm-2 text-right">
-				<a href="#" class="blue_menu_link"><i class="fa fa-envelope-open right5" aria-hidden="true"></i>電子報</a>
+				<a href="#" class="blue_menu_link">
+					<i class="fa fa-envelope-open right5" aria-hidden="true"></i>電子報
+				</a>
 			</div>
 		</div>
 	</div>
