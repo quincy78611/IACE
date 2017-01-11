@@ -261,4 +261,25 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="f2-VideosArea" namespace="/f2/videosArea" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.VideosAreaAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend_v2/videosArea/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.VideosAreaAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend_v2/videosArea/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend_v2/videosArea/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.VideosAreaAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend_v2/videosArea/detail.jsp</result>
+		</action>
+		<action name="downloadVideo" class="iace.action.VideosAreaAction" method="downloadVideo">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
 </struts>

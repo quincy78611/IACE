@@ -26,6 +26,11 @@
 						</a>                 
 	                </li>
 				</s:if>
+				<li style="border-bottom:#DDD 1px solid" role="presentation" >
+					<a href="<s:url value="/f2/videosArea/init"/>" class="menu_link_mobile right5">
+						影片專區
+					</a>                 
+                </li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown">
 					<a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						活動/人培<span class="caret"></span>

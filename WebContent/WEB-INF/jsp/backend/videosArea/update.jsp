@@ -88,6 +88,7 @@ tr.hidden-sample-tr { display:none; }
 				<b>代表縮圖</b>
 				<s:file name="videosArea.uploadThumbnail" accept=".jpg, .jpeg, .png, .gif"/>
 				<img src="data:image;base64,<s:property value="videosArea.base64Thumbnail"/>" style="max-width:400px; max-height:300px;" />
+				<s:hidden name="videosArea.base64Thumbnail"/>
 			</li>		
 		</ul>
 		
@@ -106,7 +107,7 @@ tr.hidden-sample-tr { display:none; }
 					<td>
 						<video 
 							src="<s:property value="downloadVideoUrl" />" 
-							controls="controls" preload="none"
+							controls="controls" preload="metadata"
 							style="max-width:400px; max-height:300px;">
 						</video>
 					</td>
@@ -124,19 +125,20 @@ tr.hidden-sample-tr { display:none; }
 			</thead>
 			<tbody>
 				<s:iterator value="videosArea.videoList" status="stat">
-					<tr>	
+					<tr>
+						<s:hidden class="id" name="%{'videosArea.videoList['+#stat.index+'].id'}"/>
 						<s:url value="downloadVideo.action" var="downloadVideoUrl">
 							<s:param name="videoId" value="id" />
 						</s:url>
 						<td>
 							<video 
 								src="<s:property value="downloadVideoUrl" />" 
-								controls="controls" preload="none" 
+								controls="controls" preload="metadata" 
 								style="max-width:400px; max-height:300px;">
 							</video>
 						</td>					
 						<td>
-							<s:file type="file" class="upload" accept=".mp4" onchange="fileOnchange(this)"/>
+							<s:file type="file" name="%{'videosArea.videoList['+#stat.index+'].upload'}" class="upload" accept=".mp4" onchange="fileOnchange(this)"/>
 							<input type="button" class="btn-func btn-view btn-fake-browse" value="選擇檔案" onclick="fakeBrowseBtnOnclick(this)"/>
 							<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" onclick="deleteFileBtnOnclick(this)"/>
 											
@@ -145,7 +147,7 @@ tr.hidden-sample-tr { display:none; }
 									<s:property value="uploadFileName"/>
 								</a>
 							</label>
-							<p><s:property value="fileTitle"/></p>	
+							<p><s:textfield name="%{'videosArea.videoList['+#stat.index+'].fileTitle'}" class="fileTitle" placeholder="檔案標題"/></p>	
 						</td>
 					</tr>
 			

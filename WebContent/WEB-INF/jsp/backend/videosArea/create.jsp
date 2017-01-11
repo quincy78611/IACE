@@ -85,7 +85,7 @@ tr.hidden-sample-tr { display:none; }
 				<tr class="hidden-sample-tr">
 					<td>
 						<video 
-							controls="controls" preload="none"
+							controls="controls" preload="metadata"
 							style="max-width:400px; max-height:300px;">
 						</video>
 					</td>

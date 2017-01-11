@@ -77,7 +77,7 @@ public class VideosAreaService extends BaseIaceService<VideosArea> {
 		//remove empty file
 		List<Video> videoList = new ArrayList<Video>();
 		for (Video video : entity.getVideoList()) {
-			if (video.hasUpload()) {
+			if (video.hasUpload() || video.getId() > 0) {
 				video.setVideosArea(entity);
 				videoList.add(video);
 			}

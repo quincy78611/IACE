@@ -51,6 +51,11 @@
 			<div class="menu_list">
 				<ul class="list-inline">
 					<li class="dropdown left15">
+						<a href="<s:url value="/f2/videosArea/init"/>" class=" menu_link">
+							影片專區
+						</a>
+					</li>
+					<li class="dropdown left15">
 						<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu1">
 							活動/人培<span class="caret"></span>
 						</a>

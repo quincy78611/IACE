@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -137,6 +138,12 @@ public class VideosArea extends BaseLinkiacEntity {
 	@Transient
 	public String getBase64Thumbnail() {
 		return Base64.encode(this.thumbnail);
+	}
+	
+	public void setBase64Thumbnail(String s) {
+		if (StringUtils.isNotBlank(s)) {
+			this.thumbnail = Base64.decode(s);
+		}
 	}
 	
 	@Transient

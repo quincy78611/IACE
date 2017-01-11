@@ -96,7 +96,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 					<td>
 						<video 
 							src="<s:property value="downloadVideoUrl" />" 
-							controls="controls" preload="none" 
+							controls="controls" preload="metadata" 
 							style="max-width:400px; max-height:300px;">
 						</video>
 					</td>					
