@@ -28,6 +28,7 @@ import iace.entity.sysAuth.sysApplication.SysAppSysLog;
 import iace.entity.sysAuth.sysApplication.SysAppSysRole;
 import iace.entity.sysAuth.sysApplication.SysAppSysUser;
 import iace.entity.sysAuth.sysApplication.SysAppTalentedPeople;
+import iace.entity.sysAuth.sysApplication.SysAppVideosArea;
 
 public class SysAuth {
 	private transient boolean enableAuth = true;
@@ -58,6 +59,8 @@ public class SysAuth {
 	private SysAppContactUs contactUs =  new SysAppContactUs();
 	
 	private SysAppBatchSendEmail batchSendEmail = new SysAppBatchSendEmail();
+	
+	private SysAppVideosArea videosArea = new SysAppVideosArea();
 	
 	public SysAuth() {
 		Properties prop = new Properties();
@@ -93,6 +96,7 @@ public class SysAuth {
 		sysApps.add(this.member);
 		sysApps.add(this.contactUs);
 		sysApps.add(this.batchSendEmail);
+		sysApps.add(this.videosArea);
 		return sysApps;
 	}
 
@@ -224,6 +228,10 @@ public class SysAuth {
 
 	public SysAppBatchSendEmail getBatchSendEmail() {
 		return batchSendEmail;
+	}
+
+	public SysAppVideosArea getVideosArea() {
+		return videosArea;
 	}
 	
 	

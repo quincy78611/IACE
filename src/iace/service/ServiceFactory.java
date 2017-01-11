@@ -51,6 +51,8 @@ import iace.service.sys.SysRoleService;
 import iace.service.sys.SysUserService;
 import iace.service.talentedPeople.TalentedPeoplePDPLService;
 import iace.service.talentedPeople.TalentedPeopleService;
+import iace.service.videosArea.VideoService;
+import iace.service.videosArea.VideosAreaService;
 
 
 public class ServiceFactory {
@@ -124,6 +126,9 @@ public class ServiceFactory {
 	private static IndustryInfoService industryInfoService; 
 	
 	private static RelatedWebsiteService relatedWebsiteService;
+	
+	private static VideosAreaService videosAreaService;
+	private static VideoService videoService;
 	
 	// =========================================================================
 	
@@ -517,6 +522,20 @@ public class ServiceFactory {
 			relatedWebsiteService = new RelatedWebsiteService(DaoFactory.getRelatedWebsiteDao());
 		}
 		return relatedWebsiteService;
+	}
+
+	public static VideosAreaService getVideosAreaService() {
+		if (videosAreaService == null) {
+			videosAreaService = new VideosAreaService(DaoFactory.getVideosAreaDao());
+		}
+		return videosAreaService;
+	}
+
+	public static VideoService getVideoService() {
+		if (videoService == null) {
+			videoService = new VideoService(DaoFactory.getVideoDao());
+		}
+		return videoService;
 	}
 	
 	

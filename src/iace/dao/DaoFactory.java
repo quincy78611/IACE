@@ -94,6 +94,10 @@ import iace.dao.talentedPeople.TalentedPeopleRdResultDao;
 import iace.dao.talentedPeople.TalentedPeopleTransferCaseDao;
 import iace.dao.techField.ITechFieldDao;
 import iace.dao.techField.TechFieldDao;
+import iace.dao.videosArea.IVideoDao;
+import iace.dao.videosArea.IVideosAreaDao;
+import iace.dao.videosArea.VideoDao;
+import iace.dao.videosArea.VideosAreaDao;
 import iace.entity.option.OptionCompanyLocation;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionCooperateMode;
@@ -182,6 +186,9 @@ public class DaoFactory {
 	private static IIndustryInfoDao industryInfoDao;
 	
 	private static IRelatedWebsiteDao relatedWebsiteDao;
+	
+	private static IVideosAreaDao videosAreaDao;
+	private static IVideoDao videoDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -553,6 +560,20 @@ public class DaoFactory {
 			relatedWebsiteDao = new RelatedWebsiteDao();
 		}
 		return relatedWebsiteDao;
+	}
+
+	public static IVideosAreaDao getVideosAreaDao() {
+		if (videosAreaDao == null) {
+			videosAreaDao = new VideosAreaDao();
+		}
+		return videosAreaDao;
+	}
+
+	public static IVideoDao getVideoDao() {
+		if (videoDao == null) {
+			videoDao = new VideoDao();
+		}
+		return videoDao;
 	}
 
 	

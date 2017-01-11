@@ -65,6 +65,8 @@ import iace.entity.talentedPeople.TalentedPeopleMainProject;
 import iace.entity.talentedPeople.TalentedPeoplePDPL;
 import iace.entity.talentedPeople.TalentedPeopleRdResult;
 import iace.entity.talentedPeople.TalentedPeopleTransferCase;
+import iace.entity.videosArea.Video;
+import iace.entity.videosArea.VideosArea;
 
 
 public class HibernateSessionFactory {
@@ -243,5 +245,8 @@ public class HibernateSessionFactory {
 		configuration.addAnnotatedClass(ContactUs.class);
 		
 		configuration.addAnnotatedClass(RelatedWebsite.class);
+		
+		configuration.addAnnotatedClass(VideosArea.class);
+		configuration.addAnnotatedClass(Video.class);
 	}
 }

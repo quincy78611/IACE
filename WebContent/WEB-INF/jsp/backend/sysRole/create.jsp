@@ -202,6 +202,15 @@
 					<s:checkbox label="%{sysRole.sysAuth.batchSendEmail.opBatchSendEmail.displayName}" name="sysRole.sysAuth.batchSendEmail.opBatchSendEmail.auth" fieldValue="true"/>
 				</td>
 			</tr>
+			<tr>
+				<td><b><s:property value="sysRole.sysAuth.videosArea.displayName"/></b></td>
+				<td class="horizontalList">
+					<s:checkbox label="%{sysRole.sysAuth.videosArea.opView.displayName}" name="sysRole.sysAuth.videosArea.opView.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.videosArea.opCreate.displayName}" name="sysRole.sysAuth.videosArea.opCreate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.videosArea.opUpdate.displayName}" name="sysRole.sysAuth.videosArea.opUpdate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.videosArea.opDelete.displayName}" name="sysRole.sysAuth.videosArea.opDelete.auth" fieldValue="true"/>
+				</td>
+			</tr>
 		</table>
 
 		

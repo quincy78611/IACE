@@ -834,4 +834,46 @@
 		</action>
 	</package>
 	
+	<package name="VideosArea" namespace="/videosArea" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.VideosAreaAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/videosArea/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.VideosAreaAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/videosArea/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/videosArea/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.VideosAreaAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/videosArea/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.VideosAreaAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/videosArea/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.VideosAreaAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/videosArea/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/videosArea/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.VideosAreaAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/videosArea/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.VideosAreaAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/videosArea/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/videosArea/detail.jsp</result>
+		</action>
+		<action name="delete" class="iace.action.VideosAreaAction" method="delete">
+			<result name="success">/WEB-INF/jsp/backend/videosArea/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.VideosAreaAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/videosArea/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/videosArea/index.jsp</result>
+		</action>
+		<action name="downloadVideo" class="iace.action.VideosAreaAction" method="downloadVideo">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
 </struts>
