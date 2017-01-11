@@ -1,5 +1,6 @@
 package iace.entity.activity;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 	private String category;
 	private String title;
 	private String source;
+	private Date postDate;
 	private String content;
 	private String actDate; //活動日期
 	private String actAddress;
@@ -95,6 +97,15 @@ public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 
 	public void setSource(String source) {
 		this.source = source;
+	}
+	
+	@Column(name = "POST_DATE")
+	public Date getPostDate() {
+		return postDate;
+	}
+
+	public void setPostDate(Date postDate) {
+		this.postDate = postDate;
 	}
 
 	@Column(name = "CONTENT")

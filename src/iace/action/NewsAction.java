@@ -138,6 +138,7 @@ public class NewsAction extends BaseIaceAction {
 	
 	private void validateBeforeSubmit() {
 		super.validateNotBlankNLength(this.news.getTitle(), 200, "news.title");
+		super.validateNotNull(this.news.getPostDate(), "news.postDate");
 		super.validateTextMaxLength(this.news.getMetaTitle(), 200, "news.metaTitle");
 	}
 

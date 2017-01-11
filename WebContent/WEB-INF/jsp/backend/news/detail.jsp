@@ -41,10 +41,16 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 				<s:property value="news.title"/>
 			</div>
 		</li>
-		<li class="half">
+		<li class="all">
 			<b>來源</b>
 			<div class="border-text">
 				<s:property value="news.source"/>
+			</div>
+		</li>
+		<li class="half">
+			<b>發布日期</b>
+			<div class="border-text">
+				<s:date name="news.postDate" format="yyyy/MM/dd"/>
 			</div>
 		</li>
 		<li class="half">

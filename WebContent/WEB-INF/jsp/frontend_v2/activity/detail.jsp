@@ -43,7 +43,7 @@
 					<s:property value="activity.title" />
 				</div>
 				<div class="date_01">
-					發佈日期：<s:date name="activity.createTime" format="yyyy/M/d" />
+					發佈日期：<s:date name="activity.postDate" format="yyyy/MM/dd" />
 				</div>
 				<div class="date_01">
 					資料來源：<s:property value="activity.source" />

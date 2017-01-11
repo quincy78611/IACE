@@ -138,6 +138,7 @@ public class ActivityAction extends BaseIaceAction {
 	
 	private void validateBeforeSubmit() {
 		super.validateNotBlankNLength(this.activity.getTitle(), 200, "activity.title");
+		super.validateNotNull(this.activity.getPostDate(), "activity.postDate");
 		super.validateTextMaxLength(this.activity.getMetaTitle(), 200, "activity.metaTitle");
 	}
 	

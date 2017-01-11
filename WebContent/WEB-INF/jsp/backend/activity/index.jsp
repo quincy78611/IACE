@@ -172,11 +172,11 @@
 				<thead>
 					<tr>
 						<th nowrap width="3%">No.</th>
-						<th nowrap width="8%">發布日</th>
-						<th nowrap width="">分類</th>
+						<th nowrap width="8%">發布日期</th>
+						<th nowrap width="8%">分類</th>
 						<th nowrap width="">標題</th>
 						<th nowrap width="7%">瀏覽次數</th>
-						<th nowrap width="">功能</th>
+						<th nowrap width="23%">功能</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -186,7 +186,7 @@
 								<td>
 									<s:property value="%{activityPagedList.itemStart + #stat.count -1}" />
 								</td>
-								<td><s:date name="createTime" format="yyyy/M/d"/></td>
+								<td><s:date name="postDate" format="yyyy/MM/dd"/></td>
 								<td><s:property value="category" /></td>	
 								<td><s:property value="title" /></td>
 								<td><s:property value="clickNum" /></td>

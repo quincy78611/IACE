@@ -75,7 +75,7 @@
 												<s:param name="searchCondition.pageIndex" value="searchCondition.pageIndex" />
 												<s:param name="searchCondition.pageSize" value="searchCondition.pageSize" />
 											</s:url>
-											<td class="date_01"><s:date name="createTime" format="yyyy/M/d"/></td>
+											<td class="date_01"><s:date name="postDate" format="yyyy/MM/dd"/></td>
 											<td><a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01"><s:property value="title"/></a></td>
 										</tr>
 									</s:iterator>
@@ -83,7 +83,6 @@
 							</tbody>
 						</table>
 					</div>
-					<div class="line_solid"></div>
 					<!-- 換頁 -->
 					<s:include value="./pagination.jsp" />
 				</s:form>

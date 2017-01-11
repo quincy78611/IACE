@@ -55,6 +55,7 @@ public class NewsDao extends BaseIaceDao<News> implements INewsDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
+			criteria.addOrder(Order.desc("postDate"));
 			criteria.addOrder(Order.desc("createTime"));
 			
 			criteria.setFirstResult(results.getItemStart()-1);

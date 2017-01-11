@@ -83,7 +83,7 @@
 												<s:property value="title" />
 											</a>
 										</div>
-										<div class="date_01">日期：<s:date name="createTime" format="yyyy/M/d" /></div>
+										<div class="date_01">日期：<s:date name="postDate" format="yyyy/MM/dd" /></div>
 										<div class="date_01">地點：<s:property value="actAddress" /></div>
 										<div class="top10 truncate_list"><s:property value="contentWithoutHTML"/></div>
 									</div>

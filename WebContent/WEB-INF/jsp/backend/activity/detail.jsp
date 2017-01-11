@@ -41,10 +41,16 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 				<s:property value="activity.title"/>
 			</div>
 		</li>
-		<li class="all">
+		<li class="half">
 			<b>來源</b>
 			<div class="border-text">
 				<s:property value="activity.source"/>
+			</div>
+		</li>
+		<li class="half">
+			<b>發布日期</b>
+			<div class="border-text">
+				<s:date name="activity.postDate" format="yyyy/MM/dd"/>
 			</div>
 		</li>
 		<li class="half">

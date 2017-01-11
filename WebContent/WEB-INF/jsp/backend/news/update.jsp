@@ -115,9 +115,17 @@ table.table-files .label-fileName { min-height:35px; padding: 0px 5px; }
 				<b>標題</b>
 				<s:textfield name="news.title" maxlength="200"/>
 			</li>
-			<li class="half">
+			<li class="all">
 				<b>來源</b>
 				<s:textfield name="news.source" maxlength="200"/>
+			</li>
+			<li class="half">
+				<b>發布日期</b>
+				<s:textfield name="news.postDate" cssClass="calendarBox" maxlength="10">
+					<s:param name="value">
+						<s:date name="news.postDate" format="yyyy/MM/dd" /> 
+					</s:param>
+				</s:textfield>
 			</li>
 			<li class="half">
 				<b>分類</b>

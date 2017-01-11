@@ -36,7 +36,7 @@
 			<!-- 右列表 -->
 			<div class="col-sm-9 col-xs-12 bottom20">
 				<div class="large_title_03"><s:property value="news.title"/></div>
-				<div class="date_01">發佈日期：<s:date name="news.createTime" format="yyyy/M/d"/></div>
+				<div class="date_01">發佈日期：<s:date name="news.postDate" format="yyyy/MM/dd"/></div>
 				<div class="date_01">資料來源：<s:property value="news.source"/></div>
 				<div class="content_01">
 					<div class="list-inline text-right" style="margin-bottom: 0;">

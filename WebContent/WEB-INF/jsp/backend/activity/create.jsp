@@ -39,9 +39,17 @@ tr.hidden-sample-tr { display:none; }
 				<b>標題</b>
 				<s:textfield name="activity.title" maxlength="200"/>
 			</li>
-			<li class="all">
+			<li class="half">
 				<b>來源</b>
 				<s:textfield name="activity.source" maxlength="200"/>
+			</li>
+			<li class="half">
+				<b>發布日期</b>
+				<s:textfield name="activity.postDate" cssClass="calendarBox" maxlength="10">
+					<s:param name="value">
+						<s:date name="activity.postDate" format="yyyy/MM/dd" /> 
+					</s:param>
+				</s:textfield>
 			</li>
 			<li class="half">
 				<b>分類</b>
