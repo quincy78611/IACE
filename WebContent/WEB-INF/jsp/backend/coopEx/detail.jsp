@@ -110,7 +110,7 @@
 					</s:url>					
 					<video 
 						src="<s:property value="downloadVideoUrl" />" 
-						controls="controls" preload="none"
+						controls="controls" preload="metadata"
 						style="max-width:120px; max-height:120px;">
 					</video>
 				</td>

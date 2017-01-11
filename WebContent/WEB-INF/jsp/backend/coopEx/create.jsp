@@ -95,7 +95,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 				<tr class="hidden-sample-tr">
 					<td width="15%">
 						<video 
-							controls="controls" preload="none"
+							controls="controls" preload="metadata"
 							style="max-width:120px; max-height:120px;">
 						</video>
 					</td>

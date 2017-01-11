@@ -51,7 +51,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 							</s:url>
 							<video 
 								src="<s:property value="downloadVideoUrl" />" 
-								controls="controls" preload="none"
+								controls="controls" preload="metadata"
 								style="width:295px; height:150px;"
 								>
 							</video>

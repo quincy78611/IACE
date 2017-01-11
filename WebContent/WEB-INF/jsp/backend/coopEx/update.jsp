@@ -151,7 +151,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 					<s:hidden class="fileName"/>
 					<td width="15%">
 						<video 
-							controls="controls" preload="none"
+							controls="controls" preload="metadata"
 							style="max-width:120px; max-height:120px;">
 						</video>
 					</td>
@@ -187,7 +187,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 						</s:url>					
 						<video 
 							src="<s:property value="downloadVideoUrl" />" 
-							controls="controls" preload="none"
+							controls="controls" preload="metadata"
 							style="max-width:120px; max-height:120px;">
 						</video>
 					</td>
