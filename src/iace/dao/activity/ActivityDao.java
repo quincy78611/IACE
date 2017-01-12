@@ -117,6 +117,7 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			criteria.add(Restrictions.eq("homeDisplayStatus", true));
+			criteria.addOrder(Order.desc("postDate"));
 			criteria.addOrder(Order.desc("createTime"));
 			criteria.setMaxResults(5);
 			
