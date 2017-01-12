@@ -390,7 +390,7 @@ public class ResearchPlan extends BaseEntity implements IntegrationSearch {
 		String content = 
 				this.name + " " +
 				this.manager + " " +
-				this.projkey;
+				this.keyword;
 		return content;
 	}
 
