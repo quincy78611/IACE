@@ -37,7 +37,7 @@
 								</s:url>
 							
 								<div class="truncate2">
-									<span class="date_01"><s:date name="createTime" format="yyyy/MM/dd" /></span>&nbsp;
+									<span class="date_01"><s:date name="postDate" format="yyyy/MM/dd" /></span>&nbsp;
 									<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01">
 										<s:property value="title" />
 									</a>
@@ -77,7 +77,7 @@
 								</td>
 								<td style="border:none;">
 									<div class="truncate2">
-										<span class="date_01"><s:date name="createTime" format="yyyy/MM/dd" /></span>&nbsp;
+										<span class="date_01"><s:date name="postDate" format="yyyy/MM/dd" /></span>&nbsp;
 										
 										<s:url value="/f2/activity/showDetail" var="detailUrlTag" escapeAmp="false">
 											<s:param name="id" value="id" />
