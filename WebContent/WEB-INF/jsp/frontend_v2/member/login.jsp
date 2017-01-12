@@ -45,7 +45,7 @@
 					<img src="<s:url value="/images/frontend-v2/member_icon_01.jpg"/>" alt="" width="150" />
 				</div>
 				<div class="content_01 top10 text-center">
-					歡迎蒞臨『使用Link-IAC網站會員帳號登入 』網站，請立即進行登入程序， 享用本網站會員專屬服務！<br> 若有疑問，歡迎 聯絡我們，我們將提供您完善的答覆與服務。
+					歡迎蒞臨『使用I-ACE網站會員帳號登入 』網站，請立即進行登入程序， 享用本網站會員專屬服務！<br> 若有疑問，歡迎 聯絡我們，我們將提供您完善的答覆與服務。
 				</div>
 				<div class="content_01 well top10">
 					<s:form action="loginSubmit" method="post" validate="true" class="form-horizontal">

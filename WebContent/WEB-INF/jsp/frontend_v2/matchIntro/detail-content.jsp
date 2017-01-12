@@ -7,6 +7,9 @@
 <div class="about_cont">
 	<table>
 		<tr>
+			<td><img src="<s:url value="/images/matchIntro/web-產學媒合服務團圖片.png"/>" style="max-width:100%; max-height:auto;"></td>
+		</tr>
+		<tr>
 			<td height="40" valign="middle" style="margin: 0px; padding: 0px; color: #416ebd; font-weight: bold; font-size: 16px;">產學媒合服務團的業務為：</td>
 		</tr>
 		<tr>
@@ -22,8 +25,7 @@
 			<td>&nbsp;</td>
 		</tr>
 		<tr>
-			
-			<td><img src="<s:url value="/images/matchIntro/box1.png"/>" width="731" height="30"></td>
+			<td><img src="<s:url value="/images/matchIntro/box1.png"/>" style="max-width:100%; max-height:auto;"></td>
 		</tr>
 		<tr>
 			<td height="40"><span class="txt_6" style="margin: 0px; padding: 0px; font-size: 22px; font-weight: bold; color: #0099cc;">產學媒合服務團諮詢服務類型</span></td>
@@ -32,7 +34,7 @@
 			<td></td>
 		</tr>
 		<tr>
-			<td><img src="<s:url value="/images/matchIntro/match-02.jpg"/>" width="730" height="auto" alt=""></td>
+			<td><img src="<s:url value="/images/matchIntro/match-02.jpg"/>" style="max-width:100%; max-height:auto;"></td>
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
@@ -50,13 +52,13 @@
 		</tr>
 
 		<tr>
-			<td><img src="<s:url value="/images/matchIntro/box1.png"/>" width="731" height="30"></td>
+			<td><img src="<s:url value="/images/matchIntro/box1.png"/>" style="max-width:100%; max-height:auto;"></td>
 		</tr>
 		<tr>
 			<td height="40" valign="middle" style="margin: 0px; padding: 0px; font-size: 22px; font-weight: bold; color: #0099cc;">產學合作計畫目的對應圖</td>
 		</tr>
 		<tr>
-			<td><img src="<s:url value="/images/matchIntro/match-01.jpg"/>" width="730" height="459" alt=""></td>
+			<td><img src="<s:url value="/images/matchIntro/match-01.jpg"/>" style="max-width:100%; max-height:auto;"></td>
 		</tr>
 	</table>
 </div>
