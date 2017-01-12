@@ -22,7 +22,7 @@
 			<div class="col-sm-12 col-xs-12">
 				<div>
 					<div class="large_title_01">
-						<i class="fa fa-file-text-o" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>影片專區
+						<i class="fa fa-file-text-o" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>影音專區
 					</div>
 					<div class="line_blue">&nbsp;</div>
 					<div class="line_gray1px bottom20"></div>

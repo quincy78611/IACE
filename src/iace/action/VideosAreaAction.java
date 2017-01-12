@@ -29,7 +29,7 @@ public class VideosAreaAction extends BaseIaceAction {
 	private InputStream downloadFileInputStream;
 	
 	public VideosAreaAction() {
-		super.setTitle("影片專區");
+		super.setTitle("影音專區");
 	}
 	
 	public String init() {
