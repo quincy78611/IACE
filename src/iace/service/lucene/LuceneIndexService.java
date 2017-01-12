@@ -1,5 +1,6 @@
 package iace.service.lucene;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public class LuceneIndexService {
 	private IIndustryInfoDao industryInfoDao;
 	private INewsDao newsDao;
 
-	private String luceneIndexFolder;
+	private String integrationSearchIndexFolder;
 
 	public LuceneIndexService(
 			ITechnologyDao technologyDao, 
@@ -83,7 +84,7 @@ public class LuceneIndexService {
 		Properties prop = new Properties();
 		try {
 			prop.load(this.getClass().getClassLoader().getResourceAsStream("configs/iace.properties"));
-			this.luceneIndexFolder = prop.getProperty("luceneIndexFolder");
+			this.integrationSearchIndexFolder = prop.getProperty("luceneIndexFolder") + File.separator +"IntegrationSearch";
 		} catch (IOException e) {
 			log.fatal("", e);
 		}
@@ -92,7 +93,7 @@ public class LuceneIndexService {
 	// rebuild the whole index
 	public void rebuildIndex() throws IOException {
 		synchronized (IntegrationIndexer.lock) {
-			Directory indexDirectory = IntegrationIndexer.openDirectory(this.luceneIndexFolder);
+			Directory indexDirectory = IntegrationIndexer.openDirectory(this.integrationSearchIndexFolder);
 			IndexWriter writer = IntegrationIndexer.createIndexWriter(indexDirectory);
 			try {
 				writer.deleteAll(); writer.commit();
@@ -249,7 +250,7 @@ public class LuceneIndexService {
 	}	
 
 	public PagedList<IntegrationSearchResult> integrationSearch(IntegrationSearchModel arg) throws IOException, ParseException {
-		Directory indexDirectory = IntegrationIndexer.openDirectory(luceneIndexFolder);
+		Directory indexDirectory = IntegrationIndexer.openDirectory(this.integrationSearchIndexFolder);
 		IndexReader reader = IntegrationIndexer.createIndexReader(indexDirectory);
 		try {
 			PagedList<Document> docs = IntegrationIndexer.searchBy(reader, arg);

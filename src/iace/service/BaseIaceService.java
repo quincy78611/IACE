@@ -1,5 +1,6 @@
 package iace.service;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -18,7 +19,7 @@ import iace.entity.sys.SysUser;
 import lucene.integrationSearch.IntegrationIndexer;
 
 public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> {
-	protected String luceneIndexFolder;
+	protected String integrationSearchIndexFolder;
 	
 	protected IBaseIaceDao<T> dao;
 	
@@ -28,7 +29,7 @@ public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> 
 		Properties prop = new Properties();
 		try {
 			prop.load(this.getClass().getClassLoader().getResourceAsStream("configs/iace.properties"));
-			this.luceneIndexFolder = prop.getProperty("luceneIndexFolder");
+			this.integrationSearchIndexFolder = prop.getProperty("luceneIndexFolder") + File.separator +"IntegrationSearch";
 		} catch (IOException e) {
 			log.fatal("", e);
 		}
@@ -76,9 +77,14 @@ public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> 
 		}
 	}
 	
+	/**
+	 * Add Document to integration search LUCENE index
+	 * @param entity
+	 * @throws IOException
+	 */
 	public void addDocToIndex(IntegrationSearch entity) throws IOException {
 		synchronized (IntegrationIndexer.lock) {
-			Directory indexDirectory = IntegrationIndexer.openDirectory(luceneIndexFolder);
+			Directory indexDirectory = IntegrationIndexer.openDirectory(this.integrationSearchIndexFolder);
 			IndexWriter writer = IntegrationIndexer.createIndexWriter(indexDirectory);
 			try {
 				IntegrationIndexer.addDoc(writer, entity.getId(), entity.getClass(), entity.toLunceneContent());
@@ -134,9 +140,15 @@ public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> 
 		}
 	}
 	
+	/**
+	 * update Document to integration search LUCENE index
+	 * @param entity
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public void updateDocToIndex(IntegrationSearch entity) throws IOException, ParseException {
 		synchronized (IntegrationIndexer.lock) {
-			Directory indexDirectory = IntegrationIndexer.openDirectory(luceneIndexFolder);
+			Directory indexDirectory = IntegrationIndexer.openDirectory(this.integrationSearchIndexFolder);
 			IndexWriter writer = IntegrationIndexer.createIndexWriter(indexDirectory);
 			try {
 				IntegrationIndexer.updateDoc(writer, entity.getId(), entity.getClass(), entity.toLunceneContent());
@@ -192,16 +204,24 @@ public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> 
 		delete(id);
 	}
 	
+	/**
+	 * delete Document from integration search LUCENE index
+	 * @param entity
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public void deleteDocFromIndex(T entity) throws IOException, ParseException {
-		Directory indexDirectory = IntegrationIndexer.openDirectory(luceneIndexFolder);
-		IndexWriter writer = IntegrationIndexer.createIndexWriter(indexDirectory);
-		try {
-			IntegrationIndexer.deleteDoc(writer, entity.getId(), entity.getClass());
-		} catch (ParseException e) {
-			throw e;
-		} finally {
-			writer.close();
-			indexDirectory.close();
+		synchronized (IntegrationIndexer.lock) {
+			Directory indexDirectory = IntegrationIndexer.openDirectory(this.integrationSearchIndexFolder);
+			IndexWriter writer = IntegrationIndexer.createIndexWriter(indexDirectory);
+			try {
+				IntegrationIndexer.deleteDoc(writer, entity.getId(), entity.getClass());
+			} catch (ParseException e) {
+				throw e;
+			} finally {
+				writer.close();
+				indexDirectory.close();
+			}
 		}
 	}
 	
