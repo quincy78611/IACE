@@ -3,7 +3,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
 <s:if test='%{#session.sysUser.hasNamespaceStartWith("/videosArea")}'>
-	<li><a href="#">影片專區</a>
+	<li><a href="#">影音專區</a>
 		<ul>
 			<s:if test='%{#session.sysUser.hasAuth("/videosArea", "init")}'>
 				<li><a href="<s:url value="/videosArea/init"/>">編輯管理</a></li>
