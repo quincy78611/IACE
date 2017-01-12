@@ -8,7 +8,7 @@
 	<constant name="struts.devMode" value="true" />
 	<!-- <constant name="struts.ui.theme" value="simple"/> -->
 	<constant name="struts.ui.theme" value="bootstrap" />
-	<constant name="struts.multipart.maxSize" value="-1" />
+	<constant name="struts.multipart.maxSize" value="2147483648" />
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/> 
 	
 
