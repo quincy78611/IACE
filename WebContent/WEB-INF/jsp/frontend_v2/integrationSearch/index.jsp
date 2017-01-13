@@ -15,7 +15,7 @@
 	});
 </script>
 <style>
-.highlight {background-color: #FFFF00}
+#search-result-list .highlight {background-color: #FFFF00}
 </style>
 </head>
 <body>
@@ -37,21 +37,21 @@
 				<s:include value="./pc_menu.jsp" />
 			
 				<!-- 搜尋輸入區塊 -->
-		        <div class="col-sm-12 col-xs-12">
-		        	<div class="well">
-		                <form class="form-group">
-		                    <div class="row">
-		                        <div class="col-sm-8 col-xs-12">
-		                        	<s:textfield name="searchCondition.searchText" class="form-control" placeholder="搜尋" style="font-size:18px"/>
-		                        </div>
-		                        <div class="col-sm-4 col-xs-12">
-		                        	<button type="submit" class="btn btn-primary" id="btn-search"><i class="fa fa-search-plus right5" aria-hidden="true"></i><span style="font-size:18px">搜尋</span></button>&nbsp;
+				<div class="col-sm-12 col-xs-12">
+					<div class="well">
+						<form class="form-group">
+							<div class="row">
+								<div class="col-sm-8 col-xs-12">
+									<s:textfield name="searchCondition.searchText" class="form-control" placeholder="搜尋" style="font-size:18px"/>
+								</div>
+								<div class="col-sm-4 col-xs-12">
+									<button type="submit" class="btn btn-primary" id="btn-search"><i class="fa fa-search-plus right5" aria-hidden="true"></i><span style="font-size:18px">搜尋</span></button>&nbsp;
 									<button type="button" class="btn btn-default" id="btn-reset"><span style="font-size:18px">清除</span></button>
-		                        </div>
-		                    </div>
-		                </form>
-		            </div>
-		        </div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
 
@@ -63,6 +63,9 @@
 			<div class="row">
 				<s:include value="./pagination_top.jsp" />
 			</div>
+			<s:if test="searchCondition.className == 'iace.entity.researchPlan.Technology'">
+				<s:include value="./researchPlanManagerGraph.jsp" />
+			</s:if>
 			<div class="row" id="search-result-list">
 				<s:if test="pagedList.list.size == 0">
 					<label style="font-size:24px; color:#FF0033;">查無資料，請重新查詢!</label>

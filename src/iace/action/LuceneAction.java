@@ -6,16 +6,21 @@ import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 import core.util.PagedList;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.incubationCenter.IncubationCenter;
 import iace.entity.literature.Literature;
 import iace.entity.option.BaseOption;
 import iace.entity.patent.Patent;
+import iace.entity.researchPlan.ResearchPlanManagerSearchResult;
 import iace.entity.researchPlan.Technology;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.service.ServiceFactory;
 import iace.service.lucene.LuceneIndexService;
+import iace.service.researchPlan.ResearchPlanService;
 import lucene.integrationSearch.IntegrationSearchModel;
 import lucene.integrationSearch.IntegrationSearchResult;
 
@@ -24,9 +29,12 @@ public class LuceneAction extends BaseIaceAction {
 	private static final long serialVersionUID = 7669450808497278799L;
 
 	private LuceneIndexService luceneIndexService = ServiceFactory.getLuceneIndexService();
+	private ResearchPlanService researchPlanService = ServiceFactory.getResearchPlanService();
 	
 	private IntegrationSearchModel searchCondition = new IntegrationSearchModel();
 	private PagedList<IntegrationSearchResult> pagedList;
+	private List<ResearchPlanManagerSearchResult> rpManagerList;
+	private String rpManagerJsonString;
 	
 	public LuceneAction() {
 		super.setTitle("Lucene全文檢索");
@@ -42,6 +50,7 @@ public class LuceneAction extends BaseIaceAction {
 		try {
 			Date d1 = new Date();
 			this.luceneIndexService.rebuildIndex();
+			this.researchPlanService.rebuildResearchPlanIndex();
 			Date d2 = new Date();
 			long spendSec = (d2.getTime()-d1.getTime())/1000;
 			this.addActionMessage("索引重建完成!用時"+spendSec+"秒.");
@@ -66,11 +75,52 @@ public class LuceneAction extends BaseIaceAction {
 	public String integrationSearch() {
 		try {
 			this.pagedList = this.luceneIndexService.integrationSearch(this.searchCondition);
+			if (StringUtils.equals(this.searchCondition.getClassName(), Technology.class.getName())) {
+				this.rpManagerList = this.researchPlanService.searchManagerFromResearchPlanIndex(this.searchCondition.getSearchText());	
+				generateResearchPlanManagersJsonString();
+			}
+			
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
+	}
+	
+	private void generateResearchPlanManagersJsonString() {
+		JsonArray nodes = new JsonArray();
+		JsonArray links = new JsonArray();
+		{
+			JsonObject node = new JsonObject();
+			String name = this.searchCondition.getSearchText();
+			node.addProperty("name", name);
+			node.addProperty("width", name.length()*13+10);
+			node.addProperty("height", 20);
+			node.addProperty("type", "type-keyword");
+			nodes.add(node);
+		}
+		for (int i = 0; i<this.rpManagerList.size(); i++) {
+			ResearchPlanManagerSearchResult rpM = this.rpManagerList.get(i);
+			
+			JsonObject node = new JsonObject();
+			String name = rpM.getManager() + "：" + rpM.getResearchPlanCount();
+			node.addProperty("name", name);
+			node.addProperty("width", name.length()*13+10);
+			node.addProperty("height", 20);
+			node.addProperty("type", "type-manager");
+			nodes.add(node);
+			
+			JsonObject link = new JsonObject();
+			link.addProperty("source", 0);
+			link.addProperty("target", i+1);
+			links.add(link);
+		}
+		
+		JsonObject result = new JsonObject();
+		result.add("nodes", nodes);
+		result.add("links", links);
+		
+		this.rpManagerJsonString = result.toString();
 	}
 
 	public IntegrationSearchModel getSearchCondition() {
@@ -89,6 +139,14 @@ public class LuceneAction extends BaseIaceAction {
 		this.pagedList = pagedList;
 	}
 	
+	public List<ResearchPlanManagerSearchResult> getRpManagerList() {
+		return rpManagerList;
+	}
+	
+	public String getRpManagerJsonString() {
+		return rpManagerJsonString;
+	}
+
 	public List<BaseOption> getClassList() {
 		List<BaseOption> list = new ArrayList<BaseOption>();
 		list.add(new BaseOption(Technology.class.getName(), "研發成果"));
