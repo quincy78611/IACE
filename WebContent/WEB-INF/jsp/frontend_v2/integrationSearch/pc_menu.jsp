@@ -4,15 +4,15 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".classNameBtn").click(function(){
-			$(".search_icon_active").removeClass("search_icon_active").addClass("search_icon");
+		$(".pc_menu .classNameBtn").click(function(){
+			$(".pc_menu .search_icon_active").removeClass("search_icon_active").addClass("search_icon");
 			$(this).addClass("search_icon_active");
 			var className = $(this).find(".classNameValue").val();
 			$("input[name='searchCondition.className']").val(className);	
 		});
 		
 		var className = $("input[name='searchCondition.className']").val();
-		$(".classNameValue[value='"+className+"']").parents(".classNameBtn").trigger("click");
+		$(".pc_menu .classNameValue[value='"+className+"']").parents(".classNameBtn").trigger("click");
 	});
 </script>
 
