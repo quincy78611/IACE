@@ -22,6 +22,7 @@ import org.hibernate.annotations.FetchMode;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
+import core.util.StringUtil;
 import iace.entity.BaseLinkiacEntity;
 
 @Entity
@@ -86,8 +87,7 @@ public class VideosArea extends BaseLinkiacEntity {
 	
 	@Transient
 	public String getContentWithoutHTML() {
-		String replace = this.content.replaceAll("\\<[^>]*>","");
-		return replace;
+		return StringUtil.filterHtml(this.content);
 	}
 
 	@Column(name = "ACT_DATE")

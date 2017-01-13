@@ -21,6 +21,7 @@ import org.hibernate.annotations.FetchMode;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
+import core.util.StringUtil;
 import iace.entity.BaseLinkiacEntity;
 import iace.entity.IntegrationSearch;
 import iace.entity.option.BaseOption;
@@ -119,8 +120,7 @@ public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 	
 	@Transient
 	public String getContentWithoutHTML() {
-		String replace = this.content.replaceAll("\\<[^>]*>","");
-		return replace;
+		return StringUtil.filterHtml(this.content);
 	}
 
 	@Column(name = "ACT_DATE")

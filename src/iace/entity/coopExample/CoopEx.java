@@ -20,6 +20,7 @@ import org.hibernate.annotations.FetchMode;
 
 import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
+import core.util.StringUtil;
 import iace.entity.BaseEntity;
 import iace.entity.IntegrationSearch;
 import iace.entity.option.BaseOption;
@@ -130,8 +131,7 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 	
 	@Transient
 	public String getContentWithoutHTML() {
-		String replace = this.content.replaceAll("\\<[^>]*>","");
-		return replace;
+		return StringUtil.filterHtml(this.content);
 	}
 	
 	@Transient

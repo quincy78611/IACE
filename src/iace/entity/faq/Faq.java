@@ -12,6 +12,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import core.util.StringUtil;
 import iace.entity.BaseLinkiacEntity;
 import iace.entity.option.BaseOption;
 
@@ -83,8 +84,7 @@ public class Faq extends BaseLinkiacEntity {
 	
 	@Transient
 	public String getContentWithoutHTML() {
-		String replace = this.content.replaceAll("\\<[^>]*>","");
-		return replace;
+		return StringUtil.filterHtml(this.content);
 	}
 
 	@Transient
