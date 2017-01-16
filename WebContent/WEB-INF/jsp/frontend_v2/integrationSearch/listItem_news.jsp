@@ -20,7 +20,11 @@
 					</td>
 					<td width="10%" style="border: none;" class="date_01">主題</td>
 					<td style="border: none;">
-						<a href="#" class="list_link_01">
+						<s:url value="/f2/news/showDetail" var="detailUrlTag" escapeAmp="false">
+							<s:param name="id" value="news.id" />
+							<s:param name="searchCondition.category" value="news.category" />
+						</s:url> 
+						<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank">
 							<s:property value="news.title"/>
 						</a>
 					</td>

@@ -104,7 +104,7 @@
 						<s:if test='industryInfo != null'>
 							<s:include value="./listItem_industryInfo.jsp" />
 						</s:if>
-						<!-- 產業情報 -->
+						<!-- 公告訊息 -->
 						<s:if test='news != null'>
 							<s:include value="./listItem_news.jsp" />
 						</s:if>
