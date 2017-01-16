@@ -34,18 +34,7 @@
 					<div class="list-inline text-right" style="margin-bottom: 0;">
 						<s:include value="../share-buttons.jsp" />
 					</div>				
-					<ul class="list-inline text-right" style="margin-bottom: 0;">
-						<li class="nopadding">
-							<button type="button" class="btn btn-default">
-								<i class="fa fa-minus-square right5" aria-hidden="true"></i>縮小
-							</button>
-						</li>
-						<li class="nopadding">
-							<button type="button" class="btn btn-default">
-								<i class="fa fa-plus-square right5" aria-hidden="true"></i>放大
-							</button>
-						</li>
-					</ul>
+					<s:include value="../font-size-btns.jsp" />
 				</div>
 				<div class="clearfix"></div>
 				<div class="well well-sm top10">
