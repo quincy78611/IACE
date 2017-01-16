@@ -7,7 +7,7 @@
 		<table class="table content_03" style="margin-bottom: 0;">
 			<tbody>
 				<tr>
-					<td width="10%" style="border: none;">
+					<td width="10%" style="border: none;" class="category">
 						<h4>
 							<span class="label label-pink">公告訊息</span>
 						</h4>

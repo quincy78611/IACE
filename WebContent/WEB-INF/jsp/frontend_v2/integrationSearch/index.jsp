@@ -11,12 +11,24 @@
 			$("select").prop('selectedIndex', 0);
 		});
 	
-		$("#search-result-list").highlight('<s:property value="searchCondition.searchText"/>');
-		
+		highlightKeyword();
+	
 		$(".list-item").click(function(){
 			$(this).find("a")[0].click();
 		});
 	});
+</script>
+<script>
+	function highlightKeyword() {
+		var searchText = '<s:property value="searchCondition.searchText"/>';
+		var keywords = searchText.trim().split(" ");
+		for (var i=0; i<keywords.length; i++) {
+			var keyword = keywords[i].toLowerCase().trim();
+			if (keyword != "and" && keyword != "or") {
+				$("#search-result-list .list-item td").not(".category, .date_01").highlight(keyword);
+			}
+		}
+	}
 </script>
 <style>
 #search-result-list .highlight {background-color: #FFFF00}
@@ -103,7 +115,7 @@
 							</s:if>
 							<!-- 法規政策 -->
 							<s:if test='literature != null'>
-								<s:include value="./ListItem_policyAndLiterature.jsp" />
+								<s:include value="./listItem_policyAndLiterature.jsp" />
 							</s:if>
 							<!-- 活動/人培 -->
 							<s:if test='activity != null'>

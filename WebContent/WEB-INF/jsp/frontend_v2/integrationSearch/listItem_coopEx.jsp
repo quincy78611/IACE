@@ -7,7 +7,7 @@
 		<table class="table content_03" style="margin-bottom: 0;">
 			<tbody>
 				<tr>
-					<td width="10%" style="border: none;"><h4>
+					<td width="10%" style="border: none;" class="category"><h4>
 						<span class="label label-primary">合作案例</span>
 					</h4></td>
 					<td width="10%" style="border: none;" class="date_01">標題</td>
