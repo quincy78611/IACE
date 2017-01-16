@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>運用法人鏈結產學合作計畫</title>
+<title>鏈結產學媒合平台(I-ACE)</title>
 
 <script type="text/javascript" src="<s:url value="/scripts/jquery-1.11.2.min.js"/>"></script>
 <script type="text/javascript" src="<s:url value="/scripts/jquery.validate.js"/>"></script>
