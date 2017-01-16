@@ -130,6 +130,24 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			HibernateSessionFactory.closeSession();
 		}
 	}
+
+	@Override
+	public List<Activity> popular(int resultNum) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.addOrder(Order.desc("clickNum"));
+			criteria.setMaxResults(resultNum);
+			
+			@SuppressWarnings("unchecked")
+			List<Activity> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 	
 	
 }

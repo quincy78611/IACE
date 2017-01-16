@@ -13,4 +13,11 @@ public interface IActivityDao extends IBaseIaceDao<Activity> {
 	public long queryTotalRecordsCount(ActivitySearchModel arg);
 	
 	public List<Activity> sampleForHomePage();
+	
+	/**
+	 * Get most popular activities
+	 * @param resultNum 
+	 * @return
+	 */
+	public List<Activity> popular(int resultNum);
 }

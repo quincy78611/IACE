@@ -37,6 +37,10 @@ public class ActivityService extends BaseIaceService<Activity> {
 		return this.activityDao.sampleForHomePage();
 	}
 	
+	public List<Activity> hot20() {
+		return this.activityDao.popular(20);
+	}
+	
 	@Override
 	public Activity get(Long id) {
 		Activity entity = this.activityDao.get(id);

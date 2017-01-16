@@ -36,6 +36,8 @@ public class HomeAction extends BaseIaceAction {
 	private LiteratureService literatureService = ServiceFactory.getLiteratureService();
 	private RelatedWebsiteService relatedWebsiteService = ServiceFactory.getRelatedWebsiteService();
 	
+	private List<Activity> hot20ActivityList;
+	
 	private List<News> newsList;
 	private List<Activity> activityList;
 	private List<IndustryInfo> industryInfoList1;
@@ -66,6 +68,8 @@ public class HomeAction extends BaseIaceAction {
 	
 	public String init2() {
 		try {
+			this.hot20ActivityList = this.activityService.hot20();
+			
 			this.newsList = this.newsService.sampleForHomePage();
 			this.activityList = this.activityService.sampleForHomePage();
 			this.industryInfoList1 = this.industryInfoService.sampleForHomePage(IndustryInfo.getCategoryList().get(0).getCode());
@@ -88,6 +92,10 @@ public class HomeAction extends BaseIaceAction {
 
 	public List<News> getNewsList() {
 		return newsList;
+	}
+
+	public List<Activity> getHot20ActivityList() {
+		return hot20ActivityList;
 	}
 
 	public List<Activity> getActivityList() {
