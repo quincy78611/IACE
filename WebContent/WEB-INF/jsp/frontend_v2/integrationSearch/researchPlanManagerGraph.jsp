@@ -8,15 +8,7 @@
 #svg-container {
 	width:100%;
 	height:auto;
-	margin: 20px auto 20px auto;
-	text-align: center;
-}
-
-svg {
-	border: 1px #000000 solid;
-	display: block;
-/*   	position: absolute; */
-  	width: 100%;
+	border: 2px #000000 solid;
 }
 
 .node {
@@ -24,7 +16,6 @@ svg {
 	stroke-width: 1px;
 	cursor: move;
 }
-
 .type-keyword {
 	fill: rgb(255, 50, 50);
 }
@@ -34,26 +25,42 @@ svg {
 
 .link {
 	stroke: #999;
-	stroke-width: 3px;
+	stroke-width: 1px;
 	stroke-opacity: 1;
 }
 
 .label {
 	fill: #ffffff;
 	font-family: Verdana;
-	font-size: 0.9em;
+	font-size: 0.8em;
 	text-anchor: middle;
 	cursor: move;
 }
 </style>
 
-<div id="svg-container"></div>
+<button class="btn btn-default btn-open btn-svg-toggle" type="button">
+	<i class="fa fa-plus right5" aria-hidden="true"></i>展開網絡圖
+</button>
+<button class="btn btn-default btn-close btn-svg-toggle" type="button" style="display: none">
+	<i class="fa fa-minus right5" aria-hidden="true"></i>收合網絡圖
+</button>
+<div id="svg-container">
+</div>
+<label>註：本網絡圖只代表主持人之研究計畫中出現完全相符之關鍵詞</label>
 
 <script>
-	var width = 960, height = 500;
+	$(".btn-svg-toggle").click(function(){
+		$("#svg-container").toggle();
+		$(".btn-svg-toggle").toggle();
+	});
+	$("#svg-container").toggle();
+</script>
+<script>
 	var res_data_jsonString = '<s:property value="rpManagerJsonString"/>'.replace(/&quot;/g,'\"');
 	var res_data = JSON.parse(res_data_jsonString);
-	
+	var width = (res_data.nodes.length^0.5)*10+400;
+	var height = (res_data.nodes.length^0.5)*8+300;
+
 	//==========================================================================
 	
 	var cola = cola.d3adaptor()
@@ -62,8 +69,9 @@ svg {
 		.size([width, height]);
 
 	var svg = d3.select("#svg-container").append("svg")
-		.attr("width", width)
-		.attr("height", height);
+		.attr("viewBox", "0 0 "+width+" "+height);
+// 		.attr("width", width)
+// 		.attr("height", height);
 	
 	cola.nodes(res_data.nodes)
 		.links(res_data.links)

@@ -94,8 +94,8 @@ public class LuceneAction extends BaseIaceAction {
 			JsonObject node = new JsonObject();
 			String name = this.searchCondition.getSearchText();
 			node.addProperty("name", name);
-			node.addProperty("width", name.length()*13+10);
-			node.addProperty("height", 20);
+			node.addProperty("width", name.length()*13+15);
+			node.addProperty("height", 23);
 			node.addProperty("type", "type-keyword");
 			nodes.add(node);
 		}

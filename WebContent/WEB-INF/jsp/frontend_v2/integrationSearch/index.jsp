@@ -60,12 +60,12 @@
 			<div class="row">
 				<s:include value="./index_resultSubTitle.jsp" />
 			</div>
-			<div class="row">
-				<s:include value="./pagination_top.jsp" />
-			</div>
 			<s:if test="searchCondition.className == 'iace.entity.researchPlan.Technology'">
 				<s:include value="./researchPlanManagerGraph.jsp" />
 			</s:if>
+			<div class="row">
+				<s:include value="./pagination_top.jsp" />
+			</div>
 			<div class="row" id="search-result-list">
 				<s:if test="pagedList.list.size == 0">
 					<label style="font-size:24px; color:#FF0033;">查無資料，請重新查詢!</label>

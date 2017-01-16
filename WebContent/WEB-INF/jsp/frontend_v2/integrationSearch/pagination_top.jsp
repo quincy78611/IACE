@@ -9,7 +9,7 @@
 			
 	<!-- 換頁 -->
 	<s:if test="#pgList != null && #pgCount > 0">
-		<div class="text-center top20">
+		<div class="text-center">
 			<input type="submit" value="First" class="btn-first-page page_prev" />
 			<input type="submit" value=&laquo; class="btn-previous-page page_prev" />
 		

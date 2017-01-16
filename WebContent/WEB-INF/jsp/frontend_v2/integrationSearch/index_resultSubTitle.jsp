@@ -8,6 +8,6 @@
 			<i class="fa fa-search" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>查詢結果
 		</div>
 		<div class="line_blue">&nbsp;</div>
-		<div class="line_gray1px bottom20"></div>
+		<div class="line_gray1px bottom5"></div>
 	</div>
 </div>
