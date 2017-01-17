@@ -251,6 +251,12 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  overflow: hidden;
 	  text-overflow: ellipsis;	  
 	}
+	.truncate_hot {
+	  width: 720px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
 	div.center-cropped1 {
 		position: relative;
 		width: 24vw;
@@ -299,6 +305,12 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  -webkit-box-orient: vertical;
 	  overflow: hidden;
 	  text-overflow: ellipsis;	 
+	}
+	.truncate_hot {
+	  width: 620px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
 	}
 	div.center-cropped1 {
 		position: relative;
@@ -349,6 +361,12 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  overflow: hidden;
 	  text-overflow: ellipsis;	 
 	}
+	.truncate_hot {
+	  width: 500px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
 	div.center-cropped1 {
 	position: relative;
 	width: 24vw;
@@ -398,6 +416,12 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  overflow: hidden;
 	  text-overflow: ellipsis;	 
 	}
+	.truncate_hot {
+	  width: 400px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
 	div.center-cropped1 {
 		width: 90vw; /* or whatever is required */
 		height: 60vw;
@@ -443,6 +467,12 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  overflow: hidden;
 	  text-overflow: ellipsis;	 
 	}
+	.truncate_hot {
+	  width: 300px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
 }
 @media screen and (max-width: 560px) {
 	.truncate {
@@ -460,6 +490,12 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  -webkit-box-orient: vertical;
 	  overflow: hidden;
 	  text-overflow: ellipsis;	 
+	}
+	.truncate_hot {
+	  width: 230px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
 	}
 }
 @media screen and (max-width: 460px) {
@@ -479,7 +515,12 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 	  overflow: hidden;
 	  text-overflow: ellipsis;	 
 	}
-
+	.truncate_hot {
+	  width: 150px;
+	  white-space: nowrap;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	}
 }
 
 /*page number*/
