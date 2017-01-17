@@ -11,6 +11,12 @@
 	border: 2px #000000 solid;
 }
 
+svg {
+	width:100%;
+	height:auto;
+/* 	background-color:rgba(200,200,200,0.5); */
+}
+
 .node {
 	stroke: #fff;
 	stroke-width: 1px;
@@ -32,32 +38,41 @@
 .label {
 	fill: #ffffff;
 	font-family: Verdana;
-	font-size: 0.8em;
+	font-size: 12px;
 	text-anchor: middle;
 	cursor: move;
 }
 </style>
 
-<button class="btn btn-default btn-open btn-svg-toggle" type="button">
+<button class="btn btn-default btn-open btn-svg-toggle" id="btn-svg-open" type="button">
 	<i class="fa fa-plus right5" aria-hidden="true"></i>展開網絡圖
 </button>
-<button class="btn btn-default btn-close btn-svg-toggle" type="button" style="display: none">
+<button class="btn btn-default btn-close btn-svg-toggle" id="btn-svg-close" type="button" style="display: none">
 	<i class="fa fa-minus right5" aria-hidden="true"></i>收合網絡圖
 </button>
 <div id="svg-container">
+	<label>註：本網絡圖只代表主持人之研究計畫中出現完全相符之關鍵詞</label>
 </div>
-<label>註：本網絡圖只代表主持人之研究計畫中出現完全相符之關鍵詞</label>
 
 <script>
-	$(".btn-svg-toggle").click(function(){
-		$("#svg-container").toggle();
+	$("#btn-svg-open").click(function(){
+		$("#svg-container").slideDown();
 		$(".btn-svg-toggle").toggle();
 	});
-	$("#svg-container").toggle();
+	$("#btn-svg-close").click(function(){
+		$("#svg-container").slideUp();
+		$(".btn-svg-toggle").toggle();
+	});
+	
+	$(document).ready(function() {
+// 		$("#svg-container").toggle();//不可以用toggle否則在firefox上的Text標籤會無法正確顯示
+		$("#svg-container").fadeOut();
+	}); 
 </script>
 <script>
 	var res_data_jsonString = '<s:property value="rpManagerJsonString"/>'.replace(/&quot;/g,'\"');
 	var res_data = JSON.parse(res_data_jsonString);
+// 	var width = 1280, height = 768;
 	var width = (res_data.nodes.length^0.5)*10+400;
 	var height = (res_data.nodes.length^0.5)*8+300;
 
@@ -69,9 +84,9 @@
 		.size([width, height]);
 
 	var svg = d3.select("#svg-container").append("svg")
-		.attr("viewBox", "0 0 "+width+" "+height);
-// 		.attr("width", width)
-// 		.attr("height", height);
+		.attr("viewBox", "0 0 "+width+" "+height)
+		.attr("width", width)
+		.attr("height", height);
 	
 	cola.nodes(res_data.nodes)
 		.links(res_data.links)
