@@ -55,7 +55,7 @@
 			<s:if test="#session.sysUser != null">
 				<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
 				<a href="<s:url value="/f/talentedPeople/logout"/>" class="login">登出</a>
-				<a href="<s:url value="/login/logout"/>" class="login">回首頁</a>
+				<a href="<s:url value="/f2/home/init"/>" class="login">回首頁</a>
 			</s:if>
 		</div>		
 	</header>
