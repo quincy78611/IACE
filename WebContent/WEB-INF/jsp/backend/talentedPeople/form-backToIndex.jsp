@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 
-<form action="index" method="post" id="form-backToIndex">
+<s:form namespace="/talentedPeople" action="index" method="post" id="form-backToIndex">
 	<s:hidden name="searchCondition.name"/>
 	<s:hidden name="searchCondition.gender"/>
 	<s:hidden name="searchCondition.expYearS"/>
@@ -14,4 +14,4 @@
 	</s:iterator>
 	<s:hidden name="searchCondition.pageIndex"/>
 	<s:hidden name="searchCondition.pageSize"/>
-</form>
+</s:form>

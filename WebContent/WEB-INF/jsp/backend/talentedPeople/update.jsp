@@ -4,21 +4,48 @@
 <html>
 <head>
 <script type="text/javascript" src="<s:url value="/scripts/talentedPeople/headshotFuncSetting.js"/>"></script>
-<script type="text/javascript" src="<s:url value="/scripts/talentedPeople/tableFuncSetting.js"/>"></script>
+<%-- <script type="text/javascript" src="<s:url value="/scripts/talentedPeople/tableFuncSetting.js"/>"></script> --%>
 <script>
 $(document).ready(function() {
-	addSearchConditionHiddenToForm();	
-	$("#btn-back").click(function(){				
+	$("#btn-back").click(function(){
 		$("#form-backToIndex").submit();
 	});
+	
+	var originUrl = '<s:url value="/talentedPeople/updateSubmit"/>';
+	$(".btn-create").click(function(){
+		var url = $(this).siblings(".createUrl").val();
+		$("#form-update").attr('action', url);
+		$("#form-update").submit();
+		$("#form-update").attr('action', originUrl); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+	});
+	$(".btn-edit").click(function() {
+		var url = $(this).siblings(".updateUrl").val();
+		$("#form-update").attr('action', url);
+		$("#form-update").submit();
+		$("#form-update").attr('action', originUrl); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+	});
+	$(".btn-del").click(function(){
+		if (confirm("確定要刪除?")) {
+			var url = $(this).siblings(".deleteUrl").val();
+			$("#form-update").attr('action', url);
+			$("#form-update").submit();
+			$("#form-update").attr('action', originUrl); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+		}
+	});
+	
+	var scrollTo = '<s:property value="scrollTo"/>';
+	if (scrollTo != null && scrollTo != "") {
+		$('html,body').animate({scrollTop:$(scrollTo).offset().top},300);
+	}
 });
 </script>
 <script>
-	function addSearchConditionHiddenToForm() {
+	//addSearchConditionHiddenToForm
+	$(document).ready(function() {
 		$("#form-backToIndex input[type=hidden]").each(function(index){
 			$("#form-update").append($(this).clone());
 		});
-	}
+	});
 </script>
 <style>
 table.table-talentedPeopleInfo { margin-bottom:15px; }
@@ -38,7 +65,7 @@ tr.hidden-sample-tr { display:none; }
 <meta name="funcPathText" content="編輯管理  > 編輯"/>
 </head>
 <body>
-	<s:form action="updateSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-update">
+	<s:form namespace="/talentedPeople" action="updateSubmit" method="post" validate="true" enctype="multipart/form-data" id="form-update">
 		<div>
 			<s:hidden name="talentedPeople.id" />
 			<s:hidden name="talentedPeople.isValid" />
@@ -150,264 +177,224 @@ tr.hidden-sample-tr { display:none; }
 				<s:textfield name="talentedPeople.specialty" maxlength="1000"/>
 			</li>
 		</ul>
+		<div class="clear"></div>
 		
 <!----------------------------------------------------------------------------->
 		
-		<b>重要研發成果(包含:專利,技術,IC佈局, 軟體…..)</b> 
-		<input type="button" id="add-rdResult" value="+"/>
-		<label>
-			<input type="checkbox" name="talentedPeople.isPublicRdResult" value="true" 
-				<s:property value="%{talentedPeople.isPublicRdResult ? 'checked' : ''}"/> />公開
-		</label>
-		<table id="table-rdResult">
-			<thead>
-				<tr>
-					<th width="3%">No.</th>
-					<th>研發成果名稱</th>
-					<th>型式</th>
-					<th>資料更新日期</th>
-					<th width="16%"></th>
-				</tr>
-				<tr class="hidden-sample-tr">
-					<s:hidden class="id" value="0"/>
-					<s:hidden class="name" />
-					<s:hidden class="type" />
-					<s:hidden class="inventer" />
-					<s:hidden class="owner" />
-					<s:hidden class="patentNo" />
-					<s:hidden class="country" />
-					<s:hidden class="patentPeriodStart" />
-					<s:hidden class="patentPeriodEnd" />
-					<s:hidden class="patentAbstract" />
-					<s:hidden class="usage" />
-					<s:hidden class="updateDate" />
-					<s:hidden class="priority" />
-
-					<td class="td-No"></td>
-					<td class="td-name"></td>
-					<td class="td-type"></td>
-					<td class="td-updateDate"></td>
-					<td>
-						<input type="button" class="btn-func btn-edit" value="編輯" />
-						<input type="button" class="btn-func btn-del" value="刪除" />						
-					</td>
-				</tr>				
-			</thead>
-			<tbody>
-				<s:iterator value="talentedPeople.rdResults" status="stat">
-				<tr>
-					<s:hidden class="id" value="%{id}"/>
-					<s:hidden class="isValid" value="%{isValid}"/>
-					<s:hidden class="createTime" value="%{createTime}"/>
-					<s:hidden class="createUser" value="%{createUser}"/>
-					<s:hidden class="updateTime" value="%{updateTime}"/>
-					<s:hidden class="updateUser" value="%{updateUser}"/>
-					<s:hidden class="ver" value="%{ver}"/>
-					<s:hidden class="name" value="%{name}"/>
-					<s:hidden class="type" value="%{type}"/>
-					<s:hidden class="inventer" value="%{inventer}"/>
-					<s:hidden class="owner" value="%{owner}"/>
-					<s:hidden class="patentNo" value="%{patentNo}"/>
-					<s:hidden class="country" value="%{optionCountry.id}"/>
-					<s:hidden class="patentPeriodStart" value="%{patentPeriodStart}"/>
-					<s:hidden class="patentPeriodEnd" value="%{patentPeriodEnd}"/>
-					<s:hidden class="patentAbstract" value="%{patentAbstract}"/>
-					<s:hidden class="usage" value="%{usage}"/>
-					<s:hidden class="updateDate" value="%{updateDate}"/>
-					<s:hidden class="priority" value="%{priority}"/>
-				
-					<td class="td-No">
-						<s:property value="%{#stat.index+1}" />
-					</td>
-					<td class="td-name">
-						<s:property value="name"/>
-					</td>
-					<td class="td-type">
-						<s:property value="type"/>
-					</td>
-					<td class="td-updateDate">
-						<s:property value="updateDate"/>
-					</td>
-					<td>
-						<input type="button" class="btn-func btn-edit" value="編輯" />
-						<input type="button" class="btn-func btn-del" value="刪除" />						
-					</td>
-				</tr>
-				</s:iterator>
-			</tbody>
-		</table>
-
+		<div id="div-rdResult">
+			<div>
+				<b>重要研發成果(包含:專利,技術,IC佈局, 軟體…..)</b> 
+				<s:if test='%{#session.sysUser.hasAuth("/talentedPeopleRdResult", "create")}'>
+					<s:url value="/talentedPeopleRdResult/create" var="createUrlTag" escapeAmp="false">
+						<s:param name="talentedPeopleId" value="talentedPeople.id" />
+						<s:param name="scrollTo" value="%{'#div-rdResult'}" />
+					</s:url>
+					<s:hidden value="%{#createUrlTag}" class="createUrl" disabled="true"/>
+					<input type="button" class="btn-create" value="+" />	
+				</s:if>
+				<label>
+					<input type="checkbox" name="talentedPeople.isPublicRdResult" value="true" 
+						<s:property value="%{talentedPeople.isPublicRdResult ? 'checked' : ''}"/> />公開
+				</label>
+			</div>
+			<table id="table-rdResult">
+				<thead>
+					<tr>
+						<th width="3%">No.</th>
+						<th>研發成果名稱</th>
+						<th>型式</th>
+						<th>資料更新日期</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<s:iterator value="talentedPeople.rdResults" status="stat">
+					<tr>
+						<td><s:property value="%{#stat.index+1}"/></td>
+						<td><s:property value="name"/></td>
+						<td><s:property value="type"/></td>
+						<td><s:property value="updateDate"/></td>
+						<td>
+							<!-- 編輯 -->
+							<s:if test='%{#session.sysUser.hasAuth("/talentedPeopleRdResult", "update")}'>
+								<s:url value="/talentedPeopleRdResult/update" var="updateUrlTag" escapeAmp="false">
+									<s:param name="talentedPeopleId" value="talentedPeople.id" />
+									<s:param name="id" value="id" />
+									<s:param name="scrollTo" value="%{'#div-rdResult'}"/>
+								</s:url>
+								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />
+							</s:if>
+							
+							<!-- 刪除 -->
+							<s:if test='%{#session.sysUser.hasAuth("/talentedPeopleRdResult", "deleteSubmit")}'>
+								<s:url value="/talentedPeopleRdResult/deleteSubmit" var="deleteUrlTag" escapeAmp="false">
+									<s:param name="id" value="id" />
+									<s:param name="scrollTo" value="%{'#div-rdResult'}"/>
+								</s:url>
+								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+								<input type="button" class="btn-func btn-del" value="刪除" />	
+							</s:if>
+						</td>
+					</tr>
+					</s:iterator>
+				</tbody>
+			</table>
+		</div>
 		<div class="clear"></div>
 
 <!----------------------------------------------------------------------------->
-		
-		<b>成果移轉及授權案例</b>
-		<input type="button" id="add-transferCases" value="+"/>
-		<label>
-			<input type="checkbox" name="talentedPeople.isPublicTransferCase" value="true" 
-				<s:property value="%{talentedPeople.isPublicTransferCase ? 'checked' : ''}"/> />公開
-		</label>
-		<table id="table-transferCase">
-			<thead>
-				<tr>
-					<th width="3%">No.</th>
-					<th width="">應用領域</th>
-					<th width="">對象廠商或機構</th>
-					<th width="">時間(授權期間或讓受/技轉時間)</th>
-					<th>資料更新日期</th>
-					<th width="16%"></th>
-				</tr>
-				<tr class="hidden-sample-tr">
-					<s:hidden class="id" value="0" />
-					<s:hidden class="applyField" />
-					<s:hidden class="targetOrg" />
-					<s:hidden class="yearStart" />
-					<s:hidden class="monthStart" />
-					<s:hidden class="yearEnd" />
-					<s:hidden class="monthEnd" />
-					<s:hidden class="updateDate" />
-					<s:hidden class="priority" />
-					
-					<td class="td-No">No.</td>
-					<td class="td-applyField"></td>
-					<td class="td-targetOrg"></td>
-					<td class="td-time"></td>
-					<td class="td-updateDate"></td>
-					<td>
-						<input type="button" class="btn-func btn-edit" value="編輯" />
-						<input type="button" class="btn-func btn-del" value="刪除" />
-					</td>					
-				</tr>
-			</thead>
-			<tbody>
-				<s:iterator value="talentedPeople.transferCases" status="stat">
-				<tr>
-					<s:hidden class="id" value="%{id}"/>
-					<s:hidden class="isValid" value="%{isValid}"/>
-					<s:hidden class="createTime" value="%{createTime}"/>
-					<s:hidden class="createUser" value="%{createUser}"/>
-					<s:hidden class="updateTime" value="%{updateTime}"/>
-					<s:hidden class="updateUser" value="%{updateUser}"/>
-					<s:hidden class="ver" value="%{ver}"/>
-					<s:hidden class="applyField" value="%{applyField}"/>
-					<s:hidden class="targetOrg" value="%{targetOrg}"/>
-					<s:hidden class="yearStart" value="%{yearStart}"/>
-					<s:hidden class="monthStart" value="%{monthStart}"/>
-					<s:hidden class="yearEnd" value="%{yearEnd}"/>
-					<s:hidden class="monthEnd" value="%{monthEnd}"/>
-					<s:hidden class="updateDate" value="%{updateDate}"/>
-					<s:hidden class="priority" value="%{priority}"/>
-				
-					<td class="td-No">
-						<s:property value="%{#stat.index+1}" />
-					</td>
-					<td class="td-applyField">
-						<s:property value="applyField"/>
-					</td>
-					<td class="td-targetOrg">
-						<s:property value="targetOrg"/>
-					</td>
-					<td class="td-time">
-						<s:set var="start" value="%{yearStart+'年'+monthStart+'月'}"/>
-						<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
-						<s:property value="%{#start+(#end != null ? ' ~ '+#end : '')}" />
-					</td>
-					<td class="td-updateDate">
-						<s:property value="updateDate"/>
-					</td>
-					<td>
-						<input type="button" class="btn-func btn-edit" value="編輯" />
-						<input type="button" class="btn-func btn-del" value="刪除" />
-					</td>
-				</tr>
-				</s:iterator>
-			</tbody>		
-		</table>
+		<div id="div-transferCase">
+			<div>
+				<b>成果移轉及授權案例</b>
+				<s:if test='%{#session.sysUser.hasAuth("/talentedPeopleTransferCase", "create")}'>
+					<s:url value="/talentedPeopleTransferCase/create" var="createUrlTag" escapeAmp="false">
+						<s:param name="talentedPeopleId" value="talentedPeople.id" />
+						<s:param name="scrollTo" value="%{'#div-transferCase'}" />
+					</s:url>
+					<s:hidden value="%{#createUrlTag}" class="createUrl" disabled="true"/>
+					<input type="button" class="btn-create" value="+" />
+				</s:if>
+				<label>
+					<input type="checkbox" name="talentedPeople.isPublicTransferCase" value="true" 
+						<s:property value="%{talentedPeople.isPublicTransferCase ? 'checked' : ''}"/> />公開
+				</label>
+			</div>
+			<table id="table-transferCase">
+				<thead>
+					<tr>
+						<th width="3%">No.</th>
+						<th>應用領域</th>
+						<th>對象廠商或機構</th>
+						<th>時間(授權期間或讓受/技轉時間)</th>
+						<th>資料更新日期</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<s:iterator value="talentedPeople.transferCases" status="stat">
+					<tr>
+						<td class="td-No">
+							<s:property value="%{#stat.index+1}" />
+						</td>
+						<td class="td-applyField">
+							<s:property value="applyField"/>
+						</td>
+						<td class="td-targetOrg">
+							<s:property value="targetOrg"/>
+						</td>
+						<td class="td-time">
+							<s:set var="start" value="%{yearStart+'年'+monthStart+'月'}"/>
+							<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
+							<s:property value="%{#start+(#end != null ? ' ~ '+#end : '')}" />
+						</td>
+						<td class="td-updateDate">
+							<s:property value="updateDate"/>
+						</td>
+						<td>
+							<!-- 編輯 -->
+							<s:if test='%{#session.sysUser.hasAuth("/talentedPeopleTransferCase", "update")}'>
+								<s:url value="/talentedPeopleTransferCase/update" var="updateUrlTag" escapeAmp="false">
+									<s:param name="talentedPeopleId" value="talentedPeople.id" />
+									<s:param name="id" value="id" />
+									<s:param name="scrollTo" value="%{'#div-transferCase'}"/>
+								</s:url>
+								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />
+							</s:if>
+							
+							<!-- 刪除 -->
+							<s:if test='%{#session.sysUser.hasAuth("/talentedPeopleTransferCase", "deleteSubmit")}'>
+								<s:url value="/talentedPeopleTransferCase/deleteSubmit" var="deleteUrlTag" escapeAmp="false">
+									<s:param name="id" value="id" />
+									<s:param name="scrollTo" value="%{'#div-transferCase'}"/>
+								</s:url>
+								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+								<input type="button" class="btn-func btn-del" value="刪除" />	
+							</s:if>
+						</td>
+					</tr>
+					</s:iterator>
+				</tbody>
+			</table>
+		</div>
+		<div class="clear"></div>
 
 <!----------------------------------------------------------------------------->
-		
-		<b>主要產學合作計畫案例</b>
-		<input type="button" id="add-mainProject" value="+"/>
-		<label>
-			<input type="checkbox" name="talentedPeople.isPublicMainProject" value="true" 
-				<s:property value="%{talentedPeople.isPublicMainProject ? 'checked' : ''}"/> />公開
-		</label>
-		<table id="table-mainProject">
-			<thead>
-				<tr>
-					<th width="3%">No.</th>
-					<th width="">合作計畫或合約名稱</th>
-					<th width="">合作廠商名稱</th>
-					<th width="">合作有效期間</th>
-					<th>資料更新日期</th>
-					<th width="16%"></th>
-				</tr>
-				<tr class="hidden-sample-tr">
-					<s:hidden class="id" value="0"/>
-					<s:hidden class="name" />
-					<s:hidden class="coopComName" />
-					<s:hidden class="yearStart" />
-					<s:hidden class="monthStart" />
-					<s:hidden class="yearEnd" />
-					<s:hidden class="monthEnd" />
-					<s:hidden class="updateDate" />
-					<s:hidden class="priority" />
-				
-					<td class="td-No"></td>
-					<td class="td-name"></td>
-					<td class="td-coopComName"></td>
-					<td class="td-time"></td>
-					<td class="td-updateDate"></td>
-					<td>
-						<input type="button" class="btn-func btn-edit" value="編輯" />
-						<input type="button" class="btn-func btn-del" value="刪除" />
-					</td>				
-				</tr>
-			</thead>
-			<tbody>
-				<s:iterator value="talentedPeople.mainProjects" status="stat">
-				<tr>
-					<s:hidden class="id" name="%{'talentedPeople.mainProjects['+#stat.index+'].id'}"/>
-					<s:hidden class="isValid" name="%{'talentedPeople.mainProjects['+#stat.index+'].isValid'}"/>
-					<s:hidden class="createTime" name="%{'talentedPeople.mainProjects['+#stat.index+'].createTime'}"/>
-					<s:hidden class="createUser" name="%{'talentedPeople.mainProjects['+#stat.index+'].createUser'}"/>
-					<s:hidden class="updateTime" name="%{'talentedPeople.mainProjects['+#stat.index+'].updateTime'}"/>
-					<s:hidden class="updateUser" name="%{'talentedPeople.mainProjects['+#stat.index+'].updateUser'}"/>
-					<s:hidden class="ver" name="%{'talentedPeople.mainProjects['+#stat.index+'].ver'}"/>
-					<s:hidden class="name" name="%{'talentedPeople.mainProjects['+#stat.index+'].name'}"/>
-					<s:hidden class="coopComName" name="%{'talentedPeople.mainProjects['+#stat.index+'].coopComName'}"/>
-					<s:hidden class="yearStart" name="%{'talentedPeople.mainProjects['+#stat.index+'].yearStart'}"/>
-					<s:hidden class="monthStart" name="%{'talentedPeople.mainProjects['+#stat.index+'].monthStart'}"/>
-					<s:hidden class="yearEnd" name="%{'talentedPeople.mainProjects['+#stat.index+'].yearEnd'}"/>
-					<s:hidden class="monthEnd" name="%{'talentedPeople.mainProjects['+#stat.index+'].monthEnd'}"/>
-					<s:hidden class="updateDate" name="%{'talentedPeople.mainProjects['+#stat.index+'].updateDate'}"/>
-					<s:hidden class="priority" name="%{'talentedPeople.mainProjects['+#stat.index+'].priority'}"/>
-					
-					<td class="td-No">
-						<s:property value="%{#stat.index+1}" />
-					</td>
-					<td class="td-name">
-						<s:property value="name"/>
-					</td>
-					<td class="td-coopComName">
-						<s:property value="coopComName"/>
-					</td>
-					<td class="td-name">
-						<s:set var="start" value="%{yearStart+'年'+monthStart+'月'}"/>
-						<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
-						<s:property value="%{#start+(#end != null ? ' ~ '+#end : '')}" />
-					</td>
-					<td class="td-updateDate">
-						<s:property value="updateDate"/>
-					</td>
-					<td>
-						<input type="button" class="btn-func btn-edit" value="編輯" />
-						<input type="button" class="btn-func btn-del" value="刪除" />
-					</td>									
-				</tr>
-				</s:iterator>
-			</tbody>			
-		</table>
+
+		<div id="div-mainProject">
+			<b>主要產學合作計畫案例</b>
+			<s:if test='%{#session.sysUser.hasAuth("/talentedPeopleMainProject", "create")}'>
+				<s:url value="/talentedPeopleMainProject/create" var="createUrlTag" escapeAmp="false">
+					<s:param name="talentedPeopleId" value="talentedPeople.id" />
+					<s:param name="scrollTo" value="%{'#div-mainProject'}" />
+				</s:url>
+				<s:hidden value="%{#createUrlTag}" class="createUrl" disabled="true"/>
+				<input type="button" class="btn-create" value="+" />
+			</s:if>
+			<label>
+				<input type="checkbox" name="talentedPeople.isPublicMainProject" value="true" 
+					<s:property value="%{talentedPeople.isPublicMainProject ? 'checked' : ''}"/> />公開
+			</label>
+			<table id="table-mainProject">
+				<thead>
+					<tr>
+						<th width="3%">No.</th>
+						<th>合作計畫或合約名稱</th>
+						<th>合作廠商名稱</th>
+						<th>合作有效期間</th>
+						<th>資料更新日期</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<s:iterator value="talentedPeople.mainProjects" status="stat">
+					<tr>
+						<td class="td-No">
+							<s:property value="%{#stat.index+1}" />
+						</td>
+						<td class="td-name">
+							<s:property value="name"/>
+						</td>
+						<td class="td-coopComName">
+							<s:property value="coopComName"/>
+						</td>
+						<td class="td-name">
+							<s:set var="start" value="%{yearStart+'年'+monthStart+'月'}"/>
+							<s:set var="end" value="%{yearEnd+'年'+monthEnd+'月'}"/>
+							<s:property value="%{#start+(#end != null ? ' ~ '+#end : '')}" />
+						</td>
+						<td class="td-updateDate">
+							<s:property value="updateDate"/>
+						</td>
+						<td>
+							<!-- 編輯 -->
+							<s:if test='%{#session.sysUser.hasAuth("/talentedPeopleMainProject", "update")}'>
+								<s:url value="/talentedPeopleMainProject/update" var="updateUrlTag" escapeAmp="false">
+									<s:param name="talentedPeopleId" value="talentedPeople.id" />
+									<s:param name="id" value="id" />
+									<s:param name="scrollTo" value="%{'#div-mainProject'}"/>
+								</s:url>
+								<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
+								<input type="button" class="btn-info btn-func btn-edit" value="編輯" />
+							</s:if>
+							
+							<!-- 刪除 -->
+							<s:if test='%{#session.sysUser.hasAuth("/talentedPeopleMainProject", "deleteSubmit")}'>
+								<s:url value="/talentedPeopleMainProject/deleteSubmit" var="deleteUrlTag" escapeAmp="false">
+									<s:param name="id" value="id" />
+									<s:param name="scrollTo" value="%{'#div-mainProject'}"/>
+								</s:url>
+								<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
+								<input type="button" class="btn-func btn-del" value="刪除" />	
+							</s:if>
+						</td>
+					</tr>
+					</s:iterator>
+				</tbody>
+			</table>
+		</div>
+		<div class="clear"></div>
 		
 <!----------------------------------------------------------------------------->	
 		
@@ -438,182 +425,6 @@ tr.hidden-sample-tr { display:none; }
 			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 		</div>		
 	</s:form>
-	
-<!-- ======================================================================= -->
-
-	<form id="rdResultForm">
-		<div class="subForm">
-			<s:hidden class="rdResultRowIndex"/>
-			<h2 class="itemTitle">重要研發成果</h2>
-			<ul>
-				<li class="quarter">
-					<b>1.研發成果名稱</b>
-					<input type="text" class="name" maxlength="500"/>
-				</li>
-				<li class="quarter">
-					<b>2.型式</b>
-					<s:select class="type" list="rdResultTypeList" listKey="code" listValue="name"/>
-				</li>
-				<li class="quarter">
-					<b>3.發明人(創作人)</b>
-					<input type="text" class="inventer" maxlength="100"/>
-				</li>
-				<li class="quarter">
-					<b>4.所有權人</b>
-					<input type="text" class="owner" maxlength="100"/>
-				</li>
-				<li class="all clear"></li>
-				<li class="quarter">
-					<b>5.專利號(申請中請填申請號)</b>
-					<input type="text" class="patentNo" maxlength="100"/>
-				</li>
-				<li class="quarter">
-					<b>6.國別</b>
-					<s:select class="country" list="countryList" listKey="id" listValue="name"/>
-				</li>
-				<li class="quarter">
-					<b>7.專利期間(起)</b>
-					<input type="text" class="patentPeriodStart calendarBox" maxlength="10" placeholder="格式範例:2016/12/30"/>				
-				</li>
-				<li class="quarter">
-					<b>7.專利期間(迄)</b>
-					<input type="text" class="patentPeriodEnd calendarBox" maxlength="10" placeholder="格式範例:2016/12/30"/>				
-				</li>
-				<li class="all clear"></li>
-				<li class="all">
-					<b>8.摘要(請說明成果重點與特色)</b>
-					<s:textarea class="patentAbstract" rows="3"/>
-				</li>
-				<li class="all">
-					<b>9.應用產業/範圍(請說明成果可應用於何領域或產品)</b>
-					<input type="text" class="usage" maxlength="1000"/>
-				</li>
-				<li class="half">
-					<b>排序優先度 (將依數字小到大排序)</b>
-					<input type="text" class="priority" maxlength="19"/>
-				</li>
-				<li class="half">
-					<b>資料更新日期</b>
-					<input type="text" class="updateDate" disabled="disabled"/>
-				</li>
-			</ul>
-			
-			<div class="clear"></div>
-			<div class="">
-				<input type="button" class="redBtn btn-addConfirm" value="確定新增"/>
-				<input type="button" class="redBtn btn-editConfirm" value="確定變更"/>
-				<input type="button" class="grayBtn btn-cancel" value="取消"/>
-			</div>
-		</div>
-	</form>
-	
-<!-- ======================================================================= -->
-
-	<form id="transferCaseForm">
-		<div class="subForm">
-			<s:hidden class="transferCaseRowIndex"/>
-			<h2 class="itemTitle">成果移轉及授權案例</h2>
-		
-			<ul>
-				<li class="half">
-					<b>應用領域</b>
-					<input type="text" class="applyField" maxlength="500"/>
-				</li>
-				<li class="half">
-					<b>對象廠商或機構</b>
-					<input type="text" class="targetOrg" maxlength="500"/>
-				</li>
-				<li class="half">
-					<b>時間(授權期間或讓受/技轉時間)</b>
-					<div>
-						<div style="width:24%; float:left;">
-							<s:select class="yearStart" list="yearList" listKey="code" listValue="name" />
-						</div>
-						<div style="width:24%; float:left;">
-							<s:select class="monthStart" list="monthList" listKey="code" listValue="name" />
-						</div>
-						<div style="float:left;">~</div>
-						<div style="width:24%; float:left;">
-							<s:select class="yearEnd" list="yearList" listKey="code" listValue="name" headerKey="" headerValue=""/>
-						</div>
-						<div style="width:24%; float:left;">	
-							<s:select class="monthEnd" list="monthList" listKey="code" listValue="name" headerKey="" headerValue=""/>
-						</div>	
-					</div>
-				</li>
-				<li class="quarter">
-					<b>排序優先度 (將依數字小到大排序)</b>
-					<input type="text" class="priority" maxlength="19"/>
-				</li>
-				<li class="quarter">
-					<b>資料更新日期</b>
-					<input type="text" class="updateDate" disabled="disabled"/>
-				</li>					
-			</ul>
-		
-			<div class="clear"></div>
-			<div class="">
-				<input type="button" class="redBtn btn-addConfirm" value="確定新增"/>
-				<input type="button" class="redBtn btn-editConfirm" value="確定變更"/>
-				<input type="button" class="grayBtn btn-cancel" value="取消"/>
-			</div>
-		</div>	
-	</form>
-	
-<!-- ======================================================================= -->
-
-	<form id="mainProjectForm">
-		<div class="subForm">
-			<s:hidden class="mainProjectRowIndex"/>
-			<h2 class="itemTitle">主要產學合作計畫案例</h2>
-		
-			<ul>
-				<li class="half">
-					<b>合作計畫或合約名稱</b>
-					<input type="text" class="name" maxlength="500"/>
-				</li>
-				<li class="half">
-					<b>合作廠商名稱</b>
-					<input type="text" class="coopComName" maxlength="500"/>
-				</li>
-				<li class="half">
-					<b>合作有效期間</b>
-					<div>
-						<div style="width:24%; float:left;">
-							<s:select class="yearStart" list="yearList" listKey="code" listValue="name" />
-						</div>
-						<div style="width:24%; float:left;">
-							<s:select class="monthStart" list="monthList" listKey="code" listValue="name" />
-						</div>
-						<div style="float:left;">~</div>
-						<div style="width:24%; float:left;">
-							<s:select class="yearEnd" list="yearList" listKey="code" listValue="name" />
-						</div>
-						<div style="width:24%; float:left;">	
-							<s:select class="monthEnd" list="monthList" listKey="code" listValue="name" />
-						</div>	
-					</div>
-				</li>
-				<li class="quarter">
-					<b>排序優先度 (將依數字小到大排序)</b>
-					<input type="text" class="priority" maxlength="19"/>
-				</li>
-				<li class="quarter">
-					<b>資料更新日期</b>
-					<input type="text" class="updateDate" disabled="disabled"/>
-				</li>				
-			</ul>
-		
-			<div class="clear"></div>
-			<div class="">
-				<input type="button" class="redBtn btn-addConfirm" value="確定新增"/>
-				<input type="button" class="redBtn btn-editConfirm" value="確定變更"/>
-				<input type="button" class="grayBtn btn-cancel" value="取消"/>
-			</div>
-		</div>	
-	</form>
-
-<!-- ======================================================================= -->
 
 	<s:include value="./form-backToIndex.jsp" />
 	

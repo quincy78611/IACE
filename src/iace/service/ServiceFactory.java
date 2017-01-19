@@ -49,8 +49,11 @@ import iace.service.researchPlan.TechnologyService;
 import iace.service.sys.SysLogService;
 import iace.service.sys.SysRoleService;
 import iace.service.sys.SysUserService;
+import iace.service.talentedPeople.TalentedPeopleMainProjectService;
 import iace.service.talentedPeople.TalentedPeoplePDPLService;
+import iace.service.talentedPeople.TalentedPeopleRdResultService;
 import iace.service.talentedPeople.TalentedPeopleService;
+import iace.service.talentedPeople.TalentedPeopleTransferCaseService;
 import iace.service.videosArea.VideoService;
 import iace.service.videosArea.VideosAreaService;
 
@@ -103,6 +106,9 @@ public class ServiceFactory {
 	private static CoopExAttachFileService coopExAttachFileService;
 	
 	private static TalentedPeopleService talentedPeopleService;
+	private static TalentedPeopleRdResultService talentedPeopleRdResultService;
+	private static TalentedPeopleTransferCaseService talentedPeopleTransferCaseService;
+	private static TalentedPeopleMainProjectService talentedPeopleMainProjectService;
 	private static TalentedPeoplePDPLService talentedPeoplePDPLService;
 	
 	private static IncubationCenterService incubationCenterService;
@@ -417,24 +423,43 @@ public class ServiceFactory {
 		if (talentedPeopleService == null) {
 			talentedPeopleService = new TalentedPeopleService(
 					DaoFactory.getTalentedPeopleDao(),
-					DaoFactory.getTalentedPeopleRdResultDao(),
-					DaoFactory.getTalentedPeopleTransferCaseDao(),
-					DaoFactory.getTalentedPeopleMainProjectDao(),
 					DaoFactory.getOptionGrbDomainDao(),
-					DaoFactory.getOptionCountryDao(),
 					DaoFactory.getSysUserDao(),
 					DaoFactory.getSysRoleDao());
 		}
 		return talentedPeopleService;
 	}
-	
+
+	public static TalentedPeopleRdResultService getTalentedPeopleRdResultService() {
+		if (talentedPeopleRdResultService == null) {
+			talentedPeopleRdResultService = new TalentedPeopleRdResultService(
+					DaoFactory.getTalentedPeopleRdResultDao(),
+					DaoFactory.getOptionCountryDao());
+		}
+		return talentedPeopleRdResultService;
+	}
+
+	public static TalentedPeopleTransferCaseService getTalentedPeopleTransferCaseService() {
+		if (talentedPeopleTransferCaseService == null) {
+			talentedPeopleTransferCaseService = new TalentedPeopleTransferCaseService(DaoFactory.getTalentedPeopleTransferCaseDao());
+		}
+		return talentedPeopleTransferCaseService;
+	}
+
+	public static TalentedPeopleMainProjectService getTalentedPeopleMainProjectService() {
+		if (talentedPeopleMainProjectService == null) {
+			talentedPeopleMainProjectService = new TalentedPeopleMainProjectService(DaoFactory.getTalentedPeopleMainProjectDao());
+		}
+		return talentedPeopleMainProjectService;
+	}
+
 	public static TalentedPeoplePDPLService getTalentedPeoplePDPLService() {
 		if (talentedPeoplePDPLService == null) {
 			talentedPeoplePDPLService = new TalentedPeoplePDPLService(DaoFactory.getTalentedPeoplePDPLDao());
 		}
 		return talentedPeoplePDPLService;
 	}
-
+	
 	public static IncubationCenterService getIncubationCenterService() {
 		if (incubationCenterService == null) {
 			incubationCenterService = new IncubationCenterService(DaoFactory.getIncubationCenterDao());

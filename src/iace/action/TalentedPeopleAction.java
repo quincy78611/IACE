@@ -3,7 +3,6 @@ package iace.action;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -18,19 +17,14 @@ import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.dao.ClickNumCounterDao;
 import iace.entity.BaseBatchImportResult;
-import iace.entity.option.BaseOption;
-import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionDomain;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.entity.talentedPeople.TalentedPeoplePDPL;
-import iace.entity.talentedPeople.TalentedPeopleRdResult;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 import iace.interceptor.SessionInterceptor;
 import iace.service.ServiceFactory;
-import iace.service.option.OptionCountryService;
-import iace.service.option.OptionDomainService;
 import iace.service.sys.SysRoleService;
 import iace.service.sys.SysUserService;
 import iace.service.talentedPeople.TalentedPeoplePDPLService;
@@ -41,9 +35,8 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private static final long serialVersionUID = 570851154374907844L;
 
 	private TalentedPeopleService talentedPeopleService = ServiceFactory.getTalentedPeopleService();
+//	private TalentedPeopleService2 talentedPeopleService2 = ServiceFactory.getTalentedPeopleService2();
 	private TalentedPeoplePDPLService talentedPeoplePDPLService = ServiceFactory.getTalentedPeoplePDPLService();
-	private OptionDomainService optionDomainService = ServiceFactory.getOptionDomainService();
-	private OptionCountryService optionCountryService = ServiceFactory.getOptionCountryService();
 	private SysUserService sysUserService = ServiceFactory.getSysUserService();
 	private SysRoleService sysRoleService = ServiceFactory.getSysRoleService();
 
@@ -57,10 +50,6 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private SysUser sysUser;
 
 	private List<OptionDomain> mainDomainList;
-	private List<OptionCountry> countryList;
-	private List<BaseOption> rdResultTypeList = TalentedPeopleRdResult.getTypeList();
-	private List<BaseOption> yearList;
-	private List<BaseOption> monthList;
 	private List<SysRole> sysRoleList;
 
 	private File uploadFile;
@@ -73,6 +62,8 @@ public class TalentedPeopleAction extends BaseIaceAction {
 
 	private String reportFileName;
 	private InputStream reportInputStream;
+
+	private String scrollTo;
 
 	public TalentedPeopleAction() {
 		super.setTitle("產學合作人才資料");
@@ -153,9 +144,13 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	public String updateSubmit() {
 		try {
 			boolean isIndexing = this.talentedPeoplePDPLService.isIndexing(this.talentedPeople.getId());
+			TalentedPeople talentedPeopleOld = this.talentedPeopleService.get(this.talentedPeople.getId());
+			this.talentedPeople.setRdResults(talentedPeopleOld.getRdResults());
+			this.talentedPeople.setTransferCases(talentedPeopleOld.getTransferCases());
+			this.talentedPeople.setMainProjects(talentedPeopleOld.getMainProjects());
 			this.talentedPeopleService.update(this.talentedPeople, super.getCurrentSysUser(), isIndexing, super.getSysLog());
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeople.getId());
-			
+
 			super.addActionMessage("UPDATE SUCCESS");
 			return SUCCESS;
 		} catch (Exception e) {
@@ -211,7 +206,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		try {
 			this.batchImportResult = this.talentedPeopleService.batchImport(this.uploadFile, this.sysRoleId);
 			if (this.batchImportResult.getInsertList().size() > 0) {
-				this.addActionMessage("已成功匯入"+this.batchImportResult.getInsertList().size()+"筆資料");
+				this.addActionMessage("已成功匯入" + this.batchImportResult.getInsertList().size() + "筆資料");
 			}
 			if (this.batchImportResult.getErrMsgs().size() > 0) {
 				this.addActionError("匯入資料有誤，請看下方錯誤列表");
@@ -291,7 +286,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String exportPDPLList() {
 		try {
 			XSSFWorkbook wb = this.talentedPeoplePDPLService.exportList();
@@ -330,7 +325,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String PDPLSubmit() {
 		try {
 			boolean agreePDPL = this.talentedPeoplePDPL.getAgreePDPL();
@@ -364,14 +359,7 @@ public class TalentedPeopleAction extends BaseIaceAction {
 				super.getSysLog().setSysUser(sysUser);
 				super.getSysLog().setEnableLog(true);
 
-				this.talentedPeople = this.talentedPeopleService.get(this.sysUser);
-				if (this.talentedPeople == null) {
-					super.addActionError("此帳號不是產學人才");
-					this.session.clear();
-					return INPUT;
-				}
-
-				return SUCCESS;
+				return selfUpdate();
 			} else {
 				super.addActionError("帳號或密碼錯誤!");
 				return INPUT;
@@ -385,36 +373,51 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
+
+	public String selfUpdate() {
+		try {
+			this.talentedPeople = this.talentedPeopleService.get(super.getCurrentSysUser());
+			if (this.talentedPeople == null) {
+				super.addActionError("此帳號不是產學人才");
+				this.session.clear();
+				return INPUT;
+			}
+
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
 	
 	public String selfUpdateSubmit() {
 		if (super.getCurrentSysUser().getId() != this.talentedPeople.getSysUser().getId()) {
-			super.addActionError("您只能維護自己的產學人才資料");
+			super.addActionError("您只能維護自己的資料");
 			return ERROR;
 		}
-		this.searchCondition.setName(this.talentedPeople.getNameCh());
 		return updateSubmit();
 	}
-	
+
 	public String batchResizeHeadshot() {
 		String sysRoleName = super.getCurrentSysUser().getSysRole().getName();
 		if (StringUtils.equals(sysRoleName, "系統開發人員") == false) {
 			super.addActionError("沒有權限");
 			return INPUT;
 		}
-		
+
 		try {
 			Date d1 = new Date();
 			this.talentedPeopleService.resizeAllHeadShot();
 			Date d2 = new Date();
-			long spendSec = (d2.getTime()-d1.getTime())/1000;
-			this.addActionMessage("處理完成! 用時"+spendSec+"秒.");
-			
+			long spendSec = (d2.getTime() - d1.getTime()) / 1000;
+			this.addActionMessage("處理完成! 用時" + spendSec + "秒.");
+
 			this.setTitle("開發者專屬功能");
-			
+
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
-			return ERROR;			
+			return ERROR;
 		}
 	}
 
@@ -454,49 +457,9 @@ public class TalentedPeopleAction extends BaseIaceAction {
 
 	public List<OptionDomain> getMainDomainList() {
 		if (mainDomainList == null) {
-			mainDomainList = this.optionDomainService.listAll();
+			mainDomainList = ServiceFactory.getOptionDomainService().listAll();
 		}
 		return mainDomainList;
-	}
-
-	public List<OptionCountry> getCountryList() {
-		if (countryList == null) {
-			countryList = this.optionCountryService.listAll();
-		}
-		return countryList;
-	}
-
-	public List<BaseOption> getRdResultTypeList() {
-		return rdResultTypeList;
-	}
-
-	public List<BaseOption> getYearList() {
-		if (yearList == null) {
-			yearList = new ArrayList<BaseOption>();
-			for (int i=1990; i<2020; i++) {
-				yearList.add(new BaseOption(i+"", i+"年"));
-			}
-		}
-		return yearList;
-	}
-
-	public List<BaseOption> getMonthList() {
-		if (monthList == null) {
-			monthList = new ArrayList<BaseOption>();
-			monthList.add(new BaseOption("1", "1月"));
-			monthList.add(new BaseOption("2", "2月"));
-			monthList.add(new BaseOption("3", "3月"));
-			monthList.add(new BaseOption("4", "4月"));
-			monthList.add(new BaseOption("5", "5月"));
-			monthList.add(new BaseOption("6", "6月"));
-			monthList.add(new BaseOption("7", "7月"));
-			monthList.add(new BaseOption("8", "8月"));
-			monthList.add(new BaseOption("9", "9月"));
-			monthList.add(new BaseOption("10", "10月"));
-			monthList.add(new BaseOption("11", "11月"));
-			monthList.add(new BaseOption("12", "12月"));
-		}
-		return monthList;
 	}
 
 	public File getUploadFile() {
@@ -577,7 +540,15 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	public void setTalentedPeoplePDPL(TalentedPeoplePDPL talentedPeoplePDPL) {
 		this.talentedPeoplePDPL = talentedPeoplePDPL;
 	}
+
+
+	public String getScrollTo() {
+		return scrollTo;
+	}
 	
-	
+
+	public void setScrollTo(String scrollTo) {
+		this.scrollTo = scrollTo;
+	}
 
 }

@@ -100,6 +100,7 @@
 				<td><b><s:property value="sysRole.sysAuth.talentedPeople.displayName"/></b></td>
 				<td class="horizontalList">
 					<s:checkbox label="%{sysRole.sysAuth.talentedPeople.opView.displayName}" name="sysRole.sysAuth.talentedPeople.opView.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.talentedPeople.opCreate.displayName}" name="sysRole.sysAuth.talentedPeople.opCreate.auth" fieldValue="true"/>
 					<s:checkbox label="%{sysRole.sysAuth.talentedPeople.opUpdate.displayName}" name="sysRole.sysAuth.talentedPeople.opUpdate.auth" fieldValue="true"/>
 					<s:checkbox label="%{sysRole.sysAuth.talentedPeople.opDelete.displayName}" name="sysRole.sysAuth.talentedPeople.opDelete.auth" fieldValue="true"/>
 					<s:checkbox label="%{sysRole.sysAuth.talentedPeople.opBatchImport.displayName}" name="sysRole.sysAuth.talentedPeople.opBatchImport.auth" fieldValue="true"/>

@@ -173,6 +173,7 @@
 				<li class="quarter">
 					<s:textfield placeholder="產學經驗(迄)" name="searchCondition.expYearE" maxlength="3" />
 				</li>
+				<div class="clear"></div>
 				<li class="quarter">
 					<s:textfield placeholder="現職單位" name="searchCondition.workOrg" maxlength="100" />
 				</li>

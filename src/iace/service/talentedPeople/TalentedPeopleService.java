@@ -37,24 +37,16 @@ import core.util.ExcelUtil;
 import core.util.PagedList;
 import core.util.ThumbnailUtil;
 import core.util.Validator;
-import iace.dao.option.IOptionDao;
 import iace.dao.option.IOptionGrbDomainDao;
 import iace.dao.sys.ISysRoleDao;
 import iace.dao.sys.ISysUserDao;
 import iace.dao.talentedPeople.ITalentedPeopleDao;
-import iace.dao.talentedPeople.ITalentedPeopleMainProjectDao;
-import iace.dao.talentedPeople.ITalentedPeopleRdResultDao;
-import iace.dao.talentedPeople.ITalentedPeopleTransferCaseDao;
 import iace.entity.BaseBatchImportResult;
-import iace.entity.option.OptionCountry;
 import iace.entity.option.OptionGrbDomain;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
-import iace.entity.talentedPeople.TalentedPeopleMainProject;
-import iace.entity.talentedPeople.TalentedPeopleRdResult;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
-import iace.entity.talentedPeople.TalentedPeopleTransferCase;
 import iace.service.BaseIaceService;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
@@ -62,30 +54,18 @@ import net.sf.jasperreports.engine.JasperRunManager;
 public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 
 	private ITalentedPeopleDao talentedPeopleDao;
-	private ITalentedPeopleRdResultDao talentedPeopleRdResultDao;
-	private ITalentedPeopleTransferCaseDao talentedPeopleTransferCaseDao;
-	private ITalentedPeopleMainProjectDao talentedPeopleMainProjectDao;
 	private IOptionGrbDomainDao optionGrbDomainDao;
-	private IOptionDao<OptionCountry> optionCountryDao;
 	private ISysUserDao sysUserDao;
 	private ISysRoleDao sysRoleDao;
 	
 	public TalentedPeopleService(
 			ITalentedPeopleDao dao, 
-			ITalentedPeopleRdResultDao talentedPeopleRdResultDao,
-			ITalentedPeopleTransferCaseDao talentedPeopleTransferCaseDao,
-			ITalentedPeopleMainProjectDao talentedPeopleMainProjectDao,
 			IOptionGrbDomainDao optionGrbDomainDao, 
-			IOptionDao<OptionCountry> optionCountryDao,
 			ISysUserDao sysUserDao,
 			ISysRoleDao sysRoleDao) {
 		super(dao);
 		this.talentedPeopleDao = dao;
-		this.talentedPeopleRdResultDao = talentedPeopleRdResultDao;
-		this.talentedPeopleTransferCaseDao = talentedPeopleTransferCaseDao;
-		this.talentedPeopleMainProjectDao = talentedPeopleMainProjectDao;
 		this.optionGrbDomainDao = optionGrbDomainDao;
-		this.optionCountryDao = optionCountryDao;
 		this.sysUserDao = sysUserDao;
 		this.sysRoleDao = sysRoleDao;
 	}
@@ -128,48 +108,10 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 	}
 	
 	@Override
-	public void create(TalentedPeople entity) throws IOException, SQLException {
-		setHeadShot(entity);
-		setDomain(entity);
-		super.create(entity);
-	}
-
-	@Override
 	public void update(TalentedPeople entity) throws IOException, SQLException {
 		setHeadShot(entity);
 		setDomain(entity);
 		setSysUser(entity);
-		
-		for (TalentedPeopleRdResult rdResult : entity.getRdResults()) {
-			rdResult.setTalentedPeople(entity);
-			OptionCountry oc = this.optionCountryDao.get(rdResult.getOptionCountry().getId());
-			rdResult.setOptionCountry(oc);
-			if (rdResult.getId() <= 0) {
-				rdResult.create();
-			} else {
-				rdResult.update();
-			}
-		}
-		for (TalentedPeopleTransferCase transferCase : entity.getTransferCases()) {
-			transferCase.setTalentedPeople(entity);
-			if (transferCase.getId() <= 0) {
-				transferCase.create();
-			} else {
-				transferCase.update();
-			}
-		}
-		for (TalentedPeopleMainProject mainProject : entity.getMainProjects()) {
-			mainProject.setTalentedPeople(entity);
-			if (mainProject.getId() <= 0) {
-				mainProject.create();
-			} else {
-				mainProject.update();
-			}
-		}
-
-		TalentedPeople entityO = this.talentedPeopleDao.get(entity.getId());
-		deleteChildFromDb(entity, entityO);
-		
 		this.talentedPeopleDao.update(entity);
 	}
 	
@@ -206,44 +148,6 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 			entity.setSysUser(user);
 		} else {
 			entity.setSysUser(null);
-		}
-	}
-	
-	private void deleteChildFromDb(TalentedPeople entity, TalentedPeople entityO) {
-		Set<Long> rdResultIdSet = new HashSet<Long>();
-		for (TalentedPeopleRdResult rdr : entity.getRdResults()) {
-			if (rdr.getId() > 0) {
-				rdResultIdSet.add(rdr.getId());
-			}
-		}
-		for (TalentedPeopleRdResult rdr : entityO.getRdResults()) {
-			if (rdResultIdSet.contains(rdr.getId()) == false) {
-				this.talentedPeopleRdResultDao.delete(rdr);
-			}
-		}
-		
-		Set<Long> transferCaseIdSet = new HashSet<Long>();
-		for (TalentedPeopleTransferCase tc : entity.getTransferCases()) {
-			if (tc.getId() > 0) {
-				transferCaseIdSet.add(tc.getId());
-			}
-		}
-		for (TalentedPeopleTransferCase tc : entityO.getTransferCases()) {
-			if (transferCaseIdSet.contains(tc.getId()) == false) {
-				this.talentedPeopleTransferCaseDao.delete(tc);
-			}
-		}
-		
-		Set<Long> mainProjectIdSet = new HashSet<Long>();
-		for (TalentedPeopleMainProject mp : entity.getMainProjects()) {
-			if (mp.getId() > 0) {
-				mainProjectIdSet.add(mp.getId());
-			}
-		}
-		for (TalentedPeopleMainProject mp : entityO.getMainProjects()) {
-			if (mainProjectIdSet.contains(mp.getId()) == false) {
-				this.talentedPeopleMainProjectDao.delete(mp);
-			}
 		}
 	}
 	

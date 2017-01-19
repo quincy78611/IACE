@@ -26,6 +26,13 @@
 				<interceptor-ref name="iaceSysLog" />
 				<interceptor-ref name="defaultStack" />
 			</interceptor-stack>
+			
+			<interceptor-stack name="iaceTalentedPeopleSelfMaintain">
+				<interceptor-ref name="iaceSession" />
+				<interceptor-ref name="iaceBackendlogin" />
+				<interceptor-ref name="iaceSysLog" />
+				<interceptor-ref name="defaultStack" />			
+			</interceptor-stack>
 		</interceptors>
 
 		<default-action-ref name="index" />

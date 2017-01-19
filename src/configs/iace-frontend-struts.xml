@@ -82,7 +82,6 @@
 			<result name="success">/WEB-INF/jsp/frontend/talentedPeople/detail.jsp</result>
 		</action>
 		
-		
 		<action name="PDPL" class="iace.action.TalentedPeopleAction" method="PDPL">
 			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/pdpl.jsp</result>
 			<result name="login">/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
@@ -110,15 +109,96 @@
 			
 			<result>/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
 		</action>
+		<action name="selfUpdate" class="iace.action.TalentedPeopleAction" method="selfUpdate">
+			<interceptor-ref name="iaceTalentedPeopleSelfMaintain"/>
+			
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
 		<action name="selfUpdateSubmit" class="iace.action.TalentedPeopleAction" method="selfUpdateSubmit">
-			<interceptor-ref name="iaceSession"/>
-			<interceptor-ref name="iaceBackendlogin"/>
-			<interceptor-ref name="defaultStack"/>
+			<interceptor-ref name="iaceTalentedPeopleSelfMaintain"/>
 		
 			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
 		</action>
 	</package>
+	
+	<package name="f.TalentedPeopleRdResult" namespace="/f/talentedPeopleRdResult" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceTalentedPeopleSelfMaintain"/>
+		
+		<action name="showDetail" class="iace.action.TalentedPeopleRdResultAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/rdResult/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.TalentedPeopleRdResultAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/rdResult/create.jsp</result>
+		</action>
+		<action name="selfCreateSubmit" class="iace.action.TalentedPeopleRdResultAction" method="selfCreateSubmit">
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/rdResult/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
+		<action name="selfUpdate" class="iace.action.TalentedPeopleRdResultAction" method="selfUpdate">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/rdResult/update.jsp</result>
+		</action>
+		<action name="selfUpdateSubmit" class="iace.action.TalentedPeopleRdResultAction" method="selfUpdateSubmit">
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/rdResult/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
+		<action name="selfDeleteSubmit" class="iace.action.TalentedPeopleRdResultAction" method="selfDeleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/rdResult/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
+	</package>
+	
+	<package name="f.TalentedPeopleTransferCase" namespace="/f/talentedPeopleTransferCase" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceTalentedPeopleSelfMaintain"/>
+		
+		<action name="showDetail" class="iace.action.TalentedPeopleTransferCaseAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/transferCase/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.TalentedPeopleTransferCaseAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/transferCase/create.jsp</result>
+		</action>
+		<action name="selfCreateSubmit" class="iace.action.TalentedPeopleTransferCaseAction" method="selfCreateSubmit">
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/transferCase/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
+		<action name="selfUpdate" class="iace.action.TalentedPeopleTransferCaseAction" method="selfUpdate">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/transferCase/update.jsp</result>
+		</action>
+		<action name="selfUpdateSubmit" class="iace.action.TalentedPeopleTransferCaseAction" method="selfUpdateSubmit">
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/transferCase/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
+		<action name="selfDeleteSubmit" class="iace.action.TalentedPeopleTransferCaseAction" method="selfDeleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/transferCase/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
+	</package>
+	
+	<package name="f.TalentedPeopleMainProject" namespace="/f/talentedPeopleMainProject" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceTalentedPeopleSelfMaintain"/>
+		
+		<action name="showDetail" class="iace.action.TalentedPeopleMainProjectAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/mainProject/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.TalentedPeopleMainProjectAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/mainProject/create.jsp</result>
+		</action>
+		<action name="selfCreateSubmit" class="iace.action.TalentedPeopleMainProjectAction" method="selfCreateSubmit">
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/mainProject/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
+		<action name="selfUpdate" class="iace.action.TalentedPeopleMainProjectAction" method="selfUpdate">
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/mainProject/update.jsp</result>
+		</action>
+		<action name="selfUpdateSubmit" class="iace.action.TalentedPeopleMainProjectAction" method="selfUpdateSubmit">
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/mainProject/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
+		<action name="selfDeleteSubmit" class="iace.action.TalentedPeopleMainProjectAction" method="selfDeleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend_noMenu/talentedPeople/mainProject/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
+		</action>
+	</package>	
 	
 	<package name="f.IncubationCenter" namespace="/f/incubationCenter" extends="struts-default, json-default, default">
 		<action name="init" class="iace.action.IncubationCenterAction" method="init">

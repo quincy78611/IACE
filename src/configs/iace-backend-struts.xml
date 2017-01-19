@@ -472,13 +472,6 @@
 		<action name="showDetail" class="iace.action.TalentedPeopleAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/backend/talentedPeople/detail.jsp</result>
 		</action>		
-		<action name="create" class="iace.action.TalentedPeopleAction" method="create">
-			<result name="success">/WEB-INF/jsp/backend/talentedPeople/create.jsp</result>
-		</action>
-		<action name="createSubmit" class="iace.action.TalentedPeopleAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/backend/talentedPeople/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend/talentedPeople/detail.jsp</result>
-		</action>
 		<action name="update" class="iace.action.TalentedPeopleAction" method="update">
 			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
 		</action>
@@ -555,6 +548,81 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="TalentedPeopleRdResult" namespace="/talentedPeopleRdResult" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="showDetail" class="iace.action.TalentedPeopleRdResultAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/rdResult/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.TalentedPeopleRdResultAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/rdResult/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.TalentedPeopleRdResultAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/rdResult/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+		<action name="update" class="iace.action.TalentedPeopleRdResultAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/rdResult/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.TalentedPeopleRdResultAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/rdResult/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.TalentedPeopleRdResultAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/rdResult/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+	</package>
+	
+	<package name="TalentedPeopleTransferCase" namespace="/talentedPeopleTransferCase" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="showDetail" class="iace.action.TalentedPeopleTransferCaseAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/transferCase/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.TalentedPeopleTransferCaseAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/transferCase/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.TalentedPeopleTransferCaseAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/transferCase/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+		<action name="update" class="iace.action.TalentedPeopleTransferCaseAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/transferCase/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.TalentedPeopleTransferCaseAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/transferCase/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.TalentedPeopleTransferCaseAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/transferCase/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+	</package>
+	
+	<package name="TalentedPeopleMainProject" namespace="/talentedPeopleMainProject" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="showDetail" class="iace.action.TalentedPeopleMainProjectAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/mainProject/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.TalentedPeopleMainProjectAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/mainProject/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.TalentedPeopleMainProjectAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/mainProject/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+		<action name="update" class="iace.action.TalentedPeopleMainProjectAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/mainProject/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.TalentedPeopleMainProjectAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/mainProject/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.TalentedPeopleMainProjectAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/talentedPeople/mainProject/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/talentedPeople/update.jsp</result>
+		</action>
+	</package>	
 	
 	<package name="IncubationCenter" namespace="/incubationCenter" extends="struts-default, json-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
