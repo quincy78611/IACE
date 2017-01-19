@@ -282,4 +282,15 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="f2-File" namespace="/f2/file" extends="struts-default, default">
+		<action name="downloadFileByName" class="iace.action.FileAction" method="downloadFileByName">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
 </struts>

@@ -123,6 +123,12 @@
 									<a href="<s:property value="urlTag"/>"><s:property value="name"/></a>
 								</li>
 							</s:iterator>
+							<li>
+								<s:url value="/f2/file/downloadFileByName"  var="urlTag" escapeAmp="false">
+									<s:param name="downloadFileName" value="%{'105年-企業技術需求訪談分析.pdf'}" />
+								</s:url>
+								<a href="<s:property value="urlTag"/>">企業需求</a>
+							</li>
 						</ul>
 					</li>
 					<li class="dropdown left15">
