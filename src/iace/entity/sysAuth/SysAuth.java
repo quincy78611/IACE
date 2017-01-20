@@ -16,6 +16,7 @@ import iace.entity.sysAuth.sysApplication.SysAppContactUs;
 import iace.entity.sysAuth.sysApplication.SysAppCoopEx;
 import iace.entity.sysAuth.sysApplication.SysAppEnterpriseNeed;
 import iace.entity.sysAuth.sysApplication.SysAppFaq;
+import iace.entity.sysAuth.sysApplication.SysAppFile;
 import iace.entity.sysAuth.sysApplication.SysAppIncubationCenter;
 import iace.entity.sysAuth.sysApplication.SysAppLiterature;
 import iace.entity.sysAuth.sysApplication.SysAppMember;
@@ -62,6 +63,8 @@ public class SysAuth {
 	
 	private SysAppVideosArea videosArea = new SysAppVideosArea();
 	
+	private SysAppFile file = new SysAppFile();
+	
 	public SysAuth() {
 		Properties prop = new Properties();
 		try {
@@ -97,6 +100,7 @@ public class SysAuth {
 		sysApps.add(this.contactUs);
 		sysApps.add(this.batchSendEmail);
 		sysApps.add(this.videosArea);
+		sysApps.add(this.file);
 		return sysApps;
 	}
 
@@ -233,6 +237,9 @@ public class SysAuth {
 	public SysAppVideosArea getVideosArea() {
 		return videosArea;
 	}
-	
+
+	public SysAppFile getFile() {
+		return file;
+	}
 	
 }

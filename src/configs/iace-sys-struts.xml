@@ -130,4 +130,11 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="File" namespace="/file" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="uploadFile" class="iace.action.FileAction" method="uploadFile">
+			<result name="success">/WEB-INF/jsp/backend/file/upload.jsp</result>
+		</action>
+	</package>
 </struts>
