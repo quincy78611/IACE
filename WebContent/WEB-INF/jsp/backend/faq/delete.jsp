@@ -3,24 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 網頁編輯器 -->
 <script type="text/javascript" src="<s:url value="/scripts/tinymce/tinymce.min.js"/>"></script>
 <script type="text/javascript" src="<s:url value="/scripts/tinymce/jquery.tinymce.min.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/scripts/tinymce/defaultEditorSetting.js"/>"></script>
 <script>
-    //網頁編輯器設定
-    tinymce.init({
-        selector: 'textArea[name="faq.content"]',
-        plugins: [
-          'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-          'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-          'save table contextmenu directionality emoticons template paste textcolor'
-        ],
-        readonly : 1,
-        content_css: 'css/content.css',
-        menubar: '',
-        toolbar: [],
-        height: 400,
-    });
+	readonlyTinymceEditor('textArea[name="faq.content"]');
 </script>
+
 <script>
 	$(document).ready(function(){
 		addSearchConditionHiddenToForm();

@@ -5,26 +5,14 @@
 <head>
 <meta name="funcPathText" content="編輯管理  > 編輯"/>
 
+<!-- 網頁編輯器 -->
 <script type="text/javascript" src="<s:url value="/scripts/tinymce/tinymce.min.js"/>"></script>
 <script type="text/javascript" src="<s:url value="/scripts/tinymce/jquery.tinymce.min.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/scripts/tinymce/defaultEditorSetting.js"/>"></script>
 <script>
-    //網頁編輯器設定
-    tinymce.init({
-        selector: 'textArea[name="news.content"]',
-        plugins: [
-          'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
-          'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
-          'save table contextmenu directionality emoticons template paste textcolor'
-        ],
-        content_css: 'css/content.css',
-        menubar: 'file edit view format tools table',
-        toolbar: [
-            'code | undo redo | cut copy paste | bold italic underline strikethrough | styleselect formatselect fontselect fontsizeselect  ',
-            'bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | link searchreplace table | forecolor backcolor'
-        ],
-        height: 400,
-    });
+	defaultTinymceEditor('textArea[name="news.content"]');
 </script>
+
 <script>
 $(document).ready(function() {
 	addSearchConditionHiddenToForm();
