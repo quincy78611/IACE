@@ -284,7 +284,7 @@
 	</package>
 	
 	<package name="f2-File" namespace="/f2/file" extends="struts-default, default">
-		<action name="downloadFileByName" class="iace.action.FileAction" method="downloadFileByName">
+		<action name="downloadFile" class="iace.action.FileAction" method="downloadFile">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
 				<param name="inputName">fileInputStream</param>
