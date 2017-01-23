@@ -55,8 +55,8 @@ public class NewsDao extends BaseIaceDao<News> implements INewsDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.desc("postDate"));
-			criteria.addOrder(Order.desc("createTime"));
+			criteria.addOrder(Order.desc("sort"));
+			criteria.addOrder(Order.desc("updateTime"));
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
@@ -116,8 +116,8 @@ public class NewsDao extends BaseIaceDao<News> implements INewsDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			criteria.add(Restrictions.eq("homeDisplayStatus", true));
-			criteria.addOrder(Order.desc("postDate"));
-			criteria.addOrder(Order.desc("createTime"));
+			criteria.addOrder(Order.desc("sort"));
+			criteria.addOrder(Order.desc("updateTime"));
 			criteria.setMaxResults(5);
 			
 			@SuppressWarnings("unchecked")
