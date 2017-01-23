@@ -69,7 +69,7 @@
 			</li>
 			<li class="quarter">
 				<b>首頁顯示</b>
-				<s:radio name="faq.homeDisplayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList" value="false"/>
+				<s:radio name="faq.homeDisplayStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList" value="true"/>
 			</li>			
 		</ul>		
 		<div class="clear"></div>
