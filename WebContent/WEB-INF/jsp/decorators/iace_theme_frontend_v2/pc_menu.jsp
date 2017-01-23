@@ -111,6 +111,21 @@
 						</ul>
 					</li>
 					<li class="dropdown left15">
+						<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu7">
+							研發焦點<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenu7">
+							<s:iterator value="@iace.entity.rdFocus.RdFocus@getCategoryList()" status="stat">
+								<li>
+									<s:url value="/f2/rdFocus/init" var="urlTag" escapeAmp="false">
+										<s:param name="searchCondition.category" value="code" />
+									</s:url>
+									<a href="<s:property value="urlTag"/>"><s:property value="name"/></a>
+								</li>
+							</s:iterator>
+						</ul>
+					</li>
+					<li class="dropdown left15">
 						<a href="#" class="dropdown-toggle menu_link" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="dropdownMenu5">
 							產業情報<span class="caret"></span>
 						</a>

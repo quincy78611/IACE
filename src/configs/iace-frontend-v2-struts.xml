@@ -41,6 +41,27 @@
 		</action>
 	</package>
 	
+	<package name="f2-RdFocus" namespace="/f2/rdFocus" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.RdFocusAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend_v2/rdFocus/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.RdFocusAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend_v2/rdFocus/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend_v2/rdFocus/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.RdFocusAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/frontend_v2/rdFocus/detail.jsp</result>
+		</action>
+		<action name="downloadAttach" class="iace.action.RdFocusAction" method="downloadAttach">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
+	
 	<package name="f2-About" namespace="/f2/about" extends="struts-default, json-default, default">
 		<action name="init" class="iace.action.AboutAction" method="frontendShowDetailInit">
 			<result name="success">/WEB-INF/jsp/frontend_v2/about/detail.jsp</result>

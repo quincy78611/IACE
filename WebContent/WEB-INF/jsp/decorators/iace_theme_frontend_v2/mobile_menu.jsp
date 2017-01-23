@@ -88,6 +88,21 @@
 				</li>
 				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown">
 					<a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						研發焦點<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
+						<s:iterator value="@iace.entity.rdFocus.RdFocus@getCategoryList()" status="stat">
+							<li>
+								<s:url value="/f2/rdFocus/init" var="urlTag" escapeAmp="false">
+									<s:param name="searchCondition.category" value="code" />
+								</s:url>
+								<a href="<s:property value="urlTag"/>" class="menu_link_mobile"><s:property value="name"/></a>
+							</li>
+						</s:iterator>
+					</ul>
+				</li>
+				<li style="border-bottom:#DDD 1px solid" role="presentation" class="dropdown">
+					<a href="#" class="dropdown-toggle menu_link_mobile right5" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						產業情報<span class="caret"></span>
 					</a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
