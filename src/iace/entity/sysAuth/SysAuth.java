@@ -24,6 +24,7 @@ import iace.entity.sysAuth.sysApplication.SysAppNews;
 import iace.entity.sysAuth.sysApplication.SysAppOptionManage;
 import iace.entity.sysAuth.sysApplication.SysAppPatent;
 import iace.entity.sysAuth.sysApplication.SysAppQnrCoopWay;
+import iace.entity.sysAuth.sysApplication.SysAppRdFocus;
 import iace.entity.sysAuth.sysApplication.SysAppResearchPlan;
 import iace.entity.sysAuth.sysApplication.SysAppSysLog;
 import iace.entity.sysAuth.sysApplication.SysAppSysRole;
@@ -53,6 +54,7 @@ public class SysAuth {
 	private SysAppAbout about = new SysAppAbout();
 	private SysAppFaq faq = new SysAppFaq();
 	private SysAppNews news = new SysAppNews();
+	private SysAppRdFocus rdFocus = new SysAppRdFocus();
 	private SysAppActivity activity = new SysAppActivity();
 	
 	private SysAppMember member = new SysAppMember();
@@ -95,6 +97,7 @@ public class SysAuth {
 		sysApps.add(this.about);
 		sysApps.add(this.faq);
 		sysApps.add(this.news);
+		sysApps.add(this.rdFocus);
 		sysApps.add(this.activity);
 		sysApps.add(this.member);
 		sysApps.add(this.contactUs);
@@ -216,6 +219,10 @@ public class SysAuth {
 
 	public SysAppNews getNews() {
 		return news;
+	}
+	
+	public SysAppRdFocus getRdFocus() {
+		return rdFocus;
 	}
 
 	public SysAppActivity getActivity() {

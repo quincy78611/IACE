@@ -42,6 +42,8 @@ import iace.service.qnrCooperateWay.QnrCooperateWayExcelService;
 import iace.service.qnrCooperateWay.QnrCooperateWayService;
 import iace.service.questionnaire.QnrService;
 import iace.service.questionnaire.QnrTemplateService;
+import iace.service.rdFocus.RdFocusAttachService;
+import iace.service.rdFocus.RdFocusService;
 import iace.service.relatedWebsite.RelatedWebsiteService;
 import iace.service.researchPlan.ResearchPlanExcelService;
 import iace.service.researchPlan.ResearchPlanService;
@@ -121,6 +123,9 @@ public class ServiceFactory {
 	
 	private static NewsService newsService;
 	private static NewsAttachService newsAttachService;
+	
+	private static RdFocusService rdFocusService;
+	private static RdFocusAttachService rdFocusAttachService;
 	
 	private static ActivityService activityService;
 	private static ActivityAttachService activityAttachService;
@@ -500,6 +505,20 @@ public class ServiceFactory {
 			newsAttachService = new NewsAttachService(DaoFactory.getNewsAttachDao());
 		}
 		return newsAttachService;
+	}
+	
+	public static RdFocusService getRdFocusService() {
+		if (rdFocusService == null) {
+			rdFocusService = new RdFocusService(DaoFactory.getRdFocusDao());
+		}
+		return rdFocusService;
+	}
+
+	public static RdFocusAttachService getRdFocusAttachService() {
+		if (rdFocusAttachService == null) {
+			rdFocusAttachService = new RdFocusAttachService(DaoFactory.getRdFocusAttachDao());
+		}
+		return rdFocusAttachService;
 	}
 
 	public static ActivityService getActivityService() {

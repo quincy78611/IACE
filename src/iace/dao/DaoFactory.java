@@ -70,6 +70,10 @@ import iace.dao.questionnaire.IQnrDao;
 import iace.dao.questionnaire.IQnrTemplateDao;
 import iace.dao.questionnaire.QnrDao;
 import iace.dao.questionnaire.QnrTemplateDao;
+import iace.dao.rdFocus.IRdFocusAttachDao;
+import iace.dao.rdFocus.IRdFocusDao;
+import iace.dao.rdFocus.RdFocusAttachDao;
+import iace.dao.rdFocus.RdFocusDao;
 import iace.dao.relatedWebsite.IRelatedWebsiteDao;
 import iace.dao.relatedWebsite.RelatedWebsiteDao;
 import iace.dao.researchPlan.IResearchPlanDao;
@@ -174,6 +178,9 @@ public class DaoFactory {
 	
 	private static INewsDao newsDao;
 	private static INewsAttachDao newsAttachDao;
+	
+	private static IRdFocusDao rdFocusDao;
+	private static IRdFocusAttachDao rdFocusAttachDao;
 	
 	private static IActivityDao activityDao;
 	private static IActivityAttachDao activityAttachDao;
@@ -511,6 +518,20 @@ public class DaoFactory {
 			newsAttachDao = new NewsAttachDao();
 		}
 		return newsAttachDao;
+	}
+	
+	public static IRdFocusDao getRdFocusDao() {
+		if (rdFocusDao == null) {
+			rdFocusDao = new RdFocusDao();
+		}
+		return rdFocusDao;
+	}
+
+	public static IRdFocusAttachDao getRdFocusAttachDao() {
+		if (rdFocusAttachDao == null) {
+			rdFocusAttachDao = new RdFocusAttachDao();
+		}
+		return rdFocusAttachDao;
 	}
 
 	public static IActivityDao getActivityDao() {

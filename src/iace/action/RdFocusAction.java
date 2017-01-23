@@ -1,0 +1,217 @@
+package iace.action;
+
+import java.io.InputStream;
+import java.util.List;
+
+import core.util.PagedList;
+import iace.dao.ClickNumCounterDao;
+import iace.entity.DbFile;
+import iace.entity.option.BaseOption;
+import iace.entity.rdFocus.RdFocus;
+import iace.entity.rdFocus.RdFocusAttach;
+import iace.entity.rdFocus.RdFocusSearchModel;
+import iace.service.ServiceFactory;
+import iace.service.rdFocus.RdFocusAttachService;
+import iace.service.rdFocus.RdFocusService;
+
+public class RdFocusAction extends BaseIaceAction {
+	private static final long serialVersionUID = 4998685391434229314L;
+
+	private RdFocusService rdFocusService = ServiceFactory.getRdFocusService();
+	private RdFocusAttachService rdFocusAttachService = ServiceFactory.getRdFocusAttachService();
+	
+	private RdFocusSearchModel searchCondition = new RdFocusSearchModel();
+	private PagedList<RdFocus> rdFocusPagedList;
+	
+	private long id;
+	private RdFocus rdFocus;
+	
+	private List<BaseOption> categoryList = RdFocus.getCategoryList();
+	private List<BaseOption> fileTypeList = DbFile.getFileTypeList();
+	
+	private long attachFileId;
+	private String downloadFileName;
+	private InputStream downloadFileInputStream;
+	
+	public RdFocusAction() {
+		super.setTitle("研發焦點");
+	}
+	
+	public String init() {
+		return index();
+	}
+	
+	public String index() {
+		try {
+			this.rdFocusPagedList = this.rdFocusService.searchBy(this.searchCondition);
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String showDetail() {
+		try {
+			new ClickNumCounterDao().increaseClickNum(this.id, RdFocus.class);
+			this.rdFocus = this.rdFocusService.get(this.id);
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String create() {
+		return SUCCESS;
+	}
+	
+	public void validateCreateSubmit() {
+		validateBeforeSubmit();
+	}
+	
+	public String createSubmit() {
+		try {
+			this.rdFocusService.create(this.rdFocus, super.getCurrentSysUser(), true, super.getSysLog());
+			this.addActionMessage("CREATE SUCCESS!");
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String update() {
+		try {
+			this.rdFocus = this.rdFocusService.get(id);
+			if (this.rdFocus == null) {
+				super.addActionError("找不到選擇的資料紀錄!");
+				return INPUT;
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public void validateUpdateSubmit() {
+		validateBeforeSubmit();
+	}
+	
+	public String updateSubmit() {
+		try {
+			this.rdFocusService.update(this.rdFocus, super.getCurrentSysUser(), true, super.getSysLog());
+			this.addActionMessage("UPDATE SUCCESS!");
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String delete() {
+		try {
+			this.rdFocus = this.rdFocusService.get(id);
+			if (this.rdFocus == null) {
+				super.addActionError("找不到選擇的資料紀錄!");
+				return INPUT;
+			}
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String deleteSubmit() {
+		try {
+			this.rdFocusService.delete(this.id, true, super.getSysLog());
+			super.addActionMessage("DELETE SUCCESS");
+			index();
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	private void validateBeforeSubmit() {
+		super.validateNotBlankNLength(this.rdFocus.getTitle(), 200, "rdFocus.title");
+		super.validateNotNull(this.rdFocus.getPostDate(), "rdFocus.postDate");
+		super.validateTextMaxLength(this.rdFocus.getMetaTitle(), 200, "rdFocus.metaTitle");
+	}
+
+	public String downloadAttach() {
+		try {
+			RdFocusAttach entity = this.rdFocusAttachService.get(this.attachFileId); 
+			this.downloadFileInputStream = entity.getFileContentInputStream();
+			this.downloadFileName = entity.getUploadFileName();
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	//==========================================================================
+
+	public RdFocusSearchModel getSearchCondition() {
+		return searchCondition;
+	}
+
+	public void setSearchCondition(RdFocusSearchModel searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public RdFocus getRdFocus() {
+		return rdFocus;
+	}
+
+	public void setRdFocus(RdFocus rdFocus) {
+		this.rdFocus = rdFocus;
+	}
+
+	public long getAttachFileId() {
+		return attachFileId;
+	}
+
+	public void setAttachFileId(long attachFileId) {
+		this.attachFileId = attachFileId;
+	}
+
+	public String getDownloadFileName() {
+		return downloadFileName;
+	}
+
+	public void setDownloadFileName(String downloadFileName) {
+		this.downloadFileName = downloadFileName;
+	}
+
+	public PagedList<RdFocus> getRdFocusPagedList() {
+		return rdFocusPagedList;
+	}
+
+	public List<BaseOption> getCategoryList() {
+		return categoryList;
+	}
+
+	public List<BaseOption> getFileTypeList() {
+		return fileTypeList;
+	}
+
+	public InputStream getDownloadFileInputStream() {
+		return downloadFileInputStream;
+	}
+	
+	
+
+}

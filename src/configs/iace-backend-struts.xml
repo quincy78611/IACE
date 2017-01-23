@@ -785,6 +785,49 @@
 		</action>
 	</package>
 	
+	<package name="RdFocus" namespace="/rdFocus" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="init" class="iace.action.RdFocusAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/rdFocus/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.RdFocusAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/rdFocus/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/rdFocus/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.RdFocusAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/rdFocus/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.RdFocusAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/rdFocus/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.RdFocusAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/rdFocus/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/rdFocus/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.RdFocusAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/rdFocus/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.RdFocusAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/rdFocus/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/rdFocus/detail.jsp</result>
+		</action>
+		<action name="delete" class="iace.action.RdFocusAction" method="delete">
+			<result name="success">/WEB-INF/jsp/backend/rdFocus/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.RdFocusAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/rdFocus/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/rdFocus/index.jsp</result>
+		</action>
+		<action name="downloadAttach" class="iace.action.RdFocusAction" method="downloadAttach">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>	
+	
 	<package name="Activity" namespace="/activity" extends="struts-default, json-default, default">
 		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="init" class="iace.action.ActivityAction" method="init">

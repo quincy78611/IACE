@@ -172,6 +172,15 @@
 				</td>
 			</tr>
 			<tr>
+				<td><b><s:property value="sysRole.sysAuth.rdFocus.displayName"/></b></td>
+				<td class="horizontalList">
+					<s:checkbox label="%{sysRole.sysAuth.rdFocus.opView.displayName}" name="sysRole.sysAuth.rdFocus.opView.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.rdFocus.opCreate.displayName}" name="sysRole.sysAuth.rdFocus.opCreate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.rdFocus.opUpdate.displayName}" name="sysRole.sysAuth.rdFocus.opUpdate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.rdFocus.opDelete.displayName}" name="sysRole.sysAuth.rdFocus.opDelete.auth" fieldValue="true"/>
+				</td>
+			</tr>
+			<tr>
 				<td><b><s:property value="sysRole.sysAuth.activity.displayName"/></b></td>
 				<td class="horizontalList">
 					<s:checkbox label="%{sysRole.sysAuth.activity.opView.displayName}" name="sysRole.sysAuth.activity.opView.auth" fieldValue="true"/>
