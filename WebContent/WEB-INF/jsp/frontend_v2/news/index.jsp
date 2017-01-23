@@ -41,7 +41,7 @@
 					<div class="well">
 						<div class="row">
 							<div class="col-sm-3 col-xs-12">
-								<s:select name="searchCondition.year" list="#{'':'--年份--', '2016':'2016', '2015':'2015', '2014':'2014', '2013':'2013'}" class="form-control" />
+								<s:select name="searchCondition.year" list="#{'':'--年份--', '2017':'2017', '2016':'2016', '2015':'2015', '2014':'2014', '2013':'2013'}" class="form-control" />
 							</div>
 							<div class="col-sm-6 col-xs-12">
 								<s:textfield placeholder="主題" name="searchCondition.searchText" class="form-control"/>
