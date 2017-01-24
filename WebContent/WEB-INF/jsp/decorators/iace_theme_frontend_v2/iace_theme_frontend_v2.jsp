@@ -31,6 +31,9 @@
 <!-- highlight 工具 -->
 <script type="text/javascript" src="<s:url value="/scripts/jquery.highlight.js"/>"></script>
 
+<!-- 禁止複製 -->
+<script type="text/javascript" src="<s:url value="/scripts/disableCopy.js"/>"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		

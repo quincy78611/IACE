@@ -34,7 +34,7 @@
 				<s:include value="./left_menu.jsp" />
 			</div>
 			<!-- 右列表 -->
-			<div class="col-sm-9 col-xs-12 bottom20">
+			<div class="col-sm-9 col-xs-12 bottom20 disableCopy">
 				<div class="large_title_03"><s:property value="rdFocus.title"/></div>
 				<div class="date_01">發佈日期：<s:date name="rdFocus.postDate" format="yyyy/MM/dd"/></div>
 				<div class="date_01">資料來源：<s:property value="rdFocus.source"/></div>

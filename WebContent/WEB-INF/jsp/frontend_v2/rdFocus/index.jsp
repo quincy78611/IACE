@@ -63,7 +63,7 @@
 									<th>主題</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody class="disableCopy">
 								<s:if test="rdFocusPagedList != null">
 									<s:iterator value="rdFocusPagedList.list" status="stat">
 										<tr>
