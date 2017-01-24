@@ -59,7 +59,7 @@
 						<s:if test="coopExPagedList != null">
 							<s:iterator value="coopExPagedList.list" status="stat">
 								<div class="row">
-									<div class="col-lg-3 col-md-4 col-sm-12 col-cs-12">
+									<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
 										<div class="list-thumbnail img_radius">
 											<s:if test="base64Thumbnail != null && thumbnail.length > 0">
 												<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive" alt=""/>
@@ -69,7 +69,7 @@
 											</s:else>
 										</div>
 									</div>
-									<div class="col-lg-9 col-md-8 col-sm-12 col-cs-12">
+									<div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
 										<div>
 											<s:url value="/f2/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
 												<s:param name="id" value="id" />
