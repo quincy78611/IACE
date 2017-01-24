@@ -139,9 +139,7 @@
 								</li>
 							</s:iterator>
 							<li>
-								<s:url value="/f2/file/downloadFile"  var="urlTag" escapeAmp="false">
-									<s:param name="downloadFileSubPath" value="%{'105年-企業技術需求訪談分析.pdf'}" />
-									<s:param name="downloadFileName" value="%{'download.pdf'}" />
+								<s:url value="/f2/enterpriseRequireTech/init"  var="urlTag" escapeAmp="false">
 								</s:url>
 								<a href="<s:property value="urlTag"/>">企業需求</a>
 							</li>

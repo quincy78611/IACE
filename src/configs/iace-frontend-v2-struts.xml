@@ -314,4 +314,14 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="f2-EnterpriseRequireTech" namespace="/f2/enterpriseRequireTech" extends="struts-default, json-default, default">
+		<action name="init" class="iace.action.EnterpriseRequireTechAction" method="init">
+			<result name="success">/WEB-INF/jsp/frontend_v2/enterpriseRequireTech/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.EnterpriseRequireTechAction" method="index">
+			<result name="success">/WEB-INF/jsp/frontend_v2/enterpriseRequireTech/index.jsp</result>
+		</action>
+	</package>
+	
 </struts>

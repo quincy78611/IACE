@@ -11,6 +11,7 @@ import iace.service.coopExample.CoopExService;
 import iace.service.coopExample.CoopExVideoService;
 import iace.service.customerService.ContactUsService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
+import iace.service.enterpriseNeed.EnterpriseRequireTechService;
 import iace.service.faq.FaqService;
 import iace.service.incubationCenter.IncubationCenterService;
 import iace.service.industryInfo.IndustryInfoService;
@@ -95,6 +96,7 @@ public class ServiceFactory {
 	private static ConsultingService consultingService;
 	
 	private static EnterpriseInfoService enterpriseInfoService;
+	private static EnterpriseRequireTechService enterpriseRequireTechService;
 	
 	private static QnrTemplateService qnrTemplateService;
 	private static QnrService qnrService;
@@ -360,6 +362,14 @@ public class ServiceFactory {
 					DaoFactory.getOptionCooperateModeDao());
 		}
 		return enterpriseInfoService;
+	}
+	
+
+	public static EnterpriseRequireTechService getEnterpriseRequireTechService() {
+		if (enterpriseRequireTechService == null) {
+			enterpriseRequireTechService = new EnterpriseRequireTechService(DaoFactory.getEnterpriseRequireTechDao());
+		}
+		return enterpriseRequireTechService;
 	}
 
 	public static QnrTemplateService getQnrTemplateService() {

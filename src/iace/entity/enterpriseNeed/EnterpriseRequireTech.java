@@ -46,7 +46,7 @@ public class EnterpriseRequireTech extends BaseEntity {
 		this.id = id;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="ENTERPRISE_INFO_ID", referencedColumnName= "ID")
 	public EnterpriseInfo getEnterpriseInfo() {
 		return enterpriseInfo;
