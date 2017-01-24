@@ -11,7 +11,7 @@
 			if ($("#readPolicyCheck").prop("checked")) {
 				window.location.href='<s:url value="/f2/member/register"/>';
 			} else {
-				alert("請選擇同意接受「本人已閱讀、瞭解並同意接受Link-IAC網站會員服務條款，約定書之所有內容，本項同意得以電子文件方式表達，勾選表示同意並開始註冊會員資料。」");
+				alert("請選擇同意接受「本人已閱讀、瞭解並同意接受IACE網站會員服務條款，約定書之所有內容，本項同意得以電子文件方式表達，勾選表示同意並開始註冊會員資料。」");
 			}
 		});
 	});
@@ -51,13 +51,13 @@
 					<img src="<s:url value="/images/frontend-v2/member_banner.jpg"/>" class="img-responsive" alt="" />
 				</div>
 				<div class="content_01 well top10">
-					<div class="text-center large_title_04 bottom10">Link-IAC網站會員服務條款</div>
+					<div class="text-center large_title_04 bottom10">IACE網站會員服務條款</div>
 					<div style="width: 100%; height: 600px; overflow: auto; border: #DDD solid 1px; padding-top: 10px; padding-right: 10px;">
-						<div class="text-center large_title_03">【Link-IAC網站會員服務條款(以下簡稱本會員條款)】</div>
+						<div class="text-center large_title_03">【IACE網站會員服務條款(以下簡稱本會員條款)】</div>
 						<div class="content_01">
 							<ol>
 								<li><span class="large_title_04">認知與接受條款</span><br>
-									Link-IAC網站(以下簡稱「本網站」)係由「運用法人鏈結產學合作計畫」(以下簡稱「本計畫」)委託工研院產經中心所建置、維運之網路資訊平台，並提供本網站會員服務予使用者（以下簡稱「本服務」）。為避免使用者重複填寫資料及繁複之申請程序，所有申請使用本服務之使用者（以下稱「會員」或「您」），只需一次加入會員及同意服務條款，即可使用本服務。本會員條款構成會員與本計畫之契約，請您詳細閱讀本會員條款，當您完成相關基本資料提供、註冊驗證程序，開始使用本服務時，即視為已知悉、並完全同意本會員條款所有約定。
+									IACE網站(以下簡稱「本網站」)係由「運用法人鏈結產學合作計畫」(以下簡稱「本計畫」)委託工研院產經中心所建置、維運之網路資訊平台，並提供本網站會員服務予使用者（以下簡稱「本服務」）。為避免使用者重複填寫資料及繁複之申請程序，所有申請使用本服務之使用者（以下稱「會員」或「您」），只需一次加入會員及同意服務條款，即可使用本服務。本會員條款構成會員與本計畫之契約，請您詳細閱讀本會員條款，當您完成相關基本資料提供、註冊驗證程序，開始使用本服務時，即視為已知悉、並完全同意本會員條款所有約定。
 									<br>
 								<br>
 									本網站有權於任何時間基於需要修改或變更本會員條款內容，除對會員個人權益有重大影響者，本計畫將不會個別通知會員，但本會員條款將會公布於本站『會員註冊頁』及『會員登入頁』中，建議您隨時注意相關修改與變更。您於本會員條款的任何修改或變更之後繼續使用本服務，將視為您已經閱讀、瞭解且同意相關修改與變更。如果您不同意本會員條款的內容，或者您所屬的國家或地域排除本會員條款內容之全部或一部時，您應立即停止使用本服務。</li>
@@ -117,7 +117,7 @@
 					<div class="checkbox">
 						<label> 
 							<input type="checkbox" id="readPolicyCheck"> 
-							本人已閱讀、瞭解並同意接受Link-IAC網站會員服務條款，約定書之所有內容，本項同意得以電子文件方式表達，勾選表示同意並開始註冊會員資料。
+							本人已閱讀、瞭解並同意接受IACE網站會員服務條款，約定書之所有內容，本項同意得以電子文件方式表達，勾選表示同意並開始註冊會員資料。
 						</label>
 					</div>
 					<div class="text-center">
