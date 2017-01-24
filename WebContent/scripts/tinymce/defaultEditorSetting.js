@@ -16,6 +16,8 @@ function defaultTinymceEditor(obj) {
 		],
 		automatic_uploads: true,
 		height: 400,
+		relative_urls : false,
+		remove_script_host : false
 	});
 }
 
@@ -32,6 +34,8 @@ function readonlyTinymceEditor(obj) {
 		menubar: '',
 		toolbar: [],
 		height: 400,
+		relative_urls : false,
+		remove_script_host : false
 	});
 }
 	
