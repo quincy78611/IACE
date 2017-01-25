@@ -12,7 +12,7 @@
 	<constant name="struts.ognl.allowStaticMethodAccess" value="true"/> 
 	
 
-	<package name="default" namespace="/" extends="struts-default">
+	<package name="default" namespace="/" extends="struts-default, json-default">
 		<interceptors>
 			<interceptor name="iaceSession" class="iace.interceptor.SessionInterceptor"/>
 			<interceptor name="iaceBackendlogin" class="iace.interceptor.LoginInterceptor"/>
@@ -55,6 +55,13 @@
 			<result type="redirectAction">
 				<param name="namespace">/f2/home</param>
 				<param name="actionName">init</param>
+			</result>
+		</action>
+		
+		<action name="reflashSession" class="iace.action.ReflashSessionAction">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+				<param name="noCache">true</param>
 			</result>
 		</action>
 	</package>
