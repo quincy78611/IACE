@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <decorators>
-    <decorator name="backend-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend.jsp">
+    <decorator name="backend-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend/iace_theme_backend.jsp">
     	<pattern>/WEB-INF/jsp/backend/*</pattern>
     </decorator>
 	
-    <decorator name="backend-noMenu-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend_noMenu.jsp">
+    <decorator name="backend-noMenu-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend_noMenu/iace_theme_backend_noMenu.jsp">
     	<pattern>/WEB-INF/jsp/backend_noMenu/*</pattern>
     	<pattern>/WEB-INF/jsp/qnr/*</pattern>
     	<pattern>/WEB-INF/jsp/login.jsp</pattern>
         <pattern>/WEB-INF/jsp/error.jsp</pattern>
     </decorator>
     
-    <decorator name="backend-noMenu-talentedPeople-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend_talentedPeople.jsp">
+    <decorator name="backend-noMenu-talentedPeople-theme" page="/WEB-INF/jsp/decorators/iace_theme_backend_talentedPeople/iace_theme_backend_talentedPeople.jsp">
     	<pattern>/WEB-INF/jsp/backend_noMenu/talentedPeople/*</pattern>
     </decorator>
 	
-    <decorator name="frontend-theme" page="/WEB-INF/jsp/decorators/iace_theme_frontend.jsp">
+    <decorator name="frontend-theme" page="/WEB-INF/jsp/decorators/iace_theme_frontend/iace_theme_frontend.jsp">
       	<pattern>/WEB-INF/jsp/frontend/*</pattern>
     </decorator> 
  
