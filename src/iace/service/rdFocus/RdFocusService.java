@@ -76,17 +76,18 @@ public class RdFocusService extends BaseIaceService<RdFocus> {
 		}
 		entity.setAttachs(attachList);
 		
-		// create new upload files
-		for (RdFocusAttach attach : entity.getAttachs()) {
-			if (attach.getId() <= 0) {
-				this.rdFocusAttachService.create(attach);
+		{// must UPDATE [old attach files] before CREATE [new upload files] otherwise after create, attach's id will > 0 and will delete the file just create 
+			// update old attach files
+			for (RdFocusAttach attach : entity.getAttachs()) {
+				if (attach.getId() > 0) {
+					this.rdFocusAttachService.update(attach);
+				}
 			}
-		}
-		
-		// update old attach files
-		for (RdFocusAttach attach : entity.getAttachs()) {
-			if (attach.getId() > 0) {
-				this.rdFocusAttachService.update(attach);
+			// create new upload files
+			for (RdFocusAttach attach : entity.getAttachs()) {
+				if (attach.getId() <= 0) {
+					this.rdFocusAttachService.create(attach);
+				}
 			}
 		}
 		

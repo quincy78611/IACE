@@ -80,17 +80,19 @@ public class NewsService extends BaseIaceService<News> {
 		}
 		entity.setAttachs(attachList);
 		
-		// create new upload files
-		for (NewsAttach attach : entity.getAttachs()) {
-			if (attach.getId() <= 0) {
-				this.newsAttachService.create(attach);
+		{// must UPDATE [old attach files] before CREATE [new upload files] otherwise after create, attach's id will > 0 and will delete the file just create 
+			// update old attach files 
+			for (NewsAttach attach : entity.getAttachs()) {
+				if (attach.getId() > 0) {
+					this.newsAttachService.update(attach);
+				}
 			}
-		}
-		
-		// update old attach files
-		for (NewsAttach attach : entity.getAttachs()) {
-			if (attach.getId() > 0) {
-				this.newsAttachService.update(attach);
+			
+			// create new upload files
+			for (NewsAttach attach : entity.getAttachs()) {
+				if (attach.getId() <= 0) {
+					this.newsAttachService.create(attach);
+				}
 			}
 		}
 		

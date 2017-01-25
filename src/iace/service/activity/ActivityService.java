@@ -107,17 +107,19 @@ public class ActivityService extends BaseIaceService<Activity> {
 		}
 		entity.setAttachList(attachList);
 		
-		// update old attach files
-		for (ActivityAttach attach : entity.getAttachList()) {
-			if (attach.getId() > 0) {
-				this.activityAttachService.update(attach);
+		{// must UPDATE [old attach files] before CREATE [new upload files] otherwise after create, attach's id will > 0 and will delete the file just create 
+			// update old attach files
+			for (ActivityAttach attach : entity.getAttachList()) {
+				if (attach.getId() > 0) {
+					this.activityAttachService.update(attach);
+				}
 			}
-		}
-		
-		// create new upload files
-		for (ActivityAttach attach : entity.getAttachList()) {
-			if (attach.getId() <= 0) {
-				this.activityAttachService.create(attach);
+			
+			// create new upload files
+			for (ActivityAttach attach : entity.getAttachList()) {
+				if (attach.getId() <= 0) {
+					this.activityAttachService.create(attach);
+				}
 			}
 		}
 		

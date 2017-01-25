@@ -179,7 +179,7 @@ public abstract class DbFile extends BaseEntity {
 
 
 	public boolean hasUpload() {
-		return this.upload != null && this.uploadContentType != null && this.uploadFileName != null;
+		return this.upload != null && this.upload.exists() && this.uploadContentType != null && this.uploadFileName != null;
 	}
 
 	@Transient
