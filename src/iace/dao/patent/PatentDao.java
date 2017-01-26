@@ -10,8 +10,10 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
@@ -165,6 +167,14 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Patent.class);
 			criteria.add(Restrictions.isNotNull("openDate"));
+			
+			ProjectionList projectionList = Projections.projectionList();
+			projectionList.add(Projections.property("id"), "id");
+			projectionList.add(Projections.property("openNo"), "openNo");
+			projectionList.add(Projections.property("name"), "name");
+			criteria.setProjection(projectionList);
+			criteria.setResultTransformer(Transformers.aliasToBean(super.entityClass));
+			
 			criteria.addOrder(Order.desc("openDate"));
 			criteria.setMaxResults(3);
 			

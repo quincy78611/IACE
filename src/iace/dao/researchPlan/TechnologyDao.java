@@ -6,9 +6,11 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
+import org.hibernate.transform.Transformers;
 
 import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
@@ -119,6 +121,13 @@ public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnolog
 			Criteria criteria = session.createCriteria(Technology.class);
 			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			criteria.createAlias("researchPlan", "rp");
+			
+			ProjectionList projectionList = Projections.projectionList();
+			projectionList.add(Projections.property("id"), "id");
+			projectionList.add(Projections.property("name"), "name");
+			projectionList.add(Projections.property("researchPlan"), "researchPlan");
+			criteria.setProjection(projectionList);
+			criteria.setResultTransformer(Transformers.aliasToBean(super.entityClass));
 			
 			criteria.addOrder(Order.desc("rp.year"));
 			criteria.setMaxResults(2);

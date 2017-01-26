@@ -11,8 +11,10 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
@@ -139,6 +141,15 @@ public class LiteratureDao extends BaseIaceDao<Literature> implements ILiteratur
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Literature.class);
 			criteria.add(Restrictions.eq("category", category));
+			
+			ProjectionList projectionList = Projections.projectionList();
+			projectionList.add(Projections.property("id"), "id");
+			projectionList.add(Projections.property("titleC"), "titleC");
+			projectionList.add(Projections.property("titleF"), "titleF");
+			projectionList.add(Projections.property("publishYear"), "publishYear");
+			criteria.setProjection(projectionList);
+			criteria.setResultTransformer(Transformers.aliasToBean(super.entityClass));
+			
 			criteria.addOrder(Order.desc("publishYear"));
 			criteria.addOrder(Order.desc("createTime"));
 			criteria.setMaxResults(5);

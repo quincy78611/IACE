@@ -6,8 +6,10 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
@@ -75,6 +77,15 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 		try {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
+			
+			ProjectionList projectionList = Projections.projectionList();
+			projectionList.add(Projections.property("id"), "id");
+			projectionList.add(Projections.property("title"), "title");
+			projectionList.add(Projections.property("postDate"), "postDate");
+			projectionList.add(Projections.property("link"), "link");
+			criteria.setProjection(projectionList);
+			criteria.setResultTransformer(Transformers.aliasToBean(super.entityClass));
+			
 			criteria.add(Restrictions.eq("category", category));
 			criteria.addOrder(Order.desc("postDate"));
 			criteria.setMaxResults(5);
