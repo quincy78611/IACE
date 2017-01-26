@@ -125,6 +125,7 @@
 				<li class="half">
 					<s:textfield name="searchCondition.searchText" placeholder="關鍵字"/>
 				</li>
+				<div class="clear"></div>
 				<li class="half">
 					<s:textfield name="searchCondition.rdTeam" placeholder="研發團隊"/>
 				</li>
