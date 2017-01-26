@@ -87,18 +87,19 @@ public abstract class BaseAction extends ActionSupport {
 		return false;
 	}
 	
-	protected boolean validateEmail(CharSequence testValue, String fieldName, String errMsg) {
-		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
-		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
-		java.util.regex.Matcher m = p.matcher(testValue);
-		boolean isValid = m.matches();
+	protected boolean validateEmail(String testValue, String fieldName, String errMsg) {
+//		String ePattern = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$";
+//		java.util.regex.Pattern p = java.util.regex.Pattern.compile(ePattern);
+//		java.util.regex.Matcher m = p.matcher(testValue);
+//		boolean isValid = m.matches();
+		boolean isValid = Validator.isValidEmail(testValue);
 		if (isValid == false) {
 			this.addFieldError(fieldName, errMsg);
 		}
 		return isValid;
 	}
 
-	protected boolean validateEmail(CharSequence testValue, String fieldName) {
+	protected boolean validateEmail(String testValue, String fieldName) {
 		return validateEmail(testValue, fieldName, "必須是有效的email格式");
 	}
 	
