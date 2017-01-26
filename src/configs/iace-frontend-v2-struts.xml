@@ -324,4 +324,13 @@
 		</action>
 	</package>
 	
+	<package name="f2-Epaper" namespace="/f2/ePaper" extends="struts-default, json-default, default">
+		<action name="subscribe" class="iace.action.EPaperSubscriberAction" method="subscribe">
+			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
+		</action>
+		<action name="subscribeSubmit" class="iace.action.EPaperSubscriberAction" method="subscribeSubmit">
+			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
+			<result name="input">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
+		</action>
+	</package>
 </struts>

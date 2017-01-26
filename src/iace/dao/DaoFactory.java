@@ -20,6 +20,8 @@ import iace.dao.coopExample.ICoopExImgDao;
 import iace.dao.coopExample.ICoopExVideoDao;
 import iace.dao.customerService.ContactUsDao;
 import iace.dao.customerService.IContactUsDao;
+import iace.dao.ePaper.EPaperSubscriberDao;
+import iace.dao.ePaper.IEPaperSubscriberDao;
 import iace.dao.enterpriseNeed.EnterpriseAcademiaCoopDao;
 import iace.dao.enterpriseNeed.EnterpriseInfoDao;
 import iace.dao.enterpriseNeed.EnterpriseRequireTechDao;
@@ -196,6 +198,8 @@ public class DaoFactory {
 	
 	private static IVideosAreaDao videosAreaDao;
 	private static IVideoDao videoDao;
+	
+	private static IEPaperSubscriberDao ePaperSubscriberDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -595,6 +599,13 @@ public class DaoFactory {
 			videoDao = new VideoDao();
 		}
 		return videoDao;
+	}
+
+	public static IEPaperSubscriberDao getePaperSubscriberDao() {
+		if (ePaperSubscriberDao == null) {
+			ePaperSubscriberDao = new EPaperSubscriberDao();
+		}
+		return ePaperSubscriberDao;
 	}
 
 	

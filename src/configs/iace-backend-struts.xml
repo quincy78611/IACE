@@ -987,4 +987,33 @@
 			</result>
 		</action>
 	</package>
+	
+	<package name="EPaperSubscriber" namespace="/epaperSubscriber" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		
+		<action name="init" class="iace.action.EPaperSubscriberAction" method="init">
+			<result name="success">/WEB-INF/jsp/backend/ePaper/index.jsp</result>
+		</action>
+		<action name="index" class="iace.action.EPaperSubscriberAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/ePaper/index.jsp</result>
+			<result name="input">/WEB-INF/jsp/backend/ePaper/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.EPaperSubscriberAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/ePaper/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.EPaperSubscriberAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/ePaper/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.EPaperSubscriberAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/ePaper/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/ePaper/detail.jsp</result>
+		</action>
+		<action name="delete" class="iace.action.EPaperSubscriberAction" method="delete">
+			<result name="success">/WEB-INF/jsp/backend/ePaper/delete.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.EPaperSubscriberAction" method="deleteSubmit">
+			<result name="input">/WEB-INF/jsp/backend/ePaper/delete.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/ePaper/index.jsp</result>
+		</action>
+	</package>
 </struts>

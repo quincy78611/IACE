@@ -10,6 +10,7 @@ import iace.service.coopExample.CoopExImgService;
 import iace.service.coopExample.CoopExService;
 import iace.service.coopExample.CoopExVideoService;
 import iace.service.customerService.ContactUsService;
+import iace.service.ePaper.EPaperSubscriberService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
 import iace.service.enterpriseNeed.EnterpriseRequireTechService;
 import iace.service.faq.FaqService;
@@ -142,6 +143,8 @@ public class ServiceFactory {
 	
 	private static VideosAreaService videosAreaService;
 	private static VideoService videoService;
+	
+	private static EPaperSubscriberService epaperSubscriberService;
 	
 	// =========================================================================
 	
@@ -590,6 +593,13 @@ public class ServiceFactory {
 			videoService = new VideoService(DaoFactory.getVideoDao());
 		}
 		return videoService;
+	}
+
+	public static EPaperSubscriberService getEpaperSubscriberService() {
+		if (epaperSubscriberService == null) {
+			epaperSubscriberService = new EPaperSubscriberService(DaoFactory.getePaperSubscriberDao());
+		}
+		return epaperSubscriberService;
 	}
 	
 	

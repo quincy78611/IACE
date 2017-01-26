@@ -230,6 +230,14 @@
 				</td>
 			</tr>
 			<tr>
+				<td><b><s:property value="sysRole.sysAuth.epaperSubscriber.displayName"/></b></td>
+				<td class="horizontalList">
+					<s:checkbox label="%{sysRole.sysAuth.epaperSubscriber.opView.displayName}" name="sysRole.sysAuth.epaperSubscriber.opView.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.epaperSubscriber.opUpdate.displayName}" name="sysRole.sysAuth.epaperSubscriber.opUpdate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.epaperSubscriber.opDelete.displayName}" name="sysRole.sysAuth.epaperSubscriber.opDelete.auth" fieldValue="true"/>
+				</td>
+			</tr>
+			<tr>
 				<td><b><s:property value="sysRole.sysAuth.file.displayName"/></b></td>
 				<td class="horizontalList">
 					<s:checkbox label="%{sysRole.sysAuth.file.opUpload.displayName}" name="sysRole.sysAuth.file.opUpload.auth" fieldValue="true"/>

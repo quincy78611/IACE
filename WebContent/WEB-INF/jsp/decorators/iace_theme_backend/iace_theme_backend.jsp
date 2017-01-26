@@ -132,6 +132,7 @@
 						<s:include value="./iace_backend_menu/menu-videosArea.jsp" />
 						<s:include value="./iace_backend_menu/menu-file.jsp" />
 						<s:include value="./iace_backend_menu/menu-member.jsp" />
+						<s:include value="./iace_backend_menu/menu-ePaper.jsp" />
 						<s:include value="./iace_backend_menu/menu-contactUs.jsp" />
 						<s:include value="./iace_backend_menu/menu-batchSendEmail.jsp" />
 						<s:include value="./iace_backend_menu/menu-option.jsp" />
