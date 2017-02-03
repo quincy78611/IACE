@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
@@ -33,6 +34,7 @@ public class EPaperDao extends BaseIaceDao<EPaper> implements IEPaperDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
+			criteria.addOrder(Order.desc("postDate"));
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
