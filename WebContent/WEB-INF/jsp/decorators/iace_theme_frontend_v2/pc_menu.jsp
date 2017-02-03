@@ -194,7 +194,7 @@
 				</a>
 			</div>
 			<div class="col-sm-2 text-right">
-				<a href="#" class="blue_menu_link">
+				<a href="<s:url value="/f2/ePaper/init"/>" class="blue_menu_link">
 					<i class="fa fa-envelope-open right5" aria-hidden="true"></i>電子報
 				</a>
 			</div>
