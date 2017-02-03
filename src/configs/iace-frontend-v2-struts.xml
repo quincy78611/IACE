@@ -332,5 +332,8 @@
 			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
 			<result name="input">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
 		</action>
+		<action name="read" class="iace.action.EPaperAction" method="read">
+			<result name="success">${epaperUrl}</result>
+		</action>
 	</package>
 </struts>

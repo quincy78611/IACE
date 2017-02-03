@@ -21,6 +21,7 @@ import iace.entity.coopExample.CoopExAttachFile;
 import iace.entity.coopExample.CoopExImg;
 import iace.entity.coopExample.CoopExVideo;
 import iace.entity.customerService.ContactUs;
+import iace.entity.ePaper.EPaper;
 import iace.entity.ePaper.EPaperSubscriber;
 import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
@@ -255,6 +256,7 @@ public class HibernateSessionFactory {
 		configuration.addAnnotatedClass(VideosArea.class);
 		configuration.addAnnotatedClass(Video.class);
 		
+		configuration.addAnnotatedClass(EPaper.class);
 		configuration.addAnnotatedClass(EPaperSubscriber.class);
 	}
 }

@@ -95,7 +95,7 @@ public class EPaperSubscriberAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.epaperSubscriberService.update(this.subscriber);
+			this.epaperSubscriberService.update(this.subscriber, super.getCurrentSysUser(), false, super.getSysLog());
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

@@ -14,6 +14,7 @@ import iace.entity.sysAuth.sysApplication.SysAppBatchSendEmail;
 import iace.entity.sysAuth.sysApplication.SysAppConsulting;
 import iace.entity.sysAuth.sysApplication.SysAppContactUs;
 import iace.entity.sysAuth.sysApplication.SysAppCoopEx;
+import iace.entity.sysAuth.sysApplication.SysAppEPaper;
 import iace.entity.sysAuth.sysApplication.SysAppEPaperSubscriber;
 import iace.entity.sysAuth.sysApplication.SysAppEnterpriseNeed;
 import iace.entity.sysAuth.sysApplication.SysAppFaq;
@@ -68,6 +69,7 @@ public class SysAuth {
 	
 	private SysAppFile file = new SysAppFile();
 	
+	private SysAppEPaper epaper = new SysAppEPaper();
 	private SysAppEPaperSubscriber epaperSubscriber = new SysAppEPaperSubscriber();
 	
 	public SysAuth() {
@@ -107,6 +109,7 @@ public class SysAuth {
 		sysApps.add(this.batchSendEmail);
 		sysApps.add(this.videosArea);
 		sysApps.add(this.file);
+		sysApps.add(this.epaper);
 		sysApps.add(this.epaperSubscriber);
 		return sysApps;
 	}
@@ -251,6 +254,10 @@ public class SysAuth {
 
 	public SysAppFile getFile() {
 		return file;
+	}
+	
+	public SysAppEPaper getEpaper() {
+		return epaper;
 	}
 
 	public SysAppEPaperSubscriber getEpaperSubscriber() {
