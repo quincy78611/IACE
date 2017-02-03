@@ -3,43 +3,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="funcPathText" content="編輯管理  > 編輯"/>
+<meta name="funcPathText" content="編輯管理  > 檢視"/>
 
 <script>
 $(document).ready(function() {
-	$("#btn-back").click(function(){				
+	$("#btn-back").click(function(){
 		$("#form-backToIndex").submit();
 	});
 });
 </script>
 </head>
 <body>
-	<ul>						
+	<ul>
 		<li class="all">
 			<b>標題</b>
 			<div class="border-text">
 				<s:property value="epaper.title"/>
 			</div>
 		</li>
-		<div class="clear"></div>	
+		<div class="clear"></div>
 		<li class="half">
 			<b>期數</b>
 			<div class="border-text">
 				<s:property value="epaper.no"/>
-			</div>			
+			</div>
 		</li>
 		<li class="half">
 			<b>發佈日</b>
 			<div class="border-text">
 				<s:property value="epaper.postDate"/>
-			</div>			
-		</li>			
+			</div>
+		</li>
 	</ul>
 	<div class="clear"></div>
 	
 	<div class="bottom-btn-block">
 		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
-	</div>		
+	</div>
 	
 	<s:include value="./form-backToIndex.jsp" />
 </body>

@@ -90,7 +90,6 @@ public class EPaperAction extends BaseIaceAction {
 //			this.epaperUrl = "/ePapers/20160909144004.jsp";
 //			this.epaperUrl = "/ePapers/20170105185502.jsp";
 			
-			//TODO
 			showDetail();
 			this.epaperUrl = this.epaper.getUrl();
 			
@@ -103,8 +102,9 @@ public class EPaperAction extends BaseIaceAction {
 	
 	public String publish() {
 		try {
-			//TODO
-			
+			this.epaperService.publish(this.id, super.getCurrentSysUser(), this.getSysLog());
+			index();
+			super.addActionMessage("發佈成功");
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

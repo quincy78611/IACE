@@ -30,7 +30,9 @@ $(document).ready(function() {
 		<s:hidden name="epaper.updateTime"/>
 		<s:hidden name="epaper.updateUser"/>
 		<s:hidden name="epaper.ver"/>
-		<ul>						
+		<s:hidden name="epaper.publishState"/>
+		<s:hidden name="epaper.fileName"/>
+		<ul>
 			<li class="all">
 				<b>標題</b>
 				<s:textfield name="epaper.title" maxlength="200"/>
@@ -54,7 +56,7 @@ $(document).ready(function() {
 		<div class="bottom-btn-block">
 			<s:submit cssClass="redBtn" value="儲存" />
 			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
-		</div>		
+		</div>
 	</s:form>
 	
 	<s:include value="./form-backToIndex.jsp" />

@@ -34,6 +34,7 @@ public class EPaperDao extends BaseIaceDao<EPaper> implements IEPaperDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
+			criteria.addOrder(Order.desc("no"));
 			criteria.addOrder(Order.desc("postDate"));
 			
 			criteria.setFirstResult(results.getItemStart()-1);

@@ -36,7 +36,13 @@
 			$("form").attr('action', url);
 			$("form").submit();
 			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
-		});		
+		});
+		$(".btn-publish").click(function() {
+			var url = $(this).siblings(".publishUrl").val();
+			$("form").attr('action', url);
+			$("form").submit();
+			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+		});
 	}
 </script>
 <script>	
@@ -242,7 +248,18 @@
 								</a>
 							</td>
 							<td><s:date name="postDate" format="yyyy/MM/dd"/></td>
-							<td><s:property value="%{ publishState ? '已發佈' : '未發佈'}" /></td>
+							<td>
+								<s:if test="publishState">
+									已發佈
+								</s:if>
+								<s:else>
+									<s:url value="publish.action" var="publishUrlTag">
+										<s:param name="id" value="id" />
+									</s:url>
+									<s:hidden value="%{#publishUrlTag}" class="publishUrl" disabled="true"/>
+									<input type="button" class="btn-publish" value="確認發佈" />
+								</s:else>
+							</td>
 							<td>
 								<!-- 檢視 -->
 								<s:if test='%{#session.sysUser.hasAuth(namespace, "showDetail")}'>

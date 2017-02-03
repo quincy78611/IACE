@@ -1044,5 +1044,8 @@
 			<result name="input">/WEB-INF/jsp/backend/epaper/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/epaper/index.jsp</result>
 		</action>
+		<action name="publish" class="iace.action.EPaperAction" method="publish">
+			<result name="success">/WEB-INF/jsp/backend/epaper/index.jsp</result>
+		</action>
 	</package>
 </struts>
