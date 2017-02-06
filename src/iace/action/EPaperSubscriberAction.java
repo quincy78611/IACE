@@ -75,8 +75,8 @@ public class EPaperSubscriberAction extends BaseIaceAction {
 			} else {
 				old.setIsSubscribe(this.subscriber.getIsSubscribe());
 				this.epaperSubscriberService.update(old, super.getCurrentSysUser(), false, this.getSysLog());
-				super.addActionMessage(this.subscriber.getIsSubscribe() ? "訂閱成功" : "退閱成功");
 			}
+			super.addActionMessage(this.subscriber.getIsSubscribe() ? "訂閱成功" : "退閱成功");
 			
 			return SUCCESS;
 		} catch (Exception e) {
