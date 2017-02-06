@@ -219,7 +219,7 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 					StringBuilder sb = new StringBuilder();
 					for (String email : emails.split("；")) {
 						if (Validator.isValidEmail(email.trim())) {
-							sb.append(email+"；");
+							sb.append(email.trim()+"；");
 						} else {
 							throw new IllegalArgumentException("非法的Email格式");
 						}

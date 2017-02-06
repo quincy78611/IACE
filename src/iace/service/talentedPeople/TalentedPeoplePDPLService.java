@@ -68,7 +68,7 @@ public class TalentedPeoplePDPLService extends BaseIaceService<TalentedPeoplePDP
 	
 	public boolean isIndexing(long talentedPeopleId) {
 		TalentedPeoplePDPL pdpl = this.getByTalentedPeopleID(talentedPeopleId);
-		if (pdpl == null || pdpl.getAgreePDPL() == false) {
+		if (pdpl == null || pdpl.getAgreePDPL() == null || pdpl.getAgreePDPL() == false) {
 			return false;
 		} else {
 			return true;

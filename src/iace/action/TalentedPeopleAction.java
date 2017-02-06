@@ -190,8 +190,16 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		super.validateNotBlankNLength(this.talentedPeople.getNameCh(), 100, "talentedPeople.nameCh");
 		super.validateNotBlankNLength(this.talentedPeople.getNameEn(), 100, "talentedPeople.nameEn");
 		super.validateNotBlankNLength(this.talentedPeople.getTel(), 100, "talentedPeople.tel");
-		super.validateNotBlankNLength(this.talentedPeople.getEmail(), 100, "talentedPeople.email");
-		super.validateEmail(this.talentedPeople.getEmail(), "talentedPeople.email");
+		if (super.validateNotBlankNLength(this.talentedPeople.getEmail(), 100, "talentedPeople.email")) {
+			String emails = this.talentedPeople.getEmail().trim().replace(";", "；");
+			StringBuilder sb = new StringBuilder();
+			for (String email : emails.split("；")) {
+				if (super.validateEmail(email.trim(), "talentedPeople.email")) {
+					sb.append(email.trim()+"；");
+				}
+			}
+			this.talentedPeople.setEmail(sb.toString().substring(0, sb.length()-1));
+		}
 		super.validateTextMaxLength(this.talentedPeople.getWorkOrg(), 100, "talentedPeople.workOrg");
 		super.validateTextMaxLength(this.talentedPeople.getJob(), 100, "talentedPeople.job");
 		super.validateTextMaxLength(this.talentedPeople.getUrl(), 1000, "talentedPeople.url");
@@ -388,6 +396,10 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
+	}
+
+	public void validateSelfUpdateSubmit() {
+		validateBeforeSubmit();
 	}
 	
 	public String selfUpdateSubmit() {
