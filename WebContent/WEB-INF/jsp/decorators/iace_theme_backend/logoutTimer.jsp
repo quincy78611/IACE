@@ -149,6 +149,7 @@ function getTimeRemaining(endtime) {
 </script>
 <div id="clockdiv">
 	<div>
+		自動登出:
 		<span class="minutes">&nbsp;&nbsp;</span> 
 		<span class="seconds">&nbsp;&nbsp;</span>
 		<input type="button" class="btn-reset-clock" onclick="restartTime()" value="reset"/>
