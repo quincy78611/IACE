@@ -1,5 +1,7 @@
 package iace.dao.ePaper;
 
+import java.util.List;
+
 import core.util.PagedList;
 import iace.dao.IBaseIaceDao;
 import iace.entity.ePaper.EPaperSubscriber;
@@ -10,4 +12,6 @@ public interface IEPaperSubscriberDao extends IBaseIaceDao<EPaperSubscriber> {
 	public long queryTotalRecordsCount(EPaperSubscriberSearchModel arg);
 	
 	public EPaperSubscriber getByEmail(String email);
+	
+	public List<String> allEmailList();
 }

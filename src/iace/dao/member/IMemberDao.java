@@ -1,5 +1,7 @@
 package iace.dao.member;
 
+import java.util.List;
+
 import core.util.PagedList;
 import iace.dao.IBaseIaceDao;
 import iace.entity.member.Member;
@@ -16,4 +18,5 @@ public interface IMemberDao extends IBaseIaceDao<Member> {
 	
 	public long queryTotalRecordsCount(MemberSearchModel arg);
 	
+	public List<String> allEmailList();
 }

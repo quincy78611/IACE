@@ -599,7 +599,10 @@ public class ServiceFactory {
 
 	public static EPaperService getEpaperService() {
 		if (epaperService == null) {
-			epaperService = new EPaperService(DaoFactory.getEpaperDao());
+			epaperService = new EPaperService(
+					DaoFactory.getEpaperDao(), 
+					DaoFactory.getePaperSubscriberDao(),
+					DaoFactory.getMemberDao());
 		}
 		return epaperService;
 	}

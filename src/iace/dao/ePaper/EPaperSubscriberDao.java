@@ -93,5 +93,23 @@ public class EPaperSubscriberDao extends BaseIaceDao<EPaperSubscriber> implement
 		} 
 	}
 
+	@Override
+	public List<String> allEmailList() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.setProjection(Projections.property("email"));
+			
+			@SuppressWarnings("unchecked")
+			List<String> res = criteria.list();
+			
+			return res;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		} 
+	}
+
 	
 }
