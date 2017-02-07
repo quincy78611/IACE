@@ -41,11 +41,6 @@
 				autostart : false,
 				autohide : true
 			});
-			
-			setInterval(function () {
-				/* $("#div-top-message").attr("hidden", "hidden"); */
-				$("#div-top-message").hide();
-			}, 5000);
 		});
 	</script>
 
@@ -69,6 +64,7 @@
 				
 			</s:else>
 		</div>
+		<s:include value="popupMessageDialog.jsp" />
 	</header>
 	<article>
 		<div class="pageTitle">
@@ -144,14 +140,6 @@
 		</div>
 		<div class="rightContent">
 			<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
-			<div id="div-top-message">
-				<s:if test="hasActionMessages()">
-					<s:actionmessage />
-				</s:if>
-				<s:if test="hasActionErrors()">
-					<s:actionerror />
-				</s:if>
-			</div>
 			<decorator:body />
 		</div>
 		<div class="clear"></div>
