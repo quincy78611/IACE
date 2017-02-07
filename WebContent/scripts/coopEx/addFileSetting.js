@@ -1,6 +1,5 @@
 $(document).ready(function() {
 	addMore();
-	fileBrowseSetting();
 });
 
 function addMore() {	
@@ -8,7 +7,6 @@ function addMore() {
 		var newTr = $(this).parents("table").find("tr.hidden-sample-tr").clone();
 		newTr.removeClass("hidden-sample-tr");
 		$(this).parents("table").find("tbody").append(newTr);
-		fileBrowseSetting();
 		resetNameAttrForImgTable();
 	});
 	
@@ -16,7 +14,6 @@ function addMore() {
 		var newTr = $(this).parents("table").find("tr.hidden-sample-tr").clone();
 		newTr.removeClass("hidden-sample-tr");
 		$(this).parents("table").find("tbody").append(newTr);
-		fileBrowseSetting();
 		resetNameAttrForVideoTable();
 	});		
 	
@@ -24,7 +21,6 @@ function addMore() {
 		var newTr = $(this).parents("table").find("tr.hidden-sample-tr").clone();
 		newTr.removeClass("hidden-sample-tr");
 		$(this).parents("table").find("tbody").append(newTr);
-//		fileBrowseSetting();
 		resetNameAttrForAttachTable();
 	});
 }
