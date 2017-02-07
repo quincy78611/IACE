@@ -27,19 +27,14 @@
 	<link rel="stylesheet" type="text/css" href="<s:url value="/css/pageBtnList.css"/>" />
 	
     <s:if test="%{title != null && title != ''}">
-   		<title><s:property value="title" /></title>
-   	</s:if>
-   	<s:else>
-   		<title><decorator:title default="Welcome!" /></title>
-   	</s:else>
+		<title><s:property value="title" /></title>
+	</s:if>
+	<s:else>
+		<title><decorator:title default="Welcome!" /></title>
+	</s:else>
 	
 	<script type="text/javascript">
-		$(document).ready(function() {
-			setInterval(function () {
-                /* $("#div-top-message").attr("hidden", "hidden"); */
-                $("#div-top-message").hide();
-            }, 5000);
-		});
+
 	</script>
 
 	<decorator:head />
@@ -53,32 +48,26 @@
 		</div>
 		<div class="Link">
 			<s:if test="#session.sysUser != null">
+				<s:include value="logoutTimer.jsp" />
 				<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
 				<a href="<s:url value="/f/talentedPeople/logout"/>" class="login">登出</a>
 				<a href="<s:url value="/f2/home/init"/>" class="login">回首頁</a>
 			</s:if>
-		</div>		
+		</div>	
+		<s:include value="popupMessageDialog.jsp" />	
 	</header>
 	<article>
-		<div class="pageTitle">   		
-   			<s:if test="%{title != null && title != ''}">
-   				<h1><s:property value="title" /></h1>
-   			</s:if>   		 
+		<div class="pageTitle">		
+			<s:if test="%{title != null && title != ''}">
+				<h1><s:property value="title" /></h1>
+			</s:if>		 
 		</div>
  
-    	<div class="rightContent">
-    		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
-			<div id="div-top-message">
-				<s:if test="hasActionMessages()">
-					<s:actionmessage />
-				</s:if>
-				<s:if test="hasActionErrors()">
-					<s:actionerror />
-				</s:if>			
-			</div>
+ 	<div class="rightContent">
+ 		<s:hidden name="#context['struts.actionMapping'].name" id="currentActionName"/>
 			<decorator:body />
-    	</div>
-    	<div class="clear"></div>
+ 	</div>
+ 	<div class="clear"></div>
 	</article>
 	<footer>
 		<div class="con">

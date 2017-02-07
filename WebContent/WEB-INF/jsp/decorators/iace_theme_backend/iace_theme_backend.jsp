@@ -61,7 +61,6 @@
 				<s:include value="logoutTimer.jsp" />
 				<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
 				<a href="<s:url value="/login/logout"/>" class="login">登出</a>
-				
 			</s:else>
 		</div>
 		<s:include value="popupMessageDialog.jsp" />
