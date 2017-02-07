@@ -189,8 +189,8 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	public void validateBeforeSubmit() {
 		super.validateNotBlankNLength(this.talentedPeople.getNameCh(), 100, "talentedPeople.nameCh");
 		super.validateNotBlankNLength(this.talentedPeople.getNameEn(), 100, "talentedPeople.nameEn");
-		super.validateNotBlankNLength(this.talentedPeople.getTel(), 100, "talentedPeople.tel");
-		if (super.validateNotBlankNLength(this.talentedPeople.getEmail(), 100, "talentedPeople.email")) {
+		super.validateNotBlankNLength(this.talentedPeople.getTel(), 200, "talentedPeople.tel");
+		if (super.validateNotBlankNLength(this.talentedPeople.getEmail(), 200, "talentedPeople.email")) {
 			String emails = this.talentedPeople.getEmail().trim().replace(";", "；");
 			StringBuilder sb = new StringBuilder();
 			for (String email : emails.split("；")) {

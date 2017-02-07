@@ -107,7 +107,7 @@ tr.hidden-sample-tr { display:none; }
 								<input type="checkbox" name="talentedPeople.isPublicTel" value="true" 
 									<s:property value="%{talentedPeople.isPublicTel ? 'checked' : ''}"/> />公開
 							</label>
-							<s:textfield name="talentedPeople.tel" maxlength="20"/>
+							<s:textfield name="talentedPeople.tel" maxlength="200"/>
 						</li>
 						<li class="half">
 							<b>e-mail</b>
@@ -115,7 +115,7 @@ tr.hidden-sample-tr { display:none; }
 								<input type="checkbox" name="talentedPeople.isPublicEmail" value="true" 
 									<s:property value="%{talentedPeople.isPublicEmail ? 'checked' : ''}"/> />公開
 							</label>
-							<s:textfield name="talentedPeople.email" maxlength="100"/>
+							<s:textfield name="talentedPeople.email" maxlength="200"/>
 						</li>
 						<li class="half">
 							<b>現職單位</b>
