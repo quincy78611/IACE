@@ -90,6 +90,7 @@ tr.hidden-sample-tr { display:none; }
 						</li>
 						<li class="half">
 							<b>連絡電話</b>
+							<label style="font-size:11px; color:#b9925b; margin-right:10px">(多組請以分號隔開)</label>
 							<label>
 								<input type="checkbox" name="talentedPeople.isPublicTel" value="true" 
 									<s:property value="%{talentedPeople.isPublicTel ? 'checked' : ''}"/> />公開
@@ -98,6 +99,7 @@ tr.hidden-sample-tr { display:none; }
 						</li>
 						<li class="half">
 							<b>e-mail</b>
+							<label style="font-size:11px; color:#b9925b; margin-right:10px">(多組請以分號隔開)</label>
 							<label>
 								<input type="checkbox" name="talentedPeople.isPublicEmail" value="true" 
 									<s:property value="%{talentedPeople.isPublicEmail ? 'checked' : ''}"/> />公開
