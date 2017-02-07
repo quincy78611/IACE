@@ -19,6 +19,8 @@ public class EPaperAction extends BaseIaceAction {
 	
 	private String epaperUrl;
 	
+	private String testEmailTo;
+	
 	public EPaperAction() {
 		super.setTitle("電子報");
 	}
@@ -112,6 +114,18 @@ public class EPaperAction extends BaseIaceAction {
 		}
 	}
 	
+	public String sendTestEmail() {
+		try {
+			this.epaperService.sendTestEmail(this.id, this.testEmailTo);
+			index();
+			super.addActionMessage("測試信寄送成功");
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
 	// =========================================================================
 
 	public String getEpaperUrl() {
@@ -160,6 +174,14 @@ public class EPaperAction extends BaseIaceAction {
 
 	public void setEpaper(EPaper epaper) {
 		this.epaper = epaper;
+	}
+
+	public String getTestEmailTo() {
+		return testEmailTo;
+	}
+
+	public void setTestEmailTo(String testEmailTo) {
+		this.testEmailTo = testEmailTo;
 	}
 
 	

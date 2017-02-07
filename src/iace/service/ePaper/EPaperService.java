@@ -38,8 +38,14 @@ public class EPaperService extends BaseIaceService<EPaper> {
 
 	public PagedList<EPaper> searchBy(EPaperSearchModel arg) {
 		return this.dao.searchBy(arg);
-	}	
+	}
 
+	public void sendTestEmail(long id, String to) throws MessagingException, IOException {
+		EPaper epaper = get(id);
+		String content = readEpaperContent(epaper);
+		EmailUtil.send(epaper.getTitle(), content, null, "linkiac2@gmail.com", "科技部鏈結產學合作計畫辦公室", to);
+	}
+	
 	public void publish(long id, SysUser user, SysLog syslog) throws IOException, SQLException, ParseException, MessagingException {
 		EPaper epaper = get(id);
 		epaper.setPostDate(new Date(System.currentTimeMillis()));

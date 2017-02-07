@@ -1047,5 +1047,8 @@
 		<action name="publish" class="iace.action.EPaperAction" method="publish">
 			<result name="success">/WEB-INF/jsp/backend/epaper/index.jsp</result>
 		</action>
+		<action name="sendTestEmail" class="iace.action.EPaperAction" method="sendTestEmail">
+			<result name="success">/WEB-INF/jsp/backend/epaper/index.jsp</result>
+		</action>
 	</package>
 </struts>

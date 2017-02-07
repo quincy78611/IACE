@@ -4,12 +4,54 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <script type="text/javascript">
+	var dialog;
+	var form = $("#dialog-form form");
+
 	$(document).ready(function () {
 		paggingSetting();
 		funcBtnSetting();
-		dropDownBoxSetting();
+		
+		dialog = $("#dialog-form").dialog({
+			autoOpen : false,
+			height : 150,
+			width : 260,
+			modal : true,
+			buttons : {
+				"送出測試信" : sendTestEmail,
+				"取消" : function() {
+					dialog.dialog("close");
+				}
+			},
+			close : function() {
+			}
+		});
 	});
+	
+	function sendTestEmail() {
+		var valid = true;
+		var email = $("#dialog-form input[name=testEmailTo]");
+		var emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+		valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
+		if (valid) {
+			dialog.find("form").submit();
+			dialog.dialog("close");
+		}
+		return valid;
+	}
+
+	function checkRegexp(o, regexp, n) {
+		if (!(regexp.test(o.val()))) {
+			o.addClass("ui-state-error");
+			return false;
+		} else {
+			return true;
+		}
+	}
 </script>
 <script>
 	function funcBtnSetting() {
@@ -42,6 +84,11 @@
 			$("form").attr('action', url);
 			$("form").submit();
 			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+		});
+		$(".btn-sendTestEmail").click(function() {
+			var id = $(this).siblings("input[name=id]").val();
+			$("#dialog-form input[name=id]").val(id);
+			dialog.dialog( "open" );
 		});
 	}
 </script>
@@ -118,49 +165,7 @@
 		});
 	}
 </script>
-<script>
-	function dropDownBoxSetting() {
-		$(".dropDownBox").mouseleave(function(){
-			toggleDropDownBox();
-			displaySelectedGrbDomains();
-		});
-	}
 
-	var expanded = false;
-	function toggleDropDownBox() {
-		if (!expanded) {
-			$(".dropDownBox").css("display","block")
-			expanded = true;
-		} else {
-			$(".dropDownBox").css("display","none")
-			expanded = false;
-			displaySelectedGrbDomains();
-		}
-	}
-	
-	function displaySelectedGrbDomains() {
-		var selectedGrbDomains = "";
-		$("[name='searchCondition.grbDomainIdList']:checked").each(function(index){
-			selectedGrbDomains += $(this).parents("li.third").find(".grbDomainName").val()+"; \r\n";
-		});
-		var selectCount = $("[name='searchCondition.grbDomainIdList']:checked").length;
-		if (selectCount > 0) {
-			$(".selectBox select option").html(selectedGrbDomains);
-			$(".selectBox").attr("title", selectedGrbDomains);
-		} else {
-			$(".selectBox select option").html("選擇領域");
-			$(".selectBox").removeAttr("title");
-		}
-	}
-</script>
-<style>
-.selectBox { position: relative; width: 100%; }
-.overSelect { position: absolute; left: 0; right: 13px; top: 0; bottom: 0; }
-.dropDownBox { width:30%; background-color:rgba(255, 255, 255, 1.0) ; display:none; border:#e6eff5 1px solid; position:absolute; }
-.dropDownBox label { display: block; font-size: 0.7em; }
-.dropDownBox label:hover { background-color: #1e90ff; color:#ffffff; }
-.dropDownBox li { margin:0; padding:0;}
-</style>
 <meta name="funcPathText" content="編輯管理 " />
 </head>
 <body>
@@ -228,6 +233,7 @@
 					<th nowrap width="">標題</th>
 					<th nowrap width="">發佈日</th>
 					<th nowrap width="">發佈狀態</th>
+					<th nowrap width=""></th>
 					<th nowrap width="">功能</th>
 				</tr>
 				<s:if test="epaperPagedList != null">
@@ -259,6 +265,10 @@
 									<s:hidden value="%{#publishUrlTag}" class="publishUrl" disabled="true"/>
 									<input type="button" class="btn-publish" value="確認發佈" />
 								</s:else>
+							</td>
+							<td>
+								<s:hidden name="id" disabled="true"/>
+								<input type="button" class="btn-sendTestEmail" value="寄送測試信" />
 							</td>
 							<td>
 								<!-- 檢視 -->
@@ -336,6 +346,17 @@
 			</ul>
 		</div>
 	</s:form>
+	<div class="clear"></div>
+	
+	<div id="dialog-form" title="寄送測試信">
+		<p class="validateTips"></p>
+	
+		<s:form action="sendTestEmail" method="post" validate="true" >
+			<input type="hidden" name="id"/>
+			<label for="email">Email</label>
+      		<input type="text" name="testEmailTo" class="text ui-widget-content ui-corner-all">
+		</s:form>
+	</div>
 </body>
 </html>
 
