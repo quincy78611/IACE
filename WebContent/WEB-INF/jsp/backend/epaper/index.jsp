@@ -55,40 +55,34 @@
 </script>
 <script>
 	function funcBtnSetting() {
-		$(".btn-export").click(function(){
-			var url = '<s:url value="exportRawData.action" />';
-			$("form").attr('action', url);
-			$("form").submit();
-			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
-		});		
 		$(".btn-view").click(function() {
 			var url = $(this).siblings(".detailUrl").val();
-			$("form").attr('action', url);
-			$("form").submit();
-			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+			$("form#index-form").attr('action', url);
+			$("form#index-form").submit();
+			$("form#index-form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
 		});
 		$(".btn-edit").click(function() {
 			var url = $(this).siblings(".updateUrl").val();
-			$("form").attr('action', url);
-			$("form").submit();
-			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+			$("form#index-form").attr('action', url);
+			$("form#index-form").submit();
+			$("form#index-form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
 		});
 		$(".btn-del").click(function() {
 			var url = $(this).siblings(".deleteUrl").val();
-			$("form").attr('action', url);
-			$("form").submit();
-			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+			$("form#index-form").attr('action', url);
+			$("form#index-form").submit();
+			$("form#index-form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
 		});
 		$(".btn-publish").click(function() {
 			var url = $(this).siblings(".publishUrl").val();
-			$("form").attr('action', url);
-			$("form").submit();
-			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+			$("form#index-form").attr('action', url);
+			$("form#index-form").submit();
+			$("form#index-form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
 		});
 		$(".btn-sendTestEmail").click(function() {
-			var id = $(this).siblings("input[name=id]").val();
+			var id = $(this).parents("tr").find(".row-id").html();
 			$("#dialog-form input[name=id]").val(id);
-			dialog.dialog( "open" );
+			dialog.dialog("open");
 		});
 	}
 </script>
@@ -169,7 +163,7 @@
 <meta name="funcPathText" content="編輯管理 " />
 </head>
 <body>
-	<s:form action="index" method="post" validate="true" >
+	<s:form namespace="/epaper" action="index" method="post" validate="true" id="index-form">
 		<div>
 			<ul>
 				<li class="half">
@@ -267,7 +261,7 @@
 								</s:else>
 							</td>
 							<td>
-								<s:hidden name="id" disabled="true"/>
+								<label class="row-id" style="display:none;"><s:property value="id"/></label>
 								<input type="button" class="btn-sendTestEmail" value="寄送測試信" />
 							</td>
 							<td>
