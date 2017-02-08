@@ -18,7 +18,7 @@
 		
 		dialog = $("#dialog-form").dialog({
 			autoOpen : false,
-			height : 150,
+			height : 170,
 			width : 260,
 			modal : true,
 			buttons : {
