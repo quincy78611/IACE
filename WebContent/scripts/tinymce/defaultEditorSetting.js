@@ -11,13 +11,14 @@ function defaultTinymceEditor(obj) {
 		content_css: 'css/content.css',
 		menubar: 'file edit view format tools table',
 		toolbar: [
-			'code | undo redo | cut copy paste | bold italic underline strikethrough | styleselect formatselect fontselect fontsizeselect  ',
-			'bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | link image searchreplace table | forecolor backcolor'
+			'code fullscreen | undo redo | cut copy paste | bold italic underline strikethrough | styleselect formatselect fontselect fontsizeselect  ',
+			'bullist numlist outdent indent | alignleft aligncenter alignright alignjustify | link image media searchreplace table | forecolor backcolor'
 		],
 		automatic_uploads: true,
 		height: 400,
 		relative_urls : false,
-		remove_script_host : false
+		remove_script_host : false,
+		paste_data_images: true
 	});
 }
 
