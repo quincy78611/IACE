@@ -34,6 +34,8 @@ import iace.dao.enterpriseNeed.IEnterpriseRequireTechDao;
 import iace.dao.enterpriseNeed.IEnterpriseSituationDao;
 import iace.dao.faq.FaqDao;
 import iace.dao.faq.IFaqDao;
+import iace.dao.httpRequestLog.HttpRequestLogDao;
+import iace.dao.httpRequestLog.IHttpRequestLogDao;
 import iace.dao.incubationCenter.IIncubationCenterDao;
 import iace.dao.incubationCenter.IncubationCenterDao;
 import iace.dao.industryInfo.IIndustryInfoDao;
@@ -125,6 +127,7 @@ public class DaoFactory {
 	private static ISysRoleDao sysRoleDao;
 	private static ISysUserDao sysUserDao;
 	private static ISysLogDao sysLogDao;
+	private static IHttpRequestLogDao httpRequestLogDao;
 	
 	private static IOptionDao<OptionCompanyLocation> optionCompanyLocationDao;
 	private static IOptionDao<OptionConsult> optionConsultDao;
@@ -224,6 +227,13 @@ public class DaoFactory {
 			sysLogDao = new SysLogDao();
 		}
 		return sysLogDao;
+	}
+	
+	public static IHttpRequestLogDao getHttpRequestLogDao() {
+		if (httpRequestLogDao == null) {
+			httpRequestLogDao = new HttpRequestLogDao();
+		}
+		return httpRequestLogDao;
 	}
 
 	public static IOptionDao<OptionCompanyLocation> getOptionCompanyLocationDao() {

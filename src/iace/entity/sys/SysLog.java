@@ -21,11 +21,13 @@ public class SysLog extends BaseEntity {
 
 	private static final long serialVersionUID = -3869735672852230110L;
 
-	private boolean enableLog;
+	private transient boolean enableLog;
 	
 	private long id;
+	
 	private OptionSysNamespace optionSysNamespace;
 	private OptionSysAction optionSysAction;
+	
 	private String ip;
 	private SysUser sysUser;
 

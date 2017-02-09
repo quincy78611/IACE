@@ -5,12 +5,14 @@
 
 <struts>
 	<package name="Home2" namespace="/f2/home" extends="struts-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.HomeAction" method="init2">
 			<result>/WEB-INF/jsp/frontend_v2/home/home.jsp</result>
 		</action>
 	</package>
 
 	<package name="IntegrationSearch" namespace="/f2/integrationSearch" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.LuceneAction" method="integrationSearchInit">
 			<result>/WEB-INF/jsp/frontend_v2/integrationSearch/index.jsp</result>
 		</action>
@@ -21,6 +23,7 @@
 	</package>
 
 	<package name="f2-News" namespace="/f2/news" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.NewsAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/news/index.jsp</result>
 		</action>
@@ -42,6 +45,7 @@
 	</package>
 	
 	<package name="f2-RdFocus" namespace="/f2/rdFocus" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.RdFocusAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/rdFocus/index.jsp</result>
 		</action>
@@ -63,6 +67,7 @@
 	</package>
 	
 	<package name="f2-About" namespace="/f2/about" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.AboutAction" method="frontendShowDetailInit">
 			<result name="success">/WEB-INF/jsp/frontend_v2/about/detail.jsp</result>
 		</action>
@@ -72,6 +77,7 @@
 	</package>
 	
 	<package name="f2-Activity" namespace="/f2/activity" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.ActivityAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/activity/index.jsp</result>
 		</action>
@@ -93,6 +99,7 @@
 	</package>
 	
 	<package name="f2-Faq" namespace="/f2/faq" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.FaqAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/faq/index.jsp</result>
 		</action>
@@ -102,6 +109,7 @@
 	</package>
 	
 	<package name="f2-IndustryInfo" namespace="/f2/industryInfo" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.IndustryInfoAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/industryInfo/index.jsp</result>
 		</action>
@@ -112,6 +120,7 @@
 	</package>
 	
 	<package name="f2-CoopEx" namespace="/f2/coopEx" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.CoopExAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/coopEx/index.jsp</result>
 		</action>
@@ -149,48 +158,56 @@
 	</package>
 
 	<package name="f2-ResearchPlan" namespace="/f2/researchPlan" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="showDetail" class="iace.action.ResearchPlanAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/researchPlan/detail.jsp</result>
 		</action>
 	</package>
 	
 	<package name="f2-Patent" namespace="/f2/patent" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="showDetail" class="iace.action.PatentAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/patent/detail.jsp</result>
 		</action>
 	</package>
 	
 	<package name="f2-talentedPeople" namespace="/f2/talentedPeople" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="showDetail" class="iace.action.TalentedPeopleAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/talentedPeople/detail.jsp</result>
 		</action>
 	</package>
 	
 	<package name="f2-IncubationCenter" namespace="/f2/incubationCenter" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="showDetail" class="iace.action.IncubationCenterAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/incubationCenter/detail.jsp</result>
 		</action>
 	</package>
 	
 	<package name="f2-Literature" namespace="/f2/literature" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="showDetail" class="iace.action.LiteratureAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/literature/detail.jsp</result>
 		</action>
 	</package>
 	
 	<package name="f2-Policy" namespace="/f2/policy" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="showDetail" class="iace.action.LiteratureAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/policy/detail.jsp</result>
 		</action>
 	</package>
 	
 	<package name="f2-matchIntro" namespace="/f2/matchIntro" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/matchIntro/detail.jsp</result>
 		</action>
 	</package>
 	
 	<package name="f2-websiteService" namespace="/f2/websiteService" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="websiteMap">
 			<result name="success">/WEB-INF/jsp/frontend_v2/websiteService/websiteMap.jsp</result>
 		</action>
@@ -206,6 +223,7 @@
 	</package>
 	
 	<package name="f2-member" namespace="/f2/member" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="memberCenter" class="iace.action.MemberAction" method="memberCenter">
 			<result name="success">/WEB-INF/jsp/frontend_v2/member/memberCenter.jsp</result>
 			<result name="login">/WEB-INF/jsp/frontend_v2/member/login.jsp</result>
@@ -253,6 +271,7 @@
 	</package>
 	
 	<package name="f2-CustomerServiceMailbox" namespace="/f2/customerServiceMailbox" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="create" class="iace.action.ContactUsAction" method="create">
 			<result>/WEB-INF/jsp/frontend_v2/customerServiceMailbox/create.jsp</result>
 		</action>
@@ -263,6 +282,7 @@
 	</package>
 		
 	<package name="f2-consulting" namespace="/f2/consulting" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="create" class="iace.action.ConsultingAction" method="create">
 			<result>/WEB-INF/jsp/frontend_v2/consulting/create.jsp</result>
 		</action>
@@ -284,6 +304,7 @@
 	</package>
 	
 	<package name="f2-VideosArea" namespace="/f2/videosArea" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.VideosAreaAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/videosArea/index.jsp</result>
 		</action>
@@ -305,6 +326,7 @@
 	</package>
 	
 	<package name="f2-File" namespace="/f2/file" extends="struts-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="downloadFile" class="iace.action.FileAction" method="downloadFile">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>
@@ -316,6 +338,7 @@
 	</package>
 	
 	<package name="f2-EnterpriseRequireTech" namespace="/f2/enterpriseRequireTech" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.EnterpriseRequireTechAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/enterpriseRequireTech/index.jsp</result>
 		</action>
@@ -325,6 +348,7 @@
 	</package>
 	
 	<package name="f2-Epaper" namespace="/f2/ePaper" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.EPaperAction" method="init">
 			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/index.jsp</result>
 		</action>

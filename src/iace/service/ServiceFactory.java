@@ -15,6 +15,7 @@ import iace.service.ePaper.EPaperSubscriberService;
 import iace.service.enterpriseNeed.EnterpriseInfoService;
 import iace.service.enterpriseNeed.EnterpriseRequireTechService;
 import iace.service.faq.FaqService;
+import iace.service.httpRequestLog.HttpRequestLogService;
 import iace.service.incubationCenter.IncubationCenterService;
 import iace.service.industryInfo.IndustryInfoService;
 import iace.service.literature.LiteratureService;
@@ -69,6 +70,7 @@ public class ServiceFactory {
 	private static SysRoleService sysRoleService;
 	private static SysUserService sysUserService;
 	private static SysLogService sysLogService;
+	private static HttpRequestLogService httpRequestLogService;
 	
 	private static OptionCompanyLocationService optionCompanyLocationService;
 	private static OptionConsultService optionConsultService;
@@ -185,6 +187,13 @@ public class ServiceFactory {
 			sysLogService = new SysLogService(DaoFactory.getSysLogDao());
 		}
 		return sysLogService;
+	}
+	
+	public static HttpRequestLogService getHttpRequestLogService() {
+		if (httpRequestLogService == null) {
+			httpRequestLogService = new HttpRequestLogService(DaoFactory.getHttpRequestLogDao());
+		}
+		return httpRequestLogService;
 	}
 
 	public static OptionCompanyLocationService getOptionCompanyLocationService() {

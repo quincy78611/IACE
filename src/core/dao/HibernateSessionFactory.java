@@ -29,6 +29,7 @@ import iace.entity.enterpriseNeed.EnterpriseRequireTech;
 import iace.entity.enterpriseNeed.EnterpriseSituation;
 import iace.entity.faq.Faq;
 import iace.entity.homeScrollingText.HomeScrollingText;
+import iace.entity.httpRequestLog.HttpRequestLog;
 import iace.entity.incubationCenter.IncubationCenter;
 import iace.entity.industryInfo.IndustryInfo;
 import iace.entity.literature.Literature;
@@ -213,6 +214,7 @@ public class HibernateSessionFactory {
 		configuration.addAnnotatedClass(SysUser.class);
 		configuration.addAnnotatedClass(SysRole.class);
 		configuration.addAnnotatedClass(SysLog.class);
+		configuration.addAnnotatedClass(HttpRequestLog.class);
 		
 		configuration.addAnnotatedClass(CoopEx.class);
 		configuration.addAnnotatedClass(CoopExImg.class);

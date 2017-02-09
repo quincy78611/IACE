@@ -18,6 +18,12 @@
 			<interceptor name="iaceBackendlogin" class="iace.interceptor.LoginInterceptor"/>
 			<interceptor name="iaceBackendAuth" class="iace.interceptor.AuthInterceptor"/>
 			<interceptor name="iaceSysLog" class="iace.interceptor.SysActionLogInterceptor"/>
+			<interceptor name="httpRequestLog" class="iace.interceptor.HttpRequestLogInterceptor"/>
+		
+			<interceptor-stack name="iaceFrontEnd">
+				<interceptor-ref name="httpRequestLog" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
 		
 			<interceptor-stack name="iaceBackEnd">
 				<interceptor-ref name="iaceSession" />
