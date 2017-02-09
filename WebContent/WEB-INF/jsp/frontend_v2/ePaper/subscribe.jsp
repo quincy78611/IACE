@@ -6,6 +6,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('ul.categoryList li:contains("電子報訂退閱")').addClass("active");
+		
+		$("form").submit(function () {
+			if ($("#readPolicyCheck").prop("checked")) {
+				return true;
+			} else {
+				alert("請選擇同意接受「個人資料蒐集、處理及利用之告知暨同意條款」");
+				return false;
+			}
+		});
 	});
 	
 </script>
@@ -65,13 +74,21 @@
 								<s:textfield name="subscriber.email" maxlength="200" class="form-control" />
 							</div>
 						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="checkbox">
+									<label>
+										<input type="checkbox" id="readPolicyCheck"> 同意【<a href="<s:url value="/f2/websiteService/privacy"/>" target="_blank">個人資料蒐集、處理及利用之告知暨同意條款</a>】
+									</label>
+								</div>
+							</div>
+						</div>
 						<div class="form-group form-inline">
 							<label for="" class="col-sm-3 control-label">驗證碼<span style="color:#F00;">*</span></label>
 							<div class="col-sm-9">
 								<s:include value="/WEB-INF/jsp/captcha.jsp" />
 							</div>
 						</div>
-						
 						<div class="line_gray1px bottom10 top30"></div>
 						<div class="form-group">
 							<div class="col-sm-12 text-center">

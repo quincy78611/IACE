@@ -135,7 +135,7 @@
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="checkbox">
-									<label> <input type="checkbox" name="consulting.approvalCheckBox" id="readPolicyCheck"> 同意【<a href="#">個人資料蒐集、處理及利用之告知暨同意條款</a>】
+									<label> <input type="checkbox" name="consulting.approvalCheckBox" id="readPolicyCheck"> 同意【<a href="<s:url value="/f2/websiteService/privacy"/>" target="_blank">個人資料蒐集、處理及利用之告知暨同意條款</a>】
 									</label>
 								</div>
 							</div>
