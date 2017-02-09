@@ -221,6 +221,17 @@
 			<result name="success">/WEB-INF/jsp/frontend_v2/websiteService/copyright.jsp</result>
 		</action>
 	</package>
+		
+	<package name="f2-CustomerServiceMailbox" namespace="/f2/customerServiceMailbox" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceFrontEnd"/>
+		<action name="create" class="iace.action.ContactUsAction" method="create">
+			<result>/WEB-INF/jsp/frontend_v2/websiteService/customerServiceMailbox.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.ContactUsAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/frontend_v2/websiteService/customerServiceMailbox.jsp</result>
+			<result name="success">/WEB-INF/jsp/frontend_v2/websiteService/customerServiceMailbox.jsp</result>
+		</action>
+	</package>
 	
 	<package name="f2-member" namespace="/f2/member" extends="struts-default, json-default, default">
 		<default-interceptor-ref name="iaceFrontEnd"/>
@@ -267,17 +278,6 @@
 		<action name="selfUpdateSubmit" class="iace.action.MemberAction" method="selfUpdateSubmit">
 			<result name="input">/WEB-INF/jsp/frontend_v2/member/update.jsp</result>
 			<result name="success">/WEB-INF/jsp/frontend_v2/member/memberCenter.jsp</result>
-		</action>
-	</package>
-	
-	<package name="f2-CustomerServiceMailbox" namespace="/f2/customerServiceMailbox" extends="struts-default, json-default, default">
-		<default-interceptor-ref name="iaceFrontEnd"/>
-		<action name="create" class="iace.action.ContactUsAction" method="create">
-			<result>/WEB-INF/jsp/frontend_v2/customerServiceMailbox/create.jsp</result>
-		</action>
-		<action name="createSubmit" class="iace.action.ContactUsAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/frontend_v2/customerServiceMailbox/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/frontend_v2/customerServiceMailbox/detail.jsp</result>
 		</action>
 	</package>
 		

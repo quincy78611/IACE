@@ -6,7 +6,7 @@
 	<li class="list-group-item" onclick="window.location.href='<s:url value="/f2/websiteService/websiteMap"/>'">
 		<i class="fa fa-cube right10" aria-hidden="true"></i>網站地圖
 	</li>
-	<li class="list-group-item">
+	<li class="list-group-item" onclick="window.location.href='<s:url value="/f2/customerServiceMailbox/create"/>'">
 		<i class="fa fa-cube right10" aria-hidden="true"></i>客服信箱
 	</li>
 	<li class="list-group-item" onclick="window.location.href='<s:url value="/f2/websiteService/contactUs"/>'">

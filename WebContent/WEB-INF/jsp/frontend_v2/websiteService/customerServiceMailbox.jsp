@@ -5,6 +5,8 @@
 <head>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$('ul.categoryList li:contains("客服信箱")').addClass("active");
+		
 		$("#form-sendMessage").submit(function () {
 			if ($("#readPolicyCheck").prop("checked")) {
 				return true;
@@ -26,7 +28,7 @@
 			<div class="col-sm-12 col-xs-12">
 				<div>
 					<div class="large_title_01">
-						<i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>客服信箱
+						<i class="fa fa-user-circle-o" aria-hidden="true" style="font-size: 18px; margin-right: 5px;"></i>網站服務
 					</div>
 					<div class="line_blue">&nbsp;</div>
 					<div class="line_gray1px bottom20"></div>
