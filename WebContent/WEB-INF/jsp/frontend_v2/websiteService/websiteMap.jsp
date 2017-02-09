@@ -39,6 +39,12 @@
 					<div class="row">
 						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
+								<tr><th>影音專區</th></tr>
+								<tr><td><a href="<s:url value="/f2/videosArea/init"/>">影音專區</a></td></tr>
+							</table>
+						</div>
+						<div class="col-sm-3 col-xs-12 bottom20">
+							<table>
 								<tr><th>活動/人培</th></tr>
 								<s:iterator value="@iace.entity.activity.Activity@getCategoryList()" status="stat">
 									<tr>
@@ -82,6 +88,8 @@
 								</s:iterator>
 							</table>
 						</div>
+					</div>
+					<div class="row">
 						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>學界研發成果</th></tr>
@@ -90,8 +98,21 @@
 								<tr><td><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.talentedPeople.TalentedPeople"/>">產學人才</a></td></tr>
 							</table>
 						</div>
-					</div>
-					<div class="row">
+						<div class="col-sm-3 col-xs-12 bottom20">
+							<table>
+								<tr><th>研發焦點</th></tr>
+								<s:iterator value="@iace.entity.rdFocus.RdFocus@getCategoryList()" status="stat">
+									<tr>
+										<td>
+											<s:url value="/f2/rdFocus/init" var="urlTag" escapeAmp="false">
+												<s:param name="searchCondition.category" value="code" />
+											</s:url>
+											<a href="<s:property value="urlTag"/>"><s:property value="name"/></a>
+										</td>
+									</tr>
+								</s:iterator>
+							</table>
+						</div>		
 						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>產業情報</th></tr>
@@ -105,40 +126,32 @@
 										</td>
 									</tr>
 								</s:iterator>
+								<tr>
+									<td>
+										<s:url value="/f2/enterpriseRequireTech/init"  var="urlTag" escapeAmp="false">
+										</s:url>
+										<a href="<s:property value="urlTag"/>">企業需求</a>
+									</td>
+								</tr>
 							</table>
 						</div>
 						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>媒合專區</th></tr>
 								<tr><td><a href="<s:url value="/f2/matchIntro/init"/>">產學媒合服務團簡介</a></td></tr>
-								<tr><td><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>">法規政策</a></td></tr>
-								<tr><td><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>">文獻</a></td></tr>
+								<tr><td><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>">法規政策/文獻</a></td></tr>
 								<tr><td><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.incubationCenter.IncubationCenter"/>">育成中心</a></td></tr>
 								<tr><td><a href="#">問卷調查</a></td></tr>
 							</table>
 						</div>
-						<div class="col-sm-3 col-xs-12 bottom20">
-							<table>
-								<tr><th>會員中心</th></tr>
-								<s:if test="#session.member == null">
-									<tr><td><a href="<s:url value="/f2/member/login"/>">會員登入</a></td></tr>
-									<tr><td><a href="<s:url value="/f2/member/register"/>">加入會員</a></td></tr>
-									<tr><td><a href="<s:url value="/f2/member/forgetPassword"/>">忘記密碼</a></td></tr>
-								</s:if>
-								<s:else>
-									<tr><td><a href="<s:url value="/f2/member/memberCenter"/>">會員中心</a></td></tr>
-									<tr><td><a href="<s:url value="/f2/member/logout"/>">會員登出</a></td></tr>
-								</s:else>
-							</table>
-						</div>
+					</div>
+					<div class="row">
 						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>產學合作計畫</th></tr>
 								<tr><td><a href="<s:url value="/f2/about/init"/>">產學合作計畫</a></td></tr>
 							</table>
 						</div>
-					</div>
-					<div class="row">
 						<div class="col-sm-3 col-xs-12 bottom20">
 							<table>
 								<tr><th>我要諮詢</th></tr>
@@ -158,6 +171,29 @@
 										</td>
 									</tr>
 								</s:iterator>
+							</table>
+						</div>
+						<div class="col-sm-3 col-xs-12 bottom20">
+							<table>
+								<tr><th>會員中心</th></tr>
+								<s:if test="#session.member == null">
+									<tr><td><a href="<s:url value="/f2/member/login"/>">會員登入</a></td></tr>
+									<tr><td><a href="<s:url value="/f2/member/register"/>">加入會員</a></td></tr>
+									<tr><td><a href="<s:url value="/f2/member/forgetPassword"/>">忘記密碼</a></td></tr>
+								</s:if>
+								<s:else>
+									<tr><td><a href="<s:url value="/f2/member/memberCenter"/>">會員中心</a></td></tr>
+									<tr><td><a href="<s:url value="/f2/member/logout"/>">會員登出</a></td></tr>
+								</s:else>
+							</table>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3 col-xs-12 bottom20">
+							<table>
+								<tr><th>電子報</th></tr>
+								<tr><td><a href="<s:url value="/f2/ePaper/init"/>">電子報歷史區</a></td></tr>
+								<tr><td><a href="<s:url value="/f2/ePaper/subscribe"/>">電子報訂退閱</a></td></tr>
 							</table>
 						</div>
 					</div>

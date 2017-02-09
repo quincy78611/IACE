@@ -69,8 +69,7 @@
 				<div class="small_title_02">媒合專區</div>
 				<ul class="small_title_02">
 					<li><a href="<s:url value="/f2/matchIntro/init"/>" class="list_link_04">產學媒合服務團簡介</a></li>
-					<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>" class="list_link_04">法規政策</a></li>
-					<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>" class="list_link_04">文獻</a></li>
+					<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>" class="list_link_04">法規政策/文獻</a></li>
 					<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.incubationCenter.IncubationCenter"/>" class="list_link_04">育成中心</a></li>
 					<li><a href="#" class="list_link_04">問卷調查</a></li>
 				</ul>

@@ -127,8 +127,7 @@
 					</a> 
 					<ul class="dropdown-menu" style="margin-left:20px; padding-left:10px;">
 						<li><a href="<s:url value="/f2/matchIntro/init"/>" class="menu_link_mobile">產學媒合服務團簡介</a></li>
-						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>" class="menu_link_mobile">法規政策</a></li>
-						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>" class="menu_link_mobile">文獻</a></li>
+						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.literature.Literature"/>" class="menu_link_mobile">法規政策/文獻</a></li>
 						<li><a href="<s:url value="/f2/integrationSearch/init?searchCondition.className=iace.entity.incubationCenter.IncubationCenter"/>" class="menu_link_mobile">育成中心</a></li>
 						<li><a href="#" class="menu_link_mobile">問卷調查</a></li>
 					</ul>
