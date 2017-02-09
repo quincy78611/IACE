@@ -22,21 +22,13 @@ public class FileAction extends BaseIaceAction {
 	private String uploadFileName;
 	private boolean uploadSuccess;
 	
-	private String fileFolder;
+	private String folderConfigKey; //用來取得設定檔中資料夾路徑用的 property key
 	private String downloadFileSubPath; //要下載的檔案的子路徑
 	private String downloadFileName; //用來顯示要下載檔案的檔名
 	private InputStream fileInputStream;
 	
 	public FileAction() {
 		super.setTitle("檔案中心");
-		
-		Properties prop = new Properties();
-		try {
-			prop.load(this.getClass().getClassLoader().getResourceAsStream("configs/iace.properties"));
-			this.fileFolder = prop.getProperty("downloadFilesFolder");
-		} catch (IOException e) {
-			log.fatal("", e);
-		}
 	}
 	
 	public boolean hasUpload() {
@@ -52,7 +44,7 @@ public class FileAction extends BaseIaceAction {
 				String uuid = UUID.randomUUID().toString();
 				String extension = FilenameUtils.getExtension(this.uploadFileName);
 				this.downloadFileSubPath = day + File.separator + uuid + "." + extension;
-				File dest = new File(this.fileFolder, this.downloadFileSubPath);
+				File dest = new File(getFileFolder(), this.downloadFileSubPath);
 				FileUtils.moveFile(this.upload, dest);
 				
 				if (StringUtils.isBlank(this.downloadFileName)) {
@@ -71,8 +63,7 @@ public class FileAction extends BaseIaceAction {
 
 	public String downloadFile() {
 		try {
-			this.fileInputStream = new FileInputStream(new File(this.fileFolder, this.downloadFileSubPath));
-//			this.downloadFileName = new String(this.downloadFileName.getBytes(), "ISO-8859-1"); // 解決中文檔名瀏覽器無法正常顯示問題
+			this.fileInputStream = new FileInputStream(new File(getFileFolder(), this.downloadFileSubPath));
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -80,10 +71,33 @@ public class FileAction extends BaseIaceAction {
 		}
 	}
 	
+	private String getFileFolder() throws IOException {
+		Properties prop = new Properties();
+		try {
+			prop.load(this.getClass().getClassLoader().getResourceAsStream("configs/iace.properties"));
+			if (StringUtils.isBlank(this.folderConfigKey)) {
+				return prop.getProperty("downloadFilesFolder");
+			} else {
+				return prop.getProperty(this.folderConfigKey);
+			}
+		} catch (IOException e) {
+			log.error("", e);
+			throw e;
+		}
+	}
+	
 	//==========================================================================
 	
 	public String getDownloadFileSubPath() {
 		return downloadFileSubPath;
+	}
+	
+	public String getFolderConfigKey() {
+		return folderConfigKey;
+	}
+
+	public void setFolderConfigKey(String folderConfigKey) {
+		this.folderConfigKey = folderConfigKey;
 	}
 
 	public File getUpload() {
