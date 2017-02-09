@@ -20,6 +20,12 @@ function defaultTinymceEditor(obj) {
 		remove_script_host : false,
 		paste_data_images: true
 	});
+	
+	$(document).ready(function() {
+		var comment = '<label style="font-size:11px; color:#b9925b; margin-right:10px">(可直接複製貼上圖片)</label>';
+//		$(comment).insertBefore(obj);
+		$(comment).insertAfter(obj);
+	});
 }
 
 function readonlyTinymceEditor(obj) {
