@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 網頁編輯器 -->
+<script type="text/javascript" src="<s:url value="/scripts/tinymce/tinymce.min.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/scripts/tinymce/jquery.tinymce.min.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/scripts/tinymce/defaultEditorSetting.js"/>"></script>
+<script>
+	readonlyTinymceEditor('textArea[name="coopEx.content"]');
+</script>
+
 <script>
 	$(document).ready(function() {
 		$("#btn-back").click(function(){				
@@ -56,7 +65,7 @@
 		</li>
 		<li class="all">
 			<b>內容</b>
-			<s:textarea name="coopEx.content" rows="10" disabled="true"/>
+			<s:textarea name="coopEx.content"/>
 		</li>
 	</ul>
 	<br>

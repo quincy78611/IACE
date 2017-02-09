@@ -3,6 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!-- 網頁編輯器 -->
+<script type="text/javascript" src="<s:url value="/scripts/tinymce/tinymce.min.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/scripts/tinymce/jquery.tinymce.min.js"/>"></script>
+<script type="text/javascript" src="<s:url value="/scripts/tinymce/defaultEditorSetting.js"/>"></script>
+<script>
+	readonlyTinymceEditor('textArea[name="coopEx.content"]');
+</script>
+
 <script>
 	$(document).ready(function(){
 		addSearchConditionHiddenToForm();
