@@ -73,8 +73,10 @@
 						<tbody>
 							<s:iterator value="rdFocus.attachs" status="stat">
 								<tr>
-									<s:url value="downloadAttach.action" var="downloadAttachUrl">
-										<s:param name="attachFileId" value="id" />
+									<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+										<s:param name="folderConfigKey" value="%{'rdFocusAttachFolder'}" />
+										<s:param name="downloadFileSubPath" value="fileSubPath" />
+										<s:param name="downloadFileName" value="uploadFileName" />
 									</s:url>
 									<td>
 										<a href="<s:property value="downloadAttachUrl" />">
