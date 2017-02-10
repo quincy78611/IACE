@@ -85,12 +85,21 @@
 				<div class="row">
 					<s:iterator value="coopEx.imgs" status="stat">
 						<div class="col-sm-4 col-xs-12" style="margin-top:15px;" title="<s:property value="fileDesc"/>">
-							<s:url value="downloadImage.action" var="downloadAttachUrl">
-								<s:param name="imgId" value="id" />
+							<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+								<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+								<s:param name="downloadFileSubPath" value="filePath" />
+								<s:param name="downloadFileName" value="fileName" />
 							</s:url>
 							<a href="<s:property value="downloadAttachUrl" />">
 								<div class="center-cropped2 img_radius">
-									<img src="data:image;base64,<s:property value="%{getBase64Thumbnail(400,300)}"/>" class="img-responsive"/>
+									<s:url namespace="/f2/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
+										<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+										<s:param name="downloadFileSubPath" value="filePath" />
+										<s:param name="downloadFileName" value="fileName" />
+										<s:param name="thumbnailWidth" value="400" />
+										<s:param name="thumbnailHeight" value="300" />
+									</s:url>
+									<img src="<s:property value="%{#downloadThumbnailUrl}"/>" class="img-responsive"/>
 								</div>
 							</a>
 							<div class="text-center" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
@@ -110,8 +119,10 @@
 				<div class="row videos">
 					<s:iterator value="coopEx.videos" status="stat">
 						<div class="col-sm-4 col-xs-12" style="margin-top:15px">
-							<s:url value="downloadVideo.action" var="downloadVideoUrl">
-								<s:param name="videoId" value="id" />
+							<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
+								<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+								<s:param name="downloadFileSubPath" value="filePath" />
+								<s:param name="downloadFileName" value="fileName" />
 							</s:url>
 							<video 
 								src="<s:property value="downloadVideoUrl" />" 
@@ -121,7 +132,7 @@
 						</div>	
 					</s:iterator>
 				</div>
-				<div class="line_solid"></div>				
+				<div class="line_solid"></div>
 				<div class="content_04">
 					<span class="fa-stack fa-lg">
 						<i class="fa fa-square fa-stack-2x"></i>
@@ -141,8 +152,10 @@
 						<tbody>
 							<s:iterator value="coopEx.attachFiles" status="stat">
 								<tr>
-									<s:url value="downloadAttach.action" var="downloadAttachUrl">
-										<s:param name="attachFileId" value="id" />
+									<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+										<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+										<s:param name="downloadFileSubPath" value="filePath" />
+										<s:param name="downloadFileName" value="fileName" />
 									</s:url>
 									<td>
 										<a href="<s:property value="downloadAttachUrl" />">
@@ -160,7 +173,7 @@
 					<button type="button" class="btn btn-default" id="btn-back">
 						<i class="fa fa-angle-double-left right5" aria-hidden="true"></i>回列表
 					</button>
-				</div>				
+				</div>
 				<s:include value="./form-backToIndex.jsp" />
 			</div><!-- 右列表 END-->
 		</div>

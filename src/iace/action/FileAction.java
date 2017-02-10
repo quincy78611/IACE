@@ -1,9 +1,12 @@
 package iace.action;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Properties;
 import java.util.UUID;
@@ -12,10 +15,20 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import core.util.ThumbnailUtil;
+
 public class FileAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = 4096665557711038165L;
 	private static SimpleDateFormat sdfDay = new SimpleDateFormat("yyyyMMdd");
+	private static Properties iaceProp = new Properties();
+	static {
+		try {
+			iaceProp.load(FileAction.class.getClassLoader().getResourceAsStream("configs/iace.properties"));
+		} catch (IOException e) {
+			log.error("讀取設定檔 configs/iace.properties 失敗!");
+		}
+	}
 
 	private File upload;
 	private String uploadContentType;
@@ -26,6 +39,9 @@ public class FileAction extends BaseIaceAction {
 	private String downloadFileSubPath; //要下載的檔案的子路徑
 	private String downloadFileName; //用來顯示要下載檔案的檔名
 	private InputStream fileInputStream;
+	
+	private int thumbnailWidth;
+	private int thumbnailHeight;
 	
 	public FileAction() {
 		super.setTitle("檔案中心");
@@ -63,7 +79,21 @@ public class FileAction extends BaseIaceAction {
 
 	public String downloadFile() {
 		try {
-			this.fileInputStream = new FileInputStream(new File(getFileFolder(), this.downloadFileSubPath));
+			File f = new File(getFileFolder(), this.downloadFileSubPath);
+			this.fileInputStream = new FileInputStream(f);
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String downloadThumbnail() {
+		try {
+			File f = new File(getFileFolder(), this.downloadFileSubPath);
+			byte[] byteArrayImg = Files.readAllBytes(Paths.get(f.getAbsolutePath()));
+			byte[] thumbnailBytes = ThumbnailUtil.resize(byteArrayImg, this.thumbnailWidth, this.thumbnailHeight, true, 1.0f);
+			this.fileInputStream = new ByteArrayInputStream(thumbnailBytes);;
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -72,17 +102,10 @@ public class FileAction extends BaseIaceAction {
 	}
 	
 	private String getFileFolder() throws IOException {
-		Properties prop = new Properties();
-		try {
-			prop.load(this.getClass().getClassLoader().getResourceAsStream("configs/iace.properties"));
-			if (StringUtils.isBlank(this.folderConfigKey)) {
-				return prop.getProperty("downloadFilesFolder");
-			} else {
-				return prop.getProperty(this.folderConfigKey);
-			}
-		} catch (IOException e) {
-			log.error("", e);
-			throw e;
+		if (StringUtils.isBlank(this.folderConfigKey)) {
+			return iaceProp.getProperty("downloadFilesFolder");
+		} else {
+			return iaceProp.getProperty(this.folderConfigKey);
 		}
 	}
 	
@@ -143,5 +166,22 @@ public class FileAction extends BaseIaceAction {
 	public InputStream getFileInputStream() {
 		return fileInputStream;
 	}
+
+	public int getThumbnailWidth() {
+		return thumbnailWidth;
+	}
+
+	public void setThumbnailWidth(int thumbnailWidth) {
+		this.thumbnailWidth = thumbnailWidth;
+	}
+
+	public int getThumbnailHeight() {
+		return thumbnailHeight;
+	}
+
+	public void setThumbnailHeight(int thumbnailHeight) {
+		this.thumbnailHeight = thumbnailHeight;
+	}
+	
 	
 }

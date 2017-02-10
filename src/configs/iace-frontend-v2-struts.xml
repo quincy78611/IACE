@@ -324,6 +324,14 @@
 				<param name="bufferSize">1024</param>
 			</result>
 		</action>
+		<action name="downloadThumbnail" class="iace.action.FileAction" method="downloadThumbnail">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="f2-EnterpriseRequireTech" namespace="/f2/enterpriseRequireTech" extends="struts-default, json-default, default">
