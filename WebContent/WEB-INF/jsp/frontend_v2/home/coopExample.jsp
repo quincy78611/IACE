@@ -32,7 +32,7 @@
 				</s:url> 
 				<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01">
 					<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img_radius img-thumbnail iace-thumbnail1"/>
-					<div><s:property value="title"/></div>
+					<div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"><s:property value="title"/></div>
 					<div class="date_01"><s:date name="createTime" format="yyyy/MM/dd"/></div>
 				</a>
 			</div>
