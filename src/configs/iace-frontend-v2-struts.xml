@@ -315,7 +315,6 @@
 	</package>
 	
 	<package name="f2-File" namespace="/f2/file" extends="struts-default, default">
-		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="downloadFile" class="iace.action.FileAction" method="downloadFile">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>

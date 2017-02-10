@@ -92,7 +92,7 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 	@Override
 	public CoopEx get(Long id) {
 		CoopEx entity = this.dao.get(id);
-		loadAllEntityImg(entity);
+
 		// read & set attach file size
 		if (entity.getAttachFiles() != null && entity.getAttachFiles().size() > 0) {
 			for (CoopExAttachFile attach : entity.getAttachFiles()) {
@@ -112,9 +112,6 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 		produceAndSaveThumbnail(entity);
 		
 		super.create(entity);
-		
-		// reload images
-		loadAllEntityImg(entity);
 	}
 	
 	@Override
@@ -141,9 +138,6 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 		// deal with DB record
 		removeRecordFromDb(entity, entityO);
 		super.update(entity);
-		
-		// reload images
-		loadAllEntityImg(entity);
 	}
 
 	@Override
@@ -439,14 +433,6 @@ public class CoopExService extends BaseIaceService<CoopEx> {
 		for (CoopExFile file : files) {
 			File f = new File(this.coopExampleFolder, file.getFilePath());
 			f.delete();
-		}
-	}
-	
-	private void loadAllEntityImg(CoopEx entity) {
-		for (CoopExImg img : entity.getImgs()) {
-			File f = new File(this.coopExampleFolder, img.getFilePath());
-			byte[] imgData = loadImg(f);
-			img.setByteImg(imgData);
 		}
 	}
 	

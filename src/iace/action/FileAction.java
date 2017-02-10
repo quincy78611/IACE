@@ -81,6 +81,9 @@ public class FileAction extends BaseIaceAction {
 		try {
 			File f = new File(getFileFolder(), this.downloadFileSubPath);
 			this.fileInputStream = new FileInputStream(f);
+			if (StringUtils.isBlank(this.downloadFileName)) {
+				this.downloadFileName = "download."+FilenameUtils.getExtension(f.getName());
+			}
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -93,7 +96,10 @@ public class FileAction extends BaseIaceAction {
 			File f = new File(getFileFolder(), this.downloadFileSubPath);
 			byte[] byteArrayImg = Files.readAllBytes(Paths.get(f.getAbsolutePath()));
 			byte[] thumbnailBytes = ThumbnailUtil.resize(byteArrayImg, this.thumbnailWidth, this.thumbnailHeight, true, 1.0f);
-			this.fileInputStream = new ByteArrayInputStream(thumbnailBytes);;
+			this.fileInputStream = new ByteArrayInputStream(thumbnailBytes);
+			if (StringUtils.isBlank(this.downloadFileName)) {
+				this.downloadFileName = "download."+FilenameUtils.getExtension(f.getName());
+			}
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

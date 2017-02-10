@@ -6,25 +6,16 @@ import java.util.List;
 import core.util.PagedList;
 import iace.dao.ClickNumCounterDao;
 import iace.entity.coopExample.CoopEx;
-import iace.entity.coopExample.CoopExAttachFile;
-import iace.entity.coopExample.CoopExImg;
 import iace.entity.coopExample.CoopExSearchModel;
-import iace.entity.coopExample.CoopExVideo;
 import iace.entity.option.BaseOption;
 import iace.service.ServiceFactory;
-import iace.service.coopExample.CoopExAttachFileService;
-import iace.service.coopExample.CoopExImgService;
 import iace.service.coopExample.CoopExService;
-import iace.service.coopExample.CoopExVideoService;
 
 public class CoopExAction extends BaseIaceAction {
 
 	private static final long serialVersionUID = -1853598489369057497L;
 	
 	private CoopExService coopExService = ServiceFactory.getCoopExService();
-	private CoopExImgService coopExImgService = ServiceFactory.getCoopExImgService();
-	private CoopExVideoService coopExVideoService = ServiceFactory.getCoopExVideoService();
-	private CoopExAttachFileService coopExAttachFileService = ServiceFactory.getCoopExAttachFileService();
 	
 	private CoopExSearchModel searchCondition = new CoopExSearchModel();
 	private PagedList<CoopEx> coopExPagedList;
@@ -142,49 +133,6 @@ public class CoopExAction extends BaseIaceAction {
 			this.coopExService.delete(this.id, true, super.getSysLog());
 			super.addActionMessage("DELETE SUCCESS");
 			index();
-			return SUCCESS;
-		} catch (Exception e) {
-			super.showExceptionToPage(e);
-			return ERROR;
-		}
-	}
-	
-	public String downloadImage() {
-		try {
-			new ClickNumCounterDao().increaseClickNum(this.imgId, CoopExImg.class);
-			CoopExImg entity = this.coopExImgService.get(this.imgId); 
-			this.downloadFileInputStream = this.coopExImgService.getImageIS(entity);
-			this.downloadFileName = entity.getFileName();
-			
-			return SUCCESS;
-		} catch (Exception e) {
-			super.showExceptionToPage(e);
-			return ERROR;
-		}
-	}
-	
-
-	public String downloadVideo() {
-		try {
-			new ClickNumCounterDao().increaseClickNum(this.videoId, CoopExVideo.class);
-			CoopExVideo entity = this.coopExVideoService.get(this.videoId); 
-			this.downloadFileInputStream = this.coopExVideoService.getVideoIS(entity);
-			this.downloadFileName = entity.getFileName();
-			
-			return SUCCESS;
-		} catch (Exception e) {
-			super.showExceptionToPage(e);
-			return ERROR;
-		}
-	}
-	
-	public String downloadAttach() {
-		try {
-			new ClickNumCounterDao().increaseClickNum(this.attachFileId, CoopExAttachFile.class);
-			CoopExAttachFile entity = this.coopExAttachFileService.get(this.attachFileId); 
-			this.downloadFileInputStream = this.coopExAttachFileService.getAttachFileIS(entity);
-			this.downloadFileName = entity.getFileName();
-			
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

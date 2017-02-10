@@ -121,7 +121,13 @@ table.table-files tr.hidden-sample-tr { display:none; }
 					<s:hidden class="fileContentType" name="%{'coopEx.imgs['+#stat.index+'].fileContentType'}"/>
 					<s:hidden class="fileName" name="%{'coopEx.imgs['+#stat.index+'].fileName'}"/>
 					<td width="15%">
-						<img src="data:image;base64,<s:property value="%{getBase64Thumbnail(240, 240)}"/>" style="max-width:120px; max-height:120px;" />
+						<s:url namespace="/f2/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
+							<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+							<s:param name="downloadFileSubPath" value="filePath" />
+							<s:param name="thumbnailWidth" value="240" />
+							<s:param name="thumbnailHeight" value="240" />
+						</s:url>
+						<img src="<s:property value="%{#downloadThumbnailUrl}"/>" style="max-width:120px; max-height:120px;" />
 					</td>
 					<td>
 						<ul>
@@ -151,7 +157,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 				<tr>
 					<td colspan="2">
 						<input type="button" value="+ 增加影片" class="btn-addMoreVideo redBtn"/>
-					</td>			
+					</td>
 				</tr>
 				<tr class="hidden-sample-tr">
 					<s:hidden class="id" value="-1"/>
@@ -191,9 +197,10 @@ table.table-files tr.hidden-sample-tr { display:none; }
 					<s:hidden class="fileContentType" name="%{'coopEx.videos['+#stat.index+'].fileContentType'}"/>
 					<s:hidden class="fileName" name="%{'coopEx.videos['+#stat.index+'].fileName'}"/>
 					<td width="15%">
-						<s:url value="downloadVideo.action" var="downloadVideoUrl">
-							<s:param name="videoId" value="id" />
-						</s:url>					
+						<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
+							<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+							<s:param name="downloadFileSubPath" value="filePath" />
+						</s:url>
 						<video 
 							src="<s:property value="downloadVideoUrl" />" 
 							controls="controls" preload="metadata"
@@ -228,7 +235,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 				<tr>
 					<td>
 						<input type="button" value="+ 增加附檔" class="btn-addMoreAttach redBtn"/>
-					</td>			
+					</td>
 				</tr>
 				<tr class="hidden-sample-tr">
 					<s:hidden class="id" value="-1"/>

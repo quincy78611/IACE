@@ -81,13 +81,20 @@
 			<s:iterator value="coopEx.imgs" status="stat">
 			<tr>
 				<td width="15%">
-					<img src="data:image;base64,<s:property value="%{getBase64Thumbnail(240, 240)}"/>" style="max-width:120px; max-height:120px;" />
+					<s:url namespace="/f2/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
+						<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+						<s:param name="downloadFileSubPath" value="filePath" />
+						<s:param name="thumbnailWidth" value="240" />
+						<s:param name="thumbnailHeight" value="240" />
+					</s:url>
+					<img src="<s:property value="%{#downloadThumbnailUrl}"/>" style="max-width:120px; max-height:120px;" />				
 				</td>
 				<td>
 					<ul>
 						<li>
-							<s:url value="downloadImage.action" var="downloadImageUrl">
-								<s:param name="imgId" value="id" />
+							<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadImageUrl">
+								<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+								<s:param name="downloadFileSubPath" value="filePath" />
 							</s:url>
 							<a href="<s:property value="downloadImageUrl" />" >
 								<s:property value="fileName"/>
@@ -114,9 +121,10 @@
 			<s:iterator value="coopEx.videos" status="stat">
 			<tr>
 				<td width="15%">
-					<s:url value="downloadVideo.action" var="downloadVideoUrl">
-						<s:param name="videoId" value="id" />
-					</s:url>					
+					<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
+						<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+						<s:param name="downloadFileSubPath" value="filePath" />
+					</s:url>
 					<video 
 						src="<s:property value="downloadVideoUrl" />" 
 						controls="controls" preload="metadata"
@@ -142,7 +150,7 @@
 	<table class="table-files">
 		<thead>
 			<tr>
-				<td>附檔清單</td>			
+				<td>附檔清單</td>
 			</tr>
 		</thead>
 		<tbody>
@@ -151,8 +159,9 @@
 				<td>
 					<ul>
 						<li>
-							<s:url value="downloadAttach.action" var="downloadAttachUrl">
-								<s:param name="attachFileId" value="id" />
+							<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+								<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+								<s:param name="downloadFileSubPath" value="filePath" />
 							</s:url>
 							<a href="<s:property value="downloadAttachUrl" />" >
 								<s:property value="fileName"/>
@@ -163,7 +172,7 @@
 						</li>
 					</ul>
 				</td>
-			</tr>				
+			</tr>
 			</s:iterator>
 		</tbody>
 	</table>
