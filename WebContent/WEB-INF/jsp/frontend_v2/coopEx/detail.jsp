@@ -84,28 +84,26 @@
 				</div>
 				<div class="row">
 					<s:iterator value="coopEx.imgs" status="stat">
-						<div class="col-sm-4 col-xs-12" style="margin-top:15px;" title="<s:property value="fileDesc"/>">
+						<div class="col-sm-4 col-xs-12 text-center" style="margin-top:15px;" title="點擊下載原圖">
 							<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 								<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 								<s:param name="downloadFileSubPath" value="filePath" />
 								<s:param name="downloadFileName" value="fileName" />
 							</s:url>
 							<a href="<s:property value="downloadAttachUrl" />">
-								<div class="center-cropped2 img_radius">
-									<s:url namespace="/f2/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
-										<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
-										<s:param name="downloadFileSubPath" value="filePath" />
-										<s:param name="downloadFileName" value="fileName" />
-										<s:param name="thumbnailWidth" value="400" />
-										<s:param name="thumbnailHeight" value="300" />
-									</s:url>
-									<img src="<s:property value="%{#downloadThumbnailUrl}"/>" class="img-responsive"/>
-								</div>
+								<s:url namespace="/f2/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
+									<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
+									<s:param name="downloadFileSubPath" value="filePath" />
+									<s:param name="downloadFileName" value="fileName" />
+									<s:param name="thumbnailWidth" value="800" />
+									<s:param name="thumbnailHeight" value="600" />
+								</s:url>
+								<img src="<s:property value="%{#downloadThumbnailUrl}"/>" class="img_radius img-thumbnail iace-thumbnail1"/>
 							</a>
-							<div class="text-center" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+							<div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
 								<s:property value="fileDesc"/>
 							</div>
-						</div>	
+						</div>
 					</s:iterator>
 				</div>
 				<div class="line_solid"></div>

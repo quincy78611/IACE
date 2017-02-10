@@ -113,19 +113,17 @@
 				<div class="row">
 					<s:iterator value="activity.attachList" status="stat">
 						<s:if test="fileType == 1">
-							<div class="col-sm-4 col-xs-12" style="margin-top:15px;" title="<s:property value="fileTitle"/>">
+							<div class="col-sm-4 col-xs-12 text-center" style="margin-top:15px;" title="點擊下載原圖">
 								<s:url value="downloadAttach.action" var="downloadAttachUrl">
 									<s:param name="attachFileId" value="id" />
 								</s:url>
 								<a href="<s:property value="downloadAttachUrl" />">
-									<div class="center-cropped2 img_radius">
-										<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive"/>
-									</div>	
+									<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class=" img_radius img-thumbnail iace-thumbnail1"/>
 								</a>
-								<div class="text-center" style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+								<div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
 									<s:property value="fileTitle"/>
 								</div>
-							</div>	
+							</div>
 						</s:if>
 					</s:iterator>
 				</div>

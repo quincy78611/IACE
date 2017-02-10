@@ -23,45 +23,19 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<s:iterator value="coopExList" status="stat" begin="0" end="2">
-			<div class="col-sm-4 col-xs-12 top20">
-				<div class="center-cropped1 img_radius">
-					<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive" alt="" />
-				</div>
-				<div class="text-center top10">
-					<s:url value="/f2/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
-						<s:param name="id" value="id" />
-						<s:param name="searchCondition.type" value="type" />
-					</s:url> 
-					<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01"><s:property value="title" /></a>
-				</div>
-				<div class="text-center date_01">
-					<s:date name="createTime" format="yyyy/MM/dd" />
-				</div>
+	<div class="row top10 bottom10">
+		<s:iterator value="coopExList" status="stat" begin="0" end="5">
+			<div class="col-sm-4 col-xs-12 text-center bottom10">
+				<s:url value="/f2/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
+					<s:param name="id" value="id" />
+					<s:param name="searchCondition.type" value="type" />
+				</s:url> 
+				<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01">
+					<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img_radius img-thumbnail iace-thumbnail1"/>
+					<div><s:property value="title"/></div>
+					<div class="date_01"><s:date name="createTime" format="yyyy/MM/dd"/></div>
+				</a>
 			</div>
 		</s:iterator>
-	</div>
-	<div class="row">
-		<s:iterator value="coopExList" status="stat" begin="3" end="5">
-			<div class="col-sm-4 col-xs-12 top20">
-				<div class="center-cropped1 img_radius">
-					<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive" alt="" />
-				</div>
-				<div class="text-center top10">
-					<s:url value="/f2/coopEx/showDetail" var="detailUrlTag" escapeAmp="false">
-						<s:param name="id" value="id" />
-						<s:param name="searchCondition.type" value="type" />
-					</s:url> 
-					<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01"><s:property value="title" /></a>
-				</div>
-				<div class="text-center date_01">
-					<s:date name="createTime" format="yyyy/MM/dd" />
-				</div>
-			</div>
-		</s:iterator>
-		<div class="col-sm-12 col-xs-0 top20">
-			<div class="line_gray1px"></div>
-		</div>
 	</div>
 </div>
