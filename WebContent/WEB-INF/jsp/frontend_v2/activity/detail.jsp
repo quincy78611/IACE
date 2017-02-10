@@ -114,8 +114,10 @@
 					<s:iterator value="activity.attachList" status="stat">
 						<s:if test="fileType == 1">
 							<div class="col-sm-4 col-xs-12 text-center" style="margin-top:15px;" title="點擊下載原圖">
-								<s:url value="downloadAttach.action" var="downloadAttachUrl">
-									<s:param name="attachFileId" value="id" />
+								<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+									<s:param name="folderConfigKey" value="%{'activityAttachFolder'}" />
+									<s:param name="downloadFileSubPath" value="fileSubPath" />
+									<s:param name="downloadFileName" value="uploadFileName" />
 								</s:url>
 								<a href="<s:property value="downloadAttachUrl" />">
 									<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class=" img_radius img-thumbnail iace-thumbnail1"/>
@@ -163,8 +165,10 @@
 							<s:iterator value="activity.attachList" status="stat">
 								<s:if test="fileType == 0">
 									<tr>
-										<s:url value="downloadAttach.action" var="downloadAttachUrl">
-											<s:param name="attachFileId" value="id" />
+										<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+											<s:param name="folderConfigKey" value="%{'activityAttachFolder'}" />
+											<s:param name="downloadFileSubPath" value="fileSubPath" />
+											<s:param name="downloadFileName" value="uploadFileName" />
 										</s:url>
 										<td>
 											<a href="<s:property value="downloadAttachUrl" />">
