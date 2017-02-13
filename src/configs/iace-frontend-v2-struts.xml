@@ -34,14 +34,6 @@
 		<action name="showDetail" class="iace.action.NewsAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/news/detail.jsp</result>
 		</action>
-		<action name="downloadAttach" class="iace.action.NewsAction" method="downloadAttach">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
-		</action>
 	</package>
 	
 	<package name="f2-RdFocus" namespace="/f2/rdFocus" extends="struts-default, json-default, default">
@@ -55,14 +47,6 @@
 		</action>
 		<action name="showDetail" class="iace.action.RdFocusAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/rdFocus/detail.jsp</result>
-		</action>
-		<action name="downloadAttach" class="iace.action.RdFocusAction" method="downloadAttach">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
 		</action>
 	</package>
 	
@@ -87,14 +71,6 @@
 		</action>
 		<action name="showDetail" class="iace.action.ActivityAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/activity/detail.jsp</result>
-		</action>
-		<action name="downloadAttach" class="iace.action.ActivityAction" method="downloadAttach">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
 		</action>
 	</package>
 	
@@ -130,30 +106,6 @@
 		</action>
 		<action name="showDetail" class="iace.action.CoopExAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/coopEx/detail.jsp</result>
-		</action>
-		<action name="downloadImage" class="iace.action.CoopExAction" method="downloadImage">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
-		</action>
-		<action name="downloadVideo" class="iace.action.CoopExAction" method="downloadVideo">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
-		</action>
-		<action name="downloadAttach" class="iace.action.CoopExAction" method="downloadAttach">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
 		</action>
 	</package>
 
@@ -303,14 +255,6 @@
 		</action>
 		<action name="showDetail" class="iace.action.VideosAreaAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/frontend_v2/videosArea/detail.jsp</result>
-		</action>
-		<action name="downloadVideo" class="iace.action.VideosAreaAction" method="downloadVideo">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
 		</action>
 	</package>
 	
