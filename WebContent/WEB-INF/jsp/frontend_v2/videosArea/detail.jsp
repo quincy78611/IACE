@@ -93,7 +93,7 @@
 				<div class="row videos">
 					<s:iterator value="videosArea.videoList" status="stat">
 						<div class="col-sm-4 col-xs-12" style="margin-top:15px">
-							<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
+							<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
 								<s:param name="folderConfigKey" value="%{'videoFolder'}" />
 								<s:param name="downloadFileSubPath" value="fileSubPath" />
 								<s:param name="downloadFileName" value="uploadFileName" />

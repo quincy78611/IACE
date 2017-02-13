@@ -132,9 +132,25 @@
 	</package>
 	
 	<package name="File" namespace="/file" extends="struts-default, json-default, default">
-		<default-interceptor-ref name="iaceBackEnd"/>
 		<action name="uploadFile" class="iace.action.FileAction" method="uploadFile">
+			<interceptor-ref name="iaceBackEnd"/>
 			<result name="success">/WEB-INF/jsp/backend/file/upload.jsp</result>
+		</action>
+		<action name="downloadFile" class="iace.action.FileAction" method="downloadFile">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="downloadThumbnail" class="iace.action.FileAction" method="downloadThumbnail">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
 		</action>
 	</package>
 </struts>

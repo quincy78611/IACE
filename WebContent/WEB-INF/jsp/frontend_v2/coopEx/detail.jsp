@@ -85,13 +85,13 @@
 				<div class="row">
 					<s:iterator value="coopEx.imgs" status="stat">
 						<div class="col-sm-4 col-xs-12 text-center" style="margin-top:15px;" title="點擊下載原圖">
-							<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+							<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 								<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 								<s:param name="downloadFileSubPath" value="filePath" />
 								<s:param name="downloadFileName" value="fileName" />
 							</s:url>
 							<a href="<s:property value="downloadAttachUrl" />">
-								<s:url namespace="/f2/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
+								<s:url namespace="/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
 									<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 									<s:param name="downloadFileSubPath" value="filePath" />
 									<s:param name="downloadFileName" value="fileName" />
@@ -117,7 +117,7 @@
 				<div class="row videos">
 					<s:iterator value="coopEx.videos" status="stat">
 						<div class="col-sm-4 col-xs-12" style="margin-top:15px">
-							<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
+							<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
 								<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 								<s:param name="downloadFileSubPath" value="filePath" />
 								<s:param name="downloadFileName" value="fileName" />
@@ -150,7 +150,7 @@
 						<tbody>
 							<s:iterator value="coopEx.attachFiles" status="stat">
 								<tr>
-									<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+									<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 										<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 										<s:param name="downloadFileSubPath" value="filePath" />
 										<s:param name="downloadFileName" value="fileName" />

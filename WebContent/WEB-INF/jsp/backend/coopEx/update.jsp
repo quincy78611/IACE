@@ -121,7 +121,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 					<s:hidden class="fileContentType" name="%{'coopEx.imgs['+#stat.index+'].fileContentType'}"/>
 					<s:hidden class="fileName" name="%{'coopEx.imgs['+#stat.index+'].fileName'}"/>
 					<td width="15%">
-						<s:url namespace="/f2/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
+						<s:url namespace="/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
 							<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 							<s:param name="downloadFileSubPath" value="filePath" />
 							<s:param name="thumbnailWidth" value="240" />
@@ -197,7 +197,7 @@ table.table-files tr.hidden-sample-tr { display:none; }
 					<s:hidden class="fileContentType" name="%{'coopEx.videos['+#stat.index+'].fileContentType'}"/>
 					<s:hidden class="fileName" name="%{'coopEx.videos['+#stat.index+'].fileName'}"/>
 					<td width="15%">
-						<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
+						<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
 							<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 							<s:param name="downloadFileSubPath" value="filePath" />
 						</s:url>

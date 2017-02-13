@@ -161,7 +161,7 @@ table.table-files .label-fileName { min-height:35px; padding: 0px 5px; }
 							<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" />
 							
 							<label class="label-fileName">
-								<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+								<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 									<s:param name="folderConfigKey" value="%{'rdFocusAttachFolder'}" />
 									<s:param name="downloadFileSubPath" value="fileSubPath" />
 								</s:url>

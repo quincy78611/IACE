@@ -89,7 +89,7 @@
 				<s:iterator value="coopEx.imgs" status="stat">
 				<tr>
 					<td width="15%">
-						<s:url namespace="/f2/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
+						<s:url namespace="/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
 							<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 							<s:param name="downloadFileSubPath" value="filePath" />
 							<s:param name="thumbnailWidth" value="240" />
@@ -100,7 +100,7 @@
 					<td>
 						<ul>
 							<li>
-								<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadImageUrl">
+								<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadImageUrl">
 									<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 									<s:param name="downloadFileSubPath" value="filePath" />
 								</s:url>
@@ -129,7 +129,7 @@
 				<s:iterator value="coopEx.videos" status="stat">
 				<tr>
 					<td width="15%">
-						<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
+						<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
 							<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 							<s:param name="downloadFileSubPath" value="filePath" />
 						</s:url>
@@ -167,7 +167,7 @@
 					<td>
 						<ul>
 							<li>
-								<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+								<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 									<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 									<s:param name="downloadFileSubPath" value="filePath" />
 								</s:url>

@@ -73,7 +73,7 @@
 						<tbody>
 							<s:iterator value="news.attachs" status="stat">
 								<tr>
-									<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+									<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 										<s:param name="folderConfigKey" value="%{'newsAttachFolder'}" />
 										<s:param name="downloadFileSubPath" value="fileSubPath" />
 										<s:param name="downloadFileName" value="uploadFileName" />

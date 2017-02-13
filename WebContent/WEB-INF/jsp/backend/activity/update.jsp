@@ -141,7 +141,7 @@ tr.hidden-sample-tr { display:none; }
 							<input type="button" class="btn-func btn-del cancelSelectFile" value="刪除" onclick="deleteFileBtnOnclick(this)"/>
 							
 							<label class="label-fileName">
-								<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+								<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 									<s:param name="folderConfigKey" value="%{'activityAttachFolder'}" />
 									<s:param name="downloadFileSubPath" value="fileSubPath" />
 								</s:url>

@@ -67,7 +67,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 				<tr>						
 					<td>						
 						<label class="label-fileName">
-							<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+							<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 								<s:param name="folderConfigKey" value="%{'newsAttachFolder'}" />
 								<s:param name="downloadFileSubPath" value="fileSubPath" />
 							</s:url>

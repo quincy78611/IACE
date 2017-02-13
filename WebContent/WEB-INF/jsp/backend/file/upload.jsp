@@ -19,7 +19,7 @@
 			<s:if test="uploadSuccess">
 				<li class="all">
 					<b>下載連結</b>
-					<s:url value="/f2/file/downloadFile" var="urlTag" escapeAmp="false" forceAddSchemeHostAndPort="true">
+					<s:url value="/file/downloadFile" var="urlTag" escapeAmp="false" forceAddSchemeHostAndPort="true">
 						<s:param name="downloadFileSubPath" value="downloadFileSubPath" />
 						<s:param name="downloadFileName" value="downloadFileName" />
 					</s:url>

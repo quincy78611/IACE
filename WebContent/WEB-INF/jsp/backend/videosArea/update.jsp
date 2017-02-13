@@ -89,7 +89,7 @@ tr.hidden-sample-tr { display:none; }
 					</td>
 				</tr>
 				<tr class="hidden-sample-tr">
-					<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
+					<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
 						<s:param name="folderConfigKey" value="%{'videoFolder'}" />
 						<s:param name="downloadFileSubPath" value="fileSubPath" />
 					</s:url>

@@ -83,7 +83,7 @@
 			<s:iterator value="relatedWebsiteList" status="stat">
 				<div class="swiper-slide">
 					<a href="<s:property value="url"/>" target="_blank">
-						<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="ImgUrl">
+						<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="ImgUrl">
 							<s:param name="folderConfigKey" value="%{'relatedWebsitePicFolder'}" />
 							<s:param name="downloadFileSubPath" value="picName" />
 						</s:url>

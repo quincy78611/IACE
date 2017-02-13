@@ -114,7 +114,7 @@
 					<s:iterator value="activity.attachList" status="stat">
 						<s:if test="fileType == 1">
 							<div class="col-sm-4 col-xs-12 text-center" style="margin-top:15px;" title="點擊下載原圖">
-								<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+								<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 									<s:param name="folderConfigKey" value="%{'activityAttachFolder'}" />
 									<s:param name="downloadFileSubPath" value="fileSubPath" />
 									<s:param name="downloadFileName" value="uploadFileName" />
@@ -165,7 +165,7 @@
 							<s:iterator value="activity.attachList" status="stat">
 								<s:if test="fileType == 0">
 									<tr>
-										<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
+										<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 											<s:param name="folderConfigKey" value="%{'activityAttachFolder'}" />
 											<s:param name="downloadFileSubPath" value="fileSubPath" />
 											<s:param name="downloadFileName" value="uploadFileName" />
