@@ -96,7 +96,6 @@
 							<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
 								<s:param name="folderConfigKey" value="%{'videoFolder'}" />
 								<s:param name="downloadFileSubPath" value="fileSubPath" />
-								<s:param name="downloadFileName" value="uploadFileName" />
 							</s:url>
 							<video 
 								src="<s:property value="downloadVideoUrl" />" 

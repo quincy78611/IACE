@@ -117,7 +117,6 @@
 								<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 									<s:param name="folderConfigKey" value="%{'activityAttachFolder'}" />
 									<s:param name="downloadFileSubPath" value="fileSubPath" />
-									<s:param name="downloadFileName" value="uploadFileName" />
 								</s:url>
 								<a href="<s:property value="downloadAttachUrl" />">
 									<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class=" img_radius img-thumbnail iace-thumbnail1"/>
@@ -168,7 +167,6 @@
 										<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 											<s:param name="folderConfigKey" value="%{'activityAttachFolder'}" />
 											<s:param name="downloadFileSubPath" value="fileSubPath" />
-											<s:param name="downloadFileName" value="uploadFileName" />
 										</s:url>
 										<td>
 											<a href="<s:property value="downloadAttachUrl" />">

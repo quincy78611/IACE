@@ -88,13 +88,11 @@
 							<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 								<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 								<s:param name="downloadFileSubPath" value="filePath" />
-								<s:param name="downloadFileName" value="fileName" />
 							</s:url>
 							<a href="<s:property value="downloadAttachUrl" />">
 								<s:url namespace="/file" action="downloadThumbnail" escapeAmp="false" var="downloadThumbnailUrl">
 									<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 									<s:param name="downloadFileSubPath" value="filePath" />
-									<s:param name="downloadFileName" value="fileName" />
 									<s:param name="thumbnailWidth" value="800" />
 									<s:param name="thumbnailHeight" value="600" />
 								</s:url>
@@ -120,7 +118,6 @@
 							<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
 								<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 								<s:param name="downloadFileSubPath" value="filePath" />
-								<s:param name="downloadFileName" value="fileName" />
 							</s:url>
 							<video 
 								src="<s:property value="downloadVideoUrl" />" 
@@ -153,7 +150,6 @@
 									<s:url namespace="/file" action="downloadFile" escapeAmp="false" var="downloadAttachUrl">
 										<s:param name="folderConfigKey" value="%{'coopExampleFolder'}" />
 										<s:param name="downloadFileSubPath" value="filePath" />
-										<s:param name="downloadFileName" value="fileName" />
 									</s:url>
 									<td>
 										<a href="<s:property value="downloadAttachUrl" />">
