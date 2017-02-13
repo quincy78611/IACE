@@ -122,7 +122,7 @@
 									<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class=" img_radius img-thumbnail iace-thumbnail1"/>
 								</a>
 								<div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-									<s:property value="fileTitle"/>
+									<s:property value="fileTitle"/>&nbsp;
 								</div>
 							</div>
 						</s:if>

@@ -99,7 +99,7 @@
 								<img src="<s:property value="%{#downloadThumbnailUrl}"/>" class="img_radius img-thumbnail iace-thumbnail1"/>
 							</a>
 							<div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-								<s:property value="fileDesc"/>
+								<s:property value="fileDesc"/>&nbsp;
 							</div>
 						</div>
 					</s:iterator>
