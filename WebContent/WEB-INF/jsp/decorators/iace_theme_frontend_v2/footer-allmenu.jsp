@@ -63,6 +63,11 @@
 							<a href="<s:property value="urlTag"/>" class="list_link_04"><s:property value="name"/></a>
 						</li>
 					</s:iterator>
+					<li>
+						<s:url value="/f2/enterpriseRequireTech/init"  var="urlTag" escapeAmp="false">
+						</s:url>
+						<a href="<s:property value="urlTag"/>" class="list_link_04">企業需求</a>
+					</li>					
 				</ul>
 			</div>
 			<div class="col-sm-2 col-xs-6">
