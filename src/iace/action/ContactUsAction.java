@@ -98,7 +98,7 @@ public class ContactUsAction extends BaseIaceAction {
 			}
 			
 			this.contactUs.setBeenHandled(this.beenHandled);
-			this.contactUsService.update(this.contactUs, this.getCurrentSysUser(), false, null);
+			this.contactUsService.update(this.contactUs, this.getCurrentSysUser(), false, super.getSysLog());
 			return index();
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
