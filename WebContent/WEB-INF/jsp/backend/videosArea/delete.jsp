@@ -82,9 +82,10 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 			<tbody>
 				<s:iterator value="videosArea.videoList" status="stat">
 					<tr>	
-						<s:url value="downloadVideo.action" var="downloadVideoUrl">
-							<s:param name="videoId" value="id" />
-						</s:url>
+						<s:url namespace="/f2/file" action="downloadFile" escapeAmp="false" var="downloadVideoUrl">
+							<s:param name="folderConfigKey" value="%{'videoFolder'}" />
+							<s:param name="downloadFileSubPath" value="fileSubPath" />
+						</s:url>						
 						<td>
 							<video 
 								src="<s:property value="downloadVideoUrl" />" 

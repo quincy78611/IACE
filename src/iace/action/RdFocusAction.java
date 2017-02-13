@@ -1,6 +1,5 @@
 package iace.action;
 
-import java.io.InputStream;
 import java.util.List;
 
 import core.util.PagedList;
@@ -8,17 +7,14 @@ import iace.dao.ClickNumCounterDao;
 import iace.entity.DbFile;
 import iace.entity.option.BaseOption;
 import iace.entity.rdFocus.RdFocus;
-import iace.entity.rdFocus.RdFocusAttach;
 import iace.entity.rdFocus.RdFocusSearchModel;
 import iace.service.ServiceFactory;
-import iace.service.rdFocus.RdFocusAttachService;
 import iace.service.rdFocus.RdFocusService;
 
 public class RdFocusAction extends BaseIaceAction {
 	private static final long serialVersionUID = 4998685391434229314L;
 
 	private RdFocusService rdFocusService = ServiceFactory.getRdFocusService();
-	private RdFocusAttachService rdFocusAttachService = ServiceFactory.getRdFocusAttachService();
 	
 	private RdFocusSearchModel searchCondition = new RdFocusSearchModel();
 	private PagedList<RdFocus> rdFocusPagedList;
@@ -28,10 +24,6 @@ public class RdFocusAction extends BaseIaceAction {
 	
 	private List<BaseOption> categoryList = RdFocus.getCategoryList();
 	private List<BaseOption> fileTypeList = DbFile.getFileTypeList();
-	
-	private long attachFileId;
-	private String downloadFileName;
-	private InputStream downloadFileInputStream;
 	
 	public RdFocusAction() {
 		super.setTitle("研發焦點");
@@ -141,18 +133,6 @@ public class RdFocusAction extends BaseIaceAction {
 		super.validateNotNull(this.rdFocus.getPostDate(), "rdFocus.postDate");
 		super.validateTextMaxLength(this.rdFocus.getMetaTitle(), 200, "rdFocus.metaTitle");
 	}
-
-	public String downloadAttach() {
-		try {
-			RdFocusAttach entity = this.rdFocusAttachService.get(this.attachFileId); 
-			this.downloadFileInputStream = entity.getFileContentInputStream();
-			this.downloadFileName = entity.getUploadFileName();
-			return SUCCESS;
-		} catch (Exception e) {
-			super.showExceptionToPage(e);
-			return ERROR;
-		}
-	}
 	
 	//==========================================================================
 
@@ -180,22 +160,6 @@ public class RdFocusAction extends BaseIaceAction {
 		this.rdFocus = rdFocus;
 	}
 
-	public long getAttachFileId() {
-		return attachFileId;
-	}
-
-	public void setAttachFileId(long attachFileId) {
-		this.attachFileId = attachFileId;
-	}
-
-	public String getDownloadFileName() {
-		return downloadFileName;
-	}
-
-	public void setDownloadFileName(String downloadFileName) {
-		this.downloadFileName = downloadFileName;
-	}
-
 	public PagedList<RdFocus> getRdFocusPagedList() {
 		return rdFocusPagedList;
 	}
@@ -207,11 +171,5 @@ public class RdFocusAction extends BaseIaceAction {
 	public List<BaseOption> getFileTypeList() {
 		return fileTypeList;
 	}
-
-	public InputStream getDownloadFileInputStream() {
-		return downloadFileInputStream;
-	}
-	
-	
 
 }

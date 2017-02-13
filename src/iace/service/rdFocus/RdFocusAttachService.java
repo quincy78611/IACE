@@ -32,17 +32,6 @@ public class RdFocusAttachService extends BaseIaceService<RdFocusAttach> {
 		}
 	}
 
-	@Override
-	public RdFocusAttach get(Long id) {
-		RdFocusAttach entity = this.dao.get(id);
-		entity.setFileFolder(this.rdFocusAttachFolder);
-		try {
-			entity.loadFileContentFromDisk();
-		} catch (Exception e) {
-			log.warn("Load attach file fail!", e);
-		}
-		return entity;
-	}
 
 	@Override
 	public void create(RdFocusAttach entity) throws IOException, SQLException {

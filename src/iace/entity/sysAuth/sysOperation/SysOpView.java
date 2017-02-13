@@ -12,8 +12,6 @@ public class SysOpView extends SysOp {
 		super.actions.add("downloadQnrLinksExcel");
 		super.actions.add("downloadUnfillQnrLinksExcel");
 		super.actions.add("downloadQnrResultExcel");
-		super.actions.add("downloadVideo");
-		super.actions.add("downloadAttach");
 	}
 
 }

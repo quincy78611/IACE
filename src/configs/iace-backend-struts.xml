@@ -751,14 +751,6 @@
 			<result name="input">/WEB-INF/jsp/backend/news/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/news/index.jsp</result>
 		</action>
-		<action name="downloadAttach" class="iace.action.NewsAction" method="downloadAttach">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
-		</action>
 	</package>
 	
 	<package name="RdFocus" namespace="/rdFocus" extends="struts-default, json-default, default">
@@ -794,14 +786,6 @@
 			<result name="input">/WEB-INF/jsp/backend/rdFocus/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/rdFocus/index.jsp</result>
 		</action>
-		<action name="downloadAttach" class="iace.action.RdFocusAction" method="downloadAttach">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
-		</action>
 	</package>	
 	
 	<package name="Activity" namespace="/activity" extends="struts-default, json-default, default">
@@ -836,14 +820,6 @@
 		<action name="deleteSubmit" class="iace.action.ActivityAction" method="deleteSubmit">
 			<result name="input">/WEB-INF/jsp/backend/activity/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/activity/index.jsp</result>
-		</action>
-		<action name="downloadAttach" class="iace.action.ActivityAction" method="downloadAttach">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
 		</action>
 	</package>
 
@@ -953,14 +929,6 @@
 		<action name="deleteSubmit" class="iace.action.VideosAreaAction" method="deleteSubmit">
 			<result name="input">/WEB-INF/jsp/backend/videosArea/delete.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/videosArea/index.jsp</result>
-		</action>
-		<action name="downloadVideo" class="iace.action.VideosAreaAction" method="downloadVideo">
-			<result name="success" type="stream">
-				<param name="contentType">application/octet-stream</param>
-				<param name="inputName">downloadFileInputStream</param>
-				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
-				<param name="bufferSize">1024</param>
-			</result>
 		</action>
 	</package>
 	

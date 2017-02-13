@@ -1,32 +1,23 @@
 package iace.action;
 
-import java.io.InputStream;
-
 import core.util.PagedList;
 import iace.dao.ClickNumCounterDao;
 import iace.entity.activity.Activity;
-import iace.entity.videosArea.Video;
 import iace.entity.videosArea.VideosArea;
 import iace.entity.videosArea.VideosAreaSearchModel;
 import iace.service.ServiceFactory;
-import iace.service.videosArea.VideoService;
 import iace.service.videosArea.VideosAreaService;
 
 public class VideosAreaAction extends BaseIaceAction {
 	private static final long serialVersionUID = -433874959899230862L;
 
 	private VideosAreaService videosAreaService = ServiceFactory.getVideosAreaService();
-	private VideoService videoService = ServiceFactory.getVideoService();
 	
 	private VideosAreaSearchModel searchCondition = new VideosAreaSearchModel();
 	private PagedList<VideosArea> videosAreaPagedList;
 	
 	private long id;
 	private VideosArea videosArea;
-	
-	private long videoId;
-	private String downloadFileName;
-	private InputStream downloadFileInputStream;
 	
 	public VideosAreaAction() {
 		super.setTitle("影音專區");
@@ -136,18 +127,6 @@ public class VideosAreaAction extends BaseIaceAction {
 		super.validateTextMaxLength(this.videosArea.getMetaTitle(), 200, "videosArea.metaTitle");
 	}
 	
-	public String downloadVideo() {
-		try {
-			Video entity = this.videoService.get(this.videoId); 
-			this.downloadFileInputStream = entity.getFileContentInputStream();
-			this.downloadFileName = entity.getUploadFileName();
-			return SUCCESS;
-		} catch (Exception e) {
-			super.showExceptionToPage(e);
-			return ERROR;
-		}
-	}
-	
 	// =========================================================================
 
 	public VideosAreaSearchModel getSearchCondition() {
@@ -174,25 +153,7 @@ public class VideosAreaAction extends BaseIaceAction {
 		this.videosArea = videosArea;
 	}
 
-	public long getVideoId() {
-		return videoId;
-	}
-
-	public void setVideoId(long videoId) {
-		this.videoId = videoId;
-	}
-
 	public PagedList<VideosArea> getVideosAreaPagedList() {
 		return videosAreaPagedList;
 	}
-
-	public String getDownloadFileName() {
-		return downloadFileName;
-	}
-
-	public InputStream getDownloadFileInputStream() {
-		return downloadFileInputStream;
-	}
-	
-	
 }

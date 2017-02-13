@@ -33,18 +33,6 @@ public class NewsAttachService extends BaseIaceService<NewsAttach> {
 	}
 
 	@Override
-	public NewsAttach get(Long id) {
-		NewsAttach entity = this.dao.get(id);
-		entity.setFileFolder(this.newsAttachFolder);
-		try {
-			entity.loadFileContentFromDisk();
-		} catch (Exception e) {
-			log.warn("Load attach file fail!", e);
-		}
-		return entity;
-	}
-
-	@Override
 	public void create(NewsAttach entity) throws IOException, SQLException {
 		if (entity.hasUpload()) {
 			saveFile(entity);

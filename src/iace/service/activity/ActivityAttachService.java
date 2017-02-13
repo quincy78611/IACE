@@ -16,13 +16,13 @@ import iace.service.BaseIaceService;
 public class ActivityAttachService extends BaseIaceService<ActivityAttach> {
 	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 	
-	private IActivityAttachDao activityAttachDao;
+	private IActivityAttachDao dao;
 	
 	private String activityAttachFolder;
 	
 	public ActivityAttachService(IActivityAttachDao dao) {
 		super(dao);
-		this.activityAttachDao = dao;
+		this.dao = dao;
 		
 		Properties prop = new Properties();
 		try {
@@ -31,18 +31,6 @@ public class ActivityAttachService extends BaseIaceService<ActivityAttach> {
 		} catch (IOException e) {
 			log.fatal("", e);			
 		}
-	}
-
-	@Override
-	public ActivityAttach get(Long id) {
-		ActivityAttach entity = this.activityAttachDao.get(id);
-		entity.setFileFolder(this.activityAttachFolder);
-		try {
-			entity.loadFileContentFromDisk();
-		} catch (Exception e) {
-			log.warn("Load attach file fail!", e);
-		}
-		return entity;
 	}
 
 	@Override

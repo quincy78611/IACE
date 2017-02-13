@@ -1,24 +1,20 @@
 package iace.action;
 
-import java.io.InputStream;
 import java.util.List;
 
 import core.util.PagedList;
 import iace.dao.ClickNumCounterDao;
 import iace.entity.DbFile;
 import iace.entity.news.News;
-import iace.entity.news.NewsAttach;
 import iace.entity.news.NewsSearchModel;
 import iace.entity.option.BaseOption;
 import iace.service.ServiceFactory;
-import iace.service.news.NewsAttachService;
 import iace.service.news.NewsService;
 
 public class NewsAction extends BaseIaceAction {
 	private static final long serialVersionUID = 5568302832472926677L;
 	
 	private NewsService newsService = ServiceFactory.getNewsService();
-	private NewsAttachService newsAttachService = ServiceFactory.getNewsAttachService();
 	
 	private NewsSearchModel searchCondition = new NewsSearchModel();
 	private PagedList<News> newsPagedList;
@@ -29,10 +25,6 @@ public class NewsAction extends BaseIaceAction {
 	private List<BaseOption> categoryList = News.getCategoryList();
 	private List<BaseOption> fileTypeList = DbFile.getFileTypeList();
 	
-	private long attachFileId;
-	private String downloadFileName;
-	private InputStream downloadFileInputStream;
-
 	public NewsAction() {
 		super.setTitle("公告訊息");
 	}
@@ -141,18 +133,6 @@ public class NewsAction extends BaseIaceAction {
 		super.validateNotNull(this.news.getPostDate(), "news.postDate");
 		super.validateTextMaxLength(this.news.getMetaTitle(), 200, "news.metaTitle");
 	}
-
-	public String downloadAttach() {
-		try {
-			NewsAttach entity = this.newsAttachService.get(this.attachFileId); 
-			this.downloadFileInputStream = entity.getFileContentInputStream();
-			this.downloadFileName = entity.getUploadFileName();
-			return SUCCESS;
-		} catch (Exception e) {
-			super.showExceptionToPage(e);
-			return ERROR;
-		}
-	}
 	
 	//==========================================================================
 
@@ -180,14 +160,6 @@ public class NewsAction extends BaseIaceAction {
 		this.news = news;
 	}
 
-	public long getAttachFileId() {
-		return attachFileId;
-	}
-
-	public void setAttachFileId(long attachFileId) {
-		this.attachFileId = attachFileId;
-	}
-
 	public PagedList<News> getNewsPagedList() {
 		return newsPagedList;
 	}
@@ -198,14 +170,6 @@ public class NewsAction extends BaseIaceAction {
 	
 	public List<BaseOption> getFileTypeList() {
 		return fileTypeList;
-	}
-
-	public String getDownloadFileName() {
-		return downloadFileName;
-	}
-
-	public InputStream getDownloadFileInputStream() {
-		return downloadFileInputStream;
 	}
 
 	

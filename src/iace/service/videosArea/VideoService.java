@@ -32,18 +32,6 @@ public class VideoService extends BaseIaceService<Video> {
 	}
 
 	@Override
-	public Video get(Long id) {
-		Video entity = this.dao.get(id);
-		entity.setFileFolder(this.videoFolder);
-		try {
-			entity.loadFileContentFromDisk();
-		} catch (Exception e) {
-			log.warn("Load attach file fail!", e);
-		}
-		return entity;
-	}
-
-	@Override
 	public void create(Video entity) throws IOException, SQLException {
 		if (entity.hasUpload()) {
 			saveFile(entity);

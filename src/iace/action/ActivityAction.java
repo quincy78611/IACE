@@ -1,24 +1,20 @@
 package iace.action;
 
-import java.io.InputStream;
 import java.util.List;
 
 import core.util.PagedList;
 import iace.dao.ClickNumCounterDao;
 import iace.entity.DbFile;
 import iace.entity.activity.Activity;
-import iace.entity.activity.ActivityAttach;
 import iace.entity.activity.ActivitySearchModel;
 import iace.entity.option.BaseOption;
 import iace.service.ServiceFactory;
-import iace.service.activity.ActivityAttachService;
 import iace.service.activity.ActivityService;
 
 public class ActivityAction extends BaseIaceAction {
 	private static final long serialVersionUID = 2068270305221952698L;
 
 	private ActivityService activityService = ServiceFactory.getActivityService();
-	private ActivityAttachService activityAttachService = ServiceFactory.getActivityAttachService();
 	
 	private ActivitySearchModel searchCondition = new ActivitySearchModel();
 	private PagedList<Activity> activityPagedList;
@@ -28,10 +24,6 @@ public class ActivityAction extends BaseIaceAction {
 	
 	private List<BaseOption> categoryList = Activity.getCategoryList();
 	private List<BaseOption> fileTypeList = DbFile.getFileTypeList();
-	
-	private long attachFileId;
-	private String downloadFileName;
-	private InputStream downloadFileInputStream;
 	
 	public ActivityAction() {
 		super.setTitle("活動人培");
@@ -142,18 +134,6 @@ public class ActivityAction extends BaseIaceAction {
 		super.validateTextMaxLength(this.activity.getMetaTitle(), 200, "activity.metaTitle");
 	}
 	
-	public String downloadAttach() {
-		try {
-			ActivityAttach entity = this.activityAttachService.get(this.attachFileId); 
-			this.downloadFileInputStream = entity.getFileContentInputStream();
-			this.downloadFileName = entity.getUploadFileName();
-			return SUCCESS;
-		} catch (Exception e) {
-			super.showExceptionToPage(e);
-			return ERROR;
-		}
-	}
-	
 	//==========================================================================
 
 	public ActivitySearchModel getSearchCondition() {
@@ -188,28 +168,12 @@ public class ActivityAction extends BaseIaceAction {
 		this.fileTypeList = fileTypeList;
 	}
 
-	public long getAttachFileId() {
-		return attachFileId;
-	}
-
-	public void setAttachFileId(long attachFileId) {
-		this.attachFileId = attachFileId;
-	}
-
 	public PagedList<Activity> getActivityPagedList() {
 		return activityPagedList;
 	}
 
 	public List<BaseOption> getCategoryList() {
 		return categoryList;
-	}
-
-	public String getDownloadFileName() {
-		return downloadFileName;
-	}
-
-	public InputStream getDownloadFileInputStream() {
-		return downloadFileInputStream;
 	}
 	
 }
