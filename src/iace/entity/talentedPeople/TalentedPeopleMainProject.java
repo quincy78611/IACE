@@ -23,7 +23,7 @@ public class TalentedPeopleMainProject extends BaseEntity implements Integration
 	private static final long serialVersionUID = -6738846194198008518L;
 	
 	private long id;
-	private TalentedPeople talentedPeople;
+	private transient TalentedPeople talentedPeople;
 	private String name;
 	private String coopComName;
 	private int yearStart;

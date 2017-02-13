@@ -12,7 +12,7 @@ import iace.entity.DbFile;
 public class ActivityAttach extends DbFile {
 	private static final long serialVersionUID = -7983528801058556631L;
 	
-	private Activity activity;
+	private transient Activity activity;
 
 	@ManyToOne
 	@JoinColumn(name = "PARENT_ID", referencedColumnName = "ID")

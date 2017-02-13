@@ -39,7 +39,7 @@ public class VideosArea extends BaseLinkiacEntity {
 	private String organizer; // 主辦單位
 	private String advisor; // 指導單位
 	
-	private byte[] thumbnail;
+	private transient byte[] thumbnail;
 	private transient File uploadThumbnail;
 	private transient String uploadThumbnailContentType;
 	private transient String uploadThumbnailFileName;

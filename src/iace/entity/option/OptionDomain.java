@@ -17,7 +17,7 @@ public class OptionDomain extends BaseOption {
 
 	private static final long serialVersionUID = -9084518401945981749L;
 	
-	private List<OptionGrbDomain> subDomainList = new ArrayList<OptionGrbDomain>();
+	private transient List<OptionGrbDomain> subDomainList = new ArrayList<OptionGrbDomain>();
 
 	@OneToMany(mappedBy = "mainDomain", fetch = FetchType.EAGER)
 	@Fetch(FetchMode.SUBSELECT)

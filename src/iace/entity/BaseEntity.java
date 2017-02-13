@@ -124,6 +124,7 @@ public abstract class BaseEntity implements Serializable {
 		this.isValid = FALSE;
 	}
 	
+	@Deprecated
 	public String toSysLog() {
 		return "";
 	}

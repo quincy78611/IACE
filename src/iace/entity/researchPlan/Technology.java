@@ -34,7 +34,7 @@ public class Technology extends BaseEntity implements IntegrationSearch {
 	private static final long serialVersionUID = 1695680251829946337L;
 
 	private long id;
-	private ResearchPlan researchPlan;
+	private transient ResearchPlan researchPlan;
 	private String name;
 	private String descriptoin;
 	private List<OptionTrl> optionTrlList = new ArrayList<OptionTrl>();
@@ -152,6 +152,7 @@ public class Technology extends BaseEntity implements IntegrationSearch {
 		this.clickNum = clickNum;
 	}
 	
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		String s = 

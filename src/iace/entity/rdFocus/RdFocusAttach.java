@@ -12,7 +12,7 @@ import iace.entity.DbFile;
 public class RdFocusAttach extends DbFile {
 	private static final long serialVersionUID = -1593732662749081604L;
 
-	private RdFocus rdFocus;
+	private transient RdFocus rdFocus;
 
 	@ManyToOne
 	@JoinColumn(name = "PARENT_ID", referencedColumnName = "ID")

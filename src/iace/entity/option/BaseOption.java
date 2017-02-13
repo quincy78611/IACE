@@ -80,6 +80,7 @@ public class BaseOption  extends BaseEntity {
 		return this.code+":"+this.name;
 	}
 
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		return this.code+"-"+this.name;

@@ -21,7 +21,7 @@ public class TalentedPeoplePDPL extends BaseEntity {
 	private static final long serialVersionUID = 3672368047137577096L;
 	
 	private long id;
-	private TalentedPeople talentedPeople;
+	private transient TalentedPeople talentedPeople;
 	private Boolean agreePDPL;
 	private String ip;
 

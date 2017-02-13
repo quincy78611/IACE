@@ -12,7 +12,7 @@ import iace.entity.DbFile;
 public class Video extends DbFile {
 	private static final long serialVersionUID = 4222738120436895884L;
 	
-	private VideosArea videosArea;
+	private transient VideosArea videosArea;
 	
 	public Video() {
 		super.setFileType(FILE_TYPE_FILE);

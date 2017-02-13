@@ -18,7 +18,7 @@ public class ActivityVideo extends BaseLinkiacEntity {
 	private static final long serialVersionUID = 1299334214568327872L;
 	
 	private long id;
-	private Activity activity;
+	private transient Activity activity;
 	private String title;
 	private String videoUrl;
 	private String videoDesc;

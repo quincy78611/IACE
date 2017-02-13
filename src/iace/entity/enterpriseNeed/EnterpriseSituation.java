@@ -26,7 +26,7 @@ public class EnterpriseSituation extends BaseEntity {
 	private static final long serialVersionUID = -4902000698677155773L;
 
 	private long id;
-	private EnterpriseInfo enterpriseInfo;
+	private transient EnterpriseInfo enterpriseInfo;
 	private OptionHadTecSrc optionHadTecSrc;
 	private double hadTecSrcRation;
 	private Boolean hasComCoopExp;

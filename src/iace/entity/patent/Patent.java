@@ -372,6 +372,7 @@ public class Patent extends BaseEntity implements IntegrationSearch {
 				+ trl + ", trlDesc=" + trlDesc + "]";
 	}
 
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		String s =

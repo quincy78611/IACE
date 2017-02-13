@@ -124,10 +124,10 @@
 					<s:select name="searchCondition.sysUserId" list="sysUserList" listKey="id" listValue="account" headerKey="" headerValue="請選擇使用者" />
 				</li>
 				<li class="quarter">
-					<s:select name="searchCondition.optionSysNamespaceId" list="optSysNamesapceList" listKey="id" listValue="name" headerKey="" headerValue="請選擇系統功能" />
+					<s:select name="searchCondition.namespace" list="namespaceList" headerKey="" headerValue="請選擇系統功能" />
 				</li>				
 				<li class="quarter">
-					<s:select name="searchCondition.optionSysActionId" list="optSysActionList" listKey="id" listValue="name" headerKey="" headerValue="請選擇動作" />
+					<s:select name="searchCondition.actionName" list="actionNameList" headerKey="" headerValue="請選擇動作" />
 				</li>
 				<li class="quarter">
 					<input type="submit" value="查詢" class="redBtn" id="btn-search"/>
@@ -183,8 +183,7 @@
 					<th nowrap width="">時間</th>
 					<th nowrap width="">使用者帳號</th>
 					<th nowrap width="">使用者名稱</th>
-					<th nowrap width="">功能</th>
-					<th nowrap width="">動作</th>
+					<th nowrap width="">URL</th>
 					<th nowrap width="5%">功能</th>
 				</tr>
 				<s:if test="sysLogPagedList != null">
@@ -197,8 +196,7 @@
 							<td><s:property value="createTime" /></td>
 							<td><s:property value="sysUser.account" /></td>
 							<td><s:property value="sysUser.name" /></td>
-							<td><s:property value="optionSysNamespace.name" /></td>
-							<td><s:property value="optionSysAction.name" /></td>
+							<td><s:property value="%{namespace+'/'+actionName}" /></td>
 							
 							<td class="col-md-1">
 								<!-- 檢視 -->

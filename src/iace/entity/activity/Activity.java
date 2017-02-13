@@ -59,7 +59,7 @@ public class Activity extends BaseLinkiacEntity implements IntegrationSearch {
 	private List<ActivityAttach> attachList = new ArrayList<ActivityAttach>();
 	private List<ActivityVideo> videoList = new ArrayList<ActivityVideo>();
 	
-	private byte[] thumbnail;
+	private transient byte[] thumbnail;
 	
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)

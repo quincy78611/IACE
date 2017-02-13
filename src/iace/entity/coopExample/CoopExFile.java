@@ -21,7 +21,7 @@ public class CoopExFile extends BaseEntity {
 	private static final long serialVersionUID = -8512564987948352767L;
 
 	private long id;
-	private CoopEx coopEx;
+	private transient CoopEx coopEx;
 	private String filePath;
 	private String fileContentType;
 	private String fileName;

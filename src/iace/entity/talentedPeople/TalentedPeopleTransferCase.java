@@ -23,7 +23,7 @@ public class TalentedPeopleTransferCase extends BaseEntity implements Integratio
 	private static final long serialVersionUID = 2349692596426033716L;
 	
 	private long id;
-	private TalentedPeople talentedPeople;
+	private transient TalentedPeople talentedPeople;
 	private String applyField;
 	private String targetOrg;
 	private int yearStart;

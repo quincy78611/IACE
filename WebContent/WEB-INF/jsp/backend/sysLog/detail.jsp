@@ -38,34 +38,28 @@
 				<s:property value="sysLog.sysUser.sysRole.name"/>
 			</div>
 		</li>
-		<li class="half">
-			<b>功能</b>
+		<li class="all">
+			<b>URL</b>
 			<div class="border-text">
-				<s:property value="sysLog.optionSysNamespace.name"/>
+				<s:property value="%{sysLog.namespace+'/'+sysLog.actionName}"/>
 			</div>
 		</li>
 		<li class="half">
-			<b>動作</b>
-			<div class="border-text">
-				<s:property value="sysLog.optionSysAction.name"/>
-			</div>
-		</li>		
-		<li class="half">
 			<b>Before</b>
 			<div class="border-text">
-<%-- 				<s:property value="sysLog.before"/> --%>
-				<s:iterator value="sysLog.beforeStrings" status="stat">
-					<s:property /><br>
-				</s:iterator>
+				<s:property value="sysLog.beforeJsonPrettyPrint" escapeHtml="false"/>
+<%-- 				<s:iterator value="sysLog.beforeafterStrings" status="stat"> --%>
+<%-- 					<s:property /><br> --%>
+<%-- 				</s:iterator> --%>
 			</div>
 		</li>			
 		<li class="half">
 			<b>After</b>
 			<div class="border-text">
-<%-- 				<s:property value="sysLog.after"/> --%>
-				<s:iterator value="sysLog.afterStrings" status="stat">
-					<s:property /><br>
-				</s:iterator>
+				<s:property value="sysLog.afterJsonPrettyPrint" escapeHtml="false"/>
+<%-- 				<s:iterator value="sysLog.afterStrings" status="stat"> --%>
+<%-- 					<s:property /><br> --%>
+<%-- 				</s:iterator> --%>
 			</div>
 		</li>	
 	</ul>
@@ -74,8 +68,8 @@
 		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>	
 	</div>	
 	<form action="index" method="post" id="form-backToIndex">
-		<s:hidden name="searchCondition.optionSysNamespaceId"/>
-		<s:hidden name="searchCondition.optionSysActionId"/>
+		<s:hidden name="searchCondition.namespace"/>
+		<s:hidden name="searchCondition.actionName"/>
 		<s:hidden name="searchCondition.sysUserId"/>
 		<s:hidden name="searchCondition.timeS"/>
 		<s:hidden name="searchCondition.timeE"/>

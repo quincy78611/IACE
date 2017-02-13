@@ -11,27 +11,26 @@ import iace.entity.BaseSearchModel;
 
 public class SysLogSearchModel extends BaseSearchModel {
 
-	private Long optionSysNamespaceId;
-	private Long optionSysActionId;
+	private String namespace;
+	private String actionName;	
 	private Long sysUserId;
 	private Timestamp timeS;
 	private Timestamp timeE;
 
-
-	public Long getOptionSysNamespaceId() {
-		return optionSysNamespaceId;
+	public String getNamespace() {
+		return namespace;
 	}
 
-	public void setOptionSysNamespaceId(Long optionSysNamespaceId) {
-		this.optionSysNamespaceId = optionSysNamespaceId;
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
 	}
 
-	public Long getOptionSysActionId() {
-		return optionSysActionId;
+	public String getActionName() {
+		return actionName;
 	}
 
-	public void setOptionSysActionId(Long optionSysActionId) {
-		this.optionSysActionId = optionSysActionId;
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
 	}
 
 	public Long getSysUserId() {

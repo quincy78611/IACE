@@ -12,7 +12,7 @@ import iace.entity.DbFile;
 public class NewsAttach extends DbFile {
 	private static final long serialVersionUID = 3305612629891651456L;
 	
-	private News news;
+	private transient News news;
 
 	@ManyToOne
 	@JoinColumn(name = "PARENT_ID", referencedColumnName = "ID")

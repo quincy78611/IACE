@@ -26,7 +26,7 @@ public class EnterpriseRequireTech extends BaseEntity {
 	private static final long serialVersionUID = 2554039737097763482L;
 
 	private long id;
-	private EnterpriseInfo enterpriseInfo;
+	private transient EnterpriseInfo enterpriseInfo;
 	private OptionDomain phase1;
 	private String phase2;
 	private String phase3;

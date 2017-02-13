@@ -230,6 +230,7 @@ public class CoopEx extends BaseEntity implements IntegrationSearch {
 		}		
 	}
 
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		StringBuffer sb = new StringBuffer();

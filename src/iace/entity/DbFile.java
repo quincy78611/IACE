@@ -52,7 +52,7 @@ public abstract class DbFile extends BaseEntity {
 
 	private transient String fileFolder;
 	private String fileSubPath;
-	private byte[] fileContent;
+	private transient byte[] fileContent;
 	private int fileType; // 0:檔案, 1:圖片
 	private String fileTitle;
 
@@ -60,7 +60,7 @@ public abstract class DbFile extends BaseEntity {
 	private String uploadContentType;
 	private String uploadFileName;
 	
-	private byte[] thumbnail;
+	private transient byte[] thumbnail;
 
 	// =========================================================================
 

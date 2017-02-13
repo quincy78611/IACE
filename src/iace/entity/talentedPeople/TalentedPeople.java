@@ -54,7 +54,7 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 	private String specialty;
 	private List<OptionGrbDomain> domains = new ArrayList<OptionGrbDomain>();
 
-	private byte[] headShot;
+	private transient byte[] headShot;
 	private transient File uploadheadShot;
 	private transient String uploadheadShotContentType;
 	private transient String uploadheadShotFileName;
@@ -477,6 +477,7 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 		this.pdpl = pdpl;
 	}
 
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		StringBuffer sb = new StringBuffer();

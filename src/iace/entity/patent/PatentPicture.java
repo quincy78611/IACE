@@ -12,7 +12,7 @@ import core.util.CloseableTool;
 
 public class PatentPicture {
 	private XSSFPicture pic;
-	private byte[] data;
+	private transient byte[] data;
 
 	public PatentPicture(XSSFPicture pic) {
 		this.pic = pic;

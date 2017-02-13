@@ -364,6 +364,7 @@ public class ResearchPlan extends BaseEntity implements IntegrationSearch {
 		return "ResearchPlan [id=" + id + ", year=" + year + ", planNo=" + planNo + ", name=" + name + ", manager=" + manager + ", grbDomain1=" + grbDomain1 + ", grbDomain2=" + grbDomain2 + ", grbDomain3=" + grbDomain3 + ", grbDomain4=" + grbDomain4 + ", grbDomain5=" + grbDomain5 + ", grbDomain6=" + grbDomain6 + ", keyword=" + keyword + ", trl=" + trl + ", projkey=" + projkey + ", grb05Id=" + grb05Id + ", technologies=" + technologies + "]";
 	}
 
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		StringBuffer sb = new StringBuffer();

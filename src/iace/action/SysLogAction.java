@@ -3,14 +3,10 @@ package iace.action;
 import java.util.List;
 
 import core.util.PagedList;
-import iace.entity.option.OptionSysAction;
-import iace.entity.option.OptionSysNamespace;
 import iace.entity.sys.SysLog;
 import iace.entity.sys.SysLogSearchModel;
 import iace.entity.sys.SysUser;
 import iace.service.ServiceFactory;
-import iace.service.option.OptionSysActionService;
-import iace.service.option.OptionSysNamespaceService;
 import iace.service.sys.SysLogService;
 import iace.service.sys.SysUserService;
 
@@ -20,12 +16,10 @@ public class SysLogAction extends BaseIaceAction {
 
 	private SysLogService sysLogService = ServiceFactory.getSysLogService();
 	private SysUserService sysUserService = ServiceFactory.getSysUserService();
-	private OptionSysNamespaceService optionSysNamespaceService = ServiceFactory.getOptionSysNamespaceService();
-	private OptionSysActionService optionSysActionService = ServiceFactory.getOptionSysActionService();
 	
 	private List<SysUser> sysUserList;
-	private List<OptionSysNamespace> optSysNamesapceList;
-	private List<OptionSysAction> optSysActionList;
+	private List<String> namespaceList;
+	private List<String> actionNameList;
 	
 	private SysLogSearchModel searchCondition = new SysLogSearchModel();
 	private PagedList<SysLog> sysLogPagedList;
@@ -99,25 +93,22 @@ public class SysLogAction extends BaseIaceAction {
 		return sysUserList;
 	}
 
-	public List<OptionSysNamespace> getOptSysNamesapceList() {
-		if (optSysNamesapceList == null) {
-			optSysNamesapceList = this.optionSysNamespaceService.listAll();
+	public List<String> getNamespaceList() {
+		if (namespaceList == null) {
+			namespaceList = this.sysLogService.getNamespaceList();
 		}
-		return optSysNamesapceList;
+		return namespaceList;
 	}
 
-	public List<OptionSysAction> getOptSysActionList() {
-		if (optSysActionList == null) {
-			optSysActionList = this.optionSysActionService.listAll();
+	public List<String> getActionNameList() {
+		if (actionNameList == null) {
+			actionNameList = this.sysLogService.getActionNameList(null);
 		}
-		return optSysActionList;
+		return actionNameList;
 	}
 
 	public PagedList<SysLog> getSysLogPagedList() {
 		return sysLogPagedList;
 	}
 
-
-
-	
 }

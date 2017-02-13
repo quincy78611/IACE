@@ -37,7 +37,7 @@ public class TalentedPeopleRdResult extends BaseEntity implements IntegrationSea
 	}
 
 	private long id;
-	private TalentedPeople talentedPeople;
+	private transient TalentedPeople talentedPeople;
 	private String name;
 	private String type;
 	private String inventer;

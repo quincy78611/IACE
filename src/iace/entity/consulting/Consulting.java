@@ -194,6 +194,7 @@ public class Consulting extends BaseEntity {
 		this.consultDate = consultDate;
 	}
 
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		StringBuffer sb = new StringBuffer();

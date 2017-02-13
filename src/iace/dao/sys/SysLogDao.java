@@ -2,6 +2,7 @@ package iace.dao.sys;
 
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Order;
@@ -19,6 +20,43 @@ public class SysLogDao extends BaseIaceDao<SysLog> implements ISysLogDao {
 
 	public SysLogDao() {
 		super(SysLog.class);
+	}
+	
+	@Override
+	public List<String> getNamespaceList() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(SysLog.class);
+			criteria.setProjection(Projections.distinct(Projections.property("namespace")));
+			@SuppressWarnings("unchecked")
+			List<String> results = criteria.list();
+			
+			return results;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Override
+	public List<String> getActionNameList(String namespace) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(SysLog.class);
+			if (StringUtils.isNotBlank(namespace)) {
+				criteria.add(Restrictions.eq("namespace", namespace));
+			}
+			criteria.setProjection(Projections.distinct(Projections.property("actionName")));
+			@SuppressWarnings("unchecked")
+			List<String> results = criteria.list();
+			
+			return results;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
 	}
 
 	@Override
@@ -65,11 +103,11 @@ public class SysLogDao extends BaseIaceDao<SysLog> implements ISysLogDao {
 	}
 
 	private void addCriteriaRestrictionsForSearch(SysLogSearchModel arg, Criteria criteria) {
-		if (arg.getOptionSysNamespaceId() != null) {
-			criteria.add(Restrictions.eq("optionSysNamespace.id", arg.getOptionSysNamespaceId()));
+		if (StringUtils.isNotBlank(arg.getNamespace())) {
+			criteria.add(Restrictions.eq("namespace", arg.getNamespace()));
 		}
-		if (arg.getOptionSysActionId() != null) {
-			criteria.add(Restrictions.eq("optionSysAction.id", arg.getOptionSysActionId()));
+		if (StringUtils.isNotBlank(arg.getActionName())) {
+			criteria.add(Restrictions.eq("actionName", arg.getActionName()));
 		}
 		if (arg.getSysUserId() != null) {
 			criteria.add(Restrictions.eq("sysUser.id", arg.getSysUserId()));

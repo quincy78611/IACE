@@ -21,7 +21,7 @@ public class EnterpriseAcademiaCoop extends BaseEntity {
 	private static final long serialVersionUID = 5489013613912410384L;
 
 	private long id;
-	private EnterpriseInfo enterpriseInfo;
+	private transient EnterpriseInfo enterpriseInfo;
 	private String coopSchool;
 	private String currentCoopProjectTopic;
 	private String wantedCoopSchoolTopic;

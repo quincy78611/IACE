@@ -121,6 +121,7 @@ public class EnterpriseInfo extends BaseEntity {
 		}		
 	}
 	
+	@Deprecated
 	@Transient 
 	public String getOptionDomainSysLogString() {
 		if (this.optionDomainList == null) 
@@ -272,6 +273,7 @@ public class EnterpriseInfo extends BaseEntity {
 		this.enterpriseAcademiaCoop = enterpriseAcademiaCoop;
 	}
 
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		StringBuffer sb = new StringBuffer();

@@ -11,9 +11,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import iace.entity.BaseEntity;
-import iace.entity.option.OptionSysAction;
-import iace.entity.option.OptionSysNamespace;
 
 @Entity
 @Table(name = "SYS_LOG")
@@ -25,8 +28,10 @@ public class SysLog extends BaseEntity {
 	
 	private long id;
 	
-	private OptionSysNamespace optionSysNamespace;
-	private OptionSysAction optionSysAction;
+//	private OptionSysNamespace optionSysNamespace;
+//	private OptionSysAction optionSysAction;
+	private String namespace;
+	private String actionName;
 	
 	private String ip;
 	private SysUser sysUser;
@@ -48,8 +53,8 @@ public class SysLog extends BaseEntity {
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQUENCE_SYS_LOG_ID")
-	@SequenceGenerator(name = "SEQUENCE_SYS_LOG_ID", sequenceName = "SEQUENCE_SYS_LOG_ID", allocationSize = 1, initialValue = 1)	
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SYS_LOG_ID")
+	@SequenceGenerator(name = "SEQ_SYS_LOG_ID", sequenceName = "SEQ_SYS_LOG_ID", allocationSize = 1, initialValue = 1)	
 	public long getId() {
 		return id;
 	}
@@ -58,24 +63,42 @@ public class SysLog extends BaseEntity {
 		this.id = id;
 	}
 
-	@ManyToOne
-	@JoinColumn(name="OPT_SYS_NAMESPACE_ID")
-	public OptionSysNamespace getOptionSysNamespace() {
-		return optionSysNamespace;
-	}
-
-	public void setOptionSysNamespace(OptionSysNamespace optionSysNamespace) {
-		this.optionSysNamespace = optionSysNamespace;
-	}
+//	@ManyToOne
+//	@JoinColumn(name="OPT_SYS_NAMESPACE_ID")
+//	public OptionSysNamespace getOptionSysNamespace() {
+//		return optionSysNamespace;
+//	}
+//
+//	public void setOptionSysNamespace(OptionSysNamespace optionSysNamespace) {
+//		this.optionSysNamespace = optionSysNamespace;
+//	}
+//	
+//	@ManyToOne
+//	@JoinColumn(name="OPT_SYS_ACTION_ID")
+//	public OptionSysAction getOptionSysAction() {
+//		return optionSysAction;
+//	}
+//	
+//	public void setOptionSysAction(OptionSysAction optionSysAction) {
+//		this.optionSysAction = optionSysAction;
+//	}
 	
-	@ManyToOne
-	@JoinColumn(name="OPT_SYS_ACTION_ID")
-	public OptionSysAction getOptionSysAction() {
-		return optionSysAction;
+	@Column(name = "NAMESPACE")
+	public String getNamespace() {
+		return namespace;
 	}
 
-	public void setOptionSysAction(OptionSysAction optionSysAction) {
-		this.optionSysAction = optionSysAction;
+	public void setNamespace(String namespace) {
+		this.namespace = namespace;
+	}
+
+	@Column(name = "ACTION_NAME")
+	public String getActionName() {
+		return actionName;
+	}
+
+	public void setActionName(String actionName) {
+		this.actionName = actionName;
 	}
 
 	@Column(name = "IP")
@@ -134,7 +157,8 @@ public class SysLog extends BaseEntity {
 		if (this.beforeEntity != null) {
 			Table table = this.beforeEntity.getClass().getAnnotation(Table.class);
 			this.tableName = table.name();
-			this.before = this.beforeEntity.toSysLog();
+//			this.before = this.beforeEntity.toSysLog();
+			this.before = new Gson().toJson(beforeEntity);
 			this.enableLog = true;
 		}
 	}
@@ -149,16 +173,42 @@ public class SysLog extends BaseEntity {
 		if (this.afterEntity != null) {
 			Table table = this.afterEntity.getClass().getAnnotation(Table.class);
 			this.tableName = table.name();
-			this.after = this.afterEntity.toSysLog();
+//			this.after = this.afterEntity.toSysLog();
+			this.after = new Gson().toJson(afterEntity);
 			this.enableLog = true;
 		}
 	}
 	
 	@Transient
-	public String[] getBeforeStrings() {
-		return this.before.split(", \r\n");
+	public String getBeforeJsonPrettyPrint() {
+		JsonParser parser = new JsonParser();
+		JsonObject json = parser.parse(this.before).getAsJsonObject();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String jsonString = gson.toJson(json);
+		return jsonString.replace("\n", "<br/>").replace(" ", "&nbsp;");
 	}
 	
+	@Transient
+	public String getAfterJsonPrettyPrint() {
+		JsonParser parser = new JsonParser();
+		JsonObject json = parser.parse(this.after).getAsJsonObject();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String jsonString = gson.toJson(json);
+		return jsonString.replace("\n", "<br/>").replace(" ", "&nbsp;&nbsp;");
+	}
+	
+	@Deprecated
+	@Transient
+	public String[] getBeforeStrings() {
+		JsonParser parser = new JsonParser();
+		JsonObject json = parser.parse(this.before).getAsJsonObject();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String prettyPrint = gson.toJson(json);
+		return prettyPrint.split("\n");
+
+	}
+	
+	@Deprecated
 	@Transient
 	public String[] getAfterStrings() {
 		return this.after.split(", \r\n");
