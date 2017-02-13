@@ -58,6 +58,7 @@
 				<b>單位名稱</b>
 				<s:textfield name="consulting.organization" class="form-control" readonly="true"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>單位類型</b>
 				<s:select name="consulting.optionOrganizationType.code" list="optionOrganizationTypeList" listKey="code" listValue="%{code +' ' +name}" class="orgType" disabled="true"/>
@@ -66,6 +67,7 @@
 				<b>單位類型(其他)</b>
 				<s:textfield name="consulting.orgTypeOther" disabled="true" class="form-control orgType" readonly="true"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>諮詢類型</b>
 				<s:select name="consulting.optionConsult.code" list="optionConsultList" listKey="code" listValue="%{code +' ' +name}" class="consult" disabled="true"/>
@@ -74,6 +76,7 @@
 				<b>諮詢類型(其他)</b>
 				<s:textfield name="consulting.consultTypeOther" disabled="true" class="form-control consult" readonly="true"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>產業/領域別</b>
 				<s:select name="consulting.optionIndustry.code" list="optionIndustryList" listKey="code" listValue="%{code +' ' +name}" class="industry" disabled="true"/>
@@ -82,6 +85,7 @@
 				<b>產業/領域別(其他)</b>
 				<s:textfield name="consulting.industryOther" disabled="true" class="form-control industry" readonly="true"/>
 			</li>
+			<div class="clear"></div>
 			<li class="quarter">
 				<b>聯絡電話</b>
 				<s:textfield name="consulting.phone" class="form-control" readonly="true"/>	
@@ -98,6 +102,7 @@
 					</s:param>
 				</s:textfield>				
 			</li>
+			<div class="clear"></div>
 			<li class="all">
 				<b>內容說明</b>
 				<s:textarea name="consulting.content" cssClass="form-control" readonly="true"/>

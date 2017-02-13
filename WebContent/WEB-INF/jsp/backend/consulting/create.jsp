@@ -17,6 +17,7 @@
 				<b>單位名稱</b>
 				<s:textfield name="consulting.organization" maxlength="500" />
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>單位類型</b>
 				<s:select name="consulting.optionOrganizationType.code" list="optionOrganizationTypeList" listKey="code" listValue="%{code +' ' +name}" class="orgType"/>
@@ -25,6 +26,7 @@
 				<b>單位類型(其他)</b>
 				<s:textfield name="consulting.orgTypeOther" disabled="true" class="orgType" maxlength="500"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>諮詢類型</b>
 				<s:select name="consulting.optionConsult.code" list="optionConsultList" listKey="code" listValue="%{code +' ' +name}" class="consult"/>
@@ -33,6 +35,7 @@
 				<b>諮詢類型(其他)</b>
 				<s:textfield name="consulting.consultTypeOther" disabled="true" class="consult" maxlength="500"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>產業/領域別</b>
 				<s:select name="consulting.optionIndustry.code" list="optionIndustryList" listKey="code" listValue="%{code +' ' +name}" class="industry" />
@@ -41,6 +44,7 @@
 				<b>產業/領域別(其他)</b>
 				<s:textfield name="consulting.industryOther" disabled="true" class="industry" maxlength="500"/>
 			</li>
+			<div class="clear"></div>
 			<li class="quarter">
 				<b>聯絡電話</b>
 				<s:textfield name="consulting.phone" maxlength="100"/>	
@@ -57,6 +61,7 @@
 					</s:param>
 				</s:textfield>				
 			</li>
+			<div class="clear"></div>
 			<li class="all">
 				<b>內容說明</b>
 				<s:textarea name="consulting.content" />
