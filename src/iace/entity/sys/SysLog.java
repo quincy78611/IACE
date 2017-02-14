@@ -50,7 +50,10 @@ public class SysLog extends BaseEntity {
 		namespaces.put("/researchPlan", "研發成果");
 		namespaces.put("/sysRole", "系統角色");
 		namespaces.put("/sysUser", "系統使用者");
-		namespaces.put("/f/talentedPeople", "產學人才");
+		namespaces.put("/f/talentedPeople", "產學人才(外部)");
+		namespaces.put("/f/talentedPeopleRdResult", "產學人才(外部)-重要研發成果");
+		namespaces.put("/f/talentedPeopleTransferCase", "產學人才(外部)-成果移轉及授權案例");
+		namespaces.put("/f/talentedPeopleMainProject", "產學人才(外部)-產學合作計畫案");
 		namespaces.put("/talentedPeople", "產學人才資料");
 		namespaces.put("/talentedPeopleRdResult", "產學人才-重要研發成果");
 		namespaces.put("/talentedPeopleTransferCase", "產學人才-成果移轉及授權案例");
@@ -74,6 +77,9 @@ public class SysLog extends BaseEntity {
 		actionNames.put("updateTechnologySubmit", "編輯研發成果");
 		actionNames.put("upload", "上傳");
 		actionNames.put("uploadFile", "上傳");
+		actionNames.put("selfCreateSubmit", "新增");
+		actionNames.put("selfUpdateSubmit", "編輯");
+		actionNames.put("selfDeleteSubmit", "刪除");
 	}
 
 	private transient boolean enableLog;

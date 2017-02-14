@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.apache.commons.lang3.StringUtils;
+
 import core.util.PagedList;
 import iace.entity.sys.SysLog;
 import iace.entity.sys.SysLogSearchModel;
@@ -20,7 +22,7 @@ public class SysLogAction extends BaseIaceAction {
 	private SysUserService sysUserService = ServiceFactory.getSysUserService();
 	
 	private List<SysUser> sysUserList;
-	private Map<String, String> actionNames;
+	private Map<String, String> actionNames = new TreeMap<String, String>();;
 	
 	private SysLogSearchModel searchCondition = new SysLogSearchModel();
 	private PagedList<SysLog> sysLogPagedList;
@@ -72,11 +74,12 @@ public class SysLogAction extends BaseIaceAction {
 	}
 	
 	private void settingActionNameMap() {
-		List<String> actionNameList = this.sysLogService.getActionNameList(this.searchCondition.getNamespace());
-		this.actionNames = new TreeMap<String, String>();
-		for (String actionName:actionNameList) {
-			if (SysLog.actionNames.containsKey(actionName)) {
-				this.actionNames.put(actionName, SysLog.actionNames.get(actionName));
+		if (StringUtils.isNotBlank(this.searchCondition.getNamespace())) {
+			List<String> actionNameList = this.sysLogService.getActionNameList(this.searchCondition.getNamespace());
+			for (String actionName:actionNameList) {
+				if (SysLog.actionNames.containsKey(actionName)) {
+					this.actionNames.put(actionName, SysLog.actionNames.get(actionName));
+				}
 			}
 		}
 	}
