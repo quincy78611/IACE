@@ -65,8 +65,6 @@ import iace.dao.option.OptionOrganizationClassDao;
 import iace.dao.option.OptionOrganizationTypeDao;
 import iace.dao.option.OptionSchoolDao;
 import iace.dao.option.OptionSubjectDao;
-import iace.dao.option.OptionSysActionDao;
-import iace.dao.option.OptionSysNamespaceDao;
 import iace.dao.option.OptionTrlDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
@@ -118,8 +116,6 @@ import iace.entity.option.OptionHrst;
 import iace.entity.option.OptionIndustry;
 import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
-import iace.entity.option.OptionSysAction;
-import iace.entity.option.OptionSysNamespace;
 import iace.entity.option.OptionTrl;
 
 public class DaoFactory {
@@ -143,8 +139,6 @@ public class DaoFactory {
 	private static IOptionDao<OptionTrl> optionTrlDao;
 	private static IOptionSubjectDao optionSubjectDao;
 	private static IOptionSchoolDao optionSchoolDao;
-	private static IOptionDao<OptionSysAction> optionSysActionDao;
-	private static IOptionDao<OptionSysNamespace> optionSysNamespaceDao;
 	
 	private static ITechFieldDao techFieldDao;
 	private static IPatentDao patentDao;
@@ -332,20 +326,6 @@ public class DaoFactory {
 			optionSchoolDao = new OptionSchoolDao();
 		}
 		return optionSchoolDao;
-	}
-	
-	public static IOptionDao<OptionSysAction> getOptionSysActionDao() {
-		if (optionSysActionDao == null) {
-			optionSysActionDao = new OptionSysActionDao();
-		}
-		return optionSysActionDao;
-	}
-
-	public static IOptionDao<OptionSysNamespace> getOptionSysNamespaceDao() {
-		if (optionSysNamespaceDao == null) {
-			optionSysNamespaceDao = new OptionSysNamespaceDao();
-		}
-		return optionSysNamespaceDao;
 	}
 
 	public static ITechFieldDao getTechFieldDao() {

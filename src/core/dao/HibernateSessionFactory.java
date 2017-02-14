@@ -49,8 +49,6 @@ import iace.entity.option.OptionOrganizationClass;
 import iace.entity.option.OptionOrganizationType;
 import iace.entity.option.OptionSchool;
 import iace.entity.option.OptionSubject;
-import iace.entity.option.OptionSysAction;
-import iace.entity.option.OptionSysNamespace;
 import iace.entity.option.OptionTrl;
 import iace.entity.patent.Patent;
 import iace.entity.patent.TechField;
@@ -190,8 +188,6 @@ public class HibernateSessionFactory {
 		configuration.addAnnotatedClass(OptionTrl.class);
 		configuration.addAnnotatedClass(OptionSubject.class);
 		configuration.addAnnotatedClass(OptionSchool.class);
-		configuration.addAnnotatedClass(OptionSysNamespace.class);
-		configuration.addAnnotatedClass(OptionSysAction.class);
 		
 		configuration.addAnnotatedClass(EnterpriseInfo.class);
 		configuration.addAnnotatedClass(EnterpriseRequireTech.class);

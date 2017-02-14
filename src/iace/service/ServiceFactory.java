@@ -36,8 +36,6 @@ import iace.service.option.OptionOrganizationClassService;
 import iace.service.option.OptionOrganizationTypeService;
 import iace.service.option.OptionSchoolService;
 import iace.service.option.OptionSubjectService;
-import iace.service.option.OptionSysActionService;
-import iace.service.option.OptionSysNamespaceService;
 import iace.service.option.OptionTrlService;
 import iace.service.patent.PatentExcelService;
 import iace.service.patent.PatentService;
@@ -86,8 +84,6 @@ public class ServiceFactory {
 	private static OptionTrlService optionTrlService;
 	private static OptionSubjectService optionSubjectService;
 	private static OptionSchoolService optionSchoolService;
-	private static OptionSysActionService optionSysActionService;
-	private static OptionSysNamespaceService optionSysNamespaceService;
 	
 	private static PatentService patentService;
 	private static TechFieldService techFieldService;
@@ -292,20 +288,6 @@ public class ServiceFactory {
 			optionSchoolService = new OptionSchoolService(DaoFactory.getOptionSchoolDao());
 		}
 		return optionSchoolService;
-	}
-	
-	public static OptionSysActionService getOptionSysActionService() {
-		if (optionSysActionService == null) {
-			optionSysActionService = new OptionSysActionService(DaoFactory.getOptionSysActionDao());
-		}
-		return optionSysActionService;
-	}
-
-	public static OptionSysNamespaceService getOptionSysNamespaceService() {
-		if (optionSysNamespaceService == null) {
-			optionSysNamespaceService = new OptionSysNamespaceService(DaoFactory.getOptionSysNamespaceDao());
-		}
-		return optionSysNamespaceService;
 	}
 
 	public static PatentService getPatentService() {
