@@ -361,13 +361,19 @@ public class TalentedPeopleAction extends BaseIaceAction {
 		try {
 			if (this.sysUserService.loginCheck(this.sysUser.getAccount(), this.sysUser.getPassword())) {
 				this.sysUser = this.sysUserService.getBy(this.sysUser.getAccount(), this.sysUser.getPassword());
+				this.talentedPeople = this.talentedPeopleService.get(this.sysUser);
+				if (this.talentedPeople == null) {
+					super.addActionError("此帳號不是產學人才");
+					return INPUT;
+				}
+				
 				super.session.put(SessionInterceptor.SESSION_KEY_SYS_USER, this.sysUser);
 
 				// sysLog
-				super.getSysLog().setSysUser(sysUser);
+				super.getSysLog().setSysUser(this.sysUser);
 				super.getSysLog().setEnableLog(true);
 
-				return selfUpdate();
+				return SUCCESS;
 			} else {
 				super.addActionError("帳號或密碼錯誤!");
 				return INPUT;
