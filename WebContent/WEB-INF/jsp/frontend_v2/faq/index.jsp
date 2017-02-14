@@ -15,6 +15,9 @@
 			$(this).parents("tr").find(".btn-close").toggle();
 			var rowIndex = $(this).parents("tr").index();
 			$("#table-faq tbody tr").eq(rowIndex+1).toggle();
+			
+			var id = $(this).parents("tr").find("input[name=id]").val();
+			increaseClickNumAjax(id);
 		});
 		$(".btn-close").click(function(){
 			$(this).parents("tr").find(".btn-open").toggle();
@@ -24,6 +27,20 @@
 		});
 	});
 	
+	function increaseClickNumAjax(faqId) {
+		$.ajax({
+			url : '<s:url value="/f2/faq/increaseClickNum.action"/>',
+			type : 'GET',
+			data : {
+				id : faqId
+			},
+			error : function(xhr) {
+				alert('Ajax request 發生錯誤');
+			},
+			success : function(response) {
+			}
+		});	
+	}
 </script>
 </head>
 <body>
@@ -81,7 +98,9 @@
 										<tr class="info">
 											<td class="date_01"><s:date name="createTime" format="yyyy/M/d" /></td>
 											<td><s:property value="title"/></td>
-											<td><button class="btn btn-default btn-open" type="button">
+											<td>
+												<s:hidden name="id" disabled="true"/>
+												<button class="btn btn-default btn-open" type="button">
 													<i class="fa fa-plus right5" aria-hidden="true"></i>展開
 												</button>
 												<button class="btn btn-default btn-close" type="button" style="display: none">
