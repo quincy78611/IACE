@@ -1,5 +1,8 @@
 package iace.entity.sys;
 
+import java.util.Map;
+import java.util.TreeMap;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,15 +24,62 @@ import iace.entity.BaseEntity;
 @Entity
 @Table(name = "SYS_LOG")
 public class SysLog extends BaseEntity {
-
 	private static final long serialVersionUID = -3869735672852230110L;
+	public static Map<String, String> namespaces;
+	public static Map<String, String> actionNames;
+	static {
+		namespaces = new TreeMap<String, String>();
+		namespaces.put("/about", "關於");
+		namespaces.put("/activity", "活動人培");
+		namespaces.put("/batchSendEmail", "批次發送郵件");
+		namespaces.put("/consulting", "諮詢服務表");
+		namespaces.put("/contactUs", "客服信箱");
+		namespaces.put("/coopEx", "產學合作案例");
+		namespaces.put("/enterpriseNeed", "企業需求單");
+		namespaces.put("/epaper", "電子報");
+		namespaces.put("/epaperSubscriber", "電子報訂閱者");
+		namespaces.put("/faq", "常問集");
+		namespaces.put("/file", "檔案中心");
+		namespaces.put("/incubationCenter", "育成中心");
+		namespaces.put("/literature", "文獻與法規");
+		namespaces.put("/member", "會員");
+		namespaces.put("/news", "公告訊息");
+		namespaces.put("/patent", "專利");
+		namespaces.put("/qnrCooperateWay", "產學合作問卷");
+		namespaces.put("/rdFocus", "研發焦點");
+		namespaces.put("/researchPlan", "研發成果");
+		namespaces.put("/sysRole", "系統角色");
+		namespaces.put("/sysUser", "系統使用者");
+		namespaces.put("/f/talentedPeople", "產學人才");
+		namespaces.put("/talentedPeople", "產學人才資料");
+		namespaces.put("/talentedPeopleRdResult", "產學人才-重要研發成果");
+		namespaces.put("/talentedPeopleTransferCase", "產學人才-成果移轉及授權案例");
+		namespaces.put("/talentedPeopleMainProject", "產學人才-產學合作計畫案");
+		namespaces.put("/videosArea", "影片專區");
+		namespaces.put("/login", "登入/登出");
+		actionNames = new TreeMap<String, String>();
+		actionNames.put("loginSubmit", "登入");
+		actionNames.put("logout", "登出");
+		actionNames.put("batchImportSubmit", "批次匯入");
+		actionNames.put("sendEmailSubmit", "批次發信");
+		actionNames.put("create", "新增");
+		actionNames.put("createSubmit", "新增");
+		actionNames.put("createTechnologySubmit", "新增研發成果");
+		actionNames.put("delete", "刪除");
+		actionNames.put("deleteSubmit", "刪除");
+		actionNames.put("updateTechnologySubmit", "刪除研發成果");
+		actionNames.put("publish", "發佈");
+		actionNames.put("update", "編輯");
+		actionNames.put("updateSubmit", "編輯");
+		actionNames.put("updateTechnologySubmit", "編輯研發成果");
+		actionNames.put("upload", "上傳");
+		actionNames.put("uploadFile", "上傳");
+	}
 
 	private transient boolean enableLog;
 	
 	private long id;
 	
-//	private OptionSysNamespace optionSysNamespace;
-//	private OptionSysAction optionSysAction;
 	private String namespace;
 	private String actionName;
 	
@@ -62,26 +112,6 @@ public class SysLog extends BaseEntity {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-//	@ManyToOne
-//	@JoinColumn(name="OPT_SYS_NAMESPACE_ID")
-//	public OptionSysNamespace getOptionSysNamespace() {
-//		return optionSysNamespace;
-//	}
-//
-//	public void setOptionSysNamespace(OptionSysNamespace optionSysNamespace) {
-//		this.optionSysNamespace = optionSysNamespace;
-//	}
-//	
-//	@ManyToOne
-//	@JoinColumn(name="OPT_SYS_ACTION_ID")
-//	public OptionSysAction getOptionSysAction() {
-//		return optionSysAction;
-//	}
-//	
-//	public void setOptionSysAction(OptionSysAction optionSysAction) {
-//		this.optionSysAction = optionSysAction;
-//	}
 	
 	@Column(name = "NAMESPACE")
 	public String getNamespace() {
@@ -213,5 +243,4 @@ public class SysLog extends BaseEntity {
 	public String[] getAfterStrings() {
 		return this.after.split(", \r\n");
 	}
-
 }

@@ -1,6 +1,8 @@
 package iace.action;
 
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import core.util.PagedList;
 import iace.entity.sys.SysLog;
@@ -18,8 +20,7 @@ public class SysLogAction extends BaseIaceAction {
 	private SysUserService sysUserService = ServiceFactory.getSysUserService();
 	
 	private List<SysUser> sysUserList;
-	private List<String> namespaceList;
-	private List<String> actionNameList;
+	private Map<String, String> actionNames;
 	
 	private SysLogSearchModel searchCondition = new SysLogSearchModel();
 	private PagedList<SysLog> sysLogPagedList;
@@ -59,6 +60,26 @@ public class SysLogAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
+	
+	public String getActionNameMap() {
+		try {
+			settingActionNameMap();
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	private void settingActionNameMap() {
+		List<String> actionNameList = this.sysLogService.getActionNameList(this.searchCondition.getNamespace());
+		this.actionNames = new TreeMap<String, String>();
+		for (String actionName:actionNameList) {
+			if (SysLog.actionNames.containsKey(actionName)) {
+				this.actionNames.put(actionName, SysLog.actionNames.get(actionName));
+			}
+		}
+	}
 
 	// =========================================================================
 	
@@ -93,18 +114,11 @@ public class SysLogAction extends BaseIaceAction {
 		return sysUserList;
 	}
 
-	public List<String> getNamespaceList() {
-		if (namespaceList == null) {
-			namespaceList = this.sysLogService.getNamespaceList();
+	public Map<String, String> getActionNames() {
+		if (this.actionNames == null) {
+			settingActionNameMap();
 		}
-		return namespaceList;
-	}
-
-	public List<String> getActionNameList() {
-		if (actionNameList == null) {
-			actionNameList = this.sysLogService.getActionNameList(null);
-		}
-		return actionNameList;
+		return actionNames;
 	}
 
 	public PagedList<SysLog> getSysLogPagedList() {

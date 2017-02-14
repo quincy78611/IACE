@@ -16,9 +16,21 @@
 <body>
 <!-- 	<h2 class="itemTitle">檢視</h2>	 -->
 	<ul>
-		<li class="all">
+		<li class="third">
 			<b>時間</b>
 			<div class="border-text"><s:property value="sysLog.createTime"/></div>
+		</li>
+		<li class="third">
+			<b>系統功能</b>
+			<div class="border-text">
+				<s:property value="%{@iace.entity.sys.SysLog@namespaces[sysLog.namespace]}"/>
+			</div>
+		</li>
+		<li class="third">
+			<b>動作</b>
+			<div class="border-text">
+				<s:property value="%{@iace.entity.sys.SysLog@actionNames[sysLog.actionName]}"/>
+			</div>
 		</li>
 		<li class="third">
 			<b>使用者帳號</b>
@@ -36,12 +48,6 @@
 			<b>使用者腳色</b>
 			<div class="border-text">
 				<s:property value="sysLog.sysUser.sysRole.name"/>
-			</div>
-		</li>
-		<li class="all">
-			<b>URL</b>
-			<div class="border-text">
-				<s:property value="%{sysLog.namespace+'/'+sysLog.actionName}"/>
 			</div>
 		</li>
 		<li class="half">

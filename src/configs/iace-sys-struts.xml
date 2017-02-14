@@ -93,6 +93,10 @@
 			<result name="input">/WEB-INF/jsp/backend/sysLog/index.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/sysLog/detail.jsp</result>
 		</action>
+		<action name="getActionNameMap" class="iace.action.SysLogAction" method="getActionNameMap">
+			<interceptor-ref name="defaultStack" />
+			<result type="json"></result>
+		</action>
 	</package>
 	
 	<package name="DeveloperFunction" namespace="/developerFunc" extends="struts-default, json-default, default">
