@@ -49,7 +49,7 @@ public class SysRoleAction extends BaseIaceAction {
 	
 	public String createSubmit() {
 		try {
-			this.sysRoleService.create(this.sysRole, this.getCurrentSysUser());
+			this.sysRoleService.create(this.sysRole, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
 			return index();
 		} catch (Exception e) {
@@ -74,7 +74,7 @@ public class SysRoleAction extends BaseIaceAction {
 	
 	public String updateSubmit() {
 		try {
-			this.sysRoleService.update(sysRole, this.getCurrentSysUser());
+			this.sysRoleService.update(sysRole, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return index();
 		} catch (Exception e) {

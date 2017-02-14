@@ -58,7 +58,7 @@ public class SysUserAction extends BaseIaceAction {
 		try {
 			SysRole role = this.sysRoleService.get(this.sysUser.getSysRole().getId());
 			this.sysUser.setSysRole(role);
-			this.sysUserService.create(this.sysUser);
+			this.sysUserService.create(this.sysUser, super.getCurrentSysUser(), false, super.getSysLog());
 			return index();
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -84,7 +84,7 @@ public class SysUserAction extends BaseIaceAction {
 		try{
 			SysRole role = this.sysRoleService.get(this.sysUser.getSysRole().getId());
 			this.sysUser.setSysRole(role);
-			this.sysUserService.update(this.sysUser, this.getCurrentSysUser());
+			this.sysUserService.update(this.sysUser, super.getCurrentSysUser(), false, super.getSysLog());
 			this.addActionMessage("UPDATE SUCCESS!");
 			return index();
 		} catch (Exception e) {
