@@ -16,6 +16,9 @@
 		$(".list-item").click(function(){
 			$(this).find("a")[0].click();
 		});
+		$(".list-item a").click(function(e) {
+			e.stopPropagation(); //避免將事件傳遞給parent element導致觸發兩次連結的點擊事件
+		});
 	});
 </script>
 <script>
