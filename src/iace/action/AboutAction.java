@@ -64,6 +64,7 @@ public class AboutAction extends BaseIaceAction {
 			}
 			
 			this.about = aboutList.get(0);
+			new ClickNumCounterDao().increaseClickNum(this.about.getId(), About.class);
 			
 			return SUCCESS;
 		} catch (Exception e) {
@@ -81,6 +82,7 @@ public class AboutAction extends BaseIaceAction {
 				this.aboutMenuList.add(new BaseOption(about.getId()+"", about.getTitle()));
 				if (about.getId() == this.id) {
 					this.about = about;
+					new ClickNumCounterDao().increaseClickNum(this.about.getId(), About.class);
 				}
 			}
 			

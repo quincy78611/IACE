@@ -168,7 +168,7 @@ tr.hidden-sample-tr { display:none; }
 		<ul class="common-linkiac-fields">
 			<li class="quarter">
 				<b>瀏覽次數</b>
-				<s:textfield name="videosArea.clickNum" type="number" value="0" min="0"/>
+				<s:textfield name="videosArea.clickNum" type="number" min="0"/>
 			</li>
 			<li class="quarter">
 				<b>排序(數字愈大排愈前面)</b>
