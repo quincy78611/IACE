@@ -220,10 +220,12 @@ public class TalentedPeopleDao extends BaseIaceDao<TalentedPeople> implements IT
 			criteria.createAlias("sysUser", "user");
 			criteria.add(Restrictions.eq("user.id", user.getId()));
 			TalentedPeople res = (TalentedPeople) criteria.uniqueResult();
-			Hibernate.initialize(res.getDomains());
-			Hibernate.initialize(res.getRdResults());
-			Hibernate.initialize(res.getTransferCases());
-			Hibernate.initialize(res.getMainProjects());
+			if (res != null) {
+				Hibernate.initialize(res.getDomains());
+				Hibernate.initialize(res.getRdResults());
+				Hibernate.initialize(res.getTransferCases());
+				Hibernate.initialize(res.getMainProjects());
+			}
 			
 			return res;
 		} catch (Exception e) {

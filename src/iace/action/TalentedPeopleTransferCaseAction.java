@@ -74,7 +74,7 @@ public class TalentedPeopleTransferCaseAction extends BaseIaceAction {
 			this.talentedPeopleTransferCase.setTalentedPeople(this.talentedPeople);
 
 			// create
-			this.transferCaseService.create(this.talentedPeopleTransferCase, super.getCurrentSysUser());
+			this.transferCaseService.create(this.talentedPeopleTransferCase, super.getCurrentSysUser(), false, super.getSysLog());
 			
 			// get the newest talentedPeople data
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeopleId);
@@ -113,7 +113,7 @@ public class TalentedPeopleTransferCaseAction extends BaseIaceAction {
 			this.talentedPeopleTransferCase.setTalentedPeople(this.talentedPeople);
 			
 			// update
-			this.transferCaseService.update(this.talentedPeopleTransferCase, super.getCurrentSysUser());
+			this.transferCaseService.update(this.talentedPeopleTransferCase, super.getCurrentSysUser(), false, super.getSysLog());
 			
 			// get the newest talentedPeople data
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeopleId);
@@ -156,7 +156,7 @@ public class TalentedPeopleTransferCaseAction extends BaseIaceAction {
 			this.talentedPeopleId = this.talentedPeopleTransferCase.getTalentedPeople().getId();
 			
 			// delete 
-			this.transferCaseService.delete(this.talentedPeopleTransferCase);
+			this.transferCaseService.delete(this.talentedPeopleTransferCase, false, super.getSysLog());
 			
 			// get the newest talentedPeople data
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeopleId);

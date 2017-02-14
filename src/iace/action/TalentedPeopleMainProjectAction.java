@@ -75,7 +75,7 @@ public class TalentedPeopleMainProjectAction extends BaseIaceAction {
 			this.talentedPeopleMainProject.setTalentedPeople(this.talentedPeople);
 
 			// create
-			this.mainProjectService.create(this.talentedPeopleMainProject, super.getCurrentSysUser());
+			this.mainProjectService.create(this.talentedPeopleMainProject, super.getCurrentSysUser(), false, super.getSysLog());
 			
 			// get the newest talentedPeople data
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeopleId);
@@ -114,7 +114,7 @@ public class TalentedPeopleMainProjectAction extends BaseIaceAction {
 			this.talentedPeopleMainProject.setTalentedPeople(this.talentedPeople);
 			
 			// update
-			this.mainProjectService.update(this.talentedPeopleMainProject, super.getCurrentSysUser());
+			this.mainProjectService.update(this.talentedPeopleMainProject, super.getCurrentSysUser(), false, super.getSysLog());
 			
 			// get the newest talentedPeople data
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeopleId);
@@ -157,7 +157,7 @@ public class TalentedPeopleMainProjectAction extends BaseIaceAction {
 			this.talentedPeopleId = this.talentedPeopleMainProject.getTalentedPeople().getId();
 			
 			// delete 
-			this.mainProjectService.delete(this.talentedPeopleMainProject);
+			this.mainProjectService.delete(this.talentedPeopleMainProject, false, super.getSysLog());
 			
 			// get the newest talentedPeople data
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeopleId);

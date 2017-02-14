@@ -75,7 +75,7 @@ public class TalentedPeopleRdResultAction extends BaseIaceAction {
 			this.talentedPeopleRdResult.setTalentedPeople(this.talentedPeople);
 
 			// create
-			this.rdResultService.create(this.talentedPeopleRdResult, super.getCurrentSysUser());
+			this.rdResultService.create(this.talentedPeopleRdResult, super.getCurrentSysUser(), false, super.getSysLog());
 			
 			// get the newest talentedPeople data
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeopleId);
@@ -114,7 +114,7 @@ public class TalentedPeopleRdResultAction extends BaseIaceAction {
 			this.talentedPeopleRdResult.setTalentedPeople(this.talentedPeople);
 			
 			// update
-			this.rdResultService.update(this.talentedPeopleRdResult, super.getCurrentSysUser());
+			this.rdResultService.update(this.talentedPeopleRdResult, super.getCurrentSysUser(), false, super.getSysLog());
 			
 			// get the newest talentedPeople data
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeopleId);
@@ -157,7 +157,7 @@ public class TalentedPeopleRdResultAction extends BaseIaceAction {
 			this.talentedPeopleId = this.talentedPeopleRdResult.getTalentedPeople().getId();
 			
 			// delete 
-			this.rdResultService.delete(this.talentedPeopleRdResult);
+			this.rdResultService.delete(this.talentedPeopleRdResult, false, super.getSysLog());
 			
 			// get the newest talentedPeople data
 			this.talentedPeople = this.talentedPeopleService.get(this.talentedPeopleId);
