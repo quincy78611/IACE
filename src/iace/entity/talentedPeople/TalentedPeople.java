@@ -260,6 +260,7 @@ public class TalentedPeople extends BaseEntity implements IntegrationSearch {
 		return sb.toString();
 	}
 	
+	@Deprecated
 	@Transient
 	public String getDomainsNameForSysLog() {
 		StringBuilder sb = new StringBuilder();

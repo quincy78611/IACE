@@ -232,6 +232,7 @@ public class EnterpriseSituation extends BaseEntity {
 		this.otherCoopTarget = otherCoopTarget;
 	}
 
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		StringBuffer sb = new StringBuffer();

@@ -119,6 +119,7 @@ public class EnterpriseRequireTech extends BaseEntity {
 		this.recordBy = recordBy;
 	}
 
+	@Deprecated
 	@Override
 	public String toSysLog() {
 		StringBuffer sb = new StringBuffer();
