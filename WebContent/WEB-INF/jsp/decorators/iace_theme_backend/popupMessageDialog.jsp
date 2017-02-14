@@ -3,7 +3,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 
 <style>
-#popup-message-dialog .modal {
+#popup-message-dialog {
 	display: none;
 	position: fixed; /* Stay in place */
 	z-index: 10; /* Sit on top */
