@@ -7,6 +7,7 @@
 </head>
 <body>
 	<s:include value="./banner.jsp" />
+	<s:include value="./hot20.jsp" />
 	<s:include value="./marquee.jsp" />
 	<s:include value="./newsAndActivity.jsp" />
 	<s:include value="./relatedWebsites.jsp" />
