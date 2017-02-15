@@ -22,7 +22,8 @@ public class SysLogAction extends BaseIaceAction {
 	private SysUserService sysUserService = ServiceFactory.getSysUserService();
 	
 	private List<SysUser> sysUserList;
-	private Map<String, String> actionNames = new TreeMap<String, String>();;
+	private Map<String, String> namespaces;
+	private Map<String, String> actionNames;
 	
 	private SysLogSearchModel searchCondition = new SysLogSearchModel();
 	private PagedList<SysLog> sysLogPagedList;
@@ -74,6 +75,7 @@ public class SysLogAction extends BaseIaceAction {
 	}
 	
 	private void settingActionNameMap() {
+		this.actionNames = new TreeMap<String, String>();
 		if (StringUtils.isNotBlank(this.searchCondition.getNamespace())) {
 			List<String> actionNameList = this.sysLogService.getActionNameList(this.searchCondition.getNamespace());
 			for (String actionName:actionNameList) {
@@ -115,6 +117,19 @@ public class SysLogAction extends BaseIaceAction {
 			sysUserList = this.sysUserService.listAll();
 		}
 		return sysUserList;
+	}
+	
+	public Map<String, String> getNamespaces() {
+		if (namespaces == null) {
+			this.namespaces = new TreeMap<String, String>();
+			List<String> namespaceList = this.sysLogService.getNamespaceList();
+			for (String namespace:namespaceList) {
+				if (SysLog.namespaces.containsKey(namespace)) {
+					this.namespaces.put(namespace, SysLog.namespaces.get(namespace));
+				}
+			}
+		}
+		return namespaces;
 	}
 
 	public Map<String, String> getActionNames() {

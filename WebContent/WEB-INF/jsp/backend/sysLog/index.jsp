@@ -133,7 +133,7 @@
 					<s:select name="searchCondition.sysUserId" list="sysUserList" listKey="id" listValue="account" headerKey="" headerValue="請選擇使用者" />
 				</li>
 				<li class="quarter">
-					<s:select name="searchCondition.namespace" list="@iace.entity.sys.SysLog@namespaces" listKey="key" listValue="value" headerKey="" headerValue="請選擇系統功能" />
+					<s:select name="searchCondition.namespace" list="namespaces" listKey="key" listValue="value" headerKey="" headerValue="請選擇系統功能" />
 				</li>				
 				<li class="quarter">
 					<s:select name="searchCondition.actionName" list="actionNames" headerKey="" headerValue="請選擇動作" />
