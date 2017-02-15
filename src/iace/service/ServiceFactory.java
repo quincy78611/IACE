@@ -466,7 +466,9 @@ public class ServiceFactory {
 
 	public static TalentedPeoplePDPLService getTalentedPeoplePDPLService() {
 		if (talentedPeoplePDPLService == null) {
-			talentedPeoplePDPLService = new TalentedPeoplePDPLService(DaoFactory.getTalentedPeoplePDPLDao());
+			talentedPeoplePDPLService = new TalentedPeoplePDPLService(
+					DaoFactory.getTalentedPeoplePDPLDao(),
+					DaoFactory.getTalentedPeopleDao());
 		}
 		return talentedPeoplePDPLService;
 	}

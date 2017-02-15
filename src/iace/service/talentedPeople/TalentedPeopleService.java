@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -52,7 +53,8 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
 
 public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
-
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	
 	private ITalentedPeopleDao talentedPeopleDao;
 	private IOptionGrbDomainDao optionGrbDomainDao;
 	private ISysUserDao sysUserDao;
@@ -386,6 +388,7 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 			row.createCell(++c).setCellValue("%ID%");
 			row.createCell(++c).setCellValue("%PW%");
 			row.createCell(++c).setCellValue("%URL%");
+			row.createCell(++c).setCellValue("%CREATE_DATE%");
 		}
 		
 		// data part
@@ -401,6 +404,7 @@ public class TalentedPeopleService extends BaseIaceService<TalentedPeople> {
 				c += 2;
 			}
 			ExcelUtil.createNSetCellValue(row, ++c, url+"?id="+tp.getId());
+			ExcelUtil.createNSetCellValue(row, ++c, sdf.format(tp.getCreateTime()));
 		}
 		
 		for (int i=0; i<=c; i++) {

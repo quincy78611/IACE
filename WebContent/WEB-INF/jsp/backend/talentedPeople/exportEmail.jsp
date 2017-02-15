@@ -28,7 +28,12 @@
 			<label style="font-size:16px">個資收集法同意/不同意情況列表</label>
 			<input type="button" class="btn btn-default grayBtn" value="下載" 
 				onclick="window.location.href='<s:url value="exportPDPLList"/>'"/>
-		</li>		
+		</li>
+		<li class="all">
+			<label style="font-size:16px">個資同意狀態統計表</label>
+			<input type="button" class="btn btn-default grayBtn" value="下載" 
+				onclick="window.location.href='<s:url value="exportPDPLSummary"/>'"/>
+		</li>
 	</ul>	
 
 </body>

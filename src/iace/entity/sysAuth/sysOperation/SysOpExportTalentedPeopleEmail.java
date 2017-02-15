@@ -8,6 +8,7 @@ public class SysOpExportTalentedPeopleEmail extends SysOp {
 		super.actions.add("exportAllEmail");
 		super.actions.add("exportNotAgreePDPLYetEmail");
 		super.actions.add("exportPDPLList");
+		super.actions.add("exportPDPLSummary");
 	}
 
 }

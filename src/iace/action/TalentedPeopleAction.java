@@ -35,7 +35,6 @@ public class TalentedPeopleAction extends BaseIaceAction {
 	private static final long serialVersionUID = 570851154374907844L;
 
 	private TalentedPeopleService talentedPeopleService = ServiceFactory.getTalentedPeopleService();
-//	private TalentedPeopleService2 talentedPeopleService2 = ServiceFactory.getTalentedPeopleService2();
 	private TalentedPeoplePDPLService talentedPeoplePDPLService = ServiceFactory.getTalentedPeoplePDPLService();
 	private SysUserService sysUserService = ServiceFactory.getSysUserService();
 	private SysRoleService sysRoleService = ServiceFactory.getSysRoleService();
@@ -300,6 +299,19 @@ public class TalentedPeopleAction extends BaseIaceAction {
 			XSSFWorkbook wb = this.talentedPeoplePDPLService.exportList();
 			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
 			this.downloadFileName = "PDPL_List.xlsx";
+
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String exportPDPLSummary() {
+		try {
+			XSSFWorkbook wb = this.talentedPeoplePDPLService.exportSummary();
+			this.downloadFileInputStream = ExcelUtil.workbookToInputStream(wb);
+			this.downloadFileName = "PDPL_Summary.xlsx";
 
 			return SUCCESS;
 		} catch (Exception e) {

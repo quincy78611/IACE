@@ -2,6 +2,7 @@ package iace.dao.talentedPeople;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 
 import core.dao.HibernateSessionFactory;
@@ -28,4 +29,26 @@ public class TalentedPeoplePDPLDao extends BaseIaceDao<TalentedPeoplePDPL> imple
 		}
 	}
 
+	@Override
+	public long queryCount(Boolean agreePDPL) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			if (agreePDPL == null) {
+				criteria.add(Restrictions.isNull("agreePDPL"));
+			} else {
+				criteria.add(Restrictions.eq("agreePDPL", agreePDPL));
+			}
+			criteria.setProjection(Projections.countDistinct("id"));
+
+			Object count = criteria.uniqueResult();
+			return (long) count;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	
 }
