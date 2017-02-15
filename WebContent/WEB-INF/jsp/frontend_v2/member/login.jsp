@@ -48,7 +48,7 @@
 					歡迎蒞臨『使用I-ACE網站會員帳號登入 』網站，請立即進行登入程序， 享用本網站會員專屬服務！<br> 若有疑問，歡迎 聯絡我們，我們將提供您完善的答覆與服務。
 				</div>
 				<div class="content_01 well top10">
-					<s:form action="loginSubmit" method="post" validate="true" class="form-horizontal">
+					<s:form namespace="/f2/member" action="loginSubmit" method="post" validate="true" class="form-horizontal">
 						<div class="form-group">
 							<label for="" class="col-sm-2 control-label">帳號</label>
 							<div class="col-sm-10">

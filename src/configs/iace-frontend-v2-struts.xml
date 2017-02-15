@@ -111,7 +111,12 @@
 			<result name="input">/WEB-INF/jsp/frontend_v2/coopEx/index.jsp</result>
 		</action>
 		<action name="showDetail" class="iace.action.CoopExAction" method="showDetail">
+			<interceptor-ref name="httpRequestLog" />
+			<interceptor-ref name="iaceMemberLogin" />
+			<interceptor-ref name="defaultStack" />
+		
 			<result name="success">/WEB-INF/jsp/frontend_v2/coopEx/detail.jsp</result>
+			<result name="login">/WEB-INF/jsp/frontend_v2/member/login.jsp</result>
 		</action>
 	</package>
 

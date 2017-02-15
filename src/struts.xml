@@ -19,6 +19,7 @@
 			<interceptor name="iaceBackendAuth" class="iace.interceptor.AuthInterceptor"/>
 			<interceptor name="iaceSysLog" class="iace.interceptor.SysActionLogInterceptor"/>
 			<interceptor name="httpRequestLog" class="iace.interceptor.HttpRequestLogInterceptor"/>
+			<interceptor name="iaceMemberLogin" class="iace.interceptor.MemberLoginInterceptor"/>
 		
 			<interceptor-stack name="iaceFrontEnd">
 				<interceptor-ref name="httpRequestLog" />
