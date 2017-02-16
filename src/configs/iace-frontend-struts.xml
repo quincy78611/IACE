@@ -121,6 +121,14 @@
 			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/update.jsp</result>
 		</action>
 	</package>
+	<!-- 在批次發信時因為人為疏失導致取代出來的網址是錯誤的，因此特別寫此設定來處理該錯誤的網址 -->
+	<package name="forErrorTP-PDPL-Url" namespace="/batchSendEmail/https:/iace.org.tw/f/talentedPeople" extends="struts-default, json-default, default">
+		<action name="PDPL" class="iace.action.TalentedPeopleAction" method="PDPL">
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/backend_noMenu/talentedPeople/pdpl.jsp</result>
+			<result name="login">/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
+		</action>
+	</package>
 	
 	<package name="f.TalentedPeopleRdResult" namespace="/f/talentedPeopleRdResult" extends="struts-default, json-default, default">
 		<default-interceptor-ref name="iaceTalentedPeopleSelfMaintain"/>
