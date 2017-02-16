@@ -121,7 +121,6 @@ public class EnterpriseInfo extends BaseEntity {
 		}		
 	}
 	
-	@Deprecated
 	@Transient 
 	public String getOptionDomainSysLogString() {
 		if (this.optionDomainList == null) 
@@ -129,7 +128,7 @@ public class EnterpriseInfo extends BaseEntity {
 		
 		StringBuffer sb = new StringBuffer();
 		for (int i=0;i<this.optionDomainList.size();i++) {
-			sb.append(this.optionDomainList.get(i).toSysLog());
+			sb.append(this.optionDomainList.get(i).getShowString());
 			if (i < this.optionDomainList.size() - 1) {
 				sb.append(";");
 			}
