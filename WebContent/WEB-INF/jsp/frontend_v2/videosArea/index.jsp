@@ -38,14 +38,12 @@
 							<s:iterator value="videosAreaPagedList.list" status="stat">
 								<div class="row">
 									<div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-										<div class="list-thumbnail img_radius">
-											<s:if test="base64Thumbnail != null && thumbnail.length > 0">
-												<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img-responsive" alt=""/>
-											</s:if>
-											<s:else>
-												<img src="<s:url value="/images/frontend-v2/noimage-2.gif"/>" class="img-responsive" alt=""/>
-											</s:else>
-										</div>
+										<s:if test="base64Thumbnail != null && thumbnail.length > 0">
+											<img src="data:image;base64,<s:property value="base64Thumbnail"/>" class="img_radius img-thumbnail list-thumbnail"/>
+										</s:if>
+										<s:else>
+											<img src="<s:url value="/images/frontend-v2/noimage-2.gif"/>" class="img_radius img-thumbnail list-thumbnail" />
+										</s:else>
 									</div>
 									<div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
 										<div>
