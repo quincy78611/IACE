@@ -16,7 +16,7 @@ function defaultTinymceEditor(obj) {
 		],
 		automatic_uploads: true,
 		height: 400,
-		relative_urls : false,
+//		relative_urls : false,
 		remove_script_host : false,
 		paste_data_images: true
 	});
