@@ -113,9 +113,18 @@ div#abgne_marquee ul li, div#abgne_marquee ul li a {
 					<li style="width: 80%;">
 						<div id="abgne_marquee">
 							<ul>
-								<li>運用法人鏈結產業合作計畫成果發表會誠摯邀請您蒞臨指導</li>
-								<li>日期：2017年01月17日下午1時30分至下午3時30分</li>
-								<li>地點：台灣科技大學國際大樓一樓(IB101)與展覽會場A區 (106台北市大安區基隆路四段43號)</li>
+								<s:iterator value="marqueeList" status="stat">
+									<s:if test="displayStatus">
+										<li>
+											<s:if test="hasLink">
+												<a href="<s:property value="url"/>" target="_blank"><s:property value="text"/></a>
+											</s:if>
+											<s:else>
+												<s:property value="text"/>
+											</s:else>
+										</li>
+									</s:if>
+								</s:iterator>
 							</ul>
 						</div>
 					</li>

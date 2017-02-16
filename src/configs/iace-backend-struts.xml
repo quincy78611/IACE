@@ -1003,4 +1003,31 @@
 			<result name="success">/WEB-INF/jsp/backend/epaper/index.jsp</result>
 		</action>
 	</package>
+	
+	<package name="Marquee" namespace="/marquee" extends="struts-default, json-default, default">
+		<default-interceptor-ref name="iaceBackEnd"/>
+		<action name="index" class="iace.action.MarqueeAction" method="index">
+			<result name="success">/WEB-INF/jsp/backend/marquee/index.jsp</result>
+		</action>
+		<action name="showDetail" class="iace.action.MarqueeAction" method="showDetail">
+			<result name="success">/WEB-INF/jsp/backend/marquee/detail.jsp</result>
+		</action>
+		<action name="create" class="iace.action.MarqueeAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/marquee/create.jsp</result>
+		</action>
+		<action name="createSubmit" class="iace.action.MarqueeAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/marquee/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/marquee/detail.jsp</result>
+		</action>
+		<action name="update" class="iace.action.MarqueeAction" method="update">
+			<result name="success">/WEB-INF/jsp/backend/marquee/update.jsp</result>
+		</action>
+		<action name="updateSubmit" class="iace.action.MarqueeAction" method="updateSubmit">
+			<result name="input">/WEB-INF/jsp/backend/marquee/update.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/marquee/detail.jsp</result>
+		</action>
+		<action name="deleteSubmit" class="iace.action.MarqueeAction" method="deleteSubmit">
+			<result name="success">/WEB-INF/jsp/backend/marquee/index.jsp</result>
+		</action>
+	</package>
 </struts>

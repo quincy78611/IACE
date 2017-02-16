@@ -244,6 +244,15 @@
 					<s:checkbox label="%{sysRole.sysAuth.file.opUpload.displayName}" name="sysRole.sysAuth.file.opUpload.auth" fieldValue="true"/>
 				</td>
 			</tr>
+			<tr>
+				<td><b><s:property value="sysRole.sysAuth.marquee.displayName"/></b></td>
+				<td class="horizontalList">
+					<s:checkbox label="%{sysRole.sysAuth.marquee.opView.displayName}" name="sysRole.sysAuth.marquee.opView.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.marquee.opCreate.displayName}" name="sysRole.sysAuth.marquee.opCreate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.marquee.opUpdate.displayName}" name="sysRole.sysAuth.marquee.opUpdate.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.marquee.opDelete.displayName}" name="sysRole.sysAuth.marquee.opDelete.auth" fieldValue="true"/>
+				</td>
+			</tr>
 		</table>
 
 		

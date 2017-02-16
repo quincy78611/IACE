@@ -32,6 +32,7 @@ import iace.entity.httpRequestLog.HttpRequestLog;
 import iace.entity.incubationCenter.IncubationCenter;
 import iace.entity.industryInfo.IndustryInfo;
 import iace.entity.literature.Literature;
+import iace.entity.marquee.Marquee;
 import iace.entity.member.Member;
 import iace.entity.news.News;
 import iace.entity.news.NewsAttach;
@@ -247,6 +248,7 @@ public class HibernateSessionFactory {
 		configuration.addAnnotatedClass(ContactUs.class);
 		
 		configuration.addAnnotatedClass(RelatedWebsite.class);
+		configuration.addAnnotatedClass(Marquee.class);
 		
 		configuration.addAnnotatedClass(VideosArea.class);
 		configuration.addAnnotatedClass(Video.class);

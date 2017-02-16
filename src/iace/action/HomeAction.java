@@ -6,6 +6,7 @@ import iace.entity.activity.Activity;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.industryInfo.IndustryInfo;
 import iace.entity.literature.Literature;
+import iace.entity.marquee.Marquee;
 import iace.entity.news.News;
 import iace.entity.patent.Patent;
 import iace.entity.relatedWebsite.RelatedWebsite;
@@ -16,6 +17,7 @@ import iace.service.activity.ActivityService;
 import iace.service.coopExample.CoopExService;
 import iace.service.industryInfo.IndustryInfoService;
 import iace.service.literature.LiteratureService;
+import iace.service.marquee.MarqueeService;
 import iace.service.news.NewsService;
 import iace.service.patent.PatentService;
 import iace.service.relatedWebsite.RelatedWebsiteService;
@@ -35,6 +37,7 @@ public class HomeAction extends BaseIaceAction {
 	private TalentedPeopleService talentedPeopleService = ServiceFactory.getTalentedPeopleService();
 	private LiteratureService literatureService = ServiceFactory.getLiteratureService();
 	private RelatedWebsiteService relatedWebsiteService = ServiceFactory.getRelatedWebsiteService();
+	private MarqueeService marqueeService = ServiceFactory.getMarqueeService(); 
 	
 	private List<Activity> hot20ActivityList;
 	
@@ -49,6 +52,7 @@ public class HomeAction extends BaseIaceAction {
 	private List<Literature> literatureList;
 	private List<Literature> policyList;
 	private List<RelatedWebsite> relatedWebsiteList;
+	private List<Marquee> marqueeList;
 	
 	public HomeAction() {
 		super.setTitle("首頁");
@@ -81,6 +85,7 @@ public class HomeAction extends BaseIaceAction {
 			this.literatureList = this.literatureService.sampleForHomePage("文獻");
 			this.policyList = this.literatureService.sampleForHomePage("法規政策");
 			this.relatedWebsiteList = this.relatedWebsiteService.listAll();
+			this.marqueeList = this.marqueeService.listAll();
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -136,6 +141,10 @@ public class HomeAction extends BaseIaceAction {
 
 	public List<RelatedWebsite> getRelatedWebsiteList() {
 		return relatedWebsiteList;
+	}
+
+	public List<Marquee> getMarqueeList() {
+		return marqueeList;
 	}
 	
 	

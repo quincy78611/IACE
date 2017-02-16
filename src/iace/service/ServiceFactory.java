@@ -20,6 +20,7 @@ import iace.service.incubationCenter.IncubationCenterService;
 import iace.service.industryInfo.IndustryInfoService;
 import iace.service.literature.LiteratureService;
 import iace.service.lucene.LuceneIndexService;
+import iace.service.marquee.MarqueeService;
 import iace.service.member.MemberService;
 import iace.service.news.NewsAttachService;
 import iace.service.news.NewsService;
@@ -145,6 +146,8 @@ public class ServiceFactory {
 	
 	private static EPaperService epaperService;
 	private static EPaperSubscriberService epaperSubscriberService;
+	
+	private static MarqueeService marqueeService;
 	
 	// =========================================================================
 	
@@ -605,6 +608,13 @@ public class ServiceFactory {
 			epaperSubscriberService = new EPaperSubscriberService(DaoFactory.getePaperSubscriberDao());
 		}
 		return epaperSubscriberService;
+	}
+
+	public static MarqueeService getMarqueeService() {
+		if (marqueeService == null) {
+			marqueeService = new MarqueeService(DaoFactory.getMarqueeDao());
+		}
+		return marqueeService;
 	}
 	
 	

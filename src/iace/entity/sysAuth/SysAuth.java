@@ -21,6 +21,7 @@ import iace.entity.sysAuth.sysApplication.SysAppFaq;
 import iace.entity.sysAuth.sysApplication.SysAppFile;
 import iace.entity.sysAuth.sysApplication.SysAppIncubationCenter;
 import iace.entity.sysAuth.sysApplication.SysAppLiterature;
+import iace.entity.sysAuth.sysApplication.SysAppMarquee;
 import iace.entity.sysAuth.sysApplication.SysAppMember;
 import iace.entity.sysAuth.sysApplication.SysAppNews;
 import iace.entity.sysAuth.sysApplication.SysAppOptionManage;
@@ -72,6 +73,8 @@ public class SysAuth {
 	private SysAppEPaper epaper = new SysAppEPaper();
 	private SysAppEPaperSubscriber epaperSubscriber = new SysAppEPaperSubscriber();
 	
+	private SysAppMarquee marquee = new SysAppMarquee();
+	
 	public SysAuth() {
 		Properties prop = new Properties();
 		try {
@@ -111,6 +114,7 @@ public class SysAuth {
 		sysApps.add(this.file);
 		sysApps.add(this.epaper);
 		sysApps.add(this.epaperSubscriber);
+		sysApps.add(this.marquee);
 		return sysApps;
 	}
 
@@ -159,6 +163,8 @@ public class SysAuth {
 			return true;
 		}
 	}
+	
+	//==========================================================================
 
 	public SysAppOptionManage getOptionManage() {
 		return optionManage;
@@ -262,6 +268,10 @@ public class SysAuth {
 
 	public SysAppEPaperSubscriber getEpaperSubscriber() {
 		return epaperSubscriber;
+	}
+
+	public SysAppMarquee getMarquee() {
+		return marquee;
 	}
 	
 	

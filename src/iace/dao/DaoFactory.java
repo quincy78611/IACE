@@ -42,6 +42,8 @@ import iace.dao.industryInfo.IIndustryInfoDao;
 import iace.dao.industryInfo.IndustryInfoDao;
 import iace.dao.literature.ILiteratureDao;
 import iace.dao.literature.LiteratureDao;
+import iace.dao.marquee.IMarqueeDao;
+import iace.dao.marquee.MarqueeDao;
 import iace.dao.member.IMemberDao;
 import iace.dao.member.MemberDao;
 import iace.dao.news.INewsAttachDao;
@@ -200,6 +202,8 @@ public class DaoFactory {
 	
 	private static IEPaperDao epaperDao;
 	private static IEPaperSubscriberDao ePaperSubscriberDao;
+	
+	private static IMarqueeDao marqueeDao;
 	
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
@@ -607,6 +611,13 @@ public class DaoFactory {
 			ePaperSubscriberDao = new EPaperSubscriberDao();
 		}
 		return ePaperSubscriberDao;
+	}
+
+	public static IMarqueeDao getMarqueeDao() {
+		if (marqueeDao == null) {
+			marqueeDao = new MarqueeDao();
+		}
+ 		return marqueeDao;
 	}
 
 	

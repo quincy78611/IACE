@@ -60,6 +60,7 @@ public class SysLog extends BaseEntity {
 		namespaces.put("/talentedPeopleMainProject", "產學人才-產學合作計畫案");
 		namespaces.put("/videosArea", "影片專區");
 		namespaces.put("/login", "登入/登出");
+		namespaces.put("/marquee", "首頁跑馬燈");
 		actionNames = new TreeMap<String, String>();
 		actionNames.put("loginSubmit", "登入");
 		actionNames.put("logout", "登出");
