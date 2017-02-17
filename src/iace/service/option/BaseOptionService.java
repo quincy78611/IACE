@@ -75,11 +75,8 @@ public abstract class BaseOptionService<OptionEntity extends BaseOption> extends
 
 	@Override
 	public void update(OptionEntity entity) {
-		if (hasBeenUsed(entity)) {
-			String msg = "無法編輯已被使用的代碼!";
-			throw new IllegalArgumentException(msg);
-		}
-		entity.setCode(entity.getCode().trim());
+		OptionEntity old = this.dao.get(entity.getId());
+		entity.setCode(old.getCode());
 		entity.setName(entity.getName().trim());
 		dao.update(entity);
 	}
