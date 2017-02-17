@@ -20,18 +20,20 @@
 					<div class="line_gray1px_02"></div>
 				</div>
 				<div>
-					<table class="table">
+					<table class="table" style="table-layout:fixed;">
 						<tbody>
 							<s:iterator value="policyList" status="stat">
 								<tr>
 									<td class="table_border_bottom_grey">
-										<div class="truncate" title="<s:property value="title"/>">
+										<div class="single-line-truncate" title="<s:property value="title"/>">
 											<span class="date_01"><s:property value="publishYear"/></span>&nbsp;
 											
 											<s:url value="/f2/policy/showDetail" var="detailUrlTag" escapeAmp="false">
 												<s:param name="id" value="id" />
 											</s:url>
-											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank"><s:property value="title" /></a>
+											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank">
+												<s:property value="title" />
+											</a>
 										</div>
 									</td>
 								</tr>
@@ -54,19 +56,21 @@
 					<div class="line_gray1px_02"></div>
 				</div>
 				<div>
-					<table class="table">
+					<table class="table" style="table-layout:fixed;">
 						<tbody>
 							<s:iterator value="literatureList" status="stat">
 
 								<tr>
 									<td class="table_border_bottom_grey">
-										<div class="truncate" title="<s:property value="title"/>">
+										<div class="single-line-truncate" title="<s:property value="title"/>">
 											<span class="date_01"><s:property value="publishYear" /></span>&nbsp;
 											
 											<s:url value="/f2/literature/showDetail" var="detailUrlTag" escapeAmp="false">
 												<s:param name="id" value="id" />
 											</s:url>
-											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank"><s:property value="title"/></a>
+											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank">
+												<s:property value="title"/>
+											</a>
 										</div>
 									</td>
 								</tr>

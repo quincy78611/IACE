@@ -24,19 +24,18 @@
 		<div class="row">
 			<div class="col-sm-6 col-xs-12">
 				<div class="top10">
-					<table class="table">
+					<table class="table" style="table-layout:fixed;">
 						<tbody>
 							<!-- 研發成果 -->
 							<s:iterator value="technologyList" status="stat">
 								<tr>
-									<td style="border:none;">
-										<div class="truncate">
-											<span class="date_02"><s:property value="researchPlan.planNo"/></span>&nbsp;&nbsp;&nbsp;
-											
-											<s:url value="/f2/researchPlan/showDetail" var="detailUrlTag" escapeAmp="false">
-												<s:param name="id" value="researchPlan.id" />
-											</s:url>
+									<s:url value="/f2/researchPlan/showDetail" var="detailUrlTag" escapeAmp="false">
+										<s:param name="id" value="researchPlan.id" />
+									</s:url>
+									<td style="border:none;" >
+										<div class="single-line-truncate">
 											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_02" target="_blank">
+												<span class="date_02"><s:property value="researchPlan.planNo"/></span>&nbsp;&nbsp;&nbsp;
 												<s:property value="name"/>
 											</a>
 										</div>
@@ -46,14 +45,13 @@
 							<!-- 專利 -->
 							<s:iterator value="patentList" status="stat">
 								<tr>
+									<s:url value="/f2/patent/showDetail" var="detailUrlTag" escapeAmp="false">
+										<s:param name="id" value="id" />
+									</s:url>
 									<td style="border:none;">
-										<div class="truncate">
-											<span class="date_02"><s:property value="openNo"/></span>&nbsp;&nbsp;&nbsp;
-											
-											<s:url value="/f2/patent/showDetail" var="detailUrlTag" escapeAmp="false">
-												<s:param name="id" value="id" />
-											</s:url>
+										<div class="single-line-truncate">
 											<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_02" target="_blank">
+												<span class="date_02"><s:property value="openNo"/></span>&nbsp;&nbsp;&nbsp;
 												<s:property value="name"/>
 											</a>
 										</div>

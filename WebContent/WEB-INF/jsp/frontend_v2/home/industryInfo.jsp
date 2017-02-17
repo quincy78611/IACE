@@ -27,12 +27,12 @@
 		<div class="row">
 			<div class="col-sm-6 col-xs-12">
 				<div class="top10">
-					<table class="table">
+					<table class="table" style="table-layout:fixed;">
 						<tbody>
 							<s:iterator value="industryInfoList1" status="stat">
 								<tr>
 									<td style="border:none;">
-										<div class="truncate">
+										<div class="single-line-truncate">
 											<span class="date_02"><s:date name="postDate" format="yyyy/MM/dd" /></span>&nbsp;&nbsp;&nbsp;
 											<a href="<s:property value="link"/>" class="list_link_02" target="_blank"><s:property value="title"/></a>
 										</div>
@@ -73,12 +73,12 @@
 		<div class="row">
 			<div class="col-sm-offset-6 col-sm-6 col-xs-12">
 				<div class="top10">
-					<table class="table">
+					<table class="table" style="table-layout:fixed;">
 						<tbody>
 							<s:iterator value="industryInfoList2" status="stat">
 								<tr>
 									<td style="border:none;">
-										<div class="truncate">
+										<div class="single-line-truncate">
 											<span class="date_01"><s:date name="postDate" format="yyyy/MM/dd" /></span>&nbsp;&nbsp;&nbsp;
 											<a href="<s:property value="link"/>" class="list_link_01" target="_blank">
 												<s:property value="title" escapeHtml="false"/>
