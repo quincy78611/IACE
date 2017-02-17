@@ -10,6 +10,7 @@
 	<s:include value="./hot20.jsp" />
 	<s:include value="./marquee.jsp" />
 	<s:include value="./newsAndActivity.jsp" />
+	<s:include value="./rdFocus.jsp" />
 	<s:include value="./relatedWebsites.jsp" />
 	<s:include value="./industryInfo.jsp" />
 	<s:include value="./academiaAchievement.jsp" />

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -62,6 +63,18 @@ public class RdFocus extends BaseLinkiacEntity {
 
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	
+	@Transient
+	public String getCategoryShort() {
+		switch (this.category) {
+		case "國際前瞻趨勢":
+			return "前瞻趨勢";
+		case "國內外產學合作產業化個案":
+			return "合作個案";
+		default:
+			return this.category;
+		}
 	}
 
 	@Column(name = "TITLE")

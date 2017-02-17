@@ -9,6 +9,7 @@ import iace.entity.literature.Literature;
 import iace.entity.marquee.Marquee;
 import iace.entity.news.News;
 import iace.entity.patent.Patent;
+import iace.entity.rdFocus.RdFocus;
 import iace.entity.relatedWebsite.RelatedWebsite;
 import iace.entity.researchPlan.Technology;
 import iace.entity.talentedPeople.TalentedPeople;
@@ -20,6 +21,7 @@ import iace.service.literature.LiteratureService;
 import iace.service.marquee.MarqueeService;
 import iace.service.news.NewsService;
 import iace.service.patent.PatentService;
+import iace.service.rdFocus.RdFocusService;
 import iace.service.relatedWebsite.RelatedWebsiteService;
 import iace.service.researchPlan.TechnologyService;
 import iace.service.talentedPeople.TalentedPeopleService;
@@ -38,11 +40,11 @@ public class HomeAction extends BaseIaceAction {
 	private LiteratureService literatureService = ServiceFactory.getLiteratureService();
 	private RelatedWebsiteService relatedWebsiteService = ServiceFactory.getRelatedWebsiteService();
 	private MarqueeService marqueeService = ServiceFactory.getMarqueeService(); 
+	private RdFocusService rdFocusService = ServiceFactory.getRdFocusService();
 	
 	private List<Activity> hot20ActivityList;
-	
-	private List<News> newsList;
 	private List<Activity> activityList;
+	private List<News> newsList;
 	private List<IndustryInfo> industryInfoList1;
 	private List<IndustryInfo> industryInfoList2;
 	private List<Technology> technologyList;
@@ -53,6 +55,7 @@ public class HomeAction extends BaseIaceAction {
 	private List<Literature> policyList;
 	private List<RelatedWebsite> relatedWebsiteList;
 	private List<Marquee> marqueeList;
+	private List<RdFocus> rdFocusList;
 	
 	public HomeAction() {
 		super.setTitle("首頁");
@@ -86,6 +89,7 @@ public class HomeAction extends BaseIaceAction {
 			this.policyList = this.literatureService.sampleForHomePage("法規政策");
 			this.relatedWebsiteList = this.relatedWebsiteService.listAll();
 			this.marqueeList = this.marqueeService.listAll();
+			this.rdFocusList = this.rdFocusService.sampleForHomePage();
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
@@ -145,6 +149,10 @@ public class HomeAction extends BaseIaceAction {
 
 	public List<Marquee> getMarqueeList() {
 		return marqueeList;
+	}
+
+	public List<RdFocus> getRdFocusList() {
+		return rdFocusList;
 	}
 	
 	

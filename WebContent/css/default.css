@@ -529,3 +529,9 @@ div.center-cropped1 img, div.center-cropped2 img, .list-thumbnail img {
 
 .tag { font-size: 18px; color: #FFF; line-height:1.6em;}
 /* 小安 */
+
+.single-line-truncate {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}

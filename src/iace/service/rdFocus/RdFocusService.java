@@ -27,6 +27,10 @@ public class RdFocusService extends BaseIaceService<RdFocus> {
 	public PagedList<RdFocus> searchBy(RdFocusSearchModel arg) {
 		return this.dao.searchBy(arg);
 	}
+	
+	public List<RdFocus> sampleForHomePage() {
+		return this.dao.sampleForHomePage();
+	}
 
 	@Override
 	public RdFocus get(Long id) {

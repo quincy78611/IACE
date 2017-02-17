@@ -11,8 +11,10 @@ import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 
 import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
@@ -111,4 +113,34 @@ public class RdFocusDao extends BaseIaceDao<RdFocus> implements IRdFocusDao {
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
 
+	@Override
+	public List<RdFocus> sampleForHomePage() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("homeDisplayStatus", true));
+			
+			ProjectionList projectionList = Projections.projectionList();
+			projectionList.add(Projections.property("id"), "id");
+			projectionList.add(Projections.property("category"), "category");
+			projectionList.add(Projections.property("title"), "title");
+			projectionList.add(Projections.property("postDate"), "postDate");
+			criteria.setProjection(projectionList);
+			criteria.setResultTransformer(Transformers.aliasToBean(super.entityClass));
+			
+			criteria.addOrder(Order.desc("sort"));
+			criteria.addOrder(Order.desc("updateTime"));
+			criteria.setMaxResults(5);
+			
+			@SuppressWarnings("unchecked")
+			List<RdFocus> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	
 }
