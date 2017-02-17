@@ -3,7 +3,7 @@
 <%@ taglib prefix="sb" uri="/struts-bootstrap-tags"%>
 
 <!-- 公告訊息&活動人培 -->
-<div class="container top50">
+<div class="container top30">
 	<div class="row">
 		<!-- 公告訊息 -->
 		<div class="col-sm-6 col-xs-12">
@@ -23,12 +23,12 @@
 				<div class="line_gray1px"></div>
 			</div>
 			<div>
-				<table class="table">
+				<table class="table" style="table-layout:fixed;">
 					<tbody>
 						<s:iterator value="newsList" status="stat">
 						<tr>
-							<td style="border:none;">
-								<h4><span class="label label-info"><s:property value="category" /></span></h4>
+							<td style="border:none; width:75px;">
+								<span class="label label-info"><s:property value="category" /></span>
 							</td>
 							<td style="border:none;">
 								<s:url value="/f2/news/showDetail" var="detailUrlTag" escapeAmp="false">
@@ -36,7 +36,7 @@
 									<s:param name="searchCondition.category" value="category" />
 								</s:url>
 							
-								<div class="truncate2">
+								<div class="single-line-truncate">
 									<span class="date_01"><s:date name="postDate" format="yyyy/MM/dd" /></span>&nbsp;
 									<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01">
 										<s:property value="title" />
@@ -68,15 +68,15 @@
 				<div class="line_gray1px"></div>
 			</div>
 			<div>
-				<table class="table">
+				<table class="table" style="table-layout:fixed;">
 					<tbody>
 						<s:iterator value="activityList" status="stat">
 							<tr>
-								<td width="15%" style="border:none;">
-									<h4><span class="label label-info"><s:property value="category"/></span></h4>
+								<td style="border:none; width:75px;">
+									<span class="label label-info"><s:property value="category"/></span>
 								</td>
 								<td style="border:none;">
-									<div class="truncate2">
+									<div class="single-line-truncate">
 										<span class="date_01"><s:date name="postDate" format="yyyy/MM/dd" /></span>&nbsp;
 										
 										<s:url value="/f2/activity/showDetail" var="detailUrlTag" escapeAmp="false">
