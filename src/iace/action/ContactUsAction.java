@@ -91,7 +91,7 @@ public class ContactUsAction extends BaseIaceAction {
 		}
 	}
 	
-	public String update() {
+	public String updateHandledStatus() {
 		try {
 			this.contactUs = this.contactUsService.get(id);
 			if (this.contactUs == null) {

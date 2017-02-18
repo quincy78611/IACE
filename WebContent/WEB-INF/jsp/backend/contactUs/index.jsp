@@ -21,7 +21,7 @@
 		
 		$("select[name=beenHandled]").change(function() {
 			var beenHandled = $(this).val(); 
-			var url = $(this).parents("tr").find(".updateUrl").val() + "&beenHandled="+beenHandled;
+			var url = $(this).parents("tr").find(".updateHandledStatusUrl").val() + "&beenHandled="+beenHandled;
 			$("form").attr('action', url);
 			$("form").submit();
 			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
@@ -186,7 +186,11 @@
 							<td><s:property value="email" /></td>
 							<td><s:date name="createTime" format="yyyy/MM/dd"/></td>
 							<td>
-								<s:if test='%{#session.sysUser.hasAuth(namespace, "update")}'>
+								<s:url value="updateHandledStatus.action" var="updateHandledStatusTag" escapeAmp="false">
+									<s:param name="id" value="id" />
+								</s:url>
+								<s:hidden value="%{#updateHandledStatusTag}" class="updateHandledStatusUrl" disabled="true"/>								
+								<s:if test='%{#session.sysUser.hasAuth(namespace, "updateHandledStatus")}'>
 									<s:select name="beenHandled" list="#{'true':'已處理', 'false':'待處理'}" class="horizontalList"/>
 								</s:if>
 								<s:else>
@@ -201,13 +205,6 @@
 									</s:url>
 									<s:hidden value="%{#detailUrlTag}" class="detailUrl" disabled="true"/>
 									<input type="button" class="btn-info btn-func btn-view" value="檢視" />	
-								</s:if>
-								<!-- 編輯 -->
-								<s:if test='%{#session.sysUser.hasAuth(namespace, "update")}'>
-									<s:url value="update.action" var="updateUrlTag" escapeAmp="false">
-										<s:param name="id" value="id" />
-									</s:url>
-									<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
 								</s:if>
 							</td>
 						</tr>

@@ -37,7 +37,8 @@ public class ConsultingAction extends BaseIaceAction {
 	private List<OptionIndustry> optionIndustryList;
 	
 	private long id;
-	private Consulting consulting;	
+	private Consulting consulting;
+	private boolean beenHandled;
 	
 	private String downloadFileName;
 	private InputStream downloadFileInputStream;
@@ -136,6 +137,22 @@ public class ConsultingAction extends BaseIaceAction {
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return INPUT;
+		}
+	}
+	
+	public String updateHandledStatus() {
+		try {
+			this.consulting = this.consultingService.get(id);
+			if (this.consulting == null) {
+				super.addActionError("沒有對應的資料");
+			}
+			
+			this.consulting.setBeenHandled(this.beenHandled);
+			this.consultingService.update(this.consulting, this.getCurrentSysUser(), false, super.getSysLog());
+			return index();
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
 		}
 	}
 	
@@ -272,5 +289,14 @@ public class ConsultingAction extends BaseIaceAction {
 	public void setCaptchaCode(String captchaCode) {
 		this.captchaCode = captchaCode;
 	}
+
+	public boolean getBeenHandled() {
+		return beenHandled;
+	}
+
+	public void setBeenHandled(boolean beenHandled) {
+		this.beenHandled = beenHandled;
+	}
+	
 	
 }

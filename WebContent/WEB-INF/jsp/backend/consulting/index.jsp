@@ -34,7 +34,14 @@
 			$("form").attr('action', url);
 			$("form").submit();
 			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
-		});		
+		});
+		$("select[name=beenHandled]").change(function() {
+			var beenHandled = $(this).val(); 
+			var url = $(this).parents("tr").find(".updateHandledStatusUrl").val() + "&beenHandled="+beenHandled;
+			$("form").attr('action', url);
+			$("form").submit();
+			$("form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+		});
 	}
 </script>
 <script>	
@@ -97,10 +104,10 @@
 		$(".select-pageSize").val($("#pageSize").val());
 					
 		// 注意: 在此頁面的搜尋按鈕記得要加上id
-	    $("#btn-search").click(function(){
-	        $("#pageIndex").val(0);
-	        return true;
-	    });
+		$("#btn-search").click(function(){
+			$("#pageIndex").val(0);
+			return true;
+		});
 	 	// 注意: 在此頁面的重置按鈕記得要加上id
 		$("#btn-reset").click(function(){
 			$("input.form-control:text").val("");
@@ -123,7 +130,7 @@
 				</li>
 				<li class="quarter">
 					<s:textfield placeholder="諮詢日期(訖)" name="searchCondition.consultDateEnd" class="calendarBox"/>
-				</li>				
+				</li>
 				<li class="quarter">
 					<s:select name="searchCondition.optionOrganizationTypeCode" list="optionOrganizationTypeList" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部單位類型"/>
 				</li>
@@ -147,7 +154,7 @@
 			<s:set var="pgCount" value="#pgList.pageCount"/>
 			
 			<ul class="pagination">
-				<s:if test="#pgList != null && #pgCount > 0">					
+				<s:if test="#pgList != null && #pgCount > 0">
 					<li><input type="submit" value="First" class="btn-first-page" /></li>
 					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
 					<s:if test="#pgIndex >= 5">
@@ -162,7 +169,7 @@
 						<li>......</li>
 					</s:if>
 					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
-					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>					
+					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
 				</s:if>
 				<li>
 					<p>共 <s:property value="#pgList.totatlItemCount"/> 筆資料</p>
@@ -176,7 +183,7 @@
 						<option value="20">20</option>
 						<option value="50">50</option>
 					</select>
-				</li>				
+				</li>
 			</ul>
 		</div>	
 
@@ -197,7 +204,7 @@
 						<th nowrap width="">產業/領域別</th>
 						<th nowrap width="">新增日期</th>
 						<th nowrap width="">諮詢日期</th>
-						<th nowrap width="">功能</th>
+						<th nowrap width="23%">功能</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -207,7 +214,7 @@
 								<td>
 									<s:property value="%{consultingPagedList.itemStart + #stat.count -1}" />
 									<%-- <s:property value="id" /> --%>
-								</td>						
+								</td>
 								<td><s:property value="name" /></td>
 								<td><s:property value="organization" /></td>
 								<td><s:property value="%{optionOrganizationType.code + ' ' + optionOrganizationType.name}" /></td>
@@ -215,7 +222,6 @@
 								<td><s:property value="%{optionIndustry.code + ' ' + optionIndustry.name}" /></td>
 								<td><s:date name="createTime" format="yyyy/MM/dd"/></td>
 								<td><s:date name="consultDate" format="yyyy/MM/dd"/></td>
-								
 								<td>
 									<!-- 檢視 -->
 									<s:if test='%{#session.sysUser.hasAuth(namespace, "showDetail")}'>
@@ -233,7 +239,7 @@
 										</s:url>
 										<s:hidden value="%{#updateUrlTag}" class="updateUrl" disabled="true"/>
 										<input type="button" class="btn-info btn-func btn-edit" value="編輯" />	
-									</s:if>	
+									</s:if>
 									
 									<!-- 刪除 -->
 									<s:if test='%{#session.sysUser.hasAuth(namespace, "delete")}'>
@@ -251,7 +257,21 @@
 										</s:url>
 										<input type="button" class="btn-info btn-func btn-print" value="列印" 
 											onclick="window.location.href='<s:property value="#printReportUrlTag"/>'"/>	
-									</s:if>	
+									</s:if>
+									
+									<!-- 處理狀態 -->
+									<div style="display: inline-block;">
+										<s:url value="updateHandledStatus.action" var="updateHandledStatusTag" escapeAmp="false">
+											<s:param name="id" value="id" />
+										</s:url>
+										<s:hidden value="%{#updateHandledStatusTag}" class="updateHandledStatusUrl" disabled="true"/>								
+										<s:if test='%{#session.sysUser.hasAuth(namespace, "updateHandledStatus")}'>
+											<s:select name="beenHandled" list="#{'true':'已處理', 'false':'待處理'}" class="horizontalList"/>
+										</s:if>
+										<s:else>
+											<s:select name="beenHandled" list="#{'true':'已處理', 'false':'待處理'}" class="horizontalList" disabled="true"/>
+										</s:else>
+									</div>
 								</td>
 							</tr>
 						</s:iterator>
@@ -263,13 +283,13 @@
 		<div class="page">
 			<s:hidden id="pageIndex" name="searchCondition.pageIndex" />
 			<s:hidden id="pageSize" name="searchCondition.pageSize" />
-						
+			
 			<s:set var="pgList" value="consultingPagedList"/>
 			<s:set var="pgIndex" value="searchCondition.pageIndex"/>
 			<s:set var="pgCount" value="#pgList.pageCount"/>
 			
 			<ul class="pagination">
-				<s:if test="#pgList != null && #pgCount > 0">					
+				<s:if test="#pgList != null && #pgCount > 0">
 					<li><input type="submit" value="First" class="btn-first-page" /></li>
 					<li><input type="submit" value=&laquo; class="btn-previous-page" /></li>
 					<s:if test="#pgIndex >= 5">
@@ -284,7 +304,7 @@
 						<li>......</li>
 					</s:if>
 					<li><input type="submit" value=&raquo;	class="btn-next-page" /></li>
-					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>					
+					<li class="next"><input type="submit" value="Last" class="btn-last-page" /></li>
 				</s:if>
 				<li>
 					<p>共 <s:property value="#pgList.totatlItemCount"/> 筆資料</p>
@@ -298,7 +318,7 @@
 						<option value="20">20</option>
 						<option value="50">50</option>
 					</select>
-				</li>				
+				</li>
 			</ul>
 		</div>		
 	</s:form>

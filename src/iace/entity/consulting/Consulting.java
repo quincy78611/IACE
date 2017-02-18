@@ -16,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Type;
+
 import iace.entity.BaseEntity;
 import iace.entity.option.OptionConsult;
 import iace.entity.option.OptionIndustry;
@@ -44,6 +46,7 @@ public class Consulting extends BaseEntity {
 	private String content;
 	private String approval;
 	private Date consultDate;
+	private boolean beenHandled;
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false)
@@ -192,6 +195,16 @@ public class Consulting extends BaseEntity {
 
 	public void setConsultDate(Date consultDate) {
 		this.consultDate = consultDate;
+	}
+	
+	@Column(name = "BEEN_HANDLED")
+	@Type(type="true_false")
+	public boolean getBeenHandled() {
+		return beenHandled;
+	}
+
+	public void setBeenHandled(boolean beenHandled) {
+		this.beenHandled = beenHandled;
 	}
 
 	@Deprecated

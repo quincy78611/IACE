@@ -76,6 +76,7 @@ public class SysLog extends BaseEntity {
 		actionNames.put("update", "編輯");
 		actionNames.put("updateSubmit", "編輯");
 		actionNames.put("updateTechnologySubmit", "編輯研發成果");
+		actionNames.put("updateHandledStatus", "變更處理狀態");
 		actionNames.put("upload", "上傳");
 		actionNames.put("uploadFile", "上傳");
 		actionNames.put("selfCreateSubmit", "新增");
