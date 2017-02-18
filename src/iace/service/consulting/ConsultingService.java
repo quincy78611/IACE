@@ -9,7 +9,9 @@ import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletContext;
 
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -20,10 +22,13 @@ import org.hibernate.Session;
 import org.hibernate.internal.SessionImpl;
 
 import core.dao.HibernateSessionFactory;
+import core.util.EmailUtil;
 import core.util.ExcelUtil;
 import core.util.PagedList;
 import iace.dao.consulting.IConsultingDao;
+import iace.dao.consulting.IConsultingManagerDao;
 import iace.entity.consulting.Consulting;
+import iace.entity.consulting.ConsultingManager;
 import iace.entity.consulting.ConsultingSearchModel;
 import iace.service.BaseIaceService;
 import net.sf.jasperreports.engine.JRException;
@@ -31,10 +36,12 @@ import net.sf.jasperreports.engine.JasperRunManager;
 
 public class ConsultingService extends BaseIaceService<Consulting> {
 	private IConsultingDao consultingDao;
+	private IConsultingManagerDao consultingManagerDao;
 	
-	public ConsultingService(IConsultingDao dao) {
+	public ConsultingService(IConsultingDao dao, IConsultingManagerDao consultingManagerDao) {
 		super(dao);
 		this.consultingDao = dao;
+		this.consultingManagerDao = consultingManagerDao;
 	}
 	
 	public PagedList<Consulting> searchBy(int pageIndex, int pageSize, String name, String organization) {
@@ -119,5 +126,54 @@ public class ConsultingService extends BaseIaceService<Consulting> {
 		// run
 		JasperRunManager.runReportToPdfStream(fis, os, parameters, conn);
 		return new ByteArrayInputStream(os.toByteArray());
+	}
+	
+	public void sendNotificationEmail(Consulting entity) throws IOException, MessagingException {
+		entity = this.dao.get(entity.getId());
+		List<ConsultingManager> managers = this.consultingManagerDao.listAll();
+		Properties prop = new Properties();
+		prop.load(this.getClass().getClassLoader().getResourceAsStream("configs/mail.smtp.properties"));
+		String from = prop.getProperty("mail.default.from");
+		String sender = prop.getProperty("mail.default.sender");
+		String subject = "I-ACE我要諮詢通知(" + entity.getName() + ")";
+		String content = 
+				"<table>" + 
+					"<tr>" + 
+						"<th><strong>姓名</strong>" +
+						"<td>" + entity.getName() + "</td>" + 
+					"</tr>" +
+					"<tr>" + 
+						"<th><strong>單位名稱</strong>" +
+						"<td>" + entity.getOrganization() + "</td>" + 
+					"</tr>" +
+					"<tr>" + 
+						"<th><strong>單位類型</strong>" +
+						"<td>" + entity.getOptionOrganizationType().getName() + " " + entity.getOrgTypeOther() + "</td>" + 
+					"</tr>" +
+					"<tr>" + 
+						"<th><strong>諮詢類型</strong>" +
+						"<td>" + entity.getOptionConsult().getName() + " " + entity.getConsultTypeOther() + "</td>" + 
+					"</tr>" +
+						"<tr>" + 
+						"<th><strong>產業/領域別</strong>" +
+						"<td>" + entity.getOptionIndustry().getName() + " " + entity.getIndustryOther() + "</td>" + 
+					"</tr>" +
+					"<tr>" + 
+						"<th><strong>連絡電話</strong></th>" +
+						"<td>" + entity.getPhone() + "</td>" + 
+					"</tr>" +
+					"<tr>" + 
+						"<th><strong>Email</strong></th>" +
+						"<td>" + entity.getEmail() + "</td>" + 
+					"</tr>" +
+					"<tr>" + 
+						"<th><strong>內容</strong></th>" +
+						"<td>" + entity.getContent() + "</td>" + 
+					"</tr>" +
+				"</table>";
+
+		for (ConsultingManager manager : managers) {
+			EmailUtil.send(subject, content, null, from, sender, manager.getEmail());
+		}
 	}
 }

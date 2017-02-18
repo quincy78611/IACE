@@ -82,6 +82,7 @@ public class ContactUsAction extends BaseIaceAction {
 	public String createSubmit() {
 		try {
 			this.contactUsService.create(this.contactUs);
+			this.contactUsService.sendNotificationEmail(this.contactUs);
 			super.addActionMessage("留言成功");
 			return SUCCESS;
 		} catch (Exception e) {

@@ -9,7 +9,9 @@ import iace.dao.activity.IActivityAttachDao;
 import iace.dao.activity.IActivityDao;
 import iace.dao.activity.IActivityVideoDao;
 import iace.dao.consulting.ConsultingDao;
+import iace.dao.consulting.ConsultingManagerDao;
 import iace.dao.consulting.IConsultingDao;
+import iace.dao.consulting.IConsultingManagerDao;
 import iace.dao.coopExample.CoopExAttachFileDao;
 import iace.dao.coopExample.CoopExDao;
 import iace.dao.coopExample.CoopExImgDao;
@@ -19,7 +21,9 @@ import iace.dao.coopExample.ICoopExDao;
 import iace.dao.coopExample.ICoopExImgDao;
 import iace.dao.coopExample.ICoopExVideoDao;
 import iace.dao.customerService.ContactUsDao;
+import iace.dao.customerService.ContactUsManagerDao;
 import iace.dao.customerService.IContactUsDao;
+import iace.dao.customerService.IContactUsManagerDao;
 import iace.dao.ePaper.EPaperDao;
 import iace.dao.ePaper.EPaperSubscriberDao;
 import iace.dao.ePaper.IEPaperDao;
@@ -149,6 +153,7 @@ public class DaoFactory {
 	private static ITechnologyDao technologyDao;
 	
 	private static IConsultingDao consultingDao;
+	private static IConsultingManagerDao consultingManagerDao;
 	
 	private static IEnterpriseInfoDao enterpriseInfoDao;
 	private static IEnterpriseRequireTechDao enterpriseRequireTechDao;
@@ -192,6 +197,7 @@ public class DaoFactory {
 	private static IMemberDao memberDao;
 	
 	private static IContactUsDao contactUsDao;
+	private static IContactUsManagerDao contactUsManagerDao;
 	
 	private static IIndustryInfoDao industryInfoDao;
 	
@@ -367,6 +373,13 @@ public class DaoFactory {
 		return consultingDao;
 	}
 	
+	public static IConsultingManagerDao getConsultingManagerDao() {
+		if (consultingManagerDao == null) {
+			consultingManagerDao = new ConsultingManagerDao();
+		}
+		return consultingManagerDao;
+	}
+
 	public static IEnterpriseInfoDao getEnterpriseInfoDao() {
 		if (enterpriseInfoDao == null) {
 			enterpriseInfoDao = new EnterpriseInfoDao();
@@ -568,6 +581,13 @@ public class DaoFactory {
 			contactUsDao = new ContactUsDao();
 		}
 		return contactUsDao;
+	}
+	
+	public static IContactUsManagerDao getContactUsManagerDao() {
+		if (contactUsManagerDao == null) {
+			contactUsManagerDao = new ContactUsManagerDao();
+		}
+		return contactUsManagerDao;
 	}
 
 	public static IIndustryInfoDao getIndustryInfoDao() {

@@ -346,7 +346,9 @@ public class ServiceFactory {
 
 	public static ConsultingService getConsultingService() {
 		if (consultingService == null) {
-			consultingService = new ConsultingService(DaoFactory.getConsultingDao());
+			consultingService = new ConsultingService(
+					DaoFactory.getConsultingDao(),
+					DaoFactory.getConsultingManagerDao());
 		}
 		return consultingService;
 	}
@@ -560,7 +562,9 @@ public class ServiceFactory {
 
 	public static ContactUsService getContactUsService() {
 		if (contactUsService == null) {
-			contactUsService = new ContactUsService(DaoFactory.getContactUsDao());
+			contactUsService = new ContactUsService(
+					DaoFactory.getContactUsDao(),
+					DaoFactory.getContactUsManagerDao());
 		}
 		return contactUsService;
 	}

@@ -16,11 +16,13 @@ import iace.entity.activity.Activity;
 import iace.entity.activity.ActivityAttach;
 import iace.entity.activity.ActivityVideo;
 import iace.entity.consulting.Consulting;
+import iace.entity.consulting.ConsultingManager;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.coopExample.CoopExAttachFile;
 import iace.entity.coopExample.CoopExImg;
 import iace.entity.coopExample.CoopExVideo;
 import iace.entity.customerService.ContactUs;
+import iace.entity.customerService.ContactUsManager;
 import iace.entity.ePaper.EPaper;
 import iace.entity.ePaper.EPaperSubscriber;
 import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
@@ -201,6 +203,7 @@ public class HibernateSessionFactory {
 		configuration.addAnnotatedClass(Technology.class);
 
 		configuration.addAnnotatedClass(Consulting.class);
+		configuration.addAnnotatedClass(ConsultingManager.class);
 		
 		configuration.addAnnotatedClass(QnrTable.class);
 		configuration.addAnnotatedClass(QnrTableColumn.class);
@@ -246,6 +249,7 @@ public class HibernateSessionFactory {
 		configuration.addAnnotatedClass(Member.class);
 		
 		configuration.addAnnotatedClass(ContactUs.class);
+		configuration.addAnnotatedClass(ContactUsManager.class);
 		
 		configuration.addAnnotatedClass(RelatedWebsite.class);
 		configuration.addAnnotatedClass(Marquee.class);

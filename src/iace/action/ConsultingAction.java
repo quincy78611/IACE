@@ -100,6 +100,7 @@ public class ConsultingAction extends BaseIaceAction {
 	public String createSubmit() {
 		try {
 			this.consultingService.create(this.consulting, super.getCurrentSysUser(), false, super.getSysLog());
+			this.consultingService.sendNotificationEmail(this.consulting);
 			this.addActionMessage("CREATE SUCCESS!");
 			return SUCCESS;
 		} catch (Exception e) {
