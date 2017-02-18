@@ -49,7 +49,13 @@
 <!-- 	<h2 class="itemTitle">編輯管理 > 檢視</h2> -->
 
 	<ul>
-		<li class="half">
+		<li class="quarter">
+			<b>新增日期</b>
+			<div class="border-text">
+				<s:date name="consulting.createTime" format="yyyy/MM/dd"/>
+			</div>
+		</li>
+		<li class="quarter">
 			<b>姓名</b>
 			<s:textfield name="consulting.name" class="form-control" readonly="true"/>
 		</li>

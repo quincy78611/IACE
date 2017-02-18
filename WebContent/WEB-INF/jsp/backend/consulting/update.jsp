@@ -66,7 +66,13 @@
 		<s:hidden name="searchCondition.pageSize"/>
 		
 		<ul>
-			<li class="half">
+			<li class="quarter">
+				<b>新增日期</b>
+				<div class="border-text" style="background: #e1e1e1">
+					<s:date name="consulting.createTime" format="yyyy/MM/dd"/>
+				</div>
+			</li>
+			<li class="quarter">
 				<b>姓名</b>
 				<s:textfield name="consulting.name" maxlength="100"/>
 			</li>

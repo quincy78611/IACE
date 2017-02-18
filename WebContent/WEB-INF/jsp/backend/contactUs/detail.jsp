@@ -15,14 +15,16 @@
 <body>
 	<ul>
 		<li class="quarter">
-			<b>聯絡人姓名*</b>
+			<b>新增日期</b>
 			<div class="border-text">
-				<s:property value="contactUs.name"/>
-			</div>			
+				<s:date name="contactUs.createTime" format="yyyy/MM/dd"/>
+			</div>
 		</li>
 		<li class="quarter">
-			<b></b>
-			<s:radio name="contactUs.gender" list="#{'true':'先生', 'false':'小姐'}" class="horizontalList" disabled="true"/>
+			<b>聯絡人姓名*</b>
+			<div class="border-text">
+				<s:property value="contactUs.name"/> <s:property value="%{contactUs.gender ? '先生':'小姐'}"/>
+			</div>
 		</li>
 		<li class="half">
 			<b>公司名稱</b>

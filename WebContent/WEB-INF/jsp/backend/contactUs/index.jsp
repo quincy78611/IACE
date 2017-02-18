@@ -169,6 +169,7 @@
 					<th nowrap width="">單位名稱</th>
 					<th nowrap width="">聯絡電話</th>
 					<th nowrap width="">E-MAIL</th>
+					<th nowrap width="">新增日期</th>
 					<th>處理狀態</th>
 					<th nowrap width="">功能</th>
 				</tr>
@@ -183,6 +184,7 @@
 							<td><s:property value="companyName" /></td>
 							<td><s:property value="phone" /></td>
 							<td><s:property value="email" /></td>
+							<td><s:date name="createTime" format="yyyy/MM/dd"/></td>
 							<td>
 								<s:if test='%{#session.sysUser.hasAuth(namespace, "update")}'>
 									<s:select name="beenHandled" list="#{'true':'已處理', 'false':'待處理'}" class="horizontalList"/>

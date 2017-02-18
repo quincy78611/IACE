@@ -195,6 +195,7 @@
 						<th nowrap width="">單位類型</th>
 						<th nowrap width="">諮詢類型</th>
 						<th nowrap width="">產業/領域別</th>
+						<th nowrap width="">新增日期</th>
 						<th nowrap width="">諮詢日期</th>
 						<th nowrap width="">功能</th>
 					</tr>
@@ -212,7 +213,8 @@
 								<td><s:property value="%{optionOrganizationType.code + ' ' + optionOrganizationType.name}" /></td>
 								<td><s:property value="%{optionConsult.code + ' ' + optionConsult.name}" /></td>
 								<td><s:property value="%{optionIndustry.code + ' ' + optionIndustry.name}" /></td>
-								<td><s:property value="consultDate" /></td>								
+								<td><s:date name="createTime" format="yyyy/MM/dd"/></td>
+								<td><s:date name="consultDate" format="yyyy/MM/dd"/></td>
 								
 								<td>
 									<!-- 檢視 -->
