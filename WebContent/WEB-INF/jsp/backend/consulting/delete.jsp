@@ -5,6 +5,7 @@
 <head>
 <script type="text/javascript">
 	$(document).ready(function(){
+		addSearchConditionHiddenToForm();
 		$("#btn-back").click(function(){				
 			$("#form-backToIndex").submit();
 		});	
@@ -42,12 +43,18 @@
 		});
 		$("select.industry").trigger('change');
 	});
+	
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-delete").append($(this).clone());
+		});
+	}
 </script>
 <meta name="funcPathText" content="編輯管理  > 刪除"/>
 </head>
 <body>
 <!-- 	<h2 class="itemTitle">編輯管理 > 刪除</h2>	 -->
-	<s:form action="deleteSubmit" method="post" validate="true">
+	<s:form action="deleteSubmit" method="post" validate="true" id="form-delete">
 		<s:hidden name="id" />			
 		<ul>
 			<li class="quarter">
@@ -123,17 +130,7 @@
 			<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>	
 		</div>
 	</s:form>
-	<form action="index" method="post" id="form-backToIndex">
-		<s:hidden name="searchCondition.searchText"/>
-		<s:hidden name="searchCondition.optionOrganizationTypeCode"/>
-		<s:hidden name="searchCondition.optionConsultCode"/>
-		<s:hidden name="searchCondition.optionIndustryCode"/>
-		<s:hidden name="searchCondition.consultDateStart"/>
-		<s:hidden name="searchCondition.consultDateEnd"/>
-		<s:hidden name="searchCondition.pageIndex"/>
-		<s:hidden name="searchCondition.pageSize"/>
-	</form>	
 	
-
+	<s:include value="./form-backToIndex.jsp" />	
 </body>
 </html>

@@ -120,15 +120,7 @@
 	<div style="width: 80%; text-align: center; margin: 20px auto 40px auto;">
 		<input type="button" class="grayBtn" id="btn-back" value="回列表頁"/>
 	</div>
-	<form action="index" method="post" id="form-backToIndex">
-		<s:hidden name="searchCondition.searchText"/>
-		<s:hidden name="searchCondition.optionOrganizationTypeCode"/>
-		<s:hidden name="searchCondition.optionConsultCode"/>
-		<s:hidden name="searchCondition.optionIndustryCode"/>
-		<s:hidden name="searchCondition.consultDateStart"/>
-		<s:hidden name="searchCondition.consultDateEnd"/>
-		<s:hidden name="searchCondition.pageIndex"/>
-		<s:hidden name="searchCondition.pageSize"/>
-	</form>
+	
+	<s:include value="./form-backToIndex.jsp" />
 </body>
 </html>

@@ -5,6 +5,8 @@
 <head>
 <script type="text/javascript">
 	$(document).ready(function(){
+		addSearchConditionHiddenToForm();
+		
 		$("#btn-back").click(function(){				
 			$("#form-backToIndex").submit();
 		});
@@ -42,28 +44,26 @@
 		});
 		$("select.industry").trigger('change');
 	});
+	
+	function addSearchConditionHiddenToForm() {
+		$("#form-backToIndex input[type=hidden]").each(function(index){
+			$("#form-update").append($(this).clone());
+		});
+	}
 </script>
 <meta name="funcPathText" content="編輯管理  > 編輯"/>
 </head>
 <body>
 <!-- 	<h2 class="itemTitle">編輯管理 > 編輯</h2> -->
-	<s:form action="updateSubmit" method="post" validate="true">	
+	<s:form action="updateSubmit" method="post" validate="true" id="form-update">	
 		<s:hidden name="consulting.id" />
 		<s:hidden name="consulting.isValid" />
 		<s:hidden name="consulting.createTime" />
 		<s:hidden name="consulting.createUser" />
 		<s:hidden name="consulting.updateTime" />
 		<s:hidden name="consulting.updateUser" />
-		<s:hidden name="consulting.ver" />	
-		
-		<s:hidden name="searchCondition.searchText"/>
-		<s:hidden name="searchCondition.optionOrganizationTypeCode"/>
-		<s:hidden name="searchCondition.optionConsultCode"/>
-		<s:hidden name="searchCondition.optionIndustryCode"/>
-		<s:hidden name="searchCondition.consultDateStart"/>
-		<s:hidden name="searchCondition.consultDateEnd"/>
-		<s:hidden name="searchCondition.pageIndex"/>
-		<s:hidden name="searchCondition.pageSize"/>
+		<s:hidden name="consulting.ver" />
+		<s:hidden name="consulting.beenHandled" />	
 		
 		<ul>
 			<li class="quarter">
@@ -140,15 +140,6 @@
 		</div>
 	</s:form>
 	
-	<form action="index" method="post" id="form-backToIndex">
-		<s:hidden name="searchCondition.searchText"/>
-		<s:hidden name="searchCondition.optionOrganizationTypeCode"/>
-		<s:hidden name="searchCondition.optionConsultCode"/>
-		<s:hidden name="searchCondition.optionIndustryCode"/>
-		<s:hidden name="searchCondition.consultDateStart"/>
-		<s:hidden name="searchCondition.consultDateEnd"/>
-		<s:hidden name="searchCondition.pageIndex"/>
-		<s:hidden name="searchCondition.pageSize"/>
-	</form>		
+	<s:include value="./form-backToIndex.jsp" />	
 </body>
 </html>
