@@ -25,30 +25,6 @@ public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultin
 	public ConsultingDao() {
 		super(Consulting.class);
 	}
-
-	@Override
-	public PagedList<Consulting> searchBy(int pageIndex, int pageSize, String name, String organization) {
-		long totalItemCount = queryTotalRecordsCount(name, organization);
-		PagedList<Consulting> results = new PagedList<Consulting>(totalItemCount, pageSize, pageIndex);
-		try {	
-			Session session = HibernateSessionFactory.getSession();
-			Criteria criteria = session.createCriteria(Consulting.class);
-			addCriteriaRestrictionsForSearch(name, organization, criteria);		
-			
-			criteria.addOrder(Order.asc("id"));			
-			criteria.setFirstResult(results.getItemStart()-1);
-			criteria.setMaxResults(pageSize);
-			
-			@SuppressWarnings("unchecked")
-			List<Consulting> list = criteria.list();
-			results.setList(list);
-			return results;
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			HibernateSessionFactory.closeSession();
-		}
-	}
 	
 	public PagedList<Consulting> searchBy(ConsultingSearchModel model) {
 		long totalItemCount = queryTotalRecordsCount(model);
@@ -58,7 +34,7 @@ public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultin
 			Criteria criteria = session.createCriteria(Consulting.class);
 			addCriteriaRestrictionsForSearch(model, criteria);		
 			
-			criteria.addOrder(Order.asc("id"));			
+			criteria.addOrder(Order.desc("createTime"));		
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(model.getPageSize());
 			
@@ -90,21 +66,6 @@ public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultin
 		}
 	}
 	
-	private long queryTotalRecordsCount(String name, String organization) {
-		try {
-			Session session = HibernateSessionFactory.getSession();
-			Criteria criteria = session.createCriteria(Consulting.class);			
-			addCriteriaRestrictionsForSearch(name, organization, criteria);
-			criteria.setProjection(Projections.rowCount());
-			Object count = criteria.uniqueResult();
-			return (long) count;
-		} catch (Exception e) {
-			throw e;
-		} finally {
-			HibernateSessionFactory.closeSession();
-		}
-	}
-	
 	private long queryTotalRecordsCount(ConsultingSearchModel model){
 		try {
 			Session session = HibernateSessionFactory.getSession();
@@ -118,16 +79,6 @@ public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultin
 		} finally {
 			HibernateSessionFactory.closeSession();
 		}
-	}
-	
-	private void addCriteriaRestrictionsForSearch(String name, String organization, Criteria criteria) {
-		if (StringUtils.isNotBlank(name)) {
-			criteria.add(Restrictions.like("name", name, MatchMode.ANYWHERE).ignoreCase());
-		}
-		if (StringUtils.isNotBlank(organization)) {
-			criteria.add(Restrictions.like("organization", organization, MatchMode.ANYWHERE).ignoreCase());
-		}
-		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
 	
 	private void addCriteriaRestrictionsForSearch(ConsultingSearchModel model, Criteria criteria) {		
