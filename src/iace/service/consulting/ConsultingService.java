@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +36,8 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
 
 public class ConsultingService extends BaseIaceService<Consulting> {
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+	
 	private IConsultingDao consultingDao;
 	private IConsultingManagerDao consultingManagerDao;
 	
@@ -135,9 +138,13 @@ public class ConsultingService extends BaseIaceService<Consulting> {
 		prop.load(this.getClass().getClassLoader().getResourceAsStream("configs/mail.smtp.properties"));
 		String from = prop.getProperty("mail.default.from");
 		String sender = prop.getProperty("mail.default.sender");
-		String subject = "I-ACE我要諮詢通知(" + entity.getName() + ")";
+		String subject = "I-ACE平台[我要諮詢]通知";
 		String content = 
 				"<table>" + 
+					"<tr>" + 
+						"<th><strong>新增日期</strong></th>" +
+						"<td>" + sdf.format(entity.getCreateTime()) + "</td>" + 
+					"</tr>" +
 					"<tr>" + 
 						"<th><strong>姓名</strong>" +
 						"<td>" + entity.getName() + "</td>" + 
@@ -148,15 +155,27 @@ public class ConsultingService extends BaseIaceService<Consulting> {
 					"</tr>" +
 					"<tr>" + 
 						"<th><strong>單位類型</strong>" +
-						"<td>" + entity.getOptionOrganizationType().getName() + " " + entity.getOrgTypeOther() + "</td>" + 
+						"<td>" + entity.getOptionOrganizationType().getName() + "</td>" + 
+					"</tr>" +
+					"<tr>" + 
+						"<th><strong>單位類型(其他)</strong>" +
+						"<td>" + (entity.getOrgTypeOther() == null ? "" : entity.getOrgTypeOther()) + "</td>" + 
 					"</tr>" +
 					"<tr>" + 
 						"<th><strong>諮詢類型</strong>" +
-						"<td>" + entity.getOptionConsult().getName() + " " + entity.getConsultTypeOther() + "</td>" + 
+						"<td>" + entity.getOptionConsult().getName() + "</td>" + 
 					"</tr>" +
-						"<tr>" + 
+					"<tr>" + 
+						"<th><strong>諮詢類型(其他)</strong>" +
+						"<td>" + (entity.getConsultTypeOther() == null ? "" : entity.getConsultTypeOther()) + "</td>" + 
+					"</tr>" +
+					"<tr>" + 
 						"<th><strong>產業/領域別</strong>" +
-						"<td>" + entity.getOptionIndustry().getName() + " " + entity.getIndustryOther() + "</td>" + 
+						"<td>" + entity.getOptionIndustry().getName() + "</td>" + 
+					"</tr>" +
+					"<tr>" + 
+						"<th><strong>產業/領域別(其他)</strong>" +
+						"<td>" + (entity.getIndustryOther() == null ? "" : entity.getIndustryOther()) + "</td>" + 
 					"</tr>" +
 					"<tr>" + 
 						"<th><strong>連絡電話</strong></th>" +
