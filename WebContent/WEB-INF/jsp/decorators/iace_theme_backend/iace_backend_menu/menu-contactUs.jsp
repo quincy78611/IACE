@@ -7,9 +7,6 @@
 		<ul>
 			<s:if test='%{#session.sysUser.hasAuth("/contactUs", "init")}'>
 				<li><a href="<s:url value="/contactUs/init"/>">編輯管理</a></li>
-			</s:if>
-			<s:if test='%{#session.sysUser.hasAuth("/contactUs", "create")}'>
-				<li><a href="<s:url value="/contactUs/create"/>">新增</a></li>
 			</s:if>	
 		</ul>
 	</li>

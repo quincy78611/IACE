@@ -8,9 +8,6 @@
 			<s:if test='%{#session.sysUser.hasAuth("/consulting", "init")}'>
 				<li><a href="<s:url value="/consulting/init"/>">編輯管理</a></li>
 			</s:if>
-			<s:if test='%{#session.sysUser.hasAuth("/consulting", "create")}'>
-				<li><a href="<s:url value="/consulting/create"/>">新增</a></li>
-			</s:if>	
 		</ul>
 	</li>
 </s:if>

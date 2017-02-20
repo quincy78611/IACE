@@ -60,7 +60,7 @@
 							<div class="col-sm-10">
 								<s:textfield name="contactUs.name" maxlength="50" class="form-control"/>
 								<label class="radio-inline"> 
-									<input type="radio" name="contactUs.gender" id="" value="true">先生
+									<input type="radio" name="contactUs.gender" id="" value="true" checked="checked">先生
 								</label> 
 								<label class="radio-inline"> 
 									<input type="radio" name="contactUs.gender" id="" value="false">小姐

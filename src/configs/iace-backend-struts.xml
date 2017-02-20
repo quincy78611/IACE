@@ -185,13 +185,6 @@
 			<result name="success">/WEB-INF/jsp/backend/consulting/detail.jsp</result>
 			<result name="error">/WEB-INF/jsp/backend/consulting/index.jsp</result>			
 		</action>
-		<action name="create" class="iace.action.ConsultingAction" method="create">
-			<result name="success">/WEB-INF/jsp/backend/consulting/create.jsp</result>	
-		</action>
-		<action name="createSubmit" class="iace.action.ConsultingAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/backend/consulting/create.jsp</result>
-			<result name="success">/WEB-INF/jsp/backend/consulting/detail.jsp</result>
-		</action>
 		<action name="update" class="iace.action.ConsultingAction" method="update">
 			<result name="input">/WEB-INF/jsp/backend/consulting/index.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/consulting/update.jsp</result>		
@@ -879,13 +872,6 @@
 			<result name="input">/WEB-INF/jsp/backend/contactUs/index.jsp</result>
 		</action>
 		<action name="showDetail" class="iace.action.ContactUsAction" method="showDetail">
-			<result name="success">/WEB-INF/jsp/backend/contactUs/detail.jsp</result>
-		</action>
-		<action name="create" class="iace.action.ContactUsAction" method="create">
-			<result name="success">/WEB-INF/jsp/backend/contactUs/create.jsp</result>
-		</action>
-		<action name="createSubmit" class="iace.action.ContactUsAction" method="createSubmit">
-			<result name="input">/WEB-INF/jsp/backend/contactUs/create.jsp</result>
 			<result name="success">/WEB-INF/jsp/backend/contactUs/detail.jsp</result>
 		</action>
 		<action name="updateHandledStatus" class="iace.action.ContactUsAction" method="updateHandledStatus">

@@ -32,7 +32,10 @@
 					<img src="<s:url value="/images/frontend-v2/member_icon_03.jpg"/>" alt="" width="150" />
 				</div>
 				<div class="content_01 top10 text-center">
-					送出完成，感謝您的填寫<br>
+					資料已完成送出，<br>
+					我們將立即處理你的提問，<br>
+					服務人員會儘快回覆您，<br>
+					謝謝您。<br>
 				</div>
 				<div class="form-group"></div>
 			</div>
