@@ -1,7 +1,7 @@
 package iace.entity.sys;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +28,7 @@ public class SysLog extends BaseEntity {
 	public static Map<String, String> namespaces;
 	public static Map<String, String> actionNames;
 	static {
-		namespaces = new TreeMap<String, String>();
+		namespaces = new HashMap<String, String>();
 		namespaces.put("/about", "關於");
 		namespaces.put("/activity", "活動人培");
 		namespaces.put("/batchSendEmail", "批次發送郵件");
@@ -61,7 +61,7 @@ public class SysLog extends BaseEntity {
 		namespaces.put("/videosArea", "影片專區");
 		namespaces.put("/login", "登入/登出");
 		namespaces.put("/marquee", "首頁跑馬燈");
-		actionNames = new TreeMap<String, String>();
+		actionNames = new HashMap<String, String>();
 		actionNames.put("loginSubmit", "登入");
 		actionNames.put("logout", "登出");
 		actionNames.put("batchImportSubmit", "批次匯入");
