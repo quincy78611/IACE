@@ -4,7 +4,7 @@ function defaultTinymceEditor(obj) {
 	tinymce.init({
 		selector: obj,
 		plugins: [
-		  'advlist autolink link image imagetools lists charmap print preview hr anchor pagebreak spellchecker',
+		  'advlist autolink link image paste imagetools lists charmap print preview hr anchor pagebreak spellchecker',
 		  'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
 		  'save table contextmenu directionality emoticons template paste textcolor'
 		],
@@ -22,7 +22,7 @@ function defaultTinymceEditor(obj) {
 	});
 	
 	$(document).ready(function() {
-		var comment = '<label style="font-size:11px; color:#b9925b; margin-right:10px">(可直接複製貼上圖片)</label>';
+		var comment = '<label style="font-size:14px; color:#b9925b; margin-right:10px">(可直接複製貼上圖片，或是直接將圖片拖曳到想要的位置)</label>';
 //		$(comment).insertBefore(obj);
 		$(comment).insertAfter(obj);
 	});
