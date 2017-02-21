@@ -1,5 +1,6 @@
 package iace.dao.about;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +23,14 @@ public class AboutDao extends BaseIaceDao<About> implements IAboutDao {
 	public AboutDao() {
 		super(About.class);
 	}
+	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.desc("sort"));
+		orderList.add(Order.asc("id"));
+		return orderList;
+	}
 
 	@Override
 	public PagedList<About> searchBy(AboutSearchModel arg) {
@@ -31,8 +40,7 @@ public class AboutDao extends BaseIaceDao<About> implements IAboutDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(About.class);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.desc("sort"));
-			criteria.addOrder(Order.asc("id"));
+			super.addDefaultOrder(criteria);
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());

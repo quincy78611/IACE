@@ -2,6 +2,7 @@ package iace.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -23,13 +24,29 @@ public abstract class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> imple
 		this.entityClass = class1;
 	}
 	
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("id"));
+		return orderList;
+	}
+	
+	/**
+	 * Add Default order to criteria<br>
+	 * p.s. If want to change default order, please override method getDefaultOrderList()
+	 * @param criteria
+	 */
+	protected final void addDefaultOrder(Criteria criteria) {
+		List<Order> orderList = getDefaultOrderList();
+		for (Order order : orderList) {
+			criteria.addOrder(order);
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<T> listAll() {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
 		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
-		List<Order> orderList = new ArrayList<Order>();
-		orderList.add(Order.asc("id"));
-		return (List<T>) super.listAll(entityClass, orderList, criterionList);
+		return (List<T>) super.listAll(entityClass, getDefaultOrderList(), criterionList);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -40,12 +57,29 @@ public abstract class BaseIaceDao<T extends BaseEntity> extends BaseDao<T> imple
 	public T get(List<Criterion> criterions) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
-			Criteria criteria = session.createCriteria(entityClass);
+			Criteria criteria = session.createCriteria(this.entityClass);
 			criterions.forEach(v -> criteria.add(v));
 			@SuppressWarnings("unchecked")
 			T entity =  (T) criteria.uniqueResult();
 			
 			return entity;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	public List<T> getAll(Set<Long> ids) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(this.entityClass);
+			criteria.add(Restrictions.in("id", ids));
+			addDefaultOrder(criteria);
+			
+			@SuppressWarnings("unchecked")
+			List<T> list = criteria.list();
+			return list;
 		} catch (Exception e) {
 			throw e;
 		} finally {

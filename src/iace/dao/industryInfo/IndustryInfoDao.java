@@ -1,5 +1,6 @@
 package iace.dao.industryInfo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -23,6 +24,14 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 	public IndustryInfoDao() {
 		super(IndustryInfo.class);
 	}
+	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.desc("postDate"));
+		orderList.add(Order.desc("id"));
+		return orderList;
+	}
 
 	@Override
 	public PagedList<IndustryInfo> searchBy(IndustryInfoSearchModel arg) {
@@ -32,8 +41,7 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.desc("postDate"));
-			
+			super.addDefaultOrder(criteria);
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
 			
@@ -87,7 +95,7 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 			criteria.setResultTransformer(Transformers.aliasToBean(super.entityClass));
 			
 			criteria.add(Restrictions.eq("category", category));
-			criteria.addOrder(Order.desc("postDate"));
+			super.addDefaultOrder(criteria);
 			criteria.setMaxResults(5);
 			
 			@SuppressWarnings("unchecked")

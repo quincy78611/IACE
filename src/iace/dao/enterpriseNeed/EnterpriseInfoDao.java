@@ -1,5 +1,6 @@
 package iace.dao.enterpriseNeed;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -44,6 +45,14 @@ public class EnterpriseInfoDao extends BaseIaceDao<EnterpriseInfo> implements IE
 			HibernateSessionFactory.closeSession();
 		}
 	}
+	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("companyId"));
+		orderList.add(Order.asc("id"));
+		return orderList;
+	}
 
 	@Override
 	public PagedList<EnterpriseInfo> searchBy(EnterpriseNeedSearchModel arg) {
@@ -54,7 +63,7 @@ public class EnterpriseInfoDao extends BaseIaceDao<EnterpriseInfo> implements IE
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(EnterpriseInfo.class);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.asc("companyId"));			
+			super.addDefaultOrder(criteria);
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
 			
@@ -75,7 +84,7 @@ public class EnterpriseInfoDao extends BaseIaceDao<EnterpriseInfo> implements IE
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(EnterpriseInfo.class);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.asc("companyId"));			
+			super.addDefaultOrder(criteria);
 			criteria.setFetchMode("enterpriseRequireTech", FetchMode.JOIN);
 			criteria.setFetchMode("enterpriseSituation", FetchMode.JOIN);
 			criteria.setFetchMode("enterpriseAcademiaCoop", FetchMode.JOIN);

@@ -3,6 +3,7 @@ package iace.dao.activity;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -49,6 +50,14 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			HibernateSessionFactory.closeSession();
 		}
 	}
+	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.desc("sort"));
+		orderList.add(Order.desc("updateTime"));
+		return orderList;
+	}
 
 	@Override
 	public PagedList<Activity> searchBy(ActivitySearchModel arg) {
@@ -58,8 +67,7 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.desc("sort"));
-			criteria.addOrder(Order.desc("updateTime"));
+			super.addDefaultOrder(criteria);
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
@@ -128,8 +136,7 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			criteria.setProjection(projectionList);
 			criteria.setResultTransformer(Transformers.aliasToBean(super.entityClass));
 			
-			criteria.addOrder(Order.desc("sort"));
-			criteria.addOrder(Order.desc("updateTime"));;
+			super.addDefaultOrder(criteria);
 			criteria.setMaxResults(5);
 			
 			@SuppressWarnings("unchecked")

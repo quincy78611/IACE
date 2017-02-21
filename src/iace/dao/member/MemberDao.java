@@ -1,5 +1,6 @@
 package iace.dao.member;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -92,6 +93,13 @@ public class MemberDao extends BaseIaceDao<Member> implements IMemberDao {
 			HibernateSessionFactory.closeSession();
 		}
 	}
+	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("account"));
+		return orderList;
+	}
 
 	@Override
 	public PagedList<Member> searchBy(MemberSearchModel arg) {
@@ -101,8 +109,7 @@ public class MemberDao extends BaseIaceDao<Member> implements IMemberDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.asc("account"));
-			
+			super.addDefaultOrder(criteria);
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
 			

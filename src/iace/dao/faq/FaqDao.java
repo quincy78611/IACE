@@ -1,5 +1,6 @@
 package iace.dao.faq;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,6 +23,14 @@ public class FaqDao extends BaseIaceDao<Faq> implements IFaqDao {
 	public FaqDao() {
 		super(Faq.class);
 	}
+	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.desc("sort"));
+		orderList.add(Order.asc("id"));
+		return orderList;
+	}
 
 	@Override
 	public PagedList<Faq> searchBy(FaqSearchModel arg) {
@@ -31,8 +40,7 @@ public class FaqDao extends BaseIaceDao<Faq> implements IFaqDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Faq.class);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.desc("sort"));
-			criteria.addOrder(Order.asc("id"));
+			super.addDefaultOrder(criteria);
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());

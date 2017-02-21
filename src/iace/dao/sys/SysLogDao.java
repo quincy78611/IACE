@@ -1,5 +1,6 @@
 package iace.dao.sys;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -58,6 +59,13 @@ public class SysLogDao extends BaseIaceDao<SysLog> implements ISysLogDao {
 			HibernateSessionFactory.closeSession();
 		}
 	}
+	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.desc("createTime"));
+		return orderList;
+	}
 
 	@Override
 	public PagedList<SysLog> searchBy(SysLogSearchModel arg) {
@@ -67,8 +75,7 @@ public class SysLogDao extends BaseIaceDao<SysLog> implements ISysLogDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(SysLog.class);
 			addCriteriaRestrictionsForSearch(arg, criteria);		
-			
-			criteria.addOrder(Order.desc("createTime"));			
+			super.addDefaultOrder(criteria);
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
 			

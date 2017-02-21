@@ -3,6 +3,7 @@ package iace.dao.ePaper;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -25,6 +26,14 @@ public class EPaperDao extends BaseIaceDao<EPaper> implements IEPaperDao {
 	public EPaperDao() {
 		super(EPaper.class);
 	}
+	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.desc("no"));
+		orderList.add(Order.desc("postDate"));
+		return orderList;
+	}
 
 	@Override
 	public PagedList<EPaper> searchBy(EPaperSearchModel arg) {
@@ -34,8 +43,7 @@ public class EPaperDao extends BaseIaceDao<EPaper> implements IEPaperDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.desc("no"));
-			criteria.addOrder(Order.desc("postDate"));
+			super.addDefaultOrder(criteria);
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());

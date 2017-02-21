@@ -1,5 +1,6 @@
 package iace.dao.videosArea;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -44,7 +45,12 @@ public class VideosAreaDao extends BaseIaceDao<VideosArea> implements IVideosAre
 		}
 	}
 
-
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.desc("createTime"));
+		return orderList;
+	}
 
 	@Override
 	public PagedList<VideosArea> searchBy(VideosAreaSearchModel arg) {
@@ -54,7 +60,7 @@ public class VideosAreaDao extends BaseIaceDao<VideosArea> implements IVideosAre
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.desc("createTime"));
+			super.addDefaultOrder(criteria);
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -58,10 +59,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 	public List<OptionEntity> listAll() {
 		List<Criterion> criterionList = new ArrayList<Criterion>();
 		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
-		List<Order> orderList = new ArrayList<Order>();
-		orderList.add(Order.asc("priority"));
-		orderList.add(Order.asc("code"));
-		return (List<OptionEntity>) super.listAll(optionEntityClass, orderList, criterionList);
+		return (List<OptionEntity>) super.listAll(optionEntityClass, getDefaultOrderList(), criterionList);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -72,10 +70,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 			criterionList.add(Restrictions.not(Restrictions.in("code", codes)));
 		}
 		criterionList.add(Restrictions.eq("isValid", BaseEntity.TRUE));
-		List<Order> orderList = new ArrayList<Order>();
-		orderList.add(Order.asc("priority"));
-		orderList.add(Order.asc("code"));
-		return (List<OptionEntity>) super.listAll(optionEntityClass, orderList, criterionList);
+		return (List<OptionEntity>) super.listAll(optionEntityClass, getDefaultOrderList(), criterionList);
 	}
 	
 	@Override
@@ -105,6 +100,42 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 		return map;
 	}
 	
+	public List<OptionEntity> getAll(Set<Long> ids) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(this.optionEntityClass);
+			criteria.add(Restrictions.in("id", ids));
+			addDefaultOrder(criteria);
+			
+			@SuppressWarnings("unchecked")
+			List<OptionEntity> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.asc("priority"));
+		orderList.add(Order.asc("code"));
+		return orderList;
+	}
+	
+	/**
+	 * Add Default order to criteria<br>
+	 * p.s. If want to change default order, please override method getDefaultOrderList()
+	 * @param criteria
+	 */
+	protected final void addDefaultOrder(Criteria criteria) {
+		List<Order> orderList = getDefaultOrderList();
+		for (Order order : orderList) {
+			criteria.addOrder(order);
+		}
+	}
+	
 	@Override
 	public PagedList<OptionEntity> searchBy(BaseOptionSearchModel args) {
 		try {
@@ -114,8 +145,7 @@ public abstract class BaseOptionDao<OptionEntity extends BaseOption> extends Bas
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(this.optionEntityClass);
 			addCriteriaRestrictionsForSearch(args, criteria);
-			criteria.addOrder(Order.asc("priority"));	
-			criteria.addOrder(Order.asc("code"));			
+			addDefaultOrder(criteria);		
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(args.getPageSize());
 			

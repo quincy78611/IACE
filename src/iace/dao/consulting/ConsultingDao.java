@@ -1,5 +1,6 @@
 package iace.dao.consulting;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -26,15 +27,21 @@ public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultin
 		super(Consulting.class);
 	}
 	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.desc("createTime"));
+		return orderList;
+	}
+
 	public PagedList<Consulting> searchBy(ConsultingSearchModel model) {
 		long totalItemCount = queryTotalRecordsCount(model);
 		PagedList<Consulting> results = new PagedList<Consulting>(totalItemCount, model.getPageSize(), model.getPageIndex());
 		try {	
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Consulting.class);
-			addCriteriaRestrictionsForSearch(model, criteria);		
-			
-			criteria.addOrder(Order.desc("createTime"));		
+			addCriteriaRestrictionsForSearch(model, criteria);
+			super.addDefaultOrder(criteria);
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(model.getPageSize());
 			
@@ -54,7 +61,8 @@ public class ConsultingDao extends BaseIaceDao<Consulting> implements IConsultin
 		try {	
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(Consulting.class);
-			addCriteriaRestrictionsForSearch(model, criteria);		
+			addCriteriaRestrictionsForSearch(model, criteria);
+			super.addDefaultOrder(criteria);
 			
 			@SuppressWarnings("unchecked")
 			List<Consulting> list = criteria.list();

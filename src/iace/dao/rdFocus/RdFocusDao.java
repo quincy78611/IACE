@@ -3,7 +3,9 @@ package iace.dao.rdFocus;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -48,6 +50,33 @@ public class RdFocusDao extends BaseIaceDao<RdFocus> implements IRdFocusDao {
 			HibernateSessionFactory.closeSession();
 		}
 	}
+	
+	@Override
+	protected List<Order> getDefaultOrderList() {
+		List<Order> orderList = new ArrayList<Order>();
+		orderList.add(Order.desc("sort"));
+		orderList.add(Order.desc("postDate"));
+		orderList.add(Order.desc("createTime"));
+		return orderList;
+	}
+
+	@Override
+	public List<RdFocus> getAll(Set<Long> ids) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.in("id", ids));
+			super.addDefaultOrder(criteria);
+			
+			@SuppressWarnings("unchecked")
+			List<RdFocus> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 
 	@Override
 	public PagedList<RdFocus> searchBy(RdFocusSearchModel arg) {
@@ -57,9 +86,7 @@ public class RdFocusDao extends BaseIaceDao<RdFocus> implements IRdFocusDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			addCriteriaRestrictionsForSearch(arg, criteria);
-			criteria.addOrder(Order.desc("sort"));
-			criteria.addOrder(Order.desc("postDate"));
-			criteria.addOrder(Order.desc("createTime"));
+			super.addDefaultOrder(criteria);
 			
 			criteria.setFirstResult(results.getItemStart()-1);
 			criteria.setMaxResults(arg.getPageSize());
