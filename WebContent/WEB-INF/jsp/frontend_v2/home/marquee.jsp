@@ -117,10 +117,12 @@ div#abgne_marquee ul li, div#abgne_marquee ul li a {
 									<s:if test="displayStatus">
 										<li>
 											<s:if test="hasLink">
-												<a href="<s:property value="url"/>" target="_blank"><s:property value="text"/></a>
+												<a href="<s:property value="url"/>" target="_blank">
+													<div class="news_marquee"><s:property value="text"/></div>
+												</a>
 											</s:if>
 											<s:else>
-												<s:property value="text"/>
+												<div class="news_marquee"><s:property value="text"/></div>
 											</s:else>
 										</li>
 									</s:if>

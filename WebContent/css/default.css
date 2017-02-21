@@ -1,11 +1,11 @@
 ﻿@charset "UTF-8";
 /* 全體通用 */
 html body { margin:0; padding:0;}
-body { font-family:  sans-serif, Helvetica, Arial, "微軟正黑體" !important;}
-.row.no-gutter {  margin-left: 0;  margin-right: 0;}
+body { font-family:	sans-serif, Helvetica, Arial, "微軟正黑體" !important;}
+.row.no-gutter {	margin-left: 0;	margin-right: 0;}
 .row.no-gutter [class*='col-']:not(:first-child),
-.row.no-gutter [class*='col-']:not(:last-child) { padding-right: 0;  padding-left: 0;}
-.nopadding {   padding: 0 !important;   margin: 0 !important;}
+.row.no-gutter [class*='col-']:not(:last-child) { padding-right: 0;	padding-left: 0;}
+.nopadding {	 padding: 0 !important;	 margin: 0 !important;}
 
 .line_solid { border-bottom: 1px solid #DDD; padding-bottom:20px; margin-bottom:15px;}
 
@@ -75,7 +75,7 @@ body { font-family:  sans-serif, Helvetica, Arial, "微軟正黑體" !important;
 
 .menu_list { height:30px; margin-top:10px; }
 .menu_list ul { }
-.menu_list ul li  { padding:5px 0; }
+.menu_list ul li	{ padding:5px 0; }
 .menu_list ul li a { position:relative;}
 .menu_list ul li:hover { }
 
@@ -236,26 +236,33 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 
 @media screen and (min-width: 1200px) {
 	.truncate {
-	  width: 520px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 520px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.truncate_list {
-	  display: block; /* Fallback for non-webkit */
-	  display: -webkit-box;
-	  max-width: 600px;
-	  max-height: 60px; /* Fallback for non-webkit */
-	  -webkit-line-clamp: 3;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;	  
+		display: block; /* Fallback for non-webkit */
+		display: -webkit-box;
+		max-width: 600px;
+		max-height: 60px; /* Fallback for non-webkit */
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;		
 	}
 	.truncate_hot {
-	  width: 720px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 720px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.news_marquee {
+		width: 810px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: #fff;
 	}
 	
 	img.iace-thumbnail1 {
@@ -267,26 +274,33 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 1199px) {
 	.truncate {
-	  width: 420px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 420px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.truncate_list {
-	  display: block; /* Fallback for non-webkit */
-	  display: -webkit-box;
-	  max-width: 420px;
-	  height: 60px; /* Fallback for non-webkit */
-	  -webkit-line-clamp: 3;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;	 
+		display: block; /* Fallback for non-webkit */
+		display: -webkit-box;
+		max-width: 420px;
+		height: 60px; /* Fallback for non-webkit */
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;	 
 	}
 	.truncate_hot {
-	  width: 620px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 620px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.news_marquee {
+		width: 720px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: #fff;
 	}
 	
 	img.iace-thumbnail1 {
@@ -298,26 +312,33 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 992px) {
 	.truncate {
-	  width: 320px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 320px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.truncate_list {
-	  display: block; /* Fallback for non-webkit */
-	  display: -webkit-box;
-	  max-width: 320px;
-	  height: 60px; /* Fallback for non-webkit */
-	  -webkit-line-clamp: 3;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;	 
+		display: block; /* Fallback for non-webkit */
+		display: -webkit-box;
+		max-width: 320px;
+		height: 60px; /* Fallback for non-webkit */
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;	 
 	}
 	.truncate_hot {
-	  width: 500px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 500px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.news_marquee {
+		width: 510px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: #fff;
 	}
 	
 	img.iace-thumbnail1 {
@@ -329,28 +350,34 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 767px) {
 	.truncate {
-	  width: 600px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 600px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.truncate_list {
-	  display: block; /* Fallback for non-webkit */
-	  display: -webkit-box;
-	  max-width: 600px;
-	  height: 60px; /* Fallback for non-webkit */
-	  -webkit-line-clamp: 3;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;	 
+		display: block; /* Fallback for non-webkit */
+		display: -webkit-box;
+		max-width: 600px;
+		height: 60px; /* Fallback for non-webkit */
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;	 
 	}
 	.truncate_hot {
-	  width: 400px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 400px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
-	
+	.news_marquee {
+		width: 510px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: #fff;
+	}
 	img.iace-thumbnail1 {
 		object-fit:cover; max-height:700px; max-width:100%; width:90vw; height:60vw;
 	}
@@ -360,74 +387,95 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 @media screen and (max-width: 640px) {
 	.truncate {
-	  width: 500px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 500px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.truncate_list {
-	  display: block; /* Fallback for non-webkit */
-	  display: -webkit-box;
-	  max-width: 500px;
-	  height: 60px; /* Fallback for non-webkit */
-	  -webkit-line-clamp: 3;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;	 
+		display: block; /* Fallback for non-webkit */
+		display: -webkit-box;
+		max-width: 500px;
+		height: 60px; /* Fallback for non-webkit */
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;	 
 	}
 	.truncate_hot {
-	  width: 300px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 300px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.news_marquee {
+		width: 410px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: #fff;
 	}
 }
 @media screen and (max-width: 560px) {
 	.truncate {
-	  width: 400px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 400px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.truncate_list {
-	  display: block; /* Fallback for non-webkit */
-	  display: -webkit-box;
-	  max-width: 400px;
-	  height: 60px; /* Fallback for non-webkit */
-	  -webkit-line-clamp: 3;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;	 
+		display: block; /* Fallback for non-webkit */
+		display: -webkit-box;
+		max-width: 400px;
+		height: 60px; /* Fallback for non-webkit */
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;	 
 	}
 	.truncate_hot {
-	  width: 230px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 230px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.news_marquee {
+		width: 300px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: #fff;
 	}
 }
 @media screen and (max-width: 460px) {
 	.truncate {
-	  width: 300px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 300px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	.truncate_list {
-	  display: block; /* Fallback for non-webkit */
-	  display: -webkit-box;
-	  max-width: 300px;
-	  height: 60px; /* Fallback for non-webkit */
-	  -webkit-line-clamp: 3;
-	  -webkit-box-orient: vertical;
-	  overflow: hidden;
-	  text-overflow: ellipsis;	 
+		display: block; /* Fallback for non-webkit */
+		display: -webkit-box;
+		max-width: 300px;
+		height: 60px; /* Fallback for non-webkit */
+		-webkit-line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;	 
 	}
 	.truncate_hot {
-	  width: 150px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 150px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.news_marquee {
+		width: 250px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: #fff;
 	}
 }
 
@@ -455,15 +503,15 @@ a.top_link:active {		color: #FFF;	text-decoration: none; }
 }
 
 div.center-cropped1 img, div.center-cropped2 img, .list-thumbnail img {
-	max-height: 100%;  
+	max-height: 100%;	
 	max-width: 100%; 
 	width: auto;
 	height: auto;
-	position: absolute;  
-	top: 0;  
-	bottom: 0;  
-	left: 0;  
-	right: 0;  
+	position: absolute;	
+	top: 0;	
+	bottom: 0;	
+	left: 0;	
+	right: 0;	
 	margin: auto;
 }
 
@@ -472,58 +520,58 @@ div.center-cropped1 img, div.center-cropped2 img, .list-thumbnail img {
 /* 小安 */
 @media screen and (min-width: 1200px) {
 	.truncate2 {
-	  width: 430px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 430px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
 @media screen and (max-width: 1199px) {
 	.truncate2 {
-	  width: 330px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 330px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
 @media screen and (max-width: 992px) {
 	.truncate2 {
-	  width: 230px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 230px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
 @media screen and (max-width: 767px) {
 	.truncate2 {
-	  width: 510px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 510px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
 @media screen and (max-width: 640px) {
 	.truncate2 {
-	  width: 410px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 410px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
 @media screen and (max-width: 560px) {
 	.truncate2 {
-	  width: 310px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 310px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
 @media screen and (max-width: 460px) {
 	.truncate2 {
-	  width: 210px;
-	  white-space: nowrap;
-	  overflow: hidden;
-	  text-overflow: ellipsis;
+		width: 210px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 }
 
