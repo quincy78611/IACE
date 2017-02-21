@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.queryparser.classic.ParseException;
@@ -38,6 +39,10 @@ public class BaseIaceService<T extends BaseEntity> extends BaseService<T, Long> 
 	@Override
 	public T get(Long id) {
 		return this.dao.get(id);
+	}
+	
+	public List<T> getAll(Set<Long> ids) {
+		return this.dao.getAll(ids);
 	}
 
 	@Override
