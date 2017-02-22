@@ -1,11 +1,15 @@
 package iace.dao.industryInfo;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
@@ -74,8 +78,22 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 	}
 	
 	private void addCriteriaRestrictionsForSearch(IndustryInfoSearchModel arg, Criteria criteria) {
+		if (StringUtils.isNotBlank(arg.getSearchText())) {
+			criteria.add(Restrictions.like("title", arg.getSearchText(), MatchMode.ANYWHERE).ignoreCase());
+		}
 		if (StringUtils.isNotBlank(arg.getCategory())) {
 			criteria.add(Restrictions.eq("category", arg.getCategory()));
+		}
+		if (arg.getYear() != null) {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+			try {
+				Date dateS = new Date( sdf.parse(arg.getYear().toString()).getTime() );
+				Date dateE = new Date( sdf.parse(String.valueOf(arg.getYear()+1)).getTime() );
+				criteria.add(Restrictions.ge("postDate", dateS));
+				criteria.add(Restrictions.lt("postDate", dateE));
+			} catch (ParseException e) {
+				log.warn("", e);
+			}
 		}
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
