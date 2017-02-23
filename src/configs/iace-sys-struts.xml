@@ -157,4 +157,24 @@
 			</result>
 		</action>
 	</package>
+	
+	<!-- 透過網頁編輯器插入的檔案連結可能會被自動轉換為相對路徑，因此在前台必須有此相應的namespace才能正常顯示 -->
+	<package name="f2-File" namespace="/f2/file" extends="struts-default, json-default, default">
+		<action name="downloadFile" class="iace.action.FileAction" method="downloadFile">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+		<action name="downloadThumbnail" class="iace.action.FileAction" method="downloadThumbnail">
+			<result name="success" type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">fileInputStream</param>
+				<param name="contentDisposition">attachment;filename="${downloadFileName}"</param>
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+	</package>
 </struts>
