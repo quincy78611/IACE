@@ -227,7 +227,6 @@
 					<th nowrap width="">標題</th>
 					<th nowrap width="">發佈日</th>
 					<th nowrap width="">發佈狀態</th>
-					<th nowrap width=""></th>
 					<th nowrap width="">功能</th>
 				</tr>
 				<s:if test="epaperPagedList != null">
@@ -240,9 +239,7 @@
 
 							<td><s:property value="no" /></td>
 							<td>
-								<s:url value="/f2/ePaper/read" var="urlTag" escapeAmp="false" forceAddSchemeHostAndPort="true">
-									<s:param name="id" value="id" />
-								</s:url>
+								<s:url value="%{url}" var="urlTag" escapeAmp="false" forceAddSchemeHostAndPort="true"/>
 								<a href="<s:property value="%{#urlTag}"/>" target="_blank">
 									<s:property value="title" />
 								</a>
@@ -259,10 +256,6 @@
 									<s:hidden value="%{#publishUrlTag}" class="publishUrl" disabled="true"/>
 									<input type="button" class="btn-publish" value="確認發佈" />
 								</s:else>
-							</td>
-							<td>
-								<label class="row-id" style="display:none;"><s:property value="id"/></label>
-								<input type="button" class="btn-sendTestEmail" value="寄送測試信" />
 							</td>
 							<td>
 								<!-- 檢視 -->
@@ -291,6 +284,10 @@
 									<s:hidden value="%{#deleteUrlTag}" class="deleteUrl" disabled="true"/>
 									<input type="button" class="btn-info btn-func btn-del" value="刪除" />
 								</s:if>
+								
+								<!-- 刪除 -->
+								<label class="row-id" style="display:none;"><s:property value="id"/></label>
+								<input type="button" class="btn-sendTestEmail" value="寄送測試信" />
 							</td>
 						</tr>
 					</s:iterator>

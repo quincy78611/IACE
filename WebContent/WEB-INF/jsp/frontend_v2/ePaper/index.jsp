@@ -87,9 +87,7 @@
 											<td><s:property value="no"/></td>
 											<td class="date_01"><s:date name="postDate" format="yyyy/MM/dd" /></td>
 											<td>
-												<s:url value="/f2/ePaper/read" var="urlTag" escapeAmp="false" forceAddSchemeHostAndPort="true">
-													<s:param name="id" value="id" />
-												</s:url>
+												<s:url value="%{url}" var="urlTag" escapeAmp="false" forceAddSchemeHostAndPort="true"/>
 												<a href="<s:property value="%{#urlTag}"/>" target="_blank">
 													<s:property value="title" />
 												</a>

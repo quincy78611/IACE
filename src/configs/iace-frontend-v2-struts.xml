@@ -287,9 +287,6 @@
 		<action name="index" class="iace.action.EPaperAction" method="index">
 			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/index.jsp</result>
 		</action>
-		<action name="read" class="iace.action.EPaperAction" method="read">
-			<result name="success">${epaperUrl}</result>
-		</action>
 		<action name="subscribe" class="iace.action.EPaperSubscriberAction" method="subscribe">
 			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
 		</action>

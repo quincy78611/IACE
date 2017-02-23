@@ -38,9 +38,7 @@ $(document).ready(function() {
 		<li class="all">
 			<b>連結</b>
 			<div class="border-text">
-				<s:url value="/f2/ePaper/read" var="urlTag" escapeAmp="false" forceAddSchemeHostAndPort="true">
-					<s:param name="id" value="epaper.id" />
-				</s:url>
+				<s:url value="%{epaper.url}" var="urlTag" escapeAmp="false" forceAddSchemeHostAndPort="true"/>
 				<a href="<s:property value="%{#urlTag}"/>" target="_blank">
 					<s:property value="%{#urlTag}"/>
 				</a>
