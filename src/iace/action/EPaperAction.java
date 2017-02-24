@@ -228,7 +228,7 @@ public class EPaperAction extends BaseIaceAction {
 	
 	public String createPreview() {
 		try {
-			String fileName = this.epaperService.produceEpaperFile(this.template);
+			String fileName = this.epaperService.createPreview(this.template);
 			this.epaperUrl = "/ePapers/" + fileName;
 			return SUCCESS;
 		} catch (Exception e) {

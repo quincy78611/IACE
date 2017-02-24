@@ -110,7 +110,8 @@ public class EPaperService extends BaseIaceService<EPaper> {
 	}
 
 	public EPaper create(EPaperProduceTemplate template) throws IOException {		
-		String fileName = produceEpaperFile(template);
+		String fileName = sdf.format(System.currentTimeMillis())+".html";
+		produceEpaperFile(template, fileName);
 		EPaper entity = new EPaper();
 		entity.setFileName(fileName);
 		entity.setTitle(template.getTitle());
@@ -122,12 +123,17 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		return entity;
 	}
 	
-	public String produceEpaperFile(EPaperProduceTemplate template) throws IOException {
+	public String createPreview(EPaperProduceTemplate template) throws IOException {
+		String fileName = "preview_"+sdf.format(System.currentTimeMillis())+".html";
+		produceEpaperFile(template, fileName);
+		return fileName;
+	}
+	
+	private void produceEpaperFile(EPaperProduceTemplate template, String fileName) throws IOException {
 		String url = ServletActionContext.getRequest().getRequestURL().toString();
 		String namespace = ServletActionContext.getActionMapping().getNamespace();
 		String urlDomainName = url.substring(0, url.indexOf(namespace));
-		
-		String fileName = sdf.format(System.currentTimeMillis())+".html";
+
 		String filePath = ServletActionContext.getServletContext().getRealPath("/ePapers/" + fileName);
 		String content = createEpaperContentString(template, urlDomainName);
 		File epaperFile = new File(filePath);
@@ -154,8 +160,6 @@ public class EPaperService extends BaseIaceService<EPaper> {
 				}
 			} while (responseCode != 200 && timeout > 0);
 		}
-		
-		return fileName;
 	}
 	
 	private String createEpaperContentString(EPaperProduceTemplate template, String urlDomainName) {
