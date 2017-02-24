@@ -233,6 +233,7 @@
 				<td><b><s:property value="sysRole.sysAuth.epaper.displayName"/></b></td>
 				<td class="horizontalList">
 					<s:checkbox label="%{sysRole.sysAuth.epaper.opView.displayName}" name="sysRole.sysAuth.epaper.opView.auth" fieldValue="true"/>
+					<s:checkbox label="%{sysRole.sysAuth.epaper.opCreate.displayName}" name="sysRole.sysAuth.epaper.opCreate.auth" fieldValue="true"/>
 					<s:checkbox label="%{sysRole.sysAuth.epaper.opUpdate.displayName}" name="sysRole.sysAuth.epaper.opUpdate.auth" fieldValue="true"/>
 					<s:checkbox label="%{sysRole.sysAuth.epaper.opDelete.displayName}" name="sysRole.sysAuth.epaper.opDelete.auth" fieldValue="true"/>
 					<s:checkbox label="%{sysRole.sysAuth.epaper.opPublish.displayName}" name="sysRole.sysAuth.epaper.opPublish.auth" fieldValue="true"/>

@@ -20,4 +20,6 @@ public interface IResearchPlanDao extends IBaseIaceDao<ResearchPlan> {
 	public List<Integer> getYearList();
 
 	public long queryTotalRecordsCount(ResearchPlanSearchModel arg);
+	
+	public List<ResearchPlan> sampleForEpaper();
 }

@@ -23,4 +23,8 @@ public class IndustryInfoService extends BaseIaceService<IndustryInfo> {
 	public List<IndustryInfo> sampleForHomePage(String category) {
 		return this.dao.sampleForHomePage(category);
 	}
+	
+	public List<IndustryInfo> sampleForEpaper() {
+		return this.dao.sampleForEpaper();
+	}
 }

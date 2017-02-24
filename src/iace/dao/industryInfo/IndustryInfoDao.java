@@ -113,8 +113,28 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 			criteria.setResultTransformer(Transformers.aliasToBean(super.entityClass));
 			
 			criteria.add(Restrictions.eq("category", category));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			super.addDefaultOrder(criteria);
 			criteria.setMaxResults(5);
+			
+			@SuppressWarnings("unchecked")
+			List<IndustryInfo> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Override
+	public List<IndustryInfo> sampleForEpaper() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			super.addDefaultOrder(criteria);
+			criteria.setMaxResults(3);
 			
 			@SuppressWarnings("unchecked")
 			List<IndustryInfo> list = criteria.list();

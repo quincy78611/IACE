@@ -188,4 +188,25 @@ public class PatentDao extends BaseIaceDao<Patent> implements IPatentDao {
 		}
 	}
 
+	@Override
+	public List<Patent> sampleForEpaper() {
+		try {	
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(Patent.class);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			criteria.addOrder(Order.desc("createTime"));
+			criteria.setMaxResults(3);
+			
+			@SuppressWarnings("unchecked")
+			List<Patent> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	
+
 }

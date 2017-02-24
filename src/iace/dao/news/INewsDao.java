@@ -14,4 +14,6 @@ public interface INewsDao extends IBaseIaceDao<News> {
 	public long queryTotalRecordsCount(NewsSearchModel arg);
 	
 	public List<News> sampleForHomePage();
+	
+	public List<News> sampleForEpaper();
 }

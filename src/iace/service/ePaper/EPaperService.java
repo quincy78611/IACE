@@ -1,39 +1,71 @@
 package iace.service.ePaper;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
+import java.util.Properties;
 import java.util.Set;
+import java.util.UUID;
 
 import javax.mail.MessagingException;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.struts2.ServletActionContext;
 
 import core.util.EmailUtil;
 import core.util.PagedList;
 import iace.dao.ePaper.IEPaperDao;
 import iace.dao.ePaper.IEPaperSubscriberDao;
 import iace.dao.member.IMemberDao;
+import iace.entity.activity.Activity;
 import iace.entity.ePaper.EPaper;
+import iace.entity.ePaper.EPaperProduceTemplate;
 import iace.entity.ePaper.EPaperSearchModel;
+import iace.entity.faq.Faq;
+import iace.entity.industryInfo.IndustryInfo;
+import iace.entity.news.News;
+import iace.entity.patent.Patent;
+import iace.entity.rdFocus.RdFocus;
+import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.sys.SysLog;
 import iace.entity.sys.SysUser;
 import iace.service.BaseIaceService;
 
 public class EPaperService extends BaseIaceService<EPaper> {
+	private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	private static SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy 年 M 月 d 日");
+	private static SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
 
 	private IEPaperDao dao;
 	private IEPaperSubscriberDao subscriberDao;
 	private IMemberDao memberDao;
+	
+	private String epaperBackupFolder;
 	
 	public EPaperService(IEPaperDao dao, IEPaperSubscriberDao subscriberDao, IMemberDao memberDao) {
 		super(dao);
 		this.dao = dao;
 		this.subscriberDao = subscriberDao;
 		this.memberDao = memberDao;
+		
+		Properties prop = new Properties();
+		try {
+			prop.load(this.getClass().getClassLoader().getResourceAsStream("configs/iace.properties"));
+			this.epaperBackupFolder = prop.getProperty("epaperBackupFolder");
+		} catch (IOException e) {
+			log.fatal("", e);
+		}
 	}
 
 	public PagedList<EPaper> searchBy(EPaperSearchModel arg) {
@@ -77,5 +109,426 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		return content;
 	}
 
+	public EPaper create(EPaperProduceTemplate template) throws IOException {		
+		String fileName = produceEpaperFile(template);
+		EPaper entity = new EPaper();
+		entity.setFileName(fileName);
+		entity.setTitle(template.getTitle());
+		entity.setNo(template.getNo());
+		entity.setPostDate(new Date(System.currentTimeMillis()));
+		entity.setPublishState(false);
+		this.dao.create(entity);
+		
+		return entity;
+	}
 	
+	public String produceEpaperFile(EPaperProduceTemplate template) throws IOException {
+		String url = ServletActionContext.getRequest().getRequestURL().toString();
+		String namespace = ServletActionContext.getActionMapping().getNamespace();
+		String urlDomainName = url.substring(0, url.indexOf(namespace));
+		
+		String fileName = sdf.format(System.currentTimeMillis())+".html";
+		String filePath = ServletActionContext.getServletContext().getRealPath("/ePapers/" + fileName);
+		String content = createEpaperContentString(template, urlDomainName);
+		File epaperFile = new File(filePath);
+		FileUtils.writeStringToFile(epaperFile, content, "UTF-8", false);
+		FileUtils.copyFileToDirectory(epaperFile, new File(this.epaperBackupFolder), true);
+		log.info("產生電子報檔案 --> "+filePath);
+		log.info("電子報檔案大小 : "+FileUtils.byteCountToDisplaySize(FileUtils.sizeOf(epaperFile)));
+//		System.out.println(FileUtils.readFileToString(epaperFile, "UTF-8"));
+		
+		// wait until e-paper resource ready 
+		{
+			URL u = new URL (urlDomainName+"/ePapers/"+fileName);
+			int responseCode = 0;
+			int timeout = 30*1000;
+			do {
+				HttpURLConnection huc = (HttpURLConnection) u.openConnection();
+				huc.setRequestMethod("GET");
+				huc.connect();
+				responseCode = huc.getResponseCode();
+				try {
+					Thread.sleep(100);
+					timeout -= 100;
+				} catch (InterruptedException e) {
+				}
+			} while (responseCode != 200 && timeout > 0);
+		}
+		
+		return fileName;
+	}
+	
+	private String createEpaperContentString(EPaperProduceTemplate template, String urlDomainName) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">").append("\r\n");
+		sb.append("<html xmlns=\"http://www.w3.org/1999/xhtml\">").append("\r\n");
+		sb.append("<head>").append("\r\n");
+		sb.append("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />").append("\r\n");
+		sb.append("<title>"+template.getTitle()+"</title>").append("\r\n");
+		sb.append("</head>").append("\r\n");
+		sb.append("<body>").append("\r\n");
+		sb.append("	<table align=\"center\" cellpadding=\"0\" cellspacing=\"0\" style=\"width: 940px; border: 1px solid #ddd;\">").append("\r\n");
+		sb.append("		<tr>").append("\r\n");
+		sb.append("			<td align=\"center\">").append("\r\n");
+		
+		//頂端LOGO區
+		sb.append("				<!-- 頂端LOGO區 -->").append("\r\n");
+		sb.append("				<table width=\"94%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("					<tr>").append("\r\n");
+		sb.append("						<td align=\"left\">").append("\r\n");
+		sb.append("							<img src=\""+urlDomainName+"/ePapers/images/elogo.gif\" width=\"495\" height=\"77\" />").append("\r\n");
+		sb.append("						</td>").append("\r\n");
+		sb.append("						<td align=\"left\" style=\"font-family: Verdana; color: #16285e;\">").append("\r\n");
+		sb.append("							<span style=\"font-size: 12px; margin-right: 5px;\">"+sdf1.format(template.getPostDate())+"</span> <strong style=\"font-size: 48px;\">"+template.getNo()+"</strong>").append("\r\n");
+		sb.append("						</td>").append("\r\n");
+		sb.append("						<td width=\"103\">").append("\r\n");
+		sb.append("							<img src=\""+urlDomainName+"/ePapers/images/addon.gif\" width=\"109\" height=\"35\" usemap=\"#Map\" border=\"0\" />").append("\r\n");
+		sb.append("						</td>").append("\r\n");
+		sb.append("					</tr>").append("\r\n");
+		sb.append("				</table>").append("\r\n");
+		
+		sb.append("\r\n");
+		
+		//Banner
+		sb.append("				<!-- Banner -->").append("\r\n");
+		sb.append("				<img src=\""+urlDomainName+"/ePapers/images/main.jpg\" width=\"940\" height=\"152\" usemap=\"#Map3\" border=\"0\" /> ").append("\r\n");
+		sb.append("				<map name=\"Map3\" id=\"Map3\">").append("\r\n");
+		sb.append("					<area shape=\"rect\" coords=\"348,28,448,126\" href=\""+urlDomainName+"/f2/member/registerPolicy\" target=\"_blank\" alt=\"加入會員\" />").append("\r\n");
+		sb.append("					<area shape=\"rect\" coords=\"29,29,130,126\" href=\""+urlDomainName+"/f2/matchIntro/init\" target=\"_blank\" alt=\"媒合專區\" />").append("\r\n");
+		sb.append("					<area shape=\"rect\" coords=\"135,29,236,126\" href=\""+urlDomainName+"/f2/consulting/create\" target=\"_blank\" alt=\"我要諮詢\" />").append("\r\n");
+		sb.append("					<area shape=\"rect\" coords=\"242,29,342,127\" href=\""+urlDomainName+"/f2/coopEx/init?searchCondition.type=商品化\" target=\"_blank\" alt=\"產學合作案例\" />").append("\r\n");
+		sb.append("				</map>").append("\r\n");
+		
+		sb.append("\r\n");
+		
+		// 公告訊息 & 活動人培 & 研發焦點
+		sb.append("				<!-- 公告訊息 & 活動人培 & 研發焦點-->").append("\r\n");
+		sb.append("				<table width=\"835\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("					<tr><td>&nbsp;</td></tr>").append("\r\n");
+		sb.append("					<tr><td>&nbsp;</td></tr>").append("\r\n");
+		sb.append("					<tr>").append("\r\n");
+		sb.append("						<td>").append("\r\n");
+		sb.append("							<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("								<tr>").append("\r\n");
+		sb.append("									<td width=\"10\">").append("\r\n");
+		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/yellow-s-l.png\" width=\"10\" height=\"42\" />").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"65\" align=\"center\" style=\"background: #ffb346;\">").append("\r\n");
+		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/topic-ico-4.png\" width=\"41\" height=\"42\" />").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td align=\"left\" style=\"font-size: 25px; font-family: 微軟正黑體, Arial, Helvetica; color: #fff; background: #ffb346;\">").append("\r\n");
+		sb.append("										<strong>公告訊息</strong>").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"30\" bgcolor=\"#ffb346\">").append("\r\n");
+		sb.append("										<a href=\""+urlDomainName+"/f2/news/init?searchCondition.category=一般公告\" target=\"_blank\">").append("\r\n");
+		sb.append("											<img src=\""+urlDomainName+"/ePapers/images/more-w.gif\" width=\"30\" height=\"20\" border=\"0\" />").append("\r\n");
+		sb.append("										</a>").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"10\">").append("\r\n");
+		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/yellow-s-r.png\" width=\"10\" height=\"42\" />").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("								</tr>").append("\r\n");
+		sb.append("							</table>").append("\r\n");
+		sb.append("						</td>").append("\r\n");
+		sb.append("					</tr>").append("\r\n");
+		sb.append("					<tr>").append("\r\n");
+		sb.append("						<td><img src=\""+urlDomainName+"/ePapers/images/space.png\" width=\"1\" height=\"10\" /></td>").append("\r\n");
+		sb.append("					</tr>").append("\r\n");
+		sb.append("					<tr>").append("\r\n");
+		sb.append("						<td align=\"center\">").append("\r\n");
+		
+		// 公告訊息
+		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		for (News news : template.getNewsList()) {
+			String url = urlDomainName + "/f2/news/showDetail?id="+news.getId()+"&searchCondition.category="+news.getCategory();
+			sb.append("								<tr>").append("\r\n");
+			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
+			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td width=\"13%\" align=\"left\" valign=\"top\" style=\"font-size: 16px; color: #e6bc00; font-family: 微軟正黑體, Arial, Helvetica; padding-top: 6px; line-height: 25px\">").append("\r\n");
+			sb.append("										<strong>"+sdf2.format(news.getPostDate())+"</strong>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td align=\"left\" valign=\"top\" style=\"padding-top: 6px\">").append("\r\n");
+			sb.append("										<a href=\""+url+"\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px\">").append("\r\n");
+			sb.append("											<strong>"+news.getTitle()+"</strong>").append("\r\n");
+			sb.append("										</a>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("								</tr>").append("\r\n");
+		}
+		sb.append("							</table>").append("\r\n");
+		sb.append("							<table align=\"center\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("								<tr>").append("\r\n");
+		sb.append("									<td height=\"30\"><img src=\""+urlDomainName+"/ePapers/images/line-2.gif\" width=\"820\" height=\"1\" /></td>").append("\r\n");
+		sb.append("								</tr>").append("\r\n");
+		sb.append("							</table>").append("\r\n");
+		
+		//活動人培
+		for (Activity activity : template.getActivityList()) {
+			String imgSrc = urlDomainName + "/images/frontend-v2/noimage-2.gif";
+			if (activity.getThumbnail() != null && activity.getThumbnail().length > 0) {
+				String fileSubPath = "images/"+UUID.randomUUID().toString()+".jpg";
+				File f = new File(this.epaperBackupFolder, fileSubPath);
+				try (OutputStream out = new FileOutputStream(f)) {
+					out.write(activity.getThumbnail());
+					out.flush();
+					out.close();
+					imgSrc = urlDomainName + "/file/downloadFile?folderConfigKey=epaperBackupFolder&downloadFileSubPath="+fileSubPath;
+				} catch (IOException e) {
+					imgSrc = urlDomainName + "/images/frontend-v2/noimage-2.gif";
+				}
+			}
+			String url = urlDomainName + "/f2/activity/showDetail?id="+activity.getId()+"&searchCondition.category="+activity.getCategory();
+			sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+			sb.append("								<tr>").append("\r\n");
+			sb.append("									<td width=\"115\" align=\"left\" valign=\"top\">").append("\r\n");
+			sb.append("										<img src=\""+imgSrc+"\" width=\"100\" height=\"70\" />").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td align=\"left\" style=\"font-size: 16px; color: #000; font-family: 微軟正黑體, Arial, Helvetica;\">").append("\r\n");
+			sb.append("										<a href=\""+url+"\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 30px\">").append("\r\n");
+			sb.append("											<strong>"+activity.getTitle()+"</strong>").append("\r\n");
+			sb.append("										</a><br/>").append("\r\n");
+			sb.append("										日期 ： "+StringUtils.defaultIfBlank(activity.getActDate(), "")+" <br/>").append("\r\n");
+			sb.append("										地點 ： "+StringUtils.defaultIfBlank(activity.getActAddress(), "")).append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("								</tr>").append("\r\n");
+			sb.append("							</table>").append("\r\n");
+			sb.append("							<table align=\"center\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+			sb.append("								<tr>").append("\r\n");
+			sb.append("									<td height=\"30\"><img src=\""+urlDomainName+"/ePapers/images/line-2.gif\" width=\"820\" height=\"1\" /></td>").append("\r\n");
+			sb.append("								</tr>").append("\r\n");
+			sb.append("							</table>").append("\r\n");
+		}
+		
+		//研發焦點
+		sb.append("							<table width=\"97%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		for (RdFocus rdFocus : template.getRdFocusList()) {
+			String url = urlDomainName + "/f2/rdFocus/showDetail?id="+rdFocus.getId()+"&searchCondition.category="+rdFocus.getCategory();
+			sb.append("								<tr>").append("\r\n");
+			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
+			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td width=\"13%\" align=\"left\" valign=\"top\" style=\"font-size: 16px; color: #e6bc00; font-family: 微軟正黑體, Arial, Helvetica; padding-top: 6px; line-height: 25px\">").append("\r\n");
+			sb.append("										<strong>"+sdf2.format(rdFocus.getPostDate())+"</strong>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td align=\"left\" valign=\"top\" style=\"padding-top: 6px\">").append("\r\n");
+			sb.append("										<a href=\""+url+"\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px\">").append("\r\n");
+			sb.append("											<strong>"+rdFocus.getTitle()+"</strong>").append("\r\n");
+			sb.append("										</a>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("								</tr>").append("\r\n");
+		}
+		sb.append("							</table>").append("\r\n");
+		sb.append("						</td>").append("\r\n");
+		sb.append("					</tr>").append("\r\n");
+		sb.append("					<tr>").append("\r\n");
+		sb.append("						<td><img src=\""+urlDomainName+"/ePapers/images/space.png\" width=\"1\" height=\"15\" /></td>").append("\r\n");
+		sb.append("					</tr>").append("\r\n");
+		sb.append("				</table>").append("\r\n");
+		sb.append("				<br/>").append("\r\n");
+		
+		sb.append("\r\n");
+		
+		// 學界研發成果 & 專利
+		sb.append("				<!-- 學界研發成果 & 專利 -->").append("\r\n");
+		sb.append("				<table width=\"835\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("					<tr>").append("\r\n");
+		sb.append("						<td align=\"center\">").append("\r\n");
+		sb.append("							<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("								<tr>").append("\r\n");
+		sb.append("									<td width=\"10\">").append("\r\n");
+		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/blue-s-l.png\" width=\"10\" height=\"42\" />").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"65\" align=\"center\" style=\"background: #46c0ff;\">").append("\r\n");
+		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/topic-ico-2.png\" width=\"41\" height=\"42\" />").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td align=\"left\" style=\"font-size: 25px; font-family: 微軟正黑體, Arial, Helvetica; color: #fff; background: #46c0ff;\">").append("\r\n");
+		sb.append("										<strong>學界研發成果</strong>").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"30\" bgcolor=\"#46c0ff\">").append("\r\n");
+		sb.append("										<a href=\""+urlDomainName+"/f2/integrationSearch/init?searchCondition.className=iace.entity.researchPlan.Technology\" target=\"_blank\">").append("\r\n");
+		sb.append("											<img src=\""+urlDomainName+"/ePapers/images/more-w.gif\" alt=\"更多學界研發成果\" width=\"30\" height=\"20\" border=\"0\" />").append("\r\n");
+		sb.append("										</a>").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"10\">").append("\r\n");
+		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/blue-s-r.png\" width=\"10\" height=\"42\" />").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("								</tr>").append("\r\n");
+		sb.append("							</table>").append("\r\n");
+		
+		//研發成果
+		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		for (ResearchPlan rp : template.getResearchPlanList()) {
+			String url = urlDomainName + "/f2/researchPlan/showDetail?id="+rp.getId();
+			sb.append("								<tr>").append("\r\n");
+			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
+			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td width=\"21%\" align=\"left\" valign=\"top\" style=\"font-size: 16px; color: #0099cc; font-family: 微軟正黑體, Arial, Helvetica; padding-top: 6px; line-height: 25px\">").append("\r\n");
+			sb.append("										<strong>"+rp.getGrbDomain1().getName()+"</strong>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td align=\"left\" valign=\"top\" style=\"padding-top: 6px\">").append("\r\n");
+			sb.append("										<a href=\""+url+"\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px\">").append("\r\n");
+			sb.append("											<strong>"+rp.getName()+"</strong>").append("\r\n");
+			sb.append("										</a>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("								</tr>").append("\r\n");
+		}
+		sb.append("							</table>").append("\r\n");
+		
+		//專利
+		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		for (Patent patent : template.getPatentList()) {
+			String url = urlDomainName + "/f2/patent/showDetail?id="+patent.getId();
+			sb.append("								<tr>").append("\r\n");
+			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
+			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td width=\"21%\" align=\"left\" valign=\"top\" style=\"font-size: 16px; color: #0099cc; font-family: 微軟正黑體, Arial, Helvetica; padding-top: 6px; line-height: 25px\">").append("\r\n");
+			sb.append("										<strong>"+patent.getTechField().getName()+"</strong>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td align=\"left\" valign=\"top\" style=\"padding-top: 6px\">").append("\r\n");
+			sb.append("										<a href=\""+url+"\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px\">").append("\r\n");
+			sb.append("											<strong>"+patent.getName()+"</strong>").append("\r\n");
+			sb.append("										</a>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("								</tr>").append("\r\n");
+		}
+		sb.append("							</table>").append("\r\n");
+		
+		sb.append("						</td>").append("\r\n");
+		sb.append("					</tr>").append("\r\n");
+		sb.append("				</table>").append("\r\n");
+		sb.append("				<br/>").append("\r\n");
+		
+		sb.append("\r\n");
+		
+		// 產業評析／新聞
+		sb.append("				<!-- 產業評析／新聞 -->").append("\r\n");
+		sb.append("				<table width=\"835\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("					<tr>").append("\r\n");
+		sb.append("						<td align=\"center\">").append("\r\n");
+		sb.append("							<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("								<tr>").append("\r\n");
+		sb.append("									<td width=\"10\"><img src=\""+urlDomainName+"/ePapers/images/purple-s-l.png\" width=\"10\" height=\"42\" /></td>").append("\r\n");
+		sb.append("									<td width=\"65\" align=\"center\" style=\"background: #8a62ff;\">").append("\r\n");
+		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/topic-ico-5.png\" width=\"43\" height=\"42\" />").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td align=\"left\" style=\"font-size: 25px; font-family: 微軟正黑體, Arial, Helvetica; color: #fff; background: #8a62ff;\">").append("\r\n");
+		sb.append("										<strong>產業評析／新聞</strong>").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"30\" bgcolor=\"#8a62ff\">").append("\r\n");
+		sb.append("										<a href=\""+urlDomainName+"/f2/industryInfo/init?searchCondition.category=新聞雷達\" target=\"_blank\">").append("\r\n");
+		sb.append("											<img src=\""+urlDomainName+"/ePapers/images/more-w.gif\" alt=\"更多產業評析／新聞\" width=\"30\" height=\"20\" border=\"0\" />").append("\r\n");
+		sb.append("										</a>").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"10\"><img src=\""+urlDomainName+"/ePapers/images/purple-s-r.png\" width=\"10\" height=\"42\" /></td>").append("\r\n");
+		sb.append("								</tr>").append("\r\n");
+		sb.append("								<tr>").append("\r\n");
+		sb.append("									<td colspan=\"5\"><img src=\""+urlDomainName+"/ePapers/images/space.png\" width=\"1\" height=\"10\" /></td>").append("\r\n");
+		sb.append("								</tr>").append("\r\n");
+		sb.append("							</table>").append("\r\n");
+		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		for (IndustryInfo info : template.getIndustryInfoList()) {
+			sb.append("								<tr>").append("\r\n");
+			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
+			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td width=\"21%\" align=\"left\" valign=\"top\" style=\"font-size: 16px; color: #8a62ff; font-family: 微軟正黑體, Arial, Helvetica; padding-top: 6px; line-height: 25px;\">").append("\r\n");
+			sb.append("										<strong>"+sdf2.format(info.getPostDate())+"</strong>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td align=\"left\" valign=\"top\" style=\"padding-top: 6px\">").append("\r\n");
+			sb.append("										<a href=\""+info.getLink()+"\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px;\">").append("\r\n");
+			sb.append("											<strong>"+info.getTitle()+"</strong>").append("\r\n");
+			sb.append("										</a>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("								</tr>").append("\r\n");
+		}
+		sb.append("							</table>").append("\r\n");
+		sb.append("						</td>").append("\r\n");
+		sb.append("					</tr>").append("\r\n");
+		sb.append("				</table>").append("\r\n");
+		sb.append("				<br/>").append("\r\n");
+		
+		sb.append("\r\n");
+		
+		// 常問集
+		sb.append("				<!-- 常問集 -->").append("\r\n");
+		sb.append("				<table width=\"835\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("					<tr>").append("\r\n");
+		sb.append("						<td align=\"center\">").append("\r\n");
+		sb.append("							<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		sb.append("								<tr>").append("\r\n");
+		sb.append("									<td width=\"10\">").append("\r\n");
+		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/green-s-l.png\" width=\"10\" height=\"42\" />").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"65\" align=\"center\" style=\"background: #64a614;\">").append("\r\n");
+		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/topic-ico-6.png\" width=\"41\" height=\"42\" />").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td align=\"left\" style=\"font-size: 25px; font-family: 微軟正黑體, Arial, Helvetica; color: #fff; background: #64a614;\">").append("\r\n");
+		sb.append("										<strong>常問集</strong>").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"30\" bgcolor=\"#64a614\">").append("\r\n");
+		sb.append("										<a href=\""+urlDomainName+"/f2/faq/init?searchCondition.category=運用法人鏈結產學合作計畫\" target=\"_blank\">").append("\r\n");
+		sb.append("											<img src=\""+urlDomainName+"/ePapers/images/more-w.gif\" alt=\"更多常問集\" width=\"30\" height=\"20\" border=\"0\" />").append("\r\n");
+		sb.append("										</a>").append("\r\n");
+		sb.append("									</td>").append("\r\n");
+		sb.append("									<td width=\"10\"><img src=\""+urlDomainName+"/ePapers/images/green-s-r.png\" width=\"10\" height=\"42\" /></td>").append("\r\n");
+		sb.append("								</tr>").append("\r\n");
+		sb.append("								<tr>").append("\r\n");
+		sb.append("									<td colspan=\"5\"><img src=\""+urlDomainName+"/ePapers/images/space.png\" width=\"1\" height=\"10\" /></td>").append("\r\n");
+		sb.append("								</tr>").append("\r\n");
+		sb.append("							</table>").append("\r\n");
+		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
+		for (Faq faq : template.getFaqList()) {
+			sb.append("								<tr>").append("\r\n");
+			sb.append("									<td width=\"4%\" align=\"left\" valign=\"top\" style=\"padding-top: 6px\">").append("\r\n");
+			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/q-icon.png\" width=\"22\" height=\"22\" />").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("									<td align=\"left\" valign=\"top\" style=\"padding-top: 6px\">").append("\r\n");
+			sb.append("										<a href=\""+urlDomainName+"/f2/faq/init?searchCondition.category=運用法人鏈結產學合作計畫\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px;\">").append("\r\n");
+			sb.append("											<strong>"+faq.getTitle()+"</strong>").append("\r\n");
+			sb.append("										</a>").append("\r\n");
+			sb.append("									</td>").append("\r\n");
+			sb.append("								</tr>").append("\r\n");
+		}
+		sb.append("							</table>").append("\r\n");
+		sb.append("						</td>").append("\r\n");
+		sb.append("					</tr>").append("\r\n");
+		sb.append("				</table>").append("\r\n");
+		
+		sb.append("			</td>").append("\r\n");
+		sb.append("		</tr>").append("\r\n");
+		sb.append("		<tr><td height=\"20\"></td></tr>").append("\r\n");
+		sb.append("	</table>").append("\r\n");
+		
+		sb.append("\r\n");
+		
+		// footer begin
+		sb.append("	<!-- footer begin -->").append("\r\n");
+		sb.append("	<table align=\"center\" style=\"width: 940px; margin: 22px auto 22px auto;\">").append("\r\n");
+		sb.append("		<tr>").append("\r\n");
+		sb.append("			<td align=\"center\" style=\"font-size: 14px; color: #888; font-family: 微軟正黑體, Arial, Helvetica; line-height: 23px; text-align: center\">").append("\r\n");
+		sb.append("				版權所有 © 2016 科技部產學及園區業務司<br />").append("\r\n");
+		sb.append("				Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs <br /> ").append("\r\n");
+		sb.append("				<img src=\""+urlDomainName+"/ePapers/images/service-icon-tel.png\" width=\"15\" height=\"15\" style=\"vertical-align: middle;\" />&nbsp;電話：886-2-2737-7373&nbsp;&nbsp;").append("\r\n");
+		sb.append("				<img src=\""+urlDomainName+"/ePapers/images/service-icon-service.png\" width=\"15\" height=\"15\" style=\"vertical-align: middle;\" />&nbsp;資訊客服專線：886-2-2737-7592&nbsp;&nbsp;").append("\r\n");
+		sb.append("				<img src=\""+urlDomainName+"/ePapers/images/service-icon-time.png\" width=\"15\" height=\"15\" style=\"vertical-align: middle;\" />&nbsp;上班時間：每週一到週五8:30 至 17:30").append("\r\n");
+		sb.append("			</td>").append("\r\n");
+		sb.append("			<td width=\"120\"><img src=\""+urlDomainName+"/ePapers/images/qrcode.jpg\" width=\"77\" height=\"77\" alt=\"QRcode\" /></td>").append("\r\n");
+		sb.append("		</tr>").append("\r\n");
+		sb.append("	</table>").append("\r\n");
+		sb.append("	<!-- footer end -->").append("\r\n");
+		// footer end
+		
+		sb.append("\r\n");
+		
+		sb.append("	<map name=\"Map\" id=\"Map\">").append("\r\n");
+		sb.append("		<area shape=\"rect\" coords=\"0,0,108,18\" href=\""+urlDomainName+"/f2/home/init\" target=\"_blank\" />").append("\r\n");
+		sb.append("		<area shape=\"rect\" coords=\"0,20,108,36\" href=\""+urlDomainName+"/f2/ePaper/subscribe\" target=\"_blank\" />").append("\r\n");
+		sb.append("	</map>").append("\r\n");
+		
+		sb.append("</body>").append("\r\n");
+		sb.append("</html>").append("\r\n");
+		return sb.toString();
+	}
 }

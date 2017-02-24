@@ -231,6 +231,25 @@ public class ResearchPlanDao extends BaseIaceDao<ResearchPlan> implements IResea
 			HibernateSessionFactory.closeSession();
 		}
 	}
+
+	@Override
+	public List<ResearchPlan> sampleForEpaper() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			criteria.addOrder(Order.desc("updateTime"));
+			criteria.setMaxResults(3);
+			
+			@SuppressWarnings("unchecked")
+			List<ResearchPlan> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 	
 	
 

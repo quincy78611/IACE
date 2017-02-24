@@ -14,6 +14,8 @@ public interface IActivityDao extends IBaseIaceDao<Activity> {
 	
 	public List<Activity> sampleForHomePage();
 	
+	public List<Activity> sampleForEpaper();
+	
 	/**
 	 * Get most popular activities
 	 * @param resultNum 

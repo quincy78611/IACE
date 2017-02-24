@@ -148,6 +148,25 @@ public class NewsDao extends BaseIaceDao<News> implements INewsDao {
 			HibernateSessionFactory.closeSession();
 		}
 	}
+
+	@Override
+	public List<News> sampleForEpaper() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			super.addDefaultOrder(criteria);
+			criteria.setMaxResults(3);
+			
+			@SuppressWarnings("unchecked")
+			List<News> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 	
 	
 }

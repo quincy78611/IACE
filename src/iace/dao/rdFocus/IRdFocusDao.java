@@ -12,4 +12,5 @@ public interface IRdFocusDao extends IBaseIaceDao<RdFocus> {
 	public PagedList<RdFocus> searchBy(RdFocusSearchModel arg);
 	public long queryTotalRecordsCount(RdFocusSearchModel arg);
 	public List<RdFocus> sampleForHomePage();
+	public List<RdFocus> sampleForEpaper();
 }

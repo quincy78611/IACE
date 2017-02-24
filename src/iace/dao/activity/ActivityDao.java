@@ -127,6 +127,7 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			criteria.add(Restrictions.eq("homeDisplayStatus", true));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			
 			ProjectionList projectionList = Projections.projectionList();
 			projectionList.add(Projections.property("id"), "id");
@@ -138,6 +139,27 @@ public class ActivityDao extends BaseIaceDao<Activity> implements IActivityDao {
 			
 			super.addDefaultOrder(criteria);
 			criteria.setMaxResults(5);
+			
+			@SuppressWarnings("unchecked")
+			List<Activity> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	
+
+	@Override
+	public List<Activity> sampleForEpaper() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			super.addDefaultOrder(criteria);
+			criteria.setMaxResults(2);
 			
 			@SuppressWarnings("unchecked")
 			List<Activity> list = criteria.list();

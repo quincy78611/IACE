@@ -13,4 +13,6 @@ public interface IIndustryInfoDao extends IBaseIaceDao<IndustryInfo> {
 	public long queryTotalRecordsCount(IndustryInfoSearchModel arg);
 	
 	public List<IndustryInfo> sampleForHomePage(String category);
+	
+	public List<IndustryInfo> sampleForEpaper();
 }

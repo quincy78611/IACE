@@ -58,7 +58,11 @@ public class ResearchPlanService extends BaseIaceService<ResearchPlan> {
 			log.fatal("", e);
 		}
 	}
-	
+
+	public List<ResearchPlan> sampleForEpaper() {
+		return this.researchPlanDao.sampleForEpaper();
+	}
+
 	public PagedList<ResearchPlan> searchBy(ResearchPlanSearchModel arg) {
 		PagedList<ResearchPlan> res = this.researchPlanDao.searchBy(arg);
 		return res;

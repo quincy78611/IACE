@@ -1,5 +1,7 @@
 package iace.service.faq;
 
+import java.util.List;
+
 import core.util.PagedList;
 import iace.dao.faq.IFaqDao;
 import iace.entity.faq.Faq;
@@ -17,5 +19,9 @@ public class FaqService extends BaseIaceService<Faq> {
 
 	public PagedList<Faq> searchBy(FaqSearchModel arg) {
 		return this.faqDao.searchBy(arg);
+	}
+	
+	public List<Faq> sampleForEpaper() {
+		return this.faqDao.sampleForEpaper();
 	}
 }

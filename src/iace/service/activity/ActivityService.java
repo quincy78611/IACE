@@ -37,6 +37,10 @@ public class ActivityService extends BaseIaceService<Activity> {
 		return this.activityDao.sampleForHomePage();
 	}
 	
+	public List<Activity> sampleForEpaper() {
+		return this.activityDao.sampleForEpaper();
+	}
+	
 	public List<Activity> hot20() {
 		return this.activityDao.popular(20);
 	}

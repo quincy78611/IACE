@@ -971,6 +971,18 @@
 		<action name="showDetail" class="iace.action.EPaperAction" method="showDetail">
 			<result name="success">/WEB-INF/jsp/backend/epaper/detail.jsp</result>
 		</action>
+		<action name="create" class="iace.action.EPaperAction" method="create">
+			<result name="success">/WEB-INF/jsp/backend/epaper/create.jsp</result>
+		</action>
+		<action name="createPreview" class="iace.action.EPaperAction" method="createPreview">
+			<interceptor-ref name="defaultStack" />
+			<result name="input">/WEB-INF/jsp/backend/epaper/create.jsp</result>
+			<result name="success">${epaperUrl}</result>
+		</action>
+		<action name="createSubmit" class="iace.action.EPaperAction" method="createSubmit">
+			<result name="input">/WEB-INF/jsp/backend/epaper/create.jsp</result>
+			<result name="success">/WEB-INF/jsp/backend/epaper/detail.jsp</result>
+		</action>
 		<action name="update" class="iace.action.EPaperAction" method="update">
 			<result name="success">/WEB-INF/jsp/backend/epaper/update.jsp</result>
 		</action>
@@ -990,6 +1002,34 @@
 		</action>
 		<action name="sendTestEmail" class="iace.action.EPaperAction" method="sendTestEmail">
 			<result name="success">/WEB-INF/jsp/backend/epaper/index.jsp</result>
+		</action>
+		<action name="newsIndex" class="iace.action.EPaperAction" method="newsIndex">
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/backend/epaper/create_newsList.jsp</result>
+		</action>
+		<action name="activityIndex" class="iace.action.EPaperAction" method="activityIndex">
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/backend/epaper/create_activityList.jsp</result>
+		</action>
+		<action name="rdFocusIndex" class="iace.action.EPaperAction" method="rdFocusIndex">
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/backend/epaper/create_rdFocusList.jsp</result>
+		</action>
+		<action name="researchPlanIndex" class="iace.action.EPaperAction" method="researchPlanIndex">
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/backend/epaper/create_researchPlanList.jsp</result>
+		</action>
+		<action name="patentIndex" class="iace.action.EPaperAction" method="patentIndex">
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/backend/epaper/create_patentList.jsp</result>
+		</action>
+		<action name="industryInfoIndex" class="iace.action.EPaperAction" method="industryInfoIndex">
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/backend/epaper/create_industryInfoList.jsp</result>
+		</action>
+		<action name="faqIndex" class="iace.action.EPaperAction" method="faqIndex">
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/backend/epaper/create_faqList.jsp</result>
 		</action>
 	</package>
 	

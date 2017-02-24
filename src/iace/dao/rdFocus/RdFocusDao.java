@@ -146,6 +146,7 @@ public class RdFocusDao extends BaseIaceDao<RdFocus> implements IRdFocusDao {
 			Session session = HibernateSessionFactory.getSession();
 			Criteria criteria = session.createCriteria(super.entityClass);
 			criteria.add(Restrictions.eq("homeDisplayStatus", true));
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 			
 			ProjectionList projectionList = Projections.projectionList();
 			projectionList.add(Projections.property("id"), "id");
@@ -157,6 +158,25 @@ public class RdFocusDao extends BaseIaceDao<RdFocus> implements IRdFocusDao {
 			
 			criteria.addOrder(Order.desc("sort"));
 			criteria.addOrder(Order.desc("updateTime"));
+			criteria.setMaxResults(5);
+			
+			@SuppressWarnings("unchecked")
+			List<RdFocus> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+
+	@Override
+	public List<RdFocus> sampleForEpaper() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			super.addDefaultOrder(criteria);
 			criteria.setMaxResults(5);
 			
 			@SuppressWarnings("unchecked")

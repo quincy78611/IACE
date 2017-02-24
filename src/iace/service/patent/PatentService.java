@@ -77,6 +77,10 @@ public class PatentService extends BaseIaceService<Patent> {
 		return this.patentDao.sampleForHomePage();
 	}
 	
+	public List<Patent> sampleForEpaper() {
+		return this.patentDao.sampleForEpaper();
+	}
+	
 	@Override
 	public Patent get(Long id) {
 		Patent p = this.patentDao.get(id);

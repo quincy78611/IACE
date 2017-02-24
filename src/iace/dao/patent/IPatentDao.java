@@ -32,4 +32,5 @@ public interface IPatentDao extends IBaseIaceDao<Patent> {
 
 	public List<Patent> sampleForHomePage();
 	
+	public List<Patent> sampleForEpaper();
 }

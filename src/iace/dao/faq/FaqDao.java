@@ -82,4 +82,25 @@ public class FaqDao extends BaseIaceDao<Faq> implements IFaqDao {
 		}
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
+
+	@Override
+	public List<Faq> sampleForEpaper() {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			super.addDefaultOrder(criteria);
+			criteria.setMaxResults(3);
+			
+			@SuppressWarnings("unchecked")
+			List<Faq> list = criteria.list();
+			return list;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
+	
+	
 }

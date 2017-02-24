@@ -7,7 +7,10 @@
 		<ul>
 			<s:if test='%{#session.sysUser.hasAuth("/epaper", "init")}'>
 				<li><a href="<s:url value="/epaper/init"/>">編輯管理</a></li>
-			</s:if>	
+			</s:if>
+			<s:if test='%{#session.sysUser.hasAuth("/epaper", "create")}'>
+				<li><a href="<s:url value="/epaper/create?loadDefaultSample=true"/>">新增電子報</a></li>
+			</s:if>
 			<s:if test='%{#session.sysUser.hasAuth("/epaperSubscriber", "init")}'>
 				<li><a href="<s:url value="/epaperSubscriber/init"/>">訂閱管理</a></li>
 			</s:if>	

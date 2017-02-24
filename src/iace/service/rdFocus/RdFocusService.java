@@ -31,6 +31,10 @@ public class RdFocusService extends BaseIaceService<RdFocus> {
 	public List<RdFocus> sampleForHomePage() {
 		return this.dao.sampleForHomePage();
 	}
+	
+	public List<RdFocus> sampleForEpaper() {
+		return this.dao.sampleForEpaper();
+	}
 
 	@Override
 	public RdFocus get(Long id) {
