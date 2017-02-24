@@ -89,8 +89,8 @@
 		<action name="PDPLSubmit" class="iace.action.TalentedPeopleAction" method="PDPLSubmit">
 			<result name="login">/WEB-INF/jsp/backend_noMenu/talentedPeople/login.jsp</result>
 			<result name="close" type="redirectAction">
-				<param name="namespace">/home</param>
-				<param name="actionName">init</param>
+				<param name="namespace">/</param>
+				<param name="actionName">index</param>
 			</result>
 		</action>		
 		<action name="login" class="iace.action.TalentedPeopleAction" method="login">
