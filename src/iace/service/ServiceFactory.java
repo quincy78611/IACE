@@ -43,8 +43,6 @@ import iace.service.patent.PatentService;
 import iace.service.patent.TechFieldService;
 import iace.service.qnrCooperateWay.QnrCooperateWayExcelService;
 import iace.service.qnrCooperateWay.QnrCooperateWayService;
-import iace.service.questionnaire.QnrService;
-import iace.service.questionnaire.QnrTemplateService;
 import iace.service.rdFocus.RdFocusAttachService;
 import iace.service.rdFocus.RdFocusService;
 import iace.service.relatedWebsite.RelatedWebsiteService;
@@ -98,9 +96,6 @@ public class ServiceFactory {
 	
 	private static EnterpriseInfoService enterpriseInfoService;
 	private static EnterpriseRequireTechService enterpriseRequireTechService;
-	
-	private static QnrTemplateService qnrTemplateService;
-	private static QnrService qnrService;
 	
 	private static QnrCooperateWayService qnrCooperateWayService;
 	private static QnrCooperateWayExcelService qnrCooperateWayExcelService;
@@ -371,22 +366,6 @@ public class ServiceFactory {
 			enterpriseRequireTechService = new EnterpriseRequireTechService(DaoFactory.getEnterpriseRequireTechDao());
 		}
 		return enterpriseRequireTechService;
-	}
-
-	public static QnrTemplateService getQnrTemplateService() {
-		if (qnrTemplateService == null) {
-			qnrTemplateService = new QnrTemplateService(
-					DaoFactory.getQnrTemplateDao(), 
-					DaoFactory.getQnrDao());
-		}
-		return qnrTemplateService;
-	}
-
-	public static QnrService getQnrService() {
-		if (qnrService == null) {
-			qnrService = new QnrService(DaoFactory.getQnrDao());
-		}
-		return qnrService;
 	}
 	
 	public static QnrCooperateWayService getQnrCooperateWayService(){

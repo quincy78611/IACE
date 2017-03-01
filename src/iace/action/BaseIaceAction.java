@@ -1,17 +1,14 @@
 package iace.action;
 
-import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
 
 import core.action.BaseAction;
-import iace.entity.questionnaire.QnrTable;
 import iace.entity.sys.SysLog;
 import iace.entity.sys.SysUser;
 import iace.interceptor.SessionInterceptor;
-import iace.service.ServiceFactory;
 
 public class BaseIaceAction extends BaseAction implements SessionAware {
 
@@ -35,10 +32,6 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public List<QnrTable> getQnrTemplateList() {
-		return ServiceFactory.getQnrTemplateService().listAll();
 	}
 	
 	/**

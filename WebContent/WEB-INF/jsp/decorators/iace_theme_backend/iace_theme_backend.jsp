@@ -80,36 +80,6 @@
 			<div class="u-vmenu">
 				<s:if test="#session.sysUser != null">
 					<ul>
-						<li hidden="hidden"><a href="#">問卷調查模板</a>
-							<ul>
-								<li><a href="<s:url value="/qnrTemplate/init"/>">編輯管理</a></li>
-								<li><a href="<s:url value="/qnrTemplate/create"/>">新增</a></li>
-							</ul>
-						</li>	
-<!-- 						<li hidden="hidden"><a href="#">問卷</a> -->
-<!-- 							<ul> -->
-<%-- 								<s:iterator value="qnrTemplateList" status="stat"> --%>
-<!-- 									<li> -->
-<%-- 										<s:url value="/questionnaire/init" var="initUrlTag" escapeAmp="false"> --%>
-<%-- 											<s:param name="qnrTableId" value="id" /> --%>
-<%-- 											<s:param name="qnrTableName" value="tableName" /> --%>
-<%-- 										</s:url> --%>
-<%-- 										<a href='<s:property value="initUrlTag" />'> --%>
-<%-- 											<s:property value="%{'維護 '+name}"/> --%>
-<!-- 										</a> -->
-<!-- 									</li> -->
-<!-- 									<li>	 -->
-<%-- 										<s:url value="/questionnaire/create" var="createUrlTag" escapeAmp="false"> --%>
-<%-- 											<s:param name="qnrTableId" value="id" /> --%>
-<%-- 											<s:param name="qnrTableName" value="tableName" /> --%>
-<%-- 										</s:url> --%>
-<%-- 										<a href='<s:property value="createUrlTag" />'> --%>
-<%-- 											<s:property value="%{'填寫 '+name}"/> --%>
-<!-- 										</a>									 -->
-<!-- 									</li>	 -->
-<%-- 								</s:iterator> --%>
-<!-- 							</ul> -->
-<!-- 						</li> -->
 						<s:include value="./iace_backend_menu/menu-qnrCooperateWay.jsp" />
 						<s:include value="./iace_backend_menu/menu-researchPlan.jsp" />
 						<s:include value="./iace_backend_menu/menu-patent.jsp" />

@@ -76,10 +76,6 @@ import iace.dao.patent.IPatentDao;
 import iace.dao.patent.PatentDao;
 import iace.dao.qnrCooperateWay.IQnrCooperateWayDao;
 import iace.dao.qnrCooperateWay.QnrCooperateWayDao;
-import iace.dao.questionnaire.IQnrDao;
-import iace.dao.questionnaire.IQnrTemplateDao;
-import iace.dao.questionnaire.QnrDao;
-import iace.dao.questionnaire.QnrTemplateDao;
 import iace.dao.rdFocus.IRdFocusAttachDao;
 import iace.dao.rdFocus.IRdFocusDao;
 import iace.dao.rdFocus.RdFocusAttachDao;
@@ -159,9 +155,6 @@ public class DaoFactory {
 	private static IEnterpriseRequireTechDao enterpriseRequireTechDao;
 	private static IEnterpriseSituationDao enterpriseSituationDao;
 	private static IEnterpriseAcademiaCoopDao enterpriseAcademiaCoopDao;
-	
-	private static IQnrTemplateDao qnrTemplateDao;
-	private static IQnrDao qnrDao;
 	
 	private static IQnrCooperateWayDao qnrCooperateWayDao;
 	
@@ -406,20 +399,6 @@ public class DaoFactory {
 			enterpriseAcademiaCoopDao = new EnterpriseAcademiaCoopDao();
 		}
 		return enterpriseAcademiaCoopDao;
-	}
-
-	public static IQnrTemplateDao getQnrTemplateDao() {
-		if (qnrTemplateDao == null) {
-			qnrTemplateDao = new QnrTemplateDao();
-		}
-		return qnrTemplateDao;
-	}
-
-	public static IQnrDao getQnrDao() {
-		if (qnrDao == null) {
-			qnrDao = new QnrDao();
-		}
-		return qnrDao;
 	}
 	
 	public static IQnrCooperateWayDao getQnrCooperateWayDao() {
