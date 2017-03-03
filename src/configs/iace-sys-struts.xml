@@ -140,6 +140,9 @@
 			<interceptor-ref name="iaceBackEnd"/>
 			<result name="success">/WEB-INF/jsp/backend/file/upload.jsp</result>
 		</action>
+		<action name="ckEditorUploadFile" class="iace.action.FileAction" method="ckEditorUploadFile">
+			<interceptor-ref name="iaceBackEnd"/>
+		</action>
 		<action name="downloadFile" class="iace.action.FileAction" method="downloadFile">
 			<result name="success" type="stream">
 				<param name="contentType">application/octet-stream</param>

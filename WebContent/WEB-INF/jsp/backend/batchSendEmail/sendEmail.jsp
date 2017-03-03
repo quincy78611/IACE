@@ -4,14 +4,6 @@
 <html>
 <head>
 
-<!-- 網頁編輯器 -->
-<script type="text/javascript" src="<s:url value="/scripts/tinymce/tinymce.min.js"/>"></script>
-<script type="text/javascript" src="<s:url value="/scripts/tinymce/jquery.tinymce.min.js"/>"></script>
-<script type="text/javascript" src="<s:url value="/scripts/tinymce/defaultEditorSetting.js"/>"></script>
-<script>
-	defaultTinymceEditor('textArea[name="emailContentTemplate"]');
-</script>
-
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("input[type=file]#btn_file").change(function() {
@@ -55,7 +47,16 @@
 				<span style="font-size:0.7em;">P.S. 寄發信件時將會用匯入的收件者列表Excel檔的標題列當作關鍵字並以相對應資料替換內文模板中的參數</span><br>
 				<span style="font-size:0.7em;">P.S. 參數請用%符號包夾，例如%Name%</span>
 				<s:textarea name="emailContentTemplate"/>
-			</li>			
+				<div>
+					<!-- 網頁編輯器 -->
+					<s:include value="/WEB-INF/jsp/ckEditor.jsp" />
+					<script type="text/javascript">
+					window.onload = function() {
+						CKEDITOR.replace('emailContentTemplate'); // 此處參數 'about.content' 為需要套用ckeditor 的 textarea 的 name
+					};
+					</script>
+				</div>
+			</li>
 			<li class="all">
 				<b>附件</b>
 				<s:file name="attaches" />

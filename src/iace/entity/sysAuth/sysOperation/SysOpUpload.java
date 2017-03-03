@@ -6,6 +6,7 @@ public class SysOpUpload extends SysOp {
 		super.displayName = "上傳";
 		super.actions.add("upload");
 		super.actions.add("uploadFile");
+		super.actions.add("ckEditorUploadFile");
 	}
 
 }

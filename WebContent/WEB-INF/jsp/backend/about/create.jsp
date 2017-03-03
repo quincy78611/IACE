@@ -4,15 +4,6 @@
 <html>
 <head>
 <meta name="funcPathText" content="新增"/>
-
-<!-- 網頁編輯器 -->
-<script type="text/javascript" src="<s:url value="/scripts/tinymce/tinymce.min.js"/>"></script>
-<script type="text/javascript" src="<s:url value="/scripts/tinymce/jquery.tinymce.min.js"/>"></script>
-<script type="text/javascript" src="<s:url value="/scripts/tinymce/defaultEditorSetting.js"/>"></script>
-<script>
-	defaultTinymceEditor('textArea[name="about.content"]');
-</script>
-
 </head>
 <body>
 	<s:form action="createSubmit" method="post" validate="true">
@@ -24,7 +15,16 @@
 			<li class="all">
 				<b>內容</b>
 				<s:textarea name="about.content" />
-			</li>		
+				<div>
+					<!-- 網頁編輯器 -->
+					<s:include value="/WEB-INF/jsp/ckEditor.jsp" />
+					<script type="text/javascript">
+					window.onload = function() {
+						CKEDITOR.replace('about.content'); // 此處參數 'about.content' 為需要套用ckeditor 的 textarea 的 name
+					};
+					</script>
+				</div>
+			</li>
 		</ul>
 		<div class="clear"></div>
 			
