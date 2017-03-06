@@ -75,7 +75,9 @@ public class EPaperService extends BaseIaceService<EPaper> {
 	public void sendTestEmail(long id, String to) throws MessagingException, IOException {
 		EPaper epaper = get(id);
 		String content = readEpaperContent(epaper);
-		EmailUtil.send(epaper.getTitle(), content, null, "linkiac2@gmail.com", "科技部鏈結產學合作計畫辦公室", to);
+		for (String email: StringUtils.split(to.replace("；", ";"), ";")) {
+			EmailUtil.send(epaper.getTitle(), content, null, "linkiac2@gmail.com", "科技部鏈結產學合作計畫辦公室", email);
+		}
 	}
 	
 	public void publish(long id, SysUser user, SysLog syslog) throws IOException, SQLException, ParseException, MessagingException {

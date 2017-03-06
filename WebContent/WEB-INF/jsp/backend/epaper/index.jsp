@@ -35,12 +35,8 @@
 	function sendTestEmail() {
 		var valid = true;
 		var email = $("#dialog-form input[name=testEmailTo]");
-		var emailRegex = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-		valid = valid && checkRegexp( email, emailRegex, "eg. ui@jquery.com" );
-		if (valid) {
-			dialog.find("form").submit();
-			dialog.dialog("close");
-		}
+		dialog.find("form").submit();
+		dialog.dialog("close");
 		return valid;
 	}
 
