@@ -1,5 +1,6 @@
 package iace.action;
 
+import java.util.Date;
 import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
@@ -18,6 +19,7 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 	
 	protected Map<String, Object> session;
 	
+	private Date exceptionTime;
 	private String exceptionName;
 	private String exceptionMessage;
 	private StackTraceElement[] exceptionStack;
@@ -70,6 +72,7 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 	protected void showExceptionToPage(Exception e) {
 		log.error("", e);
 		this.addActionError(e.getMessage());
+		this.exceptionTime = new Date();
 		this.exceptionName = e.getClass().getName();
 		this.exceptionMessage = e.getMessage();
 		this.exceptionStack = e.getStackTrace();
@@ -93,6 +96,14 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 
 	public StackTraceElement[] getExceptionStack() {
 		return exceptionStack;
+	}
+	
+	public Date getExceptionTime() {
+		return exceptionTime;
+	}
+
+	public void setExceptionTime(Date exceptionTime) {
+		this.exceptionTime = exceptionTime;
 	}
 
 	public void setExceptionStack(StackTraceElement[] exceptionStack) {
