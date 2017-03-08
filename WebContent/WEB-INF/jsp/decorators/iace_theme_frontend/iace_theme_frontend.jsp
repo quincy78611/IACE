@@ -50,7 +50,7 @@
 	<header>
 		<div id="con">
 			<div id="LOGO">
-				<a href="<s:url value="/home/init"/>">
+				<a href="<s:url value="/index"/>">
 					<img src="<s:url value="/images/LOGO.png"/>" >
 				</a>
 			</div>
@@ -87,7 +87,7 @@
 			</div>
 			<div class="clear"></div>
 			<div id="link">
-				<a href="<s:url value="/home/init"/>">首頁</a>│
+				<a href="<s:url value="/index"/>">首頁</a>│
 				<a>關於I-ACE</a>│
 				<a>聯絡我們</a>
 			</div>

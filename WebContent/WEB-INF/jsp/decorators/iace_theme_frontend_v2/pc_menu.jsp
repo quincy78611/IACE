@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col-md-3 col-sm-3">
 			<div>
-				<a href="<s:url value="/f2/home/init"/>">
+				<a href="<s:url value="/index"/>">
 					<img src="<s:url value="/images/frontend-v2/logo.jpg"/>" alt="" style="max-height:100px;"/>
 				</a>
 			</div>
@@ -165,7 +165,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-2">
-				<a href="<s:url value="/f2/home/init"/>" class="blue_menu_link">
+				<a href="<s:url value="/index"/>" class="blue_menu_link">
 					<i class="fa fa-home right5" aria-hidden="true"></i>首頁
 				</a>
 			</div>

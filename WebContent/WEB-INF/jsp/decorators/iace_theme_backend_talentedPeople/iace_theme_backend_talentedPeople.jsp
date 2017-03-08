@@ -42,7 +42,7 @@
 <body>
 	<header>
 		<div class="LOGO">
-			<a href="<s:url value="/home/init"/>">
+			<a href="<s:url value="/index"/>">
 				<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
 			</a>	
 		</div>
@@ -51,7 +51,7 @@
 				<s:include value="logoutTimer.jsp" />
 				<label><s:property value="%{#session.sysUser.name}"/>&nbsp;&nbsp;</label>
 				<a href="<s:url value="/f/talentedPeople/logout"/>" class="login">登出</a>
-				<a href="<s:url value="/f2/home/init"/>" class="login">回首頁</a>
+				<a href="<s:url value="/index"/>" class="login">回首頁</a>
 			</s:if>
 		</div>	
 		<s:include value="popupMessageDialog.jsp" />	

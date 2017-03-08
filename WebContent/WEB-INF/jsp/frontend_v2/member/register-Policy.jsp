@@ -124,7 +124,7 @@
 						<button type="button" class="btn btn-primary" id="btn-agree">
 							<i class="fa fa-check-circle right5" aria-hidden="true"></i>同意
 						</button>
-						<button type="button" class="btn btn-default" onclick="window.location.href='<s:url value="/f2/home/init"/>'">
+						<button type="button" class="btn btn-default" onclick="window.location.href='<s:url value="/index"/>'">
 							<i class="fa fa-times-circle right5" aria-hidden="true"></i>不同意
 						</button>
 					</div>

@@ -49,7 +49,7 @@
 <body>
 	<header>
 		<div class="LOGO">
-			<a href="<s:url value="/home/init"/>">
+			<a href="<s:url value="/index"/>">
 				<img src="<s:url value="/images/LOGO.gif"/>" class="hlogo">
 			</a>	
 		</div>
