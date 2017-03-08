@@ -8,13 +8,13 @@
 </script>
 </head>
 <body>
-	<input type="button" class="redBtn" value="新增系統腳色" onclick="window.location.href='<s:url value="create.action"/>'" />
+	<input type="button" class="redBtn" value="新增系統角色" onclick="window.location.href='<s:url value="create.action"/>'" />
 	<div class="clear"></div>
 	<br>
 	<table>
 		<tr>
 			<th width="2%" nowrap>No.</th>
-			<th width="" nowrap>腳色名稱</th>
+			<th width="" nowrap>角色名稱</th>
 			<th width="">功能</th>
 		</tr>
 		<s:iterator value="sysRoleList" status="stat">
