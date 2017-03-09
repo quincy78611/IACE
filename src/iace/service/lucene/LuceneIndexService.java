@@ -24,7 +24,6 @@ import iace.dao.news.INewsDao;
 import iace.dao.patent.IPatentDao;
 import iace.dao.researchPlan.ITechnologyDao;
 import iace.dao.talentedPeople.ITalentedPeopleDao;
-import iace.entity.BaseSearchModel;
 import iace.entity.activity.Activity;
 import iace.entity.activity.ActivitySearchModel;
 import iace.entity.coopExample.CoopEx;
@@ -40,6 +39,7 @@ import iace.entity.news.NewsSearchModel;
 import iace.entity.patent.Patent;
 import iace.entity.patent.PatentSearchModel;
 import iace.entity.researchPlan.Technology;
+import iace.entity.researchPlan.TechnologySearchModel;
 import iace.entity.talentedPeople.TalentedPeople;
 import iace.entity.talentedPeople.TalentedPeopleSearchModel;
 import lucene.integrationSearch.IntegrationIndexer;
@@ -116,8 +116,8 @@ public class LuceneIndexService {
 	}
 
 	private void createTechnologyIndex(IndexWriter writer) throws IOException {
-		BaseSearchModel arg = new BaseSearchModel();
-		long totalRecordCount = this.technologyDao.queryTotalRecordsCount();
+		TechnologySearchModel arg = new TechnologySearchModel();
+		long totalRecordCount = this.technologyDao.queryTotalRecordsCount(arg);
 		int pageCount = (int) Math.ceil(totalRecordCount / (double) arg.getPageSize());
 		for (int i = 0; i < pageCount; i++) {
 			arg.setPageIndex(i);

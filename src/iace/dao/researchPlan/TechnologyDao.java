@@ -16,8 +16,8 @@ import core.dao.HibernateSessionFactory;
 import core.util.PagedList;
 import iace.dao.BaseIaceDao;
 import iace.entity.BaseEntity;
-import iace.entity.BaseSearchModel;
 import iace.entity.researchPlan.Technology;
+import iace.entity.researchPlan.TechnologySearchModel;
 
 public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnologyDao {
 
@@ -69,15 +69,15 @@ public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnolog
 			HibernateSessionFactory.closeSession();
 		}
 	}
-
+	
 	@Override
-	public PagedList<Technology> searchBy(BaseSearchModel arg) {
-		long totalItemCount = queryTotalRecordsCount();	
+	public PagedList<Technology> searchBy(TechnologySearchModel arg) {
+		long totalItemCount = queryTotalRecordsCount(arg);
 		PagedList<Technology> results = new PagedList<Technology>(totalItemCount, arg.getPageSize(), arg.getPageIndex());
 		try {	
 			Session session = HibernateSessionFactory.getSession();
-			Criteria criteria = session.createCriteria(Technology.class);
-			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));	
+			Criteria criteria = session.createCriteria(super.entityClass);
+			addCriteriaRestrictionsForSearch(arg, criteria);
 			
 			criteria.addOrder(Order.asc("id"));			
 			criteria.setFirstResult(results.getItemStart()-1);
@@ -96,11 +96,11 @@ public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnolog
 	}
 	
 	@Override
-	public long queryTotalRecordsCount() {
+	public long queryTotalRecordsCount(TechnologySearchModel arg) {
 		try {
 			Session session = HibernateSessionFactory.getSession();
-			Criteria criteria = session.createCriteria(Technology.class);			
-			criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
+			Criteria criteria = session.createCriteria(super.entityClass);
+			addCriteriaRestrictionsForSearch(arg, criteria);
 			
 //			criteria.setProjection(Projections.rowCount());
 			criteria.setProjection(Projections.countDistinct("id")); // when using rowCount() and there are more than one child entities, then it will return the number of child entities instead of only count main entity
@@ -112,6 +112,10 @@ public class TechnologyDao extends BaseIaceDao<Technology> implements ITechnolog
 		} finally {
 			HibernateSessionFactory.closeSession();
 		}
+	}
+	
+	private void addCriteriaRestrictionsForSearch(TechnologySearchModel arg, Criteria criteria) {
+		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
 
 	@Override
