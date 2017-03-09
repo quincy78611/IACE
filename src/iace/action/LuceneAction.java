@@ -15,6 +15,7 @@ import iace.entity.incubationCenter.IncubationCenter;
 import iace.entity.literature.Literature;
 import iace.entity.option.BaseOption;
 import iace.entity.patent.Patent;
+import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.ResearchPlanManagerSearchResult;
 import iace.entity.researchPlan.Technology;
 import iace.entity.talentedPeople.TalentedPeople;
@@ -74,10 +75,40 @@ public class LuceneAction extends BaseIaceAction {
 	
 	public String integrationSearch() {
 		try {
-			this.pagedList = this.luceneIndexService.integrationSearch(this.searchCondition);
-			if (StringUtils.equals(this.searchCondition.getClassName(), Technology.class.getName())) {
-				this.rpManagerList = this.researchPlanService.searchManagerFromResearchPlanIndex(this.searchCondition.getSearchText());	
+			if (StringUtils.equals(this.searchCondition.getClassName(), Technology.class.getName()) == false) {
+				this.pagedList = this.luceneIndexService.integrationSearch(this.searchCondition);
+			} else {
+				// 取得網絡圖的資料
+				this.rpManagerList = this.researchPlanService.searchManagerFromResearchPlanIndex(this.searchCondition);	
 				generateResearchPlanManagersJsonString();
+
+				// 取得搜尋結果列表的資料
+				if (StringUtils.isBlank(this.searchCondition.getResearchPlanManager())) {
+					this.pagedList = this.luceneIndexService.integrationSearch(this.searchCondition);
+				} else {
+					// 取得被點擊的計劃主持人的所有研發成果
+					List<Technology> tecList = new ArrayList<Technology>();
+					for (ResearchPlanManagerSearchResult res : this.rpManagerList) {
+						for (Long researchPlanId : res.getResearchPlanIdList()) {
+							ResearchPlan rp  = this.researchPlanService.get(researchPlanId);
+							for (Technology tec : rp.getTechnologies()) {
+								tecList.add(tec);
+							}
+						}
+					}
+					
+					// 研發成果做分頁處理
+					int pIndex = this.searchCondition.getPageIndex();
+					int pSize = this.searchCondition.getPageSize();
+					List<IntegrationSearchResult> list = new ArrayList<IntegrationSearchResult>();
+					for (int i=pIndex*pSize; i<(pIndex+1)*pSize && i<tecList.size(); i++) {
+						IntegrationSearchResult r = new IntegrationSearchResult();
+						r.setType(Technology.class.getName());
+						r.setTechnology(tecList.get(i));
+						list.add(r);
+					}
+					this.pagedList = new PagedList<IntegrationSearchResult>(list, tecList.size(), pSize, pIndex);
+				}
 			}
 			
 			return SUCCESS;
@@ -92,22 +123,24 @@ public class LuceneAction extends BaseIaceAction {
 		JsonArray links = new JsonArray();
 		{
 			JsonObject node = new JsonObject();
-			String name = this.searchCondition.getSearchText();
-			node.addProperty("name", name);
-			node.addProperty("width", name.length()*13+15);
+			String displayText = this.searchCondition.getSearchText();
+			node.addProperty("displayText", displayText);
+			node.addProperty("width", displayText.length()*13+15);
 			node.addProperty("height", 23);
 			node.addProperty("type", "type-keyword");
+			node.addProperty("nodeValue", displayText);
 			nodes.add(node);
 		}
 		for (int i = 0; i<this.rpManagerList.size(); i++) {
 			ResearchPlanManagerSearchResult rpM = this.rpManagerList.get(i);
 			
 			JsonObject node = new JsonObject();
-			String name = rpM.getManager() + "：" + rpM.getResearchPlanCount();
-			node.addProperty("name", name);
-			node.addProperty("width", name.length()*13+10);
+			String displayText = rpM.getManager() + "：" + rpM.getResearchPlanCount();
+			node.addProperty("displayText", displayText);
+			node.addProperty("width", displayText.length()*13+10);
 			node.addProperty("height", 20);
 			node.addProperty("type", "type-manager");
+			node.addProperty("nodeValue", rpM.getManager());
 			nodes.add(node);
 			
 			JsonObject link = new JsonObject();

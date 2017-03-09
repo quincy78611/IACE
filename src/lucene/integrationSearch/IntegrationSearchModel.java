@@ -5,6 +5,7 @@ import iace.entity.BaseSearchModel;
 public class IntegrationSearchModel extends BaseSearchModel {
 	private String className;
 	private String searchText;
+	private String researchPlanManager;
 	
 	public IntegrationSearchModel() {
 		super.setPageSize(10);
@@ -25,4 +26,13 @@ public class IntegrationSearchModel extends BaseSearchModel {
 	public void setSearchText(String searchText) {
 		this.searchText = searchText;
 	}
+
+	public String getResearchPlanManager() {
+		return researchPlanManager;
+	}
+
+	public void setResearchPlanManager(String researchPlanManager) {
+		this.researchPlanManager = researchPlanManager;
+	}
+
 }

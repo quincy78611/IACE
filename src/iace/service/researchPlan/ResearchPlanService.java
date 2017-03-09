@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
@@ -32,6 +33,7 @@ import iace.entity.researchPlan.Technology;
 import iace.entity.sys.SysLog;
 import iace.entity.sys.SysUser;
 import iace.service.BaseIaceService;
+import lucene.integrationSearch.IntegrationSearchModel;
 import lucene.researchPlan.ResearchPlanIndexer;
 
 public class ResearchPlanService extends BaseIaceService<ResearchPlan> {
@@ -68,26 +70,33 @@ public class ResearchPlanService extends BaseIaceService<ResearchPlan> {
 		return res;
 	}
 	
-	public List<ResearchPlanManagerSearchResult> searchManagerFromResearchPlanIndex(String keyword) throws IOException, ParseException {
+	public List<ResearchPlanManagerSearchResult> searchManagerFromResearchPlanIndex(IntegrationSearchModel arg) throws IOException, ParseException {
 		Directory indexDirectory = ResearchPlanIndexer.openDirectory(this.indexFolder);
 		IndexReader reader = ResearchPlanIndexer.createIndexReader(indexDirectory);
 		try {
-			List<Document> docList = ResearchPlanIndexer.search(reader, keyword);
+			List<Document> docList = ResearchPlanIndexer.search(reader, arg.getSearchText());
 			HashMap<String, ResearchPlanManagerSearchResult> map = new HashMap<String, ResearchPlanManagerSearchResult>();
 			for (Document doc : docList) {
 				long id = Long.valueOf(doc.get(ResearchPlanIndexer.FIELD_ID));
 				String manager = doc.get(ResearchPlanIndexer.FIELD_MANAGER);
+				if (StringUtils.isNotBlank(arg.getResearchPlanManager())) {
+					if (StringUtils.equals(manager, arg.getResearchPlanManager()) == false) {
+						continue;
+					}
+				}
 				ResearchPlanManagerSearchResult res = map.containsKey(manager) ? map.get(manager) : new ResearchPlanManagerSearchResult();
 				res.setManager(manager);
 				res.addResearchPlanId(id);
 				map.put(manager, res);
 			}
 			
+			// 將Map轉換成List
 			List<ResearchPlanManagerSearchResult> resList = new ArrayList<ResearchPlanManagerSearchResult>();
 			for (Map.Entry<String, ResearchPlanManagerSearchResult> entry : map.entrySet()) {
 				resList.add(entry.getValue());
 			}
 			Collections.sort(resList);
+			
 			return resList;
 		} catch (ParseException | IOException e) {
 			throw e;
