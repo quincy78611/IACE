@@ -91,9 +91,9 @@
 <script>
 	var res_data_jsonString = '<s:property value="rpManagerJsonString"/>'.replace(/&quot;/g,'\"');
 	var res_data = JSON.parse(res_data_jsonString);
-// 	var width = 1280, height = 768;
-	var width = (res_data.nodes.length^0.5)*10+400;
-	var height = (res_data.nodes.length^0.5)*8+300;
+	var width = 800, height = 600;
+// 	var width = (res_data.nodes.length^0.5)*10+400;
+// 	var height = (res_data.nodes.length^0.5)*8+300;
 
 	//==========================================================================
 	
