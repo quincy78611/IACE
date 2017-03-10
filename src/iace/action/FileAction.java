@@ -87,7 +87,11 @@ public class FileAction extends BaseIaceAction {
 		PrintWriter out = response.getWriter();
 
 		// CKEditor提交的很重要的一个参数
-		String callback = ServletActionContext.getRequest().getParameter("CKEditorFuncNum");
+		String CKEditorFuncNum = ServletActionContext.getRequest().getParameter("CKEditorFuncNum");
+		if (StringUtils.isNumeric(CKEditorFuncNum) == false) {
+			super.addFieldError("CKEditorFuncNum", "Must be a number");
+			return INPUT;
+		}
 
 		String day = sdfDay.format(System.currentTimeMillis());
 		String uuid = UUID.randomUUID().toString();
@@ -107,7 +111,7 @@ public class FileAction extends BaseIaceAction {
 
 		// 返回“图像”选项卡并显示图片
 		out.println("<script type=\"text/javascript\">");
-		out.println("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + downloadUrl + "','')"); // 相对路径用于显示图片
+		out.println("window.parent.CKEDITOR.tools.callFunction(" + CKEditorFuncNum + ",'" + downloadUrl + "','')"); // 相对路径用于显示图片
 		out.println("</script>");
 		return null;
 	}
