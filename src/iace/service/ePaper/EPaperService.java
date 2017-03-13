@@ -516,8 +516,8 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("			<td align=\"center\" style=\"font-size: 14px; color: #888; font-family: 微軟正黑體, Arial, Helvetica; line-height: 23px; text-align: center\">").append("\r\n");
 		sb.append("				版權所有 © 2017 科技部產學及園區業務司<br />").append("\r\n");
 		sb.append("				Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs <br /> ").append("\r\n");
-		sb.append("				<img src=\""+urlDomainName+"/ePapers/images/service-icon-tel.png\" width=\"15\" height=\"15\" style=\"vertical-align: middle;\" />&nbsp;電話：886-2-2737-7373&nbsp;&nbsp;").append("\r\n");
-		sb.append("				<img src=\""+urlDomainName+"/ePapers/images/service-icon-service.png\" width=\"15\" height=\"15\" style=\"vertical-align: middle;\" />&nbsp;資訊客服專線：886-2-2737-7592&nbsp;&nbsp;").append("\r\n");
+		sb.append("				<img src=\""+urlDomainName+"/ePapers/images/service-icon-tel.png\" width=\"15\" height=\"15\" style=\"vertical-align: middle;\" />&nbsp;計畫諮詢專線：886-2-2737-7373&nbsp;&nbsp;").append("\r\n");
+		sb.append("				<img src=\""+urlDomainName+"/ePapers/images/service-icon-service.png\" width=\"15\" height=\"15\" style=\"vertical-align: middle;\" />&nbsp;系統客服專線：886-2-2737-7796&nbsp;&nbsp;").append("\r\n");
 		sb.append("				<img src=\""+urlDomainName+"/ePapers/images/service-icon-time.png\" width=\"15\" height=\"15\" style=\"vertical-align: middle;\" />&nbsp;上班時間：每週一到週五8:30 至 17:30").append("\r\n");
 		sb.append("			</td>").append("\r\n");
 		sb.append("			<td width=\"120\"><img src=\""+urlDomainName+"/images/qrCode.jpg\" width=\"77\" height=\"77\" alt=\"QRcode\" /></td>").append("\r\n");
