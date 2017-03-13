@@ -2,6 +2,7 @@ package iace.service.ePaper;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
@@ -21,10 +22,16 @@ import javax.mail.MessagingException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.lucene.queryparser.classic.ParseException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.struts2.ServletActionContext;
 
 import core.util.EmailUtil;
 import core.util.PagedList;
+import core.util.Validator;
 import iace.dao.ePaper.IEPaperDao;
 import iace.dao.ePaper.IEPaperSubscriberDao;
 import iace.dao.member.IMemberDao;
@@ -72,10 +79,53 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		return this.dao.searchBy(arg);
 	}
 
-	public void sendTestEmail(long id, String to) throws MessagingException, IOException {
+	public void sendTestEmail(long id, String to, File emailToF) throws IOException, MessagingException {
+		// get all email
+		Set<String> emailSet = new HashSet<String>();
+		String errMsg = "必須是有效的Email格式，並請檢查是否含有[空白]、[特殊符號]、[非英數字元]";
+		if (StringUtils.isNotBlank(to)) {
+			to = StringUtils.replace(to, "；", ";");
+			for (String e : StringUtils.split(to, ";")) {
+				if (Validator.isValidEmail(e) == false) {
+					throw new IllegalArgumentException(errMsg);
+				}
+				emailSet.add(e.trim());
+			}
+		}
+		if (emailToF != null) {
+			// read email from uploadFile
+			try (FileInputStream fis = new FileInputStream(emailToF);) {
+				XSSFWorkbook wb = new XSSFWorkbook(fis);
+				XSSFSheet sheet = wb.getSheetAt(0);
+
+				XSSFRow row;
+				XSSFCell cell;
+
+				for (int r = 1; r <= sheet.getLastRowNum(); r++) {
+					int c = -1;
+					row = sheet.getRow(r);
+					cell = row.getCell(++c);
+					cell.setCellType(Cell.CELL_TYPE_STRING);
+					String cellValue = cell.getStringCellValue();
+					cellValue = StringUtils.replace(cellValue, "；", ";");
+					String[] emails = StringUtils.split(cellValue, ";");
+					for (String e : emails) {
+						if (Validator.isValidEmail(e) == false) {
+							String msg = String.format("%d列%d欄 → %s", r + 1, c + 1, errMsg);
+							throw new IllegalArgumentException(msg);
+						}
+						emailSet.add(e.trim());
+					}
+				}
+			} catch (IOException e) {
+				throw e;
+			}
+		}	
+		
+		// start send email
 		EPaper epaper = get(id);
 		String content = readEpaperContent(epaper);
-		for (String email: StringUtils.split(to.replace("；", ";"), ";")) {
+		for (String email : emailSet) {
 			EmailUtil.send(epaper.getTitle(), content, null, "linkiac2@gmail.com", "科技部鏈結產學合作計畫辦公室", email);
 		}
 	}

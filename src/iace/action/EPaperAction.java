@@ -1,5 +1,6 @@
 package iace.action;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -46,9 +47,9 @@ import iace.service.researchPlan.ResearchPlanService;
 
 public class EPaperAction extends BaseIaceAction {
 	private static final long serialVersionUID = 248576610418563326L;
-	
+
 	private EPaperService epaperService = ServiceFactory.getEpaperService();
-	private NewsService newsService = ServiceFactory.getNewsService(); 
+	private NewsService newsService = ServiceFactory.getNewsService();
 	private ActivityService activityService = ServiceFactory.getActivityService();
 	private RdFocusService rdFocusService = ServiceFactory.getRdFocusService();
 	private ResearchPlanService researchPlanService = ServiceFactory.getResearchPlanService();
@@ -59,16 +60,20 @@ public class EPaperAction extends BaseIaceAction {
 	private OptionTrlService optionTrlService = ServiceFactory.getOptionTrlService();
 	private OptionCountryService optionCountryService = ServiceFactory.getOptionCountryService();
 	private TechFieldService techFieldService = ServiceFactory.getTechFieldService();
-	
+
 	private EPaperSearchModel searchCondition = new EPaperSearchModel();
 	private PagedList<EPaper> epaperPagedList;
-	
+
 	private long id;
 	private EPaper epaper;
 	private String epaperUrl;
-	
+
 	private String testEmailTo;
-	
+
+	private File uploadFile;
+	private String uploadFileContentType;
+	private String uploadFileFileName;
+
 	private boolean loadDefaultSample = false;
 	private EPaperProduceTemplate template = new EPaperProduceTemplate();
 	private PagedList<News> newsPagedList;
@@ -85,22 +90,21 @@ public class EPaperAction extends BaseIaceAction {
 	private PatentSearchModel patentSearchCondition = new PatentSearchModel();
 	private IndustryInfoSearchModel industryInfoSearchCondition = new IndustryInfoSearchModel();
 	private FaqSearchModel faqSearchCondition = new FaqSearchModel();
-	
+
 	private List<OptionGrbDomain> optionGrbDomainList;
 	private List<OptionTrl> optionTrlList;
 	private List<BaseOption> yearList;
 	private List<TechField> techFieldList;
 	private List<OptionCountry> optionCountryList;
 
-	
 	public EPaperAction() {
 		super.setTitle("電子報");
 	}
-	
+
 	public String init() {
 		return index();
 	}
-	
+
 	public String index() {
 		try {
 			this.epaperPagedList = this.epaperService.searchBy(this.searchCondition);
@@ -110,7 +114,7 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String showDetail() {
 		try {
 			this.epaper = this.epaperService.get(this.id);
@@ -119,12 +123,12 @@ public class EPaperAction extends BaseIaceAction {
 				return INPUT;
 			}
 			return SUCCESS;
-		} catch(Exception e) {
+		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
-	
+
 	private void getDefaultSample() {
 		if (this.loadDefaultSample) {
 			// news
@@ -134,7 +138,7 @@ public class EPaperAction extends BaseIaceAction {
 				newsIds.add(news.getId());
 			}
 			this.template.setNewsIds(newsIds);
-			
+
 			// activity
 			this.template.setActivityList(this.activityService.sampleForEpaper());
 			Set<Long> activityIds = new HashSet<Long>();
@@ -150,7 +154,7 @@ public class EPaperAction extends BaseIaceAction {
 				rdFocusIds.add(rdFocus.getId());
 			}
 			this.template.setRdFocusIds(rdFocusIds);
-			
+
 			// researchPlan
 			this.template.setResearchPlanList(this.researchPlanService.sampleForEpaper());
 			Set<Long> researchPlanIds = new HashSet<Long>();
@@ -158,7 +162,7 @@ public class EPaperAction extends BaseIaceAction {
 				researchPlanIds.add(rp.getId());
 			}
 			this.template.setResearchPlanIds(researchPlanIds);
-			
+
 			// patent
 			this.template.setPatentList(this.patentService.sampleForEpaper());
 			Set<Long> patentIds = new HashSet<Long>();
@@ -166,7 +170,7 @@ public class EPaperAction extends BaseIaceAction {
 				patentIds.add(p.getId());
 			}
 			this.template.setPatentIds(patentIds);
-			
+
 			// Industry info
 			this.template.setIndustryInfoList(this.industryInfoService.sampleForEpaper());
 			Set<Long> industryInfoIds = new HashSet<Long>();
@@ -174,7 +178,7 @@ public class EPaperAction extends BaseIaceAction {
 				industryInfoIds.add(ii.getId());
 			}
 			this.template.setIndustryInfoIds(industryInfoIds);
-			
+
 			// faq
 			this.template.setFaqList(this.faqService.sampleForEpaper());
 			Set<Long> faqIds = new HashSet<Long>();
@@ -182,11 +186,11 @@ public class EPaperAction extends BaseIaceAction {
 				faqIds.add(faq.getId());
 			}
 			this.template.setFaqIds(faqIds);
-			
+
 			this.loadDefaultSample = false;
 		}
 	}
-	
+
 	private void getEntitiesByIds() {
 		if (CollectionUtils.isNotEmpty(this.template.getNewsIds()) && CollectionUtils.isEmpty(this.template.getNewsList())) {
 			this.template.setNewsList(this.newsService.getAll(this.template.getNewsIds()));
@@ -210,7 +214,7 @@ public class EPaperAction extends BaseIaceAction {
 			this.template.setFaqList(this.faqService.getAll(this.template.getFaqIds()));
 		}
 	}
-	
+
 	public String create() {
 		try {
 			getDefaultSample();
@@ -221,11 +225,11 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public void validateCreatePreview() {
 		validateCreateSubmit();
 	}
-	
+
 	public String createPreview() {
 		try {
 			String fileName = this.epaperService.createPreview(this.template);
@@ -236,13 +240,13 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public void validateCreateSubmit() {
 		super.validateNotBlankNLength(this.template.getTitle(), 100, "template.title");
 		super.validateNotNull(this.template.getPostDate(), "template.postDate");
 		getEntitiesByIds();
 	}
-	
+
 	public String createSubmit() {
 		try {
 			this.epaper = this.epaperService.create(this.template);
@@ -252,16 +256,16 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String update() {
 		return showDetail();
 	}
-	
+
 	public void validateUpdateSubmit() {
 		super.validateNotBlankNLength(this.epaper.getTitle(), 200, "epaper.title");
 		super.validateNotNull(this.epaper.getPostDate(), "epaper.postDate");
 	}
-	
+
 	public String updateSubmit() {
 		try {
 			this.epaperService.update(this.epaper, super.getCurrentSysUser(), false, super.getSysLog());
@@ -271,11 +275,11 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String delete() {
 		return showDetail();
 	}
-	
+
 	public String deleteSubmit() {
 		try {
 			this.epaperService.delete(this.id, false, super.getSysLog());
@@ -285,24 +289,24 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-		
+
 	@Deprecated
 	public String read() {
 		try {
-//			this.epaperUrl = "/ePapers/20160706163719.jsp";
-//			this.epaperUrl = "/ePapers/20160909144004.jsp";
-//			this.epaperUrl = "/ePapers/20170105185502.jsp";
-			
+			// this.epaperUrl = "/ePapers/20160706163719.jsp";
+			// this.epaperUrl = "/ePapers/20160909144004.jsp";
+			// this.epaperUrl = "/ePapers/20170105185502.jsp";
+
 			showDetail();
 			this.epaperUrl = this.epaper.getUrl();
-			
+
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
-	
+
 	public String publish() {
 		try {
 			this.epaperService.publish(this.id, super.getCurrentSysUser(), this.getSysLog());
@@ -314,19 +318,19 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String sendTestEmail() {
 		try {
-			this.epaperService.sendTestEmail(this.id, this.testEmailTo);
+			this.epaperService.sendTestEmail(this.id, this.testEmailTo, this.uploadFile);
 			index();
-			super.addActionMessage("測試信寄送成功");
+			super.addActionMessage("寄送成功");
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return ERROR;
 		}
 	}
-	
+
 	public String newsIndex() {
 		try {
 			this.newsPagedList = this.newsService.searchBy(this.newsSearchCondition);
@@ -336,7 +340,7 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String activityIndex() {
 		try {
 			log.debug(this.template.getActivityIds());
@@ -347,7 +351,7 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String rdFocusIndex() {
 		try {
 			this.rdFocusPagedList = this.rdFocusService.searchBy(this.rdFocusSearchCondition);
@@ -357,7 +361,7 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String researchPlanIndex() {
 		try {
 			this.researchPlanPagedList = this.researchPlanService.searchBy(this.researchPlanSearchCondition);
@@ -367,7 +371,7 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String patentIndex() {
 		try {
 			this.patentPagedList = this.patentService.searchBy(this.patentSearchCondition);
@@ -377,17 +381,17 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	public String industryInfoIndex() {
 		try {
 			this.industryInfoPagedList = this.industryInfoService.searchBy(this.industryInfoSearchCondition);
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
-			return ERROR;	
+			return ERROR;
 		}
 	}
-	
+
 	public String faqIndex() {
 		try {
 			this.faqPagedList = this.faqService.searchBy(this.faqSearchCondition);
@@ -397,7 +401,7 @@ public class EPaperAction extends BaseIaceAction {
 			return ERROR;
 		}
 	}
-	
+
 	// =========================================================================
 
 	public String getEpaperUrl() {
@@ -455,7 +459,7 @@ public class EPaperAction extends BaseIaceAction {
 	public void setTestEmailTo(String testEmailTo) {
 		this.testEmailTo = testEmailTo;
 	}
-	
+
 	public boolean isLoadDefaultSample() {
 		return loadDefaultSample;
 	}
@@ -569,19 +573,19 @@ public class EPaperAction extends BaseIaceAction {
 		}
 		return optionTrlList;
 	}
-	
+
 	public List<BaseOption> getYearList() {
 		if (this.yearList == null) {
 			this.yearList = new ArrayList<BaseOption>();
 			List<Integer> yearList = this.researchPlanService.getYearList();
 			for (int year : yearList) {
 				String strYear = String.valueOf(year);
-				this.yearList.add(new BaseOption(strYear, strYear+"年"));
+				this.yearList.add(new BaseOption(strYear, strYear + "年"));
 			}
 		}
 		return this.yearList;
 	}
-	
+
 	public List<OptionCountry> getOptionCountryList() {
 		if (optionCountryList == null) {
 			this.optionCountryList = this.optionCountryService.listAll();
@@ -596,4 +600,27 @@ public class EPaperAction extends BaseIaceAction {
 		return techFieldList;
 	}
 
+	public File getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(File uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+	public String getUploadFileContentType() {
+		return uploadFileContentType;
+	}
+
+	public void setUploadFileContentType(String uploadFileContentType) {
+		this.uploadFileContentType = uploadFileContentType;
+	}
+
+	public String getUploadFileFileName() {
+		return uploadFileFileName;
+	}
+
+	public void setUploadFileFileName(String uploadFileFileName) {
+		this.uploadFileFileName = uploadFileFileName;
+	}
 }

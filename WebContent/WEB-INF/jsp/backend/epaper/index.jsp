@@ -18,11 +18,11 @@
 		
 		dialog = $("#dialog-form").dialog({
 			autoOpen : false,
-			height : 170,
-			width : 260,
+			height : 240,
+			width : 270,
 			modal : true,
 			buttons : {
-				"送出測試信" : sendTestEmail,
+				"送出" : sendTestEmail,
 				"取消" : function() {
 					dialog.dialog("close");
 				}
@@ -33,20 +33,8 @@
 	});
 	
 	function sendTestEmail() {
-		var valid = true;
-		var email = $("#dialog-form input[name=testEmailTo]");
 		dialog.find("form").submit();
 		dialog.dialog("close");
-		return valid;
-	}
-
-	function checkRegexp(o, regexp, n) {
-		if (!(regexp.test(o.val()))) {
-			o.addClass("ui-state-error");
-			return false;
-		} else {
-			return true;
-		}
 	}
 </script>
 <script>
@@ -70,10 +58,12 @@
 			$("form#index-form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
 		});
 		$(".btn-publish").click(function() {
-			var url = $(this).siblings(".publishUrl").val();
-			$("form#index-form").attr('action', url);
-			$("form#index-form").submit();
-			$("form#index-form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+			if (confirm("確定要發佈? 發佈後將把發佈日設為今天，並將本電子報Email給所有會員以及電子報訂閱人")) {
+				var url = $(this).siblings(".publishUrl").val();
+				$("form#index-form").attr('action', url);
+				$("form#index-form").submit();
+				$("form#index-form").attr('action', '<s:url value="index.action"/>'); // 要把action改為原本的，否則如果使用者按下瀏覽器的上一頁回到目前這個列表頁再去按搜尋就會跑到已經被改變的action所指定的那一頁
+			}
 		});
 		$(".btn-sendTestEmail").click(function() {
 			var id = $(this).parents("tr").find(".row-id").html();
@@ -281,9 +271,9 @@
 									<input type="button" class="btn-info btn-func btn-del" value="刪除" />
 								</s:if>
 								
-								<!-- 刪除 -->
+								<!-- 手動寄送 -->
 								<label class="row-id" style="display:none;"><s:property value="id"/></label>
-								<input type="button" class="btn-sendTestEmail" value="寄送測試信" />
+								<input type="button" class="btn-sendTestEmail" value="手動寄送" />
 							</td>
 						</tr>
 					</s:iterator>
@@ -335,13 +325,19 @@
 	</s:form>
 	<div class="clear"></div>
 	
-	<div id="dialog-form" title="寄送測試信">
+	<div id="dialog-form" title="手動寄送電子報">
 		<p class="validateTips"></p>
 	
-		<s:form action="sendTestEmail" method="post" validate="true" >
+		<s:form action="sendTestEmail" method="post" validate="true" enctype="multipart/form-data">
 			<input type="hidden" name="id"/>
-			<label for="email">Email</label>
-      		<input type="text" name="testEmailTo" class="text ui-widget-content ui-corner-all">
+			<div>
+				<label>Email</label>
+				<input type="text" name="testEmailTo" class="text ui-widget-content ui-corner-all" placeholder="多組email請用分號隔開">
+			</div>
+			<div style="margin-top:20px;">
+				<label>或上傳包含Email的Excel(.xlsx)檔</label>
+				<input type="file" name="uploadFile" accept=".xlsx"/>
+			</div>
 		</s:form>
 	</div>
 </body>
