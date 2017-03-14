@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -70,4 +71,29 @@ public class EmailUtil {
 		Transport.send(msg);
 	}
 
+	public static List<String> batchSend(String subject, String content, List<File> attaches, String from, String senderName, List<String> to) {
+		List<String> failEmails = new ArrayList<String>();
+		for (int i=0; i<to.size(); i++) {
+			String email = to.get(i);
+			try {
+				send(subject, content, attaches, from, senderName, email);
+			} catch (MessagingException | IOException e1) {
+				failEmails.add(email);
+			}
+			
+			if (i%100 == 0) {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+				}
+			}
+		}
+		return failEmails;
+	}
+	
+	public static List<String> batchSend(String subject, String content, List<File> attaches, String from, String senderName, Set<String> to) {
+		List<String> emailList = new ArrayList<String>();
+		emailList.addAll(to);
+		return batchSend(subject, content, attaches, from, senderName, emailList);
+	}
 }

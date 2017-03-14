@@ -581,7 +581,8 @@ public class ServiceFactory {
 			epaperService = new EPaperService(
 					DaoFactory.getEpaperDao(), 
 					DaoFactory.getePaperSubscriberDao(),
-					DaoFactory.getMemberDao());
+					DaoFactory.getMemberDao(),
+					DaoFactory.getSysParameterDao());
 		}
 		return epaperService;
 	}

@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 import java.util.UUID;
@@ -35,6 +36,7 @@ import core.util.Validator;
 import iace.dao.ePaper.IEPaperDao;
 import iace.dao.ePaper.IEPaperSubscriberDao;
 import iace.dao.member.IMemberDao;
+import iace.dao.sys.ISysParameterDao;
 import iace.entity.activity.Activity;
 import iace.entity.ePaper.EPaper;
 import iace.entity.ePaper.EPaperProduceTemplate;
@@ -46,6 +48,7 @@ import iace.entity.patent.Patent;
 import iace.entity.rdFocus.RdFocus;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.sys.SysLog;
+import iace.entity.sys.SysParameter;
 import iace.entity.sys.SysUser;
 import iace.service.BaseIaceService;
 
@@ -57,14 +60,16 @@ public class EPaperService extends BaseIaceService<EPaper> {
 	private IEPaperDao dao;
 	private IEPaperSubscriberDao subscriberDao;
 	private IMemberDao memberDao;
+	private ISysParameterDao sysParameterDao;
 	
 	private String epaperBackupFolder;
 	
-	public EPaperService(IEPaperDao dao, IEPaperSubscriberDao subscriberDao, IMemberDao memberDao) {
+	public EPaperService(IEPaperDao dao, IEPaperSubscriberDao subscriberDao, IMemberDao memberDao, ISysParameterDao sysParameterDao) {
 		super(dao);
 		this.dao = dao;
 		this.subscriberDao = subscriberDao;
 		this.memberDao = memberDao;
+		this.sysParameterDao = sysParameterDao;
 		
 		Properties prop = new Properties();
 		try {
@@ -125,9 +130,10 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		// start send email
 		EPaper epaper = get(id);
 		String content = readEpaperContent(epaper);
-		for (String email : emailSet) {
-			EmailUtil.send(epaper.getTitle(), content, null, "linkiac2@gmail.com", "科技部鏈結產學合作計畫辦公室", email);
-		}
+		String from = "linkiac2@gmail.com";
+		String senderName = "科技部鏈結產學合作計畫辦公室";
+		List<String> failEmails = EmailUtil.batchSend(epaper.getTitle(), content, null, from, senderName, emailSet);
+		sendEmailResult(epaper.getTitle(), emailSet, failEmails);
 	}
 	
 	public void publish(long id, SysUser user, SysLog syslog) throws IOException, SQLException, ParseException, MessagingException {
@@ -136,14 +142,64 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		epaper.setPublishState(true);
 		
 		String content = readEpaperContent(epaper);
+		String from = "linkiac2@gmail.com";
+		String senderName = "科技部鏈結產學合作計畫辦公室";
 		Set<String> emails = new HashSet<String>();
 		emails.addAll(this.subscriberDao.allEmailList());
 		emails.addAll(this.memberDao.allEmailList());
-		for (String to : emails) {
-			EmailUtil.send(epaper.getTitle(), content, null, "linkiac2@gmail.com", "科技部鏈結產學合作計畫辦公室", to);
-		}
+		List<String> failEmails = EmailUtil.batchSend(epaper.getTitle(), content, null, from, senderName, emails);
+		sendEmailResult(epaper.getTitle(), emails, failEmails);
 		
 		update(epaper, user, false, syslog);
+	}
+	
+	/**
+	 * 將批次發送郵件的結果寄一封信給管理員
+	 * @throws IOException 
+	 * @throws MessagingException 
+	 */
+	private void sendEmailResult(String epaperTitle, Set<String> allEmails, List<String> failEmails) throws MessagingException, IOException {
+		SysParameter epaperAdminEmail = this.sysParameterDao.getByKey("epaperAdminEmail");
+		int finishCount = allEmails.size() - failEmails.size();
+		int failCount = failEmails.size();
+		StringBuilder sb = new StringBuilder();
+		sb.append("<table>");
+		sb.append("	<tr>");
+		sb.append("		<th><strong>電子報標題</strong></th>");
+		sb.append("		<td>" + epaperTitle + "</td>");
+		sb.append("	</tr>");
+		sb.append("	<tr>");
+		sb.append("		<th><strong>成功寄送Email數</strong></th>");
+		sb.append("		<td>" + finishCount + "</td>");
+		sb.append("	</tr>");
+		sb.append("	<tr>");
+		sb.append("		<th><strong>寄送失敗數</strong></th>");
+		sb.append("		<td>" + failCount + "</td>");
+		sb.append("	</tr>");
+		sb.append("</table>");
+		
+		if (failCount > 0) {
+			sb.append("<br>");
+			sb.append("<table>");
+			sb.append("	<tr>");
+			sb.append("		<th><strong>寄送失敗Email清單</strong></th>");
+			sb.append("	</tr>");
+			for (String e : failEmails) {
+				sb.append("	<tr>");
+				sb.append("		<td>" + e + "</td>");
+				sb.append("	</tr>");
+			}
+			sb.append("</table>");
+		}
+
+		
+		String subject = "IACE 電子報Email發送結果";
+		String content = sb.toString();
+		String from = "linkiac2@gmail.com";
+		String senderName = "科技部鏈結產學合作計畫辦公室";
+		String to = epaperAdminEmail.getValue();
+		
+		EmailUtil.send(subject, content, null, from, senderName, to);
 	}
 	
 	private String readEpaperContent(EPaper epaper) {

@@ -61,6 +61,7 @@ import iace.entity.relatedWebsite.RelatedWebsite;
 import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.Technology;
 import iace.entity.sys.SysLog;
+import iace.entity.sys.SysParameter;
 import iace.entity.sys.SysRole;
 import iace.entity.sys.SysUser;
 import iace.entity.talentedPeople.TalentedPeople;
@@ -205,6 +206,7 @@ public class HibernateSessionFactory {
 		
 		configuration.addAnnotatedClass(QnrCooperateWay.class);
 		
+		configuration.addAnnotatedClass(SysParameter.class);
 		configuration.addAnnotatedClass(SysUser.class);
 		configuration.addAnnotatedClass(SysRole.class);
 		configuration.addAnnotatedClass(SysLog.class);

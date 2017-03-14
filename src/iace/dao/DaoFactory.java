@@ -87,9 +87,11 @@ import iace.dao.researchPlan.ITechnologyDao;
 import iace.dao.researchPlan.ResearchPlanDao;
 import iace.dao.researchPlan.TechnologyDao;
 import iace.dao.sys.ISysLogDao;
+import iace.dao.sys.ISysParameterDao;
 import iace.dao.sys.ISysRoleDao;
 import iace.dao.sys.ISysUserDao;
 import iace.dao.sys.SysLogDao;
+import iace.dao.sys.SysParameterDao;
 import iace.dao.sys.SysRoleDao;
 import iace.dao.sys.SysUserDao;
 import iace.dao.talentedPeople.ITalentedPeopleDao;
@@ -122,6 +124,7 @@ import iace.entity.option.OptionTrl;
 
 public class DaoFactory {
 	
+	private static ISysParameterDao sysParameterDao;
 	private static ISysRoleDao sysRoleDao;
 	private static ISysUserDao sysUserDao;
 	private static ISysLogDao sysLogDao;
@@ -204,6 +207,13 @@ public class DaoFactory {
 	
 	private static IMarqueeDao marqueeDao;
 	
+	public static ISysParameterDao getSysParameterDao() {
+		if (sysParameterDao == null) {
+			sysParameterDao = new SysParameterDao();
+		}
+		return sysParameterDao;
+	}
+
 	public static ISysRoleDao getSysRoleDao() {
 		if (sysRoleDao == null) {
 			sysRoleDao = new SysRoleDao();
