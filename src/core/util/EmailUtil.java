@@ -77,7 +77,7 @@ public class EmailUtil {
 			String email = to.get(i);
 			try {
 				send(subject, content, attaches, from, senderName, email);
-			} catch (MessagingException | IOException e1) {
+			} catch (Exception e1) {
 				failEmails.add(email);
 			}
 			

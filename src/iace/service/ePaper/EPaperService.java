@@ -14,6 +14,7 @@ import java.net.URLEncoder;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
@@ -127,7 +128,8 @@ public class EPaperService extends BaseIaceService<EPaper> {
 			} catch (IOException e) {
 				throw e;
 			}
-		}	
+		}
+		emailSet.removeAll(Collections.singleton(null));
 		
 		// start send email
 		EPaper epaper = get(id);
@@ -149,6 +151,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		Set<String> emails = new HashSet<String>();
 		emails.addAll(this.subscriberDao.allEmailList());
 		emails.addAll(this.memberDao.allEmailList());
+		emails.removeAll(Collections.singleton(null));
 		List<String> failEmails = EmailUtil.batchSend(epaper.getTitle(), content, null, from, senderName, emails);
 		sendEmailResult(epaper.getTitle(), emails, failEmails);
 		
