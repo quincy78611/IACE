@@ -568,7 +568,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/topic-ico-5.png\" width=\"43\" height=\"42\" />").append("\r\n");
 		sb.append("									</td>").append("\r\n");
 		sb.append("									<td align=\"left\" style=\"font-size: 25px; font-family: 微軟正黑體, Arial, Helvetica; color: #fff; background: #8a62ff;\">").append("\r\n");
-		sb.append("										<strong>產業評析／新聞</strong>").append("\r\n");
+		sb.append("										<strong>產業評析/新聞</strong>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
 		sb.append("									<td width=\"30\" bgcolor=\"#8a62ff\">").append("\r\n");
 		sb.append("										<a href=\""+urlDomainName+"/f2/industryInfo/init?searchCondition.category=新聞雷達\" target=\"_blank\">").append("\r\n");
