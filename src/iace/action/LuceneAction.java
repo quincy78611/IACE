@@ -37,6 +37,8 @@ public class LuceneAction extends BaseIaceAction {
 	private List<ResearchPlanManagerSearchResult> rpManagerList;
 	private String rpManagerJsonString;
 	
+	private boolean svgDisplayStatus;
+	
 	public LuceneAction() {
 		super.setTitle("Lucene全文檢索");
 	}
@@ -190,5 +192,13 @@ public class LuceneAction extends BaseIaceAction {
 		list.add(new BaseOption(IncubationCenter.class.getName(), "育成中心"));
 		list.add(new BaseOption("OTHER", "其他"));
 		return list;
+	}
+
+	public boolean isSvgDisplayStatus() {
+		return svgDisplayStatus;
+	}
+
+	public void setSvgDisplayStatus(boolean svgDisplayStatus) {
+		this.svgDisplayStatus = svgDisplayStatus;
 	}
 }

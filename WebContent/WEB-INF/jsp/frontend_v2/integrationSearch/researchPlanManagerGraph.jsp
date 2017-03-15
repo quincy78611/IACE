@@ -61,31 +61,43 @@
 </style>
 
 <div id="div-network-diagram">
-	<button class="btn btn-default btn-open btn-svg-toggle" id="btn-svg-open" type="button">
+	<button class="btn btn-default btn-svg-toggle" id="btn-svg-open" type="button">
 		<i class="fa fa-plus right5" aria-hidden="true"></i>展開網絡圖
 	</button>
-	<button class="btn btn-default btn-close btn-svg-toggle" id="btn-svg-close" type="button" style="display: none">
+	<button class="btn btn-default btn-svg-toggle" id="btn-svg-close" type="button">
 		<i class="fa fa-minus right5" aria-hidden="true"></i>收合網絡圖
 	</button>
 	<div id="svg-container">
 		<label>註：本網絡圖只代表主持人之研究計畫中出現完全相符之關鍵詞</label>
 	</div>
 	<input type="hidden" name="searchCondition.researchPlanManager" value=""/>
+	<s:hidden name="svgDisplayStatus"/>
 </div>
 
 <script>
 	$("#btn-svg-open").click(function(){
-		$("#svg-container").slideDown();
 		$(".btn-svg-toggle").toggle();
+		$("#svg-container").slideDown();
+		$("input[name=svgDisplayStatus]").val(true);
 	});
 	$("#btn-svg-close").click(function(){
-		$("#svg-container").slideUp();
 		$(".btn-svg-toggle").toggle();
+		$("#svg-container").slideUp();
+		$("input[name=svgDisplayStatus]").val(false);
 	});
 	
 	$(document).ready(function() {
 // 		$("#svg-container").toggle();//不可以用toggle否則在firefox上的Text標籤會無法正確顯示
-		$("#svg-container").fadeOut();
+
+		var svgDisplayStatus = $("input[name=svgDisplayStatus]").val();
+		if (svgDisplayStatus == "true") {
+			$("#btn-svg-open").hide();
+			$("input[name=svgDisplayStatus]").val(true);
+		} else {
+			$("#btn-svg-close").hide();
+			$("#svg-container").slideUp();
+			$("input[name=svgDisplayStatus]").val(false);
+		}
 	}); 
 </script>
 <script>
@@ -163,6 +175,7 @@
 			var value = $(this).attr("value");
 			$("input[name='searchCondition.researchPlanManager']").val(value);
 		}
+		$("input[name='searchCondition.pageIndex']").val(0);
 		$(this).parents("form").submit();
 	})
 </script>
