@@ -61,14 +61,15 @@
 </style>
 
 <div id="div-network-diagram">
-	<button class="btn btn-default btn-svg-toggle" id="btn-svg-open" type="button">
+	<button class="btn btn-info btn-svg-toggle" id="btn-svg-open" type="button">
 		<i class="fa fa-plus right5" aria-hidden="true"></i>展開網絡圖
 	</button>
-	<button class="btn btn-default btn-svg-toggle" id="btn-svg-close" type="button">
+	<button class="btn btn-info btn-svg-toggle" id="btn-svg-close" type="button">
 		<i class="fa fa-minus right5" aria-hidden="true"></i>收合網絡圖
 	</button>
 	<div id="svg-container">
-		<label>註：本網絡圖只代表主持人之研究計畫中出現完全相符之關鍵詞</label>
+		<label>註1：本網絡圖只代表主持人之研究計畫中出現完全相符之關鍵詞</label><br>
+		<label>註2：點選「關鍵詞」可返回前畫面</label>
 	</div>
 	<input type="hidden" name="searchCondition.researchPlanManager" value=""/>
 	<s:hidden name="svgDisplayStatus"/>
