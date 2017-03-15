@@ -91,6 +91,9 @@ public class EPaperDao extends BaseIaceDao<EPaper> implements IEPaperDao {
 				log.warn("", e);
 			}
 		}
+		if (arg.getPublishState() != null) {
+			criteria.add(Restrictions.eq("publishState", arg.getPublishState()));
+		}
 		criteria.add(Restrictions.eq("isValid", BaseEntity.TRUE));
 	}
 

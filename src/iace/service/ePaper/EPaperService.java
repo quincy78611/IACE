@@ -494,7 +494,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("										<img src=\""+urlDomainName+"/ePapers/images/topic-ico-2.png\" width=\"41\" height=\"42\" />").append("\r\n");
 		sb.append("									</td>").append("\r\n");
 		sb.append("									<td align=\"left\" style=\"font-size: 25px; font-family: 微軟正黑體, Arial, Helvetica; color: #fff; background: #46c0ff;\">").append("\r\n");
-		sb.append("										<strong>學界研發成果</strong>").append("\r\n");
+		sb.append("										<strong>學界研發成果/專利</strong>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
 		sb.append("									<td width=\"30\" bgcolor=\"#46c0ff\">").append("\r\n");
 		sb.append("										<a href=\""+urlDomainName+"/f2/integrationSearch/init?searchCondition.className=iace.entity.researchPlan.Technology\" target=\"_blank\">").append("\r\n");

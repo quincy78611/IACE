@@ -6,6 +6,7 @@ public class EPaperSearchModel extends BaseSearchModel {
 
 	private String searchText;
 	private Integer year;
+	private Boolean publishState;
 
 	public String getSearchText() {
 		return searchText;
@@ -23,4 +24,11 @@ public class EPaperSearchModel extends BaseSearchModel {
 		this.year = year;
 	}
 
+	public Boolean getPublishState() {
+		return publishState;
+	}
+
+	public void setPublishState(Boolean publishState) {
+		this.publishState = publishState;
+	}
 }

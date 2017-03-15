@@ -282,9 +282,11 @@
 	<package name="f2-Epaper" namespace="/f2/ePaper" extends="struts-default, json-default, default">
 		<default-interceptor-ref name="iaceFrontEnd"/>
 		<action name="init" class="iace.action.EPaperAction" method="init">
+			<param name="searchCondition.publishState">true</param>
 			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/index.jsp</result>
 		</action>
 		<action name="index" class="iace.action.EPaperAction" method="index">
+			<param name="searchCondition.publishState">true</param>
 			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/index.jsp</result>
 		</action>
 		<action name="subscribe" class="iace.action.EPaperSubscriberAction" method="subscribe">
