@@ -27,11 +27,14 @@ public class IndustryInfo extends BaseEntity implements IntegrationSearch {
 	}
 	
 	private long id;
+	private String oid; //從web service來的原始ID
 	private String category; // 新聞雷達, 產業評析
 	private String title;
 	private String link;
 	private String source;
 	private Date postDate;
+	private int clickNum;
+
 
 	@Id
 	@Column(name = "ID", length = 19, unique = true, nullable = false, updatable = false)
@@ -43,6 +46,15 @@ public class IndustryInfo extends BaseEntity implements IntegrationSearch {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+	
+	@Column(name = "OID")
+	public String getOid() {
+		return oid;
+	}
+
+	public void setOid(String oid) {
+		this.oid = oid;
 	}
 
 	@Column(name = "CATEGORY")
@@ -92,6 +104,20 @@ public class IndustryInfo extends BaseEntity implements IntegrationSearch {
 
 	public static List<BaseOption> getCategoryList() {
 		return categoryList;
+	}
+	
+	@Column(name = "CLICK_NUM")
+	public int getClickNum() {
+		return clickNum;
+	}
+
+	public void setClickNum(int clickNum) {
+		this.clickNum = clickNum;
+	}
+	
+	@Override
+	public String toString() {
+		return "IndustryInfo [id=" + id + ", oid=" + oid + ", category=" + category + ", title=" + title + ", link=" + link + ", source=" + source + ", postDate=" + postDate + ", clickNum=" + clickNum + "]";
 	}
 
 	@Override

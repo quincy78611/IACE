@@ -1,2 +1,6 @@
 eclipse.preferences.version=1
+encoding//src/iace/webservice/linkiacClient/LinkIacWS.java=UTF-8
+encoding//src/iace/webservice/linkiacClient/LinkIacWSLocator.java=UTF-8
+encoding//src/iace/webservice/linkiacClient/LinkIacWSSoap.java=UTF-8
+encoding//src/iace/webservice/linkiacClient/LinkIacWSSoapStub.java=UTF-8
 encoding/<project>=UTF-8

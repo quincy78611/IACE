@@ -15,4 +15,6 @@ public interface IIndustryInfoDao extends IBaseIaceDao<IndustryInfo> {
 	public List<IndustryInfo> sampleForHomePage(String category);
 	
 	public List<IndustryInfo> sampleForEpaper();
+	
+	public IndustryInfo getByOid(String oid);
 }

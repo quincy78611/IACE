@@ -123,6 +123,9 @@
 			
 			<result name="success">/WEB-INF/jsp/backend/developerFunc/init.jsp</result>
 		</action>
+		<action name="syncIndustryInfoData" class="iace.action.IndustryInfoAction" method="syncData">
+			<result name="success">/WEB-INF/jsp/backend/developerFunc/init.jsp</result>
+		</action>
 	</package>
 	
 	<package name="Captcha" namespace="/captcha" extends="struts-default">

@@ -1,8 +1,10 @@
 package iace.action;
 
+import java.util.Date;
 import java.util.List;
 
 import core.util.PagedList;
+import iace.dao.ClickNumCounterDao;
 import iace.entity.industryInfo.IndustryInfo;
 import iace.entity.industryInfo.IndustryInfoSearchModel;
 import iace.entity.option.BaseOption;
@@ -34,6 +36,31 @@ public class IndustryInfoAction extends BaseIaceAction {
 	public String index() {
 		try {
 			this.industryInfoPagedList = this.industryInfoService.searchBy(this.searchCondition);
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String increaseClickNum() {
+		try {
+			new ClickNumCounterDao().increaseClickNum(this.id, IndustryInfo.class);
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String syncData() {
+		try {
+			super.setTitle("");
+			Date d1 = new Date();
+			this.industryInfoService.syncData(super.getCurrentSysUser(), true, null);
+			Date d2 = new Date();
+			long spendSec = (d2.getTime()-d1.getTime())/1000;
+			this.addActionMessage("產業情報資料同步完成!用時"+spendSec+"秒.");
 			return SUCCESS;
 		} catch (Exception e) {
 			super.showExceptionToPage(e);

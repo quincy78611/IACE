@@ -145,6 +145,22 @@ public class IndustryInfoDao extends BaseIaceDao<IndustryInfo> implements IIndus
 			HibernateSessionFactory.closeSession();
 		}
 	}
+
+	@Override
+	public IndustryInfo getByOid(String oid) {
+		try {
+			Session session = HibernateSessionFactory.getSession();
+			Criteria criteria = session.createCriteria(super.entityClass);
+			criteria.add(Restrictions.eq("oid", oid));
+			
+			IndustryInfo res = (IndustryInfo) criteria.uniqueResult();
+			return res;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			HibernateSessionFactory.closeSession();
+		}
+	}
 	
 	
 

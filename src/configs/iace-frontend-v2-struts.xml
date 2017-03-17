@@ -99,6 +99,12 @@
 			<result name="success">/WEB-INF/jsp/frontend_v2/industryInfo/index.jsp</result>
 			<result name="input">/WEB-INF/jsp/frontend_v2/industryInfo/index.jsp</result>
 		</action>
+		<action name="increaseClickNum" class="iace.action.IndustryInfoAction" method="increaseClickNum">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+				<param name="noCache">true</param>
+			</result>
+		</action>
 	</package>
 	
 	<package name="f2-CoopEx" namespace="/f2/coopEx" extends="struts-default, json-default, default">
