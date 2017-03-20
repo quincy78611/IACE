@@ -2,6 +2,7 @@ package iace.action;
 
 import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.SessionAware;
@@ -19,6 +20,7 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 	
 	protected Map<String, Object> session;
 	
+	private String exceptionUuid;
 	private Date exceptionTime;
 	private String exceptionName;
 	private String exceptionMessage;
@@ -70,7 +72,8 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 	}
 	
 	protected void showExceptionToPage(Exception e) {
-		log.error("", e);
+		this.exceptionUuid = UUID.randomUUID().toString(); 
+		log.error(this.exceptionUuid, e);
 		this.addActionError(e.getMessage());
 		this.exceptionTime = new Date();
 		this.exceptionName = e.getClass().getName();
@@ -84,6 +87,14 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
+	}
+
+	public String getExceptionUuid() {
+		return exceptionUuid;
+	}
+
+	public void setExceptionUuid(String exceptionUuid) {
+		this.exceptionUuid = exceptionUuid;
 	}
 
 	public String getExceptionName() {
