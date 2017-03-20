@@ -47,6 +47,8 @@ public class FileAction extends BaseIaceAction {
 	private int thumbnailWidth;
 	private int thumbnailHeight;
 	
+	private int CKEditorFuncNum; // CKEditor提交的很重要的一个参数
+	
 	public FileAction() {
 		super.setTitle("檔案中心");
 	}
@@ -87,11 +89,11 @@ public class FileAction extends BaseIaceAction {
 		PrintWriter out = response.getWriter();
 
 		// CKEditor提交的很重要的一个参数
-		String CKEditorFuncNum = ServletActionContext.getRequest().getParameter("CKEditorFuncNum");
-		if (StringUtils.isNumeric(CKEditorFuncNum) == false) {
-			super.addFieldError("CKEditorFuncNum", "Must be a number");
-			return INPUT;
-		}
+//		String CKEditorFuncNum = ServletActionContext.getRequest().getParameter("CKEditorFuncNum");
+//		if (StringUtils.isNumeric(CKEditorFuncNum) == false) {
+//			super.addFieldError("CKEditorFuncNum", "Must be a number");
+//			return INPUT;
+//		}
 
 		String day = sdfDay.format(System.currentTimeMillis());
 		String uuid = UUID.randomUUID().toString();
@@ -226,6 +228,14 @@ public class FileAction extends BaseIaceAction {
 
 	public void setThumbnailHeight(int thumbnailHeight) {
 		this.thumbnailHeight = thumbnailHeight;
+	}
+
+	public int getCKEditorFuncNum() {
+		return CKEditorFuncNum;
+	}
+
+	public void setCKEditorFuncNum(int cKEditorFuncNum) {
+		CKEditorFuncNum = cKEditorFuncNum;
 	}
 	
 	
