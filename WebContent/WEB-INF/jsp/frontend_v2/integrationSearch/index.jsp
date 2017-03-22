@@ -83,7 +83,7 @@
 			<div class="row">
 				<s:include value="./index_resultSubTitle.jsp" />
 			</div>
-			<s:if test="searchCondition.className == 'iace.entity.researchPlan.Technology'">
+			<s:if test="searchCondition.className == 'iace.entity.researchPlan.ResearchPlan'">
 				<s:include value="./researchPlanManagerGraph.jsp" />
 			</s:if>
 			<div class="row">
@@ -97,8 +97,11 @@
 					<s:iterator value="pagedList.list" status="stat">
 						<div class="list-item">
 							<!-- 研發成果 -->
+							<s:if test="researchPlan != null">
+								<s:include value="./listItem_researchPlan.jsp" />
+							</s:if>
 							<s:if test="technology != null">
-								<s:include value="./listItem_technology.jsp" />
+								<s:include value="./listItem_technology.jsp" /> <!-- 已棄用!若出現則代表有錯 -->
 							</s:if>
 							<!-- 專利資料 -->
 							<s:if test="patent != null">

@@ -34,6 +34,7 @@ import iace.entity.industryInfo.IndustryInfo;
 import iace.entity.literature.Literature;
 import iace.entity.news.News;
 import iace.entity.patent.Patent;
+import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.Technology;
 import iace.entity.talentedPeople.TalentedPeople;
 
@@ -164,7 +165,8 @@ public class IntegrationIndexer {
 		queryStr += ")";
 		
 		if (StringUtils.isNotBlank(arg.getClassName())) {
-			if (arg.getClassName().equals(Technology.class.getName()) || 
+			if (arg.getClassName().equals(ResearchPlan.class.getName()) || 
+				arg.getClassName().equals(Technology.class.getName()) || 
 				arg.getClassName().equals(Patent.class.getName()) ||
 				arg.getClassName().equals(TalentedPeople.class.getName()) ||
 				arg.getClassName().equals(CoopEx.class.getName()) ||

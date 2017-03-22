@@ -77,7 +77,7 @@ public class LuceneAction extends BaseIaceAction {
 	
 	public String integrationSearch() {
 		try {
-			if (StringUtils.equals(this.searchCondition.getClassName(), Technology.class.getName()) == false) {
+			if (StringUtils.equals(this.searchCondition.getClassName(), ResearchPlan.class.getName()) == false) {
 				this.pagedList = this.luceneIndexService.integrationSearch(this.searchCondition);
 			} else {
 				// 取得網絡圖的資料
@@ -89,13 +89,11 @@ public class LuceneAction extends BaseIaceAction {
 					this.pagedList = this.luceneIndexService.integrationSearch(this.searchCondition);
 				} else {
 					// 取得被點擊的計劃主持人的所有研發成果
-					List<Technology> tecList = new ArrayList<Technology>();
+					List<ResearchPlan> rpList = new ArrayList<ResearchPlan>();
 					for (ResearchPlanManagerSearchResult res : this.rpManagerList) {
 						for (Long researchPlanId : res.getResearchPlanIdList()) {
 							ResearchPlan rp  = this.researchPlanService.get(researchPlanId);
-							for (Technology tec : rp.getTechnologies()) {
-								tecList.add(tec);
-							}
+							rpList.add(rp);
 						}
 					}
 					
@@ -103,13 +101,13 @@ public class LuceneAction extends BaseIaceAction {
 					int pIndex = this.searchCondition.getPageIndex();
 					int pSize = this.searchCondition.getPageSize();
 					List<IntegrationSearchResult> list = new ArrayList<IntegrationSearchResult>();
-					for (int i=pIndex*pSize; i<(pIndex+1)*pSize && i<tecList.size(); i++) {
+					for (int i=pIndex*pSize; i<(pIndex+1)*pSize && i<rpList.size(); i++) {
 						IntegrationSearchResult r = new IntegrationSearchResult();
-						r.setType(Technology.class.getName());
-						r.setTechnology(tecList.get(i));
+						r.setType(ResearchPlan.class.getName());
+						r.setResearchPlan(rpList.get(i));
 						list.add(r);
 					}
-					this.pagedList = new PagedList<IntegrationSearchResult>(list, tecList.size(), pSize, pIndex);
+					this.pagedList = new PagedList<IntegrationSearchResult>(list, rpList.size(), pSize, pIndex);
 				}
 			}
 			

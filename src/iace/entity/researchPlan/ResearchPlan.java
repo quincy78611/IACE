@@ -17,6 +17,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import org.apache.commons.lang3.StringUtils;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -388,11 +389,20 @@ public class ResearchPlan extends BaseEntity implements IntegrationSearch {
 
 	@Override
 	public String toLunceneContent() {
-		String content = 
-				this.name + " " +
-				this.manager + " " +
-				this.keyword;
-		return content;
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.name).append(" ");
+		sb.append("\t"+this.manager+"\t").append(" ");
+		if (StringUtils.isNotBlank(this.keyword)) {
+			String[] keywords = this.keyword.replace("；", ";").split(";");
+			for (String s : keywords) {
+				sb.append("\t"+s+"\t").append(" ");
+			}
+		}
+		for (Technology tec : this.technologies) {
+			sb.append(tec.getName()+" "+tec.getDescriptoin()).append(" ");
+		}
+
+		return sb.toString();
 	}
 
 	

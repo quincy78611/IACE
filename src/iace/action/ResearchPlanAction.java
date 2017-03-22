@@ -211,10 +211,9 @@ public class ResearchPlanAction extends BaseIaceAction {
 	public String createTechnologySubmit() {
 		try {
 			this.researchPlan = this.researchPlanService.get(this.id);
+			this.researchPlan.addTechnology(this.technology);
 			this.technology.setResearchPlan(this.researchPlan);
-			this.technologyService.create(this.technology, super.getCurrentSysUser(), true, super.getSysLog());
-			// 成功後重新抓取研究計畫資料
-			this.researchPlan = this.researchPlanService.get(this.id);
+			this.researchPlanService.update(this.researchPlan, super.getCurrentSysUser(), true, super.getSysLog());
 			this.addActionMessage("CREATE SUCCESS!");
 			
 			return SUCCESS;

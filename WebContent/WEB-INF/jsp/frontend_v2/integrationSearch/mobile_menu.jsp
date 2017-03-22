@@ -32,7 +32,7 @@
 			</a></li>
 			<li role="separator" class="divider"></li>
 			<li><a href="#" class="list_link_01 classNameBtn">
-					<input type="text" class="classNameValue" style="display:none;" value="iace.entity.researchPlan.Technology"/>
+					<input type="text" class="classNameValue" style="display:none;" value="iace.entity.researchPlan.ResearchPlan"/>
 					<div style="width: 20%; float: left; text-align: center;">
 						<img src="<s:url value="/images/frontend-v2/icon_02m.png"/>" class="right10" alt="" height="30" />
 					</div>

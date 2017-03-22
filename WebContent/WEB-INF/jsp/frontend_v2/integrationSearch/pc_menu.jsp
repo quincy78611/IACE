@@ -32,7 +32,7 @@
 				</td>
 				<td width="13%" style="border: none;">
 					<div class="search_icon text-center classNameBtn">
-						<input type="text" class="classNameValue" style="display:none;" value="iace.entity.researchPlan.Technology"/>
+						<input type="text" class="classNameValue" style="display:none;" value="iace.entity.researchPlan.ResearchPlan"/>
 						<div>
 							<img src="<s:url value="/images/frontend-v2/icon_02.png"/>" alt="" height="40" />
 						</div>

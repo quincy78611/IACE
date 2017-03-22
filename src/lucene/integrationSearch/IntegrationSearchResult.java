@@ -7,6 +7,7 @@ import iace.entity.industryInfo.IndustryInfo;
 import iace.entity.literature.Literature;
 import iace.entity.news.News;
 import iace.entity.patent.Patent;
+import iace.entity.researchPlan.ResearchPlan;
 import iace.entity.researchPlan.Technology;
 import iace.entity.talentedPeople.TalentedPeople;
 
@@ -14,6 +15,7 @@ public class IntegrationSearchResult {
 
 	private String type;
 
+	private ResearchPlan researchPlan;
 	private Technology technology;
 	private Patent patent;
 	private TalentedPeople talentedPeople;
@@ -31,6 +33,14 @@ public class IntegrationSearchResult {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public ResearchPlan getResearchPlan() {
+		return researchPlan;
+	}
+
+	public void setResearchPlan(ResearchPlan researchPlan) {
+		this.researchPlan = researchPlan;
 	}
 
 	public Technology getTechnology() {

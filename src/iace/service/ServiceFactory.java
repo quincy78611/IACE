@@ -149,6 +149,7 @@ public class ServiceFactory {
 	public static LuceneIndexService getLuceneIndexService() {
 		if (luceneIndexService == null) {
 			luceneIndexService = new LuceneIndexService(
+					DaoFactory.getResearchPlanDao(),
 					DaoFactory.getTechnologyDao(),
 					DaoFactory.getPatentDao(),
 					DaoFactory.getTalentedPeopleDao(),

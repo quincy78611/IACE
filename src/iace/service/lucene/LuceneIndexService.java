@@ -22,6 +22,7 @@ import iace.dao.industryInfo.IIndustryInfoDao;
 import iace.dao.literature.ILiteratureDao;
 import iace.dao.news.INewsDao;
 import iace.dao.patent.IPatentDao;
+import iace.dao.researchPlan.IResearchPlanDao;
 import iace.dao.researchPlan.ITechnologyDao;
 import iace.dao.talentedPeople.ITalentedPeopleDao;
 import iace.entity.activity.Activity;
@@ -38,6 +39,8 @@ import iace.entity.news.News;
 import iace.entity.news.NewsSearchModel;
 import iace.entity.patent.Patent;
 import iace.entity.patent.PatentSearchModel;
+import iace.entity.researchPlan.ResearchPlan;
+import iace.entity.researchPlan.ResearchPlanSearchModel;
 import iace.entity.researchPlan.Technology;
 import iace.entity.researchPlan.TechnologySearchModel;
 import iace.entity.talentedPeople.TalentedPeople;
@@ -49,6 +52,7 @@ import lucene.integrationSearch.IntegrationSearchResult;
 public class LuceneIndexService {
 	protected static Logger log = LogManager.getLogger(LuceneIndexService.class);
 
+	private IResearchPlanDao researchPlanDao;
 	private ITechnologyDao technologyDao;
 	private IPatentDao patentDao;
 	private ITalentedPeopleDao talentedPeopleDao;
@@ -62,6 +66,7 @@ public class LuceneIndexService {
 	private String integrationSearchIndexFolder;
 
 	public LuceneIndexService(
+			IResearchPlanDao researchPlanDao,
 			ITechnologyDao technologyDao, 
 			IPatentDao patentDao, 
 			ITalentedPeopleDao talentedPeopleDao,
@@ -71,6 +76,7 @@ public class LuceneIndexService {
 			IActivityDao activityDao,
 			IIndustryInfoDao industryInfoDao,
 			INewsDao newsDao) {
+		this.researchPlanDao = researchPlanDao;
 		this.technologyDao = technologyDao;
 		this.patentDao = patentDao;
 		this.talentedPeopleDao = talentedPeopleDao;
@@ -97,7 +103,8 @@ public class LuceneIndexService {
 			IndexWriter writer = IntegrationIndexer.createIndexWriter(indexDirectory);
 			try {
 				writer.deleteAll(); writer.commit();
-				createTechnologyIndex(writer);
+				createResearchPlanIndex(writer);
+//				createTechnologyIndex(writer);
 				createPatentIndex(writer);
 				createTalentedPeopleIndex(writer);
 				createCoopExIndex(writer);
@@ -114,7 +121,27 @@ public class LuceneIndexService {
 			}
 		}
 	}
+	
+	private void createResearchPlanIndex(IndexWriter writer) throws IOException {
+		ResearchPlanSearchModel arg = new ResearchPlanSearchModel();
+		long totalRecordCount = this.researchPlanDao.queryTotalRecordsCount(arg);
+		int pageCount = (int) Math.ceil(totalRecordCount / (double) arg.getPageSize());
+		for (int i = 0; i < pageCount; i++) {
+			arg.setPageIndex(i);
+			PagedList<ResearchPlan> pagedList = this.researchPlanDao.searchBy(arg);
+			for (ResearchPlan entity : pagedList.getList()) {
+				entity = this.researchPlanDao.get(entity.getId());
+				StringBuilder sb = new StringBuilder();
+				sb.append(entity.toLunceneContent()+ " ");
+				for (Technology tec : entity.getTechnologies()) {
+					sb.append(tec.toLunceneContent() + " ");
+				}
+				IntegrationIndexer.addDoc(writer, entity.getId(), entity.getClass(), sb.toString());
+			}
+		}
+	}
 
+	@SuppressWarnings("unused")
 	private void createTechnologyIndex(IndexWriter writer) throws IOException {
 		TechnologySearchModel arg = new TechnologySearchModel();
 		long totalRecordCount = this.technologyDao.queryTotalRecordsCount(arg);
@@ -123,7 +150,7 @@ public class LuceneIndexService {
 			arg.setPageIndex(i);
 			PagedList<Technology> pagedList = this.technologyDao.searchBy(arg);
 			for (Technology entity : pagedList.getList()) {
-				IntegrationIndexer.addDoc(writer, entity.getId(), entity.getClass(), entity.toLunceneContent());
+				IntegrationIndexer.addDoc(writer, entity.getId(), entity.getClass(), entity.toLunceneContent()+entity.getResearchPlan().toLunceneContent());
 			}
 		}
 	}
@@ -263,7 +290,9 @@ public class LuceneIndexService {
 				
 				IntegrationSearchResult r = new IntegrationSearchResult();
 				r.setType(className);
-				if (Technology.class.getName().equals(className)) {
+				if (ResearchPlan.class.getName().equals(className)) {
+					r.setResearchPlan(this.researchPlanDao.get(id));
+				} else if (Technology.class.getName().equals(className)) {
 					r.setTechnology(this.technologyDao.get(id));
 				} else if (Patent.class.getName().equals(className)) {
 					r.setPatent(this.patentDao.get(id));
