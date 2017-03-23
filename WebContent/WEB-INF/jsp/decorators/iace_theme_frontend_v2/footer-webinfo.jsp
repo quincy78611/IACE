@@ -8,7 +8,10 @@
 			<div class="col-sm-7 col-xs-12 nopadding footer_content">
 				<div class="pull-left" style="margin-right:10px;"><img src="<s:url value="/images/qrCode.jpg"/>" width="50" height="50" alt=""/></div>
 				<div class="pull-left">
-					<div>版權所有©2015科技部產學及園區業務司</div>
+					<div>版權所有©<label id="current_year"></label>科技部產學及園區業務司</div>
+					<script>
+						$("label#current_year").text(new Date().getFullYear());
+					</script>
 					<div>Department of Academia-Industry Collaboration and Science Park Affairs, Academy and Science Park Affairs</div>
 					<div>本網站設計 支援IE、Firefox及Chrome， 網頁設計最佳瀏覽解析度為1280x768以上</div>
 					<div>
