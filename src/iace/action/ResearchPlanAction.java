@@ -99,7 +99,9 @@ public class ResearchPlanAction extends BaseIaceAction {
 	}
 	
 	public void validateCreateSubmit() {
-		//TODO
+		if (this.researchPlanService.planNoExist(this.researchPlan.getPlanNo())) {
+			super.addFieldError("researchPlan.planNo", "計畫編號已存在，不可重複");
+		}
 	}
 	
 	public String createSubmit() {

@@ -94,6 +94,7 @@
 						<s:textfield name="researchPlan.grb05Id" maxlength="500" />
 					</div>
 				</li>
+				<div class="clear"></div>
 				<li class="half">
 					<b>產業化潛力</b>
 					<div>
@@ -119,6 +120,7 @@
 						</div>
 					</div>
 				</li>
+				<div class="clear"></div>
 				<li class="all">
 					<b>計畫關鍵詞</b>
 					<div>

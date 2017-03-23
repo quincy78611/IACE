@@ -61,6 +61,10 @@ public class ResearchPlanService extends BaseIaceService<ResearchPlan> {
 		}
 	}
 
+	public boolean planNoExist(String planNo) {
+		return this.researchPlanDao.planNoExist(planNo);
+	}
+	
 	public List<ResearchPlan> sampleForEpaper() {
 		return this.researchPlanDao.sampleForEpaper();
 	}
