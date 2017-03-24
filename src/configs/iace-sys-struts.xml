@@ -104,26 +104,34 @@
 			<interceptor-ref name="iaceSession"/>
 			<interceptor-ref name="iaceBackendlogin"/>
 			<interceptor-ref name="defaultStack" />
-			
 			<result name="success">/WEB-INF/jsp/backend/developerFunc/init.jsp</result>
-			<result name="input">/WEB-INF/jsp/backend/home/index.jsp</result>
 		</action>
-	
 		<action name="batchResizeTalentedPeopleHeadshot" class="iace.action.TalentedPeopleAction" method="batchResizeHeadshot">
 			<interceptor-ref name="iaceSession"/>
 			<interceptor-ref name="iaceBackendlogin"/>
 			<interceptor-ref name="defaultStack" />
-			
 			<result name="success">/WEB-INF/jsp/backend/developerFunc/init.jsp</result>
 		</action>
 		<action name="rebuildLuceneIndex" class="iace.action.LuceneAction" method="rebuildIndex">
 			<interceptor-ref name="iaceSession"/>
 			<interceptor-ref name="iaceBackendlogin"/>
 			<interceptor-ref name="defaultStack" />
-			
+			<result name="success">/WEB-INF/jsp/backend/developerFunc/init.jsp</result>
+		</action>
+		<action name="rebuildLuceneIndexWithoutLogin" class="iace.action.LuceneAction" method="rebuildIndexWithoutLogin">
+			<interceptor-ref name="httpRequestLog" />
+			<interceptor-ref name="defaultStack" />
 			<result name="success">/WEB-INF/jsp/backend/developerFunc/init.jsp</result>
 		</action>
 		<action name="syncIndustryInfoData" class="iace.action.IndustryInfoAction" method="syncData">
+			<interceptor-ref name="iaceSession"/>
+			<interceptor-ref name="iaceBackendlogin"/>
+			<interceptor-ref name="defaultStack" />
+			<result name="success">/WEB-INF/jsp/backend/developerFunc/init.jsp</result>
+		</action>
+		<action name="syncIndustryInfoDataWithoutLogin" class="iace.action.IndustryInfoAction" method="syncDataWithoutLogin">
+			<interceptor-ref name="httpRequestLog"/>
+			<interceptor-ref name="defaultStack" />
 			<result name="success">/WEB-INF/jsp/backend/developerFunc/init.jsp</result>
 		</action>
 	</package>

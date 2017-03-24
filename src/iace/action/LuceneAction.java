@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import core.util.AESEncrypter;
 import core.util.PagedList;
 import iace.entity.coopExample.CoopEx;
 import iace.entity.incubationCenter.IncubationCenter;
@@ -39,17 +40,34 @@ public class LuceneAction extends BaseIaceAction {
 	
 	private boolean svgDisplayStatus;
 	
+	private String keyForRebuildIndex;
+	
 	public LuceneAction() {
 		super.setTitle("Lucene全文檢索");
 	}
 	
-	public String rebuildIndex() {
+	public String rebuildIndexWithoutLogin() {
+		try {
+			String decryptKey = AESEncrypter.decrypt("iace@!QAZ", this.keyForRebuildIndex);
+			if ("sysvin".equals(decryptKey) == false) {
+				throw new Exception("key值錯誤");
+			} else {
+				return rebuildIndex();
+			}
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public void validateRebuildIndex() {
 		String sysRoleName = super.getCurrentSysUser().getSysRole().getName();
 		if (StringUtils.equals(sysRoleName, "系統開發人員") == false) {
 			super.addActionError("沒有權限");
-			return INPUT;
 		}
-		
+	}
+	
+	public String rebuildIndex() {
 		try {
 			Date d1 = new Date();
 			this.luceneIndexService.rebuildIndex();
@@ -199,4 +217,14 @@ public class LuceneAction extends BaseIaceAction {
 	public void setSvgDisplayStatus(boolean svgDisplayStatus) {
 		this.svgDisplayStatus = svgDisplayStatus;
 	}
+
+	public String getKeyForRebuildIndex() {
+		return keyForRebuildIndex;
+	}
+
+	public void setKeyForRebuildIndex(String keyForRebuildIndex) {
+		this.keyForRebuildIndex = keyForRebuildIndex;
+	}
+	
+	
 }

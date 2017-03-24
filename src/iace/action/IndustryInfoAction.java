@@ -3,6 +3,7 @@ package iace.action;
 import java.util.Date;
 import java.util.List;
 
+import core.util.AESEncrypter;
 import core.util.PagedList;
 import iace.dao.ClickNumCounterDao;
 import iace.entity.industryInfo.IndustryInfo;
@@ -24,6 +25,8 @@ public class IndustryInfoAction extends BaseIaceAction {
 	private IndustryInfo industryInfo;
 	
 	private List<BaseOption> categoryList = IndustryInfo.getCategoryList();
+	
+	private String keyForSyncData;
 	
 	public IndustryInfoAction() {
 		super.setTitle("產業情報");
@@ -47,6 +50,20 @@ public class IndustryInfoAction extends BaseIaceAction {
 		try {
 			new ClickNumCounterDao().increaseClickNum(this.id, IndustryInfo.class);
 			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
+	public String syncDataWithoutLogin() {
+		try {
+			String decryptKey = AESEncrypter.decrypt("iace@!QAZ", this.keyForSyncData);
+			if ("sysvin".equals(decryptKey) == false) {
+				throw new Exception("key值錯誤");
+			} else {
+				return syncData();
+			}
 		} catch (Exception e) {
 			super.showExceptionToPage(e);
 			return ERROR;
@@ -100,6 +117,14 @@ public class IndustryInfoAction extends BaseIaceAction {
 
 	public List<BaseOption> getCategoryList() {
 		return categoryList;
+	}
+
+	public String getKeyForSyncData() {
+		return keyForSyncData;
+	}
+
+	public void setKeyForSyncData(String keyForSyncData) {
+		this.keyForSyncData = keyForSyncData;
 	}
 	
 	
