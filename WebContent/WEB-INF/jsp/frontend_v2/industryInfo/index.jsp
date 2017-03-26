@@ -9,28 +9,7 @@
 			$("input[type=text]").val("");
 			$("select").prop('selectedIndex', 0);
 		});
-		
-		$(".industryInfoLink").click(function(){
-			var id = $(this).parents("tr").find("input[name=id]").val();
-			increaseClickNumAjax(id);
-			return true;
-		})
 	});
-	
-	function increaseClickNumAjax(industryInfoId) {
-		$.ajax({
-			url : '<s:url value="/f2/industryInfo/increaseClickNum.action"/>',
-			type : 'GET',
-			data : {
-				id : industryInfoId
-			},
-			error : function(xhr) {
-				alert('Ajax request 發生錯誤');
-			},
-			success : function(response) {
-			}
-		});	
-	}
 </script>
 </head>
 <body>
@@ -75,8 +54,10 @@
 										<tr>
 											<td class="date_01"><s:date name="postDate" format="yyyy/M/d"/></td>
 											<td>
-												<s:hidden name="id" disabled="true"/>
-												<a href="<s:property value="link"/>" class="list_link_01 industryInfoLink" target="_blank">
+												<s:url value="/f2/industryInfo/showDetail" var="detailUrlTag" escapeAmp="false">
+													<s:param name="id" value="id" />
+												</s:url>
+												<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank">
 													<s:property value="title" escapeHtml="false"/>
 												</a>
 											</td>

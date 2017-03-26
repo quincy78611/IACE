@@ -99,6 +99,9 @@
 			<result name="success">/WEB-INF/jsp/frontend_v2/industryInfo/index.jsp</result>
 			<result name="input">/WEB-INF/jsp/frontend_v2/industryInfo/index.jsp</result>
 		</action>
+		<action name="showDetail" class="iace.action.IndustryInfoAction" method="showDetail">
+			<result name="success" type="redirect">${industryInfo.link}</result>
+		</action>
 		<action name="increaseClickNum" class="iace.action.IndustryInfoAction" method="increaseClickNum">
 			<result type="json">
 				<param name="excludeNullProperties">true</param>
@@ -301,6 +304,12 @@
 		<action name="subscribeSubmit" class="iace.action.EPaperSubscriberAction" method="subscribeSubmit">
 			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
 			<result name="input">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
+		</action>
+		<action name="openEpaperMail" class="iace.action.EPaperAction" method="openEpaperMail">
+			<result type="json">
+				<param name="excludeNullProperties">true</param>
+				<param name="noCache">true</param>
+			</result>
 		</action>
 	</package>
 </struts>

@@ -590,6 +590,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("							</table>").append("\r\n");
 		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
 		for (IndustryInfo info : template.getIndustryInfoList()) {
+			String url = urlDomainName + "/f2/industryInfo/showDetail?id="+info.getId();
 			sb.append("								<tr>").append("\r\n");
 			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
 			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
@@ -598,7 +599,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 			sb.append("										<strong>"+sdf2.format(info.getPostDate())+"</strong>").append("\r\n");
 			sb.append("									</td>").append("\r\n");
 			sb.append("									<td align=\"left\" valign=\"top\" style=\"padding-top: 6px\">").append("\r\n");
-			sb.append("										<a href=\""+info.getLink()+"\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px;\">").append("\r\n");
+			sb.append("										<a href=\""+url+"\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px;\">").append("\r\n");
 			sb.append("											<strong>"+info.getTitle()+"</strong>").append("\r\n");
 			sb.append("										</a>").append("\r\n");
 			sb.append("									</td>").append("\r\n");

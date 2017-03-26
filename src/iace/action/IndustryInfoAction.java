@@ -46,6 +46,17 @@ public class IndustryInfoAction extends BaseIaceAction {
 		}
 	}
 	
+	public String showDetail() {
+		try {
+			new ClickNumCounterDao().increaseClickNum(this.id, IndustryInfo.class);
+			this.industryInfo = this.industryInfoService.get(this.id);
+			return SUCCESS;
+		} catch (Exception e) {
+			super.showExceptionToPage(e);
+			return ERROR;
+		}
+	}
+	
 	public String increaseClickNum() {
 		try {
 			new ClickNumCounterDao().increaseClickNum(this.id, IndustryInfo.class);

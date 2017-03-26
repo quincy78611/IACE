@@ -20,7 +20,10 @@
 					</td>
 					<td width="10%" style="border: none;" class="date_01">主題</td>
 					<td style="border: none;">
-						<a href="<s:property value="industryInfo.link"/>" class="list_link_01" target="_blank">
+						<s:url value="/f2/industryInfo/showDetail" var="detailUrlTag" escapeAmp="false">
+							<s:param name="id" value="industryInfo.id" />
+						</s:url>
+						<a href="<s:property value="%{#detailUrlTag}"/>" class="list_link_01" target="_blank">
 							<s:property value="industryInfo.title"/>
 						</a>
 					</td>
