@@ -27,6 +27,8 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 	private StackTraceElement[] exceptionStack;
 	
 	private SysLog sysLog = new SysLog();
+	
+	private Long openedEpaperId;
 
 	// =========================================================================
 
@@ -155,6 +157,14 @@ public class BaseIaceAction extends BaseAction implements SessionAware {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public Long getOpenedEpaperId() {
+		return openedEpaperId;
+	}
+
+	public void setOpenedEpaperId(Long openedEpaperId) {
+		this.openedEpaperId = openedEpaperId;
 	}
 	
 	

@@ -135,6 +135,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		// start send email
 		EPaper epaper = get(id);
 		String content = readEpaperContent(epaper);
+		content = content.replaceAll("openedEpaperId=0", "openedEpaperId="+id);
 		String from = "linkiac2@gmail.com";
 		String senderName = "科技部鏈結產學合作計畫辦公室";
 		
@@ -168,6 +169,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		epaper.setPublishState(true);
 		
 		String content = readEpaperContent(epaper);
+		content = content.replaceAll("openedEpaperId=0", "openedEpaperId="+id);
 		String from = "linkiac2@gmail.com";
 		String senderName = "科技部鏈結產學合作計畫辦公室";
 		Set<String> emails = new HashSet<String>();
@@ -388,7 +390,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("										<strong>公告訊息</strong>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
 		sb.append("									<td width=\"30\" bgcolor=\"#ffb346\">").append("\r\n");
-		sb.append("										<a href=\""+urlDomainName+"/f2/news/init?searchCondition.category="+URLEncoder.encode("一般公告", "UTF-8")+"\" target=\"_blank\">").append("\r\n");
+		sb.append("										<a href=\""+urlDomainName+"/f2/news/init?searchCondition.category="+URLEncoder.encode("一般公告", "UTF-8")+"&openedEpaperId=0\" target=\"_blank\">").append("\r\n");
 		sb.append("											<img src=\""+urlDomainName+"/ePapers/images/more-w.gif\" width=\"30\" height=\"20\" border=\"0\" />").append("\r\n");
 		sb.append("										</a>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
@@ -408,7 +410,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		// 公告訊息
 		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
 		for (News news : template.getNewsList()) {
-			String url = urlDomainName + "/f2/news/showDetail?id="+news.getId()+"&searchCondition.category="+URLEncoder.encode(news.getCategory(), "UTF-8");
+			String url = urlDomainName + "/f2/news/showDetail?id="+news.getId()+"&searchCondition.category="+URLEncoder.encode(news.getCategory(), "UTF-8")+"&openedEpaperId=0";
 			sb.append("								<tr>").append("\r\n");
 			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
 			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
@@ -445,7 +447,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 					imgSrc = urlDomainName + "/images/frontend-v2/noimage-2.gif";
 				}
 			}
-			String url = urlDomainName + "/f2/activity/showDetail?id="+activity.getId()+"&searchCondition.category="+URLEncoder.encode(activity.getCategory(), "UTF-8");
+			String url = urlDomainName + "/f2/activity/showDetail?id="+activity.getId()+"&searchCondition.category="+URLEncoder.encode(activity.getCategory(), "UTF-8")+"&openedEpaperId=0";
 			sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
 			sb.append("								<tr>").append("\r\n");
 			sb.append("									<td width=\"115\" align=\"left\" valign=\"top\">").append("\r\n");
@@ -492,7 +494,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("										<strong>研發焦點</strong>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
 		sb.append("									<td width=\"30\" bgcolor=\"#014c8f\">").append("\r\n");
-		sb.append("										<a href=\""+urlDomainName+"/f2/rdFocus/init?searchCondition.category="+URLEncoder.encode("國際前瞻趨勢", "UTF-8")+"\" target=\"_blank\">").append("\r\n");
+		sb.append("										<a href=\""+urlDomainName+"/f2/rdFocus/init?searchCondition.category="+URLEncoder.encode("國際前瞻趨勢", "UTF-8")+"&openedEpaperId=0\" target=\"_blank\">").append("\r\n");
 		sb.append("											<img src=\""+urlDomainName+"/ePapers/images/more-w.gif\" width=\"30\" height=\"20\" border=\"0\" />").append("\r\n");
 		sb.append("										</a>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
@@ -510,7 +512,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("						<td align=\"center\">").append("\r\n");
 		sb.append("							<table width=\"97%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
 		for (RdFocus rdFocus : template.getRdFocusList()) {
-			String url = urlDomainName + "/f2/rdFocus/showDetail?id="+rdFocus.getId()+"&searchCondition.category="+URLEncoder.encode(rdFocus.getCategory(), "UTF-8");
+			String url = urlDomainName + "/f2/rdFocus/showDetail?id="+rdFocus.getId()+"&searchCondition.category="+URLEncoder.encode(rdFocus.getCategory(), "UTF-8")+"&openedEpaperId=0";
 			sb.append("								<tr>").append("\r\n");
 			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
 			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
@@ -553,7 +555,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("										<strong>學界研發成果/專利</strong>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
 		sb.append("									<td width=\"30\" bgcolor=\"#46c0ff\">").append("\r\n");
-		sb.append("										<a href=\""+urlDomainName+"/f2/integrationSearch/init?searchCondition.className=iace.entity.researchPlan.Technology\" target=\"_blank\">").append("\r\n");
+		sb.append("										<a href=\""+urlDomainName+"/f2/integrationSearch/init?searchCondition.className=iace.entity.researchPlan.Technology&openedEpaperId=0\" target=\"_blank\">").append("\r\n");
 		sb.append("											<img src=\""+urlDomainName+"/ePapers/images/more-w.gif\" alt=\"更多學界研發成果\" width=\"30\" height=\"20\" border=\"0\" />").append("\r\n");
 		sb.append("										</a>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
@@ -566,7 +568,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		//研發成果
 		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
 		for (ResearchPlan rp : template.getResearchPlanList()) {
-			String url = urlDomainName + "/f2/researchPlan/showDetail?id="+rp.getId();
+			String url = urlDomainName + "/f2/researchPlan/showDetail?id="+rp.getId()+"&openedEpaperId=0";
 			sb.append("								<tr>").append("\r\n");
 			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
 			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
@@ -586,7 +588,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		//專利
 		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
 		for (Patent patent : template.getPatentList()) {
-			String url = urlDomainName + "/f2/patent/showDetail?id="+patent.getId();
+			String url = urlDomainName + "/f2/patent/showDetail?id="+patent.getId()+"&openedEpaperId=0";
 			sb.append("								<tr>").append("\r\n");
 			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
 			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
@@ -627,7 +629,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("										<strong>產業評析/新聞</strong>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
 		sb.append("									<td width=\"30\" bgcolor=\"#8a62ff\">").append("\r\n");
-		sb.append("										<a href=\""+urlDomainName+"/f2/industryInfo/init?searchCondition.category="+URLEncoder.encode("新聞雷達", "UTF-8")+"\" target=\"_blank\">").append("\r\n");
+		sb.append("										<a href=\""+urlDomainName+"/f2/industryInfo/init?searchCondition.category="+URLEncoder.encode("新聞雷達", "UTF-8")+"&openedEpaperId=0\" target=\"_blank\">").append("\r\n");
 		sb.append("											<img src=\""+urlDomainName+"/ePapers/images/more-w.gif\" alt=\"更多產業評析／新聞\" width=\"30\" height=\"20\" border=\"0\" />").append("\r\n");
 		sb.append("										</a>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
@@ -641,7 +643,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("							</table>").append("\r\n");
 		sb.append("							<table width=\"98%\" cellpadding=\"0\" cellspacing=\"0\">").append("\r\n");
 		for (IndustryInfo info : template.getIndustryInfoList()) {
-			String url = urlDomainName + "/f2/industryInfo/showDetail?id="+info.getId();
+			String url = urlDomainName + "/f2/industryInfo/showDetail?id="+info.getId()+"&openedEpaperId=0";
 			sb.append("								<tr>").append("\r\n");
 			sb.append("									<td width=\"2%\" align=\"center\" valign=\"top\">").append("\r\n");
 			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/icon-1.gif\" width=\"8\" height=\"23\" />").append("\r\n");
@@ -681,7 +683,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		sb.append("										<strong>常問集</strong>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
 		sb.append("									<td width=\"30\" bgcolor=\"#64a614\">").append("\r\n");
-		sb.append("										<a href=\""+urlDomainName+"/f2/faq/init?searchCondition.category="+URLEncoder.encode("運用法人鏈結產學合作計畫", "UTF-8")+"\" target=\"_blank\">").append("\r\n");
+		sb.append("										<a href=\""+urlDomainName+"/f2/faq/init?searchCondition.category="+URLEncoder.encode("運用法人鏈結產學合作計畫", "UTF-8")+"&openedEpaperId=0\" target=\"_blank\">").append("\r\n");
 		sb.append("											<img src=\""+urlDomainName+"/ePapers/images/more-w.gif\" alt=\"更多常問集\" width=\"30\" height=\"20\" border=\"0\" />").append("\r\n");
 		sb.append("										</a>").append("\r\n");
 		sb.append("									</td>").append("\r\n");
@@ -700,7 +702,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 			sb.append("										<img src=\""+urlDomainName+"/ePapers/images/q-icon.png\" width=\"22\" height=\"22\" />").append("\r\n");
 			sb.append("									</td>").append("\r\n");
 			sb.append("									<td align=\"left\" valign=\"top\" style=\"padding-top: 6px\">").append("\r\n");
-			sb.append("										<a href=\""+urlDomainName+"/f2/faq/init?searchCondition.category="+URLEncoder.encode(faq.getCategory(), "UTF-8")+"\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px;\">").append("\r\n");
+			sb.append("										<a href=\""+urlDomainName+"/f2/faq/init?searchCondition.category="+URLEncoder.encode(faq.getCategory(), "UTF-8")+"&openedEpaperId=0\" target=\"_blank\" style=\"font-size: 17px; color: #000; font-family: 微軟正黑體, Arial, Helvetica; line-height: 25px;\">").append("\r\n");
 			sb.append("											<strong>"+faq.getTitle()+"</strong>").append("\r\n");
 			sb.append("										</a>").append("\r\n");
 			sb.append("									</td>").append("\r\n");
