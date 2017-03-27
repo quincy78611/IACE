@@ -25,8 +25,10 @@ import iace.dao.customerService.ContactUsManagerDao;
 import iace.dao.customerService.IContactUsDao;
 import iace.dao.customerService.IContactUsManagerDao;
 import iace.dao.ePaper.EPaperDao;
+import iace.dao.ePaper.EPaperMailOpenLogDao;
 import iace.dao.ePaper.EPaperSubscriberDao;
 import iace.dao.ePaper.IEPaperDao;
+import iace.dao.ePaper.IEPaperMailOpenLogDao;
 import iace.dao.ePaper.IEPaperSubscriberDao;
 import iace.dao.enterpriseNeed.EnterpriseAcademiaCoopDao;
 import iace.dao.enterpriseNeed.EnterpriseInfoDao;
@@ -203,6 +205,7 @@ public class DaoFactory {
 	private static IVideoDao videoDao;
 	
 	private static IEPaperDao epaperDao;
+	private static IEPaperMailOpenLogDao epaperMailOpenLogDao;
 	private static IEPaperSubscriberDao ePaperSubscriberDao;
 	
 	private static IMarqueeDao marqueeDao;
@@ -607,12 +610,18 @@ public class DaoFactory {
 		return videoDao;
 	}
 
-	
 	public static IEPaperDao getEpaperDao() {
 		if (epaperDao == null) {
 			epaperDao = new EPaperDao();
 		}
 		return epaperDao;
+	}
+	
+	public static IEPaperMailOpenLogDao getEpaperMailOpenLogDao() {
+		if (epaperMailOpenLogDao == null) {
+			epaperMailOpenLogDao = new EPaperMailOpenLogDao();
+		}
+		return epaperMailOpenLogDao;
 	}
 
 	public static IEPaperSubscriberDao getePaperSubscriberDao() {

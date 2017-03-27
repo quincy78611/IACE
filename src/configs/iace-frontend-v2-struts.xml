@@ -305,7 +305,7 @@
 			<result name="success">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
 			<result name="input">/WEB-INF/jsp/frontend_v2/ePaper/subscribe.jsp</result>
 		</action>
-		<action name="openEpaperMail" class="iace.action.EPaperAction" method="openEpaperMail">
+		<action name="openEpaperMail" class="iace.action.EPaperMailOpenLogAction" method="openEpaperMail">
 			<result type="json">
 				<param name="excludeNullProperties">true</param>
 				<param name="noCache">true</param>

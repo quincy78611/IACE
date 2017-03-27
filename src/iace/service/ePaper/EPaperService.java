@@ -14,6 +14,7 @@ import java.net.URLEncoder;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -136,7 +137,28 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		String content = readEpaperContent(epaper);
 		String from = "linkiac2@gmail.com";
 		String senderName = "科技部鏈結產學合作計畫辦公室";
-		List<String> failEmails = EmailUtil.batchSend(epaper.getTitle(), content, null, from, senderName, emailSet);
+		
+//		List<String> failEmails = EmailUtil.batchSend(epaper.getTitle(), content, null, from, senderName, emailSet);
+		List<String> emailList = new ArrayList<String>();
+		emailList.addAll(emailSet);
+		List<String> failEmails = new ArrayList<String>();
+		for (int i=0; i<emailList.size(); i++) {
+			String email = emailList.get(i);
+			try {
+				String text = content + getHiddenEpaperOpenCountImageForCountent(id, email);
+				EmailUtil.send(epaper.getTitle(), text, null, from, senderName, email);
+			} catch (Exception e1) {
+				failEmails.add(email);
+			}
+			
+			if (i%100 == 0) {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+				}
+			}
+		}
+		
 		sendEmailResult(epaper.getTitle(), emailSet, failEmails);
 	}
 	
@@ -152,10 +174,39 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		emails.addAll(this.subscriberDao.allEmailList());
 		emails.addAll(this.memberDao.allEmailList());
 		emails.removeAll(Collections.singleton(null));
-		List<String> failEmails = EmailUtil.batchSend(epaper.getTitle(), content, null, from, senderName, emails);
+		
+//		List<String> failEmails = EmailUtil.batchSend(epaper.getTitle(), content, null, from, senderName, emails);
+		List<String> emailList = new ArrayList<String>();
+		emailList.addAll(emails);
+		List<String> failEmails = new ArrayList<String>();
+		for (int i=0; i<emailList.size(); i++) {
+			String email = emailList.get(i);
+			try {
+				String text = content + getHiddenEpaperOpenCountImageForCountent(id, email);
+				EmailUtil.send(epaper.getTitle(), text, null, from, senderName, email);
+			} catch (Exception e1) {
+				failEmails.add(email);
+			}
+			
+			if (i%100 == 0) {
+				try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+				}
+			}
+		}
+		
 		sendEmailResult(epaper.getTitle(), emails, failEmails);
 		
 		update(epaper, user, false, syslog);
+	}
+	
+	private String getHiddenEpaperOpenCountImageForCountent(long epaperId, String email) {
+		String url = ServletActionContext.getRequest().getRequestURL().toString();
+		String namespace = ServletActionContext.getActionMapping().getNamespace();
+		String urlDomainName = url.substring(0, url.indexOf(namespace));
+		String res = "<img src=\""+urlDomainName+"/f2/ePaper/openEpaperMail?epaperId="+epaperId+"&email="+email+"\" >";
+		return res;
 	}
 	
 	/**

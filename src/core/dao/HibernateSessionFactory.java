@@ -25,6 +25,7 @@ import iace.entity.customerService.ContactUs;
 import iace.entity.customerService.ContactUsManager;
 import iace.entity.ePaper.EPaper;
 import iace.entity.ePaper.EPaperSubscriber;
+import iace.entity.ePaper.EPaperMailOpenLog;
 import iace.entity.enterpriseNeed.EnterpriseAcademiaCoop;
 import iace.entity.enterpriseNeed.EnterpriseInfo;
 import iace.entity.enterpriseNeed.EnterpriseRequireTech;
@@ -256,5 +257,6 @@ public class HibernateSessionFactory {
 		
 		configuration.addAnnotatedClass(EPaper.class);
 		configuration.addAnnotatedClass(EPaperSubscriber.class);
+		configuration.addAnnotatedClass(EPaperMailOpenLog.class);
 	}
 }
