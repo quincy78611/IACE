@@ -131,60 +131,43 @@ public class EPaperService extends BaseIaceService<EPaper> {
 			}
 		}
 		emailSet.removeAll(Collections.singleton(null));
+		List<String> emailList = new ArrayList<String>();
+		emailList.addAll(emailSet);
 		
 		// start send email
 		EPaper epaper = get(id);
-		String content = readEpaperContent(epaper);
-		content = content.replaceAll("openedEpaperId=0", "openedEpaperId="+id);
-		String from = "linkiac2@gmail.com";
-		String senderName = "科技部鏈結產學合作計畫辦公室";
-		
-//		List<String> failEmails = EmailUtil.batchSend(epaper.getTitle(), content, null, from, senderName, emailSet);
-		List<String> emailList = new ArrayList<String>();
-		emailList.addAll(emailSet);
-		List<String> failEmails = new ArrayList<String>();
-		for (int i=0; i<emailList.size(); i++) {
-			String email = emailList.get(i);
-			try {
-				String text = content + getHiddenEpaperOpenCountImageForCountent(id, email);
-				EmailUtil.send(epaper.getTitle(), text, null, from, senderName, email);
-			} catch (Exception e1) {
-				failEmails.add(email);
-			}
-			
-			if (i%100 == 0) {
-				try {
-					Thread.sleep(3000);
-				} catch (InterruptedException e) {
-				}
-			}
-		}
-		
+		List<String> failEmails = batchSendEpaperMail(epaper, emailList);
 		sendEmailResult(epaper.getTitle(), emailSet, failEmails);
 	}
 	
 	public void publish(long id, SysUser user, SysLog syslog) throws IOException, SQLException, ParseException, MessagingException {
-		EPaper epaper = get(id);
-		epaper.setPostDate(new Date(System.currentTimeMillis()));
-		epaper.setPublishState(true);
-		
-		String content = readEpaperContent(epaper);
-		content = content.replaceAll("openedEpaperId=0", "openedEpaperId="+id);
-		String from = "linkiac2@gmail.com";
-		String senderName = "科技部鏈結產學合作計畫辦公室";
 		Set<String> emails = new HashSet<String>();
 		emails.addAll(this.subscriberDao.allEmailList());
 		emails.addAll(this.memberDao.allEmailList());
 		emails.removeAll(Collections.singleton(null));
-		
-//		List<String> failEmails = EmailUtil.batchSend(epaper.getTitle(), content, null, from, senderName, emails);
 		List<String> emailList = new ArrayList<String>();
 		emailList.addAll(emails);
+		
+		EPaper epaper = get(id);
+		epaper.setPostDate(new Date(System.currentTimeMillis()));
+		epaper.setPublishState(true);
+		List<String> failEmails = batchSendEpaperMail(epaper, emailList);
+		sendEmailResult(epaper.getTitle(), emails, failEmails);
+		
+		update(epaper, user, false, syslog);
+	}
+	
+	private List<String> batchSendEpaperMail(EPaper epaper, List<String> emailList) {
+		String content = readEpaperContent(epaper);
+		content = content.replaceAll("openedEpaperId=0", "openedEpaperId="+epaper.getId());
+		String from = "linkiac2@gmail.com";
+		String senderName = "科技部鏈結產學合作計畫辦公室";
+		
 		List<String> failEmails = new ArrayList<String>();
 		for (int i=0; i<emailList.size(); i++) {
 			String email = emailList.get(i);
 			try {
-				String text = content + getHiddenEpaperOpenCountImageForCountent(id, email);
+				String text = content + getHiddenEpaperOpenCountImageForCountent(epaper.getId(), email);
 				EmailUtil.send(epaper.getTitle(), text, null, from, senderName, email);
 			} catch (Exception e1) {
 				failEmails.add(email);
@@ -198,9 +181,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 			}
 		}
 		
-		sendEmailResult(epaper.getTitle(), emails, failEmails);
-		
-		update(epaper, user, false, syslog);
+		return failEmails;
 	}
 	
 	private String getHiddenEpaperOpenCountImageForCountent(long epaperId, String email) {
