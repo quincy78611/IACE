@@ -7,6 +7,11 @@
 
 package iace.webservice.linkiacClient;
 
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
 public class LinkIacWSSoapStub extends org.apache.axis.client.Stub implements iace.webservice.linkiacClient.LinkIacWSSoap {
 	private java.util.Vector cachedSerClasses = new java.util.Vector();
 	private java.util.Vector cachedSerQNames = new java.util.Vector();
@@ -160,10 +165,16 @@ public class LinkIacWSSoapStub extends org.apache.axis.client.Stub implements ia
 			if (super.cachedPortName != null) {
 				_call.setPortName(super.cachedPortName);
 			}
-			java.util.Enumeration keys = super.cachedProperties.keys();
-			while (keys.hasMoreElements()) {
-				java.lang.String key = (java.lang.String) keys.nextElement();
-				_call.setProperty(key, super.cachedProperties.get(key));
+			// java.util.Enumeration keys = super.cachedProperties.keys();
+			// while (keys.hasMoreElements()) {
+			// java.lang.String key = (java.lang.String) keys.nextElement();
+			// _call.setProperty(key, super.cachedProperties.get(key));
+			// }
+			Set<Entry<Object, Object>> set = super.cachedProperties.entrySet();
+			Iterator<Map.Entry<Object, Object>> i = set.iterator();
+			while (i.hasNext()) {
+				Map.Entry<Object, Object> element = i.next();
+				_call.setProperty((String) element.getKey(), element.getValue());
 			}
 			return _call;
 		} catch (java.lang.Throwable _t) {
