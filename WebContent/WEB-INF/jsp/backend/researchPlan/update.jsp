@@ -74,6 +74,7 @@
 					<s:property value="researchPlan.name" />
 				</div>
 			</li>
+			<div class="clear"></div>
 			<li class="quarter">
 				<b>計畫編號</b>
 				<div>
@@ -104,6 +105,7 @@
 					<s:property value="researchPlan.grb05Id" />
 				</div>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>產業化潛力</b>
 				<div>
@@ -120,6 +122,7 @@
 					</s:if>	
 				</div>					
 			</li>
+			<div class="clear"></div>
 			<li class="all">
 				<b>計畫關鍵詞</b>
 				<div>
