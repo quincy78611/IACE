@@ -188,7 +188,7 @@ public class EPaperService extends BaseIaceService<EPaper> {
 		String url = ServletActionContext.getRequest().getRequestURL().toString();
 		String namespace = ServletActionContext.getActionMapping().getNamespace();
 		String urlDomainName = url.substring(0, url.indexOf(namespace));
-		String res = "<img src=\""+urlDomainName+"/f2/ePaper/openEpaperMail?epaperId="+epaperId+"&email="+email+"\" >";
+		String res = "<img src=\""+urlDomainName+"/f2/ePaper/openEpaperMail?epaperId="+epaperId+"&email="+email+"\" style=\"display:none\">";
 		return res;
 	}
 	
