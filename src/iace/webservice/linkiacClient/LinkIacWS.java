@@ -8,9 +8,9 @@
 package iace.webservice.linkiacClient;
 
 public interface LinkIacWS extends javax.xml.rpc.Service {
-    public java.lang.String getLinkIacWSSoapAddress();
+	public java.lang.String getLinkIacWSSoapAddress();
 
-    public iace.webservice.linkiacClient.LinkIacWSSoap getLinkIacWSSoap() throws javax.xml.rpc.ServiceException;
+	public iace.webservice.linkiacClient.LinkIacWSSoap getLinkIacWSSoap() throws javax.xml.rpc.ServiceException;
 
-    public iace.webservice.linkiacClient.LinkIacWSSoap getLinkIacWSSoap(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+	public iace.webservice.linkiacClient.LinkIacWSSoap getLinkIacWSSoap(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
 }
