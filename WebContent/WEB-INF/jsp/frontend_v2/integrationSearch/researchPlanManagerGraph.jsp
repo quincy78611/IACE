@@ -71,7 +71,7 @@
 		<label>註1：本網絡圖只代表主持人之研究計畫中出現完全相符之關鍵詞</label><br>
 		<label>註2：點選「關鍵詞」可返回前畫面</label>
 	</div>
-	<input type="hidden" name="searchCondition.researchPlanManager" value=""/>
+	<s:hidden name="searchCondition.researchPlanManager"/>
 	<s:hidden name="svgDisplayStatus"/>
 </div>
 
@@ -179,6 +179,16 @@
 		$("input[name='searchCondition.pageIndex']").val(0);
 		$(this).parents("form").submit();
 	})
+	
+	$("#btn-search").click(function() {
+		$("input[name='searchCondition.researchPlanManager']").val("");
+		$("input[name=svgDisplayStatus]").val(false);
+	});
+	
+	$("#btn-reset").click(function(){
+		$("input[name='searchCondition.researchPlanManager']").val("");
+		$("input[name=svgDisplayStatus]").val(false);
+	});
 </script>
 
 
