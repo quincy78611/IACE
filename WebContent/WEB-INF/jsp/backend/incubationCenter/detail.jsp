@@ -44,6 +44,7 @@
 			<b>單位中文名稱</b>
 			<div class="border-text"><s:property value="incubationCenter.orgNameCh"/></div>
 		</li>
+		<div class="clear"></div>
 		<li class="third">
 			<b>單位負責人</b>
 			<div class="border-text"><s:property value="incubationCenter.bossName"/></div>
@@ -56,6 +57,7 @@
 			<b>電話</b>
 			<div class="border-text"><s:property value="incubationCenter.tel"/></div>
 		</li>
+		<div class="clear"></div>
 		<li class="all">
 			<b>單位地址</b>
 			<div class="border-text"><s:property value="incubationCenter.address"/></div>

@@ -44,6 +44,7 @@
 			<b>申請日</b>
 			<div><s:property value="patent.applicationDate"/></div>
 		</li>
+		<div class="clear"></div>
 		<li class="quarter">
 			<b>公開號</b>
 			<div><s:property value="patent.openNo"/></div>
@@ -60,6 +61,7 @@
 			<b>公告日</b>
 			<div><s:property value="patent.publicationDate"/></div>
 		</li>
+		<div class="clear"></div>
 		<li class="quarter">
 			<b>專利類別</b>
 			<div><s:property value="patent.category"/></div>

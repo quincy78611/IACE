@@ -16,6 +16,7 @@
 				<b>排序優先度 (將依數字小到大排序)</b>
 				<s:textfield name="option.priority" placeholder="請輸入數字" maxlength="19"/>
 			</li>
+			<div class="clear"></div>
 			<li class="all">
 				<b>名稱</b>
 				<s:textfield name="option.name" placeholder="請輸入文數字" maxlength="500"/>

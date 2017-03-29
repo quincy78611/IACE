@@ -131,6 +131,7 @@
 				<li class="quarter">
 					<s:textfield placeholder="諮詢日期(訖)" name="searchCondition.consultDateEnd" class="calendarBox"/>
 				</li>
+				<div class="clear"></div>
 				<li class="quarter">
 					<s:select name="searchCondition.optionOrganizationTypeCode" list="optionOrganizationTypeList" listKey="code" listValue="%{code +'-'+ name}" headerKey="" headerValue="全部單位類型"/>
 				</li>

@@ -18,6 +18,7 @@ tr.hidden-sample-tr { display:none; }
 				<b>標題</b>
 				<s:textfield name="activity.title" maxlength="200"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>來源</b>
 				<s:textfield name="activity.source" maxlength="200"/>
@@ -30,6 +31,7 @@ tr.hidden-sample-tr { display:none; }
 					</s:param>
 				</s:textfield>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>分類</b>
 				<s:select name="activity.category" list="categoryList" listKey="code" listValue="name" />
@@ -38,6 +40,7 @@ tr.hidden-sample-tr { display:none; }
 				<b>活動日期</b>
 				<s:textfield name="activity.actDate" maxlength="200"/>			
 			</li>
+			<div class="clear"></div>
 			<li class="all">
 				<b>活動地點</b>
 				<s:textfield name="activity.actAddress" maxlength="200"/>
@@ -54,6 +57,7 @@ tr.hidden-sample-tr { display:none; }
 				<b>聯絡窗口</b>
 				<s:textfield name="activity.contact" maxlength="200"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>報名人數</b>
 				<s:textfield name="activity.signUpNum" maxlength="200"/>
@@ -62,6 +66,7 @@ tr.hidden-sample-tr { display:none; }
 				<b>報名起迄</b>
 				<s:textfield name="activity.signUpPeriod" maxlength="200"/>			
 			</li>
+			<div class="clear"></div>
 			<li class="all">
 				<b>報名網址</b>
 				<s:textfield name="activity.signUpLink" maxlength="200"/>

@@ -54,6 +54,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 					<s:date name="activity.postDate" format="yyyy/MM/dd"/>
 				</div>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>分類</b>
 				<div class="border-text">
@@ -64,6 +65,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 				<b>活動日期</b>
 				<s:textfield name="activity.actDate" maxlength="200"/>			
 			</li>
+			<div class="clear"></div>
 			<li class="all">
 				<b>活動地點</b>
 				<s:textfield name="activity.actAddress" maxlength="200"/>

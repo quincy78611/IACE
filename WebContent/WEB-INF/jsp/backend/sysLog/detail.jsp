@@ -32,6 +32,7 @@
 				<s:property value="%{@iace.entity.sys.SysLog@actionNames[sysLog.actionName]}"/>
 			</div>
 		</li>
+		<div class="clear"></div>
 		<li class="third">
 			<b>使用者帳號</b>
 			<div class="border-text">
@@ -50,6 +51,7 @@
 				<s:property value="sysLog.sysUser.sysRole.name"/>
 			</div>
 		</li>
+		<div class="clear"></div>
 		<li class="half">
 			<b>Before</b>
 			<div class="border-text">

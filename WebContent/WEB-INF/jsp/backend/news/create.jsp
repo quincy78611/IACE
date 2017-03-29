@@ -126,8 +126,6 @@ table.table-files .label-fileName { min-height:35px; padding: 0px 5px; }
 			</tbody>
 		</table>
 		
-		
-		
 		<div class="clear"></div>
 			
 		<h2>SEO區(網站優化加註，幫助訊息更易搜尋到)</h2>

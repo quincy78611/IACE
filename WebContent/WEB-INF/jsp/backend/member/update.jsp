@@ -41,6 +41,7 @@ $(document).ready(function() {
 				<b>密碼*</b>
 				<s:password name="member.password" maxlength="20" showPassword="true"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>姓名*</b>
 				<s:textfield name="member.name" maxlength="50"/>
@@ -49,6 +50,7 @@ $(document).ready(function() {
 				<b>Email*</b>
 				<s:textfield name="member.email" maxlength="200"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>公司/團體/學校</b>
 				<s:textfield name="member.org" maxlength="50"/>
@@ -57,6 +59,7 @@ $(document).ready(function() {
 				<b>部門/系所</b>
 				<s:textfield name="member.dept" maxlength="50"/>
 			</li>
+			<div class="clear"></div>
 			<li class="all">
 				<b>行業別 </b>
 				<s:select name="member.industry" list="industryList" listKey="code" listValue="name" headerKey="" headerValue="--請選擇--"></s:select>
@@ -78,6 +81,7 @@ $(document).ready(function() {
 					</s:iterator>
 				</div>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>職務別</b>
 				<s:select name="member.jobType" list="jobTypeList" listKey="code" listValue="name" headerKey="" headerValue="--請選擇--"></s:select>
@@ -86,6 +90,7 @@ $(document).ready(function() {
 				<b>職稱</b>
 				<s:textfield name="member.jobTitle" maxlength="50"/>
 			</li>
+			<div class="clear"></div>
 			<li class="eighth">
 				<b>郵遞區號</b>
 				<s:textfield name="member.postalCode" maxlength="20"/>
@@ -94,6 +99,7 @@ $(document).ready(function() {
 				<b>地址</b>
 				<s:textfield name="member.address" maxlength="500"/>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>電話</b>
 				<s:textfield name="member.tel" maxlength="30"/>
@@ -101,7 +107,8 @@ $(document).ready(function() {
 			<li class="half">
 				<b>手機</b>
 				<s:textfield name="member.mobile" maxlength="30"/>
-			</li>			
+			</li>	
+			<div class="clear"></div>		
 			<li class="half">
 				<b>技術需求領域</b>
 				<s:select name="member.optDomain.id" list="optDomainList" listKey="id" listValue="name" headerKey="" headerValue="--請選擇--"></s:select>
@@ -110,6 +117,7 @@ $(document).ready(function() {
 				<b>技術需求項目</b>
 				<s:textfield name="member.neededTec" maxlength="30"/>
 			</li>
+			<div class="clear"></div>
 			<li class="quarter">
 				<b>使用狀態</b>
 				<s:radio name="member.useStatus" list="#{'true':'開啟', 'false':'關閉'}" class="horizontalList" value="true"/>

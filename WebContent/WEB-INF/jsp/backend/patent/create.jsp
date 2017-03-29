@@ -43,6 +43,7 @@
 					</s:param>
 				</s:textfield>
 			</li>
+			<div class="clear"></div>
 			<li class="quarter">
 				<b>公開號</b>
 				<s:textfield name="patent.openNo" cssClass="form-control" />
@@ -67,6 +68,7 @@
 					</s:param>			
 				</s:textfield>
 			</li>
+			<div class="clear"></div>
 			<li class="quarter">
 				<b>專利類別</b>
 				<s:textfield name="patent.category" cssClass="form-control" />

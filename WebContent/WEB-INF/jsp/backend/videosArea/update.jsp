@@ -50,7 +50,8 @@ tr.hidden-sample-tr { display:none; }
 			<li class="half">
 				<b>活動地點</b>
 				<s:textfield name="videosArea.actAddress" maxlength="200"/>
-			</li>			
+			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>主辦單位</b>
 				<s:textfield name="videosArea.organizer" maxlength="200"/>

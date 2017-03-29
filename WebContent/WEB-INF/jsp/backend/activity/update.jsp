@@ -54,6 +54,7 @@ tr.hidden-sample-tr { display:none; }
 					</s:param>
 				</s:textfield>
 			</li>
+			<div class="clear"></div>
 			<li class="half">
 				<b>分類</b>
 				<s:select name="activity.category" list="categoryList" listKey="code" listValue="name" />

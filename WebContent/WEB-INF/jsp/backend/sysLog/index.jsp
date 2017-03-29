@@ -129,6 +129,7 @@
 				<li class="half">
 					<s:textfield placeholder="時間(迄) {yyyy/MM/dd HH:mm}" name="searchCondition.timeE" />
 				</li>
+				<div class="clear"></div>
 				<li class="quarter">
 					<s:select name="searchCondition.sysUserId" list="sysUserList" listKey="id" listValue="account" headerKey="" headerValue="請選擇使用者" />
 				</li>

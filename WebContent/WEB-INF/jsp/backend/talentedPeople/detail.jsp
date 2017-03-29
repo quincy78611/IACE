@@ -67,6 +67,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 						<b>產學經驗(年)</b>
 						<div class="border-text"><s:property value="talentedPeople.expYear"/>&nbsp;</div>
 					</li>
+					<div class="clear"></div>
 					<li class="half">
 						<b>連絡電話</b>
 						<label>
@@ -83,6 +84,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 						</label>
 						<div class="border-text"><s:property value="talentedPeople.email"/>&nbsp;</div>
 					</li>
+					<div class="clear"></div>
 					<li class="half">
 						<b>現職單位</b>
 						<div class="border-text"><s:property value="talentedPeople.workOrg"/>&nbsp;</div>

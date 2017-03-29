@@ -88,6 +88,7 @@ tr.hidden-sample-tr { display:none; }
 							<b>產學經驗(年)</b>
 							<s:textfield name="talentedPeople.expYear" maxlength="4"/>
 						</li>
+						<div class="clear"></div>
 						<li class="half">
 							<b>連絡電話</b>
 							<label style="font-size:11px; color:#b9925b; margin-right:10px">(多組請以分號隔開)</label>
@@ -106,6 +107,7 @@ tr.hidden-sample-tr { display:none; }
 							</label>
 							<s:textfield name="talentedPeople.email" maxlength="200"/>
 						</li>
+						<div class="clear"></div>
 						<li class="half">
 							<b>現職單位</b>
 							<s:textfield name="talentedPeople.workOrg" maxlength="100"/>

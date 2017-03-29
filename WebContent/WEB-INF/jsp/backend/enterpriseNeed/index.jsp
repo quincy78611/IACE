@@ -123,6 +123,7 @@
 				<li class="quarter">
 					<s:textfield placeholder="受訪人" name="searchCondition.intervieweeName" maxlength="100" />
 				</li>
+				<div class="clear"></div>
 				<li class="quarter">
 					<s:select name="searchCondition.optionCompanyLocationId" list="optionCompanyLocationList" listKey="id" listValue="name" headerKey="" headerValue="請選擇公司地域別" />
 				</li>

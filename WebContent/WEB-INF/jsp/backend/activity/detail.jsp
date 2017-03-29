@@ -44,6 +44,7 @@ textarea[disabled] { width:100%; resize:none; border:none; background-color:#fff
 				<s:date name="activity.postDate" format="yyyy/MM/dd"/>
 			</div>
 		</li>
+		<div class="clear"></div>
 		<li class="half">
 			<b>分類</b>
 			<div class="border-text">
