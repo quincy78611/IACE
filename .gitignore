@@ -2,4 +2,3 @@ build
 iace-logs
 /temp.log
 /.settings/org.eclipse.wst.html.core.prefs
-/src/configs/hibernate.cfg.xml
