@@ -72,12 +72,18 @@
 			</result>
 		</action>
 	</package>
-
+			
 	<include file="configs/iace-sys-struts.xml" />
 	<include file="configs/iace-option-struts.xml" />
 	<include file="configs/iace-backend-struts.xml" />
 	<include file="configs/iace-frontend-struts.xml"/>
 	<include file="configs/iace-frontend-v2-struts.xml"/>
 	<!-- Add packages here -->
+	
+	<package name="f2-flowplayertest" namespace="/f2/flowplayertest" extends="struts-default, json-default, default">
+		<action name="*">
+			<result>/WEB-INF/jsp/frontend_v2/flowplayerTest/{1}.jsp</result>
+		</action>
+	</package>
 
 </struts>
